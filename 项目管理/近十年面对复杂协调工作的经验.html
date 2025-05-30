@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复杂协调工作指南</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    
+    <!-- Framer Motion -->
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion/dist/framer-motion.umd.min.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --highlight: #3b82f6;
+            --background: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: var(--background);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--highlight) 100%);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .scroll-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center p-8">
+        <div class="text-center">
+            <h1 class="text-7xl font-black mb-6 gradient-text">复杂协调工作指南</h1>
+            <p class="text-2xl text-gray-600">COMPLEX COORDINATION GUIDE</p>
+            <div class="mt-8">
+                <i class="fas fa-chevron-down text-3xl text-gray-400 animate-bounce"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4">
+        <!-- Key Points Section -->
+        <section class="scroll-section mb-20">
+            <div class="bento-grid">
+                <!-- Card 1 -->
+                <div class="card p-8">
+                    <h2 class="text-4xl font-bold mb-4">要倒着拉清单，不要正着做计划</h2>
+                    <p class="text-xl text-gray-600">Reverse Planning</p>
+                    <div class="mt-6">
+                        <i class="fas fa-list-ul text-5xl text-blue-500"></i>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="card p-8">
+                    <h2 class="text-4xl font-bold mb-4">要出门找导游，不要闭门搞研发</h2>
+                    <p class="text-xl text-gray-600">Find Your Guide</p>
+                    <div class="mt-6">
+                        <i class="fas fa-compass text-5xl text-green-500"></i>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="card p-8">
+                    <h2 class="text-4xl font-bold mb-4">要尽早快启动，不要等万事具备</h2>
+                    <p class="text-xl text-gray-600">Start Early</p>
+                    <div class="mt-6">
+                        <i class="fas fa-rocket text-5xl text-purple-500"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Details Section -->
+        <section class="scroll-section mb-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="card p-8">
+                    <h3 class="text-3xl font-bold mb-6">复杂项目四要素</h3>
+                    <ul class="space-y-4 text-lg">
+                        <li><i class="fas fa-circle text-blue-500 mr-2"></i>多线程并行</li>
+                        <li><i class="fas fa-circle text-green-500 mr-2"></i>涉及人员众多</li>
+                        <li><i class="fas fa-circle text-purple-500 mr-2"></i>细节庞杂</li>
+                        <li><i class="fas fa-circle text-red-500 mr-2"></i>节奏不统一</li>
+                    </ul>
+                </div>
+                
+                <div class="card p-8">
+                    <h3 class="text-3xl font-bold mb-6">关键行动指南</h3>
+                    <div class="space-y-4 text-lg">
+                        <p><span class="font-bold text-blue-500">01.</span> 从用户体验倒推</p>
+                        <p><span class="font-bold text-blue-500">02.</span> 顺瓜摸藤找资源</p>
+                        <p><span class="font-bold text-blue-500">03.</span> 抓大放小重点突破</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Section -->
+        <section class="scroll-section mb-20">
+            <div class="card p-12 text-center">
+                <h2 class="text-5xl font-black mb-8 gradient-text">"你就是你自己的东风"</h2>
+                <p class="text-2xl text-gray-600">常以为成功是条件齐备后的自然结果，现实中条件往往是被行动催生出来的。就像亚马逊雨林的蝴蝶扇动翅膀可能引发飓风，个人的持续行动（妖风）也能重塑环境。关键在于：保持对目标的饥渴，同时用理性拆解路径，用感性抵御挫败——你自己，就是最大的变量。”</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.scroll-section').forEach((section) => {
+            observer.observe(section);
+        });
+
+        // Smooth scroll
+        document.querySelector('.fa-chevron-down').addEventListener('click', () => {
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
