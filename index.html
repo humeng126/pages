@@ -111,5 +111,13 @@
 
     </ul>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.getElementsByTagName('a');
+            for(let link of links) {
+                link.target = '_blank';
+            }
+        });
+    </script>
 </body>
 </html>
