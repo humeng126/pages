@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>频率的秘密 | The Secret of Frequency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+            padding: 24px;
+        }
+        
+        .bento-item {
+            border-radius: 24px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gradient-bg-1 {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+        
+        .gradient-bg-2 {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+        
+        .gradient-bg-3 {
+            background: linear-gradient(135deg, rgba(251, 146, 60, 0.1) 0%, rgba(239, 68, 68, 0.1) 100%);
+            border: 1px solid rgba(251, 146, 60, 0.2);
+        }
+        
+        .text-hero {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            line-height: 0.9;
+        }
+        
+        .text-mega {
+            font-size: clamp(2rem, 6vw, 6rem);
+            font-weight: 800;
+            line-height: 0.9;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 20px currentColor;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .spectrum-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #ef4444, #f97316, #eab308, #22c55e, #3b82f6, #6366f1, #8b5cf6);
+        }
+        
+        .energy-level {
+            transition: all 0.3s ease;
+        }
+        
+        .energy-level:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50"></div>
+        <div class="relative z-10 text-center px-6">
+            <div class="opacity-0 animate-fade-in" id="hero-content">
+                <h1 class="text-hero text-gray-900 mb-6 glow-text">
+                    频率<br>
+                    <span class="text-indigo-600">的秘密</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                    THE SECRET OF FREQUENCY
+                </p>
+                <div class="spectrum-bar w-64 mx-auto mb-8"></div>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                    世界万物的本质都是频率，掌握频率就是掌握改变现实的钥匙
+                </p>
+            </div>
+        </div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-20 floating">
+            <i class="fas fa-wave-square text-4xl text-indigo-300"></i>
+        </div>
+        <div class="absolute bottom-20 right-20 floating" style="animation-delay: -2s;">
+            <i class="fas fa-atom text-4xl text-purple-300"></i>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="bento-grid">
+        <!-- 相由心生 -->
+        <div class="bento-item gradient-bg-1 col-span-12 lg:col-span-8" id="xinxiang">
+            <div class="flex flex-col lg:flex-row items-center gap-8">
+                <div class="flex-1">
+                    <h2 class="text-mega text-gray-900 mb-4">
+                        相由心生
+                    </h2>
+                    <p class="text-sm text-indigo-600 mb-6 uppercase tracking-wider">
+                        Appearance Follows Mind
+                    </p>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        你怎么看世界，世界就怎么回应你。我们眼中所见的世界，其实是内心的投影。
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/50 rounded-lg p-4">
+                            <i class="fas fa-eye text-2xl text-indigo-600 mb-2"></i>
+                            <h4 class="font-bold text-gray-900">外在容貌</h4>
+                            <p class="text-sm text-gray-600">内在修养的映照</p>
+                        </div>
+                        <div class="bg-white/50 rounded-lg p-4">
+                            <i class="fas fa-heart text-2xl text-purple-600 mb-2"></i>
+                            <h4 class="font-bold text-gray-900">心态世界观</h4>
+                            <p class="text-sm text-gray-600">内心决定感知</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-64 h-64 relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-400 to-purple-600 rounded-full opacity-20 floating"></div>
+                    <div class="absolute inset-4 bg-gradient-to-br from-indigo-500 to-purple-700 rounded-full opacity-40 floating" style="animation-delay: -1s;"></div>
+                    <div class="absolute inset-8 bg-gradient-to-br from-indigo-600 to-purple-800 rounded-full floating" style="animation-delay: -2s;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 频率数字 -->
+        <div class="bento-item gradient-bg-2 col-span-12 lg:col-span-4" id="frequency-number">
+            <div class="text-center">
+                <div class="text-mega text-green-600 glow-text mb-4">432</div>
+                <p class="text-sm text-green-600 uppercase tracking-wider mb-4">Hz</p>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">自然频率</h3>
+                <p class="text-gray-700">
+                    被认为是万物协调的基础频率，有助于放松和疗愈
+                </p>
+                <div class="mt-6 h-2 bg-green-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-green-400 to-green-600 rounded-full animate-pulse" style="width: 72%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 光谱图 -->
+        <div class="bento-item gradient-bg-3 col-span-12 lg:col-span-6" id="spectrum">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">光的频率波长</h3>
+            <p class="text-sm text-orange-600 uppercase tracking-wider mb-6">Light Spectrum</p>
+            
+            <div class="space-y-4">
+                <div class="flex items-center justify-between p-3 bg-white/50 rounded-lg">
+                    <div class="flex items-center gap-3">
+                        <div class="w-4 h-4 bg-red-500 rounded"></div>
+                        <span class="font-medium">红光</span>
+                    </div>
+                    <span class="text-sm text-gray-600">700nm - 低频长波</span>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-white/50 rounded-lg">
+                    <div class="flex items-center gap-3">
+                        <div class="w-4 h-4 bg-green-500 rounded"></div>
+                        <span class="font-medium">绿光</span>
+                    </div>
+                    <span class="text-sm text-gray-600">550nm - 中频</span>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-white/50 rounded-lg">
+                    <div class="flex items-center gap-3">
+                        <div class="w-4 h-4 bg-purple-500 rounded"></div>
+                        <span class="font-medium">紫光</span>
+                    </div>
+                    <span class="text-sm text-gray-600">400nm - 高频短波</span>
+                </div>
+            </div>
+            
+            <div class="mt-6">
+                <div class="spectrum-bar w-full"></div>
+                <p class="text-xs text-gray-500 mt-2 text-center">
+                    波长越短，频率越高
+                </p>
+            </div>
+        </div>
+
+        <!-- 霍金斯能量层级 -->
+        <div class="bento-item gradient-bg-1 col-span-12 lg:col-span-6" id="hawkins">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">霍金斯能量层级</h3>
+            <p class="text-sm text-indigo-600 uppercase tracking-wider mb-6">Hawkins Energy Levels</p>
+            
+            <div class="space-y-3">
+                <div class="energy-level bg-gradient-to-r from-purple-100 to-purple-200 p-4 rounded-lg">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-purple-900">觉悟 Enlightenment</span>
+                        <span class="text-2xl font-bold text-purple-600">700-1000</span>
+                    </div>
+                </div>
+                <div class="energy-level bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-blue-900">大爱 Love</span>
+                        <span class="text-2xl font-bold text-blue-600">500</span>
+                    </div>
+                </div>
+                <div class="energy-level bg-gradient-to-r from-green-100 to-green-200 p-4 rounded-lg">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-green-900">勇气 Courage</span>
+                        <span class="text-2xl font-bold text-green-600">200</span>
+                    </div>
+                </div>
+                <div class="energy-level bg-gradient-to-r from-red-100 to-red-200 p-4 rounded-lg">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-red-900">羞愧 Shame</span>
+                        <span class="text-2xl font-bold text-red-600">20</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 特斯拉名言 -->
+        <div class="bento-item gradient-bg-2 col-span-12 lg:col-span-8" id="tesla">
+            <div class="text-center">
+                <i class="fas fa-bolt text-6xl text-yellow-500 mb-6 floating"></i>
+                <blockquote class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6 leading-relaxed">
+                    "如果你想找到宇宙的奥秘，<br>
+                    就要从<span class="text-green-600">能量</span>、<span class="text-blue-600">频率</span>和<span class="text-purple-600">振动</span>的角度去思考。"
+                </blockquote>
+                <cite class="text-lg text-gray-600">
+                    — 尼古拉·特斯拉 (Nikola Tesla)
+                </cite>
+                <p class="text-sm text-green-600 mt-2 uppercase tracking-wider">
+                    The man closest to God
+                </p>
+            </div>
+        </div>
+
+        <!-- 频率应用 -->
+        <div class="bento-item gradient-bg-3 col-span-12 lg:col-span-4" id="applications">
+            <h3 class="text-xl font-bold text-gray-900 mb-6">频率的应用</h3>
+            <div class="space-y-4">
+                <div class="flex items-center gap-3 p-3 bg-white/50 rounded-lg">
+                    <i class="fas fa-radio text-orange-600"></i>
+                    <span class="text-sm">电台广播</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-white/50 rounded-lg">
+                    <i class="fas fa-wifi text-orange-600"></i>
+                    <span class="text-sm">5G通信</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-white/50 rounded-lg">
+                    <i class="fas fa-music text-orange-600"></i>
+                    <span class="text-sm">音乐疗愈</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-white/50 rounded-lg">
+                    <i class="fas fa-brain text-orange-600"></i>
+                    <span class="text-sm">意识提升</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 实践建议 -->
+        <div class="bento-item gradient-bg-1 col-span-12" id="suggestions">
+            <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">提升频率的四个建议</h3>
+            <p class="text-sm text-indigo-600 uppercase tracking-wider mb-8 text-center">
+                Four Suggestions to Raise Your Frequency
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white/50 rounded-xl p-6 text-center">
+                    <i class="fas fa-shield-alt text-3xl text-red-500 mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-900 mb-3">远离低频</h4>
+                    <p class="text-sm text-gray-600">避免负能量环境和消极情绪</p>
+                </div>
+                <div class="bg-white/50 rounded-xl p-6 text-center">
+                    <i class="fas fa-heart text-3xl text-green-500 mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-900 mb-3">保持高频</h4>
+                    <p class="text-sm text-gray-600">培养爱、感恩和喜悦的心态</p>
+                </div>
+                <div class="bg-white/50 rounded-xl p-6 text-center">
+                    <i class="fas fa-book text-3xl text-blue-500 mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-900 mb-3">提升修养</h4>
+                    <p class="text-sm text-gray-600">多读经典，接触智慧的人和事</p>
+                </div>
+                <div class="bg-white/50 rounded-xl p-6 text-center">
+                    <i class="fas fa-leaf text-3xl text-purple-500 mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-900 mb-3">调整生活</h4>
+                    <p class="text-sm text-gray-600">选择高频食物，动静结合</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-4xl mx-auto text-center px-6">
+            <h4 class="text-2xl font-bold mb-4">掌握频率，改变现实</h4>
+            <p class="text-gray-400 mb-6">Master Frequency, Change Reality</p>
+            <div class="spectrum-bar w-48 mx-auto"></div>
+        </div>
+    </footer>
+
+    <script>
+        // Framer Motion 动画
+        const { motion, useScroll, useTransform } = Motion;
+
+        // 页面加载动画
+        window.addEventListener('load', () => {
+            document.getElementById('hero-content').style.opacity = '1';
+            document.getElementById('hero-content').style.transform = 'translateY(0)';
+            document.getElementById('hero-content').style.transition = 'all 1s ease';
+        });
+
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'all 0.8s ease';
+                }
+            });
+        }, observerOptions);
+
+        // 观察所有 bento 项目
+        document.querySelectorAll('.bento-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            observer.observe(item);
+        });
+
+        // 能量层级悬停效果
+        document.querySelectorAll('.energy-level').forEach(level => {
+            level.addEventListener('mouseenter', () => {
+                level.style.transform = 'scale(1.05)';
+                level.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+            });
+            
+            level.addEventListener('mouseleave', () => {
+                level.style.transform = 'scale(1)';
+                level.style.boxShadow = 'none';
+            });
+        });
+
+        // 滚动视差效果
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelectorAll('.floating');
+            
+            parallax.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // 添加平滑滚动
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+</body>
+</html>
