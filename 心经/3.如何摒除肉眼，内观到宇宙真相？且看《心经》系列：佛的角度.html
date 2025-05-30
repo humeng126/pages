@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心经 · Heart Sutra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/6.5.1/framer-motion.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sage': '#9CA3AF',
+                        'cream': '#F9FAFB',
+                        'gold': '#F59E0B',
+                        'emerald': '#10B981',
+                        'indigo': '#6366F1'
+                    },
+                    fontFamily: {
+                        'serif': ['Georgia', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        .gradient-gold {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+        }
+        
+        .gradient-emerald {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+        }
+        
+        .gradient-indigo {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #F59E0B, #10B981, #6366F1);
+            z-index: 1000;
+            transform-origin: left;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body class="bg-cream text-gray-900 font-sans overflow-x-hidden">
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator" id="scrollProgress"></div>
+    
+    <!-- Main Container -->
+    <div class="min-h-screen p-4 md:p-8">
+        <!-- Bento Grid Container -->
+        <div class="max-w-7xl mx-auto grid grid-cols-12 grid-rows-12 gap-4 h-screen">
+            
+            <!-- Hero Section -->
+            <div class="col-span-12 md:col-span-8 row-span-4 bg-white rounded-3xl p-8 shadow-lg gradient-gold glass-effect animate-fade-in">
+                <div class="h-full flex flex-col justify-center">
+                    <h1 class="text-6xl md:text-8xl font-black text-gray-900 mb-4 text-stroke">
+                        心经
+                    </h1>
+                    <p class="text-lg text-sage uppercase tracking-widest mb-6">Heart Sutra · Prajñāpāramitā</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-16 h-1 bg-gold rounded-full"></div>
+                        <span class="text-sm text-sage">Ancient Wisdom · Modern Understanding</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Concepts -->
+            <div class="col-span-12 md:col-span-4 row-span-4 bg-white rounded-3xl p-6 shadow-lg gradient-emerald animate-fade-in stagger-1">
+                <div class="text-center h-full flex flex-col justify-center">
+                    <i class="fas fa-infinity text-4xl text-emerald mb-4"></i>
+                    <h2 class="text-3xl font-bold mb-3">空性</h2>
+                    <p class="text-sm text-sage uppercase tracking-wide mb-4">Emptiness</p>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        超越有限执着<br/>
+                        Beyond limited attachments
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Three Core Principles -->
+            <div class="col-span-12 md:col-span-4 row-span-4 bg-white rounded-3xl p-6 shadow-lg gradient-indigo animate-fade-in stagger-2">
+                <div class="h-full flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold mb-6">三大核心</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-indigo text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
+                            <span class="font-semibold">敬畏</span>
+                            <span class="text-xs text-sage uppercase">Reverence</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-indigo text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
+                            <span class="font-semibold">因果</span>
+                            <span class="text-xs text-sage uppercase">Karma</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-indigo text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
+                            <span class="font-semibold">舍得</span>
+                            <span class="text-xs text-sage uppercase">Letting Go</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quote Section -->
+            <div class="col-span-12 md:col-span-4 row-span-4 bg-white rounded-3xl p-6 shadow-lg gradient-gold animate-fade-in stagger-3">
+                <div class="h-full flex flex-col justify-center text-center">
+                    <i class="fas fa-quote-left text-2xl text-gold mb-4"></i>
+                    <blockquote class="text-lg font-semibold mb-4 leading-relaxed">
+                        "举头三尺有神明"
+                    </blockquote>
+                    <p class="text-sm text-sage uppercase tracking-wide">
+                        Three feet above your head,<br/>
+                        divinity watches
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Statistics -->
+            <div class="col-span-12 md:col-span-4 row-span-4 bg-white rounded-3xl p-6 shadow-lg gradient-emerald animate-fade-in stagger-4">
+                <div class="h-full flex flex-col justify-center">
+                    <div class="text-center mb-4">
+                        <div class="text-5xl font-black text-emerald mb-2">260</div>
+                        <p class="text-sm text-sage uppercase tracking-wide">Characters</p>
+                    </div>
+                    <div class="border-t border-gray-200 pt-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium">完整经文</span>
+                            <span class="text-xs text-sage">Full Sutra</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Wisdom Path -->
+            <div class="col-span-12 md:col-span-8 row-span-4 bg-white rounded-3xl p-8 shadow-lg gradient-indigo animate-fade-in stagger-5">
+                <div class="h-full flex items-center">
+                    <div class="w-full">
+                        <h2 class="text-4xl font-bold mb-6">般若波罗蜜多</h2>
+                        <p class="text-sm text-sage uppercase tracking-widest mb-6">Prajñāpāramitā · Perfection of Wisdom</p>
+                        
+                        <!-- Progress Path -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex flex-col items-center">
+                                <div class="w-12 h-12 bg-indigo text-white rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <span class="text-xs text-sage">观照</span>
+                            </div>
+                            <div class="flex-1 h-1 bg-indigo mx-4 rounded-full"></div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-12 h-12 bg-indigo text-white rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <span class="text-xs text-sage">无挂碍</span>
+                            </div>
+                            <div class="flex-1 h-1 bg-indigo mx-4 rounded-full"></div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-12 h-12 bg-indigo text-white rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-infinity"></i>
+                                </div>
+                                <span class="text-xs text-sage">涅槃</span>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 leading-relaxed">
+                            心无挂碍，无有恐怖，远离颠倒梦想，究竟涅槃
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Floating Mantra -->
+        <div class="fixed bottom-8 right-8 bg-white rounded-2xl p-4 shadow-xl glass-effect animate-fade-in stagger-6">
+            <div class="text-center">
+                <p class="text-sm font-semibold mb-2">揭谛揭谛</p>
+                <p class="text-xs text-sage">Gate Gate Pāragate</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollPercentage = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            scrollProgress.style.transform = `scaleX(${scrollPercentage / 100})`;
+        });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all animated elements
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+        
+        // Parallax effect for scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            
+            document.querySelectorAll('.gradient-gold, .gradient-emerald, .gradient-indigo').forEach((el, index) => {
+                el.style.transform = `translateY(${rate * (index + 1) * 0.1}px)`;
+            });
+        });
+        
+        // Add hover effects
+        document.querySelectorAll('.col-span-12, .col-span-4, .col-span-8').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px) scale(1.02)';
+                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+        
+        // Auto-trigger animations on load
+        setTimeout(() => {
+            document.querySelectorAll('.animate-fade-in').forEach(el => {
+                el.style.animationPlayState = 'running';
+            });
+        }, 200);
+    </script>
+</body>
+</html>

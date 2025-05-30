@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心经智慧 - 佛学修行指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .gradient-purple {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(139, 69, 19, 0.05) 100%);
+        }
+        
+        .gradient-blue {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+        }
+        
+        .gradient-green {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+        }
+        
+        .gradient-orange {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(249, 115, 22, 0.05) 100%);
+        }
+        
+        .text-giant {
+            font-size: clamp(4rem, 12vw, 8rem);
+            line-height: 0.9;
+        }
+        
+        .text-mega {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 0.95;
+        }
+        
+        .bento-card {
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .bento-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .parallax-element {
+            transition: transform 0.1s ease-out;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 200px;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 min-h-screen">
+    
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-100/30 via-purple-100/20 to-orange-100/30"></div>
+        
+        <div class="container mx-auto text-center relative z-10" id="hero-content">
+            <div class="parallax-element" data-speed="0.5">
+                <h1 class="text-giant font-black text-slate-800 mb-6">
+                    心经
+                    <span class="block text-slate-600">WISDOM</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mb-8 font-light">
+                    佛非神 / Buddha is not God
+                </p>
+                <div class="text-6xl md:text-8xl font-black text-blue-500/20 mb-12">觉悟</div>
+            </div>
+        </div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-orange-400/10 rounded-full blur-xl parallax-element" data-speed="0.3"></div>
+        <div class="absolute bottom-32 right-16 w-32 h-32 bg-purple-400/10 rounded-full blur-xl parallax-element" data-speed="0.4"></div>
+        <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-blue-400/10 rounded-full blur-xl parallax-element" data-speed="0.6"></div>
+    </section>
+
+    <!-- Main Content - Bento Grid -->
+    <section class="py-20 px-4" id="main-content">
+        <div class="container mx-auto max-w-7xl">
+            
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                
+                <!-- Card 1: 缘起性空 - Large -->
+                <div class="lg:col-span-2 bento-card bg-white/80 rounded-3xl p-8 gradient-purple" id="card-1">
+                    <div class="flex items-start justify-between mb-6">
+                        <div>
+                            <h2 class="text-mega font-black text-amber-800 mb-2">缘起性空</h2>
+                            <p class="text-sm uppercase tracking-widest text-amber-600 font-medium">Dependent Origination</p>
+                        </div>
+                        <i class="fas fa-infinity text-4xl text-amber-400/50"></i>
+                    </div>
+                    <p class="text-slate-700 leading-relaxed mb-6">
+                        宇宙中的万事万物，皆是由于因缘相聚而存在，又因因缘离散而消失。这就是佛教所谓的缘起论，天地万物莫不如此。
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="causeChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Card 2: 数字统计 -->
+                <div class="bento-card bg-white/80 rounded-3xl p-8 gradient-blue" id="card-2">
+                    <div class="text-center">
+                        <div class="text-6xl font-black text-blue-600 mb-2">49</div>
+                        <p class="text-sm uppercase tracking-widest text-blue-500 font-medium">Days</p>
+                        <p class="text-slate-600 mt-4">菩提树下参悟人生的日子</p>
+                        <i class="fas fa-tree text-3xl text-green-400/50 mt-4"></i>
+                    </div>
+                </div>
+                
+                <!-- Card 3: 醒觉时刻 -->
+                <div class="bento-card bg-white/80 rounded-3xl p-8 gradient-green" id="card-3">
+                    <h3 class="text-2xl font-bold text-green-800 mb-4">醒觉时刻</h3>
+                    <p class="text-sm uppercase tracking-widest text-green-600 font-medium mb-4">Mindful Awareness</p>
+                    <p class="text-slate-700 text-sm leading-relaxed">
+                        从沉睡中醒来，从混沌中醒悟。别人赞美或辱骂，都能保持平静的心态。
+                    </p>
+                    <div class="mt-6 flex justify-center">
+                        <div class="w-16 h-16 bg-green-400/20 rounded-full flex items-center justify-center">
+                            <i class="fas fa-eye text-green-600 text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 4: 修行之道 -->
+                <div class="lg:col-span-2 bento-card bg-white/80 rounded-3xl p-8 gradient-orange" id="card-4">
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-3xl font-bold text-orange-800 mb-4">修行之道</h3>
+                            <p class="text-sm uppercase tracking-widest text-orange-600 font-medium mb-4">Path of Practice</p>
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+                                    <span class="text-slate-700">正念 Mindfulness</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+                                    <span class="text-slate-700">利他 Altruism</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+                                    <span class="text-slate-700">厚德 Virtue</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+                                    <span class="text-slate-700">坚持 Persistence</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col justify-center items-center">
+                            <div class="text-5xl font-black text-orange-600/30 mb-4">2500+</div>
+                            <p class="text-sm text-orange-600 text-center">Years of Buddhist Wisdom</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 5: 格局 -->
+                <div class="bento-card bg-white/80 rounded-3xl p-8 gradient-purple" id="card-5">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold text-purple-800 mb-2">格局</h3>
+                        <p class="text-sm uppercase tracking-widest text-purple-600 font-medium mb-4">Vision</p>
+                        <div class="text-4xl font-black text-purple-600/50 mb-4">∞</div>
+                        <p class="text-slate-700 text-sm">
+                            心包太虚，量周沙界
+                        </p>
+                        <i class="fas fa-globe text-2xl text-purple-400/50 mt-4"></i>
+                    </div>
+                </div>
+                
+                <!-- Card 6: 三大要素 -->
+                <div class="lg:col-span-3 bento-card bg-white/80 rounded-3xl p-8 gradient-blue" id="card-6">
+                    <h3 class="text-3xl font-bold text-blue-800 mb-6 text-center">成佛三要素</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-blue-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-brain text-blue-600 text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-blue-800 mb-2">智慧</h4>
+                            <p class="text-sm text-slate-600">Understanding the nature of reality</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-blue-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-heart text-blue-600 text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-blue-800 mb-2">慈悲</h4>
+                            <p class="text-sm text-slate-600">Compassion for all beings</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-blue-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-balance-scale text-blue-600 text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-blue-800 mb-2">平衡</h4>
+                            <p class="text-sm text-slate-600">Harmony in all aspects</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Final Message -->
+            <div class="text-center mt-20" id="final-message">
+                <h2 class="text-mega font-black text-slate-800 mb-6">
+                    一念清净
+                    <span class="block text-slate-600 text-4xl">幸福无时不在</span>
+                </h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    Pure Mind, Happiness Everywhere
+                </p>
+            </div>
+            
+        </div>
+    </section>
+
+    <script>
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            
+            parallaxElements.forEach(element => {
+                const speed = element.dataset.speed || 0.5;
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        // Animate cards on scroll
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.style.transform = 'translateY(30px)';
+            card.style.opacity = '0';
+            card.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            observer.observe(card);
+        });
+
+        // Chart.js - Cause and Effect Visualization
+        const ctx = document.getElementById('causeChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['因', '缘', '聚', '合', '存', '散', '灭'],
+                datasets: [{
+                    label: '缘起',
+                    data: [0, 30, 80, 100, 100, 50, 0],
+                    borderColor: '#f59e0b',
+                    backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#f59e0b',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        display: false
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#94a3b8',
+                            font: {
+                                size: 12,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Smooth scroll reveal for final message
+        const finalMessage = document.getElementById('final-message');
+        finalMessage.style.transform = 'translateY(50px)';
+        finalMessage.style.opacity = '0';
+        finalMessage.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        observer.observe(finalMessage);
+
+        // Add subtle hover effects
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+    
+</body>
+</html>
