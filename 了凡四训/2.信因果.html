@@ -238,9 +238,10 @@
             <!-- 业力图表 -->
             <div class="md:col-span-2 bento-card bg-white p-6 shadow-lg scroll-reveal">
                 <h3 class="text-xl font-bold mb-4">业力分类体系</h3>
-                <canvas id="karmaChart" width="400" height="200"></canvas>
+                <div class="h-[600px] relative"> <!-- 从 250px 调整为 200px -->
+                    <canvas id="karmaChart"></canvas>
+                </div>
             </div>
-
             <!-- 实践指南 -->
             <div class="md:col-span-1 lg:col-span-2 bento-card bg-gradient-to-br from-green-100 to-blue-100 p-6 scroll-reveal">
                 <h3 class="text-xl font-bold mb-4">现代实践</h3>
@@ -299,7 +300,7 @@
             observer.observe(el);
         });
 
-        // 业力图表
+        // 修改图表配置
         const ctx = document.getElementById('karmaChart').getContext('2d');
         new Chart(ctx, {
             type: 'doughnut',
@@ -317,7 +318,7 @@
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false,
+                maintainAspectRatio: true,
                 plugins: {
                     legend: {
                         position: 'bottom',
@@ -326,8 +327,16 @@
                                 family: 'Noto Sans SC',
                                 size: 12
                             },
-                            padding: 20
+                            padding: 10  // 减小padding
                         }
+                    }
+                },
+                layout: {
+                    padding: {
+                        top: 5,      // 进一步减小内边距
+                        bottom: 5,
+                        left: 5,
+                        right: 5
                     }
                 }
             }
