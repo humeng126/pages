@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>了凡四训 - 心性改过之道</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700;900&family=Inter:wght@300;400;600&display=swap');
+        
+        * {
+            font-family: 'Noto Sans SC', 'Inter', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-bg-purple {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        }
+        
+        .gradient-bg-blue {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+        }
+        
+        .gradient-bg-green {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(101, 163, 13, 0.1) 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .parallax {
+            transform: translateY(var(--scroll, 0px));
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1rem;
+            height: 100vh;
+            padding: 1rem;
+        }
+        
+        .bento-item-1 { grid-column: span 5; grid-row: span 3; }
+        .bento-item-2 { grid-column: span 7; grid-row: span 2; }
+        .bento-item-3 { grid-column: span 7; grid-row: span 1; }
+        .bento-item-4 { grid-column: span 4; grid-row: span 2; }
+        .bento-item-5 { grid-column: span 3; grid-row: span 2; }
+        .bento-item-6 { grid-column: span 5; grid-row: span 1; }
+        
+        .chart-container {
+            position: relative;
+            height: 200px;
+            width: 100%;
+        }
+        
+        .zen-circle {
+            width: 200px;
+            height: 200px;
+            border: 3px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto;
+        }
+        
+        .zen-circle::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
+            transform: translateY(-50%);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 overflow-x-hidden">
+    <div class="bento-grid">
+        <!-- 主标题区域 -->
+        <div class="bento-item-1 gradient-bg-purple rounded-3xl p-8 flex flex-col justify-center card-hover fade-in">
+            <div class="zen-circle floating mb-6"></div>
+            <h1 class="text-6xl font-black text-gray-800 mb-4 leading-tight">
+                心性<br>
+                <span class="gradient-text">改过</span>
+            </h1>
+            <p class="text-lg text-gray-600 font-light">
+                Inner Transformation
+            </p>
+            <div class="mt-6 text-sm text-gray-500">
+                <i class="fas fa-quote-left mr-2"></i>
+                善改过者，未尽其事，先明其理
+            </div>
+        </div>
+        
+        <!-- 核心理念 -->
+        <div class="bento-item-2 gradient-bg-blue rounded-3xl p-8 card-hover fade-in stagger-1">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-4xl font-bold text-gray-800">改过三境界</h2>
+                <div class="text-6xl font-black gradient-text">03</div>
+            </div>
+            <div class="grid grid-cols-3 gap-6 h-full">
+                <div class="bg-white/50 rounded-2xl p-4 text-center">
+                    <i class="fas fa-eye text-3xl text-purple-600 mb-3"></i>
+                    <h3 class="font-bold text-gray-800 mb-2">从事上改</h3>
+                    <p class="text-sm text-gray-600">Surface Level</p>
+                    <p class="text-xs text-gray-500 mt-2">外在行为调整</p>
+                </div>
+                <div class="bg-white/50 rounded-2xl p-4 text-center">
+                    <i class="fas fa-brain text-3xl text-blue-600 mb-3"></i>
+                    <h3 class="font-bold text-gray-800 mb-2">从理上改</h3>
+                    <p class="text-sm text-gray-600">Logic Level</p>
+                    <p class="text-xs text-gray-500 mt-2">逻辑思维重构</p>
+                </div>
+                <div class="bg-white/50 rounded-2xl p-4 text-center">
+                    <i class="fas fa-heart text-3xl text-green-600 mb-3"></i>
+                    <h3 class="font-bold text-gray-800 mb-2">从心上改</h3>
+                    <p class="text-sm text-gray-600">Heart Level</p>
+                    <p class="text-xs text-gray-500 mt-2">心性根本转化</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 王阳明智慧 -->
+        <div class="bento-item-3 gradient-bg-green rounded-3xl p-6 card-hover fade-in stagger-2">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">王阳明心学</h3>
+                    <p class="text-gray-600">致良知 · 知行合一</p>
+                    <p class="text-sm text-gray-500 mt-2">Wang Yangming Philosophy</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-4xl font-black gradient-text">良知</div>
+                    <p class="text-xs text-gray-500">Inner Wisdom</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 佛学智慧对比 -->
+        <div class="bento-item-4 bg-white rounded-3xl p-6 card-hover fade-in stagger-3">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">禅宗二偈</h3>
+            <div class="space-y-4">
+                <div class="border-l-4 border-purple-400 pl-4">
+                    <h4 class="font-bold text-gray-800">神秀偈</h4>
+                    <p class="text-sm text-gray-600 mt-1">身是菩提树，心如明镜台</p>
+                    <p class="text-xs text-gray-500">渐修 · Gradual</p>
+                </div>
+                <div class="border-l-4 border-green-400 pl-4">
+                    <h4 class="font-bold text-gray-800">慧能偈</h4>
+                    <p class="text-sm text-gray-600 mt-1">菩提本无树，明镜亦非台</p>
+                    <p class="text-xs text-gray-500">顿悟 · Sudden</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 贪嗔痴图表 -->
+        <div class="bento-item-5 bg-white rounded-3xl p-6 card-hover fade-in stagger-4">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">三毒根源</h3>
+            <div class="chart-container">
+                <canvas id="poisonChart"></canvas>
+            </div>
+            <div class="mt-4 text-center">
+                <p class="text-sm text-gray-600">Three Poisons</p>
+                <p class="text-xs text-gray-500">贪 · 嗔 · 痴</p>
+            </div>
+        </div>
+        
+        <!-- 现代应用 -->
+        <div class="bento-item-6 gradient-bg-purple rounded-3xl p-6 card-hover fade-in stagger-5">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">现代践行</h3>
+                    <p class="text-gray-600">七个习惯 × 品德修养</p>
+                    <p class="text-xs text-gray-500 mt-2">Modern Application</p>
+                </div>
+                <div class="text-5xl font-black gradient-text">7</div>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-4 text-xs text-gray-600">
+                <span>积极主动</span>
+                <span>以终为始</span>
+                <span>要事第一</span>
+                <span>双赢思维</span>
+                <span>知彼解己</span>  <!-- 新增 -->
+                <span>统合综效</span>  <!-- 新增 -->
+                <span>不断更新</span>  <!-- 新增 -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 初始化三毒图表
+        const ctx = document.getElementById('poisonChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['贪 Greed', '嗔 Anger', '痴 Ignorance'],
+                datasets: [{
+                    data: [33.3, 33.3, 33.4],
+                    backgroundColor: [
+                        'rgba(239, 68, 68, 0.3)',
+                        'rgba(251, 146, 60, 0.3)',
+                        'rgba(168, 85, 247, 0.3)'
+                    ],
+                    borderColor: [
+                        'rgba(239, 68, 68, 0.8)',
+                        'rgba(251, 146, 60, 0.8)',
+                        'rgba(168, 85, 247, 0.8)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                cutout: '70%'
+            }
+        });
+
+        // 滚动视差效果
+        let ticking = false;
+
+        function updateScrollAnimation() {
+            const scrollTop = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax');
+
+            parallaxElements.forEach(el => {
+                const speed = el.dataset.speed || 0.5;
+                const yPos = -(scrollTop * speed);
+                el.style.setProperty('--scroll', `${yPos}px`);
+            });
+
+            ticking = false;
+        }
+
+        function requestScrollUpdate() {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollAnimation);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestScrollUpdate);
+
+        // 鼠标悬停效果增强
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // 页面加载动画
+        window.addEventListener('load', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // 数字动画效果
+        function animateNumbers() {
+            const numbers = document.querySelectorAll('.gradient-text');
+            numbers.forEach(num => {
+                if (num.textContent === '03' || num.textContent === '7') {
+                    num.addEventListener('mouseenter', function() {
+                        this.style.transform = 'scale(1.1)';
+                        this.style.transition = 'transform 0.3s ease';
+                    });
+
+                    num.addEventListener('mouseleave', function() {
+                        this.style.transform = 'scale(1)';
+                    });
+                }
+            });
+        }
+
+        animateNumbers();
+
+        // 禅宗圆圈动画
+        const zenCircle = document.querySelector('.zen-circle');
+        let rotation = 0;
+
+        function rotateZenCircle() {
+            rotation += 0.5;
+            zenCircle.style.transform = `rotate(${rotation}deg)`;
+            requestAnimationFrame(rotateZenCircle);
+        }
+
+        rotateZenCircle();
+    </script>
+</body>
+</html>

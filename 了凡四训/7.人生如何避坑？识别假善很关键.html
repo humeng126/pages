@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>善恶判断 - 深度思辨</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .highlight-purple {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(139, 92, 246, 0.1) 100%);
+        }
+        
+        .highlight-blue {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0.1) 100%);
+        }
+        
+        .highlight-emerald {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(16, 185, 129, 0.1) 100%);
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .mega-text {
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 900;
+            line-height: 0.8;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(8, minmax(100px, auto));
+            gap: 1.5rem;
+            height: 100vh;
+            padding: 2rem;
+        }
+        
+        .bento-item-1 { grid-column: 1 / 8; grid-row: 1 / 4; }
+        .bento-item-2 { grid-column: 8 / 13; grid-row: 1 / 3; }
+        .bento-item-3 { grid-column: 8 / 13; grid-row: 3 / 5; }
+        .bento-item-4 { grid-column: 1 / 5; grid-row: 4 / 7; }
+        .bento-item-5 { grid-column: 5 / 9; grid-row: 4 / 6; }
+        .bento-item-6 { grid-column: 9 / 13; grid-row: 5 / 7; }
+        .bento-item-7 { grid-column: 1 / 7; grid-row: 7 / 9; }
+        .bento-item-8 { grid-column: 7 / 13; grid-row: 6 / 9; }
+        
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                height: auto;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .bento-item-1, .bento-item-2, .bento-item-3, 
+            .bento-item-4, .bento-item-5, .bento-item-6,
+            .bento-item-7, .bento-item-8 {
+                grid-column: 1;
+                grid-row: auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 overflow-x-hidden">
+    <div class="bento-grid">
+        <!-- 主标题区域 -->
+        <div class="bento-item-1 glass-effect rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden">
+            <div class="absolute top-4 right-4">
+                <i class="fas fa-balance-scale text-purple-300 text-2xl opacity-30"></i>
+            </div>
+            <div class="scroll-reveal">
+                <h1 class="mega-text text-gray-800 text-shadow mb-4">善恶</h1>
+                <p class="text-gray-600 text-lg font-medium mb-2">GOOD & EVIL</p>
+                <p class="text-gray-500 text-sm leading-relaxed">
+                    外貌、穿着、谈吐都是与善恶无关的内容<br>
+                    真正的善恶判断需要透过表象看本质
+                </p>
+            </div>
+        </div>
+
+        <!-- 统计数据 -->
+        <div class="bento-item-2 highlight-purple rounded-3xl p-6 flex flex-col justify-center text-center scroll-reveal">
+            <div class="text-5xl font-black text-purple-700 mb-2">03</div>
+            <div class="text-purple-600 font-semibold text-sm">FALSE VIRTUES</div>
+            <div class="text-purple-500 text-xs mt-1">伪善·老好人·宣传善</div>
+        </div>
+
+        <!-- 核心理念 -->
+        <div class="bento-item-3 highlight-blue rounded-3xl p-6 flex flex-col justify-center scroll-reveal">
+            <i class="fas fa-heart text-blue-500 text-3xl mb-3"></i>
+            <h3 class="text-blue-700 font-bold text-lg mb-2">利他之心</h3>
+            <p class="text-blue-600 text-sm leading-relaxed">
+                有利于别人的就是善<br>
+                有利于自己的就是恶
+            </p>
+            <div class="text-blue-400 text-xs mt-2 font-medium">ALTRUISM</div>
+        </div>
+
+        <!-- 伪善警示 -->
+        <div class="bento-item-4 bg-white rounded-3xl p-6 shadow-lg scroll-reveal">
+            <div class="flex items-center mb-4">
+                <i class="fas fa-mask text-red-400 text-2xl mr-3"></i>
+                <h3 class="text-gray-800 font-bold text-xl">伪善</h3>
+            </div>
+            <div class="space-y-3">
+                <div class="text-gray-600 text-sm">
+                    <span class="font-semibold text-red-500">出于私心</span> → 伪善
+                </div>
+                <div class="text-gray-600 text-sm">
+                    <span class="font-semibold text-green-500">出于公心</span> → 真善
+                </div>
+            </div>
+            <div class="mt-4 p-3 bg-gray-50 rounded-xl">
+                <p class="text-gray-500 text-xs leading-relaxed">
+                    "发自内心的行善就是真善，模仿别人做形式上的表演就是伪善"
+                </p>
+            </div>
+        </div>
+
+        <!-- 大数字展示 -->
+        <div class="bento-item-5 highlight-emerald rounded-3xl p-6 flex flex-col justify-center text-center scroll-reveal">
+            <div class="text-6xl font-black text-emerald-700 mb-2">500</div>
+            <div class="text-emerald-600 font-semibold text-sm">YUAN ANALOGY</div>
+            <div class="text-emerald-500 text-xs mt-1">付出与回报的对等性</div>
+        </div>
+
+        <!-- 老好人问题 -->
+        <div class="bento-item-6 bg-white rounded-3xl p-6 shadow-lg scroll-reveal">
+            <div class="flex items-center mb-4">
+                <i class="fas fa-user-friends text-orange-400 text-2xl mr-3"></i>
+                <h3 class="text-gray-800 font-bold text-lg">老好人</h3>
+            </div>
+            <div class="space-y-2">
+                <div class="flex items-center text-sm">
+                    <div class="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
+                    <span class="text-gray-600">没有原则</span>
+                </div>
+                <div class="flex items-center text-sm">
+                    <div class="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
+                    <span class="text-gray-600">助纣为虐</span>
+                </div>
+                <div class="flex items-center text-sm">
+                    <div class="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
+                    <span class="text-gray-600">平庸之恶</span>
+                </div>
+            </div>
+            <div class="text-orange-400 text-xs mt-3 font-medium">NOT REAL KINDNESS</div>
+        </div>
+
+        <!-- 圣人标准 -->
+        <div class="bento-item-7 bg-white rounded-3xl p-6 shadow-lg scroll-reveal">
+            <h3 class="text-gray-800 font-bold text-xl mb-4">圣人眼中的善恶</h3>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="space-y-2">
+                    <div class="text-green-600 font-semibold text-sm">✓ 狂士</div>
+                    <div class="text-gray-500 text-xs">勇于进取，直言不讳</div>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-green-600 font-semibold text-sm">✓ 狷者</div>
+                    <div class="text-gray-500 text-xs">洁身自好，有原则</div>
+                </div>
+            </div>
+            <div class="mt-4 p-3 bg-red-50 rounded-xl">
+                <div class="text-red-600 font-semibold text-sm mb-1">✗ 乡愿</div>
+                <div class="text-red-500 text-xs">老好人，德之贼也</div>
+            </div>
+        </div>
+
+        <!-- 阴德阳善 -->
+        <div class="bento-item-8 gradient-bg rounded-3xl p-6 text-white scroll-reveal">
+            <h3 class="font-bold text-xl mb-4">阴德 vs 阳善</h3>
+            <div class="space-y-3">
+                <div class="flex items-center">
+                    <i class="fas fa-eye-slash text-purple-200 mr-3"></i>
+                    <div>
+                        <div class="font-semibold text-sm">阴德</div>
+                        <div class="text-purple-200 text-xs">不被人知，天必报之</div>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-eye text-purple-200 mr-3"></i>
+                    <div>
+                        <div class="font-semibold text-sm">阳善</div>
+                        <div class="text-purple-200 text-xs">为人所知，享有盛名</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 text-purple-100 text-xs">
+                "积阴德，将行善融入日常生活方式中"
+            </div>
+        </div>
+    </div>
+
+    <!-- 滚动指示器 -->
+    <div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 text-gray-400 animate-bounce">
+        <i class="fas fa-chevron-down text-xl"></i>
+    </div>
+
+    <script>
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // 观察所有需要动画的元素
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 鼠标滚动效果
+        let scrollY = 0;
+        
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+            
+            // 视差效果
+            document.querySelectorAll('.bento-item-1').forEach(el => {
+                el.style.transform = `translateY(${scrollY * 0.1}px)`;
+            });
+            
+            // 渐变背景移动
+            document.querySelector('.gradient-bg').style.backgroundPosition = `${scrollY * 0.1}px ${scrollY * 0.1}px`;
+        });
+
+        // 添加鼠标悬停效果
+        document.querySelectorAll('[class*="bento-item"]').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+                this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // 初始动画延迟
+        document.querySelectorAll('.scroll-reveal').forEach((el, index) => {
+            el.style.transitionDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
