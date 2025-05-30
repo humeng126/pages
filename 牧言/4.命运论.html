@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>命运之门：探索命运的真谛</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.12.16/framer-motion.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B5CF6',
+                        secondary: '#0EA5E9',
+                        accent: '#EC4899',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #F8FAFC;
+            color: #1E293B;
+            scroll-behavior: smooth;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .grid-item {
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+        
+        .highlight-bg {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 20px 0;
+        }
+        
+        .chart-bar {
+            width: 40px;
+            background: linear-gradient(to top, #8B5CF6, #0EA5E9);
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            transition: height 1s ease;
+        }
+        
+        .chart-label {
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #8B5CF6;
+        }
+        
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 24px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background: #CBD5E1;
+        }
+        
+        .timeline-item:last-child:after {
+            display: none;
+        }
+        
+        .fate-card {
+            perspective: 1000px;
+            height: 300px;
+        }
+        
+        .fate-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .fate-card:hover .fate-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .fate-card-front, .fate-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fate-card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #8B5CF6, #0EA5E9);
+            color: white;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <header class="py-6 px-6 md:px-12 sticky top-0 bg-white/80 backdrop-blur z-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                    <i class="fas fa-infinity text-white text-xl"></i>
+                </div>
+                <h1 class="text-2xl font-bold ml-3">命运之门</h1>
+            </div>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="#intro" class="font-medium hover:text-primary transition">命运定义</a></li>
+                    <li><a href="#perspectives" class="font-medium hover:text-primary transition">命运观</a></li>
+                    <li><a href="#structure" class="font-medium hover:text-primary transition">命运结构</a></li>
+                    <li><a href="#change" class="font-medium hover:text-primary transition">改变命运</a></li>
+                </ul>
+            </nav>
+            <button class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-12">
+        <!-- Hero Section -->
+        <section class="text-center py-20 fade-in">
+            <div class="max-w-4xl mx-auto">
+                <div class="inline-flex items-center bg-indigo-100 text-primary px-4 py-1 rounded-full mb-4">
+                    <span class="text-xs font-semibold">探索人生的终极命题</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black mb-6">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">命运</span>
+                    <span class="block text-4xl mt-4 font-normal text-slate-600">是注定的剧本，还是自由意志的演绎？</span>
+                </h1>
+                <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-10">
+                    从我们来到世界的那一刻到离开的那一天，人生的旅程究竟由什么决定？
+                </p>
+                <div class="flex justify-center gap-4">
+                    <a href="#intro" class="px-8 py-4 bg-primary text-white rounded-full font-medium hover:bg-indigo-700 transition">探索命运之门</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Introduction Section -->
+        <section id="intro" class="py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h2 class="text-5xl font-black mb-6">命运是什么？</h2>
+                    <p class="text-xl text-slate-600 mb-8">
+                        命运是个体与世界持续互动之下形成的关系之网，这张网包含了我是谁，我如何选择，世界如何响应，我又如何回应这个世界。
+                    </p>
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100">
+                        <p class="text-lg italic mb-4">
+                            "命运不是静止的，也不是线性的，而是会随着意识流动而展开不同的路径，它是人与世界的共舞。"
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                                <i class="fas fa-quote-right text-primary"></i>
+                            </div>
+                            <span class="ml-3 font-medium">华夏文明智慧</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative fade-in">
+                    <div class="aspect-square bg-gradient-to-br from-indigo-100 to-blue-100 rounded-3xl flex items-center justify-center p-12">
+                        <div class="text-center">
+                            <div class="text-9xl font-black text-primary mb-4">命</div>
+                            <div class="text-4xl font-bold text-slate-700">与</div>
+                            <div class="text-9xl font-black text-secondary mt-4">运</div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-6 -right-6 w-32 h-32 bg-accent/20 rounded-full blur-3xl"></div>
+                    <div class="absolute -bottom-6 -left-6 w-48 h-48 bg-secondary/20 rounded-full blur-3xl"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perspectives Section -->
+        <section id="perspectives" class="py-20">
+            <div class="text-center max-w-3xl mx-auto mb-20 fade-in">
+                <h2 class="text-5xl font-black mb-6">三种命运观</h2>
+                <p class="text-xl text-slate-600">
+                    人类对命运的理解形成了不同的观点体系，每种观点都提供了独特的视角
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="fate-card fade-in">
+                    <div class="fate-card-inner">
+                        <div class="fate-card-front bg-white rounded-2xl p-8">
+                            <div class="text-9xl font-black text-primary opacity-20 mb-4">1</div>
+                            <h3 class="text-3xl font-bold mb-4">宿命论</h3>
+                            <p class="text-slate-600 mb-6">
+                                相信一切皆注定，人是被命运写定的角色
+                            </p>
+                            <div class="mt-auto">
+                                <span class="inline-flex items-center text-sm text-slate-500">
+                                    <i class="fas fa-rotate mr-2"></i>翻转查看更多
+                                </span>
+                            </div>
+                        </div>
+                        <div class="fate-card-back">
+                            <h3 class="text-2xl font-bold mb-4">宿命论观点</h3>
+                            <ul class="text-left space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3"></i>
+                                    <span>人生轨迹如设定好的精密仪器</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3"></i>
+                                    <span>人如提线木偶，无自由意志</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3"></i>
+                                    <span>挫折痛苦可归因于不可抗力</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3"></i>
+                                    <span>"万般皆是命，半点不由人"</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="fate-card fade-in">
+                    <div class="fate-card-inner">
+                        <div class="fate-card-front bg-white rounded-2xl p-8">
+                            <div class="text-9xl font-black text-secondary opacity-20 mb-4">2</div>
+                            <h3 class="text-3xl font-bold mb-4">人定胜天论</h3>
+                            <p class="text-slate-600 mb-6">
+                                相信主观意志与努力可以跨越所有障碍
+                            </p>
+                            <div class="mt-auto">
+                                <span class="inline-flex items-center text-sm text-slate-500">
+                                    <i class="fas fa-rotate mr-2"></i>翻转查看更多
+                                </span>
+                            </div>
+                        </div>
+                        <div class="fate-card-back bg-gradient-to-br from-secondary to-cyan-500">
+                            <h3 class="text-2xl font-bold mb-4">人定胜天论</h3>
+                            <ul class="text-left space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3"></i>
+                                    <span>源自远古先民与自然的抗争</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3"></i>
+                                    <span>相信努力可战胜天意</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3"></i>
+                                    <span>崇尚以人为本，信奉个人奋斗</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3"></i>
+                                    <span>"我命由我，不由天"</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="fate-card fade-in">
+                    <div class="fate-card-inner">
+                        <div class="fate-card-front bg-white rounded-2xl p-8">
+                            <div class="text-9xl font-black text-accent opacity-20 mb-4">3</div>
+                            <h3 class="text-3xl font-bold mb-4">不可知论</h3>
+                            <p class="text-slate-600 mb-6">
+                                介于宿命论与人定论之间，处于摇摆状态
+                            </p>
+                            <div class="mt-auto">
+                                <span class="inline-flex items-center text-sm text-slate-500">
+                                    <i class="fas fa-rotate mr-2"></i>翻转查看更多
+                                </span>
+                            </div>
+                        </div>
+                        <div class="fate-card-back bg-gradient-to-br from-accent to-pink-500">
+                            <h3 class="text-2xl font-bold mb-4">不可知论</h3>
+                            <ul class="text-left space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3"></i>
+                                    <span>命运观处于摇摆状态</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3"></i>
+                                    <span>解释不了时接受宿命</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3"></i>
+                                    <span>奋斗时相信主观意志</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3"></i>
+                                    <span>感受命运力量却希望不无力</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Structure Section -->
+        <section id="structure" class="py-20">
+            <div class="text-center max-w-3xl mx-auto mb-20 fade-in">
+                <h2 class="text-5xl font-black mb-6">命运的六维结构</h2>
+                <p class="text-xl text-slate-600">
+                    命运并非单一维度，而是由多个相互交织的要素构成
+                </p>
+            </div>
+            
+            <div class="bento-grid">
+                <!-- Item 1 -->
+                <div class="grid-item col-span-12 md:col-span-6 fade-in" style="grid-row: span 2;">
+                    <div class="highlight-bg bg-primary top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                    <div class="text-9xl font-black text-primary mb-4">命</div>
+                    <h3 class="text-3xl font-bold mb-4">本质设定</h3>
+                    <p class="text-lg text-slate-600 mb-4">
+                        先天禀赋、基因、八字天赋、灵魂特质等初始参数
+                    </p>
+                    <p class="text-slate-500">
+                        <span class="font-semibold">命理观点:</span> 出生时刻决定八字命盘，是与宇宙共振的起点
+                    </p>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="grid-item col-span-12 md:col-span-3 fade-in">
+                    <div class="highlight-bg bg-secondary top-0 right-0"></div>
+                    <div class="text-5xl font-black text-secondary mb-3">运</div>
+                    <h3 class="text-2xl font-bold mb-2">过程变化</h3>
+                    <p class="text-slate-600">
+                        生命长河中的阶段性波动，如流年气运
+                    </p>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="grid-item col-span-12 md:col-span-3 fade-in">
+                    <div class="highlight-bg bg-accent bottom-0 left-0"></div>
+                    <div class="text-5xl font-black text-accent mb-3">势</div>
+                    <h3 class="text-2xl font-bold mb-2">外部环境</h3>
+                    <p class="text-slate-600">
+                        时代背景、政策风向、社会趋势（如"风口"）
+                    </p>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="grid-item col-span-12 md:col-span-4 fade-in">
+                    <div class="text-5xl font-black text-primary mb-3">因</div>
+                    <h3 class="text-2xl font-bold mb-2">起始动因</h3>
+                    <p class="text-slate-600">
+                        过往甚至前世种下的起点与选择（业力种子）
+                    </p>
+                </div>
+                
+                <!-- Item 5 -->
+                <div class="grid-item col-span-12 md:col-span-4 fade-in">
+                    <div class="text-5xl font-black text-secondary mb-3">果</div>
+                    <h3 class="text-2xl font-bold mb-2">最终结果</h3>
+                    <p class="text-slate-600">
+                        要素交汇融合后生成的阶段性结果（福报、善报）
+                    </p>
+                </div>
+                
+                <!-- Item 6 -->
+                <div class="grid-item col-span-12 md:col-span-4 fade-in">
+                    <div class="text-5xl font-black text-accent mb-3">识</div>
+                    <h3 class="text-2xl font-bold mb-2">意识转折</h3>
+                    <p class="text-slate-600">
+                        顿悟和认知跃迁，改变命运路径的关键变量
+                    </p>
+                </div>
+                
+                <!-- Visualization -->
+                <div class="grid-item col-span-12 fade-in">
+                    <h3 class="text-2xl font-bold mb-6">影响命运的关键因素</h3>
+                    <div class="chart-container">
+                        <div class="chart-bar" style="height: 180px;">
+                            <div class="chart-label">出身条件</div>
+                        </div>
+                        <div class="chart-bar" style="height: 160px;">
+                            <div class="chart-label">性格气质</div>
+                        </div>
+                        <div class="chart-bar" style="height: 190px;">
+                            <div class="chart-label">选择行为</div>
+                        </div>
+                        <div class="chart-bar" style="height: 150px;">
+                            <div class="chart-label">情绪能量</div>
+                        </div>
+                        <div class="chart-bar" style="height: 170px;">
+                            <div class="chart-label">社会结构</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Change Fate Section -->
+        <section id="change" class="py-20">
+            <div class="text-center max-w-3xl mx-auto mb-20 fade-in">
+                <h2 class="text-5xl font-black mb-6">改变命运的五种方法</h2>
+                <p class="text-xl text-slate-600">
+                    改运和造命不是对抗命运，而是顺道而为
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <!-- Method 1 -->
+                    <div class="fade-in flex items-start">
+                        <div class="text-5xl font-black text-primary mr-6">01</div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">调频率</h3>
+                            <p class="text-slate-600 mb-4">
+                                管理能量与情绪入口，避免长时间的低频状态（怨、怒、瘫）
+                            </p>
+                            <ul class="space-y-2 text-slate-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3 text-primary"></i>
+                                    <span>饮食作息简单规律，顺时养生</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3 text-primary"></i>
+                                    <span>语言创造现实，交友决定能量场</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3 text-primary"></i>
+                                    <span>少抱怨，多做利他决定</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Method 2 -->
+                    <div class="fade-in flex items-start">
+                        <div class="text-5xl font-black text-secondary mr-6">02</div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">正选择</h3>
+                            <p class="text-slate-600 mb-4">
+                                做对的事而不是容易的事，选择延迟满足和长期价值
+                            </p>
+                            <ul class="space-y-2 text-slate-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3 text-secondary"></i>
+                                    <span>心智成熟，坚持长期主义</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3 text-secondary"></i>
+                                    <span>在关键十字路口做出明智决定</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3 text-secondary"></i>
+                                    <span>每个选择都是命运的复利积累</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Method 3 -->
+                    <div class="fade-in flex items-start">
+                        <div class="text-5xl font-black text-accent mr-6">03</div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">积福德</h3>
+                            <p class="text-slate-600 mb-4">
+                                发自内心的热爱世界，积累福报（因果的显现）
+                            </p>
+                            <ul class="space-y-2 text-slate-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3 text-accent"></i>
+                                    <span>改命靠内德突破束缚</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3 text-accent"></i>
+                                    <span>积攒命运的势能，把路走宽</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3 text-accent"></i>
+                                    <span>德行是格局的体现</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-8">
+                    <!-- Method 4 -->
+                    <div class="fade-in flex items-start">
+                        <div class="text-5xl font-black text-primary mr-6">04</div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">长认知</h3>
+                            <p class="text-slate-600 mb-4">
+                                提升思维视角和觉察能力，重塑意识维度
+                            </p>
+                            <ul class="space-y-2 text-slate-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3 text-primary"></i>
+                                    <span>通过读书获取有价值的信息</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3 text-primary"></i>
+                                    <span>认知提升是意识觉醒的辅助</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3 text-primary"></i>
+                                    <span>命运是修行的舞台，不是苦难的惩罚</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Method 5 -->
+                    <div class="fade-in flex items-start">
+                        <div class="text-5xl font-black text-secondary mr-6">05</div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">不屈服</h3>
+                            <p class="text-slate-600 mb-4">
+                                在挫折困难时不认命，创造变量
+                            </p>
+                            <ul class="space-y-2 text-slate-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3 text-secondary"></i>
+                                    <span>接纳命运轨迹中的定数</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3 text-secondary"></i>
+                                    <span>沉浮不是屈服，理解限制后自立自强</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs mt-2 mr-3 text-secondary"></i>
+                                    <span>生命如岩石缝中盛开的花</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Visualization -->
+                    <div class="fade-in bg-gradient-to-br from-primary to-secondary rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-white mb-4">命运的真相</h3>
+                        <p class="text-white/90 mb-6">
+                            命运不是注定的宿命，而是我们内在频率的外在投影。
+                            人不是命运的囚徒，而是命运的创造者。
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                                <i class="fas fa-lightbulb text-white text-xl"></i>
+                            </div>
+                            <p class="ml-4 text-white font-medium">
+                                每一次选择都是一次重生<br>
+                                每一次觉醒都是一次造命
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Wisdom -->
+        <section class="py-20 text-center">
+            <div class="max-w-4xl mx-auto fade-in">
+                <div class="text-9xl font-black text-primary opacity-10 mb-4">道</div>
+                <h2 class="text-4xl md:text-5xl font-black mb-8">
+                    命运的真谛
+                </h2>
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 inline-block max-w-2xl">
+                    <p class="text-2xl italic mb-6">
+                        "人法地，地法天，天法道，道法自然"
+                    </p>
+                    <p class="text-xl text-slate-600">
+                        道是宇宙的源头和根本，包括人在内的万事万物都必然遵循道的法则。
+                        命运并非宇宙对人的既定安排，而更像是人与世界互动之后的能量回响。
+                    </p>
+                    <div class="w-24 h-1 bg-primary mx-auto my-6"></div>
+                    <p class="text-slate-600">
+                        <span class="font-bold">道大，天大，地大，人亦大。</span>
+                        宇宙中有四大，而人居其一。人既受制于大道与天地法则，但也同样伟大，
+                        因为人有意识，有灵魂，是这个宇宙游戏的参与者。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                            <i class="fas fa-infinity text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold ml-3">命运之门</h3>
+                    </div>
+                    <p class="text-slate-300 mb-6 max-w-md">
+                        探索命运的真谛：从注定的剧本到自由意志的演绎，理解人与宇宙的共舞关系。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-weixin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-weibo"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">探索主题</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-slate-300 hover:text-white transition">命运的定义</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-white transition">命运观类型</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-white transition">命运结构</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-white transition">改变命运</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-white transition">宇宙法则</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">相关资源</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-slate-300 hover:text-white transition">易经解析</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-white transition">道家思想</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-white transition">佛家因果</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-white transition">西方哲学</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-white transition">现代研究</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-700 mt-12 pt-8 text-center text-slate-400">
+                <p>© 2023 命运之门探索计划 | 探索人生的终极命题</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Fade in animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

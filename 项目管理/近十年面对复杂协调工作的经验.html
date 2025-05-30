@@ -1,173 +1,312 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>复杂协调工作指南</title>
-    
+    <title>复杂协调工作指南 | 耐得烦的艺术</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    
     <!-- Framer Motion -->
-    <script src="https://cdn.jsdelivr.net/npm/framer-motion/dist/framer-motion.umd.min.js"></script>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
-    
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #2563eb;
-            --secondary: #64748b;
-            --highlight: #3b82f6;
-            --background: #f8fafc;
-        }
-        
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
         body {
-            font-family: 'Noto Sans SC', sans-serif;
-            background-color: var(--background);
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f9fafb;
+            color: #1f2937;
+            overflow-x: hidden;
         }
-        
-        .gradient-text {
-            background: linear-gradient(90deg, var(--primary) 0%, var(--highlight) 100%);
-            -webkit-background-clip: text;
-            color: transparent;
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 24px;
+            padding: 24px;
         }
-        
-        .card {
-            background: rgba(255, 255, 255, 0.8);
+
+        .bento-item {
+            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
-            border-radius: 1rem;
-            transition: transform 0.3s ease;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(229, 231, 235, 0.5);
         }
-        
-        .card:hover {
+
+        .bento-item:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
-        
-        .scroll-section {
+
+        .highlight-blue {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.05) 100%);
+        }
+
+        .highlight-green {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
+        }
+
+        .highlight-purple {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%);
+        }
+
+        .hero-text {
+            font-size: clamp(3rem, 10vw, 8rem);
+            line-height: 0.9;
+        }
+
+        .big-number {
+            font-size: clamp(4rem, 15vw, 12rem);
+            line-height: 0.8;
+            color: rgba(31, 41, 55, 0.1);
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+        }
+
+        .visual-element {
+            position: absolute;
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .fade-in {
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
-        
-        .scroll-section.visible {
+
+        .fade-in.appear {
             opacity: 1;
             transform: translateY(0);
         }
-        
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem;
-        }
     </style>
 </head>
-<body class="bg-slate-50">
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center p-8">
-        <div class="text-center">
-            <h1 class="text-7xl font-black mb-6 gradient-text">复杂协调工作指南</h1>
-            <p class="text-2xl text-gray-600">COMPLEX COORDINATION GUIDE</p>
-            <div class="mt-8">
-                <i class="fas fa-chevron-down text-3xl text-gray-400 animate-bounce"></i>
+<body class="min-h-screen bg-gray-50">
+<!-- 大型视觉元素 -->
+<div class="visual-element top-10 left-5 w-96 h-96 rounded-full bg-blue-500 floating" style="animation-delay: 0s;"></div>
+<div class="visual-element top-1/3 right-10 w-64 h-64 rounded-full bg-green-500 floating" style="animation-delay: 1s;"></div>
+<div class="visual-element bottom-20 left-1/4 w-80 h-80 rounded-full bg-purple-500 floating" style="animation-delay: 2s;"></div>
+
+<div class="container mx-auto px-4 py-12 max-w-7xl">
+    <!-- 标题区域 -->
+    <header class="text-center mb-24 fade-in">
+        <h1 class="hero-text font-black text-gray-900 mb-6">
+            耐得烦
+        </h1>
+        <p class="text-2xl md:text-3xl font-medium text-gray-600 mb-10 max-w-4xl mx-auto">
+            <span class="font-bold text-blue-600">Endure the Annoyance</span> - 复杂协调工作的核心竞争力
+        </p>
+        <div class="w-24 h-1 bg-blue-500 mx-auto mb-10"></div>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            可以忍受琐碎繁杂的干扰，愿意把手沾湿、把手搞脏，是一个人面对复杂协调工作的核心竞争力
+        </p>
+    </header>
+
+    <!-- 复杂工作的四个要素 -->
+    <section class="mb-24 fade-in">
+        <div class="flex items-center mb-12">
+            <h2 class="section-title font-black text-gray-900 mr-6">
+                复杂工作的四个要素
+            </h2>
+            <div class="flex-grow h-0.5 bg-gray-200"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bento-item p-8 flex flex-col highlight-blue">
+                <div class="text-6xl font-black text-blue-500 mb-4">01</div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">多线程并行</h3>
+                <p class="text-gray-600">同时处理多个任务流，需要高效的任务切换能力</p>
+            </div>
+
+            <div class="bento-item p-8 flex flex-col highlight-green">
+                <div class="text-6xl font-black text-green-500 mb-4">02</div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">干系人巨多</h3>
+                <p class="text-gray-600">涉及大量人员，需要平衡各方利益与沟通需求</p>
+            </div>
+
+            <div class="bento-item p-8 flex flex-col highlight-purple">
+                <div class="text-6xl font-black text-purple-500 mb-4">03</div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">细节很庞杂</h3>
+                <p class="text-gray-600">无数细节需要关注，任何疏忽都可能导致问题</p>
+            </div>
+
+            <div class="bento-item p-8 flex flex-col highlight-blue">
+                <div class="text-6xl font-black text-blue-500 mb-4">04</div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">节奏不统一</h3>
+                <p class="text-gray-600">不同环节进度不同，需要动态调整与协调</p>
             </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <div class="container mx-auto px-4">
-        <!-- Key Points Section -->
-        <section class="scroll-section mb-20">
-            <div class="bento-grid">
-                <!-- Card 1 -->
-                <div class="card p-8">
-                    <h2 class="text-4xl font-bold mb-4">要倒着拉清单，不要正着做计划</h2>
-                    <p class="text-xl text-gray-600">Reverse Planning</p>
-                    <div class="mt-6">
-                        <i class="fas fa-list-ul text-5xl text-blue-500"></i>
-                    </div>
-                </div>
-                
-                <!-- Card 2 -->
-                <div class="card p-8">
-                    <h2 class="text-4xl font-bold mb-4">要出门找导游，不要闭门搞研发</h2>
-                    <p class="text-xl text-gray-600">Find Your Guide</p>
-                    <div class="mt-6">
-                        <i class="fas fa-compass text-5xl text-green-500"></i>
-                    </div>
-                </div>
-                
-                <!-- Card 3 -->
-                <div class="card p-8">
-                    <h2 class="text-4xl font-bold mb-4">要尽早快启动，不要等万事具备</h2>
-                    <p class="text-xl text-gray-600">Start Early</p>
-                    <div class="mt-6">
-                        <i class="fas fa-rocket text-5xl text-purple-500"></i>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- 三大核心建议 -->
+    <section class="fade-in">
+        <div class="flex items-center mb-12">
+            <h2 class="section-title font-black text-gray-900 mr-6">
+                复杂协调三大心法
+            </h2>
+            <div class="flex-grow h-0.5 bg-gray-200"></div>
+        </div>
 
-        <!-- Details Section -->
-        <section class="scroll-section mb-20">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="card p-8">
-                    <h3 class="text-3xl font-bold mb-6">复杂项目四要素</h3>
-                    <ul class="space-y-4 text-lg">
-                        <li><i class="fas fa-circle text-blue-500 mr-2"></i>多线程并行</li>
-                        <li><i class="fas fa-circle text-green-500 mr-2"></i>涉及人员众多</li>
-                        <li><i class="fas fa-circle text-purple-500 mr-2"></i>细节庞杂</li>
-                        <li><i class="fas fa-circle text-red-500 mr-2"></i>节奏不统一</li>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <!-- 建议1 -->
+            <div class="bento-item p-8 relative overflow-hidden">
+                <div class="absolute -right-10 -top-10">
+                    <div class="big-number font-black text-gray-900 opacity-5">01</div>
+                </div>
+                <div class="relative">
+                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-list-ol text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-gray-900 mb-4">
+                        倒着拉清单
+                        <span class="block text-lg font-medium text-gray-500 mt-1">Reverse Planning</span>
+                    </h3>
+                    <p class="text-gray-600 mb-4">
+                        99%的人做方案都是从今天开始往后推，这肯定做不成复杂项目。因为你的经验限制了想象力。
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                            <span>从用户价值实现点倒推（如跨年演讲后的讨论场景）</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                            <span>避免陷入没完没了的任务列表</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                            <span>聚焦真正重要的核心任务</span>
+                        </li>
                     </ul>
                 </div>
-                
-                <div class="card p-8">
-                    <h3 class="text-3xl font-bold mb-6">关键行动指南</h3>
-                    <div class="space-y-4 text-lg">
-                        <p><span class="font-bold text-blue-500">01.</span> 从用户体验倒推</p>
-                        <p><span class="font-bold text-blue-500">02.</span> 顺瓜摸藤找资源</p>
-                        <p><span class="font-bold text-blue-500">03.</span> 抓大放小重点突破</p>
+            </div>
+
+            <!-- 建议2 -->
+            <div class="bento-item p-8 relative overflow-hidden">
+                <div class="absolute -right-10 -top-10">
+                    <div class="big-number font-black text-gray-900 opacity-5">02</div>
+                </div>
+                <div class="relative">
+                    <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-compass text-green-500 text-xl"></i>
                     </div>
+                    <h3 class="text-2xl font-black text-gray-900 mb-4">
+                        出门找导游
+                        <span class="block text-lg font-medium text-gray-500 mt-1">Find Guides</span>
+                    </h3>
+                    <p class="text-gray-600 mb-4">
+                        不要闭门造车，99.9%的创新世界上已经有人完成。你需要的是"顺瓜摸藤"找到已经存在的解决方案。
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>寻找相关领域经验者作为"导游"</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>从最小线索开始寻找主线</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>建立关键点控制而非长篇文档</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </section>
 
-        <!-- Quote Section -->
-        <section class="scroll-section mb-20">
-            <div class="card p-12 text-center">
-                <h2 class="text-5xl font-black mb-8 gradient-text">"你就是你自己的东风"</h2>
-                <p class="text-2xl text-gray-600">常以为成功是条件齐备后的自然结果，现实中条件往往是被行动催生出来的。就像亚马逊雨林的蝴蝶扇动翅膀可能引发飓风，个人的持续行动（妖风）也能重塑环境。关键在于：保持对目标的饥渴，同时用理性拆解路径，用感性抵御挫败——你自己，就是最大的变量。”</p>
+            <!-- 建议3 -->
+            <div class="bento-item p-8 relative overflow-hidden">
+                <div class="absolute -right-10 -top-10">
+                    <div class="big-number font-black text-gray-900 opacity-5">03</div>
+                </div>
+                <div class="relative">
+                    <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-purple-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-gray-900 mb-4">
+                        尽早快启动
+                        <span class="block text-lg font-medium text-gray-500 mt-1">Quick Start</span>
+                    </h3>
+                    <p class="text-gray-600 mb-4">
+                        不要等待万事俱备，世界准备好成就一切人，欠的是你一个人势在必得的"妖风"。
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                            <span>干着干着资源就会涌现</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                            <span>执行中的项目更容易获得支持</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                            <span>你就是自己的东风</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
-    <script>
-        // Intersection Observer for scroll animations
+    <!-- 关键结论 -->
+    <section class="mt-24 text-center fade-in">
+        <div class="bg-gradient-to-r from-blue-50 to-green-50 rounded-3xl p-12 max-w-4xl mx-auto relative overflow-hidden">
+            <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-blue-200 opacity-20"></div>
+            <div class="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-green-200 opacity-20"></div>
+
+            <div class="relative">
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-6">
+                    你就是自己的<span class="text-blue-600">东风</span>
+                </h2>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+                    复杂协调工作的核心不是完美的条件，而是项目经理身上那股"妖风阵阵，妖里妖气"的劲头，这是项目成功的第一推动力。
+                </p>
+                <div class="inline-block px-8 py-4 bg-blue-600 text-white font-bold rounded-full text-lg">
+                    常以为成功是条件齐备后的自然结果，现实中条件往往是被行动催生出来的。就像亚马逊雨林的蝴蝶扇动翅膀可能引发飓风，个人的持续行动（妖风）也能重塑环境。关键在于：保持对目标的饥渴，同时用理性拆解路径，用感性抵御挫败——你自己，就是最大的变量。”
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    // 滚动动画效果
+    document.addEventListener('DOMContentLoaded', function() {
+        // 创建观察器
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    entry.target.classList.add('appear');
                 }
             });
         }, {
-            threshold: 0.1
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
         });
 
-        document.querySelectorAll('.scroll-section').forEach((section) => {
-            observer.observe(section);
+        // 观察所有需要动画的元素
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
         });
-
-        // Smooth scroll
-        document.querySelector('.fa-chevron-down').addEventListener('click', () => {
-            window.scrollTo({
-                top: window.innerHeight,
-                behavior: 'smooth'
-            });
-        });
-    </script>
+    });
+</script>
 </body>
 </html>

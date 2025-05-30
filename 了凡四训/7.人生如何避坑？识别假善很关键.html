@@ -3,281 +3,592 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>善恶判断 - 深度思辨</title>
+    <title>善恶之辨：超越表象的深层理解</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Framer Motion -->
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.12.16/dist/framer-motion.js"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        * {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            color: #333;
+            overflow-x: hidden;
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+        .section {
+            min-height: 100vh;
+            padding: 5rem 2rem;
         }
-        
-        .glass-effect {
-            backdrop-filter: blur(20px);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+
+        .highlight {
+            position: relative;
+            display: inline-block;
+            z-index: 1;
         }
-        
-        .highlight-purple {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(139, 92, 246, 0.1) 100%);
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -5px;
+            right: -5px;
+            height: 15px;
+            z-index: -1;
+            opacity: 0.6;
         }
-        
-        .highlight-blue {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0.1) 100%);
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 20px;
+            margin-top: 40px;
         }
-        
-        .highlight-emerald {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(16, 185, 129, 0.1) 100%);
+
+        .bento-item {
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
         }
-        
-        .text-shadow {
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
-        
-        .scroll-reveal {
+
+        .bento-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            z-index: 0;
+        }
+
+        .visual-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(30px);
+            z-index: -1;
+        }
+
+        .line-graphic {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            opacity: 0.05;
+        }
+
+        .quote-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin: 20px 0;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            bottom: 10px;
+            width: 3px;
+            background: linear-gradient(to bottom, #4F46E5, #EC4899);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 8px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #4F46E5;
+        }
+
+        .fade-in {
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        
-        .scroll-reveal.visible {
+
+        .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        
-        .mega-text {
-            font-size: clamp(4rem, 15vw, 12rem);
-            font-weight: 900;
-            line-height: 0.8;
-        }
-        
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            grid-template-rows: repeat(8, minmax(100px, auto));
-            gap: 1.5rem;
-            height: 100vh;
-            padding: 2rem;
-        }
-        
-        .bento-item-1 { grid-column: 1 / 8; grid-row: 1 / 4; }
-        .bento-item-2 { grid-column: 8 / 13; grid-row: 1 / 3; }
-        .bento-item-3 { grid-column: 8 / 13; grid-row: 3 / 5; }
-        .bento-item-4 { grid-column: 1 / 5; grid-row: 4 / 7; }
-        .bento-item-5 { grid-column: 5 / 9; grid-row: 4 / 6; }
-        .bento-item-6 { grid-column: 9 / 13; grid-row: 5 / 7; }
-        .bento-item-7 { grid-column: 1 / 7; grid-row: 7 / 9; }
-        .bento-item-8 { grid-column: 7 / 13; grid-row: 6 / 9; }
-        
-        @media (max-width: 768px) {
-            .bento-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto;
-                height: auto;
-                gap: 1rem;
-                padding: 1rem;
-            }
-            
-            .bento-item-1, .bento-item-2, .bento-item-3, 
-            .bento-item-4, .bento-item-5, .bento-item-6,
-            .bento-item-7, .bento-item-8 {
-                grid-column: 1;
-                grid-row: auto;
-            }
-        }
     </style>
 </head>
-<body class="bg-gray-50 overflow-x-hidden">
-    <div class="bento-grid">
-        <!-- 主标题区域 -->
-        <div class="bento-item-1 glass-effect rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden">
-            <div class="absolute top-4 right-4">
-                <i class="fas fa-balance-scale text-purple-300 text-2xl opacity-30"></i>
-            </div>
-            <div class="scroll-reveal">
-                <h1 class="mega-text text-gray-800 text-shadow mb-4">善恶</h1>
-                <p class="text-gray-600 text-lg font-medium mb-2">GOOD & EVIL</p>
-                <p class="text-gray-500 text-sm leading-relaxed">
-                    外貌、穿着、谈吐都是与善恶无关的内容<br>
-                    真正的善恶判断需要透过表象看本质
-                </p>
-            </div>
+<body class="overflow-x-hidden">
+<!-- 导航栏 -->
+<nav class="fixed w-full py-4 px-8 bg-white/90 backdrop-blur-sm z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="text-xl font-bold text-indigo-700">善恶之辨</div>
+        <div class="flex space-x-6">
+            <a href="#intro" class="text-gray-600 hover:text-indigo-600 transition">引言</a>
+            <a href="#pseudo" class="text-gray-600 hover:text-indigo-600 transition">伪善</a>
+            <a href="#goodman" class="text-gray-600 hover:text-indigo-600 transition">老好人</a>
+            <a href="#showoff" class="text-gray-600 hover:text-indigo-600 transition">宣传善</a>
+            <a href="#weakness" class="text-gray-600 hover:text-indigo-600 transition">软弱</a>
         </div>
+    </div>
+</nav>
 
-        <!-- 统计数据 -->
-        <div class="bento-item-2 highlight-purple rounded-3xl p-6 flex flex-col justify-center text-center scroll-reveal">
-            <div class="text-5xl font-black text-purple-700 mb-2">03</div>
-            <div class="text-purple-600 font-semibold text-sm">FALSE VIRTUES</div>
-            <div class="text-purple-500 text-xs mt-1">伪善·老好人·宣传善</div>
+<!-- 引言部分 -->
+<section id="intro" class="section flex items-center justify-center relative">
+    <div class="max-w-6xl mx-auto text-center px-4">
+        <div class="text-5xl md:text-8xl font-bold mb-6">
+            <span class="text-indigo-600">善</span>与<span class="text-pink-500">恶</span>的真相
         </div>
-
-        <!-- 核心理念 -->
-        <div class="bento-item-3 highlight-blue rounded-3xl p-6 flex flex-col justify-center scroll-reveal">
-            <i class="fas fa-heart text-blue-500 text-3xl mb-3"></i>
-            <h3 class="text-blue-700 font-bold text-lg mb-2">利他之心</h3>
-            <p class="text-blue-600 text-sm leading-relaxed">
-                有利于别人的就是善<br>
-                有利于自己的就是恶
-            </p>
-            <div class="text-blue-400 text-xs mt-2 font-medium">ALTRUISM</div>
+        <div class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-12">
+            超越表象的深层理解：外表、行为与动机的辩证关系
         </div>
-
-        <!-- 伪善警示 -->
-        <div class="bento-item-4 bg-white rounded-3xl p-6 shadow-lg scroll-reveal">
-            <div class="flex items-center mb-4">
-                <i class="fas fa-mask text-red-400 text-2xl mr-3"></i>
-                <h3 class="text-gray-800 font-bold text-xl">伪善</h3>
-            </div>
-            <div class="space-y-3">
-                <div class="text-gray-600 text-sm">
-                    <span class="font-semibold text-red-500">出于私心</span> → 伪善
-                </div>
-                <div class="text-gray-600 text-sm">
-                    <span class="font-semibold text-green-500">出于公心</span> → 真善
-                </div>
-            </div>
-            <div class="mt-4 p-3 bg-gray-50 rounded-xl">
-                <p class="text-gray-500 text-xs leading-relaxed">
-                    "发自内心的行善就是真善，模仿别人做形式上的表演就是伪善"
-                </p>
-            </div>
-        </div>
-
-        <!-- 大数字展示 -->
-        <div class="bento-item-5 highlight-emerald rounded-3xl p-6 flex flex-col justify-center text-center scroll-reveal">
-            <div class="text-6xl font-black text-emerald-700 mb-2">500</div>
-            <div class="text-emerald-600 font-semibold text-sm">YUAN ANALOGY</div>
-            <div class="text-emerald-500 text-xs mt-1">付出与回报的对等性</div>
-        </div>
-
-        <!-- 老好人问题 -->
-        <div class="bento-item-6 bg-white rounded-3xl p-6 shadow-lg scroll-reveal">
-            <div class="flex items-center mb-4">
-                <i class="fas fa-user-friends text-orange-400 text-2xl mr-3"></i>
-                <h3 class="text-gray-800 font-bold text-lg">老好人</h3>
-            </div>
-            <div class="space-y-2">
-                <div class="flex items-center text-sm">
-                    <div class="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
-                    <span class="text-gray-600">没有原则</span>
-                </div>
-                <div class="flex items-center text-sm">
-                    <div class="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
-                    <span class="text-gray-600">助纣为虐</span>
-                </div>
-                <div class="flex items-center text-sm">
-                    <div class="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
-                    <span class="text-gray-600">平庸之恶</span>
-                </div>
-            </div>
-            <div class="text-orange-400 text-xs mt-3 font-medium">NOT REAL KINDNESS</div>
-        </div>
-
-        <!-- 圣人标准 -->
-        <div class="bento-item-7 bg-white rounded-3xl p-6 shadow-lg scroll-reveal">
-            <h3 class="text-gray-800 font-bold text-xl mb-4">圣人眼中的善恶</h3>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="space-y-2">
-                    <div class="text-green-600 font-semibold text-sm">✓ 狂士</div>
-                    <div class="text-gray-500 text-xs">勇于进取，直言不讳</div>
-                </div>
-                <div class="space-y-2">
-                    <div class="text-green-600 font-semibold text-sm">✓ 狷者</div>
-                    <div class="text-gray-500 text-xs">洁身自好，有原则</div>
-                </div>
-            </div>
-            <div class="mt-4 p-3 bg-red-50 rounded-xl">
-                <div class="text-red-600 font-semibold text-sm mb-1">✗ 乡愿</div>
-                <div class="text-red-500 text-xs">老好人，德之贼也</div>
-            </div>
-        </div>
-
-        <!-- 阴德阳善 -->
-        <div class="bento-item-8 gradient-bg rounded-3xl p-6 text-white scroll-reveal">
-            <h3 class="font-bold text-xl mb-4">阴德 vs 阳善</h3>
-            <div class="space-y-3">
-                <div class="flex items-center">
-                    <i class="fas fa-eye-slash text-purple-200 mr-3"></i>
-                    <div>
-                        <div class="font-semibold text-sm">阴德</div>
-                        <div class="text-purple-200 text-xs">不被人知，天必报之</div>
-                    </div>
-                </div>
-                <div class="flex items-center">
-                    <i class="fas fa-eye text-purple-200 mr-3"></i>
-                    <div>
-                        <div class="font-semibold text-sm">阳善</div>
-                        <div class="text-purple-200 text-xs">为人所知，享有盛名</div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-4 text-purple-100 text-xs">
-                "积阴德，将行善融入日常生活方式中"
-            </div>
+        <div class="text-lg text-gray-700 max-w-2xl mx-auto">
+            "一般人陷于成见或偏见，尚未打开正知正见的眼睛，往往会把善的当做恶的，把恶的当做善的，不去怪自己善恶不分，反而怪上天的报应不准确。"
+            <span class="block mt-4 text-right text-gray-600">— 中峰和尚</span>
         </div>
     </div>
 
-    <!-- 滚动指示器 -->
-    <div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 text-gray-400 animate-bounce">
-        <i class="fas fa-chevron-down text-xl"></i>
+    <!-- 视觉元素 -->
+    <div class="visual-element bg-indigo-400 w-80 h-80 top-20 left-20"></div>
+    <div class="visual-element bg-pink-400 w-64 h-64 bottom-40 right-40"></div>
+</section>
+
+<!-- 伪善部分 -->
+<section id="pseudo" class="section bg-white relative">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="text-9xl font-bold text-indigo-200 mb-2">01</div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">伪善不是善</h1>
+            <p class="text-gray-500 uppercase tracking-wider">The Mask of Virtue</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="text-2xl font-bold mb-6">衡量善恶的<span class="highlight text-indigo-600">唯一标准</span></div>
+                <div class="text-gray-700 text-lg leading-relaxed mb-6">
+                    中峰和尚说：<span class="text-indigo-700 font-medium">"有利于别人的就是善，有利于自己的就是恶。如果你能会责其他人，那么打骂人也是善。如果你只是为了自己的私利，那么敬重别人也是恶。"</span>
+                </div>
+
+                <div class="quote-card">
+                    <div class="flex items-start mb-4">
+                        <span class="material-icons text-indigo-500 mr-2">format_quote</span>
+                        <p class="text-gray-700">发自内心的行善就是真善，而模仿别人做形式上的表演就是伪善。每个人都有私心，从而混淆了善恶。</p>
+                    </div>
+                    <div class="text-right text-gray-600">— 中峰和尚</div>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="bg-gray-100 rounded-2xl p-8 shadow-lg">
+                    <div class="text-xl font-bold mb-4 text-indigo-700">善行的动机分析</div>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center mr-3">
+                                    <span class="material-icons text-indigo-600">check_circle</span>
+                                </div>
+                                <div class="font-bold">真善</div>
+                            </div>
+                            <p class="text-gray-600 ml-11">纯粹利他，发自内心，不图回报</p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center mr-3">
+                                    <span class="material-icons text-pink-600">warning</span>
+                                </div>
+                                <div class="font-bold">伪善</div>
+                            </div>
+                            <p class="text-gray-600 ml-11">表面利他，实际利己，追求回报</p>
+                        </div>
+
+                        <div class="mt-8">
+                            <div class="text-lg font-bold mb-3">金庸的道德判断：</div>
+                            <div class="bg-indigo-50 p-4 rounded-xl">
+                                <ul class="space-y-2 text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="material-icons text-green-500 mr-2">done</span>
+                                        <span>对大多数人有利，同时自己得名利 → 上策</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="material-icons text-yellow-500 mr-2">remove</span>
+                                        <span>对大多数人无损而对自己有利 → 可接受</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="material-icons text-red-500 mr-2">close</span>
+                                        <span>为了一己私利损害大多数人利益 → 不道德</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-indigo-200 opacity-20"></div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-pink-200 opacity-20"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 老好人部分 -->
+<section id="goodman" class="section bg-gray-50 relative">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="text-9xl font-bold text-green-200 mb-2">02</div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">老好人不是善</h1>
+            <p class="text-gray-500 uppercase tracking-wider">The Mediocrity of Goodness</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+            <div class="lg:col-span-3">
+                <div class="text-2xl font-bold mb-6">孔子论<span class="highlight text-green-600">乡愿</span>：德之贼也</div>
+
+                <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+                    <p>孔子在《论语》中指出："乡愿，德之贼也。" 王阳明解释说："乡愿在君子面前装作忠诚清廉，而在小人面前就会选择同流合污，换取和小人和谐共处。"</p>
+
+                    <p>用现代的话来说，就是老好人、伪君子，看似谨慎善良，对谁都不得罪，其实言行不一，及其虚伪，善于谄媚，有时甚至会助纣为虐。</p>
+
+                    <div class="bg-green-50 p-6 rounded-2xl mt-6">
+                        <div class="font-bold text-green-700 mb-3">孔子对人的分类：</div>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex items-center mb-1">
+                                    <span class="material-icons text-red-500 mr-2">close</span>
+                                    <span class="font-bold">乡愿（老好人）</span>
+                                </div>
+                                <p class="text-gray-600 ml-6">表面老实，实则无原则，与小人同流合污</p>
+                            </div>
+
+                            <div>
+                                <div class="flex items-center mb-1">
+                                    <span class="material-icons text-yellow-500 mr-2">star_half</span>
+                                    <span class="font-bold">狂士</span>
+                                </div>
+                                <p class="text-gray-600 ml-6">个性张扬，勇于进取，遇见不义之事直言不讳</p>
+                            </div>
+
+                            <div>
+                                <div class="flex items-center mb-1">
+                                    <span class="material-icons text-blue-500 mr-2">star</span>
+                                    <span class="font-bold">狷士</span>
+                                </div>
+                                <p class="text-gray-600 ml-6">孤僻但洁身自好，不与小人同流合污</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-2xl p-6 shadow-lg h-full">
+                    <div class="text-2xl font-bold mb-6 text-green-700">平庸之恶</div>
+                    <div class="text-gray-700 mb-4">
+                        德国哲学家汉娜·阿伦特在研究纳粹罪行时提出了"平庸的恶"的概念：
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="mt-1 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3 flex-shrink-0">
+                                <span class="material-icons text-green-600">psychology</span>
+                            </div>
+                            <p>纳粹官员并非典型邪恶分子，而是平凡的人，机械的执行者，只是按照指令履行职责</p>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="mt-1 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3 flex-shrink-0">
+                                <span class="material-icons text-green-600">groups</span>
+                            </div>
+                            <p>官僚体制将责任分散，导致个体道德判断被削弱，失去个人责任感</p>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="mt-1 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3 flex-shrink-0">
+                                <span class="material-icons text-green-600">follow_the_signs</span>
+                            </div>
+                            <p>普通人往往选择遵循社会规范和权威指示，而不去思考和质疑</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-4 bg-green-50 rounded-lg">
+                        <div class="font-bold text-green-700 mb-2">阿伦特的启示：</div>
+                        <p>我们每个人都有责任去质疑和思考，不应该盲目遵从，不能轻易将自己的判断和责任推卸给他人。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 宣传善部分 -->
+<section id="showoff" class="section bg-white relative">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="text-9xl font-bold text-purple-200 mb-2">03</div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">宣传善不是善</h1>
+            <p class="text-gray-500 uppercase tracking-wider">The Performance of Virtue</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="bg-white rounded-2xl p-8 shadow-xl border border-purple-100">
+                    <div class="text-2xl font-bold mb-6 text-purple-700">阳善 vs 阴德</div>
+
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                                    <span class="material-icons text-purple-600">wb_sunny</span>
+                                </div>
+                                <div>
+                                    <div class="text-xl font-bold">阳善</div>
+                                    <div class="text-gray-500">做了善事而被人所知道</div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 ml-14">在世间享有盛名，但这种名声有时效性，大举宣传换来的名利来路不正，必然会招来祸患。</p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-4">
+                                    <span class="material-icons text-indigo-600">dark_mode</span>
+                                </div>
+                                <div>
+                                    <div class="text-xl font-bold">阴德</div>
+                                    <div class="text-gray-500">做善事却不被人所知道</div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 ml-14">上天对我们所作所为都了如指掌，只要我们做了善事，就会一定得到上天的回报。</p>
+                        </div>
+
+                        <div class="mt-8 bg-purple-50 p-5 rounded-xl">
+                            <div class="font-bold text-purple-700 mb-2">袁了凡的劝诫：</div>
+                            <p>"行善没有必要让人知道，更不应该去炫耀。舆论会让事情偏离正常发展的轨道。"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="text-2xl font-bold mb-6">达摩与梁武帝：<span class="highlight text-purple-600">福德</span>与<span class="highlight text-indigo-600">功德</span></div>
+
+                <div class="space-y-6 text-lg text-gray-700">
+                    <p>梁武帝问达摩："我做皇帝以来，造了几千座寺庙，抄写了无数的佛经，供养了无数的僧尼，有什么功德呢？"</p>
+
+                    <p>达摩回答："<span class="text-purple-700 font-medium">你这样刻意做好事求回报，当然也会有回报，只是这种回报还在六道轮回之中，仍是虚幻，并不是真正的解脱，也不是真正的功德。</span>"</p>
+
+                    <div class="bg-indigo-50 p-5 rounded-xl mt-6">
+                        <div class="font-bold text-indigo-700 mb-2">六祖慧能的解释：</div>
+                        <p>"造寺布施供养，只是培植福气，不能将培植福气当做功德。功德在于佛性，不在于福田，而是要从自己的佛性上产生功德。"</p>
+                    </div>
+
+                    <div class="mt-6 p-5 border-l-4 border-purple-500 bg-purple-50">
+                        <p class="text-gray-700">"所以你在施舍的时候，不要在你面前吹号。像那些假冒为善的人在会堂里和街道上所行的故意要得到人的荣耀。"</p>
+                        <div class="text-right text-gray-600 mt-2">— 马太福音 6:2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 软弱部分 -->
+<section id="weakness" class="section bg-gray-50 relative">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="text-9xl font-bold text-orange-200 mb-2">04</div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">软弱不是善</h1>
+            <p class="text-gray-500 uppercase tracking-wider">The Courage of True Virtue</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div>
+                <div class="text-2xl font-bold mb-6">行善的<span class="highlight text-orange-600">偏正</span>之道</div>
+
+                <div class="space-y-6 text-lg text-gray-700">
+                    <p>袁了凡说："行善要注意偏正，偏有偏颇的意思，正有全面的意思。做好事不能偏颇于异端，而忘了全体偏于异端，就容易好心办了坏事。"</p>
+
+                    <div class="bg-orange-50 p-5 rounded-xl mt-4">
+                        <div class="font-bold text-orange-700 mb-2">吕文义的教训：</div>
+                        <p>"吕文义辞了宰相之职后，衣锦还乡。有一次，一个喝醉了的同乡在吕家门口破口大骂，还砸烂东西。吕文义并不生气，交代仆人不要计较。第二年这个人犯了死罪，被送进了大牢。吕文义后悔地说：'如果当时我稍稍计较一下，把她送进官府，小小的惩罚恐怕会让她引以为戒。我当时只是想自己心存厚道，没想到反而纵容了她的恶习。'"</p>
+                    </div>
+
+                    <p class="mt-6"><span class="font-bold">袁了凡分析：</span>"李文义出于厚道，不计较醉汉的行为，却没有想到这样是在纵容他，反而害了她，这是顾及了自己的发心以及名声，却没有顾及会给对方带来什么后果，所以这样的行为是善中带恶。"</p>
+                </div>
+            </div>
+
+            <div>
+                <div class="text-2xl font-bold mb-6">真正的善良是有<span class="highlight text-orange-600">锋芒</span>的</div>
+
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <span class="material-icons text-blue-600">history_edu</span>
+                            </div>
+                            <div class="text-xl font-bold text-blue-700">孔子的智慧</div>
+                        </div>
+                        <p class="text-gray-700">"以直报怨，以德报德" — 对于冒犯或伤害我们的人，以正直来对待，不记仇但该怎么样就怎么样。对于那些有恩于我们的人，我们就以恩情回报。</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                                <span class="material-icons text-green-600">auto_awesome</span>
+                            </div>
+                            <div class="text-xl font-bold text-green-700">老子的境界</div>
+                        </div>
+                        <p class="text-gray-700">"为无为，事无事，味无味。大小多少，报怨以德" — 以超然物外的心态，带着观照的态度去对待现实的一切，无论大小多少，无论什么样的矛盾争斗，都能以自然之道去回应。</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                                <span class="material-icons text-purple-600">self_improvement</span>
+                            </div>
+                            <div class="text-xl font-bold text-purple-700">佛教的忍辱</div>
+                        </div>
+                        <p class="text-gray-700">面对外来的恶意冒犯伤害，要明白元气星空的法则，内心完全不受影响。保持宁静平和，在宁静平和中做出正确判断。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 text-center">
+            <div class="inline-block bg-white p-8 rounded-2xl shadow-lg max-w-2xl">
+                <div class="text-2xl font-bold mb-4 text-orange-600">核心启示</div>
+                <p class="text-xl text-gray-700 leading-relaxed">
+                    善良不是软弱，不是胆小怕事，而是一种强大的力量。它既来自严肃的道德原则，也来自于神圣的自然法则。在黑暗里，如果你不相信光，那你就只能在黑暗中沉沦。就算所有的人都相信魔鬼，只要有你一个人相信天使，天使仍然会眷顾这个世界。
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 总结部分 -->
+<section class="section bg-gradient-to-br from-indigo-500 to-purple-600 text-white relative flex items-center">
+    <div class="max-w-4xl mx-auto text-center px-4">
+        <div class="text-5xl md:text-6xl font-bold mb-8">善恶之辨的终极启示</div>
+
+        <div class="text-xl md:text-2xl mb-12 leading-relaxed">
+            真正的善良是超越表象的内心选择，是摆脱私利的利他行动，是坚持原则的道德勇气，是默默奉献的无求之心。
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
+            <div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm">
+                <div class="text-4xl font-bold mb-2">真</div>
+                <div>发自内心</div>
+            </div>
+            <div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm">
+                <div class="text-4xl font-bold mb-2">善</div>
+                <div>纯粹利他</div>
+            </div>
+            <div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm">
+                <div class="text-4xl font-bold mb-2">勇</div>
+                <div>坚持原则</div>
+            </div>
+            <div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm">
+                <div class="text-4xl font-bold mb-2">默</div>
+                <div>不求回报</div>
+            </div>
+        </div>
+
+        <div class="mt-16 text-lg">
+            <p class="mb-4">"天地鬼神必佑善人，报应恶人，都与圣人的标准不同，而和一般世俗人的见解完全不一样。"</p>
+            <p>"凡是要行善积德，绝不可只依赖自己的所见所闻，而应探寻至内心最隐秘细微的地方。"</p>
+        </div>
     </div>
 
-    <script>
-        // 滚动动画
+    <!-- 视觉元素 -->
+    <div class="visual-element bg-white w-96 h-96 top-1/4 left-1/4 opacity-10"></div>
+    <div class="visual-element bg-blue-300 w-72 h-72 bottom-1/3 right-1/3 opacity-20"></div>
+</section>
+
+<script>
+    // 滚动动画效果
+    document.addEventListener('DOMContentLoaded', function() {
+        // 观察器配置
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
         };
 
-        const observer = new IntersectionObserver((entries) => {
+        // 观察器回调
+        const observerCallback = (entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        };
+
+        // 创建观察器
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
 
         // 观察所有需要动画的元素
-        document.querySelectorAll('.scroll-reveal').forEach(el => {
+        document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
 
-        // 鼠标滚动效果
-        let scrollY = 0;
-        
-        window.addEventListener('scroll', () => {
-            scrollY = window.scrollY;
-            
-            // 视差效果
-            document.querySelectorAll('.bento-item-1').forEach(el => {
-                el.style.transform = `translateY(${scrollY * 0.1}px)`;
-            });
-            
-            // 渐变背景移动
-            document.querySelector('.gradient-bg').style.backgroundPosition = `${scrollY * 0.1}px ${scrollY * 0.1}px`;
-        });
+        // 动态添加视觉元素
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            for(let i = 0; i < 4; i++) {
+                const visual = document.createElement('div');
+                visual.className = 'visual-element';
 
-        // 添加鼠标悬停效果
-        document.querySelectorAll('[class*="bento-item"]').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px) scale(1.02)';
-                this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
+                // 随机位置和大小
+                const size = Math.random() * 200 + 100;
+                const top = Math.random() * 80;
+                const left = Math.random() * 80;
 
-        // 初始动画延迟
-        document.querySelectorAll('.scroll-reveal').forEach((el, index) => {
-            el.style.transitionDelay = `${index * 0.1}s`;
+                visual.style.width = `${size}px`;
+                visual.style.height = `${size}px`;
+                visual.style.top = `${top}%`;
+                visual.style.left = `${left}%`;
+
+                // 随机颜色
+                const colors = ['#4F46E5', '#EC4899', '#10B981', '#F59E0B', '#8B5CF6'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                visual.style.backgroundColor = color;
+
+                section.appendChild(visual);
+            }
         });
-    </script>
+    });
+</script>
 </body>
 </html>

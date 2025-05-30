@@ -3,340 +3,556 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>心经智慧 - Heart Sutra Wisdom</title>
+    <title>心经智慧：观照空性的修行之旅</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.12.16/dist/framer-motion.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B5FBF',
+                        secondary: '#6A5ACD',
+                        accent: '#9C27B0',
+                        light: '#F3F4F6',
+                        dark: '#1F2937'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out forwards',
+                        'float': 'float 6s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        * {
-            font-family: 'Noto Sans SC', 'Inter', sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
+            color: #1F2937;
+            scroll-behavior: smooth;
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+        .chinese-font {
+            font-family: 'Noto Serif SC', serif;
         }
-        
-        .glass-effect {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .text-gradient {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .highlight-purple {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(102, 126, 234, 0.1));
-        }
-        
-        .highlight-blue {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.1));
-        }
-        
-        .highlight-green {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(34, 197, 94, 0.1));
-        }
-        
+
         .bento-grid {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            grid-template-rows: repeat(8, minmax(100px, auto));
-            gap: 1rem;
-            height: 100vh;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, auto);
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        
+
         .bento-item {
-            border-radius: 1rem;
-            padding: 1.5rem;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bento-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlight-bg {
+            background: linear-gradient(45deg, rgba(139, 95, 191, 0.1) 0%, rgba(156, 39, 176, 0.05) 100%);
+        }
+
+        .big-number {
+            font-size: 10rem;
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(45deg, #8B5FBF, #6A5ACD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.3;
+            position: absolute;
+            z-index: 0;
+        }
+
+        .section-title {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-subtitle {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #6A5ACD;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+
+        .quote-card {
+            border-left: 4px solid #8B5FBF;
+            padding-left: 20px;
+            font-style: italic;
+            color: #4B5563;
+        }
+
+        .graphic-element {
+            stroke-width: 1.5;
+            stroke: #8B5FBF;
+            fill: none;
+        }
+
+        .scroll-section {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding: 100px 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            text-align: center;
-            transition: all 0.3s ease;
+            color: #8B5FBF;
+            font-size: 0.9rem;
+            animation: bounce 2s infinite;
         }
-        
-        .bento-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-20px) translateX(-50%);}
+            60% {transform: translateY(-10px) translateX(-50%);}
         }
-        
-        .hero { grid-column: 1 / 9; grid-row: 1 / 4; }
-        .stats { grid-column: 9 / 13; grid-row: 1 / 3; }
-        .wisdom { grid-column: 9 / 13; grid-row: 3 / 5; }
-        .practice { grid-column: 1 / 5; grid-row: 4 / 7; }
-        .mindfulness { grid-column: 5 / 9; grid-row: 4 / 6; }
-        .emptiness { grid-column: 5 / 13; grid-row: 6 / 9; }
-        .journey { grid-column: 1 / 5; grid-row: 7 / 9; }
-        
-        @media (max-width: 768px) {
-            .bento-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto;
-                height: auto;
-            }
-            .bento-item {
-                grid-column: 1 !important;
-                grid-row: auto !important;
-            }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
         }
-        
-        .parallax-container {
-            height: 100vh;
-            overflow-y: auto;
-            overflow-x: hidden;
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(139, 95, 191, 0.2);
+            left: 50%;
+            transform: translateX(-50%);
         }
-        
-        .floating-icon {
-            animation: float 6s ease-in-out infinite;
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            width: calc(50% - 40px);
         }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: auto;
         }
-        
-        .pulse-glow {
-            animation: pulse-glow 2s ease-in-out infinite alternate;
+
+        .timeline-content {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
         }
-        
-        @keyframes pulse-glow {
-            from { box-shadow: 0 0 20px rgba(102, 126, 234, 0.3); }
-            to { box-shadow: 0 0 40px rgba(102, 126, 234, 0.6); }
+
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: #8B5FBF;
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            left: -50px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            right: -50px;
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(139, 95, 191, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .icon-circle i {
+            color: #8B5FBF;
+            font-size: 24px;
         }
     </style>
 </head>
-<body class="bg-gray-50 overflow-x-hidden">
-    <div class="parallax-container" id="container">
-        <!-- Navigation -->
-        <nav class="fixed top-0 left-0 right-0 z-50 glass-effect">
-            <div class="max-w-7xl mx-auto px-6 py-4">
-                <div class="flex justify-between items-center">
-                    <div class="text-2xl font-bold text-gradient">心经智慧</div>
-                    <div class="text-sm text-gray-600">Heart Sutra Wisdom</div>
+<body class="overflow-x-hidden">
+<!-- 导航栏 -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md py-4 shadow-sm">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                <i class="fas fa-yin-yang text-white text-lg"></i>
+            </div>
+            <span class="chinese-font text-xl font-bold text-dark">心经智慧</span>
+        </div>
+        <div class="hidden md:flex space-x-8">
+            <a href="#section1" class="text-dark hover:text-primary transition">观</a>
+            <a href="#section2" class="text-dark hover:text-primary transition">空</a>
+            <a href="#section3" class="text-dark hover:text-primary transition">无常</a>
+            <a href="#section4" class="text-dark hover:text-primary transition">空相</a>
+            <a href="#section5" class="text-dark hover:text-primary transition">修行</a>
+        </div>
+        <button class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
+            加入修行
+        </button>
+    </div>
+</nav>
+
+<!-- 第一部分：观 -->
+<section id="section1" class="scroll-section">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="fade-in">
+                <div class="big-number opacity-10">01</div>
+                <h1 class="section-title chinese-font">观</h1>
+                <p class="section-subtitle">OBSERVE THE INNER SELF</p>
+                <p class="text-lg mb-6 leading-relaxed">
+                    "观自在菩萨行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。" 观是觉察、反省、面对自己。关心（觉察内心）和关身（觉察身体）两者缺一不可。
+                </p>
+                <div class="flex space-x-4">
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <i class="fas fa-brain text-primary text-3xl mb-4"></i>
+                        <h3 class="chinese-font font-bold text-xl mb-2">关心</h3>
+                        <p>觉察内心的各种情态，练性功</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <i class="fas fa-hands text-secondary text-3xl mb-4"></i>
+                        <h3 class="chinese-font font-bold text-xl mb-2">关身</h3>
+                        <p>觉察身体的微妙感受，练命功</p>
+                    </div>
                 </div>
             </div>
-        </nav>
-
-        <!-- Main Content -->
-        <div class="pt-20 px-6 max-w-7xl mx-auto">
-            <div class="bento-grid">
-                <!-- Hero Section -->
-                <div class="hero gradient-bg text-white bento-item relative overflow-hidden">
-                    <div class="absolute top-6 right-6 floating-icon">
-                        <i class="fas fa-lotus text-4xl opacity-20"></i>
-                    </div>
-                    <div class="z-10">
-                        <h1 class="text-6xl font-black mb-4">色即是空</h1>
-                        <p class="text-xl opacity-90 mb-6">Form is Emptiness</p>
-                        <div class="text-8xl font-black opacity-10 absolute bottom-4 right-4">観</div>
-                        <p class="text-lg leading-relaxed max-w-2xl">
-                            观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。
-                            通过观照内心，达到自在的境界，这是心经给我们的第一个智慧。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Stats -->
-                <div class="stats highlight-purple bento-item pulse-glow">
-                    <i class="fas fa-eye text-4xl text-purple-600 mb-4"></i>
-                    <div class="text-5xl font-black text-gray-800 mb-2">観</div>
-                    <div class="text-sm text-gray-600">Observation</div>
-                    <p class="text-xs mt-2 text-gray-500">觉察、反省、面对自己</p>
-                </div>
-
-                <!-- Wisdom -->
-                <div class="wisdom highlight-blue bento-item">
-                    <i class="fas fa-brain text-3xl text-blue-600 mb-3"></i>
-                    <div class="text-3xl font-bold text-gray-800 mb-2">般若智慧</div>
-                    <div class="text-xs text-gray-600 mb-2">Prajna Wisdom</div>
-                    <div class="w-full bg-blue-200 rounded-full h-2 mb-2">
-                        <div class="bg-blue-600 h-2 rounded-full" style="width: 85%"></div>
-                    </div>
-                    <p class="text-xs text-gray-500">深度洞察的修行方法</p>
-                </div>
-
-                <!-- Practice -->
-                <div class="practice highlight-green bento-item">
-                    <div class="text-6xl font-black text-gray-800 mb-4">3</div>
-                    <div class="text-lg font-bold text-gray-700 mb-2">修行要诀</div>
-                    <div class="text-xs text-gray-600 mb-4">Practice Essentials</div>
-                    <div class="space-y-2 w-full">
-                        <div class="flex items-center text-sm">
-                            <i class="fas fa-circle text-green-500 mr-2 text-xs"></i>
-                            <span>观照内心</span>
-                        </div>
-                        <div class="flex items-center text-sm">
-                            <i class="fas fa-circle text-green-500 mr-2 text-xs"></i>
-                            <span>接受无常</span>
-                        </div>
-                        <div class="flex items-center text-sm">
-                            <i class="fas fa-circle text-green-500 mr-2 text-xs"></i>
-                            <span>度化众生</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mindfulness -->
-                <div class="mindfulness bg-white bento-item border-2 border-gray-200">
-                    <i class="fas fa-meditation text-3xl text-gray-600 mb-3"></i>
-                    <div class="text-2xl font-bold text-gray-800 mb-2">正念修持</div>
-                    <div class="text-xs text-gray-600 mb-3">Mindful Practice</div>
-                    <div class="grid grid-cols-2 gap-2 w-full text-xs">
-                        <div class="bg-gray-100 rounded p-2 text-center">
-                            <div class="font-bold">关身</div>
-                            <div class="text-gray-500">觉察身体</div>
-                        </div>
-                        <div class="bg-gray-100 rounded p-2 text-center">
-                            <div class="font-bold">关心</div>
-                            <div class="text-gray-500">觉知内心</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Emptiness -->
-                <div class="emptiness bg-gradient-to-r from-purple-50 to-blue-50 bento-item border border-purple-200">
-                    <div class="w-full">
-                        <div class="flex justify-between items-center mb-6">
-                            <div>
-                                <div class="text-4xl font-black text-gray-800">空性智慧</div>
-                                <div class="text-sm text-gray-600">Emptiness Wisdom</div>
-                            </div>
-                            <i class="fas fa-infinity text-4xl text-purple-500"></i>
-                        </div>
-                        
-                        <div class="grid grid-cols-3 gap-4 text-center">
-                            <div class="bg-white rounded-lg p-3 border border-purple-100">
-                                <div class="text-lg font-bold text-gray-800">不生不灭</div>
-                                <div class="text-xs text-gray-500 mt-1">Neither Born nor Destroyed</div>
-                            </div>
-                            <div class="bg-white rounded-lg p-3 border border-blue-100">
-                                <div class="text-lg font-bold text-gray-800">不垢不净</div>
-                                <div class="text-xs text-gray-500 mt-1">Neither Pure nor Impure</div>
-                            </div>
-                            <div class="bg-white rounded-lg p-3 border border-green-100">
-                                <div class="text-lg font-bold text-gray-800">不增不减</div>
-                                <div class="text-xs text-gray-500 mt-1">Neither Increase nor Decrease</div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-4 text-center">
-                            <p class="text-sm text-gray-700 leading-relaxed">
-                                缘起性空，世事无常。当我们真正明白这种无常思想后，
-                                就会开始接受身边发生的各种事情，这是佛学对生活的指导。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Journey -->
-                <div class="journey bg-gradient-to-br from-amber-50 to-orange-50 bento-item border border-amber-200">
-                    <i class="fas fa-route text-3xl text-amber-600 mb-3"></i>
-                    <div class="text-2xl font-bold text-gray-800 mb-2">修行之路</div>
-                    <div class="text-xs text-gray-600 mb-3">Spiritual Journey</div>
-                    <div class="w-full space-y-2">
-                        <div class="flex justify-between text-xs">
-                            <span>自渡</span>
-                            <span>Self Liberation</span>
-                        </div>
-                        <div class="w-full bg-amber-200 rounded-full h-1">
-                            <div class="bg-amber-500 h-1 rounded-full" style="width: 60%"></div>
-                        </div>
-                        <div class="flex justify-between text-xs">
-                            <span>渡他</span>
-                            <span>Help Others</span>
-                        </div>
-                        <div class="w-full bg-amber-200 rounded-full h-1">
-                            <div class="bg-amber-500 h-1 rounded-full" style="width: 80%"></div>
-                        </div>
-                    </div>
+            <div class="relative flex justify-center">
+                <div class="floating-element">
+                    <svg width="400" height="400" viewBox="0 0 400 400">
+                        <circle cx="200" cy="200" r="180" class="graphic-element" stroke-opacity="0.1"/>
+                        <circle cx="200" cy="200" r="150" class="graphic-element" stroke-opacity="0.2"/>
+                        <circle cx="200" cy="200" r="120" class="graphic-element" stroke-opacity="0.3"/>
+                        <circle cx="200" cy="200" r="90" class="graphic-element" stroke-opacity="0.4"/>
+                        <circle cx="200" cy="200" r="60" class="graphic-element" stroke-opacity="0.5"/>
+                        <circle cx="200" cy="200" r="30" class="graphic-element" stroke-opacity="0.7"/>
+                        <circle cx="200" cy="200" r="10" fill="#8B5FBF"/>
+                        <path d="M200,20 A180,180 0 0,1 380,200" class="graphic-element" stroke-width="2"/>
+                        <path d="M200,50 A150,150 0 0,1 350,200" class="graphic-element" stroke-width="2"/>
+                        <path d="M200,80 A120,120 0 0,1 320,200" class="graphic-element" stroke-width="2"/>
+                    </svg>
                 </div>
             </div>
         </div>
     </div>
+    <div class="scroll-indicator">
+        <p>向下滚动</p>
+        <i class="fas fa-chevron-down mt-2"></i>
+    </div>
+</section>
 
-    <script>
-        // Scroll-triggered animations
+<!-- 第二部分：空 -->
+<section id="section2" class="scroll-section bg-gradient-to-br from-light to-gray-100">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="relative flex justify-center order-2 lg:order-1">
+                <div class="floating-element">
+                    <svg width="400" height="400" viewBox="0 0 400 400">
+                        <rect x="50" y="50" width="300" height="300" class="graphic-element" stroke-opacity="0.1" rx="20"/>
+                        <rect x="80" y="80" width="240" height="240" class="graphic-element" stroke-opacity="0.2" rx="20"/>
+                        <rect x="110" y="110" width="180" height="180" class="graphic-element" stroke-opacity="0.3" rx="20"/>
+                        <rect x="140" y="140" width="120" height="120" class="graphic-element" stroke-opacity="0.4" rx="20"/>
+                        <rect x="170" y="170" width="60" height="60" class="graphic-element" stroke-opacity="0.5" rx="10"/>
+                        <path d="M50,50 L350,350 M50,350 L350,50" class="graphic-element" stroke-width="3"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="fade-in order-1 lg:order-2">
+                <div class="big-number opacity-10">02</div>
+                <h1 class="section-title chinese-font">空</h1>
+                <p class="section-subtitle">THE NATURE OF EMPTINESS</p>
+                <p class="text-lg mb-6 leading-relaxed">
+                    "色不异空，空不异色。色即是空，空即是色。" 色指的是物质，是有象的东西，也是变化的东西。空是自性圆满的，它不生不灭、不垢不净、不增不减。
+                </p>
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <p class="chinese-font font-bold">色</p>
+                        <p class="text-sm opacity-70">物质世界，有形万物</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <p class="chinese-font font-bold">空</p>
+                        <p class="text-sm opacity-70">本质实相，自性本然</p>
+                    </div>
+                </div>
+                <div class="quote-card">
+                    <p>"万法因缘生，万法因缘灭。宇宙间的一切事物都因因缘相聚而合合，最终因因缘离散而消失。"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <p>继续探索</p>
+        <i class="fas fa-chevron-down mt-2"></i>
+    </div>
+</section>
+
+<!-- 第三部分：无常 -->
+<section id="section3" class="scroll-section">
+    <div class="container mx-auto">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="big-number opacity-10 mx-auto">03</div>
+            <h1 class="section-title chinese-font">无常</h1>
+            <p class="section-subtitle">THE IMPERMANENCE OF LIFE</p>
+            <p class="text-xl mb-12 leading-relaxed max-w-3xl mx-auto">
+                "受想行识，亦复如是。" 人生就是在生和死之间的一个时空之旅。一切感受、思想、行为、意识都是变化不居的，符合因果规律，符合无常规律，也终究符合空性。
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="icon-circle mx-auto">
+                        <i class="fas fa-feather"></i>
+                    </div>
+                    <h3 class="chinese-font font-bold text-xl mb-2">受</h3>
+                    <p>感受与体验，喜受与苦受皆变化不长久</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="icon-circle mx-auto">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 class="chinese-font font-bold text-xl mb-2">想</h3>
+                    <p>思想与概念，刹那生灭，如云聚散</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="icon-circle mx-auto">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3 class="chinese-font font-bold text-xl mb-2">行识</h3>
+                    <p>行为与意识，随因缘变化，无有恒常</p>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-primary/10 to-secondary/10 p-8 rounded-2xl">
+                <h3 class="chinese-font font-bold text-2xl mb-4">无常的智慧</h3>
+                <p class="text-lg">
+                    "当真正明白这种无常思想以后，我们就会去开始接受身边发生的各种各样的事情。今天你看见的小孩，几十年后就是一个齿牙动摇、满面皱纹的老人。今天有生的这个状态，往后就一定是有死的，这都是必然律能够告诉我们的事情。"
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <p>深入理解</p>
+        <i class="fas fa-chevron-down mt-2"></i>
+    </div>
+</section>
+
+<!-- 第四部分：空相 -->
+<section id="section4" class="scroll-section bg-gradient-to-br from-gray-100 to-light">
+    <div class="container mx-auto">
+        <div class="max-w-5xl mx-auto">
+            <div class="big-number opacity-10">04</div>
+            <h1 class="section-title chinese-font text-center">空相</h1>
+            <p class="section-subtitle text-center">THE ULTIMATE NATURE</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-16">
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+                    <h3 class="chinese-font font-bold text-2xl mb-4">不生不灭</h3>
+                    <p class="mb-4">超越存在与消亡的二元对立</p>
+                    <div class="flex justify-center mb-4">
+                        <svg width="120" height="120" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" class="graphic-element"/>
+                            <path d="M60,10 A50,50 0 1,1 60,110" class="graphic-element" stroke-width="2"/>
+                            <path d="M60,110 A50,50 0 1,1 60,10" class="graphic-element" stroke-width="2"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+                    <h3 class="chinese-font font-bold text-2xl mb-4">不垢不净</h3>
+                    <p class="mb-4">超越纯净与污秽的分别概念</p>
+                    <div class="flex justify-center mb-4">
+                        <svg width="120" height="120" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" class="graphic-element"/>
+                            <line x1="10" y1="60" x2="110" y2="60" class="graphic-element" stroke-width="2"/>
+                            <line x1="60" y1="10" x2="60" y2="110" class="graphic-element" stroke-width="2"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+                    <h3 class="chinese-font font-bold text-2xl mb-4">不增不减</h3>
+                    <p class="mb-4">超越增加与减少的数量概念</p>
+                    <div class="flex justify-center mb-4">
+                        <svg width="120" height="120" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" class="graphic-element"/>
+                            <circle cx="60" cy="60" r="30" class="graphic-element"/>
+                            <circle cx="60" cy="60" r="10" class="graphic-element"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-gradient-to-r from-secondary/10 to-accent/10 p-8 rounded-2xl">
+                <p class="text-xl italic">
+                    "舍利子，是诸法空相，不生不灭，不垢不净，不增不减。空是诸法的实质，是诸法的本源。整部般若波罗蜜多心经如果浓缩到一个字上，我们就可以把它凝聚到空上。"
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <p>继续前行</p>
+        <i class="fas fa-chevron-down mt-2"></i>
+    </div>
+</section>
+
+<!-- 第五部分：修行 -->
+<section id="section5" class="scroll-section">
+    <div class="container mx-auto">
+        <div class="max-w-6xl mx-auto">
+            <div class="big-number opacity-10">05</div>
+            <h1 class="section-title chinese-font text-center">修行</h1>
+            <p class="section-subtitle text-center">THE PATH OF PRACTICE</p>
+
+            <div class="timeline mt-16">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="chinese-font font-bold text-xl mb-2">日常关照</h3>
+                        <p>"观是时时要做的事情。在生活中，观是觉察、反省、面对自己。哪怕是在繁忙的工作中，都能因为看到桌旁的小绿植而心生愉悦。"</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="chinese-font font-bold text-xl mb-2">情绪管理</h3>
+                        <p>"当愤怒的情绪在内心升起的那一刻，马上关照自己，我为什么不舒服呢？我为什么会失去内心的平静呢？如果能及时关照并看住自己内心的愤怒情绪，能够告诉自己别人说的话又不是魔法，我根本就不是无用之人。"</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="chinese-font font-bold text-xl mb-2">禅在生活中</h3>
+                        <p>"禅宗在修行的模式上进行了改革，提出了不作不实，自己耕作自己生活。禅宗弟子也做功课，也学习，但主要的修行就在普通的农耕生活中。只要保有信仰，这种生活方式或许是一种更好的选择。"</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="chinese-font font-bold text-xl mb-2">慈悲度人</h3>
+                        <p>"修行之人所做的事情，应该永远都是与慈悲包容度人的理念相符合的。大成佛教不仅要自渡，还要渡他。要求我们不仅自立，还要立他，最后达到自他圆满的境界。"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <h2 class="chinese-font text-3xl font-bold mb-6">加入修行之旅</h2>
+                <p class="text-xl max-w-2xl mx-auto mb-8">
+                    邀请各位道友们加入修行伙伴群，在这里我们有最纯净的交流，最好的修心伙伴，最全面的文字资料。这里是繁杂纷扰世界中的一方净土，是可以将心暂时搁置休息的港湾。
+                </p>
+                <button class="bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-full text-lg font-bold hover:opacity-90 transition">
+                    立即加入修行社区 <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // 滚动动画效果
+    document.addEventListener('DOMContentLoaded', function() {
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('fade-in');
                 }
             });
         }, observerOptions);
 
-        // Initialize animations
-        document.addEventListener('DOMContentLoaded', () => {
-            const bentoItems = document.querySelectorAll('.bento-item');
-            
-            bentoItems.forEach((item, index) => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(50px)';
-                item.style.transition = `all 0.8s ease ${index * 0.1}s`;
-                observer.observe(item);
-            });
-
-            // Parallax effect on scroll
-            const container = document.getElementById('container');
-            container.addEventListener('scroll', () => {
-                const scrolled = container.scrollTop;
-                const parallaxElements = document.querySelectorAll('.floating-icon');
-                
-                parallaxElements.forEach(element => {
-                    const speed = 0.3;
-                    element.style.transform = `translateY(${scrolled * speed}px)`;
-                });
-            });
-
-            // Add hover effects
-            bentoItems.forEach(item => {
-                item.addEventListener('mouseenter', () => {
-                    item.style.transform = 'translateY(-10px) scale(1.02)';
-                });
-                
-                item.addEventListener('mouseleave', () => {
-                    item.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-
-            // Trigger initial animations
-            setTimeout(() => {
-                bentoItems.forEach(item => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                });
-            }, 300);
+        // 观察所有需要动画的元素
+        document.querySelectorAll('.fade-in').forEach(el => {
+            // 初始设置为透明
+            el.style.opacity = '0';
+            // 开始观察
+            observer.observe(el);
         });
 
-        // Dynamic text effects
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
+        // 滚动时导航栏高亮
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
 
-        // Smooth scrolling for better UX
-        document.documentElement.style.scrollBehavior = 'smooth';
-    </script>
+        window.addEventListener('scroll', () => {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('text-primary');
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

@@ -3,285 +3,500 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>向内求 - Inner Seeking</title>
+    <title>向内求的力量 - 改变命运的内核修行</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.js"></script>
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@9.0.0/dist/framer-motion.js"></script>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .glass-effect { backdrop-filter: blur(20px); background: rgba(255, 255, 255, 0.1); }
-        .text-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hover-scale { transition: transform 0.3s ease; }
-        .hover-scale:hover { transform: scale(1.02); }
-        .bento-card { border-radius: 24px; padding: 32px; transition: all 0.3s ease; }
-        .bento-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .number-highlight { font-size: 8rem; font-weight: 900; line-height: 0.8; }
-        .subtitle-en { font-size: 0.875rem; font-weight: 400; opacity: 0.7; letter-spacing: 0.05em; }
-        .highlight-purple { background: linear-gradient(135deg, rgba(147, 51, 234, 0.3) 0%, rgba(147, 51, 234, 0.1) 100%); }
-        .highlight-blue { background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0.1) 100%); }
-        .highlight-green { background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(16, 185, 129, 0.1) 100%); }
-        .highlight-orange { background: linear-gradient(135deg, rgba(245, 101, 101, 0.3) 0%, rgba(245, 101, 101, 0.1) 100%); }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-900 overflow-x-hidden">
-    <!-- Hero Section -->
-    <section class="min-h-screen gradient-bg flex items-center justify-center relative">
-        <div class="absolute inset-0 bg-black opacity-20"></div>
-        <div class="container mx-auto px-6 relative z-10 text-center text-white">
-            <div class="animate-fade-in">
-                <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tight">向内求</h1>
-                <p class="subtitle-en text-xl md:text-2xl mb-8 tracking-wider">INNER SEEKING</p>
-                <p class="text-xl md:text-2xl font-light max-w-3xl mx-auto leading-relaxed opacity-90">
-                    一切福田不离方寸，从心而觅，感悟不通
-                </p>
-                <div class="mt-12">
-                    <i class="fas fa-arrow-down text-3xl animate-bounce"></i>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <!-- Introduction -->
-            <div class="text-center mb-20">
-                <h2 class="text-5xl font-bold mb-6">为何努力却无突破？</h2>
-                <p class="subtitle-en text-lg mb-8">WHY NO BREAKTHROUGH DESPITE EFFORTS?</p>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                    因为我们在自我感动，因为我们努力在错误的方向上。正确的方向，让所有努力插上起飞的翅膀。
-                </p>
-            </div>
-
-            <!-- Bento Grid Layout -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-                <!-- Card 1: 心态层面 -->
-                <div class="bento-card bg-white shadow-lg hover-scale col-span-1 md:col-span-2 lg:col-span-2 highlight-purple">
-                    <div class="flex items-center justify-between mb-8">
-                        <div class="number-highlight text-purple-600">01</div>
-                        <i class="fas fa-heart text-4xl text-purple-500"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold mb-4">心态层面</h3>
-                    <p class="subtitle-en text-purple-600 mb-6">MINDSET LEVEL</p>
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        心静自然凉。面对外界环境，我们改变不了它，但可以改变自己的心态，去除情绪消耗。
-                    </p>
-                    <div class="mt-6 flex items-center">
-                        <div class="w-16 h-1 bg-purple-500 rounded-full"></div>
-                        <span class="ml-4 text-sm text-gray-500">Internal vs External</span>
-                    </div>
-                </div>
-
-                <!-- Card 2: 关系层面 -->
-                <div class="bento-card bg-white shadow-lg hover-scale highlight-blue">
-                    <div class="number-highlight text-blue-600 mb-4">02</div>
-                    <i class="fas fa-users text-3xl text-blue-500 mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-3">关系层面</h3>
-                    <p class="subtitle-en text-blue-600 mb-4">RELATIONSHIP</p>
-                    <p class="text-gray-700">只和自己比，不攀比他人，先从自己身上找原因。</p>
-                </div>
-
-                <!-- Card 3: 心灵层面 -->
-                <div class="bento-card bg-white shadow-lg hover-scale highlight-green">
-                    <div class="number-highlight text-green-600 mb-4">03</div>
-                    <i class="fas fa-compass text-3xl text-green-500 mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-3">心灵层面</h3>
-                    <p class="subtitle-en text-green-600 mb-4">SPIRITUAL</p>
-                    <p class="text-gray-700">问自己最想做什么？应该成为什么样的自己？</p>
-                </div>
-
-                <!-- Card 4: 心性层面 -->
-                <div class="bento-card bg-white shadow-lg hover-scale col-span-1 md:col-span-2 lg:col-span-2 highlight-orange">
-                    <div class="flex items-center justify-between mb-8">
-                        <div class="number-highlight text-orange-600">04</div>
-                        <i class="fas fa-star text-4xl text-orange-500"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold mb-4">心性层面</h3>
-                    <p class="subtitle-en text-orange-600 mb-6">ULTIMATE LEVEL</p>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                        向内求的最高境界。挖掘内心良知，找到内心天理，知行合一。
-                    </p>
-                    <div class="flex items-center space-x-4">
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 bg-orange-500 rounded-full mr-2"></div>
-                            <span class="text-sm">良知</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 bg-orange-400 rounded-full mr-2"></div>
-                            <span class="text-sm">天理</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 bg-orange-300 rounded-full mr-2"></div>
-                            <span class="text-sm">知行合一</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quote Card -->
-                <div class="bento-card bg-gradient-to-br from-indigo-900 to-purple-900 text-white col-span-1 md:col-span-2 lg:col-span-4">
-                    <div class="text-center">
-                        <i class="fas fa-quote-left text-6xl opacity-30 mb-8"></i>
-                        <blockquote class="text-3xl md:text-4xl font-light leading-relaxed mb-8">
-                            "求则得之，舍则失之，是求以于得也，求在我者也"
-                        </blockquote>
-                        <p class="subtitle-en text-lg opacity-70">— 孟子 MENCIUS</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Success Stories -->
-            <div class="bg-gray-100 rounded-3xl p-12 mb-20">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold mb-4">成功案例</h2>
-                    <p class="subtitle-en text-lg">SUCCESS STORIES</p>
-                </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <!-- 稻盛和夫 -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-building text-blue-600 text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold">稻盛和夫</h3>
-                                <p class="subtitle-en text-blue-600">KAZUO INAMORI</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 leading-relaxed mb-4">
-                            从恐惧疾病到全身心投入研究，从追求个人理想到以员工幸福为目标，稻盛和夫通过向内求获得了商业成就。
-                        </p>
-                        <div class="bg-blue-50 rounded-lg p-4">
-                            <p class="text-blue-800 font-medium">
-                                "你心中描绘怎样的蓝图，决定了你将度过怎样的人生。"
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- 云谷禅师的教导 -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-yin-yang text-purple-600 text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold">云谷禅师</h3>
-                                <p class="subtitle-en text-purple-600">ZEN MASTER</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 leading-relaxed mb-4">
-                            通过修行让心念和行为合乎义理，就可以超越命数，自己决定自己的命运。
-                        </p>
-                        <div class="bg-purple-50 rounded-lg p-4">
-                            <p class="text-purple-800 font-medium">
-                                "一切福田不离方寸，从心而觅，感悟不通。"
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Key Principles -->
-            <div class="text-center mb-20">
-                <h2 class="text-4xl font-bold mb-8">核心原则</h2>
-                <p class="subtitle-en text-lg mb-12">CORE PRINCIPLES</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="text-center p-8">
-                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-seedling text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">因上努力</h3>
-                        <p class="subtitle-en text-blue-600 mb-4">EFFORT ON CAUSE</p>
-                        <p class="text-gray-600">专注内在驱动力，在自己能控制的因素上加倍努力</p>
-                    </div>
-                    
-                    <div class="text-center p-8">
-                        <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-leaf text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">缘上随缘</h3>
-                        <p class="subtitle-en text-green-600 mb-4">FOLLOW CONDITIONS</p>
-                        <p class="text-gray-600">对外在条件保持随缘心态，不刻意强求</p>
-                    </div>
-                    
-                    <div class="text-center p-8">
-                        <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-violet-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-mountain text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">心转业力</h3>
-                        <p class="subtitle-en text-purple-600 mb-4">TRANSFORM KARMA</p>
-                        <p class="text-gray-600">通过内心修行产生连锁感应，转变业力</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Final Message -->
-            <div class="text-center bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-3xl p-16">
-                <h2 class="text-5xl font-bold mb-6">改变从心开始</h2>
-                <p class="subtitle-en text-xl mb-8 opacity-90">CHANGE STARTS FROM WITHIN</p>
-                <p class="text-xl leading-relaxed max-w-4xl mx-auto">
-                    想要得到某些东西或是想要掌控自己的命运，就要听从自己的内心坚定下去。
-                    只有清晰的认识自己的内心，才能真正走出一个属于自己的人生。
-                </p>
-                <div class="mt-10">
-                    <div class="inline-flex items-center space-x-4">
-                        <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                        <div class="w-2 h-2 bg-white rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
-                        <div class="w-2 h-2 bg-white rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script>
-        // Smooth scrolling animations
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.gradient-bg');
-            const speed = scrolled * 0.5;
-            
-            if (parallax) {
-                parallax.style.transform = `translateY(${speed}px)`;
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5e72e4',
+                        secondary: '#11cdef',
+                        success: '#2dce89',
+                        warning: '#fb6340',
+                        dark: '#32325d',
+                        light: '#f7fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans SC', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --color-primary: 94, 114, 228;
+            --color-secondary: 17, 205, 239;
+            --color-success: 45, 206, 137;
+            --color-warning: 251, 99, 64;
+        }
+
+        body {
+            background-color: #f8f9fc;
+            color: #525f7f;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 24px;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .grid-item {
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(50, 50, 93, 0.03), 0 5px 15px rgba(0, 0, 0, 0.06);
+            padding: 32px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .grid-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .mega-number {
+            font-size: 12rem;
+            font-weight: 900;
+            opacity: 0.03;
+            position: absolute;
+            right: 20px;
+            bottom: -30px;
+            z-index: 0;
+            line-height: 1;
+        }
+
+        .gradient-bg {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .gradient-primary {
+            background: linear-gradient(135deg, rgba(var(--color-primary), 1) 0%, rgba(var(--color-primary), 0) 100%);
+            top: -150px;
+            right: -150px;
+        }
+
+        .gradient-secondary {
+            background: linear-gradient(135deg, rgba(var(--color-secondary), 1) 0%, rgba(var(--color-secondary), 0) 100%);
+            bottom: -150px;
+            left: -150px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #32325d;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #8898aa;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .section-content {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 10;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 50%, rgba(255,241,118,0.3) 50%, rgba(255,241,118,0.3) 100%);
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            transition: background-position 0.6s ease;
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        .highlight:hover {
+            background-position: 0 0;
+        }
+
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 32px;
+        }
+
+        .level-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .level-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-top: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            height: calc(100% - 20px);
+            width: 3px;
+            background: linear-gradient(to bottom, rgba(94, 114, 228, 0.3), rgba(17, 205, 239, 0.3));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #5e72e4;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(94, 114, 228, 0.3);
+        }
+
+        .quote {
+            font-size: 1.5rem;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.7;
+            position: relative;
+            padding: 30px 40px;
+        }
+
+        .quote::before, .quote::after {
+            content: """;
+            font-size: 5rem;
+            position: absolute;
+            opacity: 0.1;
+            line-height: 1;
+        }
+
+        .quote::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .quote::after {
+            bottom: -50px;
+            right: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
             }
 
-            // Animate cards on scroll
-            const cards = document.querySelectorAll('.bento-card');
-            cards.forEach((card, index) => {
-                const cardTop = card.offsetTop;
-                const cardHeight = card.offsetHeight;
-                const windowHeight = window.innerHeight;
-                
-                if (scrolled > cardTop - windowHeight + cardHeight / 2) {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .mega-number {
+                font-size: 8rem;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+<div class="relative min-h-screen overflow-hidden">
+    <!-- Background Gradients -->
+    <div class="gradient-bg gradient-primary"></div>
+    <div class="gradient-bg gradient-secondary"></div>
+
+    <!-- Main Content -->
+    <div class="bento-grid">
+        <!-- Title Section -->
+        <div class="grid-item col-span-12 row-span-1 flex flex-col justify-center items-center text-center p-12 bg-gradient-to-br from-[#f8f9fc] to-white">
+            <h1 class="text-5xl md:text-7xl font-black mb-6 text-gray-800">
+                向内求<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400">的力量</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 max-w-3xl">
+                改变命运的内核修行 · 源于内心的觉醒与力量
+            </p>
+            <div class="mt-8 text-gray-500 flex items-center">
+                <span class="mr-4">Inward Seeking</span>
+                <i class="fas fa-arrow-down text-blue-500 animate-bounce"></i>
+            </div>
+        </div>
+
+        <!-- Core Concept -->
+        <div class="grid-item col-span-8 row-span-2 relative">
+            <div class="mega-number">01</div>
+            <p class="section-subtitle">CORE CONCEPT</p>
+            <h2 class="section-title">向内求的本质</h2>
+            <p class="section-content">
+                <span class="highlight">向内求的本质是人生道场的修行</span>。在明确目标后，自主剥离无关事项，去除内耗，不试图改变任何人事物，聚焦于改变自己以实现目标。<br><br>
+
+                "一切福田不离方寸，从心而觅，感悟不通。" - 六祖慧能<br><br>
+
+                <span class="font-bold">云谷禅师解读</span>：人的命运好坏离不开人心的修行。只要诚心修行，就能与天道产生感应，获得指示。血肉之躯落在命数里，但透过修行让心念行为合乎义理，就能超越命数，决定自己的命运。
+            </p>
+        </div>
+
+        <!-- Four Levels -->
+        <div class="grid-item col-span-4 row-span-2 relative bg-gradient-to-br from-indigo-50 to-cyan-50">
+            <p class="section-subtitle">FOUR LEVELS</p>
+            <h2 class="section-title">向内求的<br>四个层面</h2>
+
+            <div class="mt-8 grid grid-cols-2 gap-4">
+                <div class="level-card">
+                    <div class="icon-circle bg-blue-100 text-blue-600">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">心态层面</h3>
+                    <p class="text-gray-600">
+                        改变不了环境，就改变自己的心态。如"心静自然凉"，去除情绪消耗。
+                    </p>
+                </div>
+
+                <div class="level-card">
+                    <div class="icon-circle bg-teal-100 text-teal-600">
+                        <i class="fas fa-people-arrows"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">关系层面</h3>
+                    <p class="text-gray-600">
+                        只和自己比，求心安理得。遇事先从自身找原因，不抱怨社会他人。
+                    </p>
+                </div>
+
+                <div class="level-card">
+                    <div class="icon-circle bg-amber-100 text-amber-600">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">心灵层面</h3>
+                    <p class="text-gray-600">
+                        问自己"最想做什么？应成为什么样的人？"寻找与心灵相连的答案。
+                    </p>
+                </div>
+
+                <div class="level-card">
+                    <div class="icon-circle bg-purple-100 text-purple-600">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">心性层面</h3>
+                    <p class="text-gray-600">
+                        最高境界：挖掘内心良知，找到内心天理，知行合一，立志做应做之事。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wealth Connection -->
+        <div class="grid-item col-span-6 row-span-1 relative">
+            <div class="mega-number">02</div>
+            <p class="section-subtitle">WEALTH CONNECTION</p>
+            <h2 class="section-title">内求如何提升物质财富</h2>
+            <p class="section-content">
+                内与外的区别是<span class="highlight">"因"和"缘"的区别</span>。因是内在驱动力，缘是外在辅助力。成就靠因缘聚合。<br><br>
+
+                <span class="font-bold">根本原则</span>：在因上努力，在缘上随缘。内求是因，外求是缘。专注挖掘内心热爱与能量，不寄希望于他人或运气。
+            </p>
+        </div>
+
+        <!-- Quote Section -->
+        <div class="grid-item col-span-6 row-span-1 relative bg-gradient-to-br from-amber-50 to-orange-50">
+            <div class="quote text-gray-700">
+                "你心中描绘怎样的蓝图，决定了你将度过怎样的人生。"
+                <div class="mt-6 text-right text-lg font-medium">
+                    — 稻盛和夫《活法》
+                </div>
+            </div>
+        </div>
+
+        <!-- Cause and Effect -->
+        <div class="grid-item col-span-12 row-span-1 relative bg-gradient-to-br from-emerald-50 to-cyan-50">
+            <div class="mega-number">03</div>
+            <p class="section-subtitle">CAUSE AND EFFECT</p>
+            <h2 class="section-title">心念改变业力的三阶段</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="text-4xl font-bold text-emerald-600 mb-4">1</div>
+                    <h3 class="text-xl font-bold mb-3">从心起惑</h3>
+                    <p class="text-gray-600">迷惑来自内心，迷惑带来业力</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="text-4xl font-bold text-emerald-600 mb-4">2</div>
+                    <h3 class="text-xl font-bold mb-3">业必感果</h3>
+                    <p class="text-gray-600">业力一定会感应招来果报，业力会束缚内心</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="text-4xl font-bold text-emerald-600 mb-4">3</div>
+                    <h3 class="text-xl font-bold mb-3">心可转业</h3>
+                    <p class="text-gray-600">业力来自心的运作，透过心可转变业力</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inada Kazuo -->
+        <div class="grid-item col-span-8 row-span-2 relative">
+            <div class="mega-number">04</div>
+            <p class="section-subtitle">CASE STUDY</p>
+            <h2 class="section-title">稻盛和夫的内求实践</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">少年时期的领悟</h3>
+                    <p class="text-gray-600">
+                        叔叔患肺病，稻盛害怕被传染却染病，父亲照顾叔叔却无事。他领悟："恐惧疾病的心招来灾难"。
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">职场转折点</h3>
+                    <p class="text-gray-600">
+                        公司濒临倒闭时，停止抱怨，全身心投入研究，取得突破性成果，帮助公司度过难关。
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">创业哲学</h3>
+                    <p class="text-gray-600">
+                        创立京瓷时，确定公司使命："保障员工及其家人的生活，以员工幸福为目标"。
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">经营之道</h3>
+                    <p class="text-gray-600">
+                        形成"以心为聚焦点的经营之道"，相信宇宙存在令万物向善的意志，调整内心与其相应。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Wisdom -->
+        <div class="grid-item col-span-4 row-span-2 relative bg-gradient-to-br from-blue-50 to-indigo-50 flex flex-col justify-center">
+            <p class="section-subtitle">ULTIMATE WISDOM</p>
+            <h2 class="section-title">核心要义</h2>
+
+            <div class="mt-8">
+                <div class="flex items-start mb-6">
+                    <div class="bg-blue-500 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 mr-4">
+                        <i class="fas fa-lightbulb text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold mb-1">专注内在驱动</h3>
+                        <p class="text-gray-600">挖掘内心热爱与能量，去除无谓内耗</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start mb-6">
+                    <div class="bg-indigo-500 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 mr-4">
+                        <i class="fas fa-balance-scale text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold mb-1">因上努力，缘上随缘</h3>
+                        <p class="text-gray-600">专注可控的内在因素，对外在条件随缘</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="bg-purple-500 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 mr-4">
+                        <i class="fas fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold mb-1">改变心念即改变命运</h3>
+                        <p class="text-gray-600">透过修行改变内心状态，从而改变行动，最终改变命运</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center py-12 text-gray-500">
+        <p>向内求的力量 · 源于《了凡思讯》的智慧启示</p>
+        <p class="mt-2 text-sm">一切福田不离方寸 · 从心而觅感悟不通</p>
+    </div>
+</div>
+
+<script>
+    // 滚动动画效果
+    document.addEventListener('DOMContentLoaded', function() {
+        const gridItems = document.querySelectorAll('.grid-item');
+
+        // 创建观察器
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
                 }
             });
+        }, {
+            threshold: 0.1
         });
 
-        // Initialize card animations
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.bento-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(50px)';
-                card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-            });
+        // 为每个格子设置初始状态
+        gridItems.forEach(item => {
+            item.style.opacity = 0;
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(item);
         });
 
-        // Add hover effects
-        document.querySelectorAll('.hover-scale').forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                element.style.transform = 'scale(1.02) translateY(-8px)';
-            });
-            
-            element.addEventListener('mouseleave', () => {
-                element.style.transform = 'scale(1) translateY(0)';
-            });
+        // 延迟显示背景渐变
+        const gradients = document.querySelectorAll('.gradient-bg');
+        gradients.forEach(gradient => {
+            gradient.style.opacity = 0;
+            gradient.style.transition = 'opacity 1.2s ease-out';
+            setTimeout(() => {
+                gradient.style.opacity = 0.15;
+            }, 300);
         });
-    </script>
+    });
+</script>
 </body>
 </html>

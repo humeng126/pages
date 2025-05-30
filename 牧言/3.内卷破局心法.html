@@ -3,366 +3,478 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>破解内卷 - Breaking Involution</title>
+    <title>内卷的真相与破局之道</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
-        
-        * {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.12.16/dist/framer-motion.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5e72e4',
+                        secondary: '#11cdef',
+                        accent: '#fb6340',
+                        light: '#f7fafc',
+                        dark: '#2d3748'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Georgia', 'serif']
+                    }
+                }
+            }
         }
-        
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #2d3748;
+            scroll-behavior: smooth;
+        }
+
+        .text-4xl {
+            font-size: 2rem; /* 调整统计数字大小 */
+        }
+
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            grid-template-rows: repeat(8, minmax(100px, 1fr));
-            gap: 24px;
-            height: 100vh;
-            padding: 24px;
+            grid-auto-rows: minmax(400px, auto); /* 增加基础高度从280px到400px */
+            gap: 28px; /* 适当增加间距 */
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
         }
-        
-        .hero-section {
-            grid-column: 1 / 8;
-            grid-row: 1 / 4;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 24px;
+
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            overflow: hidden;
             position: relative;
-            overflow: hidden;
+            padding: 1.5rem; /* 减小内边距 */
         }
-        
-        .stats-card {
-            grid-column: 8 / 13;
-            grid-row: 1 / 3;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
-        
-        .solution-card {
-            grid-column: 8 / 13;
-            grid-row: 3 / 5;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 20px;
-        }
-        
-        .principle-card {
-            grid-column: 1 / 5;
-            grid-row: 4 / 7;
-            background: rgba(34, 197, 94, 0.1);
-            border-radius: 20px;
-            border: 2px solid #22c55e;
-        }
-        
-        .mindset-card {
-            grid-column: 5 / 9;
-            grid-row: 4 / 6;
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            border-radius: 20px;
-        }
-        
-        .quote-card {
-            grid-column: 9 / 13;
-            grid-row: 5 / 8;
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: 20px;
-            border: 2px solid #3b82f6;
-        }
-        
-        .action-card {
-            grid-column: 1 / 6;
-            grid-row: 7 / 9;
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            border-radius: 20px;
-        }
-        
-        .wisdom-card {
-            grid-column: 6 / 13;
-            grid-row: 6 / 9;
-            background: rgba(139, 92, 246, 0.1);
-            border-radius: 20px;
-            border: 2px solid #8b5cf6;
-        }
-        
-        .mega-text {
-            font-size: clamp(4rem, 8vw, 12rem);
-            font-weight: 900;
-            line-height: 0.8;
-        }
-        
-        .large-text {
-            font-size: clamp(2rem, 4vw, 4rem);
-            font-weight: 700;
-        }
-        
-        .medium-text {
-            font-size: clamp(1.2rem, 2.5vw, 2rem);
-            font-weight: 600;
-        }
-        
-        .small-en {
-            font-size: 0.875rem;
-            font-weight: 400;
-            opacity: 0.7;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .glow-effect {
-            box-shadow: 0 0 40px rgba(102, 126, 234, 0.3);
-        }
-        
-        .floating-icon {
+
+        .card::before {
+            content: '';
             position: absolute;
-            opacity: 0.1;
-            font-size: 3rem;
-            animation: float 6s ease-in-out infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            border-radius: 20px 20px 0 0;
         }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+        .card-primary::before {
+            background: linear-gradient(90deg, #5e72e4, #825ee4);
         }
-        
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-            overflow: hidden;
+
+        .card-secondary::before {
+            background: linear-gradient(90deg, #11cdef, #2dce89);
         }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #22c55e, #3b82f6);
-            border-radius: 4px;
-            animation: progress 3s ease-out;
+
+        .card-accent::before {
+            background: linear-gradient(90deg, #fb6340, #fbb140);
         }
-        
-        @keyframes progress {
-            from { width: 0%; }
-            to { width: var(--progress); }
-        }
-        
-        .number-display {
-            font-size: 4rem;
+
+        .highlight {
             font-weight: 900;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 5rem;
+            line-height: 1;
+            color: #5e72e4;
+            margin-bottom: 1rem;
+            text-shadow: 0 5px 15px rgba(94, 114, 228, 0.2);
+        }
+
+        .sub-highlight {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #5e72e4;
+            margin-top: -1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .title {
+            font-weight: 900;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .title-en {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+        }
+
+        .content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #4a5568;
+        }
+
+        .quote {
+            border-left: 4px solid #5e72e4;
+            padding-left: 1.5rem;
+            font-style: italic;
+            color: #4a5568;
+            margin: 1.5rem 0;
+        }
+
+        .visual-element {
+            font-size: 6rem; /* 减小图标大小 */
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 200px;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .grid-pattern {
+            background:
+                    linear-gradient(rgba(255,255,255,0.9),
+                    rgba(255,255,255,0.9)),
+                    repeating-linear-gradient(
+                            45deg,
+                            rgba(94, 114, 228, 0.05) 0px,
+                            rgba(94, 114, 228, 0.05) 1px,
+                            transparent 1px,
+                            transparent 11px
+                    ),
+                    repeating-linear-gradient(
+                            -45deg,
+                            rgba(94, 114, 228, 0.05) 0px,
+                            rgba(94, 114, 228, 0.05) 1px,
+                            transparent 1px,
+                            transparent 11px
+                    );
+            background-size: 100% 100%, 20px 20px;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-20px) translateX(-50%);}
+            60% {transform: translateY(-10px) translateX(-50%);}
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(1, 1fr);
+                gap: 16px;
+            }
+
+            .card {
+                padding: 1.25rem;
+            }
+
+            .highlight {
+                font-size: 3rem;
+            }
+
+            .title {
+                font-size: 1.75rem;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 overflow-x-hidden">
+<body>
+<!-- Hero Section -->
+<section class="min-h-screen flex flex-col justify-center items-center relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full grid-pattern z-0"></div>
+    <div class="relative z-10 text-center px-4 max-w-4xl">
+        <div class="text-8xl md:text-9xl font-black mb-6 text-primary opacity-90">内卷</div>
+        <h1 class="text-4xl md:text-5xl font-black mb-4">真相与破局之道</h1>
+        <p class="text-xl md:text-2xl text-gray-600 mb-8">The Truth About Involution and How to Break Free</p>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            当我们陷入低层次竞争时，如何找回自己的独特价值？从恶性竞争到差异化生存的思考与实践
+        </p>
+    </div>
+    <div class="scroll-down text-primary text-3xl">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</section>
+
+<!-- Bento Grid Section -->
+<section class="py-20">
     <div class="bento-grid">
-        <!-- Hero Section -->
-        <div class="hero-section p-8 flex flex-col justify-center text-white glow-effect">
-            <div class="small-en mb-4">Breaking the Cycle</div>
-            <div class="mega-text mb-4">破解<br>内卷</div>
-            <div class="medium-text mb-6">不入局 · 找差异 · 创价值</div>
-            <div class="small-en">Escape • Differentiate • Create Value</div>
-            
-            <i class="fas fa-infinity floating-icon" style="top: 20%; right: 10%;"></i>
-            <i class="fas fa-chart-line floating-icon" style="bottom: 20%; left: 10%; animation-delay: -2s;"></i>
+        <!-- Card 1: What is Involution -->
+        <div class="card card-primary fade-in" style="grid-column: span 8;">
+            <div class="highlight">01</div>
+            <h2 class="title">什么是内卷？</h2>
+            <p class="title-en">Understanding Involution</p>
+            <div class="content">
+                <p>内卷是当人们在有限资源下进行过度竞争，导致整体收益下降的现象。</p>
+                <div class="quote">
+                    "人们在电影院看电影，一个人站起来看，其他人被迫站起来，结果大家都站得腿酸还没看好电影。"
+                </div>
+                <p>在商业领域，当一个商家率先降价，其他商家被迫跟进，最终导致价格战，利润空间被压缩。</p>
+            </div>
+            <div class="visual-element" style="right: 20px; bottom: 20px; font-size: 10rem; color: #5e72e4;">
+                <i class="fas fa-theater-masks"></i>
+            </div>
         </div>
-        
-        <!-- Stats Card -->
-        <div class="stats-card p-6 flex flex-col justify-center">
-            <div class="small-en mb-3">Current Reality</div>
-            <div class="number-display">35岁</div>
-            <div class="text-lg font-semibold text-gray-700 mb-4">职场危机年龄</div>
-            
-            <div class="space-y-3">
-                <div>
-                    <div class="flex justify-between text-sm mb-1">
-                        <span>内卷程度</span>
-                        <span>85%</span>
+
+        <!-- Card 2: The Essence -->
+        <div class="card card-secondary fade-in" style="grid-column: span 4;">
+            <div class="highlight">02</div>
+            <h2 class="title">内卷的本质</h2>
+            <p class="title-en">The Core of Involution</p>
+            <div class="content">
+                <p class="font-bold text-secondary">同质化竞争</p>
+                <p>当价值太容易被模仿，就容易被替代。内卷的本质是缺乏差异化的竞争。</p>
+                <p class="mt-4 font-bold">恶性循环：</p>
+                <ul class="list-disc pl-5 mt-2">
+                    <li>增量空间不足</li>
+                    <li>被迫零和博弈</li>
+                    <li>多样性消失</li>
+                    <li>价格与质量双降</li>
+                </ul>
+            </div>
+            <div class="visual-element" style="right: 20px; bottom: 20px; font-size: 8rem; color: #11cdef;">
+                <i class="fas fa-infinity"></i>
+            </div>
+        </div>
+
+        <!-- Card 3: National Breakthrough -->
+        <div class="card card-accent fade-in" style="grid-column: span 5;">
+            <div class="highlight">03</div>
+            <h2 class="title">国家破局之路</h2>
+            <p class="title-en">China's Transformation</p>
+            <div class="content">
+                <p>从"世界工厂"到"科技强国"的转型：</p>
+                <div class="flex mt-4">
+                    <div class="flex-1 pr-4">
+                        <p class="font-bold"><i class="fas fa-arrow-right text-accent mr-2"></i>低端制造内卷</p>
+                        <p class="text-sm mt-1">低成本劳动力竞争</p>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="--progress: 85%;"></div>
+                    <div class="flex-1">
+                        <p class="font-bold"><i class="fas fa-arrow-right text-accent mr-2"></i>高端制造破局</p>
+                        <p class="text-sm mt-1">新能源汽车、高端装备</p>
                     </div>
                 </div>
-                
-                <div>
-                    <div class="flex justify-between text-sm mb-1">
-                        <span>破局意愿</span>
-                        <span>92%</span>
+                <div class="flex mt-6">
+                    <div class="flex-1 pr-4">
+                        <p class="font-bold"><i class="fas fa-arrow-right text-accent mr-2"></i>技术依赖</p>
+                        <p class="text-sm mt-1">外国核心技术控制</p>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="--progress: 92%; animation-delay: 0.5s;"></div>
+                    <div class="flex-1">
+                        <p class="font-bold"><i class="fas fa-arrow-right text-accent mr-2"></i>自主创新</p>
+                        <p class="text-sm mt-1">高铁、芯片、人工智能</p>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Solution Card -->
-        <div class="solution-card p-6 flex flex-col justify-center text-white">
-            <div class="small-en mb-3">The Solution</div>
-            <div class="large-text mb-4">三层递进</div>
-            <div class="text-lg space-y-2">
-                <div>① 本职提升</div>
-                <div>② 第二赛道</div>
-                <div>③ 幸福导向</div>
+            <div class="visual-element" style="right: 20px; bottom: 20px; font-size: 7rem; color: #fb6340;">
+                <i class="fas fa-flag"></i>
             </div>
         </div>
-        
-        <!-- Principle Card -->
-        <div class="principle-card p-6 flex flex-col justify-center">
-            <div class="small-en mb-4 text-green-600">Core Principle</div>
-            <div class="large-text text-green-800 mb-4">不可替代性</div>
-            <div class="text-lg text-green-700 space-y-3">
-                <div class="flex items-center">
-                    <i class="fas fa-gem text-green-500 mr-3"></i>
-                    <span>发现独特价值</span>
+
+        <!-- Card 4: Enterprise Solutions -->
+        <div class="card card-primary fade-in" style="grid-column: span 7;">
+            <div class="highlight">04</div>
+            <h2 class="title">企业破局之道</h2>
+            <p class="title-en">Breaking Free from Business Involution</p>
+            <div class="content">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                    <div>
+                        <div class="font-bold text-lg text-primary mb-2">海底捞</div>
+                        <p>通过极致服务和体验，避开价格战的无底洞，形成独特的品牌溢价。</p>
+                    </div>
+                    <div>
+                        <div class="font-bold text-lg text-primary mb-2">胖东来</div>
+                        <p>超市行业反内卷典范：不拼价格拼价值，不拼规模拼口碑，让员工幸福。</p>
+                    </div>
                 </div>
-                <div class="flex items-center">
-                    <i class="fas fa-route text-green-500 mr-3"></i>
-                    <span>开辟新赛道</span>
+                <div class="mt-6">
+                    <p class="font-bold">企业内卷本质：</p>
+                    <p>在难以获得核心优势的情况下，选择退而求其次的低层面竞争</p>
                 </div>
-                <div class="flex items-center">
-                    <i class="fas fa-shield-alt text-green-500 mr-3"></i>
-                    <span>构建护城河</span>
-                </div>
+            </div>
+            <div class="visual-element" style="right: 20px; bottom: 20px; font-size: 8rem; color: #5e72e4;">
+                <i class="fas fa-building"></i>
             </div>
         </div>
-        
-        <!-- Mindset Card -->
-        <div class="mindset-card p-6 flex flex-col justify-center text-white">
-            <div class="small-en mb-3">Mindset Shift</div>
-            <div class="large-text mb-4">心态跨越</div>
-            <div class="text-lg">
-                不臣服现实<br>
-                <span class="small-en">Never surrender to reality</span>
+
+        <!-- Card 5: Personal Strategy -->
+        <div class="card card-secondary fade-in" style="grid-column: span 6;">
+            <div class="highlight">05</div>
+            <h2 class="title">个人破局策略</h2>
+            <p class="title-en">Escaping Personal Involution</p>
+            <div class="content">
+                <p class="font-bold">年龄不是限制，价值才是核心</p>
+                <p>内卷的本质是在个人核心竞争力停滞或倒退后，被更年轻、更便宜的劳动力替代。</p>
+
+                <div class="mt-6 grid grid-cols-3 gap-4">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-secondary">35+</div>
+                        <div class="text-sm mt-1">职场危机</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-secondary">90%</div>
+                        <div class="text-sm mt-1">跟风创业失败率</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-secondary">70%</div>
+                        <div class="text-sm mt-1">职场人焦虑感</div>
+                    </div>
+                </div>
+
+                <p class="mt-6 font-bold">破局关键：</p>
+                <p>个人价值重塑与差异化竞争优势</p>
             </div>
-            <div class="mt-4 text-base opacity-90">
-                用现实倒逼改变
+            <div class="visual-element" style="right: 20px; bottom: 20px; font-size: 7rem; color: #11cdef;">
+                <i class="fas fa-user"></i>
             </div>
         </div>
-        
-        <!-- Quote Card -->
-        <div class="quote-card p-6 flex flex-col justify-center">
-            <div class="small-en mb-4 text-blue-600">Ancient Wisdom</div>
-            <div class="text-2xl font-bold text-blue-800 mb-4">
-                "天行健，<br>君子以自强不息"
+
+        <!-- Card 6: Mindset Shift -->
+        <div class="card card-accent fade-in" style="grid-column: span 6;">
+            <div class="highlight">06</div>
+            <h2 class="title">心态转变</h2>
+            <p class="title-en">The Mindset Revolution</p>
+            <div class="content">
+                <p class="font-bold">两种心态选择：</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div class="p-4 bg-red-50 rounded-lg">
+                        <p class="font-bold text-red-600">臣服现实</p>
+                        <p class="text-sm mt-2">看不到出路，没有信念，越怕什么越来什么</p>
+                    </div>
+                    <div class="p-4 bg-green-50 rounded-lg">
+                        <p class="font-bold text-green-600">接纳现实</p>
+                        <p class="text-sm mt-2">用现实倒逼改变，在信念加持下转动命运齿轮</p>
+                    </div>
+                </div>
+
+                <p class="mt-6 font-bold">关键思维：</p>
+                <p>"不要比谁更努力，而是比谁更有价值"</p>
             </div>
-            <div class="text-lg text-blue-700">
-                ——《易经》
-            </div>
-            <div class="small-en mt-3 text-blue-600">
-                Self-improvement never ends
+            <div class="visual-element" style="right: 20px; bottom: 20px; font-size: 7rem; color: #fb6340;">
+                <i class="fas fa-brain"></i>
             </div>
         </div>
-        
-        <!-- Action Card -->
-        <div class="action-card p-6 flex flex-col justify-center">
-            <div class="small-en mb-4">Action Framework</div>
-            <div class="large-text text-gray-800 mb-4">破局路径</div>
-            <div class="grid grid-cols-2 gap-4 text-sm">
-                <div class="bg-white/70 p-3 rounded-lg">
-                    <i class="fas fa-search text-gray-600 mb-2"></i>
-                    <div class="font-semibold">发现自己</div>
+
+        <!-- Card 7: Three Principles -->
+        <div class="card card-primary fade-in" style="grid-column: span 12;">
+            <div class="highlight">07</div>
+            <h2 class="title">破局三法则</h2>
+            <p class="title-en">Three Principles to Break Free</p>
+            <div class="content">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
+                    <div class="text-center">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 text-primary text-2xl mb-4">
+                            1
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">本职提升</h3>
+                        <p>在现有岗位上寻找隐藏的提升空间，突破认知局限</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 text-primary text-2xl mb-4">
+                            2
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">开辟新路</h3>
+                        <p>当本职无法提升时，寻找第二曲线，天生我材必有用</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 text-primary text-2xl mb-4">
+                            3
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">放下执念</h3>
+                        <p>超越物质刚需后，追求身心健康与人生快乐</p>
+                    </div>
                 </div>
-                <div class="bg-white/70 p-3 rounded-lg">
-                    <i class="fas fa-lightbulb text-gray-600 mb-2"></i>
-                    <div class="font-semibold">重新定位</div>
-                </div>
-                <div class="bg-white/70 p-3 rounded-lg">
-                    <i class="fas fa-rocket text-gray-600 mb-2"></i>
-                    <div class="font-semibold">开辟蓝海</div>
-                </div>
-                <div class="bg-white/70 p-3 rounded-lg">
-                    <i class="fas fa-heart text-gray-600 mb-2"></i>
-                    <div class="font-semibold">知足常乐</div>
+                <div class="mt-10 text-center">
+                    <p class="text-3xl font-bold text-primary">破局核心：不入局</p>
+                    <p class="mt-2">"我不跟你们这么玩，虽然事情还是要做，但不是在卷的那个层面"</p>
                 </div>
             </div>
-        </div>
-        
-        <!-- Wisdom Card -->
-        <div class="wisdom-card p-6 flex flex-col justify-center">
-            <div class="small-en mb-4 text-purple-600">Life Philosophy</div>
-            <div class="text-2xl font-bold text-purple-800 mb-4">
-                "知足之足，恒足矣"
-            </div>
-            <div class="text-lg text-purple-700 mb-4">
-                ——《道德经》
-            </div>
-            <div class="text-base text-purple-600">
-                最大的罪过是放纵欲望<br>
-                最大的灾祸是不知满足<br>
-                <span class="small-en mt-2 block">
-                    True wealth comes from contentment
-                </span>
+            <div class="visual-element" style="right: 20px; bottom: 20px; font-size: 10rem; color: #5e72e4;">
+                <i class="fas fa-door-open"></i>
             </div>
         </div>
     </div>
-    
-    <script>
-        // Smooth scroll animations using Intersection Observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-        
+</section>
+
+<!-- Final Quote Section -->
+<section class="py-20 bg-gradient-to-br from-indigo-50 to-blue-50">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <div class="text-8xl text-indigo-200 mb-6">"</div>
+        <p class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
+            不要比谁更努力，而是比谁更有价值。不要在低端竞争中消耗自己，而是提升不可替代性。
+        </p>
+        <p class="text-xl text-gray-600">
+            人生的关键选择往往比埋头苦干更加重要
+        </p>
+        <div class="mt-12">
+            <p class="text-gray-600">知足之足，恒足矣</p>
+            <p class="text-sm text-gray-500 mt-2">—— 《道德经》</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Scroll animation
+    document.addEventListener('DOMContentLoaded', function() {
+        const fadeElements = document.querySelectorAll('.fade-in');
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('appear');
                 }
             });
-        }, observerOptions);
-        
-        // Initialize animations
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.bento-grid > div');
-            
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(50px)';
-                card.style.transition = `all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.1}s`;
-                observer.observe(card);
-            });
-            
-            // Trigger animations after a short delay
-            setTimeout(() => {
-                cards.forEach(card => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                });
-            }, 300);
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         });
-        
-        // Interactive hover effects
-        document.querySelectorAll('.bento-grid > div').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-8px)';
-                card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
+
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Scroll to bento grid section
+        document.querySelector('.scroll-down').addEventListener('click', function() {
+            document.querySelector('.bento-grid').scrollIntoView({
+                behavior: 'smooth'
             });
         });
-        
-        // Progress bar animations
-        const progressBars = document.querySelectorAll('.progress-fill');
-        progressBars.forEach(bar => {
-            const width = bar.style.getPropertyValue('--progress');
-            bar.style.width = '0%';
-            
-            setTimeout(() => {
-                bar.style.width = width;
-            }, 1000);
-        });
-        
-        // Floating icons animation enhancement
-        const floatingIcons = document.querySelectorAll('.floating-icon');
-        floatingIcons.forEach((icon, index) => {
-            icon.style.animationDelay = `${index * 2}s`;
-        });
-    </script>
+    });
+</script>
 </body>
 </html>

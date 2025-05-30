@@ -3,278 +3,598 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>反因循 - 了凡四训的人生智慧</title>
+    <title>反因循探索之旅 - 袁了凡的智慧</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#8B5CF6',
+                        accent: '#06B6D4',
+                        dark: '#0F172A',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'serif': ['Noto Serif SC', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
-        * {
-            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+        body {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: #F8FAFC;
+            font-family: 'Inter', sans-serif;
         }
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .serif {
+            font-family: 'Noto Serif SC', serif;
         }
-        .glass-effect {
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: auto;
+            gap: 1.5rem;
+        }
+        .glow-box {
+            background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s ease;
         }
-        .scroll-reveal {
+        .glow-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        .highlight-gradient {
+            background: linear-gradient(90deg, rgba(79, 70, 229, 0.15) 0%, transparent 100%);
+            border-left: 4px solid #4F46E5;
+        }
+        .accent-gradient {
+            background: linear-gradient(90deg, rgba(6, 182, 212, 0.15) 0%, transparent 100%);
+            border-left: 4px solid #06B6D4;
+        }
+        .secondary-gradient {
+            background: linear-gradient(90deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%);
+            border-left: 4px solid #8B5CF6;
+        }
+        .scroll-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 24px;
+            height: calc(100% - 24px);
+            width: 2px;
+            background: #4F46E5;
+        }
+        .timeline-item:last-child::before {
+            display: none;
+        }
+        .graphic-element {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.2;
+        }
+        .fade-in {
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        .scroll-reveal.active {
+        .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        .highlight-glow {
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
-        }
-        .chart-container {
-            position: relative;
-            height: 200px;
+        .radial-gradient {
+            background: radial-gradient(circle at center, rgba(79, 70, 229, 0.2) 0%, transparent 70%);
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 min-h-screen overflow-x-hidden">
-    
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center p-4">
-        <div class="max-w-7xl mx-auto grid grid-cols-12 gap-6 h-screen py-8">
-            
-            <!-- Main Title Card -->
-            <div class="col-span-12 md:col-span-8 bg-white/70 backdrop-blur-sm rounded-3xl p-8 flex flex-col justify-center scroll-reveal glass-effect">
-                <div class="text-sm text-gray-500 mb-2 font-light">LIAO FAN SI XUN</div>
-                <h1 class="text-6xl md:text-8xl font-black gradient-text mb-4 leading-tight">
-                    反因循
+<body class="overflow-x-hidden">
+<!-- 导航栏 -->
+<nav class="fixed top-0 w-full py-4 px-6 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="text-xl font-bold text-white flex items-center">
+            <i class="fas fa-infinity mr-2 text-accent"></i>
+            <span class="serif">反因循</span>
+            <span class="text-sm ml-2 font-normal opacity-70">Fan Yin Xun</span>
+        </div>
+        <div class="flex space-x-6">
+            <a href="#definition" class="text-sm hover:text-accent transition">定义</a>
+            <a href="#yuanliaofan" class="text-sm hover:text-accent transition">袁了凡</a>
+            <a href="#challenges" class="text-sm hover:text-accent transition">挑战</a>
+            <a href="#methods" class="text-sm hover:text-accent transition">方法</a>
+            <a href="#journey" class="text-sm hover:text-accent transition">探索</a>
+        </div>
+    </div>
+</nav>
+
+<!-- 封面部分 -->
+<section class="scroll-section relative pt-20 pb-24 px-6">
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="graphic-element top-20 left-1/4 w-64 h-64 rounded-full bg-primary blur-3xl opacity-20"></div>
+        <div class="graphic-element bottom-20 right-1/4 w-96 h-96 rounded-full bg-secondary blur-3xl opacity-15"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto">
+        <div class="bento-grid">
+            <div class="glow-box col-span-12 md:col-span-8 p-8">
+                <h1 class="text-6xl md:text-8xl font-bold serif mb-6">
+                    反<span class="text-primary">因</span>循
                 </h1>
-                <p class="text-lg text-gray-600 mb-6 max-w-2xl">
-                    源自《了凡四训》的人生智慧，袁了凡的逆转人生之道
-                </p>
-                <div class="flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                        <i class="fas fa-infinity text-white text-xl"></i>
-                    </div>
-                    <div>
-                        <div class="text-sm text-gray-500">Breaking the Cycle</div>
-                        <div class="font-semibold text-gray-800">突破命运桎梏</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stats Card -->
-            <div class="col-span-12 md:col-span-4 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl p-6 text-white scroll-reveal">
-                <div class="text-sm opacity-80 mb-2">HISTORICAL IMPACT</div>
-                <div class="text-4xl font-black mb-2">500+</div>
-                <div class="text-sm opacity-80 mb-4">年传承智慧</div>
-                <div class="chart-container">
-                    <canvas id="impactChart"></canvas>
-                </div>
-            </div>
-
-            <!-- Definition Card -->
-            <div class="col-span-12 md:col-span-6 bg-white/70 backdrop-blur-sm rounded-3xl p-6 scroll-reveal">
-                <div class="flex items-center mb-4">
-                    <i class="fas fa-quote-left text-2xl text-indigo-500 mr-3"></i>
-                    <div class="text-sm text-gray-500">CORE CONCEPT</div>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-800 mb-3">什么是因循？</h3>
-                <p class="text-gray-600 leading-relaxed">
-                    因循守旧，不愿改变。汉书记载："光因循守职，无所改作"，霍光固守旧制，最终失败被罢免。
-                </p>
-                <div class="mt-4 flex items-center">
-                    <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-3">
-                        <i class="fas fa-times text-red-500"></i>
-                    </div>
-                    <span class="text-sm text-gray-600">Fixed Mindset</span>
-                </div>
-            </div>
-
-            <!-- Transformation Card -->
-            <div class="col-span-12 md:col-span-6 bg-gradient-to-br from-emerald-400 to-cyan-500 rounded-3xl p-6 text-white scroll-reveal">
-                <div class="text-sm opacity-80 mb-4">TRANSFORMATION</div>
-                <div class="text-5xl font-black mb-2">反</div>
-                <h3 class="text-xl font-bold mb-3">愿意改变，愿意创造</h3>
-                <p class="opacity-90 text-sm leading-relaxed mb-4">
-                    通过不断精进和学习，让自己变得更好。每个人的才能、命运都不是固定的。
+                <p class="text-xl md:text-2xl max-w-3xl opacity-80 mb-8">
+                    打破命运桎梏的智慧 · 袁了凡的生命启示
                 </p>
                 <div class="flex items-center">
-                    <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mr-3">
-                        <i class="fas fa-check text-white"></i>
+                    <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center mr-4">
+                        <i class="fas fa-brain text-dark text-xl"></i>
                     </div>
-                    <span class="text-sm">Growth Mindset</span>
+                    <p class="text-lg max-w-2xl">
+                        天下聪明俊秀有才智的人很多，他们之所以不能拓展事业、修养德性，只因"因循"二字，让自己得过且过，耽搁一生。
+                    </p>
                 </div>
             </div>
 
-            <!-- Yuan Liaofan Story -->
-            <div class="col-span-12 md:col-span-8 bg-white/70 backdrop-blur-sm rounded-3xl p-6 scroll-reveal">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-2xl font-bold text-gray-800">袁了凡的逆转人生</h3>
-                    <div class="text-sm text-gray-500">1533-1606</div>
+            <div class="glow-box col-span-12 md:col-span-4 p-6 flex flex-col justify-center">
+                <div class="text-center">
+                    <div class="text-8xl font-bold text-primary mb-2">1533</div>
+                    <div class="text-sm opacity-70 uppercase tracking-widest">袁了凡出生年份</div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="text-center p-4 bg-gray-50 rounded-2xl">
-                        <div class="text-3xl font-black text-gray-800 mb-2">袁学海</div>
-                        <div class="text-sm text-gray-600">被算命先生困住20年</div>
-                        <div class="text-xs text-gray-500 mt-2">Fixed by Fortune Teller</div>
-                    </div>
-                    <div class="flex items-center justify-center">
-                        <i class="fas fa-arrow-right text-2xl text-indigo-500"></i>
-                    </div>
-                    <div class="text-center p-4 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-2xl">
-                        <div class="text-3xl font-black gradient-text mb-2">袁了凡</div>
-                        <div class="text-sm text-gray-600">改名改命，反因循实践者</div>
-                        <div class="text-xs text-gray-500 mt-2">Breaking the Cycle</div>
-                    </div>
-                </div>
-                <blockquote class="mt-4 p-4 bg-blue-50 rounded-2xl border-l-4 border-indigo-500">
-                    <p class="text-gray-700 italic">"如20年来被他算定，不曾转动一毫，岂非是凡夫？"</p>
-                    <footer class="text-sm text-gray-500 mt-2">— 云谷禅师</footer>
-                </blockquote>
-            </div>
-
-            <!-- Three Obstacles -->
-            <div class="col-span-12 md:col-span-4 bg-gradient-to-br from-orange-400 to-red-500 rounded-3xl p-6 text-white scroll-reveal">
-                <div class="text-sm opacity-80 mb-4">THREE OBSTACLES</div>
-                <div class="text-4xl font-black mb-4">3</div>
-                <div class="space-y-3">
-                    <div class="flex items-center">
-                        <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center mr-3 text-xs">1</div>
-                        <span class="text-sm">人的天性 - 趋利避害</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center mr-3 text-xs">2</div>
-                        <span class="text-sm">熵增定律 - 趋向有序</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center mr-3 text-xs">3</div>
-                        <span class="text-sm">认知局限 - 知而不行</span>
-                    </div>
+                <div class="mt-8 text-center">
+                    <div class="text-5xl font-bold text-secondary mb-2">20</div>
+                    <div class="text-sm opacity-70">年被命运束缚的时间</div>
                 </div>
             </div>
-
-            <!-- How to Practice -->
-            <div class="col-span-12 bg-white/70 backdrop-blur-sm rounded-3xl p-8 scroll-reveal">
-                <h3 class="text-3xl font-bold text-gray-800 mb-6 text-center">如何反因循？</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="text-center p-6 bg-gradient-to-b from-blue-50 to-indigo-50 rounded-2xl">
-                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-user text-white text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-2">做活生生的人</h4>
-                        <p class="text-gray-600 text-sm">从体制化的监狱中剥离，至少从思想层面剥离</p>
-                        <div class="text-xs text-gray-500 mt-2">Be Alive</div>
-                    </div>
-                    <div class="text-center p-6 bg-gradient-to-b from-emerald-50 to-cyan-50 rounded-2xl">
-                        <div class="w-16 h-16 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-heart text-white text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-2">关注生命的人</h4>
-                        <p class="text-gray-600 text-sm">将生命放在第一位，生命的经历和内心体验为重</p>
-                        <div class="text-xs text-gray-500 mt-2">Focus on Life</div>
-                    </div>
-                    <div class="text-center p-6 bg-gradient-to-b from-purple-50 to-pink-50 rounded-2xl">
-                        <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-chart-line text-white text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-2">关注成长的人</h4>
-                        <p class="text-gray-600 text-sm">生命本身在成长中体验，在体验中成长</p>
-                        <div class="text-xs text-gray-500 mt-2">Embrace Growth</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Final Message -->
-            <div class="col-span-12 bg-gradient-to-r from-indigo-600 to-purple-700 rounded-3xl p-8 text-white text-center scroll-reveal">
-                <div class="text-sm opacity-80 mb-4">FINAL WISDOM</div>
-                <h3 class="text-4xl font-bold mb-4">一旦选择反因循</h3>
-                <p class="text-xl opacity-90 mb-6">你的人生就有了无限可能</p>
-                <div class="text-6xl font-black mb-4">∞</div>
-                <div class="text-sm opacity-80">Infinite Possibilities Await</div>
-            </div>
-
         </div>
-    </section>
+    </div>
 
-    <script>
-        // Scroll reveal animation
-        function revealOnScroll() {
-            const reveals = document.querySelectorAll('.scroll-reveal');
-            reveals.forEach(reveal => {
-                const windowHeight = window.innerHeight;
-                const elementTop = reveal.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    reveal.classList.add('active');
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <i class="fas fa-chevron-down text-xl opacity-50"></i>
+    </div>
+</section>
+
+<!-- 定义部分 -->
+<section id="definition" class="scroll-section py-24 px-6 relative">
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="graphic-element top-1/3 left-20 w-48 h-48 bg-accent rounded-full blur-3xl opacity-15"></div>
+        <div class="graphic-element bottom-1/4 right-40 w-64 h-64 bg-primary rounded-full blur-3xl opacity-10"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto">
+        <div class="bento-grid">
+            <div class="glow-box col-span-12 md:col-span-5 p-8">
+                <h2 class="text-4xl font-bold serif mb-6">
+                    何谓<span class="text-primary">因循</span>？
+                </h2>
+                <div class="space-y-4">
+                    <div class="highlight-gradient p-4 rounded-lg">
+                        <h3 class="font-bold text-lg flex items-center">
+                            <i class="fas fa-history mr-2 text-primary"></i>
+                            历史出处
+                        </h3>
+                        <p class="opacity-80 mt-2">
+                            《汉书·循吏传序》记载："光因循守职，无所改作。"描述了霍光在汉昭帝时期沿袭旧制，不愿改革，最终导致失败。
+                        </p>
+                    </div>
+
+                    <div class="highlight-gradient p-4 rounded-lg">
+                        <h3 class="font-bold text-lg flex items-center">
+                            <i class="fas fa-exclamation-triangle mr-2 text-primary"></i>
+                            现代表现
+                        </h3>
+                        <p class="opacity-80 mt-2">
+                            顽固守旧的老师、拒绝新思维的上司、封闭自我的本能、缺乏创造力、拒绝改变。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glow-box col-span-12 md:col-span-7 p-8 flex items-center">
+                <div class="w-full">
+                    <div class="flex justify-between mb-6">
+                        <div>
+                            <div class="text-6xl font-bold text-primary">阴</div>
+                            <div class="text-sm opacity-70 mt-1">循规蹈矩 · 固步自封</div>
+                        </div>
+                        <div class="text-4xl opacity-30 my-auto">VS</div>
+                        <div>
+                            <div class="text-6xl font-bold text-accent">反</div>
+                            <div class="text-sm opacity-70 mt-1">突破创新 · 持续成长</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-dark p-6 rounded-xl">
+                        <h3 class="text-2xl font-bold serif mb-4 text-accent">
+                            反因循的核心
+                        </h3>
+                        <p class="text-lg leading-relaxed">
+                            反因循意味着一个根本信念：通过不断精进和学习，我们可以让自己变得更好。每个人的才能、命运都不是固定的，只要愿意终身学习，接受新理念和知识，就能改变不如意的状态，过上理想的生活。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 袁了凡的故事 -->
+<section id="yuanliaofan" class="scroll-section py-24 px-6 relative">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-bold serif">
+                袁了凡的<span class="text-accent">逆袭</span>人生
+            </h2>
+            <p class="text-xl opacity-80 max-w-3xl mx-auto mt-4">
+                从被命运束缚的"袁学海"到突破命运的"袁了凡"
+            </p>
+        </div>
+
+        <div class="relative">
+            <!-- 时间线 -->
+            <div class="space-y-12 pl-8 border-l-2 border-primary border-opacity-30">
+                <!-- 时间点1 -->
+                <div class="relative timeline-item pl-8">
+                    <div class="absolute -left-4 top-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                    </div>
+                    <div class="glow-box p-6">
+                        <div class="text-sm text-primary mb-2">1533年</div>
+                        <h3 class="text-xl font-bold mb-2">出生与命名</h3>
+                        <p class="opacity-80">
+                            袁了凡原名袁表，号学海，出生于浙江省嘉善县。14岁时父亲去世，按父亲遗愿开始学医。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 时间点2 -->
+                <div class="relative timeline-item pl-8">
+                    <div class="absolute -left-4 top-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                    </div>
+                    <div class="glow-box p-6">
+                        <div class="text-sm text-primary mb-2">1547年</div>
+                        <h3 class="text-xl font-bold mb-2">命运的预言</h3>
+                        <p class="opacity-80">
+                            偶遇算命先生孔先生，预言他将走仕途之路，并精确算出他每次考试的名次和当官时间。袁学海改学从政，人生轨迹完全如算命所料。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 时间点3 -->
+                <div class="relative timeline-item pl-8">
+                    <div class="absolute -left-4 top-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                    </div>
+                    <div class="glow-box p-6">
+                        <div class="text-sm text-primary mb-2">1567年</div>
+                        <h3 class="text-xl font-bold mb-2">顿悟时刻</h3>
+                        <p class="opacity-80">
+                            在南京栖霞寺拜访云谷禅师，禅师点醒他："20年来被他算定，不曾转动一毫，岂非是凡夫？"这句话如当头棒喝。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 时间点4 -->
+                <div class="relative timeline-item pl-8">
+                    <div class="absolute -left-4 top-0 w-8 h-8 rounded-full bg-accent flex items-center justify-center">
+                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                    </div>
+                    <div class="glow-box p-6 bg-opacity-50">
+                        <div class="text-sm text-accent mb-2">转折点</div>
+                        <h3 class="text-xl font-bold mb-2">改名与新生</h3>
+                        <p class="opacity-80">
+                            袁学海改名为"了凡"，意为"了结凡夫的生活"。这不是简单的改名，而是彻底的自我革新：
+                            <br><br>
+                            <span class="text-accent font-bold">• 保留"袁"姓</span> - 接纳原始本我<br>
+                            <span class="text-accent font-bold">• 改名"了凡"</span> - 重生新的本我<br>
+                            <span class="text-accent font-bold">• 打破"因循"</span> - 挣脱生命桎梏
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 时间点5 -->
+                <div class="relative pl-8">
+                    <div class="absolute -left-4 top-0 w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                    </div>
+                    <div class="glow-box p-6">
+                        <div class="text-sm text-secondary mb-2">新生</div>
+                        <h3 class="text-xl font-bold mb-2">反因循的实践</h3>
+                        <p class="opacity-80">
+                            通过持续的精进、学习和自我改造，袁了凡打破了命运的预言，活出了超越算命预测的人生，并写下《了凡四训》启迪后人。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 为何难以反因循 -->
+<section id="challenges" class="scroll-section py-24 px-6 relative">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-bold serif">
+                突破<span class="text-secondary">因循</span>的三大挑战
+            </h2>
+            <p class="text-xl opacity-80 max-w-3xl mx-auto mt-4">
+                为何大多数人终其一生被困在命运的循环中？
+            </p>
+        </div>
+
+        <div class="bento-grid">
+            <!-- 挑战1 -->
+            <div class="glow-box col-span-12 md:col-span-4 p-8">
+                <div class="text-8xl font-bold text-primary mb-4">1</div>
+                <h3 class="text-2xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-dna mr-3"></i>
+                    趋利避害的天性
+                </h3>
+                <p class="opacity-80">
+                    从草履虫到人类，趋利避害是生物本能。因循是走前人的老路，风险低且容易获得成功，因此人们自然倾向于选择这条路。
+                </p>
+            </div>
+
+            <!-- 挑战2 -->
+            <div class="glow-box col-span-12 md:col-span-4 p-8">
+                <div class="text-8xl font-bold text-secondary mb-4">2</div>
+                <h3 class="text-2xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-radiation mr-3"></i>
+                    熵增定律的束缚
+                </h3>
+                <p class="opacity-80">
+                    在封闭系统中，事物必然从有序走向无序直至死亡。人类在不抵抗的情况下，自然走向因循这条熵增之路。
+                </p>
+            </div>
+
+            <!-- 挑战3 -->
+            <div class="glow-box col-span-12 md:col-span-4 p-8">
+                <div class="text-8xl font-bold text-accent mb-4">3</div>
+                <h3 class="text-2xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-brain mr-3"></i>
+                    认知局限的陷阱
+                </h3>
+                <p class="opacity-80">
+                    许多人能发现问题，却误以为发现问题就等于解决问题。知而不行，终难突破，最终倒在改变的门口。
+                </p>
+            </div>
+
+            <!-- 思维对比 -->
+            <div class="glow-box col-span-12 mt-8 p-8">
+                <div class="flex flex-col md:flex-row justify-between">
+                    <div class="md:w-1/2 p-6 mb-6 md:mb-0">
+                        <div class="text-center mb-6">
+                            <div class="inline-block px-4 py-1 bg-red-900 bg-opacity-30 text-red-400 rounded-full mb-3">
+                                因循思维
+                            </div>
+                            <h3 class="text-3xl font-bold text-red-400">固定型思维模式</h3>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-times-circle text-red-400 mt-1 mr-3"></i>
+                                <span>认为智力是与生俱来的</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times-circle text-red-400 mt-1 mr-3"></i>
+                                <span>回避挑战，害怕失败</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times-circle text-red-400 mt-1 mr-3"></i>
+                                <span>忽视批评，固步自封</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times-circle text-red-400 mt-1 mr-3"></i>
+                                <span>他人成功带来威胁感</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="md:w-1/2 p-6 bg-dark rounded-xl">
+                        <div class="text-center mb-6">
+                            <div class="inline-block px-4 py-1 bg-green-900 bg-opacity-30 text-green-400 rounded-full mb-3">
+                                反因循思维
+                            </div>
+                            <h3 class="text-3xl font-bold text-green-400">成长型思维模式</h3>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
+                                <span>相信智力可以通过努力提升</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
+                                <span>拥抱挑战，从失败中学习</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
+                                <span>重视反馈，持续改进</span>
+                            </li>
+                            <li class="fas fa-check-circle text-green-400 mt-1 mr-3 flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
+                                <span>从他人成功中获取灵感</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 如何反因循 -->
+<section id="methods" class="scroll-section py-24 px-6 relative">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-bold serif">
+                实践<span class="text-accent">反因循</span>的路径
+            </h2>
+            <p class="text-xl opacity-80 max-w-3xl mx-auto mt-4">
+                挣脱体制化束缚，开启生命成长之旅
+            </p>
+        </div>
+
+        <div class="bento-grid">
+            <!-- 方法1 -->
+            <div class="glow-box col-span-12 md:col-span-4 p-8">
+                <div class="text-center mb-6">
+                    <div class="w-20 h-20 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user text-primary text-3xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-primary mb-2">活生生的人</div>
+                </div>
+                <p class="text-center opacity-80">
+                    当你发现自己逐渐被体制化后，立即启动思维的转变，从思想层面将自己从体制的监狱中剥离，拒绝成为不会飞翔的"体制鸟"。
+                </p>
+            </div>
+
+            <!-- 方法2 -->
+            <div class="glow-box col-span-12 md:col-span-4 p-8">
+                <div class="text-center mb-6">
+                    <div class="w-20 h-20 rounded-full bg-secondary bg-opacity-20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heart text-secondary text-3xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-secondary mb-2">关注生命</div>
+                </div>
+                <p class="text-center opacity-80">
+                    当你在名利中逐渐忘记生命本身的价值，立即刹车，将生命体验放在第一位，拒绝让名利凌驾于自我之上。
+                </p>
+            </div>
+
+            <!-- 方法3 -->
+            <div class="glow-box col-span-12 md:col-span-4 p-8">
+                <div class="text-center mb-6">
+                    <div class="w-20 h-20 rounded-full bg-accent bg-opacity-20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-seedling text-accent text-3xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-accent mb-2">关注成长</div>
+                </div>
+                <p class="text-center opacity-80">
+                    如果你认为人生止步于死亡，立即改变认知：生命是在成长中体验，在体验中成长的旅程，需要在实践中持续发展。
+                </p>
+            </div>
+
+            <!-- 肖申克的救赎引用 -->
+            <div class="glow-box col-span-12 mt-8 p-8">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-1/3 flex justify-center mb-6 md:mb-0">
+                        <div class="w-48 h-48 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-dove text-white text-6xl"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 md:pl-8">
+                        <h3 class="text-2xl font-bold mb-4 text-accent">
+                            <i class="fas fa-quote-left opacity-50 mr-2"></i>
+                            有些鸟儿是关不住的
+                        </h3>
+                        <p class="text-lg italic opacity-80 mb-4">
+                            "肖申克的救赎中，叙述者这样描述体制化：起先你无法忍受被四面墙困住的感觉，然后你逐步可以忍受，进而接受这种生活。接下来，你甚至开始喜欢这样的生活了。"
+                        </p>
+                        <p class="opacity-80">
+                            反因循就是反体制化，拒绝被工具化。选择成长型思维，你的人生就有了无限可能。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 探索之旅 -->
+<section id="journey" class="py-24 px-6 relative">
+    <div class="max-w-4xl mx-auto text-center">
+        <div class="glow-box p-12 relative overflow-hidden">
+            <div class="absolute -top-40 -left-40 w-80 h-80 rounded-full bg-primary opacity-10"></div>
+            <div class="absolute -bottom-40 -right-40 w-80 h-80 rounded-full bg-secondary opacity-10"></div>
+
+            <h2 class="text-5xl font-bold serif mb-6">
+                开启你的<span class="text-accent">反因循</span>之旅
+            </h2>
+            <p class="text-xl opacity-80 mb-10 max-w-2xl mx-auto">
+                选择成长型思维，挣脱因循桎梏，创造无限可能
+            </p>
+
+            <div class="inline-block px-8 py-4 bg-accent text-dark font-bold rounded-full text-lg cursor-pointer hover:bg-accent transition-all transform hover:-translate-y-1">
+                开始探索 <i class="fas fa-arrow-right ml-2"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="py-12 px-6 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto text-center">
+        <div class="text-xl font-bold serif mb-4">
+            反<span class="text-primary">因</span>循
+        </div>
+        <p class="opacity-60 max-w-2xl mx-auto mb-6">
+            袁了凡的智慧启示：打破因循守旧的循环，拥抱终身成长的无限可能
+        </p>
+        <div class="flex justify-center space-x-4 mb-6">
+            <a href="#" class="w-10 h-10 rounded-full bg-dark border border-gray-700 flex items-center justify-center hover:bg-primary transition">
+                <i class="fab fa-weixin"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-dark border border-gray-700 flex items-center justify-center hover:bg-blue-500 transition">
+                <i class="fab fa-weibo"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-dark border border-gray-700 flex items-center justify-center hover:bg-black transition">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+        <p class="text-sm opacity-50">
+            © 2023 反因循探索之旅 · 基于袁了凡《了凡四训》智慧
+        </p>
+    </div>
+</footer>
+
+<script>
+    // 滚动动画效果
+    document.addEventListener('DOMContentLoaded', function() {
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
-        }
-
-        window.addEventListener('scroll', revealOnScroll);
-        
-        // Initial reveal for elements in view
-        document.addEventListener('DOMContentLoaded', () => {
-            revealOnScroll();
-            
-            // Chart initialization
-            const ctx = document.getElementById('impactChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['明朝', '清朝', '民国', '现代'],
-                    datasets: [{
-                        label: '影响力',
-                        data: [100, 200, 300, 500],
-                        borderColor: 'rgba(255, 255, 255, 0.8)',
-                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                        borderWidth: 2,
-                        fill: true,
-                        tension: 0.4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        x: {
-                            display: false
-                        },
-                        y: {
-                            display: false
-                        }
-                    },
-                    elements: {
-                        point: {
-                            radius: 3,
-                            backgroundColor: 'white'
-                        }
-                    }
-                }
-            });
+        }, {
+            threshold: 0.1
         });
 
-        // Smooth parallax effect
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelectorAll('.glass-effect');
-            const speed = 0.5;
-            
-            parallax.forEach(element => {
-                const yPos = -(scrolled * speed);
-                element.style.transform = `translateY(${yPos}px)`;
-            });
+        fadeElements.forEach(element => {
+            observer.observe(element);
         });
-    </script>
+
+        // 导航栏滚动效果
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('nav');
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // 向下滚动
+                navbar.classList.add('-translate-y-full');
+            } else {
+                // 向上滚动
+                navbar.classList.remove('-translate-y-full');
+            }
+
+            lastScrollTop = scrollTop;
+        });
+    });
+</script>
 </body>
 </html>

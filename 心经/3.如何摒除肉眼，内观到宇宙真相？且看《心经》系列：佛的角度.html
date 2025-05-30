@@ -3,279 +3,576 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>心经 · Heart Sutra</title>
+    <title>《心经》智慧解读 | 换个角度看世界</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/6.5.1/framer-motion.min.js"></script>
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@10.12.16/dist/framer-motion.js"></script>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        'sage': '#9CA3AF',
-                        'cream': '#F9FAFB',
-                        'gold': '#F59E0B',
-                        'emerald': '#10B981',
-                        'indigo': '#6366F1'
-                    },
                     fontFamily: {
-                        'serif': ['Georgia', 'serif'],
-                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Noto Serif SC', 'serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        
-        .gradient-gold {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #334155;
+            overflow-x: hidden;
         }
-        
-        .gradient-emerald {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(180px, auto);
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
         }
-        
-        .gradient-indigo {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+
+        .bento-item {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(241, 245, 249, 0.6);
+            transition: all 0.3s ease;
         }
-        
-        .glass-effect {
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
         }
-        
-        .text-stroke {
-            -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
         }
-        
-        .scroll-indicator {
-            position: fixed;
-            top: 0;
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+
+        .big-number {
+            font-size: 6rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, #0ea5e9 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.9;
+        }
+
+        .highlight-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 2rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .highlight-text:before {
+            content: "";
+            position: absolute;
             left: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #F59E0B, #10B981, #6366F1);
-            z-index: 1000;
-            transform-origin: left;
+            top: 0;
+            height: 100%;
+            width: 6px;
+            background: linear-gradient(to bottom, #0ea5e9, #a855f7);
+            border-radius: 3px;
         }
-        
-        .animate-fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
+
+        .quote-box {
+            border-left: 4px solid #0ea5e9;
+            padding: 1.5rem 2rem;
+            background: rgba(14, 165, 233, 0.05);
+            border-radius: 0 12px 12px 0;
+            margin: 2rem 0;
+        }
+
+        .sutra-text {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: #1e293b;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0ea5e9 0%, #a855f7 100%);
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .fade-in {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+        }
+
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .highlight-text {
+                font-size: 2rem;
+            }
+
+            .big-number {
+                font-size: 4rem;
             }
         }
-        
-        .stagger-1 { animation-delay: 0.1s; }
-        .stagger-2 { animation-delay: 0.2s; }
-        .stagger-3 { animation-delay: 0.3s; }
-        .stagger-4 { animation-delay: 0.4s; }
-        .stagger-5 { animation-delay: 0.5s; }
-        .stagger-6 { animation-delay: 0.6s; }
     </style>
 </head>
-<body class="bg-cream text-gray-900 font-sans overflow-x-hidden">
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-indicator" id="scrollProgress"></div>
-    
-    <!-- Main Container -->
-    <div class="min-h-screen p-4 md:p-8">
-        <!-- Bento Grid Container -->
-        <div class="max-w-7xl mx-auto grid grid-cols-12 grid-rows-12 gap-4 h-screen">
-            
-            <!-- Hero Section -->
-            <div class="col-span-12 md:col-span-8 row-span-4 bg-white rounded-3xl p-8 shadow-lg gradient-gold glass-effect animate-fade-in">
-                <div class="h-full flex flex-col justify-center">
-                    <h1 class="text-6xl md:text-8xl font-black text-gray-900 mb-4 text-stroke">
-                        心经
-                    </h1>
-                    <p class="text-lg text-sage uppercase tracking-widest mb-6">Heart Sutra · Prajñāpāramitā</p>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-16 h-1 bg-gold rounded-full"></div>
-                        <span class="text-sm text-sage">Ancient Wisdom · Modern Understanding</span>
+<body class="font-sans min-h-screen">
+<!-- 顶部导航 -->
+<nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50 py-4 border-b border-gray-100">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+        <div class="flex items-center">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center">
+                <i class="fas fa-om text-white text-xl"></i>
+            </div>
+            <span class="ml-3 text-xl font-bold text-gray-800">心经智慧</span>
+        </div>
+        <div class="hidden md:flex space-x-8">
+            <a href="#intro" class="text-gray-600 hover:text-primary-600 transition">开篇</a>
+            <a href="#kong" class="text-gray-600 hover:text-primary-600 transition">空性</a>
+            <a href="#cause" class="text-gray-600 hover:text-primary-600 transition">因果</a>
+            <a href="#freedom" class="text-gray-600 hover:text-primary-600 transition">无挂碍</a>
+            <a href="#mantra" class="text-gray-600 hover:text-primary-600 transition">咒语</a>
+        </div>
+        <button class="md:hidden text-gray-600">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- 主内容区 -->
+<main class="pt-24 pb-16">
+    <!-- 引言部分 -->
+    <section id="intro" class="container mx-auto px-6 py-16">
+        <div class="max-w-5xl mx-auto text-center">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 font-serif">
+                观自在菩萨<span class="text-primary-600">·</span>行深般若波罗蜜多时
+            </h1>
+            <p class="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
+                当我们刨除固有的思维，从敬畏、因果、舍得的角度关照世界时，才真正摒弃感官局限，用内在看到宇宙真相
+            </p>
+
+            <div class="bento-grid">
+                <div class="bento-item col-span-12 gradient-bg flex items-center justify-center fade-in">
+                    <div class="text-center">
+                        <div class="big-number">260</div>
+                        <p class="text-xl font-semibold mt-2">字的心经包含整个佛法智慧</p>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Key Concepts -->
-            <div class="col-span-12 md:col-span-4 row-span-4 bg-white rounded-3xl p-6 shadow-lg gradient-emerald animate-fade-in stagger-1">
-                <div class="text-center h-full flex flex-col justify-center">
-                    <i class="fas fa-infinity text-4xl text-emerald mb-4"></i>
-                    <h2 class="text-3xl font-bold mb-3">空性</h2>
-                    <p class="text-sm text-sage uppercase tracking-wide mb-4">Emptiness</p>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        超越有限执着<br/>
-                        Beyond limited attachments
+
+                <div class="bento-item col-span-8 row-span-2 fade-in">
+                    <h2 class="text-3xl font-bold mb-4 font-serif">换个角度看世界</h2>
+                    <p class="text-gray-700 mb-4">
+                        每一种动物来到世界的方式不同，所体验到的世界也大不相同。狗依靠嗅觉，蝙蝠依靠声波，尽管与我们同享一个外在世界，但体验到的内容大相径庭。
                     </p>
-                </div>
-            </div>
-            
-            <!-- Three Core Principles -->
-            <div class="col-span-12 md:col-span-4 row-span-4 bg-white rounded-3xl p-6 shadow-lg gradient-indigo animate-fade-in stagger-2">
-                <div class="h-full flex flex-col justify-center">
-                    <h3 class="text-2xl font-bold mb-6">三大核心</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 bg-indigo text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
-                            <span class="font-semibold">敬畏</span>
-                            <span class="text-xs text-sage uppercase">Reverence</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 bg-indigo text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
-                            <span class="font-semibold">因果</span>
-                            <span class="text-xs text-sage uppercase">Karma</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 bg-indigo text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
-                            <span class="font-semibold">舍得</span>
-                            <span class="text-xs text-sage uppercase">Letting Go</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Quote Section -->
-            <div class="col-span-12 md:col-span-4 row-span-4 bg-white rounded-3xl p-6 shadow-lg gradient-gold animate-fade-in stagger-3">
-                <div class="h-full flex flex-col justify-center text-center">
-                    <i class="fas fa-quote-left text-2xl text-gold mb-4"></i>
-                    <blockquote class="text-lg font-semibold mb-4 leading-relaxed">
-                        "举头三尺有神明"
-                    </blockquote>
-                    <p class="text-sm text-sage uppercase tracking-wide">
-                        Three feet above your head,<br/>
-                        divinity watches
+                    <p class="text-gray-700">
+                        作为修行之人，不以自己的视角评判世界真伪、他人对错，是对世界的敬畏与谦虚。
                     </p>
-                </div>
-            </div>
-            
-            <!-- Statistics -->
-            <div class="col-span-12 md:col-span-4 row-span-4 bg-white rounded-3xl p-6 shadow-lg gradient-emerald animate-fade-in stagger-4">
-                <div class="h-full flex flex-col justify-center">
-                    <div class="text-center mb-4">
-                        <div class="text-5xl font-black text-emerald mb-2">260</div>
-                        <p class="text-sm text-sage uppercase tracking-wide">Characters</p>
-                    </div>
-                    <div class="border-t border-gray-200 pt-4">
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm font-medium">完整经文</span>
-                            <span class="text-xs text-sage">Full Sutra</span>
+                    <div class="flex items-center mt-6">
+                        <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-eye text-primary-600"></i>
                         </div>
+                        <p class="text-gray-600">因为渺小，所以敬畏；因为敬畏，所以谦卑；因为谦卑，所以平和</p>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Wisdom Path -->
-            <div class="col-span-12 md:col-span-8 row-span-4 bg-white rounded-3xl p-8 shadow-lg gradient-indigo animate-fade-in stagger-5">
-                <div class="h-full flex items-center">
-                    <div class="w-full">
-                        <h2 class="text-4xl font-bold mb-6">般若波罗蜜多</h2>
-                        <p class="text-sm text-sage uppercase tracking-widest mb-6">Prajñāpāramitā · Perfection of Wisdom</p>
-                        
-                        <!-- Progress Path -->
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="flex flex-col items-center">
-                                <div class="w-12 h-12 bg-indigo text-white rounded-full flex items-center justify-center mb-2">
-                                    <i class="fas fa-eye"></i>
-                                </div>
-                                <span class="text-xs text-sage">观照</span>
-                            </div>
-                            <div class="flex-1 h-1 bg-indigo mx-4 rounded-full"></div>
-                            <div class="flex flex-col items-center">
-                                <div class="w-12 h-12 bg-indigo text-white rounded-full flex items-center justify-center mb-2">
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <span class="text-xs text-sage">无挂碍</span>
-                            </div>
-                            <div class="flex-1 h-1 bg-indigo mx-4 rounded-full"></div>
-                            <div class="flex flex-col items-center">
-                                <div class="w-12 h-12 bg-indigo text-white rounded-full flex items-center justify-center mb-2">
-                                    <i class="fas fa-infinity"></i>
-                                </div>
-                                <span class="text-xs text-sage">涅槃</span>
-                            </div>
+
+                <div class="bento-item col-span-4 row-span-2 fade-in">
+                    <div class="h-full flex flex-col justify-center">
+                        <div class="icon-circle mx-auto">
+                            <i class="fas fa-mountain"></i>
                         </div>
-                        
-                        <p class="text-gray-600 leading-relaxed">
-                            心无挂碍，无有恐怖，远离颠倒梦想，究竟涅槃
+                        <h3 class="text-2xl font-bold text-center mb-3">心存敬畏</h3>
+                        <p class="text-gray-700 text-center">
+                            我们的眼睛看到的也只是世界的异角。相信举头三尺有神明，就不会轻易表现自己，也不会时刻认为自己最正确。
                         </p>
                     </div>
                 </div>
             </div>
-            
         </div>
-        
-        <!-- Floating Mantra -->
-        <div class="fixed bottom-8 right-8 bg-white rounded-2xl p-4 shadow-xl glass-effect animate-fade-in stagger-6">
-            <div class="text-center">
-                <p class="text-sm font-semibold mb-2">揭谛揭谛</p>
-                <p class="text-xs text-sage">Gate Gate Pāragate</p>
+    </section>
+
+    <!-- 空性解读 -->
+    <section id="kong" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="section-title font-serif">色即是空<span class="text-primary-600">·</span>空即是色</h2>
+                <p class="section-subtitle">
+                    世尊对于空性的开释：空性应当超越有限的执着，超越于我们的眼界、意识，通过它我们达到真无。
+                </p>
+
+                <div class="sutra-text fade-in">
+                    色不异空，空不异色；色即是空，空即是色。受想行识，亦复如是。
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+                    <div class="fade-in">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm">
+                            <h3 class="text-2xl font-bold mb-4 flex items-center">
+                                <span class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center text-white mr-3">1</span>
+                                超越感官局限
+                            </h3>
+                            <p class="text-gray-700">
+                                我们认识到自己可以说、可以看到、可以认识的这些有差别的东西实在太有限、太渺小。在这个世界之外的世界，我们无法考证。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="fade-in">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm">
+                            <h3 class="text-2xl font-bold mb-4 flex items-center">
+                                <span class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center text-white mr-3">2</span>
+                                苏东坡轶事
+                            </h3>
+                            <p class="text-gray-700">
+                                林语堂在《苏东坡传》中记载：一个已故神婆附在苏东坡儿媳身上哀求帮助，苏轼回应"我是人，我不怕你"，神婆最终离去。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 fade-in">
+                    <div class="quote-box">
+                        <p class="text-xl italic text-gray-700">
+                            "作为修行之人，不以自己的视角来评判这个世界的真伪，评判他人的对错，是对世界的敬畏与谦虚。"
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
+
+    <!-- 因果智慧 -->
+    <section id="cause" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="section-title font-serif">因果循环<span class="text-primary-600">·</span>平衡之道</h2>
+                <p class="section-subtitle">
+                    佛教相信因果循环之理，认为今天所造之业，他日必遭报应。很多人认为这种思考方式是迷信，但换个角度看待，或许能更清晰。
+                </p>
+
+                <div class="sutra-text fade-in">
+                    无无明，亦无无明尽，乃至无老死，亦无老死尽。无苦集灭道，无智亦无得。
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                    <div class="fade-in">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm h-full">
+                            <div class="icon-circle mx-auto">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-center">因果平衡</h3>
+                            <p class="text-gray-700">
+                                将草原的狼完全除尽，羚羊最终也会自行灭绝。对反向力量的过分削弱会破坏平衡，越是追求什么，就越是缘木求鱼。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="fade-in">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm h-full">
+                            <div class="icon-circle mx-auto">
+                                <i class="fas fa-hand-holding-heart"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-center">化解冲突</h3>
+                            <p class="text-gray-700">
+                                生活中出现不好的事情，人们常将责任推给别人。但若尽信因果，就会想"这可能是前世欠债，今天来还"，就不会生气。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="fade-in">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm h-full">
+                            <div class="icon-circle mx-auto">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-center">内省智慧</h3>
+                            <p class="text-gray-700">
+                                从自己的过失思考问题，以他人的角度化解危机，才是因果真正要教化我们的。人走人天翻地覆，人在人天清月明。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 fade-in">
+                    <div class="highlight-text">
+                        不求即德：我们越是追求什么，其实就是在失去什么。当我们不求的时候，我们就真正得到了。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 无挂碍境界 -->
+    <section id="freedom" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="section-title font-serif">心无挂碍<span class="text-primary-600">·</span>远离颠倒</h2>
+                <p class="section-subtitle">
+                    人心中的挂碍影响我们的清净根性，也影响修行。通常所说的"由爱故生忧，由爱故生怖"，正是此理。
+                </p>
+
+                <div class="sutra-text fade-in">
+                    菩提萨埵，依般若波罗蜜多故，心无挂碍。无挂碍故，无有恐怖，远离颠倒梦想，究竟涅槃。
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
+                    <div class="fade-in">
+                        <div class="flex mb-6">
+                            <div class="text-6xl font-bold text-primary-500 mr-4">01</div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2">生死达观</h3>
+                                <p class="text-gray-700">
+                                    在这个世界上，没有任何一个人经历过死亡，所以我们无法去害怕。已经死的人无法谈论死亡，活着的人尚未经历死亡。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                            <div class="text-6xl font-bold text-primary-500 mr-4">02</div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2">放下自在</h3>
+                                <p class="text-gray-700">
+                                    当我们不求永生也不求长命时，就不再害怕死亡；当不求财富名声时，就不再受名利拖累。不求积德，放下即自在。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fade-in">
+                        <div class="bg-white p-8 rounded-2xl shadow-sm h-full">
+                            <div class="flex items-start mb-6">
+                                <div class="text-primary-600 text-2xl mr-3">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p class="text-gray-700 text-lg">
+                                    我们看见鲜花开放，流水渐溅，当然会感到欣悦。但同时也应该明白，正因为水不断流去，鲜花不断凋零重放，才有眼前所现的美丽世界。
+                                </p>
+                            </div>
+                            <div class="flex items-center mt-8">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-primary-400 to-secondary-400 flex items-center justify-center text-white mr-4">
+                                    庄
+                                </div>
+                                <div>
+                                    <div class="font-bold">庄子智慧</div>
+                                    <div class="text-gray-600">随流去的生活态度</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 心经咒语 -->
+    <section id="mantra" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="section-title font-serif">大神咒<span class="text-primary-600">·</span>大明咒</h2>
+                <p class="section-subtitle">
+                    与其说心经能产生各种神迹，倒不如说诵读心经时，我们真正能够使心虔诚宁静，内心纯净可破除一切心中之贼。
+                </p>
+
+                <div class="sutra-text fade-in">
+                    故知般若波罗蜜多，是大神咒，是大明咒，是无上咒，是无等等咒，能除一切苦，真实不虚。
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+                    <div class="fade-in">
+                        <div class="bg-gradient-to-br from-primary-500 to-secondary-600 p-8 rounded-2xl text-white">
+                            <h3 class="text-2xl font-bold mb-4">玄奘法师的故事</h3>
+                            <p class="mb-4">
+                                玄奘法师途经沙漠时，他和马几天没喝水，几乎到了不可承受的境地。她一边念心经一边坚持西行，就在快要支撑不住时，前面出现了一片绿洲。
+                            </p>
+                            <div class="flex items-center mt-6">
+                                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mr-3">
+                                    <i class="fas fa-water"></i>
+                                </div>
+                                <p>诵念心经时把心调到清净状态，不起杂念，不怀疑真假</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fade-in">
+                        <div class="bg-white p-8 rounded-2xl shadow-sm h-full">
+                            <h3 class="text-2xl font-bold mb-4">心经咒语</h3>
+                            <div class="text-center py-6">
+                                <div class="text-4xl font-bold font-serif mb-4">揭谛揭谛 波罗揭谛</div>
+                                <div class="text-4xl font-bold font-serif mb-4">波罗僧揭谛 菩提萨婆诃</div>
+                                <p class="text-gray-600 mt-6">
+                                    密说本身就是神秘的言辞，其中有言无不尽的意味。诵读此咒时，只要保持内心清净虔诚，就自然能够有所领悟。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center fade-in">
+                    <div class="inline-block bg-primary-50 px-6 py-4 rounded-full">
+                        <p class="text-primary-700 font-medium">
+                            <i class="fas fa-lightbulb text-primary-500 mr-2"></i>
+                            经文所显神迹，非为求神迹而来持诵，而是为使心虔诚宁静，了解经文真意
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 结语 -->
+    <section class="py-20 bg-gradient-to-br from-primary-50 to-secondary-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center mx-auto mb-8 shadow-lg">
+                    <i class="fas fa-om text-4xl text-primary-600"></i>
+                </div>
+                <h2 class="text-4xl font-bold mb-6 font-serif">真实不虚</h2>
+                <p class="text-xl text-gray-700 mb-8">
+                    当我们真正沉下心来，不管是诵读心经还是沉心工作，一切苦都无法侵袭。这不是什么魔法，而是心神已连通，此时世界仅有我自己，何来痛苦可言。
+                </p>
+                <div class="bg-white inline-block px-8 py-4 rounded-full shadow-sm">
+                    <p class="text-lg font-semibold">
+                        渡彼岸 · 得菩提 · 证涅槃
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- 页脚 -->
+<footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-6">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="text-3xl font-bold mb-4 font-serif">般若波罗蜜多心经</div>
+            <p class="text-gray-400 mb-8">
+                观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄...
+            </p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-600 transition">
+                    <i class="fab fa-weixin"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-600 transition">
+                    <i class="fab fa-weibo"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-600 transition">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <p class="text-gray-500 text-sm">
+                © 2023 心经智慧解读 | 以敬畏之心观照世界
+            </p>
+        </div>
     </div>
-    
-    <script>
-        // Scroll progress indicator
-        window.addEventListener('scroll', () => {
-            const scrollProgress = document.getElementById('scrollProgress');
-            const scrollPercentage = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-            scrollProgress.style.transform = `scaleX(${scrollPercentage / 100})`;
-        });
-        
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
+</footer>
+
+<script>
+    // 滚动动画效果
+    document.addEventListener('DOMContentLoaded', function() {
+        const fadeElements = document.querySelectorAll('.fade-in');
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
+                    entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
-        
-        // Observe all animated elements
-        document.querySelectorAll('.animate-fade-in').forEach(el => {
-            el.style.animationPlayState = 'paused';
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        fadeElements.forEach(el => {
             observer.observe(el);
         });
-        
-        // Parallax effect for scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            
-            document.querySelectorAll('.gradient-gold, .gradient-emerald, .gradient-indigo').forEach((el, index) => {
-                el.style.transform = `translateY(${rate * (index + 1) * 0.1}px)`;
+
+        // Apple风格的滚动效果
+        window.addEventListener('scroll', function() {
+            const scrolled = window.scrollY;
+            const parallaxElements = document.querySelectorAll('.bento-item');
+
+            parallaxElements.forEach(el => {
+                const speed = parseFloat(el.getAttribute('data-speed')) || 0.2;
+                const offset = scrolled * speed;
+                el.style.transform = `translateY(${offset}px)`;
             });
         });
-        
-        // Add hover effects
-        document.querySelectorAll('.col-span-12, .col-span-4, .col-span-8').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-5px) scale(1.02)';
-                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-        
-        // Auto-trigger animations on load
-        setTimeout(() => {
-            document.querySelectorAll('.animate-fade-in').forEach(el => {
-                el.style.animationPlayState = 'running';
-            });
-        }, 200);
-    </script>
+    });
+</script>
 </body>
 </html>

@@ -3,344 +3,635 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>了凡四训 - 心性改过之道</title>
+    <title>心性改过：自我重塑之道</title>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.min.js"></script>
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@10.12.16/dist/framer-motion.js"></script>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700;900&family=Inter:wght@300;400;600&display=swap');
-        
-        * {
-            font-family: 'Noto Sans SC', 'Inter', sans-serif;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .gradient-bg-purple {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-        }
-        
-        .gradient-bg-blue {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
-        }
-        
-        .gradient-bg-green {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(101, 163, 13, 0.1) 100%);
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        .parallax {
-            transform: translateY(var(--scroll, 0px));
-        }
-        
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        accent: '#10b981',
+                        background: '#f8fafc',
+                        card: '#ffffff'
+                    }
+                }
             }
         }
-        
-        .stagger-1 { animation-delay: 0.1s; }
-        .stagger-2 { animation-delay: 0.2s; }
-        .stagger-3 { animation-delay: 0.3s; }
-        .stagger-4 { animation-delay: 0.4s; }
-        .stagger-5 { animation-delay: 0.5s; }
-        .stagger-6 { animation-delay: 0.6s; }
-        
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background-color: #f8fafc;
+            color: #334155;
+            overflow-x: hidden;
+        }
+
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            gap: 1rem;
-            height: 100vh;
-            padding: 1rem;
+            grid-auto-rows: minmax(200px, auto);
+            gap: 24px;
+            padding: 24px;
         }
-        
-        .bento-item-1 { grid-column: span 5; grid-row: span 3; }
-        .bento-item-2 { grid-column: span 7; grid-row: span 2; }
-        .bento-item-3 { grid-column: span 7; grid-row: span 1; }
-        .bento-item-4 { grid-column: span 4; grid-row: span 2; }
-        .bento-item-5 { grid-column: span 3; grid-row: span 2; }
-        .bento-item-6 { grid-column: span 5; grid-row: span 1; }
-        
-        .chart-container {
+
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+        }
+
+        .accent-gradient {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
+        }
+
+        .secondary-gradient {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%);
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .highlight-text {
+            background: linear-gradient(90deg, #10b981, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .quote-box {
             position: relative;
-            height: 200px;
-            width: 100%;
+            padding: 32px;
+            border-radius: 24px;
         }
-        
-        .zen-circle {
-            width: 200px;
-            height: 200px;
-            border: 3px solid rgba(102, 126, 234, 0.3);
-            border-radius: 50%;
+
+        .quote-box::before {
+            content: """;
+            position: absolute;
+            top: -30px;
+            left: 10px;
+            font-size: 120px;
+            color: rgba(99, 102, 241, 0.1);
+            font-family: serif;
+        }
+
+        .timeline {
             position: relative;
-            margin: 0 auto;
+            padding-left: 30px;
+            margin-top: 20px;
         }
-        
-        .zen-circle::before {
+
+        .timeline::before {
             content: '';
             position: absolute;
-            top: 50%;
             left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
-            transform: translateY(-50%);
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, #6366f1, #8b5cf6);
         }
-        
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 30px;
         }
-        
-        @keyframes floating {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #6366f1;
+            border: 4px solid white;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #10b981);
+            z-index: 100;
         }
     </style>
 </head>
-<body class="bg-gray-50 overflow-x-hidden">
-    <div class="bento-grid">
-        <!-- 主标题区域 -->
-        <div class="bento-item-1 gradient-bg-purple rounded-3xl p-8 flex flex-col justify-center card-hover fade-in">
-            <div class="zen-circle floating mb-6"></div>
-            <h1 class="text-6xl font-black text-gray-800 mb-4 leading-tight">
-                心性<br>
-                <span class="gradient-text">改过</span>
+<body class="bg-background">
+<!-- 页面进度条 -->
+<div id="progress" class="progress-bar"></div>
+
+<!-- 首屏 -->
+<section class="section relative overflow-hidden">
+    <div class="absolute inset-0 gradient-bg z-0"></div>
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-br from-primary/5 to-transparent z-0"></div>
+
+    <div class="container mx-auto px-8 relative z-10">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex items-center mb-8">
+                <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+                    <i class="fas fa-seedling text-white text-2xl"></i>
+                </div>
+                <span class="ml-4 text-xl text-primary font-medium">心性改过 · 自我重塑</span>
+            </div>
+
+            <h1 class="text-6xl md:text-8xl font-bold leading-tight mb-6">
+                <span class="block">心性改过</span>
+                <span class="block highlight-text">自我重塑之道</span>
             </h1>
-            <p class="text-lg text-gray-600 font-light">
-                Inner Transformation
+
+            <p class="text-xl md:text-2xl text-slate-600 mb-12 max-w-3xl">
+                从逻辑自洽到心性提升，探索彻底的自我改变
             </p>
-            <div class="mt-6 text-sm text-gray-500">
-                <i class="fas fa-quote-left mr-2"></i>
-                善改过者，未尽其事，先明其理
-            </div>
-        </div>
-        
-        <!-- 核心理念 -->
-        <div class="bento-item-2 gradient-bg-blue rounded-3xl p-8 card-hover fade-in stagger-1">
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="text-4xl font-bold text-gray-800">改过三境界</h2>
-                <div class="text-6xl font-black gradient-text">03</div>
-            </div>
-            <div class="grid grid-cols-3 gap-6 h-full">
-                <div class="bg-white/50 rounded-2xl p-4 text-center">
-                    <i class="fas fa-eye text-3xl text-purple-600 mb-3"></i>
-                    <h3 class="font-bold text-gray-800 mb-2">从事上改</h3>
-                    <p class="text-sm text-gray-600">Surface Level</p>
-                    <p class="text-xs text-gray-500 mt-2">外在行为调整</p>
+
+            <div class="flex flex-wrap gap-4">
+                <div class="px-6 py-3 bg-primary text-white rounded-full font-medium">
+                    袁了凡心法
                 </div>
-                <div class="bg-white/50 rounded-2xl p-4 text-center">
-                    <i class="fas fa-brain text-3xl text-blue-600 mb-3"></i>
-                    <h3 class="font-bold text-gray-800 mb-2">从理上改</h3>
-                    <p class="text-sm text-gray-600">Logic Level</p>
-                    <p class="text-xs text-gray-500 mt-2">逻辑思维重构</p>
+                <div class="px-6 py-3 bg-secondary text-white rounded-full font-medium">
+                    王阳明心学
                 </div>
-                <div class="bg-white/50 rounded-2xl p-4 text-center">
-                    <i class="fas fa-heart text-3xl text-green-600 mb-3"></i>
-                    <h3 class="font-bold text-gray-800 mb-2">从心上改</h3>
-                    <p class="text-sm text-gray-600">Heart Level</p>
-                    <p class="text-xs text-gray-500 mt-2">心性根本转化</p>
+                <div class="px-6 py-3 bg-accent text-white rounded-full font-medium">
+                    史蒂芬·科维
                 </div>
-            </div>
-        </div>
-        
-        <!-- 王阳明智慧 -->
-        <div class="bento-item-3 gradient-bg-green rounded-3xl p-6 card-hover fade-in stagger-2">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">王阳明心学</h3>
-                    <p class="text-gray-600">致良知 · 知行合一</p>
-                    <p class="text-sm text-gray-500 mt-2">Wang Yangming Philosophy</p>
-                </div>
-                <div class="text-right">
-                    <div class="text-4xl font-black gradient-text">良知</div>
-                    <p class="text-xs text-gray-500">Inner Wisdom</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 佛学智慧对比 -->
-        <div class="bento-item-4 bg-white rounded-3xl p-6 card-hover fade-in stagger-3">
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">禅宗二偈</h3>
-            <div class="space-y-4">
-                <div class="border-l-4 border-purple-400 pl-4">
-                    <h4 class="font-bold text-gray-800">神秀偈</h4>
-                    <p class="text-sm text-gray-600 mt-1">身是菩提树，心如明镜台</p>
-                    <p class="text-xs text-gray-500">渐修 · Gradual</p>
-                </div>
-                <div class="border-l-4 border-green-400 pl-4">
-                    <h4 class="font-bold text-gray-800">慧能偈</h4>
-                    <p class="text-sm text-gray-600 mt-1">菩提本无树，明镜亦非台</p>
-                    <p class="text-xs text-gray-500">顿悟 · Sudden</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 贪嗔痴图表 -->
-        <div class="bento-item-5 bg-white rounded-3xl p-6 card-hover fade-in stagger-4">
-            <h3 class="text-xl font-bold text-gray-800 mb-4">三毒根源</h3>
-            <div class="chart-container">
-                <canvas id="poisonChart"></canvas>
-            </div>
-            <div class="mt-4 text-center">
-                <p class="text-sm text-gray-600">Three Poisons</p>
-                <p class="text-xs text-gray-500">贪 · 嗔 · 痴</p>
-            </div>
-        </div>
-        
-        <!-- 现代应用 -->
-        <div class="bento-item-6 gradient-bg-purple rounded-3xl p-6 card-hover fade-in stagger-5">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">现代践行</h3>
-                    <p class="text-gray-600">七个习惯 × 品德修养</p>
-                    <p class="text-xs text-gray-500 mt-2">Modern Application</p>
-                </div>
-                <div class="text-5xl font-black gradient-text">7</div>
-            </div>
-            <div class="flex flex-wrap gap-2 mt-4 text-xs text-gray-600">
-                <span>积极主动</span>
-                <span>以终为始</span>
-                <span>要事第一</span>
-                <span>双赢思维</span>
-                <span>知彼解己</span>  <!-- 新增 -->
-                <span>统合综效</span>  <!-- 新增 -->
-                <span>不断更新</span>  <!-- 新增 -->
             </div>
         </div>
     </div>
 
-    <script>
-        // 初始化三毒图表
-        const ctx = document.getElementById('poisonChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['贪 Greed', '嗔 Anger', '痴 Ignorance'],
-                datasets: [{
-                    data: [33.3, 33.3, 33.4],
-                    backgroundColor: [
-                        'rgba(239, 68, 68, 0.3)',
-                        'rgba(251, 146, 60, 0.3)',
-                        'rgba(168, 85, 247, 0.3)'
-                    ],
-                    borderColor: [
-                        'rgba(239, 68, 68, 0.8)',
-                        'rgba(251, 146, 60, 0.8)',
-                        'rgba(168, 85, 247, 0.8)'
-                    ],
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                cutout: '70%'
-            }
-        });
+    <div class="scroll-down text-primary">
+        <i class="fas fa-chevron-down text-2xl animate-bounce"></i>
+    </div>
+</section>
 
-        // 滚动视差效果
-        let ticking = false;
+<!-- 核心观点1：心性改过 -->
+<section class="section py-20 bg-gradient-to-br from-background to-slate-50">
+    <div class="container mx-auto px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="text-8xl font-bold text-primary mb-4">01</div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                        心性改过：<span class="highlight-text">自我重塑的核心</span>
+                    </h2>
+                    <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                        <span class="font-bold">袁了凡</span>认为，从心善改是最彻底的改正，是心性层面的改变。一旦心念上清静了，我们的每一个当下也就清净了。不好的念头还没有冒出来，我们就能觉知到，自然就不会放任他冒出来。
+                    </p>
+                    <div class="quote-box bg-white shadow-lg rounded-2xl p-8">
+                        <p class="text-xl italic text-slate-700">
+                            "善改过者，未尽其事，先明其理。在还没开始改正之前，就先弄明白了其中的道理。"
+                        </p>
+                        <div class="mt-4 flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                <i class="fas fa-quote-right text-primary"></i>
+                            </div>
+                            <span class="ml-3 font-medium text-primary">袁了凡</span>
+                        </div>
+                    </div>
+                </div>
 
-        function updateScrollAnimation() {
-            const scrollTop = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.parallax');
+                <div class="relative">
+                    <div class="relative bg-white rounded-3xl shadow-xl p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mr-4">
+                                <i class="fas fa-brain text-3xl text-primary"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">心性改过三层次</h3>
+                        </div>
 
-            parallaxElements.forEach(el => {
-                const speed = el.dataset.speed || 0.5;
-                const yPos = -(scrollTop * speed);
-                el.style.setProperty('--scroll', `${yPos}px`);
-            });
+                        <div class="space-y-6">
+                            <div class="flex">
+                                <div class="flex-shrink-0 w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-accent font-bold">1</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl mb-1">事上改</h4>
+                                    <p class="text-slate-600">在行为层面强制改变，效果有限</p>
+                                </div>
+                            </div>
 
-            ticking = false;
-        }
+                            <div class="flex">
+                                <div class="flex-shrink-0 w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-accent font-bold">2</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl mb-1">理上改</h4>
+                                    <p class="text-slate-600">通过逻辑自洽理解改过之理</p>
+                                </div>
+                            </div>
 
-        function requestScrollUpdate() {
-            if (!ticking) {
-                requestAnimationFrame(updateScrollAnimation);
-                ticking = true;
-            }
-        }
+                            <div class="flex">
+                                <div class="flex-shrink-0 w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-accent font-bold">3</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl mb-1">心上改</h4>
+                                    <p class="text-slate-600">心性层面的彻底改变，根源上解决问题</p>
+                                </div>
+                            </div>
+                        </div>
 
-        window.addEventListener('scroll', requestScrollUpdate);
+                        <div class="mt-8 pt-6 border-t border-slate-100">
+                            <div class="bg-slate-50 rounded-xl p-4">
+                                <p class="text-slate-700 italic">
+                                    "一旦心念上清静了，我们的每一个当下也就清净了。"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-        // 鼠标悬停效果增强
-        document.querySelectorAll('.card-hover').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
-            });
+                    <div class="absolute -bottom-6 -right-6 w-48 h-48 rounded-full bg-secondary/10 z-[-1]"></div>
+                    <div class="absolute -top-6 -left-6 w-32 h-32 rounded-full bg-primary/10 z-[-1]"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
+<!-- 核心观点2：王阳明心学 -->
+<section class="section py-20 bg-gradient-to-tl from-background to-slate-50">
+    <div class="container mx-auto px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="text-8xl font-bold text-primary mb-4">02</div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    王阳明心学：<span class="highlight-text">两种改过方法</span>
+                </h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                    王阳明与学生南大吉的对话，揭示了两种不同的改过之道
+                </p>
+            </div>
 
-        // 页面加载动画
-        window.addEventListener('load', function() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            fadeElements.forEach((el, index) => {
-                setTimeout(() => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                }, index * 100);
-            });
-        });
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white rounded-3xl shadow-xl p-8 secondary-gradient">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mr-4">
+                            <i class="fas fa-sync-alt text-3xl text-secondary"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">不断反省改过法</h3>
+                    </div>
 
-        // 数字动画效果
-        function animateNumbers() {
-            const numbers = document.querySelectorAll('.gradient-text');
-            numbers.forEach(num => {
-                if (num.textContent === '03' || num.textContent === '7') {
-                    num.addEventListener('mouseenter', function() {
-                        this.style.transform = 'scale(1.1)';
-                        this.style.transition = 'transform 0.3s ease';
-                    });
+                    <div class="space-y-4">
+                        <p class="text-lg text-slate-700">
+                            南大吉问："与其等我犯了错误再悔改，不如老师您见到我的时候提醒我一下如何？"
+                        </p>
+                        <p class="text-lg text-slate-700 font-medium">
+                            王阳明回答："自我反省的效果远远好于别人的劝告。"
+                        </p>
+                    </div>
 
-                    num.addEventListener('mouseleave', function() {
-                        this.style.transform = 'scale(1)';
-                    });
+                    <div class="mt-8 bg-white p-6 rounded-xl shadow-sm">
+                        <div class="flex items-start">
+                            <div class="text-5xl text-secondary mr-4">"</div>
+                            <p class="text-slate-700 italic">
+                                心就像镜子，没有打磨和清洗的时候容易沾惹灰尘，要是这面镜子明亮起来，哪怕是只飘来一粒尘埃，也很难粘在这光洁的镜子上。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-xl p-8 accent-gradient">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mr-4">
+                            <i class="fas fa-spa text-3xl text-accent"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">心性清净改过法</h3>
+                    </div>
+
+                    <div class="space-y-4">
+                        <p class="text-lg text-slate-700">
+                            当南大吉发现自己犯了更多错误时，他问王阳明："做错了事，改正还是比较容易的，但是心里出现错误，不知道该如何改正。"
+                        </p>
+                        <p class="text-lg text-slate-700 font-medium">
+                            王阳明开导他：心若明镜，尘埃难附。这是彻底塑造新自我的关键。
+                        </p>
+                    </div>
+
+                    <div class="mt-8 bg-white p-6 rounded-xl shadow-sm">
+                        <div class="flex items-start">
+                            <div class="text-5xl text-accent mr-4">"</div>
+                            <p class="text-slate-700 italic">
+                                如果你回到本来的样子，智慧不依赖身体而存在，一直就在那里。明镜也不需要一个什么台，一直就很清净的在那里。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-white rounded-3xl shadow-xl p-8 max-w-4xl mx-auto">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4">
+                        <i class="fas fa-balance-scale text-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">神秀与慧能的改过之道</h3>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-bold text-xl mb-3 text-secondary">神秀：事上改</h4>
+                        <div class="bg-slate-50 rounded-xl p-5">
+                            <p class="text-lg italic text-slate-700">
+                                "身是菩提树，心如明镜台，时时勤拂拭，莫使惹尘埃。"
+                            </p>
+                        </div>
+                        <p class="mt-4 text-slate-600">
+                            人的身体就像菩提树，心就像明镜，只有不断清洁身体，这颗菩提树才不会沾上灰尘，心这么明镜才会时时明亮，照见真相。
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-xl mb-3 text-accent">慧能：心上改</h4>
+                        <div class="bg-slate-50 rounded-xl p-5">
+                            <p class="text-lg italic text-slate-700">
+                                "菩提本无树，明镜亦非台。本来无一物，何处惹尘埃。"
+                            </p>
+                        </div>
+                        <p class="mt-4 text-slate-600">
+                            回到本来的样子，智慧不依赖身体而存在，一直就在那里。明镜也不需要一个什么台，一直就很清净的在那里。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 核心观点3：佛陀的启示 -->
+<section class="section py-20 bg-gradient-to-br from-background to-slate-50">
+    <div class="container mx-auto px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="text-8xl font-bold text-primary mb-4">03</div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    佛陀的启示：<span class="highlight-text">不贪不嗔不痴</span>
+                </h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                    佛陀对伽罗魔族人的开示揭示了心性改过的根本
+                </p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl p-8 max-w-4xl mx-auto">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mr-4">
+                        <i class="fas fa-lightbulb text-3xl text-accent"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">佛陀与伽罗魔族人的对话</h3>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4 class="font-bold text-xl mb-2 text-primary">问题根源：迷信权威</h4>
+                        <p class="text-slate-600">
+                            伽罗摩族人迷信权威，总想从别人那里得到答案，结果困惑越来越多。
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4 class="font-bold text-xl mb-2 text-primary">佛陀的引导</h4>
+                        <p class="text-slate-600">
+                            佛陀告诉他们安静下来关照自己的内心，就会发现答案早就在了。
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4 class="font-bold text-xl mb-2 text-primary">贪欲的困扰</h4>
+                        <p class="text-slate-600">
+                            "我们生活中会不会总是想得到更多？有了这个还有那个没完没了。"
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4 class="font-bold text-xl mb-2 text-primary">嗔怒的后果</h4>
+                        <p class="text-slate-600">
+                            "当我们想得到更多而现实满足不了时，我们会不高兴，还会愤怒。"
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4 class="font-bold text-xl mb-2 text-primary">痴迷的蒙蔽</h4>
+                        <p class="text-slate-600">
+                            "当我们在发火或者不高兴的时候，会不会看不到使我们愉快的东西？"
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4 class="font-bold text-xl mb-2 text-accent">根本答案</h4>
+                        <p class="text-lg font-medium text-accent">
+                            不贪、不嗔、不痴就是根本的答案。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-12 bg-gradient-to-r from-primary/5 to-accent/5 p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-4">心性改过的核心</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <div class="text-4xl text-primary mb-3">贪</div>
+                            <h4 class="font-bold text-xl mb-2">清理欲望</h4>
+                            <p class="text-slate-600">弄明白自己真正想要什么</p>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <div class="text-4xl text-secondary mb-3">嗔</div>
+                            <h4 class="font-bold text-xl mb-2">清理情绪</h4>
+                            <p class="text-slate-600">转变自己对外界的反应机制</p>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <div class="text-4xl text-accent mb-3">痴</div>
+                            <h4 class="font-bold text-xl mb-2">清理观念</h4>
+                            <p class="text-slate-600">转变偏见，把观念还原成事实</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 核心观点4：逻辑自洽 -->
+<section class="section py-20 bg-gradient-to-tl from-background to-slate-50">
+    <div class="container mx-auto px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="bg-white rounded-3xl shadow-xl p-8">
+                        <div class="text-8xl font-bold text-primary opacity-10 absolute top-4 right-8">04</div>
+
+                        <div class="relative z-10">
+                            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                                <span class="block">逻辑自洽：</span>
+                                <span class="block highlight-text">普通人的改过之道</span>
+                            </h2>
+
+                            <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                                袁了凡认为，善改过者，未尽其事，先明其理。在还没开始改正之前，就先弄明白了其中的道理。如果不能够明白一件错误的事情产生的根源，不能够在心里说服自己，而是单纯从外部的事情上去开始改正问题，这是浮于表面，效果不大。
+                            </p>
+
+                            <div class="bg-slate-50 rounded-xl p-6 mb-8">
+                                <h3 class="font-bold text-xl mb-3">发怒的逻辑自洽</h3>
+                                <div class="space-y-3">
+                                    <div class="flex items-start">
+                                        <div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center mt-1 mr-3 flex-shrink-0">
+                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                        </div>
+                                        <p class="text-slate-700">发怒和生气本来就是用别人的错误来惩罚自己</p>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center mt-1 mr-3 flex-shrink-0">
+                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                        </div>
+                                        <p class="text-slate-700">每个人能力不同，做事情达不到要求是正常的</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="absolute -bottom-6 -right-6 w-48 h-48 rounded-full bg-secondary/10 z-[-1]"></div>
+                </div>
+
+                <div>
+                    <div class="bg-white rounded-3xl shadow-xl p-8 mb-12">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mr-4">
+                                <i class="fas fa-user-check text-3xl text-secondary"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">史蒂芬·科维的七个习惯</h3>
+                        </div>
+
+                        <div class="space-y-4">
+                            <p class="text-lg text-slate-700">
+                                科维发现，在暂时性的人际交往中，你或许可以凭借技巧赚取好感。但在长久的人际关系里，单凭这些优势是难有作为的。
+                            </p>
+                            <p class="text-lg text-slate-700 font-medium">
+                                只有品德上修炼，由内而外造就自己，才能获得真正的成功。
+                            </p>
+                        </div>
+
+                        <div class="mt-6 bg-slate-50 p-5 rounded-xl">
+                            <p class="text-lg italic text-slate-700">
+                                "思想决定行动，行动决定习惯，习惯决定品德，品德决定命运。"
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-primary text-white rounded-2xl p-5 shadow-lg">
+                            <h4 class="font-bold text-lg mb-2">个人领域成功</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li>积极主动</li>
+                                <li>以终为始</li>
+                                <li>要事第一</li>
+                            </ul>
+                        </div>
+                        <div class="bg-secondary text-white rounded-2xl p-5 shadow-lg">
+                            <h4 class="font-bold text-lg mb-2">公众领域成功</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li>知彼解己</li>
+                                <li>双赢思维</li>
+                                <li>统合综效</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 总结部分 -->
+<section class="py-20 bg-gradient-to-br from-primary to-secondary">
+    <div class="container mx-auto px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="text-8xl font-bold text-white/20 mb-4">05</div>
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">
+                自我重塑之路
+            </h2>
+
+            <div class="bg-white/90 rounded-3xl shadow-2xl p-8 mb-12">
+                <p class="text-xl text-slate-700 mb-6 leading-relaxed">
+                    人生需要有逻辑，否则就会陷入无限的纠结。混乱的逻辑带来混乱的行为，我们也因此陷入无限的纠结，导致人生的坎坷。
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <div class="px-5 py-2 bg-primary/10 text-primary rounded-full font-medium">
+                        逻辑自洽
+                    </div>
+                    <div class="px-5 py-2 bg-secondary/10 text-secondary rounded-full font-medium">
+                        心性提升
+                    </div>
+                    <div class="px-5 py-2 bg-accent/10 text-accent rounded-full font-medium">
+                        自我重塑
+                    </div>
+                </div>
+
+                <p class="text-xl text-slate-700 leading-relaxed">
+                    当我们逻辑自洽之后，想清楚了道理，才算找到了一个相对准确的方向。基于此逐步改变，最后总会达到心性的改变，从而建立新的自我。
+                </p>
+            </div>
+
+            <div class="flex justify-center">
+                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center">
+                    <i class="fas fa-heart text-2xl text-primary"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // 页面滚动进度条
+    window.addEventListener('scroll', function() {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (scrollTop / scrollHeight) * 100;
+        document.getElementById('progress').style.width = scrolled + '%';
+    });
+
+    // 滚动动画效果
+    document.addEventListener('DOMContentLoaded', function() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeInUp');
                 }
             });
-        }
+        }, {
+            threshold: 0.1
+        });
 
-        animateNumbers();
-
-        // 禅宗圆圈动画
-        const zenCircle = document.querySelector('.zen-circle');
-        let rotation = 0;
-
-        function rotateZenCircle() {
-            rotation += 0.5;
-            zenCircle.style.transform = `rotate(${rotation}deg)`;
-            requestAnimationFrame(rotateZenCircle);
-        }
-
-        rotateZenCircle();
-    </script>
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    });
+</script>
 </body>
 </html>

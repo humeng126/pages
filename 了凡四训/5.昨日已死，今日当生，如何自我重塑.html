@@ -3,370 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>了凡四训 - 今日当生</title>
+    <title>放下屠刀，立地成佛 - 自我重塑的智慧</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Framer Motion -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        * {
-            font-family: 'Noto Serif SC', 'Inter', serif;
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            overflow-x: hidden;
         }
-        
+
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            grid-template-rows: repeat(8, minmax(100px, 1fr));
+            grid-template-rows: repeat(6, 1fr);
             gap: 20px;
             height: 100vh;
             padding: 20px;
         }
-        
-        .bento-item {
-            border-radius: 20px;
-            padding: 24px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero { grid-column: 1 / 8; grid-row: 1 / 4; }
-        .quote { grid-column: 8 / 13; grid-row: 1 / 3; }
-        .stats { grid-column: 8 / 13; grid-row: 3 / 4; }
-        .philosophy { grid-column: 1 / 5; grid-row: 4 / 6; }
-        .transformation { grid-column: 5 / 9; grid-row: 4 / 6; }
-        .principles { grid-column: 9 / 13; grid-row: 4 / 6; }
-        .rebirth { grid-column: 1 / 7; grid-row: 6 / 8; }
-        .reflection { grid-column: 7 / 13; grid-row: 6 / 8; }
 
-        .gradient-bg-1 { background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%); }
-        .gradient-bg-2 { background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(251, 146, 60, 0.05) 100%); }
-        .gradient-bg-3 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%); }
-        .gradient-bg-4 { background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); }
-        
-        .highlight-purple { color: rgba(139, 92, 246, 1); }
-        .highlight-pink { color: rgba(236, 72, 153, 1); }
-        .highlight-green { color: rgba(34, 197, 94, 1); }
-        .highlight-orange { color: rgba(245, 158, 11, 1); }
-        
-        .floating-element {
-            position: absolute;
-            opacity: 0.1;
-            pointer-events: none;
+        .bento-item {
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
         }
-        
-        .scroll-indicator {
-            position: fixed;
-            bottom: 30px;
+
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlight-text {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .glow-effect {
+            position: relative;
+        }
+
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+            z-index: -1;
+            border-radius: 24px;
+        }
+
+        .circle-badge {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .quote-card {
+            position: relative;
+            padding: 30px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(245,245,245,0.9) 100%);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #6366f1;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #e0f7fa 0%, #f3e5f5 100%);
+        }
+
+        .step-card {
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             animation: bounce 2s infinite;
         }
-        
+
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-        
-        .parallax-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-            z-index: -1;
-        }
-        
-        .chart-container {
-            width: 100%;
-            height: 120px;
-            position: relative;
-        }
-        
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 10px 0;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, rgba(139, 92, 246, 1) 0%, rgba(236, 72, 153, 1) 100%);
-            border-radius: 4px;
-            transition: width 2s ease-out;
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
         }
     </style>
 </head>
-<body class="text-white overflow-x-hidden">
-    <div class="parallax-bg"></div>
-    
-    <div class="bento-grid">
-        <!-- Hero Section -->
-        <div class="bento-item hero gradient-bg-1" id="hero">
-            <div class="h-full flex flex-col justify-center">
-                <div class="mb-4">
-                    <span class="text-sm font-medium text-gray-400 tracking-wider uppercase">Ancient Wisdom</span>
-                </div>
-                <h1 class="text-7xl font-black mb-6 leading-tight">
-                    放下<span class="highlight-purple">屠刀</span><br>
-                    立地<span class="highlight-pink">成佛</span>
-                </h1>
-                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
-                    从前种种，譬如昨日死<br>
-                    从后种种，譬如今日生
-                </p>
-            </div>
-            <i class="fas fa-lotus floating-element text-8xl top-10 right-10"></i>
-        </div>
-        
-        <!-- Quote Section -->
-        <div class="bento-item quote gradient-bg-2" id="quote">
-            <div class="h-full flex flex-col justify-center">
-                <i class="fas fa-quote-left text-3xl highlight-pink mb-4"></i>
-                <blockquote class="text-lg font-medium leading-relaxed mb-4">
-                    "昨日已死，今日当生"
-                </blockquote>
-                <cite class="text-sm text-gray-400">- 云谷禅师</cite>
-            </div>
-        </div>
-        
-        <!-- Stats Section -->
-        <div class="bento-item stats gradient-bg-3" id="stats">
-            <div class="h-full flex items-center justify-center">
-                <div class="text-center">
-                    <div class="text-4xl font-black highlight-green mb-2">∞</div>
-                    <div class="text-xs text-gray-400 uppercase tracking-wider">Infinite Possibilities</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Philosophy Section -->
-        <div class="bento-item philosophy gradient-bg-4" id="philosophy">
-            <div class="h-full flex flex-col justify-between">
-                <div>
-                    <h3 class="text-2xl font-bold mb-4 highlight-orange">破除迷思</h3>
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-times-circle text-red-400"></i>
-                            <span class="text-sm">求神拜佛改命</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-times-circle text-red-400"></i>
-                            <span class="text-sm">性格决定行为</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-xs text-gray-400 uppercase tracking-wider">Break Illusions</div>
-            </div>
-        </div>
-        
-        <!-- Transformation Section -->
-        <div class="bento-item transformation gradient-bg-1" id="transformation">
-            <div class="h-full flex flex-col justify-center">
-                <h3 class="text-3xl font-bold mb-6 highlight-purple">自我重塑</h3>
-                <div class="space-y-4">
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 0%" data-width="85%"></div>
-                    </div>
-                    <div class="flex justify-between text-sm text-gray-400">
-                        <span>杀死昨天</span>
-                        <span>重生今日</span>
-                    </div>
-                </div>
-                <div class="mt-6 text-sm text-gray-300">
-                    Self-Transformation Journey
-                </div>
-            </div>
-        </div>
-        
-        <!-- Principles Section -->
-        <div class="bento-item principles gradient-bg-2" id="principles">
-            <div class="h-full flex flex-col">
-                <h3 class="text-2xl font-bold mb-6 highlight-pink">四大要点</h3>
-                <div class="space-y-4 flex-1">
-                    <div class="flex items-start space-x-3">
-                        <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-sm font-bold">1</div>
-                        <div>
-                            <div class="font-medium">相信改变</div>
-                            <div class="text-xs text-gray-400">Believe in Change</div>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-sm font-bold">2</div>
-                        <div>
-                            <div class="font-medium">清晰目标</div>
-                            <div class="text-xs text-gray-400">Clear Goals</div>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-sm font-bold">3</div>
-                        <div>
-                            <div class="font-medium">享受过程</div>
-                            <div class="text-xs text-gray-400">Enjoy Process</div>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-sm font-bold">4</div>
-                        <div>
-                            <div class="font-medium">自我重塑</div>
-                            <div class="text-xs text-gray-400">Self-Reshape</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Rebirth Section -->
-        <div class="bento-item rebirth gradient-bg-3" id="rebirth">
-            <div class="h-full flex items-center">
-                <div class="flex-1">
-                    <h3 class="text-4xl font-bold mb-4">
-                        重生<span class="highlight-green">二步</span>
-                    </h3>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="text-center">
-                            <div class="text-6xl font-black highlight-green mb-2">1</div>
-                            <div class="font-medium mb-1">学会做人</div>
-                            <div class="text-xs text-gray-400">Learn to Be Human</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-6xl font-black highlight-green mb-2">2</div>
-                            <div class="font-medium mb-1">思辨内省</div>
-                            <div class="text-xs text-gray-400">Critical Reflection</div>
-                        </div>
-                    </div>
-                </div>
-                <i class="fas fa-phoenix-rising floating-element text-6xl right-10 top-1/2 transform -translate-y-1/2"></i>
-            </div>
-        </div>
-        
-        <!-- Reflection Section -->
-        <div class="bento-item reflection gradient-bg-4" id="reflection">
-            <div class="h-full flex flex-col justify-center">
-                <h3 class="text-2xl font-bold mb-4 highlight-orange">袁了凡教导</h3>
-                <div class="space-y-3 text-sm">
-                    <div class="flex items-center space-x-2">
-                        <i class="fas fa-circle text-xs text-orange-400"></i>
-                        <span>飞黄腾达时保持谦卑</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <i class="fas fa-circle text-xs text-orange-400"></i>
-                        <span>一帆风顺时想到险阻</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <i class="fas fa-circle text-xs text-orange-400"></i>
-                        <span>天天反省改正过失</span>
-                    </div>
-                </div>
-                <div class="mt-4 text-xs text-gray-400 uppercase tracking-wider">
-                    Daily Self-Reflection
-                </div>
-            </div>
-        </div>
-
+<body class="min-h-screen flex flex-col items-center justify-center overflow-x-hidden">
+<div class="bento-grid w-full max-w-7xl mx-auto">
+    <!-- 标题区域 -->
+    <div class="bento-item glow-effect col-span-12 row-span-1 flex flex-col items-center justify-center">
+        <h1 class="text-5xl md:text-6xl font-black text-center">
+            <span class="highlight-text">放下屠刀</span>
+            <span class="text-3xl md:text-5xl font-medium text-gray-500 mx-2">/</span>
+            <span class="highlight-text">立地成佛</span>
+        </h1>
     </div>
 
-    
-    <script>
-        // Smooth scroll animations
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            const parallaxBg = document.querySelector('.parallax-bg');
-            parallaxBg.style.transform = `translateY(${rate}px)`;
-        });
-        
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
+    <!-- 核心概念 -->
+    <div class="bento-item col-span-6 row-span-3 flex flex-col justify-center p-8">
+        <div class="circle-badge bg-indigo-100 text-indigo-600">悟</div>
+        <h2 class="text-4xl font-bold mb-4">昨日死，今日生</h2>
+        <p class="text-gray-700 text-lg mb-4">
+            "从前种种，譬如昨日死。从后种种，譬如今日生。"
+        </p>
+        <p class="text-gray-600">
+            放下屠刀就是<span class="font-bold text-indigo-600">杀死昨天的自己</span>，立地成佛就是<span class="font-bold text-indigo-600">重生今天的自己</span>。昨日已死，今日当生。
+        </p>
+    </div>
+
+    <!-- 哪吒案例 -->
+    <div class="bento-item col-span-6 row-span-3 relative overflow-hidden gradient-bg">
+        <div class="absolute top-4 right-4 text-8xl opacity-10 text-indigo-400 font-black">吒</div>
+        <h2 class="text-3xl font-bold mb-4">哪吒的浴火重生</h2>
+        <div class="space-y-4 relative z-10">
+            <div class="flex items-start">
+                <span class="material-icons text-indigo-500 mr-2">adjust</span>
+                <p>魔丸降世，戾气缠身，手持屠刀</p>
+            </div>
+            <div class="flex items-start">
+                <span class="material-icons text-indigo-500 mr-2">adjust</span>
+                <p>亲情友情将其从悬崖边拉回</p>
+            </div>
+            <div class="flex items-start">
+                <span class="material-icons text-indigo-500 mr-2">adjust</span>
+                <p>亲眼目睹母亲化为仙丹</p>
+            </div>
+            <div class="flex items-start">
+                <span class="material-icons text-indigo-500 mr-2">adjust</span>
+                <p>自爆杀死昨天的自己，浴火重生</p>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-indigo-500/10 to-transparent"></div>
+    </div>
+
+    <!-- 错误认知 -->
+    <div class="bento-item col-span-6 row-span-10">
+        <h2 class="text-3xl font-bold mb-6">需要杀死的两个错误认知</h2>
+
+        <div class="mb-6 p-5 bg-red-50 rounded-xl border-l-4 border-red-500">
+            <h3 class="text-xl font-bold text-red-700 mb-2">求神拜佛可以改命</h3>
+            <p class="text-gray-700">将希望寄托于外部力量，忽视自我改变的力量，最终导致自欺欺人。</p>
+        </div>
+
+        <div class="p-5 bg-amber-50 rounded-xl border-l-4 border-amber-500">
+            <h3 class="text-xl font-bold text-amber-700 mb-2">性格决定行为</h3>
+            <p class="text-gray-700">用"生来如此"作为借口，阻碍自我成长。实则是行为决定性格。</p>
+        </div>
+    </div>
+
+    <!-- 改变法则 -->
+    <div class="bento-item col-span-6 row-span-10 flex items-center">
+        <div class="text-8xl font-black text-indigo-600 mr-6">变</div>
+        <div>
+            <h2 class="text-3xl font-bold mb-2">改变法则</h2>
+            <p class="text-xl text-gray-700">改变自我观念、思考方式与生活方式</p>
+        </div>
+    </div>
+
+    <!-- 重生第一步 -->
+    <div class="bento-item col-span-4 row-span-2 flex flex-col justify-between">
+        <div>
+            <div class="text-6xl font-black text-indigo-600 mb-4">01</div>
+            <h2 class="text-2xl font-bold mb-4">重生第一步：学会做人</h2>
+            <p class="text-gray-700 mb-4">"把人做好了，做什么都会有所成就。人没有做好，做什么都不会长久。"</p>
+        </div>
+
+        <div class="space-y-3">
+            <div class="flex items-center">
+                <span class="material-icons text-green-500 mr-2">check_circle</span>
+                <span>相信改变，相信可能性</span>
+            </div>
+            <div class="flex items-center">
+                <span class="material-icons text-green-500 mr-2">check_circle</span>
+                <span>有清晰目标，持续聚焦</span>
+            </div>
+            <div class="flex items-center">
+                <span class="material-icons text-green-500 mr-2">check_circle</span>
+                <span>享受过程，洞察真相</span>
+            </div>
+            <div class="flex items-center">
+                <span class="material-icons text-green-500 mr-2">check_circle</span>
+                <span>相信自我重塑是唯一途径</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 重生第二步 -->
+    <div class="bento-item col-span-4 row-span-2">
+        <div class="text-6xl font-black text-indigo-600 mb-4">02</div>
+        <h2 class="text-2xl font-bold mb-4">重生第二步：思辨内省</h2>
+        <div class="quote-card">
+            <p class="text-gray-700 italic">
+                "无论飞黄腾达时，要保持谦卑；一帆风顺时，要想到艰难险阻；丰衣足食时，要想到忍饥挨饿；即使人家善待，也要想自己有何值得善待。"
+            </p>
+        </div>
+        <div class="mt-4 flex">
+            <div class="flex-1 p-4 bg-indigo-50 rounded-lg mr-2">
+                <h3 class="font-bold text-indigo-700 mb-2">思辨</h3>
+                <p class="text-sm">居安思危，不沉迷现状</p>
+            </div>
+            <div class="flex-1 p-4 bg-purple-50 rounded-lg">
+                <h3 class="font-bold text-purple-700 mb-2">内省</h3>
+                <p class="text-sm">定期反省，不断改正过失</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 最终总结 -->
+    <div class="bento-item col-span-4 row-span-2 flex flex-col items-center justify-center text-center p-8 gradient-bg">
+        <div class="text-8xl font-black text-indigo-600 mb-6 floating">生</div>
+        <h2 class="text-4xl font-bold mb-4">今日当生</h2>
+        <p class="text-gray-700 text-lg">
+            杀死魔丸属性，完成重生两步，才能真正实现自我重塑，摆脱过去，创造新的命运。
+        </p>
+    </div>
+
+    <!-- 底部签名 -->
+    <div class="bento-item col-span-12 row-span-1 flex items-center justify-center">
+        <div class="text-center">
+            <p class="text-xl text-gray-600">自我重塑是唯一利命的途径</p>
+            <div class="mt-2 h-1 w-24 bg-indigo-500 mx-auto"></div>
+        </div>
+    </div>
+</div>
+
+<div class="scroll-hint text-indigo-600 hidden md:block">
+    <span class="material-icons text-4xl animate-bounce">expand_more</span>
+</div>
+
+<script>
+    // 初始化Framer Motion动画
+    document.addEventListener('DOMContentLoaded', function() {
+        // 创建滚动动画效果
+        const bentoItems = document.querySelectorAll('.bento-item');
+
+        // 设置观察器
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
+                    entry.target.style.opacity = 1;
                     entry.target.style.transform = 'translateY(0)';
-                    
-                    // Animate progress bars
-                    const progressBars = entry.target.querySelectorAll('.progress-fill');
-                    progressBars.forEach(bar => {
-                        const width = bar.getAttribute('data-width');
-                        if (width) {
-                            setTimeout(() => {
-                                bar.style.width = width;
-                            }, 500);
-                        }
-                    });
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        // 修改初始化动画的代码
-        document.querySelectorAll('.bento-item').forEach(item => {
-            // 跳过 conclusion section
-            if(!item.classList.contains('conclusion')) {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(50px)';
-                item.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-                observer.observe(item);
-            }
+        // 为每个bento项目添加初始样式和观察
+        bentoItems.forEach((item, index) => {
+            item.style.opacity = 0;
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            item.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(item);
         });
-        
-        // Floating elements animation
-        document.querySelectorAll('.floating-element').forEach(element => {
-            const randomDelay = Math.random() * 2;
-            const randomDuration = 3 + Math.random() * 2;
-            element.style.animation = `float ${randomDuration}s ${randomDelay}s infinite ease-in-out`;
-        });
-        
-        // Add floating animation keyframes
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes float {
-                0%, 100% { transform: translateY(0px) rotate(0deg); }
-                50% { transform: translateY(-20px) rotate(5deg); }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Auto-trigger animations on load
-        setTimeout(() => {
-            document.querySelectorAll('.bento-item').forEach((item, index) => {
-                if(!item.classList.contains('conclusion')) {
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    }, index * 100);
-                }
-            });
-            
-            // Trigger progress bar animation
-            setTimeout(() => {
-                document.querySelectorAll('.progress-fill').forEach(bar => {
-                    const width = bar.getAttribute('data-width');
-                    if (width) {
-                        bar.style.width = width;
-                    }
-                });
-            }, 1000);
-        }, 500);
-        
-        // Hide scroll indicator after scroll
-        let scrollTimer = null;
-        window.addEventListener('scroll', () => {
-            const indicator = document.querySelector('.scroll-indicator');
-            if (window.pageYOffset > 100) {
-                indicator.style.opacity = '0';
-            }
-        });
-    </script>
+    });
+</script>
 </body>
 </html>

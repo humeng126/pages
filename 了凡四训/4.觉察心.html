@@ -3,418 +3,549 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>觉察心 - 快速稳定情绪的智慧</title>
+    <title>觉察心 - 快速稳定情绪的法门</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.12.16/framer-motion.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6C63FF',
+                        secondary: '#4ECDC4',
+                        accent: '#FF6B6B',
+                        dark: '#2A2A3C',
+                        light: '#F8F9FA'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-        
-        * {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #2A2A3C;
+            overflow-x: hidden;
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .card-shadow {
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
-        .highlight-cyan {
-            background: rgba(6, 182, 212, 0.2);
-            border: 1px solid rgba(6, 182, 212, 0.3);
-        }
-        
-        .highlight-purple {
-            background: rgba(147, 51, 234, 0.2);
-            border: 1px solid rgba(147, 51, 234, 0.3);
-        }
-        
-        .highlight-green {
-            background: rgba(34, 197, 94, 0.2);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-        }
-        
-        .text-stroke {
-            -webkit-text-stroke: 1px rgba(255,255,255,0.3);
-        }
-        
+
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            grid-template-rows: repeat(8, 120px);
-            gap: 20px;
-            height: 100vh;
-            padding: 20px;
+            grid-auto-rows: minmax(200px, auto);
+            gap: 24px;
+            padding: 24px;
+            max-width: 1600px;
+            margin: 0 auto;
         }
-        
+
         .bento-item {
             border-radius: 24px;
-            overflow: hidden;
-            position: relative;
+            padding: 32px;
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
         }
-        
-        .item-1 { grid-column: 1/8; grid-row: 1/4; }
-        .item-2 { grid-column: 8/13; grid-row: 1/3; }
-        .item-3 { grid-column: 8/13; grid-row: 3/5; }
-        .item-4 { grid-column: 1/5; grid-row: 4/6; }
-        .item-5 { grid-column: 5/9; grid-row: 4/6; }
-        .item-6 { grid-column: 9/13; grid-row: 5/7; }
-        .item-7 { grid-column: 1/7; grid-row: 6/8; }
-        .item-8 { grid-column: 7/13; grid-row: 7/9; }
-        
-        .smooth-scroll {
-            scroll-behavior: smooth;
+
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .big-number {
+            font-size: 8rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #6C63FF;
+            opacity: 0.15;
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            z-index: 0;
+        }
+
+        .title-en {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #6C63FF;
+            margin-bottom: 8px;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 200px;
+            width: 100%;
+        }
+
+        .scroll-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 40px;
+        }
+
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 32px;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            position: relative;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #6C63FF;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                padding: 16px;
+            }
+
+            .big-number {
+                font-size: 6rem;
+            }
+
+            .scroll-section {
+                padding: 60px 20px;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 smooth-scroll">
-    <!-- 主标题区域 -->
-    <div class="bento-grid">
-        <!-- 核心概念 -->
-        <div class="bento-item item-1 gradient-bg card-shadow flex flex-col justify-center items-start p-8 text-white">
-            <div class="opacity-30 text-sm font-medium mb-2">AWARENESS MIND</div>
-            <h1 class="text-6xl font-black mb-4 leading-tight">觉察心</h1>
-            <p class="text-xl opacity-90 mb-6">快速稳定情绪的智慧法门</p>
-            <div class="flex items-center space-x-4">
-                <div class="bg-white bg-opacity-20 rounded-full p-3">
-                    <i class="fas fa-yin-yang text-2xl"></i>
-                </div>
-                <div>
-                    <div class="text-sm opacity-70">PHILOSOPHY</div>
-                    <div class="font-semibold">超越思虑，专注当下</div>
-                </div>
-            </div>
+<body class="antialiased">
+<!-- 导航栏 -->
+<nav class="fixed w-full bg-white bg-opacity-90 backdrop-blur-sm z-50 py-4 px-8 shadow-sm">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="text-2xl font-bold text-dark">
+            <span class="text-primary">觉察心</span> · Mindful Awareness
         </div>
-
-        <!-- 三大要点 -->
-        <div class="bento-item item-2 bg-white card-shadow p-6 highlight-cyan">
-            <div class="text-center">
-                <div class="text-8xl font-black text-cyan-600 mb-2">3</div>
-                <div class="text-lg font-bold text-gray-800">CORE ELEMENTS</div>
-                <div class="text-sm text-gray-600 mt-2">觉察心三要点</div>
-            </div>
+        <div class="flex space-x-8">
+            <a href="#intro" class="text-dark hover:text-primary transition">介绍</a>
+            <a href="#definition" class="text-dark hover:text-primary transition">觉察心定义</a>
+            <a href="#methods" class="text-dark hover:text-primary transition">修炼方法</a>
         </div>
+    </div>
+</nav>
 
-        <!-- 清空自己 -->
-        <div class="bento-item item-3 bg-white card-shadow p-6 flex flex-col justify-center">
-            <div class="flex items-center mb-4">
-                <div class="bg-purple-100 rounded-full p-3 mr-4">
-                    <i class="fas fa-mirror text-purple-600 text-xl"></i>
-                </div>
-                <div>
-                    <div class="text-xs text-purple-400 font-medium">ELEMENT 01</div>
-                    <div class="text-lg font-bold text-gray-800">清空自己</div>
-                </div>
-            </div>
-            <p class="text-sm text-gray-600">心如明镜，如实反映各种状况</p>
-        </div>
-
-        <!-- 专注当下 -->
-        <div class="bento-item item-4 bg-white card-shadow p-6 highlight-green">
-            <div class="flex items-center mb-4">
-                <div class="bg-green-100 rounded-full p-3 mr-4">
-                    <i class="fas fa-bullseye text-green-600 text-xl"></i>
-                </div>
-                <div>
-                    <div class="text-xs text-green-400 font-medium">ELEMENT 02</div>
-                    <div class="text-lg font-bold text-gray-800">专注当下</div>
+<!-- 主标题部分 -->
+<section id="intro" class="scroll-section">
+    <div class="max-w-7xl mx-auto w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="fade-in">
+                <div class="title-en">The Art of Emotional Stability</div>
+                <h1 class="text-6xl md:text-8xl font-black leading-tight mb-6">
+                    觉察心<br><span class="text-primary">情绪稳定法门</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-2xl">
+                    以觉察心去追求，在云淡风轻中寻得自己所求。摆脱情绪束缚，掌握贫富、贵贱、生死之命。
+                </p>
+                <div class="flex space-x-4">
+                    <button class="bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-opacity-90 transition">
+                        开始觉察之旅
+                    </button>
+                    <button class="border-2 border-dark px-8 py-4 rounded-full font-bold text-lg hover:bg-dark hover:text-white transition">
+                        了解更多
+                    </button>
                 </div>
             </div>
-            <p class="text-sm text-gray-600">静水流深，摆脱对结果的执念</p>
-        </div>
-
-        <!-- 内心直觉 -->
-        <div class="bento-item item-5 bg-white card-shadow p-6 highlight-purple">
-            <div class="flex items-center mb-4">
-                <div class="bg-purple-100 rounded-full p-3 mr-4">
-                    <i class="fas fa-eye text-purple-600 text-xl"></i>
-                </div>
-                <div>
-                    <div class="text-xs text-purple-400 font-medium">ELEMENT 03</div>
-                    <div class="text-lg font-bold text-gray-800">内心直觉</div>
-                </div>
-            </div>
-            <p class="text-sm text-gray-600">觉醒状态，应付各种状况</p>
-        </div>
-
-        <!-- 三种状态 -->
-        <div class="bento-item item-6 bg-white card-shadow p-6">
-            <div class="text-center mb-4">
-                <div class="text-3xl font-black text-gray-800">三种状态</div>
-                <div class="text-xs text-gray-500 mt-1">THREE STATES</div>
-            </div>
-            <div class="space-y-3">
-                <div class="flex items-center">
-                    <div class="w-3 h-3 bg-yellow-400 rounded-full mr-3"></div>
-                    <span class="text-sm font-medium">贫富觉察</span>
-                </div>
-                <div class="flex items-center">
-                    <div class="w-3 h-3 bg-blue-400 rounded-full mr-3"></div>
-                    <span class="text-sm font-medium">贵贱觉察</span>
-                </div>
-                <div class="flex items-center">
-                    <div class="w-3 h-3 bg-red-400 rounded-full mr-3"></div>
-                    <span class="text-sm font-medium">生死觉察</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 培养方法 -->
-        <div class="bento-item item-7 bg-white card-shadow p-6">
-            <div class="mb-4">
-                <div class="text-2xl font-black text-gray-800 mb-1">培养觉察心</div>
-                <div class="text-xs text-gray-500">CULTIVATION METHODS</div>
-            </div>
-            <div class="grid grid-cols-3 gap-4">
-                <div class="text-center">
-                    <div class="bg-orange-100 rounded-full p-3 mb-2 mx-auto w-12 h-12 flex items-center justify-center">
-                        <i class="fas fa-book text-orange-600"></i>
+            <div class="relative fade-in">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-primary rounded-3xl transform rotate-6"></div>
+                    <div class="relative bg-white rounded-3xl p-8 shadow-2xl">
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="text-xl font-bold">觉察心核心</div>
+                            <div class="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center">
+                                <i class="fas fa-brain text-primary"></i>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mt-1 flex-shrink-0">
+                                    <i class="fas fa-check text-green-600"></i>
+                                </div>
+                                <p class="ml-4">清空自己 · Clear Your Mind</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mt-1 flex-shrink-0">
+                                    <i class="fas fa-check text-green-600"></i>
+                                </div>
+                                <p class="ml-4">专注当下 · Focus on Present</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mt-1 flex-shrink-0">
+                                    <i class="fas fa-check text-green-600"></i>
+                                </div>
+                                <p class="ml-4">内心直觉 · Inner Intuition</p>
+                            </div>
+                        </div>
+                        <div class="mt-8 pt-6 border-t border-gray-100">
+                            <div class="flex">
+                                <div class="flex-1 text-center p-4 hover:bg-gray-50 rounded-lg cursor-pointer">
+                                    <div class="text-3xl font-bold text-primary">贫富</div>
+                                    <div class="text-gray-500">Wealth & Poverty</div>
+                                </div>
+                                <div class="flex-1 text-center p-4 hover:bg-gray-50 rounded-lg cursor-pointer">
+                                    <div class="text-3xl font-bold text-secondary">贵贱</div>
+                                    <div class="text-gray-500">Status & Rank</div>
+                                </div>
+                                <div class="flex-1 text-center p-4 hover:bg-gray-50 rounded-lg cursor-pointer">
+                                    <div class="text-3xl font-bold text-accent">生死</div>
+                                    <div class="text-gray-500">Life & Death</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-xs font-semibold">写功过</div>
                 </div>
-                <div class="text-center">
-                    <div class="bg-blue-100 rounded-full p-3 mb-2 mx-auto w-12 h-12 flex items-center justify-center">
-                        <i class="fas fa-om text-blue-600"></i>
-                    </div>
-                    <div class="text-xs font-semibold">念准提咒</div>
-                </div>
-                <div class="text-center">
-                    <div class="bg-purple-100 rounded-full p-3 mb-2 mx-auto w-12 h-12 flex items-center justify-center">
-                        <i class="fas fa-feather-alt text-purple-600"></i>
-                    </div>
-                    <div class="text-xs font-semibold">写符禄</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 核心理念 -->
-        <div class="bento-item item-8 bg-gradient-to-br from-indigo-500 to-purple-600 card-shadow p-6 text-white flex items-center">
-            <div>
-                <div class="text-xs opacity-70 mb-2">CORE PHILOSOPHY</div>
-                <div class="text-2xl font-bold mb-2">无私无虑</div>
-                <p class="text-sm opacity-90">超越思虑而非无所思虑</p>
-                <p class="text-sm opacity-90">按因果法则努力，不被执念束缚</p>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- 详细内容区域 -->
-    <div class="min-h-screen bg-white py-20">
-        <div class="max-w-6xl mx-auto px-8">
-            <!-- 觉察心详解 -->
-            <section class="mb-20">
-                <div class="text-center mb-12">
-                    <h2 class="text-5xl font-black text-gray-900 mb-4">什么是觉察心？</h2>
-                    <p class="text-xl text-gray-600">WHAT IS AWARENESS MIND</p>
+<!-- 觉察心定义 -->
+<section id="definition" class="py-20 bg-gradient-to-br from-[#f8f9fa] to-[#e9ecef]">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-20 fade-in">
+            <div class="title-en">The Definition</div>
+            <h2 class="text-5xl font-black mb-6">觉察心的三重境界</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                云谷禅师所传授的觉察心，是摆脱情绪束缚，掌握自身命运的关键法门
+            </p>
+        </div>
+
+        <div class="bento-grid">
+            <!-- 清空自己 -->
+            <div class="bento-item gradient-bg col-span-12 md:col-span-4 relative">
+                <div class="big-number">01</div>
+                <div class="relative z-10">
+                    <div class="icon-box bg-primary bg-opacity-10 text-primary">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-3xl font-black mb-4">清空自己 <span class="text-lg font-normal text-gray-500">Clear Your Mind</span></h3>
+                    <p class="text-gray-600">
+                        去除预设观念和立场，抛掉刻板印象。让心像镜子一样如实反映各种状况。如同阳明心学的擦镜子，避免私欲蒙蔽心灵。
+                    </p>
                 </div>
-                
-                <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <div class="bg-gray-50 rounded-3xl p-8">
-                        <div class="mb-6">
-                            <i class="fas fa-quote-left text-3xl text-indigo-400 mb-4"></i>
-                            <p class="text-lg text-gray-700 leading-relaxed">
-                                "凡启天立命，都要从无私无虑处赶革"
-                            </p>
-                            <p class="text-sm text-gray-500 mt-2">—— 云谷禅师</p>
+            </div>
+
+            <!-- 专注当下 -->
+            <div class="bento-item gradient-bg col-span-12 md:col-span-4 relative">
+                <div class="big-number">02</div>
+                <div class="relative z-10">
+                    <div class="icon-box bg-secondary bg-opacity-10 text-secondary">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="text-3xl font-black mb-4">专注当下 <span class="text-lg font-normal text-gray-500">Focus on Present</span></h3>
+                    <p class="text-gray-600">
+                        去掉对结果的执念，专注过程本身。如同金刚经中佛陀显示的云淡风轻，永远在此时此刻感受、实践。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 内心直觉 -->
+            <div class="bento-item gradient-bg col-span-12 md:col-span-4 relative">
+                <div class="big-number">03</div>
+                <div class="relative z-10">
+                    <div class="icon-box bg-accent bg-opacity-10 text-accent">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-3xl font-black mb-4">内心直觉 <span class="text-lg font-normal text-gray-500">Inner Intuition</span></h3>
+                    <p class="text-gray-600">
+                        当心如明镜、静水流深时，内在直觉自然显现。情绪在觉察心面前无处可躲，我们得以从容应对各种状况。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 贫富觉察心 -->
+            <div class="bento-item col-span-12 md:col-span-8 relative">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
+                    <div>
+                        <h3 class="text-3xl font-black mb-4">
+                            <span class="text-primary">贫富觉察心</span>
+                            <span class="text-lg font-normal text-gray-500">Wealth Awareness</span>
+                        </h3>
+                        <p class="text-gray-600 mb-6">
+                            贫困和富裕只是名字，其外在表现分别是物质的短缺和丰盛。当我们察觉到物质的丰盛和短缺不过是外在显现，且万事万物都在不断运动和转化，就能看到贫富命运的本质。
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4">
+                                <i class="fas fa-arrow-right text-primary"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold">贫困 → 看到翻盘机会</div>
+                                <div class="font-bold">富贵 → 看到潜在危机</div>
+                            </div>
                         </div>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <div class="relative">
+                            <div class="absolute inset-0 w-48 h-48 rounded-full border-8 border-primary border-opacity-20 animate-ping"></div>
+                            <div class="w-48 h-48 rounded-full border-8 border-primary flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="text-4xl font-black text-primary">贫富</div>
+                                    <div class="text-gray-500 mt-2">相互转化</div>
+                                    <i class="fas fa-sync-alt text-2xl mt-4 text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 贵贱觉察心 -->
+            <div class="bento-item col-span-12 md:col-span-4 relative">
+                <h3 class="text-3xl font-black mb-4">
+                    <span class="text-secondary">贵贱觉察心</span>
+                    <span class="text-lg font-normal text-gray-500">Status Awareness</span>
+                </h3>
+                <p class="text-gray-600 mb-6">
+                    贵的外在表现是"通"（社会地位顺利），贱的外在表现是"卑"（晋升坎坷）。贵贱也不过是名字，其外在显现都在运动和转化。
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-center p-4 bg-secondary bg-opacity-5 rounded-xl">
+                        <div class="w-8 h-8 rounded-full bg-secondary bg-opacity-20 flex items-center justify-center mr-3">
+                            <i class="fas fa-arrow-up text-secondary"></i>
+                        </div>
+                        <div>贱命 → 寻求转换机会</div>
+                    </div>
+                    <div class="flex items-center p-4 bg-secondary bg-opacity-5 rounded-xl">
+                        <div class="w-8 h-8 rounded-full bg-secondary bg-opacity-20 flex items-center justify-center mr-3">
+                            <i class="fas fa-arrow-down text-secondary"></i>
+                        </div>
+                        <div>贵命 → 躲避潜在灾难</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 生死觉察心 -->
+            <div class="bento-item col-span-12 relative gradient-bg">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="md:col-span-2">
+                        <h3 class="text-3xl font-black mb-4">
+                            <span class="text-accent">生死觉察心</span>
+                            <span class="text-lg font-normal text-gray-500">Life Awareness</span>
+                        </h3>
                         <p class="text-gray-600">
-                            无私无虑的"无"，并不是指没有，而是指超越。不是什么都不想，而是不要有妄念，要超越自己的思虑。
+                            健康、疾病、长寿、短命都是生命的外在表现。它们没有逃出天道规律，始终在运动和互相转化。健康长寿可在胡吃海喝中转变成疾病短命，疾病短命也可在合理休养中转变为健康长寿。
                         </p>
                     </div>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-indigo-100 rounded-full p-3 flex-shrink-0">
-                                <i class="fas fa-lightbulb text-indigo-600"></i>
+                    <div class="flex flex-col justify-center">
+                        <div class="flex items-center justify-center mb-6">
+                            <div class="text-center mx-4">
+                                <div class="w-20 h-20 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-heartbeat text-accent text-2xl"></i>
+                                </div>
+                                <div class="font-bold">健康长寿</div>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900 mb-2">有所求但无妄念</h4>
-                                <p class="text-gray-600 text-sm">按照因果法则去努力，不被追求本身束缚</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-purple-100 rounded-full p-3 flex-shrink-0">
-                                <i class="fas fa-balance-scale text-purple-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900 mb-2">放下执念</h4>
-                                <p class="text-gray-600 text-sm">追求过程中放下对结果的执念和情绪干扰</p>
+                            <i class="fas fa-exchange-alt text-gray-400 text-xl mx-2"></i>
+                            <div class="text-center mx-4">
+                                <div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-procedures text-accent text-2xl"></i>
+                                </div>
+                                <div class="font-bold">疾病短命</div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 三种状态详解 -->
-            <section class="mb-20">
-                <div class="text-center mb-12">
-                    <h2 class="text-5xl font-black text-gray-900 mb-4">三种状态的觉察</h2>
-                    <p class="text-xl text-gray-600">THREE STATES AWARENESS</p>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- 贫富觉察 -->
-                    <div class="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-3xl p-8 text-white">
-                        <div class="mb-6">
-                            <i class="fas fa-coins text-4xl mb-4"></i>
-                            <h3 class="text-2xl font-bold">贫富觉察</h3>
-                            <p class="text-sm opacity-90">WEALTH AWARENESS</p>
-                        </div>
-                        <p class="mb-4">物质的丰盛和短缺只是外在显现，万事万物都在不停运动转化。</p>
-                        <div class="bg-white bg-opacity-20 rounded-xl p-4">
-                            <p class="text-sm">贫困可转化为富贵，富贵也可转化为贫困</p>
-                        </div>
-                    </div>
-                    
-                    <!-- 贵贱觉察 -->
-                    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl p-8 text-white">
-                        <div class="mb-6">
-                            <i class="fas fa-crown text-4xl mb-4"></i>
-                            <h3 class="text-2xl font-bold">贵贱觉察</h3>
-                            <p class="text-sm opacity-90">STATUS AWARENESS</p>
-                        </div>
-                        <p class="mb-4">社会地位的顺利和坎坷都是变化的过程，不是固定不变的。</p>
-                        <div class="bg-white bg-opacity-20 rounded-xl p-4">
-                            <p class="text-sm">贵命时不张扬，贱命时不卑亢</p>
-                        </div>
-                    </div>
-                    
-                    <!-- 生死觉察 -->
-                    <div class="bg-gradient-to-br from-red-500 to-pink-600 rounded-3xl p-8 text-white">
-                        <div class="mb-6">
-                            <i class="fas fa-heart text-4xl mb-4"></i>
-                            <h3 class="text-2xl font-bold">生死觉察</h3>
-                            <p class="text-sm opacity-90">LIFE & DEATH AWARENESS</p>
-                        </div>
-                        <p class="mb-4">健康疾病、长寿短命都遵循天道规律，在运动中互相转化。</p>
-                        <div class="bg-white bg-opacity-20 rounded-xl p-4">
-                            <p class="text-sm">专注身体本身，不被恐惧掌控</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 培养方法详解 -->
-            <section>
-                <div class="text-center mb-12">
-                    <h2 class="text-5xl font-black text-gray-900 mb-4">如何培养觉察心</h2>
-                    <p class="text-xl text-gray-600">CULTIVATION METHODS</p>
-                </div>
-                
-                <div class="space-y-12">
-                    <!-- 方法一 -->
-                    <div class="flex items-center space-x-8">
-                        <div class="bg-orange-100 rounded-3xl p-8 flex-shrink-0">
-                            <i class="fas fa-book text-5xl text-orange-600"></i>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4">1</div>
-                                <h3 class="text-2xl font-bold text-gray-900">每天写功过</h3>
-                            </div>
-                            <p class="text-gray-600 mb-4">记录每天的言行，做了好事要坚持，做了不好的事要改正。通过自省和克己来督促自己。</p>
-                            <div class="bg-gray-50 rounded-xl p-4">
-                                <p class="text-sm text-gray-600">袁了凡准备制新篇簿子，每天记录善行与过错，晚上向天禀报。</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 方法二 -->
-                    <div class="flex items-center space-x-8">
-                        <div class="bg-blue-100 rounded-3xl p-8 flex-shrink-0">
-                            <i class="fas fa-om text-5xl text-blue-600"></i>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4">2</div>
-                                <h3 class="text-2xl font-bold text-gray-900">念准提咒</h3>
-                            </div>
-                            <p class="text-gray-600 mb-4">准提是清净的意思，念诵目的是静心。不能有杂念，坚持念到烂熟于心。</p>
-                            <div class="bg-gray-50 rounded-xl p-4">
-                                <p class="text-sm text-gray-600">念到好像并没有刻意持咒，同时能做其他事情的状态。</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 方法三 -->
-                    <div class="flex items-center space-x-8">
-                        <div class="bg-purple-100 rounded-3xl p-8 flex-shrink-0">
-                            <i class="fas fa-feather-alt text-5xl text-purple-600"></i>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4">3</div>
-                                <h3 class="text-2xl font-bold text-gray-900">写符禄</h3>
-                            </div>
-                            <p class="text-gray-600 mb-4">道教法术，心里没有杂念，把杂七杂八的牵挂全部放下，处于无我两忘的境界。</p>
-                            <div class="bg-gray-50 rounded-xl p-4">
-                                <p class="text-sm text-gray-600">一点胡思乱想都不要有，放开去写，毫无顾虑。</p>
+                        <div class="text-center">
+                            <div class="inline-block bg-accent text-white px-6 py-2 rounded-full font-bold">
+                                合理休养 · 转化命运
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
     </div>
+</section>
 
-    <script>
-        // 滚动动画效果
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+<!-- 培养觉察心的方法 -->
+<section id="methods" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-20 fade-in">
+            <div class="title-en">Cultivation Methods</div>
+            <h2 class="text-5xl font-black mb-6">培养觉察心的方法</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                云谷禅师传授袁了凡的三种修炼觉察心的法门
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <!-- 方法一 -->
+            <div class="fade-in">
+                <div class="bg-gradient-to-br from-[#6C63FF] to-[#4ECDC4] p-1 rounded-2xl h-full">
+                    <div class="bg-white rounded-2xl p-8 h-full">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mx-auto">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="text-3xl font-black text-center mb-4">功过簿 <span class="text-lg font-normal text-gray-500">Merit-Demerit Record</span></h3>
+                        <p class="text-gray-600 mb-6 text-center">
+                            记录每日所做之事，好事坚持，坏事改正。源自儒家修身之道：自省与克己。
+                        </p>
+                        <div class="flex items-center mb-4">
+                            <div class="w-8 h-8 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4">
+                                <i class="fas fa-quote-left text-primary text-sm"></i>
+                            </div>
+                            <div class="italic text-gray-500">
+                                "吾日三省吾身" —— 曾子
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 方法二 -->
+            <div class="fade-in">
+                <div class="bg-gradient-to-br from-[#4ECDC4] to-[#FF6B6B] p-1 rounded-2xl h-full">
+                    <div class="bg-white rounded-2xl p-8 h-full">
+                        <div class="icon-box bg-secondary bg-opacity-10 text-secondary mx-auto">
+                            <i class="fas fa-praying-hands"></i>
+                        </div>
+                        <h3 class="text-3xl font-black text-center mb-4">念准提咒 <span class="text-lg font-normal text-gray-500">Chanting Mantra</span></h3>
+                        <p class="text-gray-600 mb-6 text-center">
+                            念诵时不能有杂念，坚持念诵直到不起妄念的状态。准提即"清净"之意。
+                        </p>
+                        <div class="text-center mt-8">
+                            <div class="inline-block bg-secondary bg-opacity-10 px-6 py-3 rounded-full">
+                                <div class="text-xl font-bold text-secondary">唵 折隶 主隶 准提 梭哈</div>
+                                <div class="text-gray-500 text-sm">Om Cale Cule Cunde Svaha</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 方法三 -->
+            <div class="fade-in">
+                <div class="bg-gradient-to-br from-[#FF6B6B] to-[#6C63FF] p-1 rounded-2xl h-full">
+                    <div class="bg-white rounded-2xl p-8 h-full">
+                        <div class="icon-box bg-accent bg-opacity-10 text-accent mx-auto">
+                            <i class="fas fa-pen-fancy"></i>
+                        </div>
+                        <h3 class="text-3xl font-black text-center mb-4">写符箓 <span class="text-lg font-normal text-gray-500">Drawing Talisman</span></h3>
+                        <p class="text-gray-600 mb-6 text-center">
+                            写符箓时要放下一切杂念，达到无我两忘的境界，一笔挥就毫无顾虑。
+                        </p>
+                        <div class="flex items-center mb-4 justify-center">
+                            <div class="w-8 h-8 rounded-full bg-accent bg-opacity-10 flex items-center justify-center mr-4">
+                                <i class="fas fa-seedling text-accent"></i>
+                            </div>
+                            <div class="text-gray-500">
+                                道教修炼心法
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-20 bg-gradient-to-r from-primary to-secondary rounded-3xl p-8 text-white max-w-4xl mx-auto fade-in">
+            <div class="text-center">
+                <div class="title-en text-white text-opacity-70">Important Note</div>
+                <h3 class="text-3xl font-black mb-6">心法本质：超越形式，专注本心</h3>
+                <p class="text-xl mb-6">
+                    三种方法只是立命系统的手段，目的是培养觉察心。千万不能认为只要写功过簿、念咒、写符箓就能求得所求，否则会陷入迷信而迷失自我。
+                </p>
+                <div class="inline-block bg-white text-primary px-6 py-3 rounded-full font-bold">
+                    觉察心 · 是法门而非迷信
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 结语 -->
+<section class="py-20 bg-dark text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <div class="title-en text-primary">Conclusion</div>
+        <h2 class="text-5xl font-black mb-8">在云淡风轻中寻得自己所求</h2>
+        <p class="text-xl text-gray-300 mb-10">
+            追求富贵时，不聚焦穷富贵贱的外在表象；活在当下时，弱化健康疾病的分别心。<br>
+            松弛地活在当下，让每个当下都跃动在生命的旋律中，收获心性上的圆满与喜悦。
+        </p>
+        <div class="inline-block bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-opacity-90 transition cursor-pointer">
+            开始觉察心修炼
+        </div>
+        <div class="mt-16 pt-16 border-t border-gray-700 text-gray-500">
+            <div class="flex justify-center space-x-8">
+                <a href="#" class="hover:text-white transition"><i class="fab fa-weixin text-2xl"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fab fa-weibo text-2xl"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fab fa-youtube text-2xl"></i></a>
+            </div>
+            <div class="mt-6">了凡思讯 · 第四期觉察心解析</div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // 滚动动画效果
+    document.addEventListener('DOMContentLoaded', function() {
+        const fadeElements = document.querySelectorAll('.fade-in');
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                } else {
-                    entry.target.style.opacity = '0.3';
-                    entry.target.style.transform = 'translateY(20px)';
+                    entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
-
-        // 为所有 bento 项目添加观察
-        document.querySelectorAll('.bento-item').forEach(item => {
-            item.style.transition = 'all 0.6s ease-out';
-            observer.observe(item);
+        }, {
+            threshold: 0.1
         });
 
-        // 为内容区域添加滚动动画
-        document.querySelectorAll('section').forEach(section => {
-            section.style.transition = 'all 0.8s ease-out';
-            section.style.opacity = '0.5';
-            section.style.transform = 'translateY(30px)';
-            observer.observe(section);
+        fadeElements.forEach(el => {
+            observer.observe(el);
         });
 
-        // 鼠标悬停效果
-        document.querySelectorAll('.bento-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.02) translateY(-5px)';
-                this.style.transition = 'all 0.3s ease-out';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1) translateY(0)';
-            });
-        });
+        // 导航栏滚动效果
+        const navLinks = document.querySelectorAll('nav a');
 
-        // 平滑滚动到内容区域
-        setTimeout(() => {
-            document.querySelectorAll('.bento-item')[0].addEventListener('click', () => {
-                document.querySelector('.min-h-screen').scrollIntoView({
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
                     behavior: 'smooth'
                 });
             });
-        }, 1000);
-    </script>
+        });
+    });
+</script>
 </body>
 </html>
