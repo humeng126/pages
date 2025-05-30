@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>因果定律与人生思辨</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .bento-card {
+            border-radius: 24px;
+            transition: all 0.4s ease;
+        }
+        
+        .bento-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .highlight-text {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .accent-orange {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        }
+        
+        .accent-blue {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .accent-purple {
+            background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Hero Section -->
+    <section class="min-h-screen gradient-bg flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="floating-element absolute top-20 left-20 w-32 h-32 accent-orange rounded-full"></div>
+            <div class="floating-element absolute bottom-20 right-20 w-24 h-24 accent-blue rounded-full" style="animation-delay: -2s;"></div>
+            <div class="floating-element absolute top-1/2 left-10 w-16 h-16 accent-purple rounded-full" style="animation-delay: -4s;"></div>
+        </div>
+        
+        <div class="text-center text-white z-10 px-4">
+            <div class="scroll-reveal">
+                <h1 class="text-8xl md:text-9xl font-black mb-4 text-shadow">因果</h1>
+                <p class="text-xl md:text-2xl font-light tracking-wider opacity-80">KARMA & CAUSALITY</p>
+            </div>
+            <div class="scroll-reveal" style="animation-delay: 0.3s;">
+                <p class="text-lg md:text-xl mt-8 max-w-2xl mx-auto leading-relaxed opacity-90">
+                    善有善报，恶有恶报，不是不报，时候未到
+                </p>
+                <p class="text-sm md:text-base mt-2 opacity-70">From Ancient Wisdom to Modern Understanding</p>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-white text-2xl opacity-70"></i>
+        </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <section class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-auto">
+            
+            <!-- Large Card: 因果定律核心 -->
+            <div class="md:col-span-2 lg:col-span-2 bento-card bg-white p-8 shadow-lg scroll-reveal">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 accent-orange rounded-full flex items-center justify-center mr-4">
+                        <i class="fas fa-infinity text-white text-xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold">因果定律</h2>
+                </div>
+                <div class="text-6xl font-black highlight-text mb-4">CAUSALITY</div>
+                <p class="text-lg leading-relaxed text-gray-600 mb-4">
+                    世界上的各种事情既不是偶然的，也不是杂乱无序的，而是存在着因果联系的。
+                </p>
+                <div class="bg-gray-50 p-4 rounded-xl">
+                    <p class="font-semibold text-purple-600">种瓜得瓜，种豆得豆</p>
+                    <p class="text-sm text-gray-500 mt-1">What you sow, so shall you reap</p>
+                </div>
+            </div>
+
+            <!-- 统计卡片 -->
+            <div class="bento-card bg-gradient-to-br from-purple-100 to-pink-100 p-6 scroll-reveal">
+                <div class="text-center">
+                    <div class="text-5xl font-black text-purple-600 mb-2">3</div>
+                    <p class="text-sm font-semibold">业力分类</p>
+                    <p class="text-xs text-gray-500 mt-1">身业·口业·意业</p>
+                </div>
+            </div>
+
+            <!-- 佛教起源 -->
+            <div class="bento-card bg-gradient-to-br from-orange-100 to-red-100 p-6 scroll-reveal">
+                <i class="fas fa-temple text-orange-500 text-2xl mb-3"></i>
+                <h3 class="font-bold text-lg mb-2">佛教起源</h3>
+                <p class="text-sm text-gray-600">《佛说业报差别经》</p>
+                <p class="text-xs text-gray-500 mt-1">Ancient Buddhist Scripture</p>
+            </div>
+
+            <!-- 袁了凡思想 -->
+            <div class="md:col-span-2 bento-card bg-white p-6 shadow-lg scroll-reveal">
+                <h3 class="text-2xl font-bold mb-4">袁了凡的因果人生</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                            <span class="text-white text-sm font-bold">1</span>
+                        </div>
+                        <p class="text-sm">命运预测 → 被动接受</p>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3">
+                            <span class="text-white text-sm font-bold">2</span>
+                        </div>
+                        <p class="text-sm">云谷点化 → 主动思考</p>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mr-3">
+                            <span class="text-white text-sm font-bold">3</span>
+                        </div>
+                        <p class="text-sm">自我反省 → 改变命运</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 达摩四行 -->
+            <div class="lg:col-span-2 bento-card bg-gradient-to-br from-indigo-100 to-purple-100 p-6 scroll-reveal">
+                <h3 class="text-xl font-bold mb-4">达摩四行</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-heart text-white"></i>
+                        </div>
+                        <p class="font-semibold text-sm">报冤行</p>
+                        <p class="text-xs text-gray-500">Accept Karma</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-leaf text-white"></i>
+                        </div>
+                        <p class="font-semibold text-sm">随缘行</p>
+                        <p class="text-xs text-gray-500">Follow Fate</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-meditation text-white"></i>
+                        </div>
+                        <p class="font-semibold text-sm">无所求行</p>
+                        <p class="text-xs text-gray-500">Seek Nothing</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-balance-scale text-white"></i>
+                        </div>
+                        <p class="font-semibold text-sm">称法行</p>
+                        <p class="text-xs text-gray-500">Act Righteously</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 电影启示 -->
+            <div class="bento-card bg-gradient-to-br from-gray-100 to-blue-100 p-6 scroll-reveal">
+                <i class="fas fa-film text-blue-500 text-2xl mb-3"></i>
+                <h3 class="font-bold text-lg mb-2">肖申克的救赎</h3>
+                <p class="text-sm text-gray-600 mb-2">安迪的自我救赎</p>
+                <blockquote class="text-xs italic text-gray-500">
+                    "要么忙着死，要么忙着活"
+                </blockquote>
+                <p class="text-xs text-gray-400 mt-1">Hope or Despair</p>
+            </div>
+
+            <!-- 核心理念 -->
+            <div class="md:col-span-3 lg:col-span-4 bento-card bg-gradient-to-r from-purple-600 to-blue-600 p-8 text-white scroll-reveal">
+                <div class="text-center">
+                    <h2 class="text-4xl font-black mb-4">因上努力，果上随缘</h2>
+                    <p class="text-lg opacity-90 mb-6">Focus on Causes, Accept Results</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                        <div class="glass-effect p-6 rounded-xl">
+                            <h3 class="text-xl font-bold mb-3">因上努力</h3>
+                            <p class="text-sm opacity-80">把努力的重点放在造成各种结果的原因上，专注于可控的行动和选择</p>
+                        </div>
+                        <div class="glass-effect p-6 rounded-xl">
+                            <h3 class="text-xl font-bold mb-3">果上随缘</h3>
+                            <p class="text-sm opacity-80">对于既成事实的结果要随缘，以平和的心态接受不可控的结果</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 业力图表 -->
+            <div class="md:col-span-2 bento-card bg-white p-6 shadow-lg scroll-reveal">
+                <h3 class="text-xl font-bold mb-4">业力分类体系</h3>
+                <canvas id="karmaChart" width="400" height="200"></canvas>
+            </div>
+
+            <!-- 实践指南 -->
+            <div class="md:col-span-1 lg:col-span-2 bento-card bg-gradient-to-br from-green-100 to-blue-100 p-6 scroll-reveal">
+                <h3 class="text-xl font-bold mb-4">现代实践</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        <span class="text-sm">承担责任，从自身找原因</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        <span class="text-sm">专注过程，不执着结果</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        <span class="text-sm">持续行善，积累福德</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        <span class="text-sm">保持初心，知行合一</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-4xl mx-auto text-center px-4">
+            <h3 class="text-2xl font-bold mb-4">因果定律的智慧</h3>
+            <p class="text-gray-300 mb-6">一切都是有原因的，而这个原因一定与我们自身相关</p>
+            <div class="flex justify-center space-x-6">
+                <i class="fas fa-yin-yang text-3xl text-purple-400"></i>
+                <i class="fas fa-infinity text-3xl text-blue-400"></i>
+                <i class="fas fa-leaf text-3xl text-green-400"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 业力图表
+        const ctx = document.getElementById('karmaChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['善业', '恶业', '无记业'],
+                datasets: [{
+                    data: [40, 25, 35],
+                    backgroundColor: [
+                        'rgba(34, 197, 94, 0.8)',
+                        'rgba(239, 68, 68, 0.8)',
+                        'rgba(156, 163, 175, 0.8)'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: 'Noto Sans SC',
+                                size: 12
+                            },
+                            padding: 20
+                        }
+                    }
+                }
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 初始化动画
+        setTimeout(() => {
+            document.querySelectorAll('.scroll-reveal').forEach((el, index) => {
+                setTimeout(() => {
+                    if (el.getBoundingClientRect().top < window.innerHeight) {
+                        el.classList.add('revealed');
+                    }
+                }, index * 100);
+            });
+        }, 500);
+    </script>
+</body>
+</html>
