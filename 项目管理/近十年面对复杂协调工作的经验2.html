@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复杂项目协调的艺术</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Framer Motion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.12.16/framer-motion.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #334155;
+            overflow-x: hidden;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .bento-card {
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlight-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .big-number {
+            font-size: 12rem;
+            font-weight: 800;
+            line-height: 0.8;
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(51, 65, 85, 0.1);
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            z-index: 0;
+        }
+
+        .title-cn {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .title-en {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        .accent-1 { background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(99, 102, 241, 0) 100%); }
+        .accent-2 { background: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(236, 72, 153, 0) 100%); }
+        .accent-3 { background: linear-gradient(135deg, rgba(14, 165, 233, 0.15) 0%, rgba(14, 165, 233, 0) 100%); }
+        .accent-4 { background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0) 100%); }
+        .accent-5 { background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0) 100%); }
+
+        .diagram {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .stakeholder-map {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .center-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: #6366f1;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .satellite {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #334155;
+            font-weight: 600;
+            font-size: 0.8rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .satellite:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .v1-v2-diagram {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .runway {
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #94a3b8, #cbd5e1);
+            border-radius: 5px;
+            position: relative;
+            margin: 60px 0;
+        }
+
+        .v1-marker, .v2-marker {
+            position: absolute;
+            top: -40px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .v1-marker { left: 30%; }
+        .v2-marker { left: 70%; }
+
+        .plane {
+            position: absolute;
+            top: -30px;
+            left: 0;
+            font-size: 2rem;
+            transition: transform 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .scroll-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 8px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            border-radius: 4px;
+        }
+
+        .section-content {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            max-width: 800px;
+        }
+
+        .quote {
+            font-size: 1.8rem;
+            font-weight: 600;
+            line-height: 1.5;
+            padding: 40px;
+            border-left: 8px solid #6366f1;
+            background: rgba(99, 102, 241, 0.05);
+            border-radius: 0 20px 20px 0;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            margin: 25px 0;
+        }
+
+        .key-point-icon {
+            font-size: 1.5rem;
+            color: #6366f1;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .key-point-text {
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        /* Animation classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+<!-- 标题部分 -->
+<section class="scroll-section">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="section-title animate-on-scroll">复杂项目协调的艺术</h1>
+        <div class="section-content animate-on-scroll">
+            <p class="mb-8">在当今复杂多变的商业环境中，成功管理项目不仅需要技术能力，更需要人际智慧与战略思维。真正的优势来自于接纳——接纳新事物、新观点、新方法的能力越强，混合产生的能量就越大。</p>
+
+            <div class="quote animate-on-scroll">
+                一个人真正的优势是什么？就是接纳。他接纳的新东西越多，混合出来的那个能量就越大。
+            </div>
+
+            <div class="key-point animate-on-scroll">
+                <div class="key-point-icon"><i class="fas fa-lightbulb"></i></div>
+                <div class="key-point-text">
+                    本指南将分享复杂协调工作的核心原则，帮助你在项目管理中游刃有余，在生活应对中从容不迫。
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bento Grid 内容部分 -->
+<div class="bento-grid">
+    <!-- 卡片1：接纳 -->
+    <div class="bento-card" style="grid-column: span 8; grid-row: span 2;">
+        <div class="highlight-bg accent-1"></div>
+        <span class="big-number">1</span>
+        <h2 class="title-cn">接纳的力量</h2>
+        <p class="title-en">The Power of Acceptance</p>
+        <div class="content">
+            <p>真正的优势来自于接纳能力。接纳的新事物越多，混合产生的能量就越大。开放心态让项目经理能够：</p>
+            <ul class="mt-4 space-y-3">
+                <li><i class="fas fa-check-circle text-indigo-500 mr-2"></i>整合多元观点形成创新方案</li>
+                <li><i class="fas fa-check-circle text-indigo-500 mr-2"></i>适应项目过程中的突发变化</li>
+                <li><i class="fas fa-check-circle text-indigo-500 mr-2"></i>建立更广泛的支持者网络</li>
+                <li><i class="fas fa-check-circle text-indigo-500 mr-2"></i>将挑战转化为成长机会</li>
+            </ul>
+            <p class="mt-6 font-semibold">越封闭，内在力量越弱；越开放，混合能量越强。</p>
+        </div>
+    </div>
+
+    <!-- 卡片2：干系人 -->
+    <div class="bento-card" style="grid-column: span 4; grid-row: span 2;">
+        <div class="highlight-bg accent-2"></div>
+        <span class="big-number">2</span>
+        <h2 class="title-cn">干系人网络</h2>
+        <p class="title-en">Stakeholder Network</p>
+        <div class="content">
+            <p>复杂项目中，不要死磕一条线。人是变化的，人是关系动物。</p>
+            <p class="mt-4">决策者固然重要，但中间人——替你游说的人同样关键。梳理整个项目过程中的干系人：</p>
+            <ul class="mt-4 space-y-3">
+                <li><i class="fas fa-user-tie text-pink-500 mr-2"></i>决策者 - 最终拍板人</li>
+                <li><i class="fas fa-users text-pink-500 mr-2"></i>影响者 - 专家顾问</li>
+                <li><i class="fas fa-user-shield text-pink-500 mr-2"></i>守门人 - 秘书/助理</li>
+                <li><i class="fas fa-hands-helping text-pink-500 mr-2"></i>执行者 - 落地团队</li>
+            </ul>
+            <p class="mt-4 italic">"我跟所有决策者的秘书关系都非常好。谁都薅不住老板的时间，就我能薅住。"</p>
+        </div>
+    </div>
+
+    <!-- 卡片3：干系人图示 -->
+    <div class="bento-card" style="grid-column: span 4; grid-row: span 2;">
+        <div class="highlight-bg accent-3"></div>
+        <h2 class="title-cn">要辨析干系人，不要死磕一条线-干系人图谱</h2>
+        <p class="title-en">Mapping Connections</p>
+        <div class="diagram">
+            <div class="stakeholder-map">
+                <div class="center-circle">决策者</div>
+                <div class="satellite" style="top: 20%; left: 20%;">秘书</div>
+                <div class="satellite" style="top: 20%; left: 70%;">技术专家</div>
+                <div class="satellite" style="top: 70%; left: 20%;">财务</div>
+                <div class="satellite" style="top: 70%; left: 70%;">执行团队</div>
+                <div class="satellite" style="top: 45%; left: 5%;">法律顾问</div>
+                <div class="satellite" style="top: 45%; left: 85%;">合作伙伴</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 卡片4：抬轮速度 -->
+    <div class="bento-card" style="grid-column: span 8; grid-row: span 2;">
+        <div class="highlight-bg accent-4"></div>
+        <span class="big-number">3</span>
+        <h2 class="title-cn">要追抬轮速度，不要搞匀速前进-抬轮速度</h2>
+        <p class="title-en">V1 Rotation Speed</p>
+        <div class="content">
+            <p>项目成功需要追求抬轮速度，而非匀速前进：</p>
+
+            <div class="v1-v2-diagram">
+                <div class="runway">
+                    <div class="v1-marker">V1 抬轮速度</div>
+                    <div class="v2-marker">V2 安全速度</div>
+                    <div class="plane">✈️</div>
+                </div>
+            </div>
+
+            <ul class="space-y-3">
+                <li><i class="fas fa-running text-amber-500 mr-2"></i><strong>V1 抬轮速度</strong>：必须灌注足够资源（人力、条件）使项目起飞</li>
+                <li><i class="fas fa-plane-departure text-amber-500 mr-2"></i><strong>V2 安全速度</strong>：轮已抬起，剩余跑道不能停下，必须起飞</li>
+            </ul>
+
+            <p class="mt-6 font-semibold">"做项目的起点叫千斤搏四两——用全部力量换最小化启动。以小博大的想法是项目失败的根源。"</p>
+        </div>
+    </div>
+
+    <!-- 卡片5：卷入法 -->
+    <div class="bento-card" style="grid-column: span 6; grid-row: span 2;">
+        <div class="highlight-bg accent-5"></div>
+        <span class="big-number">4</span>
+        <h2 class="title-cn">要用卷入法，不要用推拉法-卷入法 vs 推拉法</h2>
+        <p class="title-en">Engagement Method</p>
+        <div class="content">
+            <p class="font-bold text-lg mb-3">推拉法（无效）</p>
+            <ul class="mb-6 space-y-2">
+                <li><i class="fas fa-times-circle text-red-400 mr-2"></i>"这事儿可重要了，你必须参与"</li>
+                <li><i class="fas fa-times-circle text-red-400 mr-2"></i>"我实力不够，你帮帮我"</li>
+                <li><i class="fas fa-times-circle text-red-400 mr-2"></i>"5月18号你有空吗？方案还没写呢..."</li>
+            </ul>
+
+            <p class="font-bold text-lg mb-3">卷入法（有效）</p>
+            <ul class="space-y-2">
+                <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i>"我已准备好方案，想邀请您参与..."</li>
+                <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i>"这个项目已获得多方支持，希望您加入..."</li>
+                <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i>"基于您的专长，我们特别设计了..."</li>
+            </ul>
+
+            <p class="mt-6">"卷入法像龙卷风——先形成自己的势能，然后卷起更多资源，越卷越大。"</p>
+        </div>
+    </div>
+
+    <!-- 卡片6：灵活执行 -->
+    <div class="bento-card" style="grid-column: span 6; grid-row: span 2;">
+        <div class="highlight-bg accent-1"></div>
+        <h2 class="title-cn">要锁死目标，不要锁死计划-灵活执行</h2>
+        <p class="title-en">Flexible Execution</p>
+        <div class="content">
+            <p>项目执行中避免强控制欲：</p>
+
+            <div class="flex items-start mt-6">
+                <div class="text-4xl mr-4 text-indigo-500">✘</div>
+                <div>
+                    <p class="font-semibold">强控制型</p>
+                    <p>"必须按我的2万字方案一步步执行！"</p>
+                    <p class="mt-2 text-sm text-slate-500">过程任何偏差就对人世失望</p>
+                </div>
+            </div>
+
+            <div class="flex items-start mt-8">
+                <div class="text-4xl mr-4 text-emerald-500">✓</div>
+                <div>
+                    <p class="font-semibold">灵活适应型</p>
+                    <p>"从北京到上海，飞机晚点？换高铁！高铁不行？开车！飞济南再转高铁！"</p>
+                    <p class="mt-2 text-sm text-slate-500">目标不变，路径灵活调整</p>
+                </div>
+            </div>
+
+            <p class="mt-8 italic">"到处都是原则的人，只能说明一件事：一点目标感都没有。原则超过三个就是固执。"</p>
+        </div>
+    </div>
+
+    <!-- 卡片7：总结 -->
+    <div class="bento-card" style="grid-column: span 12; grid-row: span 1;">
+        <div class="highlight-bg" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0) 100%);"></div>
+        <div class="flex items-center h-full">
+            <div class="text-5xl mr-6 text-indigo-600"><i class="fas fa-brain"></i></div>
+            <div>
+                <h2 class="title-cn">核心原则总结</h2>
+                <p class="content">每做一个复杂项目，打开自己一次：让他人的力量、智慧和经验涌入你的世界。接纳复杂性，消化复杂性，最终将复杂性转化为自己的能量。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 结语部分 -->
+<section class="scroll-section bg-gradient-to-br from-indigo-50 to-purple-50">
+    <div class="max-w-4xl mx-auto text-center">
+        <h2 class="section-title animate-on-scroll">接纳复杂，转化能量</h2>
+        <div class="section-content animate-on-scroll">
+            <p class="mb-8">项目管理能力与生活应对能力本质相通：</p>
+
+            <div class="bg-white rounded-2xl p-8 shadow-lg mb-10">
+                <div class="text-5xl text-indigo-600 mb-4"><i class="fas fa-sync-alt"></i></div>
+                <p class="text-2xl font-semibold mb-4">项目思维 &harr; 生活智慧</p>
+                <p>当你在工作中成为优秀的项目经理，在生活中也能应对复杂的挑战。接纳与适应，让你在工作和生活中都能游刃有余。</p>
+            </div>
+
+            <div class="quote text-center">
+                "五年迭代一次，不断适应和接受世界的复杂性，将其转化为自己的能量。"
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="footer">
+    <p>复杂项目协调的艺术 | 接纳 · 干系人 · 速度 · 卷入 · 灵活</p>
+    <p class="mt-2">基于项目管理实践与经验总结</p>
+</div>
+
+<script>
+    // 滚动动画效果
+    document.addEventListener('DOMContentLoaded', function() {
+        // 观察所有需要动画的元素
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // 为所有需要动画的元素添加观察
+        document.querySelectorAll('.animate-on-scroll').forEach(element => {
+            observer.observe(element);
+        });
+
+        // 飞机动画
+        const plane = document.querySelector('.plane');
+        setTimeout(() => {
+            plane.style.transform = 'translateX(1000px) rotate(15deg)';
+        }, 500);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技术答辩五大要点 | 高效展示技巧</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            100: '#e0f2ff',
+                            200: '#bae6ff',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                        },
+                        secondary: {
+                            100: '#f0fdfa',
+                            200: '#ccfbf1',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                        },
+                        accent: {
+                            100: '#f5f3ff',
+                            200: '#ede9fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .gradient-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(224, 242, 255, 0.2) 0%, rgba(255, 255, 255, 0) 30%),
+                        radial-gradient(circle at 90% 80%, rgba(240, 253, 250, 0.2) 0%, rgba(255, 255, 255, 0) 30%);
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 1.5rem;
+            height: 85vh;
+        }
+        
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .highlight-bar {
+            position: absolute;
+            height: 100%;
+            width: 6px;
+            left: 0;
+            top: 0;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 200px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 gradient-bg min-h-screen">
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm py-4 px-6 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-lg bg-primary-500 flex items-center justify-center">
+                    <i class="fas fa-chart-line text-white text-xl"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">TechDefense</span>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="text-gray-600 hover:text-primary-500 font-medium">Home</a>
+                <a href="#" class="text-gray-600 hover:text-primary-500 font-medium">Guide</a>
+                <a href="#" class="text-gray-600 hover:text-primary-500 font-medium">Examples</a>
+                <a href="#" class="text-gray-600 hover:text-primary-500 font-medium">Resources</a>
+            </div>
+            <button class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg font-medium transition duration-300">
+                Get Started
+            </button>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="pt-24 pb-16 px-4 max-w-7xl mx-auto">
+        <!-- 标题区 -->
+        <section class="text-center mb-20">
+            <div class="inline-block bg-primary-100 text-primary-600 px-4 py-1 rounded-full mb-4">
+                <span class="font-medium">Technical Defense Guide</span>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                技术答辩五大核心要点
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+                工作做了八分却讲成五分的现象比比皆是，掌握这些技巧让您的成果得到充分展示
+            </p>
+            <div class="flex justify-center">
+                <div class="relative w-full max-w-4xl h-64 rounded-2xl overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-400 opacity-20"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="text-center px-8">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-3">提升技术答辩通过率</h2>
+                            <p class="text-gray-600 max-w-2xl">资深评委总结的实用技巧，帮助您在30分钟内清晰展示工作价值</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-primary-400 opacity-20"></div>
+                    <div class="absolute -top-6 -left-6 w-40 h-40 rounded-full bg-secondary-400 opacity-20"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 要点展示区 -->
+        <section class="mb-28">
+            <div class="bento-grid">
+                <!-- 要点1 -->
+                <div class="tech-badge rounded-2xl p-6 col-span-2 row-span-2 relative overflow-hidden">
+                    <div class="highlight-bar bg-primary-400"></div>
+                    <div class="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-primary-100"></div>
+                    <div class="relative z-10">
+                        <div class="text-8xl font-bold text-primary-400 opacity-20 mb-2">01</div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">材料准备与讲解技巧</h2>
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-file-alt text-primary-500"></i>
+                            </div>
+                            <h3 class="font-medium text-gray-700">Preparation & Presentation</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">
+                            材料准备充分但讲解要<strong class="text-primary-500">重点突出</strong>，避免逐句念材料。评委自己会看材料，只需讲重点即可。
+                        </p>
+                        <div class="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="font-medium text-gray-700">准备讲解版逐字稿</div>
+                                <div class="flex">
+                                    <div class="w-3 h-3 rounded-full bg-green-400 mr-1"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-400 mr-1"></div>
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                </div>
+                            </div>
+                            <div class="text-sm text-gray-500">
+                                <i class="fas fa-lightbulb text-yellow-400 mr-2"></i>
+                                建议在重点场合前准备专用讲解稿，突出核心内容
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 要点2 -->
+                <div class="tech-badge rounded-2xl p-6 row-span-2 relative overflow-hidden">
+                    <div class="highlight-bar bg-secondary-400"></div>
+                    <div class="absolute -left-6 -bottom-6 w-32 h-32 rounded-full bg-secondary-100"></div>
+                    <div class="relative z-10">
+                        <div class="text-8xl font-bold text-secondary-400 opacity-20 mb-2">02</div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">系统定位与大局观</h2>
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 rounded-full bg-secondary-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-sitemap text-secondary-500"></i>
+                            </div>
+                            <h3 class="font-medium text-gray-700">System Positioning</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">
+                            首先说明工作在整个系统中的位置，上下游关系，展现<strong class="text-secondary-500">技术大局观</strong>。
+                        </p>
+                        <div class="relative mt-8">
+                            <div class="flex justify-between text-sm text-gray-500 mb-2">
+                                <span>上游系统</span>
+                                <span>当前模块</span>
+                                <span>下游系统</span>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <div class="h-2 w-16 bg-gray-300 rounded-full"></div>
+                                <div class="w-10 h-10 rounded-full bg-secondary-400 flex items-center justify-center mx-2">
+                                    <i class="fas fa-microchip text-white"></i>
+                                </div>
+                                <div class="h-2 w-16 bg-gray-300 rounded-full"></div>
+                            </div>
+                            <div class="flex justify-between mt-8">
+                                <div class="text-center">
+                                    <div class="w-8 h-8 rounded-lg bg-blue-200 flex items-center justify-center mx-auto mb-2">
+                                        <i class="fas fa-database text-blue-500"></i>
+                                    </div>
+                                    <span class="text-xs">数据源</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-8 h-8 rounded-lg bg-green-200 flex items-center justify-center mx-auto mb-2">
+                                        <i class="fas fa-cogs text-green-500"></i>
+                                    </div>
+                                    <span class="text-xs">处理层</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-8 h-8 rounded-lg bg-purple-200 flex items-center justify-center mx-auto mb-2">
+                                        <i class="fas fa-mobile-alt text-purple-500"></i>
+                                    </div>
+                                    <span class="text-xs">展示层</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 要点3 -->
+                <div class="tech-badge rounded-2xl p-6 col-span-1 row-span-2 relative overflow-hidden">
+                    <div class="highlight-bar bg-accent-400"></div>
+                    <div class="absolute -right-4 -top-4 w-24 h-24 rounded-full bg-accent-100"></div>
+                    <div class="relative z-10">
+                        <div class="text-8xl font-bold text-accent-400 opacity-20 mb-2">03</div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">竞品对比分析</h2>
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 rounded-full bg-accent-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-chart-bar text-accent-500"></i>
+                            </div>
+                            <h3 class="font-medium text-gray-700">Competitive Analysis</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">
+                            与国内外竞品横向对比，展示<strong class="text-accent-500">技术前瞻性</strong>和对行业的理解。
+                        </p>
+                        
+                        <div class="chart-container mt-6">
+                            <div class="flex items-end h-32 justify-between">
+                                <div class="flex flex-col items-center w-1/4">
+                                    <div class="text-xs text-gray-500 mb-1">国内A</div>
+                                    <div class="w-8 bg-gray-300 rounded-t" style="height: 70px"></div>
+                                </div>
+                                <div class="flex flex-col items-center w-1/4">
+                                    <div class="text-xs text-gray-500 mb-1">国内B</div>
+                                    <div class="w-8 bg-gray-300 rounded-t" style="height: 80px"></div>
+                                </div>
+                                <div class="flex flex-col items-center w-1/4">
+                                    <div class="text-xs text-gray-500 mb-1">国际X</div>
+                                    <div class="w-8 bg-gray-400 rounded-t" style="height: 100px"></div>
+                                </div>
+                                <div class="flex flex-col items-center w-1/4">
+                                    <div class="text-xs text-primary-500 font-medium mb-1">我们的方案</div>
+                                    <div class="w-8 bg-primary-500 rounded-t" style="height: 120px"></div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <div class="inline-flex items-center">
+                                    <div class="w-3 h-3 rounded-full bg-primary-500 mr-2"></div>
+                                    <span class="text-sm">性能指标对比</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 要点4 -->
+                <div class="tech-badge rounded-2xl p-6 col-span-1 row-span-2 relative overflow-hidden">
+                    <div class="highlight-bar bg-green-400"></div>
+                    <div class="absolute -left-4 -bottom-4 w-24 h-24 rounded-full bg-green-100"></div>
+                    <div class="relative z-10">
+                        <div class="text-8xl font-bold text-green-400 opacity-20 mb-2">04</div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">量化业务价值</h2>
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-calculator text-green-500"></i>
+                            </div>
+                            <h3 class="font-medium text-gray-700">Quantifiable Value</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">
+                            用<strong class="text-green-500">量化指标</strong>展示工作的实际价值：日活、市场份额、并发延迟、营收转化率等。
+                        </p>
+                        
+                        <div class="space-y-4 mt-6">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-600">日活跃用户</span>
+                                    <span class="font-medium text-green-500">+32%</span>
+                                </div>
+                                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-green-400 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-600">响应延迟</span>
+                                    <span class="font-medium text-green-500">-45%</span>
+                                </div>
+                                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-green-400 rounded-full" style="width: 55%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-600">转化率</span>
+                                    <span class="font-medium text-green-500">+18%</span>
+                                </div>
+                                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-green-400 rounded-full" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 要点5 -->
+                <div class="tech-badge rounded-2xl p-6 col-span-2 row-span-2 relative overflow-hidden">
+                    <div class="highlight-bar bg-purple-400"></div>
+                    <div class="absolute -right-10 -bottom-10 w-48 h-48 rounded-full bg-purple-100"></div>
+                    <div class="relative z-10">
+                        <div class="text-8xl font-bold text-purple-400 opacity-20 mb-2">05</div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">评委互动策略</h2>
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-comments text-purple-500"></i>
+                            </div>
+                            <h3 class="font-medium text-gray-700">Judges Interaction</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">
+                            回答问题<strong class="text-purple-500">直接明确</strong>，避免绕弯。遇到难题坦诚承认，不争辩细节。
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-6 mt-8">
+                            <div class="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
+                                <div class="flex items-start mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mr-3 flex-shrink-0">
+                                        <i class="fas fa-times text-red-500"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800 mb-1">避免行为</h4>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>• 回避问题，绕圈回答</li>
+                                            <li>• 与评委激烈争辩</li>
+                                            <li>• 不懂装懂，强行解释</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
+                                <div class="flex items-start mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3 flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800 mb-1">推荐做法</h4>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>• 直接回答问题核心</li>
+                                            <li>• 坦诚回答"不知道"</li>
+                                            <li>• 邀请会后再深入讨论</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 评委提问区 -->
+        <section class="bg-white rounded-2xl p-8 md:p-12 shadow-lg mb-20">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">评委常用问题准备</h2>
+                    <p class="text-xl text-gray-600">提前准备这些关键问题，让答辩更从容</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="flex">
+                        <div class="text-4xl font-bold text-primary-500 mr-4">1</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">工作定位问题</h3>
+                            <p class="text-gray-600">你的工作在团队中处于什么位置？上下游关系如何？</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="text-4xl font-bold text-primary-500 mr-4">2</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">竞品分析问题</h3>
+                            <p class="text-gray-600">国内外有哪些竞品？你们的优劣势是什么？</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="text-4xl font-bold text-primary-500 mr-4">3</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">业务价值问题</h3>
+                            <p class="text-gray-600">你的工作对业务有什么实际价值？如何量化？</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="text-4xl font-bold text-primary-500 mr-4">4</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">改进计划问题</h3>
+                            <p class="text-gray-600">后续的改进计划是什么？如何持续优化？</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 p-6 bg-primary-50 rounded-xl border border-primary-100">
+                    <div class="flex">
+                        <div class="mr-4 text-primary-500 text-2xl">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">专业建议</h4>
+                            <p class="text-gray-700">答辩前针对这些问题准备简洁有力的回答，避免技术细节堆砌，着重展示思考深度和业务价值。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 总结区 -->
+        <section class="text-center max-w-3xl mx-auto">
+            <div class="inline-block bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-6 py-2 rounded-full mb-6">
+                <span class="font-bold">SUCCESS FORMULA</span>
+            </div>
+            <h2 class="text-4xl font-bold text-gray-900 mb-6">掌握要点，答辩无忧</h2>
+            <p class="text-xl text-gray-600 mb-10">
+                技术答辩不是展示所有工作细节，而是清晰传达核心价值和创新点。通过这五个关键要点的准备和展示，您将大幅提升通过率，让评委准确理解您工作的真正价值。
+            </p>
+            <button class="bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg transition duration-300 transform hover:scale-105">
+                开启您的成功答辩之路
+            </button>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-primary-500 flex items-center justify-center">
+                            <i class="fas fa-chart-line text-white text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold ml-2">TechDefense</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        专业的技术答辩指导平台，帮助工程师有效展示技术价值。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">资源</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white">答辩模板</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">案例分析</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">评委指南</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">技术白皮书</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">服务</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white">一对一辅导</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">模拟答辩</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">材料优化</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">企业培训</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">订阅更新</h3>
+                    <p class="text-gray-400 mb-4">获取最新的答辩技巧和行业洞察</p>
+                    <div class="flex">
+                        <input type="email" placeholder="您的邮箱地址" class="px-4 py-2 rounded-l-lg bg-gray-800 text-white w-full focus:outline-none">
+                        <button class="bg-primary-500 hover:bg-primary-600 px-4 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>© 2023 TechDefense. 保留所有权利。技术答辩指导平台。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const bentoItems = document.querySelectorAll('.tech-badge');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            bentoItems.forEach(item => {
+                item.style.opacity = 0;
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
