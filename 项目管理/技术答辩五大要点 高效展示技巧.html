@@ -54,21 +54,36 @@
             background: radial-gradient(circle at 10% 20%, rgba(224, 242, 255, 0.2) 0%, rgba(255, 255, 255, 0) 30%),
                         radial-gradient(circle at 90% 80%, rgba(240, 253, 250, 0.2) 0%, rgba(255, 255, 255, 0) 30%);
         }
-        
+
         .bento-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(4, 1fr);
-            gap: 1.5rem;
-            height: 85vh;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto auto auto; /* 移除固定高度，使用自动高度 */
+            gap: 1.5rem; /* 保持统一的间距 */
+            height: auto;
         }
-        
+
+        /* 为所有要点块设置相同的高度和样式 */
         .tech-badge {
+            height: 450px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
-        
+
+        /* 移除之前针对不同要点的单独高度设置 */
+        .tech-badge:nth-child(1),
+        .tech-badge:nth-child(2),
+        .tech-badge:nth-child(3),
+        .tech-badge:nth-child(4),
+        .tech-badge:nth-child(5) {
+            height: 450px;
+        }
+
         .highlight-bar {
             position: absolute;
             height: 100%;
@@ -76,11 +91,13 @@
             left: 0;
             top: 0;
         }
-        
+
+        /* 优化图表容器的高度 */
         .chart-container {
             position: relative;
-            height: 200px;
+            height: 200px; /* 增加图表高度 */
             width: 100%;
+            margin-top: auto; /* 将图表推到底部 */
         }
     </style>
 </head>
@@ -135,10 +152,10 @@
         </section>
 
         <!-- 要点展示区 -->
-        <section class="mb-28">
+        <section class="mb-44">
             <div class="bento-grid">
                 <!-- 要点1 -->
-                <div class="tech-badge rounded-2xl p-6 col-span-2 row-span-2 relative overflow-hidden">
+                <div class="tech-badge rounded-2xl p-6 col-span-1 row-span-2 relative overflow-hidden">
                     <div class="highlight-bar bg-primary-400"></div>
                     <div class="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-primary-100"></div>
                     <div class="relative z-10">
@@ -171,7 +188,7 @@
                 </div>
 
                 <!-- 要点2 -->
-                <div class="tech-badge rounded-2xl p-6 row-span-2 relative overflow-hidden">
+                <div class="tech-badge rounded-2xl p-6 col-span-1 row-span-2 relative overflow-hidden">
                     <div class="highlight-bar bg-secondary-400"></div>
                     <div class="absolute -left-6 -bottom-6 w-32 h-32 rounded-full bg-secondary-100"></div>
                     <div class="relative z-10">
