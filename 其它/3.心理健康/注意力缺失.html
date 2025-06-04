@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注意力缺失恢复指南 | 心理学专题</title>
+
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 引入 Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@10.12.16/dist/framer-motion.js"></script>
+
+    <!-- 引入 Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- 自定义样式 -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f9f7ff 0%, #f0f4ff 100%);
+            color: #33334d;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto;
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .bento-item {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.05);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(31, 38, 135, 0.1);
+        }
+
+        .highlight-bg {
+            background: linear-gradient(135deg, rgba(97, 143, 255, 0.1) 0%, rgba(97, 143, 255, 0.05) 100%);
+        }
+
+        .focus-bg {
+            background: linear-gradient(135deg, rgba(255, 184, 77, 0.1) 0%, rgba(255, 184, 77, 0.05) 100%);
+        }
+
+        .dopamine-bg {
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.1) 0%, rgba(255, 105, 180, 0.05) 100%);
+        }
+
+        .safety-bg {
+            background: linear-gradient(135deg, rgba(50, 205, 50, 0.1) 0%, rgba(50, 205, 50, 0.05) 100%);
+        }
+
+        .control-bg {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(138, 43, 226, 0.05) 100%);
+        }
+
+        .steps-bg {
+            background: linear-gradient(135deg, rgba(70, 130, 180, 0.1) 0%, rgba(70, 130, 180, 0.05) 100%);
+        }
+
+        .big-number {
+            font-size: 8rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #618fff;
+            opacity: 0.2;
+            position: absolute;
+            top: -1.5rem;
+            right: 1rem;
+            z-index: 0;
+        }
+
+        .big-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .big-title-en {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #618fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .icon-container {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            background: rgba(97, 143, 255, 0.1);
+            color: #618fff;
+        }
+
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .brain-graphic {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+
+        .water-cup {
+            position: relative;
+            width: 120px;
+            height: 180px;
+            margin: 0 auto;
+        }
+
+        .cup {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            border: 8px solid #618fff;
+            border-top: none;
+            border-radius: 0 0 20px 20px;
+            overflow: hidden;
+        }
+
+        .water {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(to top, #618fff, #85a5ff);
+            transition: height 1.5s ease;
+        }
+
+        .water-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .big-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .big-title {
+                font-size: 2rem;
+            }
+
+            .big-number {
+                font-size: 6rem;
+            }
+        }
+    </style>
+</head>
+<body class="py-8">
+<div class="max-w-6xl mx-auto px-4 mb-16 text-center">
+    <h1 class="text-5xl md:text-7xl font-black mb-6 text-gray-800">注意力缺失恢复指南</h1>
+    <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
+        你不是懒，也不是自控力差 - 你的注意力系统需要科学修复
+    </p>
+</div>
+
+<div class="bento-grid">
+    <!-- 注意力资源理论 -->
+    <div class="bento-item highlight-bg col-span-2 row-span-1">
+        <div class="relative">
+            <div class="big-number">01</div>
+            <div class="big-title-en">Attention Resource Theory</div>
+            <h2 class="big-title">注意力资源理论</h2>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-6 md:mb-0">
+                <p class="text-lg mb-4">
+                    我们的专注力是有限的，无法同时兼顾太多事。你的大脑就像一只刚好盛满水的玻璃杯。
+                </p>
+                <p class="text-gray-600">
+                    当杯子装满后，哪怕再多一滴水，它都会从边缘溢出。你以为自己在高效执行多任务，实际上你的大脑早已撑不住了。
+                </p>
+            </div>
+
+            <div class="md:w-1/2">
+                <div class="water-cup">
+                    <div class="cup">
+                        <div class="water" id="water-level" style="height: 95%">
+                            <div class="water-label">注意力容量</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 奖励系统劫持 -->
+    <div class="bento-item dopamine-bg">
+        <div class="icon-container">
+            <i class="material-icons text-4xl">mood</i>
+        </div>
+        <div class="relative">
+            <div class="big-title-en">Reward Hijacking</div>
+            <h3 class="big-title">奖励系统劫持</h3>
+        </div>
+        <p class="text-gray-600">
+            刷短视频时大脑释放多巴胺，带来快速满足感。久而久之，大脑只愿做高刺激、快反馈的事。
+        </p>
+
+        <div class="brain-graphic">
+            <div class="circle" style="width: 160px; height: 160px; background: rgba(255, 105, 180, 0.2); top: 20px; left: 20px;"></div>
+            <div class="circle" style="width: 120px; height: 120px; background: rgba(255, 105, 180, 0.3); top: 40px; left: 80px;"></div>
+            <div class="circle" style="width: 80px; height: 80px; background: rgba(255, 105, 180, 0.4); top: 80px; left: 60px;"></div>
+        </div>
+    </div>
+
+    <!-- 安全感与专注力 -->
+    <div class="bento-item safety-bg">
+        <div class="icon-container" style="background: rgba(50, 205, 50, 0.1); color: #32cd32;">
+            <i class="material-icons text-4xl">shield</i>
+        </div>
+        <div class="relative">
+            <div class="big-title-en">Safety & Focus</div>
+            <h3 class="big-title">安全感是专注力的前提</h3>
+        </div>
+        <p class="text-gray-600">
+            高压环境中，注意力系统会进入防御模式，转向捕捉环境风险而非专注于任务。
+        </p>
+
+        <div class="mt-6">
+            <div class="flex items-center mb-3">
+                <i class="material-icons text-green-500 mr-2">check_circle</i>
+                <span>安全环境 → 深度专注</span>
+            </div>
+            <div class="flex items-center">
+                <i class="material-icons text-red-500 mr-2">cancel</i>
+                <span>高压环境 → 防御模式</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 认知控制系统紊乱 -->
+    <div class="bento-item control-bg col-span-2">
+        <div class="icon-container" style="background: rgba(138, 43, 226, 0.1); color: #8a2be2;">
+            <i class="material-icons text-4xl">settings</i>
+        </div>
+        <div class="relative">
+            <div class="big-title-en">Cognitive Control Dysfunction</div>
+            <h2 class="big-title">认知控制系统紊乱</h2>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mt-6">
+            <div class="p-4 bg-purple-50 rounded-xl">
+                <h4 class="font-bold text-lg mb-2">常见表现</h4>
+                <ul class="list-disc pl-5 text-gray-600">
+                    <li>无法启动任务</li>
+                    <li>注意力难以维持</li>
+                    <li>反复分析拖延</li>
+                    <li>焦虑崩溃循环</li>
+                </ul>
+            </div>
+
+            <div class="p-4 bg-purple-50 rounded-xl">
+                <h4 class="font-bold text-lg mb-2">根本原因</h4>
+                <ul class="list-disc pl-5 text-gray-600">
+                    <li>长期压力积累</li>
+                    <li>过度信息刺激</li>
+                    <li>安全感缺失</li>
+                    <li>多巴胺失衡</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注意力缺失表现 -->
+    <div class="bento-item focus-bg">
+        <div class="icon-container" style="background: rgba(255, 184, 77, 0.1); color: #ffb84d;">
+            <i class="material-icons text-4xl">visibility_off</i>
+        </div>
+        <div class="relative">
+            <div class="big-title-en">Symptoms</div>
+            <h3 class="big-title">注意力缺失表现</h3>
+        </div>
+
+        <ul class="mt-4 space-y-3">
+            <li class="flex items-start">
+                <i class="material-icons text-orange-500 mr-2">chevron_right</i>
+                <span>一学习就走神</span>
+            </li>
+            <li class="flex items-start">
+                <i class="material-icons text-orange-500 mr-2">chevron_right</i>
+                <span>看书就犯困</span>
+            </li>
+            <li class="flex items-start">
+                <i class="material-icons text-orange-500 mr-2">chevron_right</i>
+                <span>视频开二倍速</span>
+            </li>
+            <li class="flex items-start">
+                <i class="material-icons text-orange-500 mr-2">chevron_right</i>
+                <span>短视频停不下来</span>
+            </li>
+            <li class="flex items-start">
+                <i class="material-icons text-orange-500 mr-2">chevron_right</i>
+                <span>无法自控消耗时间</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 修复四步法 -->
+    <div class="bento-item steps-bg col-span-4">
+        <div class="relative text-center mb-10">
+            <div class="big-number" style="left: 50%; transform: translateX(-50%); right: auto;">04</div>
+            <div class="big-title-en">Recovery Steps</div>
+            <h2 class="big-title">注意力修复四步法</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- 步骤1 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm">
+                <div class="step-icon bg-blue-500">
+                    <i class="material-icons">hourglass_empty</i>
+                </div>
+                <h3 class="text-2xl font-bold mb-3">认知空间恢复</h3>
+                <p class="text-gray-600">
+                    每天10-20分钟不接触任何信息，让大脑空白修复。就像清理永远开着的电脑桌面。
+                </p>
+                <div class="mt-4 text-blue-500 font-medium">
+                    <i class="material-icons align-middle">timer</i>
+                    <span>10-20分钟/天</span>
+                </div>
+            </div>
+
+            <!-- 步骤2 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm">
+                <div class="step-icon bg-green-500">
+                    <i class="material-icons">filter_1</i>
+                </div>
+                <h3 class="text-2xl font-bold mb-3">单一聚焦训练</h3>
+                <p class="text-gray-600">
+                    停止多任务幻想，一次只专注一件小事。从10分钟阅读或整理一个抽屉开始。
+                </p>
+                <div class="mt-4 text-green-500 font-medium">
+                    <i class="material-icons align-middle">task_alt</i>
+                    <span>一次一事原则</span>
+                </div>
+            </div>
+
+            <!-- 步骤3 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm">
+                <div class="step-icon bg-purple-500">
+                    <i class="material-icons">military_tech</i>
+                </div>
+                <h3 class="text-2xl font-bold mb-3">微小成功奖励</h3>
+                <p class="text-gray-600">
+                    每完成一件小事就给自己小奖励。重新教会大脑"努力是值得肯定的"。
+                </p>
+                <div class="mt-4 text-purple-500 font-medium">
+                    <i class="material-icons align-middle">celebration</i>
+                    <span>及时自我肯定</span>
+                </div>
+            </div>
+
+            <!-- 步骤4 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm">
+                <div class="step-icon bg-pink-500">
+                    <i class="material-icons">self_improvement</i>
+                </div>
+                <h3 class="text-2xl font-bold mb-3">自我温柔对话</h3>
+                <p class="text-gray-600">
+                    不再苛责自己，用温柔问题代替批评："我是不是太焦虑了？" 成为自己的伙伴。
+                </p>
+                <div class="mt-4 text-pink-500 font-medium">
+                    <i class="material-icons align-middle">favorite</i>
+                    <span>自我同理心</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center max-w-2xl mx-auto p-6 bg-blue-50 rounded-2xl">
+            <p class="text-xl font-medium italic">
+                "真正的专注从来不是逼出来的，而是在你不再苛责自己之后，才会悄悄的回来。"
+            </p>
+            <p class="mt-4 text-gray-600">
+                你不需要一开始就做到完美，只需要在每一次想逃的时候，哪怕只是重新开始五分钟。
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="max-w-4xl mx-auto mt-16 mb-24 px-4 text-center">
+    <h3 class="text-2xl md:text-3xl font-bold mb-6">注意力恢复是一个旅程</h3>
+    <p class="text-lg text-gray-600 leading-relaxed">
+        你不是天生缺乏注意力，而是被现代生活训练成了这样。通过理解注意力系统的运作原理，
+        并采用科学的修复方法，你可以逐步找回那个曾经专注的自己。
+        真正的成长不是把自己逼得更强，而是终于愿意不再用力为难自己。
+    </p>
+</div>
+
+<script>
+    // 初始化Framer Motion动画
+    const motion = framerMotion.motion;
+
+    // 定义动画容器
+    const bentoItems = document.querySelectorAll('.bento-item');
+
+    // 设置滚动动画
+    bentoItems.forEach((item, index) => {
+        const motionItem = motion(item, {
+            initial: { opacity: 0, y: 30 },
+            whileInView: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: "easeOut"
+                }
+            },
+            viewport: { once: true, margin: "-50px" }
+        });
+    });
+
+    // 水杯动画
+    const waterLevel = document.getElementById('water-level');
+    let filled = false;
+
+    setInterval(() => {
+        if (filled) {
+            waterLevel.style.height = '95%';
+            filled = false;
+        } else {
+            waterLevel.style.height = '100%';
+            filled = true;
+        }
+    }, 2000);
+</script>
+</body>
+</html>
