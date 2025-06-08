@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>道德经核心规律解析：反者道之动</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4a5568',
+                        secondary: '#718096',
+                        highlight: {
+                            1: 'rgba(74, 108, 230, 0.8)',
+                            2: 'rgba(129, 230, 217, 0.8)',
+                            3: 'rgba(237, 137, 54, 0.8)',
+                            4: 'rgba(214, 69, 65, 0.8)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans SC"', 'sans-serif'],
+                        serif: ['"Noto Serif SC"', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+
+        .grid-item {
+            border-radius: 1.5rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            position: relative;
+            min-height: 200px;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .highlight-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            border-radius: 1.5rem;
+            opacity: 0.1;
+        }
+
+        .big-number {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1;
+            color: rgba(74, 85, 104, 0.15);
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, #4a6ce6, #81e6d9);
+            border-radius: 2px;
+        }
+
+        .yin-yang {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(to bottom, #1a202c 50%, #f8fafc 50%);
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .yin-yang::before,
+        .yin-yang::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .yin-yang::before {
+            background: #f8fafc;
+            top: 20px;
+            left: 40px;
+        }
+
+        .yin-yang::after {
+            background: #1a202c;
+            bottom: 20px;
+            right: 40px;
+        }
+
+        .quote-box {
+            border-left: 4px solid #4a6ce6;
+            padding-left: 1.5rem;
+            font-style: italic;
+            color: #4a5568;
+            background: rgba(74, 108, 230, 0.05);
+            padding: 1rem 1rem 1rem 1.5rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        .header-section {
+            grid-column: span 12;
+            text-align: center;
+            background: linear-gradient(120deg, rgba(74, 108, 230, 0.1), rgba(129, 230, 217, 0.1));
+        }
+
+        .principles-section {
+            grid-column: span 4;
+        }
+
+        .yinyang-section {
+            grid-column: span 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .philosophy-section {
+            grid-column: span 4;
+        }
+
+        .weakness-section {
+            grid-column: span 6;
+        }
+
+        .universe-section {
+            grid-column: span 6;
+        }
+
+        .life-application-section {
+            grid-column: span 12;
+        }
+
+        @media (max-width: 1024px) {
+            .principles-section,
+            .yinyang-section,
+            .philosophy-section {
+                grid-column: span 12;
+            }
+
+            .weakness-section,
+            .universe-section {
+                grid-column: span 12;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .grid-item {
+                padding: 1.5rem;
+            }
+
+            .big-number {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="grid-container">
+        <!-- Header Section -->
+        <div class="grid-item header-section">
+            <div class="highlight-bg" style="background: linear-gradient(120deg, rgba(74, 108, 230, 0.1), transparent);"></div>
+            <h1 class="text-4xl font-bold text-primary mb-4">道德经核心规律解析</h1>
+            <p class="text-xl text-secondary mb-2">反者道之动 · 弱者道之用</p>
+            <p class="text-secondary">Reverse is the movement of the Dao · Weakness is the function of the Dao</p>
+        </div>
+
+        <!-- Core Principles -->
+        <div class="grid-item principles-section">
+            <div class="highlight-bg" style="background: linear-gradient(45deg, rgba(129, 230, 217, 0.1), transparent);"></div>
+            <span class="big-number">01</span>
+            <h2 class="section-title text-primary">核心规律</h2>
+            <p class="text-base mb-4">老子认为万物虽表象不同，但运动变化规律相同，掌握这一规律可积极改善命运。</p>
+            <div class="space-y-4">
+                <div class="flex items-start">
+                    <span class="material-icons text-green-500 mr-3 mt-1">change_circle</span>
+                    <div>
+                        <h3 class="text-lg font-bold mb-1">阴阳互转</h3>
+                        <p class="text-sm">事物向对立面转化，如残缺向完整、弯曲向直、低洼向充盈发展。</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="material-icons text-yellow-500 mr-3 mt-1">autorenew</span>
+                    <div>
+                        <h3 class="text-lg font-bold mb-1">物极必反</h3>
+                        <p class="text-sm">事物发展到极限后会回归原态，如福祸之间的转化。</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="material-icons text-purple-500 mr-3 mt-1">loop</span>
+                    <div>
+                        <h3 class="text-lg font-bold mb-1">循环往复</h3>
+                        <p class="text-sm">事物的运动变化是一个永无止息的过程，体现为四季更替、昼夜交替。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Yin Yang Visualization -->
+        <div class="grid-item yinyang-section">
+            <div class="yin-yang"></div>
+        </div>
+
+        <!-- Philosophy -->
+        <div class="grid-item philosophy-section">
+            <div class="highlight-bg" style="background: linear-gradient(45deg, rgba(237, 137, 54, 0.1), transparent);"></div>
+            <span class="big-number">02</span>
+            <h2 class="section-title text-primary">处世哲学</h2>
+            <div class="space-y-4">
+                <div class="quote-box">
+                    <p class="text-base font-medium">"欲擒故纵，欲取先予"</p>
+                </div>
+                <p class="text-sm">通过现代生活中的例子，如学生分享解题思路和商人的策略，说明了先给予后获取的高效获取途径。</p>
+                <div class="bg-gray-100 p-3 rounded-lg">
+                    <h3 class="font-bold mb-2 text-sm">实践应用：</h3>
+                    <ul class="list-disc pl-4 space-y-1 text-sm">
+                        <li>反向思维：面对问题时采取逆向策略</li>
+                        <li>无为而治：通过给予自由达到高效管理</li>
+                        <li>以退为进：在极端情况下实现崛起</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weakness Principle -->
+        <div class="grid-item weakness-section">
+            <div class="highlight-bg" style="background: linear-gradient(45deg, rgba(214, 69, 65, 0.1), transparent);"></div>
+            <span class="big-number">03</span>
+            <h2 class="section-title text-primary">弱者道之用</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <p class="mb-4 text-sm">柔弱胜刚强及有之以为利，无之以为用两个思想侧面揭示了其内核。</p>
+                    <div class="bg-white p-3 rounded-lg border border-gray-200">
+                        <p class="font-bold text-sm">"有之以为利，无之以为用"</p>
+                        <p class="mt-2 text-sm">有形资产与无形资产、身体与精神之间的关系，指出无形资产和精神是决定长远价值和人生深度的关键。</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-gray-800 text-white p-4 rounded-lg">
+                        <h3 class="font-bold text-base mb-3">价值对比</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <p class="text-xs opacity-75">有形价值</p>
+                                <div class="w-full bg-gray-600 rounded-full h-2 mt-1">
+                                    <div class="bg-blue-400 h-2 rounded-full" style="width: 40%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-xs opacity-75">无形价值</p>
+                                <div class="w-full bg-gray-600 rounded-full h-2 mt-1">
+                                    <div class="bg-green-400 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-xs opacity-75">短期利益</p>
+                                <div class="w-full bg-gray-600 rounded-full h-2 mt-1">
+                                    <div class="bg-yellow-400 h-2 rounded-full" style="width: 35%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-xs opacity-75">长期价值</p>
+                                <div class="w-full bg-gray-600 rounded-full h-2 mt-1">
+                                    <div class="bg-red-400 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Universe Principle -->
+        <div class="grid-item universe-section">
+            <div class="highlight-bg" style="background: linear-gradient(45deg, rgba(74, 108, 230, 0.1), transparent);"></div>
+            <span class="big-number">04</span>
+            <h2 class="section-title text-primary">宇宙本源之道</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <p class="mb-4 text-sm">老子将道视为宇宙万物的本源，道不仅指人行走的道路，还蕴含着趋势、原则和方法的含义。</p>
+                    <div class="bg-white p-3 rounded-lg border border-gray-200">
+                        <p class="font-bold text-sm">"道可道，非常道"</p>
+                        <p class="mt-2 text-sm">语言的局限性导致人们对道的理解受限，追求物质目标使人们迷失自我。</p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 rounded-lg">
+                        <h3 class="font-bold mb-2 text-sm">道的三重含义</h3>
+                        <ul class="space-y-1">
+                            <li class="flex items-start text-xs">
+                                <span class="material-icons text-blue-500 mr-2 text-sm">adjust</span>
+                                <span>宇宙本源之道</span>
+                            </li>
+                            <li class="flex items-start text-xs">
+                                <span class="material-icons text-blue-500 mr-2 text-sm">adjust</span>
+                                <span>宇宙规律之道</span>
+                            </li>
+                            <li class="flex items-start text-xs">
+                                <span class="material-icons text-blue-500 mr-2 text-sm">adjust</span>
+                                <span>人生社会之道</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-3 rounded-lg">
+                        <h3 class="font-bold mb-2 text-sm">道的特性</h3>
+                        <ul class="space-y-1">
+                            <li class="flex items-start text-xs">
+                                <span class="material-icons text-purple-500 mr-2 text-sm">check_circle</span>
+                                <span>超越时间空间</span>
+                            </li>
+                            <li class="flex items-start text-xs">
+                                <span class="material-icons text-purple-500 mr-2 text-sm">check_circle</span>
+                                <span>不生不灭</span>
+                            </li>
+                            <li class="flex items-start text-xs">
+                                <span class="material-icons text-purple-500 mr-2 text-sm">check_circle</span>
+                                <span>无限创造</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Life Application -->
+        <div class="grid-item life-application-section">
+            <div class="highlight-bg" style="background: linear-gradient(45deg, rgba(129, 230, 217, 0.1), transparent);"></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <span class="big-number">05</span>
+                    <h2 class="section-title text-primary">养生之道</h2>
+                    <p class="text-sm mb-3">老子提倡回归婴儿般的精神状态，强调形神统一的重要性：</p>
+                    <ul class="list-disc pl-4 space-y-1 text-sm">
+                        <li>通过养神、珍惜生命能量达到养生目的</li>
+                        <li>重视内在而非外在，知足常乐</li>
+                        <li>避免过度追求物质享受</li>
+                        <li>节能养生，保持自然需求</li>
+                    </ul>
+                    <div class="bg-white p-3 rounded-lg border border-gray-200 mt-4">
+                        <p class="font-bold text-sm">"知足不辱，知止不殆，可以长久"</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="section-title text-primary">贫富转化</h2>
+                    <p class="text-sm mb-3">根据"反者道之动"思想，贫富在阴阳两极之间徘徊，最终实现宇宙均衡。</p>
+                    <div class="bg-gray-800 text-white p-3 rounded-lg">
+                        <h3 class="font-bold mb-2 text-sm">转化三要素</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <p class="text-xs opacity-75">内在状态</p>
+                                <div class="flex items-center mt-1">
+                                    <div class="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center mr-2">
+                                        <span class="material-icons text-white text-xs">self_improvement</span>
+                                    </div>
+                                    <p class="text-xs">不卑不亢 · 极度专注 · 平常心</p>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-xs opacity-75">转化过程</p>
+                                <div class="flex items-center mt-1">
+                                    <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center mr-2">
+                                        <span class="material-icons text-white text-xs">bolt</span>
+                                    </div>
+                                    <p class="text-xs">内外压力激发能量 · 达到极点触发天道</p>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-xs opacity-75">维持成果</p>
+                                <div class="flex items-center mt-1">
+                                    <div class="w-6 h-6 rounded-full bg-yellow-500 flex items-center justify-center mr-2">
+                                        <span class="material-icons text-white text-xs">shield</span>
+                                    </div>
+                                    <p class="text-xs">时刻擦拭心境 · 磨练心性 · 培养独立力</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="section-title text-primary">实践之道</h2>
+                    <p class="text-sm mb-3">真正的智慧在于将理论转化为行动：</p>
+                    <div class="bg-gradient-to-br from-yellow-50 to-orange-50 p-4 rounded-lg">
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <div class="text-xl mr-2 text-orange-500 font-bold">1</div>
+                                <p class="text-sm">正视贫穷，接受社会不平等的现实</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-xl mr-2 text-orange-500 font-bold">2</div>
+                                <p class="text-sm">摆脱私欲束缚，以积极态度面对</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-xl mr-2 text-orange-500 font-bold">3</div>
+                                <p class="text-sm">通过行动触发天道规律</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-xl mr-2 text-orange-500 font-bold">4</div>
+                                <p class="text-sm">保持阴阳平衡，避免物极必反</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <p class="text-base font-bold text-orange-600">实践是实现转化的关键</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
