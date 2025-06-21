@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>庄子《逍遥游》现代解读</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Framer Motion CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.16.4/dist/framer-motion.min.js"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+        
+        :root {
+            --color-primary: rgba(100, 149, 237, 0.1);
+            --color-secondary: rgba(144, 238, 144, 0.1);
+            --color-accent: rgba(147, 112, 219, 0.1);
+            --color-highlight: rgba(255, 182, 193, 0.1);
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f9f7fe 0%, #eef4ff 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 24px;
+            padding: 24px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .grid-item {
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .grid-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6495ED, #9370DB);
+            border-radius: 24px 24px 0 0;
+        }
+        
+        .big-number {
+            font-size: 6rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #9370DB;
+            opacity: 0.8;
+            margin-bottom: 16px;
+        }
+        
+        .big-text {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .small-text {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .english-subtitle {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #9370DB;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .icon-container {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .icon-container i {
+            font-size: 24px;
+            color: #fff;
+        }
+        
+        .visual-element {
+            position: absolute;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #9370DB;
+            border-radius: 2px;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fish-animation {
+            position: absolute;
+            width: 120px;
+            height: 60px;
+            animation: swim 20s linear infinite;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        @keyframes swim {
+            0% { left: -10%; top: 20%; }
+            25% { top: 30%; }
+            50% { left: 110%; top: 50%; }
+            75% { top: 40%; }
+            100% { left: -10%; top: 20%; }
+        }
+        
+        .bird-animation {
+            position: absolute;
+            width: 150px;
+            height: 70px;
+            animation: fly 25s linear infinite;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        @keyframes fly {
+            0% { right: -10%; top: 10%; }
+            25% { top: 20%; }
+            50% { right: 110%; top: 40%; }
+            75% { top: 30%; }
+            100% { right: -10%; top: 10%; }
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: rgba(147, 112, 219, 0.2);
+            border-radius: 3px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6495ED, #9370DB);
+            border-radius: 3px;
+        }
+        
+        .quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            padding: 20px;
+            border-left: 4px solid #9370DB;
+            background: rgba(147, 112, 219, 0.05);
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- 背景动画元素 -->
+    <div class="fish-animation">
+        <svg viewBox="0 0 120 60">
+            <path d="M10,30 Q40,5 70,30 T110,30" stroke="#9370DB" stroke-width="2" fill="none"/>
+            <path d="M70,30 Q80,20 90,25" stroke="#9370DB" stroke-width="2" fill="none"/>
+        </svg>
+    </div>
+    <div class="bird-animation">
+        <svg viewBox="0 0 150 70">
+            <path d="M10,35 Q50,5 90,35 T140,35" stroke="#6495ED" stroke-width="2" fill="none"/>
+            <path d="M90,35 Q100,25 110,30" stroke="#6495ED" stroke-width="2" fill="none"/>
+        </svg>
+    </div>
+    
+    <div class="bento-grid">
+        <!-- 标题区域 -->
+        <div class="grid-item col-span-12 row-span-2 bg-white fade-in" style="background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(249,247,254,0.9) 100%);">
+            <div class="english-subtitle">Free & Easy Wandering</div>
+            <h1 class="big-text">逍遥游<br>现代思维解读</h1>
+            <p class="small-text">庄子思想如何指引现代人实现精神自由与人生逍遥</p>
+            <div class="flex items-center mt-6">
+                <div class="icon-container" style="background: #9370DB;">
+                    <i class="fas fa-feather-alt"></i>
+                </div>
+                <div class="ml-4">
+                    <p class="font-bold">视频时长: 1小时12分</p>
+                    <p class="text-sm text-gray-600">深度解析庄子逍遥思想的核心精髓</p>
+                </div>
+            </div>
+            
+            <!-- 视觉元素 -->
+            <div class="visual-element" style="top: 20%; right: 10%; font-size: 12rem; font-weight: 900; color: rgba(147, 112, 219, 0.05);">道</div>
+        </div>
+        
+        <!-- 核心思想 -->
+        <div class="grid-item col-span-4 fade-in" style="background: var(--color-primary);">
+            <div class="icon-container" style="background: #6495ED;">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="big-number">01</div>
+            <h2 class="text-2xl font-bold mb-3">逍遥的本质</h2>
+            <p class="small-text">庄子认为逍遥的本质是"做自己"。人生不是为了外在目标，而是通过认识自我实现精神自由。</p>
+            <div class="quote">
+                "举世誉之而不加劝，举世非之而不加沮"
+            </div>
+        </div>
+        
+        <div class="grid-item col-span-4 fade-in" style="background: var(--color-secondary);">
+            <div class="icon-container" style="background: #90EE90;">
+                <i class="fas fa-dove"></i>
+            </div>
+            <div class="big-number">02</div>
+            <h2 class="text-2xl font-bold mb-3">鲲鹏寓言</h2>
+            <p class="small-text">鲲化为鹏的意象展示：小可化为大，弱可化为强，万物皆可转化成长。</p>
+            <div class="progress-bar mt-6">
+                <div class="progress-fill" style="width: 70%;"></div>
+            </div>
+            <p class="text-sm">认知转化可能性</p>
+        </div>
+        
+        <div class="grid-item col-span-4 fade-in" style="background: var(--color-accent);">
+            <div class="icon-container" style="background: #9370DB;">
+                <i class="fas fa-mountain"></i>
+            </div>
+            <div class="big-number">03</div>
+            <h2 class="text-2xl font-bold mb-3">三重境界</h2>
+            <p class="small-text">庄子逍遥的三重思想：生活方式、人的价值和人的生命认知。</p>
+            <div class="flex mt-4">
+                <div class="mr-4 text-center">
+                    <div class="text-3xl font-bold text-purple-700">至人</div>
+                    <div class="text-sm">无己</div>
+                </div>
+                <div class="mr-4 text-center">
+                    <div class="text-3xl font-bold text-purple-700">神人</div>
+                    <div class="text-sm">无功</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-purple-700">圣人</div>
+                    <div class="text-sm">无名</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 三重思想详解 -->
+        <div class="grid-item col-span-12 fade-in">
+            <h2 class="section-title">逍遥三重思想</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 rounded-xl" style="background: rgba(100, 149, 237, 0.1);">
+                    <h3 class="text-xl font-bold mb-3 flex items-center">
+                        <i class="fas fa-route mr-2 text-blue-500"></i>
+                        生活方式
+                    </h3>
+                    <p class="small-text">庄子不直接解答"如何正确生活"，而是揭示"不正确的生活方式"，帮助人们靠近正确的生活态度。</p>
+                </div>
+                <div class="p-6 rounded-xl" style="background: rgba(144, 238, 144, 0.1);">
+                    <h3 class="text-xl font-bold mb-3 flex items-center">
+                        <i class="fas fa-search-dollar mr-2 text-green-500"></i>
+                        人的价值
+                    </h3>
+                    <p class="small-text">庄子提出人的价值在于"本位坚守"——认清自己的天赋和命定，不要做错误的举动和枉然的努力。</p>
+                </div>
+                <div class="p-6 rounded-xl" style="background: rgba(147, 112, 219, 0.1);">
+                    <h3 class="text-xl font-bold mb-3 flex items-center">
+                        <i class="fas fa-heartbeat mr-2 text-purple-500"></i>
+                        人的生命
+                    </h3>
+                    <p class="small-text">庄子强调"无用之用，方为大用"的生命智慧，追求不被伤害、辖制或奴役的自由状态。</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 鲲鹏变化 -->
+        <div class="grid-item col-span-8 fade-in" style="background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(230,240,255,0.9) 100%);">
+            <h2 class="section-title">鲲鹏之变</h2>
+            <div class="grid grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-fish mr-2 text-blue-500"></i>
+                        北冥之鲲
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-circle text-xs mt-2 mr-2 text-blue-500"></i>
+                            <span>原始本意为鱼子，庄子撰写其大</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-circle text-xs mt-2 mr-2 text-blue-500"></i>
+                            <span>展示小可化为大的哲学蕴含</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-circle text-xs mt-2 mr-2 text-blue-500"></i>
+                            <span>名称只是代号，内涵才有意义</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6 p-4 rounded-lg" style="background: rgba(100, 149, 237, 0.1);">
+                        <p class="font-bold">"鲲之大，不知其几千里也"</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-dove mr-2 text-purple-500"></i>
+                        南冥之鹏
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-circle text-xs mt-2 mr-2 text-purple-500"></i>
+                            <span>由"朋"(聚集的小鸟)转化而来</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-circle text-xs mt-2 mr-2 text-purple-500"></i>
+                            <span>怒而飞展示进取精神</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-circle text-xs mt-2 mr-2 text-purple-500"></i>
+                            <span>永不止步的探索精神</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6 p-4 rounded-lg" style="background: rgba(147, 112, 219, 0.1);">
+                        <p class="font-bold">"鹏之徙于南冥也，水击三千里"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid-item col-span-4 fade-in" style="background: var(--color-highlight);">
+            <div class="big-number">5</div>
+            <h2 class="text-2xl font-bold mb-4">视角解析</h2>
+            <p class="small-text">庄子通过五个视角解读逍遥之路：</p>
+            <ol class="list-decimal list-inside space-y-2 mt-4 pl-2">
+                <li class="font-medium">讲述者视角</li>
+                <li class="font-medium">旁观者视角</li>
+                <li class="font-medium">当事人视角</li>
+                <li class="font-medium">退缩者视角</li>
+                <li class="font-medium">研究者视角</li>
+            </ol>
+            <div class="mt-6">
+                <div class="flex justify-between mb-1">
+                    <span>认知局限</span>
+                    <span>75%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 寓言故事 -->
+        <div class="grid-item col-span-12 fade-in">
+            <h2 class="section-title">四大寓言</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="p-6 rounded-xl border border-gray-100 bg-white">
+                    <h3 class="text-xl font-bold mb-3 text-purple-700">越俎代庖</h3>
+                    <p class="small-text">许由拒绝尧让天下，说明各安其位的重要性，圣人不求虚名。</p>
+                </div>
+                <div class="p-6 rounded-xl border border-gray-100 bg-white">
+                    <h3 class="text-xl font-bold mb-3 text-purple-700">藐姑射之山</h3>
+                    <p class="small-text">神人超越世俗标准，保持对未知的敬畏，破除认知局限。</p>
+                </div>
+                <div class="p-6 rounded-xl border border-gray-100 bg-white">
+                    <h3 class="text-xl font-bold mb-3 text-purple-700">不龟手之药</h3>
+                    <p class="small-text">同一药方不同用法，揭示"无用之用，方为大用"的智慧。</p>
+                </div>
+                <div class="p-6 rounded-xl border border-gray-100 bg-white">
+                    <h3 class="text-xl font-bold mb-3 text-purple-700">吾有大树</h3>
+                    <p class="small-text">大树看似无用，实则提供逍遥自在的荫庇，超越功利价值。</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 庄子其人 -->
+        <div class="grid-item col-span-8 fade-in" style="background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,245,250,0.9) 100%);">
+            <h2 class="section-title">庄子其人</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <div class="flex items-start mb-6">
+                        <div class="text-5xl font-bold mr-4 text-purple-700">"</div>
+                        <p class="text-lg italic">其言汪洋自肆以适己，故自王公大人不能器之。</p>
+                    </div>
+                    <p class="small-text">司马迁在《史记》中这样形容庄子：他的语言自由洒脱，纵横恣意，适合表达自己的思想。</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">思想精髓</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>超越世俗功利，追求精神自由</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>破除认知局限，接纳未知可能</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>尊重本性天赋，各安其位</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>无用之用方为大用</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid-item col-span-4 fade-in" style="background: var(--color-accent);">
+            <div class="big-text">逍遥境界</div>
+            <p class="small-text mt-4">真正的逍遥是永不止步的寻找和探索，人生的原动力来自于对未知的体验和实践。</p>
+            <div class="mt-8 p-5 rounded-xl bg-white bg-opacity-30">
+                <p class="font-bold text-lg">认知突破路径</p>
+                <div class="mt-4 space-y-3">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-purple-700 text-white flex items-center justify-center mr-3">1</div>
+                        <span>认识局限</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-purple-700 text-white flex items-center justify-center mr-3">2</div>
+                        <span>破除成见</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-purple-700 text-white flex items-center justify-center mr-3">3</div>
+                        <span>回归本真</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 结尾 -->
+        <div class="grid-item col-span-12 fade-in" style="background: linear-gradient(135deg, rgba(147,112,219,0.1) 0%, rgba(100,149,237,0.1) 100%);">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="big-text">逍遥游</div>
+                <div class="english-subtitle">The Ultimate Freedom</div>
+                <p class="text-xl mt-6 mb-8">"乘天地之正，而御六气之辩，以游无穷者"</p>
+                <div class="flex justify-center space-x-4">
+                    <div class="icon-container" style="background: #6495ED; width: 50px; height: 50px;">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="icon-container" style="background: #90EE90; width: 50px; height: 50px;">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <div class="icon-container" style="background: #9370DB; width: 50px; height: 50px;">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                </div>
+                <p class="mt-8 text-gray-600 max-w-2xl mx-auto">庄子哲学逻辑和文学表达完美自洽，其高超文笔、深刻思想、圆融智慧，使文学与哲学在《庄子》中珠联璧合，共同屹立于人类思想文明史的巅峰。</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // 背景动画
+            const bentoGrid = document.querySelector('.bento-grid');
+            bentoGrid.addEventListener('mousemove', (e) => {
+                const cards = document.querySelectorAll('.grid-item');
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+                
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const cardX = rect.left + rect.width/2;
+                    const cardY = rect.top + rect.height/2;
+                    const angleX = (mouseY - cardY) / 20;
+                    const angleY = (mouseX - cardX) / -20;
+                    
+                    card.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) translateZ(10px)`;
+                });
+            });
+            
+            bentoGrid.addEventListener('mouseleave', () => {
+                const cards = document.querySelectorAll('.grid-item');
+                cards.forEach(card => {
+                    card.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
