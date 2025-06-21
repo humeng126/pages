@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>末日预言解析：真相与鉴别</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.12.16/framer-motion.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366F1',
+                        secondary: '#8B5CF6',
+                        accent: '#0EA5E9',
+                        background: '#F8FAFC',
+                        dark: '#0F172A'
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans SC', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #F8FAFC;
+            color: #0F172A;
+            overflow-x: hidden;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 24px;
+        }
+        .section {
+            min-height: 100vh;
+            padding: 4rem 2rem;
+        }
+        .glow-primary {
+            box-shadow: 0 0 40px rgba(99, 102, 241, 0.2);
+        }
+        .glow-secondary {
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.2);
+        }
+        .glow-accent {
+            box-shadow: 0 0 40px rgba(14, 165, 233, 0.2);
+        }
+        .gradient-primary {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+        }
+        .gradient-secondary {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+        }
+        .gradient-accent {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(14, 165, 233, 0.05) 100%);
+        }
+        .timeline-bar {
+            height: 4px;
+            background: linear-gradient(90deg, #6366F1, #8B5CF6, #0EA5E9);
+        }
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        .chart-bar {
+            position: absolute;
+            bottom: 0;
+            transition: all 0.8s ease;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <!-- 导航指示器 -->
+    <div class="fixed top-1/2 right-8 transform -translate-y-1/2 z-50 hidden md:block">
+        <div class="flex flex-col space-y-3">
+            <div class="nav-dot w-3 h-3 rounded-full border border-gray-300 bg-white cursor-pointer" data-section="0"></div>
+            <div class="nav-dot w-3 h-3 rounded-full border border-gray-300 bg-white cursor-pointer" data-section="1"></div>
+            <div class="nav-dot w-3 h-3 rounded-full border border-gray-300 bg-white cursor-pointer" data-section="2"></div>
+            <div class="nav-dot w-3 h-3 rounded-full border border-gray-300 bg-white cursor-pointer" data-section="3"></div>
+            <div class="nav-dot w-3 h-3 rounded-full border border-gray-300 bg-white cursor-pointer" data-section="4"></div>
+            <div class="nav-dot w-3 h-3 rounded-full border border-gray-300 bg-white cursor-pointer" data-section="5"></div>
+        </div>
+    </div>
+
+    <!-- 标题区域 -->
+    <section class="section flex items-center justify-center gradient-primary relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 timeline-bar"></div>
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="bento-grid">
+                <div class="col-span-12 md:col-span-8 flex flex-col justify-center">
+                    <div class="text-5xl md:text-8xl font-black mb-6 text-dark">
+                        预言 <span class="text-primary">解析</span>
+                    </div>
+                    <div class="text-xl md:text-2xl text-gray-600 mb-8">
+                        The Truth Behind Prophecies
+                    </div>
+                    <p class="text-lg text-gray-700 max-w-3xl">
+                        末日预言只是众多预言中的一个类型，面对未来的不确定性，人类通过各种方式对未来做出判断。
+                        但究竟该如何辨别真伪？预言背后又隐藏着怎样的真相？
+                    </p>
+                </div>
+                <div class="col-span-12 md:col-span-4 flex items-center justify-center">
+                    <div class="relative w-full h-64 md:h-80">
+                        <div class="absolute top-0 left-0 w-48 h-48 rounded-full bg-primary opacity-20 blur-3xl"></div>
+                        <div class="absolute top-20 right-0 w-32 h-32 rounded-full bg-secondary opacity-20 blur-3xl"></div>
+                        <div class="absolute top-0 right-10 w-40 h-40 rounded-xl bg-white border border-gray-100 shadow-lg flex items-center justify-center">
+                            <i class="fas fa-question-circle text-7xl text-primary"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 预言的历史形态 -->
+    <section class="section gradient-secondary">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">预言的<span class="text-secondary">三种历史形态</span></h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">Prophetic Forms Through History</p>
+            </div>
+            
+            <div class="bento-grid">
+                <!-- 神谕型预言 -->
+                <div class="col-span-12 md:col-span-4 p-6 bg-white rounded-2xl shadow-lg glow-secondary">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary bg-opacity-10 flex items-center justify-center mr-4">
+                            <i class="fas fa-cloud text-secondary text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">神谕型</h3>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        出自天命权威，内容模糊宏大，如诺查丹玛斯的《诸世纪》和玛雅历法预言。
+                    </p>
+                    <div class="text-sm text-gray-500">
+                        Divine Revelation · Symbolic · Mystical
+                    </div>
+                </div>
+                
+                <!-- 逻辑型预测 -->
+                <div class="col-span-12 md:col-span-4 p-6 bg-white rounded-2xl shadow-lg glow-secondary">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary bg-opacity-10 flex items-center justify-center mr-4">
+                            <i class="fas fa-brain text-secondary text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">逻辑型预测</h3>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        基于观察与推理，如八卦推演、经济预测和气象预报，更贴近概率而非宿命。
+                    </p>
+                    <div class="text-sm text-gray-500">
+                        Logical Deduction · Data-Driven · Probabilistic
+                    </div>
+                </div>
+                
+                <!-- 情绪型预言 -->
+                <div class="col-span-12 md:col-span-4 p-6 bg-white rounded-2xl shadow-lg glow-secondary">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary bg-opacity-10 flex items-center justify-center mr-4">
+                            <i class="fas fa-heart text-secondary text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">情绪型预言</h3>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        表达焦虑或恐惧，如冷战时期的核末日论，反映集体恐惧而非理性推演。
+                    </p>
+                    <div class="text-sm text-gray-500">
+                        Emotional · Fear-Based · Collective Anxiety
+                    </div>
+                </div>
+                
+                <!-- 核心洞察 -->
+                <div class="col-span-12 mt-8 p-8 bg-dark rounded-2xl text-white">
+                    <div class="text-6xl font-black text-center mb-4 text-secondary">核心洞察</div>
+                    <p class="text-xl text-center max-w-4xl mx-auto">
+                        预言不只是信息预告，更是心理现象与文化折射。它表面上谈未来，实则折射当下人们内心的恐惧与渴望。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 末日预言的类型 -->
+    <section class="section gradient-accent">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">末日预言的<span class="text-accent">两种类型</span></h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">Two Faces of Apocalyptic Prophecies</p>
+            </div>
+            
+            <div class="bento-grid">
+                <!-- 传统末日论 -->
+                <div class="col-span-12 md:col-span-6 p-8 bg-white rounded-2xl shadow-lg glow-accent">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full bg-accent bg-opacity-10 flex items-center justify-center mr-4">
+                            <i class="fas fa-bomb text-accent text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold">传统末日论</h3>
+                    </div>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-times-circle text-red-500 mt-1 mr-3"></i>
+                            <span>全人类一起毁灭的全面型剧本</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times-circle text-red-500 mt-1 mr-3"></i>
+                            <span>宗教式叙事（如圣经启示录）</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times-circle text-red-500 mt-1 mr-3"></i>
+                            <span>借用科学理论编织末日故事（行星撞地球、太阳磁暴等）</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>当代已不多见，逐渐被新型剧本取代</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 变种末日论 -->
+                <div class="col-span-12 md:col-span-6 p-8 bg-white rounded-2xl shadow-lg glow-accent">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full bg-accent bg-opacity-10 flex items-center justify-center mr-4">
+                            <i class="fas fa-mask text-accent text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold">变种末日论</h3>
+                    </div>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-exclamation-triangle text-yellow-500 mt-1 mr-3"></i>
+                            <span>更具迷惑性和诱惑力的新型剧本</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-exclamation-triangle text-yellow-500 mt-1 mr-3"></i>
+                            <span>世界转变，只有一部分人能留下</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-exclamation-triangle text-yellow-500 mt-1 mr-3"></i>
+                            <span>制造淘汰与获救的二元框架（觉醒者vs未觉醒者）</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-exclamation-triangle text-yellow-500 mt-1 mr-3"></i>
+                            <span>本质是心理操控而非预言</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 特征卡片 -->
+                <div class="col-span-12 mt-8 p-8 bg-white rounded-2xl shadow-lg">
+                    <div class="text-center mb-6">
+                        <h3 class="text-3xl font-bold text-dark">末日预言三大特征</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-4 border-l-4 border-primary">
+                            <h4 class="text-xl font-bold mb-2">1. 明确时间点</h4>
+                            <p class="text-gray-700">如2025年7月5日、2012年12月21日等具体日期</p>
+                        </div>
+                        <div class="p-4 border-l-4 border-secondary">
+                            <h4 class="text-xl font-bold mb-2">2. 权威解释体系</h4>
+                            <p class="text-gray-700">宗教启示、古籍推算、科学伪装等听起来合理的解释</p>
+                        </div>
+                        <div class="p-4 border-l-4 border-accent">
+                            <h4 class="text-xl font-bold mb-2">3. 弹性解释空间</h4>
+                            <p class="text-gray-700">预言失败后准备新解释，随时修正</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 四步套路 -->
+    <section class="section gradient-primary">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">末日预言的<span class="text-primary">四步套路</span></h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">The Four-Step Manipulation Playbook</p>
+            </div>
+            
+            <div class="flex flex-col space-y-12">
+                <!-- 步骤1 -->
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="w-24 h-24 rounded-full bg-primary text-white flex items-center justify-center text-3xl font-bold mb-4 md:mb-0 md:mr-8">
+                        1
+                    </div>
+                    <div class="flex-1 bg-white p-6 rounded-2xl shadow-lg glow-primary">
+                        <h3 class="text-2xl font-bold text-primary mb-3">制造焦虑</h3>
+                        <p class="text-gray-700">
+                            描述未来大劫难，利用人类对死亡、失控和未知的原始恐惧压制理性思考。
+                            夸大风险，将可能性偷换为必然性，利用现实灾害事件制造"预言应验"的错觉。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 步骤2 -->
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="w-24 h-24 rounded-full bg-primary text-white flex items-center justify-center text-3xl font-bold mb-4 md:mb-0 md:mr-8">
+                        2
+                    </div>
+                    <div class="flex-1 bg-white p-6 rounded-2xl shadow-lg glow-primary">
+                        <h3 class="text-2xl font-bold text-primary mb-3">引入剧本</h3>
+                        <p class="text-gray-700">
+                            让受众相信一套不可证伪的神秘逻辑（如高维转化、宇宙能量）。
+                            使用模糊词汇（大变动、进化、觉醒）和科学术语包装（量子、维度、能量），
+                            却无可靠依据或可验证方法。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 步骤3 -->
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="w-24 h-24 rounded-full bg-primary text-white flex items-center justify-center text-3xl font-bold mb-4 md:mb-0 md:mr-8">
+                        3
+                    </div>
+                    <div class="flex-1 bg-white p-6 rounded-2xl shadow-lg glow-primary">
+                        <h3 class="text-2xl font-bold text-primary mb-3">植入希望</h3>
+                        <p class="text-gray-700">
+                            提出躲避灾难和得救的方法路径，但前提是信奉跟随和买单。
+                            制造非此即彼的陷阱：信则得救，否则淘汰。
+                            绑定特定主张或领袖，制造依赖与盲从。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 步骤4 -->
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="w-24 h-24 rounded-full bg-primary text-white flex items-center justify-center text-3xl font-bold mb-4 md:mb-0 md:mr-8">
+                        4
+                    </div>
+                    <div class="flex-1 bg-white p-6 rounded-2xl shadow-lg glow-primary">
+                        <h3 class="text-2xl font-bold text-primary mb-3">自圆其说</h3>
+                        <p class="text-gray-700">
+                            预言失败后重新解释或主动更改预言内容和时间。
+                            常见借口：时间线调整、人类意识改变、灵性层面已实现等。
+                            本质是挪移目标，逃避证伪。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 失败率与心理动因 -->
+    <section class="section bg-gradient-to-br from-indigo-50 to-purple-50">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="bento-grid">
+                <!-- 失败率 -->
+                <div class="col-span-12 md:col-span-6 p-8 bg-white rounded-2xl shadow-lg">
+                    <div class="text-center mb-8">
+                        <div class="text-8xl font-black text-primary mb-4">100%</div>
+                        <h3 class="text-3xl font-bold">预言失败率</h3>
+                        <p class="text-gray-600">Historical Failure Rate of Predictions</p>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <div class="chart-bar bg-primary w-full" style="height: 100%; left: 0%" data-percent="100">
+                            <div class="absolute top-4 left-1/2 transform -translate-x-1/2 text-white font-bold">末日预言</div>
+                        </div>
+                        <div class="chart-bar bg-secondary w-full" style="height: 75%; left: 5%" data-percent="75">
+                            <div class="absolute top-4 left-1/2 transform -translate-x-1/2 text-white font-bold">经济预测</div>
+                        </div>
+                        <div class="chart-bar bg-accent w-full" style="height: 50%; left: 10%" data-percent="50">
+                            <div class="absolute top-4 left-1/2 transform -translate-x-1/2 text-white font-bold">政治预言</div>
+                        </div>
+                        <div class="chart-bar bg-green-500 w-full" style="height: 25%; left: 15%" data-percent="25">
+                            <div class="absolute top-4 left-1/2 transform -translate-x-1/2 text-white font-bold">气象预报</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <p class="text-gray-700">
+                            纵观历史，所有设定具体时间的末日预言失败率是100%。
+                            失败源于其逻辑上的致命缺陷：不可证伪性、模糊性和预设解释空间。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 心理动因 -->
+                <div class="col-span-12 md:col-span-6 p-8 bg-dark text-white rounded-2xl shadow-lg">
+                    <div class="text-center mb-8">
+                        <h3 class="text-3xl font-bold mb-2">末日预言的心理动因</h3>
+                        <p class="text-gray-300">Psychological Drivers of Apocalyptic Beliefs</p>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="p-4 bg-gray-800 rounded-lg">
+                            <h4 class="text-xl font-bold text-primary mb-2">
+                                <i class="fas fa-heart-crack mr-2"></i>现实掌控无力感
+                            </h4>
+                            <p class="text-gray-300">
+                                在安全感匮乏的年代，人们渴望"重启世界"的错觉，
+                                相信巨变能带来重新洗牌的机会。
+                            </p>
+                        </div>
+                        
+                        <div class="p-4 bg-gray-800 rounded-lg">
+                            <h4 class="text-xl font-bold text-secondary mb-2">
+                                <i class="fas fa-crown mr-2"></i>渴望被选中的特殊感
+                            </h4>
+                            <p class="text-gray-300">
+                                相信自己是"觉醒者"或"天选之子"，获得灵性优越感，
+                                用虚构的宏大使命替代现实成就感。
+                            </p>
+                        </div>
+                        
+                        <div class="p-4 bg-gray-800 rounded-lg">
+                            <h4 class="text-xl font-bold text-accent mb-2">
+                                <i class="fas fa-cloud-bolt mr-2"></i>恐惧的确定性偏好
+                            </h4>
+                            <p class="text-gray-300">
+                                面对未知焦虑，人们宁愿接受确定的坏结果。
+                                末日预言至少提供确定性，比未知焦虑更容易承受。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 生态结构 -->
+                <div class="col-span-12 mt-8 p-8 bg-white rounded-2xl shadow-lg">
+                    <h3 class="text-3xl font-bold text-center mb-6">末日预言的生态结构</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center p-6 border-2 border-primary rounded-xl">
+                            <div class="w-20 h-20 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-hat-wizard text-primary text-3xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2">缔造者</h4>
+                            <p class="text-gray-700">制造剧本，谋取利益或权力</p>
+                        </div>
+                        <div class="text-center p-6 border-2 border-secondary rounded-xl">
+                            <div class="w-20 h-20 rounded-full bg-secondary bg-opacity-10 flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-bullhorn text-secondary text-3xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2">传播者</h4>
+                            <p class="text-gray-700">放大扩散，获取流量或认同</p>
+                        </div>
+                        <div class="text-center p-6 border-2 border-accent rounded-xl">
+                            <div class="w-20 h-20 rounded-full bg-accent bg-opacity-10 flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-hands-praying text-accent text-3xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2">信奉者</h4>
+                            <p class="text-gray-700">寻求答案，满足心理需求</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 鉴别方法 -->
+    <section class="section gradient-secondary">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">预言鉴别<span class="text-secondary">五步口诀</span></h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">Five-Step Verification Framework</p>
+            </div>
+            
+            <div class="bento-grid">
+                <!-- 口诀卡片 -->
+                <div class="col-span-12 md:col-span-8 p-8 bg-white rounded-2xl shadow-lg glow-secondary">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="p-6 bg-indigo-50 rounded-xl">
+                            <div class="text-6xl font-black text-secondary mb-4">1</div>
+                            <h3 class="text-2xl font-bold mb-3">咋验证？</h3>
+                            <p class="text-gray-700">
+                                可证伪性：真正的判断必须能被验证。无法证伪的预测多是心理操控。
+                            </p>
+                        </div>
+                        <div class="p-6 bg-indigo-50 rounded-xl">
+                            <div class="text-6xl font-black text-secondary mb-4">2</div>
+                            <h3 class="text-2xl font-bold mb-3">哪儿来的？</h3>
+                            <p class="text-gray-700">
+                                依据来源：是否基于现实数据、预测模型或严谨的历史规律推演？
+                            </p>
+                        </div>
+                        <div class="p-6 bg-indigo-50 rounded-xl">
+                            <div class="text-6xl font-black text-secondary mb-4">3</div>
+                            <h3 class="text-2xl font-bold mb-3">说清没？</h3>
+                            <p class="text-gray-700">
+                                表述方式：真诚的判断清晰直接，虚假信息靠含糊暗示。
+                            </p>
+                        </div>
+                        <div class="p-6 bg-indigo-50 rounded-xl">
+                            <div class="text-6xl font-black text-secondary mb-4">4</div>
+                            <h3 class="text-2xl font-bold mb-3">图什么？</h3>
+                            <p class="text-gray-700">
+                                动机指向：预言背后是否有不正当目的？利益、操控或制造混乱？
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-8 p-6 bg-secondary text-white rounded-xl">
+                        <div class="text-6xl font-black mb-4 text-center">5</div>
+                        <h3 class="text-2xl font-bold mb-3 text-center">转过吗？</h3>
+                        <p class="text-center">
+                            历史记录：预言者过往的成功率和信誉如何？多次出错者不值得信任。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 值得关注的预言 -->
+                <div class="col-span-12 md:col-span-4 p-8 bg-white rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-6 text-center">值得关注的预言类型</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="p-4 border-l-4 border-green-500 bg-green-50">
+                            <h4 class="text-xl font-bold mb-2">科学预警</h4>
+                            <p class="text-gray-700">
+                                气候危机、地震风险、AI失控等基于数据模型的概率预估，
+                                目的是提示风险、推动应对。
+                            </p>
+                        </div>
+                        
+                        <div class="p-4 border-l-4 border-purple-500 bg-purple-50">
+                            <h4 class="text-xl font-bold mb-2">文化哲思</h4>
+                            <p class="text-gray-700">
+                                如曾仕强的人类未来预言，本质是对趋势的洞察与警示，
+                                启发对发展道路的反思。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                        <h4 class="text-lg font-bold text-yellow-800 mb-2">
+                            <i class="fas fa-lightbulb mr-2"></i>核心区别
+                        </h4>
+                        <p class="text-yellow-700">
+                            科学预警敬畏不确定性，末日谣言贩卖虚假确定。
+                            前者推动行动，后者制造恐慌。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 结语 -->
+    <section class="section flex items-center justify-center bg-gradient-to-br from-dark to-gray-900 text-white">
+        <div class="container mx-auto px-4 max-w-4xl text-center">
+            <div class="text-5xl md:text-7xl font-black mb-8">
+                <span class="text-primary">保持</span>
+                <span class="text-secondary">清醒</span>
+                <span class="text-accent">·</span>
+                <span class="text-primary">拥抱</span>
+                <span class="text-secondary">变化</span>
+            </div>
+            
+            <p class="text-xl md:text-2xl mb-12 max-w-3xl mx-auto">
+                世界永远存在风险，但并无真正的末日。我们需要的是抛开杂念，
+                保持独立思考，用理性面对未来，用行动创造希望。
+            </p>
+            
+            <div class="flex justify-center">
+                <div class="bg-white bg-opacity-10 backdrop-blur-lg p-8 rounded-2xl max-w-2xl">
+                    <p class="text-lg italic">
+                        "预言的价值不在细节精准度，而在对趋势的把握和对危机的警觉。
+                        读懂其中对人性与文明的深层思考，远比争论预言日期更有价值。"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 导航点激活
+            const navDots = document.querySelectorAll('.nav-dot');
+            const sections = document.querySelectorAll('.section');
+            
+            function activateDot(index) {
+                navDots.forEach(dot => dot.classList.remove('bg-primary', 'border-primary'));
+                navDots[index].classList.add('bg-primary', 'border-primary');
+            }
+            
+            // 初始激活第一个点
+            activateDot(0);
+            
+            // 滚动监听
+            window.addEventListener('scroll', function() {
+                let currentIndex = 0;
+                sections.forEach((section, index) => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight / 2) {
+                        currentIndex = index;
+                    }
+                });
+                activateDot(currentIndex);
+            });
+            
+            // 点击导航点滚动
+            navDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-section'));
+                    sections[index].scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            // 图表动画
+            const chartBars = document.querySelectorAll('.chart-bar');
+            
+            function animateBars() {
+                chartBars.forEach(bar => {
+                    const percent = bar.getAttribute('data-percent');
+                    bar.style.height = '0%';
+                    
+                    setTimeout(() => {
+                        bar.style.height = percent + '%';
+                    }, 300);
+                });
+            }
+            
+            // 当图表进入视口时触发动画
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateBars();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(document.querySelector('.chart-container'));
+        });
+    </script>
+</body>
+</html>
