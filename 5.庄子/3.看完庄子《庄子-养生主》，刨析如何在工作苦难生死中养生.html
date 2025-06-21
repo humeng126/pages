@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>庄子养生主 - 大道无形</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Framer Motion CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.16.0/dist/framer-motion.min.js"></script>
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 20px;
+            height: 100vh;
+            padding: 30px;
+        }
+        
+        .grid-item {
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .highlight-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.2;
+        }
+        
+        .big-number {
+            font-size: 120px;
+            font-weight: 900;
+            line-height: 0.9;
+            opacity: 0.1;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 0;
+        }
+        
+        .big-text {
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            font-weight: 700;
+            color: #666;
+            margin-bottom: 25px;
+            display: block;
+        }
+        
+        .content {
+            font-size: 16px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .icon-container {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+        
+        .dao-symbol {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .pulse {
+            animation: pulse 4s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.1); opacity: 0.15; }
+            100% { transform: scale(1); opacity: 0.1; }
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+    </style>
+</head>
+<body class="overflow-hidden">
+    <div class="bento-grid">
+        <!-- 标题区域 -->
+        <div class="grid-item bg-white col-span-4 row-span-1 flex flex-col justify-center">
+            <div class="relative">
+                <div class="big-number">01</div>
+                <h1 class="text-7xl font-black mb-4 tracking-tight">庄子·养生主</h1>
+                <p class="text-2xl text-gray-600 mb-6">超越形式的心灵修养与天道之门</p>
+                <div class="flex items-center">
+                    <div class="w-12 h-1 bg-blue-500 mr-4"></div>
+                    <p class="text-lg">The Art of True Preservation</p>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span class="material-icons text-4xl text-gray-400">expand_more</span>
+            </div>
+        </div>
+        
+        <!-- 核心概念区域 -->
+        <div class="grid-item bg-white col-span-2 row-span-2 relative">
+            <div class="highlight-bg" style="background: radial-gradient(circle, rgba(100, 200, 255, 0.3) 0%, transparent 70%);"></div>
+            <div class="big-number">02</div>
+            <div class="icon-container" style="background: rgba(100, 200, 255, 0.2); color: #0077cc;">
+                <span class="material-icons">insights</span>
+            </div>
+            <div class="big-text">核心之道</div>
+            <p class="subtitle">Essence of Preservation</p>
+            <div class="content">
+                <p class="mb-4">养生非求长生，非避世躺平，而是回归本心，顺应天道。</p>
+                <p class="font-bold">原督以为经</p>
+                <p>生命的意义是人生的督脉，超越名利，保全生命之泉。</p>
+            </div>
+            <svg class="dao-symbol pulse" viewBox="0 0 100 100" style="bottom: -50px; right: -50px;">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#0077cc" stroke-width="1" stroke-dasharray="5,2"/>
+                <path d="M50,5 A45,45 0 1,1 50,95 A45,45 0 1,1 50,5 Z" fill="none" stroke="#0077cc" stroke-width="1"/>
+            </svg>
+        </div>
+        
+        <!-- 非养生区域 -->
+        <div class="grid-item bg-white col-span-2 row-span-2 relative">
+            <div class="highlight-bg" style="background: radial-gradient(circle, rgba(255, 150, 100, 0.3) 0%, transparent 70%);"></div>
+            <div class="big-number">03</div>
+            <div class="icon-container" style="background: rgba(255, 150, 100, 0.2); color: #ff6633;">
+                <span class="material-icons">block</span>
+            </div>
+            <div class="big-text">非养生之道</div>
+            <p class="subtitle">What Preservation Is Not</p>
+            <div class="content">
+                <p class="mb-4">庄子反对两种极端：</p>
+                <div class="flex items-start mb-3">
+                    <span class="material-icons mr-2 text-red-500">close</span>
+                    <p><strong>疯狂追求知识</strong> - "吾生也有涯，而知也无涯"</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="material-icons mr-2 text-red-500">close</span>
+                    <p><strong>停止知识追求</strong> - 因噎废食，非养生之道</p>
+                </div>
+            </div>
+            <svg class="dao-symbol" viewBox="0 0 100 100" style="bottom: -50px; right: -50px;">
+                <line x1="20" y1="20" x2="80" y2="80" stroke="#ff6633" stroke-width="2"/>
+                <line x1="80" y1="20" x2="20" y2="80" stroke="#ff6633" stroke-width="2"/>
+            </svg>
+        </div>
+        
+        <!-- 工作养生区域 -->
+        <div class="grid-item bg-white col-span-2 row-span-2 relative">
+            <div class="highlight-bg" style="background: radial-gradient(circle, rgba(100, 255, 200, 0.3) 0%, transparent 70%);"></div>
+            <div class="big-number">04</div>
+            <div class="icon-container" style="background: rgba(100, 255, 200, 0.2); color: #00aa88;">
+                <span class="material-icons">work</span>
+            </div>
+            <div class="big-text">工作养生</div>
+            <p class="subtitle">Preservation in Work</p>
+            <div class="content">
+                <p class="mb-4">庖丁解牛之道：</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li>万事皆可入道境</li>
+                    <li>不断探索，取舍有道</li>
+                    <li>保持未知之心</li>
+                    <li>游刃有余，非躺平无为</li>
+                </ul>
+            </div>
+            <svg class="dao-symbol pulse" viewBox="0 0 100 100" style="bottom: -50px; right: -50px;">
+                <path d="M30,30 L50,10 L70,30 L90,50 L70,70 L50,90 L30,70 L10,50 Z" fill="none" stroke="#00aa88" stroke-width="1"/>
+            </svg>
+        </div>
+        
+        <!-- 苦难养生区域 -->
+        <div class="grid-item bg-white col-span-2 row-span-1 relative">
+            <div class="highlight-bg" style="background: radial-gradient(circle, rgba(200, 150, 255, 0.3) 0%, transparent 70%);"></div>
+            <div class="big-number">05</div>
+            <div class="icon-container" style="background: rgba(200, 150, 255, 0.2); color: #9966cc;">
+                <span class="material-icons">accessibility</span>
+            </div>
+            <div class="big-text">苦难养生</div>
+            <p class="subtitle">Preservation in Suffering</p>
+            <div class="content">
+                <p class="mb-2">面对苦难：</p>
+                <p>接受上天的安排，不消磨真我</p>
+                <p>不纠结于人为错误，从中领略天道</p>
+            </div>
+        </div>
+        
+        <!-- 生死养生区域 -->
+        <div class="grid-item bg-white col-span-2 row-span-1 relative">
+            <div class="highlight-bg" style="background: radial-gradient(circle, rgba(255, 200, 100, 0.3) 0%, transparent 70%);"></div>
+            <div class="big-number">06</div>
+            <div class="icon-container" style="background: rgba(255, 200, 100, 0.2); color: #ffaa33;">
+                <span class="material-icons">cycle</span>
+            </div>
+            <div class="big-text">生死养生</div>
+            <p class="subtitle">Preservation in Life & Death</p>
+            <div class="content">
+                <p>安时而处顺，哀乐不入</p>
+                <p>生者为督脉，逝者为旁脉</p>
+            </div>
+        </div>
+        
+        <!-- 火传区域 -->
+        <div class="grid-item bg-white col-span-2 row-span-1 relative">
+            <div class="highlight-bg" style="background: radial-gradient(circle, rgba(255, 100, 100, 0.3) 0%, transparent 70%);"></div>
+            <div class="big-number">07</div>
+            <div class="icon-container" style="background: rgba(255, 100, 100, 0.2); color: #ff4444;">
+                <span class="material-icons">whatshot</span>
+            </div>
+            <div class="big-text">火传之道</div>
+            <p class="subtitle">The Fire Transmission</p>
+            <div class="content">
+                <p>"指穷于为薪，火传也，不知其尽也"</p>
+                <p>智慧如火焰，代代相传</p>
+            </div>
+        </div>
+        
+        <!-- 天道平衡区域 -->
+        <div class="grid-item bg-white col-span-2 row-span-1 relative">
+            <div class="highlight-bg" style="background: radial-gradient(circle, rgba(100, 200, 150, 0.3) 0%, transparent 70%);"></div>
+            <div class="big-number">08</div>
+            <div class="icon-container" style="background: rgba(100, 200, 150, 0.2); color: #22aa66;">
+                <span class="material-icons">balance</span>
+            </div>
+            <div class="big-text">天道平衡</div>
+            <p class="subtitle">The Balance of Dao</p>
+            <div class="content">
+                <p>唯善无近名，为恶无近刑</p>
+                <p>不因他人之言触动内心</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 初始化Framer Motion
+        const { motion } = framerMotion;
+        
+        // 添加滚动效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const gridItems = document.querySelectorAll('.grid-item');
+            
+            // 初始设置
+            gridItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+            });
+            
+            // 滚动动画
+            setTimeout(() => {
+                gridItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 150 * index);
+                });
+            }, 300);
+            
+            // 添加滚动指示器效果
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            setInterval(() => {
+                scrollIndicator.style.opacity = scrollIndicator.style.opacity === '0.5' ? '1' : '0.5';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

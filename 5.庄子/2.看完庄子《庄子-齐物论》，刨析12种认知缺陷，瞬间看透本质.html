@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>庄子齐物论：12种认知缺陷分析</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@9.0.0/dist/framer-motion.js"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: linear-gradient(135deg, #f9f7fe 0%, #f0edf8 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .bento-card {
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bento-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .card-number {
+            position: absolute;
+            top: -30px;
+            right: -10px;
+            font-size: 180px;
+            font-weight: 900;
+            opacity: 0.08;
+            z-index: 0;
+            line-height: 1;
+        }
+        
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-subtitle {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            opacity: 0.7;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-content {
+            font-size: 16px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .highlight-bg {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(to bottom, #f9f7fe, #f0edf8);
+        }
+        
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            max-width: 1000px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            max-width: 800px;
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        @media (max-width: 1200px) {
+            .bento-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        .scroll-text {
+            margin-bottom: 10px;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8A6BE8',
+                        secondary: '#5AB1E3',
+                        accent1: '#FF7C7C',
+                        accent2: '#FFB86C',
+                        accent3: '#45D0A8',
+                        accent4: '#5D8BF4',
+                        accent5: '#C56BE8',
+                        accent6: '#FF9E6D',
+                        accent7: '#4BD2B5',
+                        accent8: '#6C8AEC',
+                        accent9: '#D16BE8',
+                        accent10: '#FF8F6C',
+                        accent11: '#3ACCA8',
+                        accent12: '#5D7CF4'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section relative">
+        <motion-div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            class="container mx-auto"
+        >
+            <h1 class="hero-title">庄子齐物论：<span class="text-primary">12种认知缺陷</span></h1>
+            <p class="hero-subtitle">为什么我们一眼看不到本质？不是能力不足，而是被认知遮蔽了双眼</p>
+            <p class="hero-description">
+                本视频耗时53天，总计35分钟。基于庄子齐物论原文，用现代人视角分析底层的12种认知缺陷。
+                探索我们如何拨开迷雾，看透本质。我是没头脑的阿星，接下来让我们开启内心之旅，探索之路。
+            </p>
+        </motion-div>
+        
+        <div class="scroll-indicator">
+            <span class="scroll-text">SCROLL TO EXPLORE</span>
+            <span class="material-icons text-primary">expand_more</span>
+        </div>
+    </section>
+    
+    <!-- Bento Grid Section -->
+    <section class="py-20">
+        <div class="bento-grid">
+            <!-- Card 1 -->
+            <motion-div 
+                class="bento-card"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+            >
+                <span class="card-number">1</span>
+                <div class="card-icon" style="background: rgba(138, 107, 232, 0.15);">
+                    <span class="material-icons" style="color: #8A6BE8; font-size: 36px;">label</span>
+                </div>
+                <h2 class="card-title">陷于名称的圈套</h2>
+                <p class="card-subtitle">Trapped in Names</p>
+                <p class="card-content">
+                    过于执着名称而忽略本质。工作名称无论是经理还是总监，我们只看薪资高低。
+                    学校名称无论是学霸还是学渣，只看高考成绩。为何因表面现象影响情绪？
+                </p>
+                <div class="highlight-bg" style="background: #8A6BE8; top: -50px; right: -100px;"></div>
+            </motion-div>
+            
+            <!-- Card 2 -->
+            <motion-div 
+                class="bento-card"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+            >
+                <span class="card-number">2</span>
+                <div class="card-icon" style="background: rgba(90, 177, 227, 0.15);">
+                    <span class="material-icons" style="color: #5AB1E3; font-size: 36px;">visibility</span>
+                </div>
+                <h2 class="card-title">陷于感官的圈套</h2>
+                <p class="card-subtitle">Trapped by Senses</p>
+                <p class="card-content">
+                    眼见不一定为实。人心中的成见犹如一座大山，这座大山就是我们的感官。
+                    我们被各种角色所束缚，逐渐失去自我，变成日复一日重复同样工作的NPC。
+                </p>
+                <div class="highlight-bg" style="background: #5AB1E3; top: -50px; left: -100px;"></div>
+            </motion-div>
+            
+            <!-- Card 3 -->
+            <motion-div 
+                class="bento-card"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+            >
+                <span class="card-number">3</span>
+                <div class="card-icon" style="background: rgba(255, 124, 124, 0.15);">
+                    <span class="material-icons" style="color: #FF7C7C; font-size: 36px;">gavel</span>
+                </div>
+                <h2 class="card-title">陷于是非的圈套</h2>
+                <p class="card-subtitle">Trapped in Right & Wrong</p>
+                <p class="card-content">
+                    连贤明的尧帝都陷于是非当中，普通人更易纠结。我们应当将心力放在更重要的事情上。
+                    当更大的智慧呈现出来，小问题也就不存在了。
+                </p>
+                <div class="highlight-bg" style="background: #FF7C7C; bottom: -100px; right: -100px;"></div>
+            </motion-div>
+            
+            <!-- Card 4 -->
+            <motion-div 
+                class="bento-card"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+            >
+                <span class="card-number">4</span>
+                <div class="card-icon" style="background: rgba(255, 184, 108, 0.15);">
+                    <span class="material-icons" style="color: #FFB86C; font-size: 36px;">psychology</span>
+                </div>
+                <h2 class="card-title">陷于认知差异</h2>
+                <p class="card-subtitle">Trapped by Cognitive Differences</p>
+                <p class="card-content">
+                    每个人的认知都是不同的。世间诸多问题和矛盾的起点均来自于此。
+                    我们无需过多争辩，而应坦然接受认知差异，顺应天道。
+                </p>
+                <div class="highlight-bg" style="background: #FFB86C; top: -50px; left: -100px;"></div>
+            </motion-div>
+            
+            <!-- Card 5 -->
+            <motion-div 
+                class="bento-card"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+            >
+                <span class="card-number">5</span>
+                <div class="card-icon" style="background: rgba(69, 208, 168, 0.15);">
+                    <span class="material-icons" style="color: #45D0A8; font-size: 36px;">sports_mma</span>
+                </div>
+                <h2 class="card-title">陷于是非和争胜</h2>
+                <p class="card-subtitle">Trapped in Debate & Victory</p>
+                <p class="card-content">
+                    是非和争胜之心让人的精神不断消磨。世间种种争名辩论、抢占风头，
+                    很多人认为是生命之乐，其实只是身体的娱乐，没有自我的存在。
+                </p>
+                <div class="highlight-bg" style="background: #45D0A8; bottom: -100px; left: -100px;"></div>
+            </motion-div>
+            
+            <!-- Card 6 -->
+            <motion-div 
+                class="bento-card"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+            >
+                <span class="card-number">6</span>
+                <div class="card-icon" style="background: rgba(93, 139, 244, 0.15);">
+                    <span class="material-icons" style="color: #5D8BF4; font-size: 36px;">lightbulb</span>
+                </div>
+                <h2 class="card-title">陷于定见</h2>
+                <p class="card-subtitle">Trapped by Preconceptions</p>
+                <p class="card-content">
+                    定见就是我们积攒的书本知识、经验总结。每个人的定见都有缺陷和局限。
+                    若以此衡量一切，一定会错误百出。心中的定见应当不断形成、打破、升级。
+                </p>
+                <div class="highlight-bg" style="background: #5D8BF4; top: -50px; right: -100px;"></div>
+            </motion-div>
+            
+            <!-- Card 7 -->
+            <motion-div 
+                class="bento-card"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+            >
+                <span class="card-number">7</span>
+                <div class="card-icon" style="background: rgba(197, 107, 232, 0.15);">
+                    <span class="material-icons" style="color: #C56BE8; font-size: 36px;">chat</span>
+                </div>
+                <h2 class="card-title">陷于言论</h2>
+                <p class="card-subtitle">Trapped by Words</p>
+                <p class="card-content">
+                    言论不像风的自然吹动。许多人喜好发表言论，本质上是一种表现欲。
+                    陷于辩言使人真神消磨、老朽不堪，是最容易让自我丧失的行为。
+                </p>
+                <div class="highlight-bg" style="background: #C56BE8; bottom: -100px; right: -100px;"></div>
+            </motion-div>
+            
+            <!-- Card 8 -->
+            <motion-div 
+                class="bento-card"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+            >
+                <span class="card-number">8</span>
+                <div class="card-icon" style="background: rgba(255, 158, 109, 0.15);">
+                    <span class="material-icons" style="color: #FF9E6D; font-size: 36px;">lock</span>
+                </div>
+                <h2 class="card-title">陷于固执</h2>
+                <p class="card-subtitle">Trapped by Stubbornness</p>
+                <p class="card-content">
+                    只有通达之士才能了解通而为一的道理，因此不用固执自己的成见而寄于各物的功用。
+                    固执己见耗费真神，观摩功用则毫无磨损。
+                </p>
+                <div class="highlight-bg" style="background: #FF9E6D; top: -50px; left: -100px;"></div>
+            </motion-div>
+            
+            <!-- Card 9 -->
+            <motion-div 
+                class="bento-card"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+            >
+                <span class="card-number">9</span>
+                <div class="card-icon" style="background: rgba(77, 210, 181, 0.15);">
+                    <span class="material-icons" style="color: #4BD2B5; font-size: 36px;">military_tech</span>
+                </div>
+                <h2 class="card-title">陷于成就</h2>
+                <p class="card-subtitle">Trapped by Achievements</p>
+                <p class="card-content">
+                    人们往往会因成就沾沾自喜甚至止步不前。当一个人对外物有所偏爱，
+                    陷入成就光环之中，内心之道必然因此亏损。
+                </p>
+                <div class="highlight-bg" style="background: #4BD2B5; bottom: -100px; left: -100px;"></div>
+            </motion-div>
+            
+            <!-- Card 10 -->
+            <motion-div 
+                class="bento-card"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+            >
+                <span class="card-number">10</span>
+                <div class="card-icon" style="background: rgba(108, 138, 236, 0.15);">
+                    <span class="material-icons" style="color: #6C8AEC; font-size: 36px;">record_voice_over</span>
+                </div>
+                <h2 class="card-title">陷于他言</h2>
+                <p class="card-subtitle">Trapped by Others' Words</p>
+                <p class="card-content">
+                    言论是他者，是外物，与自我无关。无论言论正确与否，都只是外物，
+                    不可因此影响内心。我们应以明辨之心对待世界，听到的言论只是言论。
+                </p>
+                <div class="highlight-bg" style="background: #6C8AEC; top: -50px; right: -100px;"></div>
+            </motion-div>
+            
+            <!-- Card 11 -->
+            <motion-div 
+                class="bento-card"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+            >
+                <span class="card-number">11</span>
+                <div class="card-icon" style="background: rgba(209, 107, 232, 0.15);">
+                    <span class="material-icons" style="color: #D16BE8; font-size: 36px;">block</span>
+                </div>
+                <h2 class="card-title">陷于武断</h2>
+                <p class="card-subtitle">Trapped by Hasty Judgment</p>
+                <p class="card-content">
+                    对于超出认知范围的事物，圣人承认其存在但不讨论；对于已知领域之事，
+                    圣人讨论但不评议。知之为知之，不知为不知，是智也。
+                </p>
+                <div class="highlight-bg" style="background: #D16BE8; bottom: -100px; right: -100px;"></div>
+            </motion-div>
+            
+            <!-- Card 12 -->
+            <motion-div 
+                class="bento-card"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+            >
+                <span class="card-number">12</span>
+                <div class="card-icon" style="background: rgba(255, 143, 108, 0.15);">
+                    <span class="material-icons" style="color: #FF8F6C; font-size: 36px;">menu_book</span>
+                </div>
+                <h2 class="card-title">陷于学习</h2>
+                <p class="card-subtitle">Trapped by Learning</p>
+                <p class="card-content">
+                    极度深入的学习也是一种圈套。一旦认定某种思想，就会化身为固执。
+                    一旦形成执念，就陷入了是非对错的世俗圈套中，丧失自我，脱离大德本源。
+                </p>
+                <div class="highlight-bg" style="background: #FF8F6C; top: -50px; left: -100px;"></div>
+            </motion-div>
+        </div>
+    </section>
+    
+    <!-- Conclusion Section -->
+    <section class="py-20 px-4">
+        <motion-div 
+            class="max-w-4xl mx-auto text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+        >
+            <h2 class="text-4xl md:text-5xl font-bold mb-8">拨开迷雾，<span class="text-primary">看透本质</span></h2>
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <p class="text-xl mb-6 leading-relaxed">
+                    庄子在《齐物论》中揭示的12种认知缺陷，深刻指出了人类认知的局限性。这些缺陷如同迷雾，
+                    遮蔽了我们看清事物本质的能力。通过认识这些认知陷阱，我们可以：
+                </p>
+                <ul class="text-left text-lg space-y-4 max-w-2xl mx-auto">
+                    <li class="flex items-start">
+                        <span class="material-icons text-primary mr-2">check_circle</span>
+                        <span>超越表象，洞察事物本质</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-icons text-primary mr-2">check_circle</span>
+                        <span>摆脱情绪束缚，回归理性思考</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-icons text-primary mr-2">check_circle</span>
+                        <span>打破固有认知，保持开放心态</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-icons text-primary mr-2">check_circle</span>
+                        <span>减少无谓争论，专注自我提升</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-icons text-primary mr-2">check_circle</span>
+                        <span>顺应天道自然，实现内心自由</span>
+                    </li>
+                </ul>
+                <p class="mt-8 text-xl italic">
+                    "大道至简，本质常在。唯有破除认知迷雾，方能见天地之真容。"
+                </p>
+            </div>
+        </motion-div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <motion-div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+        >
+            <p class="text-lg mb-4">庄子齐物论：12种认知缺陷分析</p>
+            <p class="opacity-70 max-w-2xl mx-auto">
+                本内容基于庄子齐物论原文，用现代视角分析认知缺陷。探索如何拨开迷雾，看透本质。
+                我是没头脑的阿星，让我们一起开启内心之旅，探索认知边界。
+            </p>
+            <div class="mt-6">
+                <button class="bg-primary hover:bg-purple-700 text-white px-6 py-3 rounded-full font-medium transition-all">
+                    观看完整视频
+                </button>
+            </div>
+            <p class="mt-8 opacity-50">© 2023 没头脑的阿星 · 庄子哲学探索系列</p>
+        </motion-div>
+    </footer>
+    
+    <script>
+        // 当页面加载完成后初始化Framer Motion
+        document.addEventListener('DOMContentLoaded', function() {
+            // 创建自定义元素别名
+            const motion = window.framerMotion.motion;
+            const MotionDiv = Object.assign(document.createElement('div'), {
+                is: 'motion-div'
+            });
+            
+            // 注册自定义元素
+            customElements.define('motion-div', class extends HTMLElement {
+                connectedCallback() {
+                    const props = {
+                        initial: JSON.parse(this.getAttribute('initial') || '{}'),
+                        animate: JSON.parse(this.getAttribute('animate') || '{}'),
+                        whileInView: JSON.parse(this.getAttribute('whileInView') || '{}'),
+                        transition: JSON.parse(this.getAttribute('transition') || '{}'),
+                        viewport: JSON.parse(this.getAttribute('viewport') || '{}'),
+                        className: this.getAttribute('class') || ''
+                    };
+                    
+                    // 创建实际的motion.div元素
+                    const motionDiv = motion.div;
+                    const element = motionDiv(
+                        Object.assign({}, props, {
+                            children: this.innerHTML
+                        })
+                    );
+                    
+                    // 替换自定义元素
+                    this.parentNode.replaceChild(element, this);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

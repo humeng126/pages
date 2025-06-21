@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>庄子哲学：破除规矩，活出真我</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6B7280',
+                        secondary: '#9CA3AF',
+                        accent: {
+                            100: '#D1FAE5',
+                            200: '#A7F3D0',
+                            300: '#6EE7B7',
+                            400: '#34D399',
+                            500: '#10B981',
+                        },
+                        dark: {
+                            100: '#1F2937',
+                            200: '#111827',
+                        },
+                        light: {
+                            100: '#F9FAFB',
+                            200: '#F3F4F6',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans SC"', 'sans-serif'],
+                        serif: ['"Noto Serif SC"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #F9FAFB;
+            color: #1F2937;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 200px;
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .grid-item {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        
+        .highlight-text {
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+        }
+        
+        .highlight-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(90deg, rgba(209,250,229,0.6) 0%, rgba(209,250,229,0) 100%);
+            z-index: -1;
+            transition: height 0.3s ease;
+        }
+        
+        .highlight-text:hover::after {
+            height: 100%;
+        }
+        
+        .big-number {
+            font-size: 8rem;
+            line-height: 1;
+            font-weight: 800;
+            color: #10B981;
+            opacity: 0.1;
+            position: absolute;
+            z-index: 0;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .water-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .water-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(209,250,229,0.15) 0%, rgba(209,250,229,0) 60%);
+            z-index: -1;
+        }
+        
+        .fish-icon {
+            animation: swim 15s linear infinite;
+        }
+        
+        @keyframes swim {
+            0% { transform: translateX(-100px) rotateY(0deg); }
+            50% { transform: translateX(calc(100vw - 100px)) rotateY(0deg); }
+            51% { transform: translateX(calc(100vw - 100px)) rotateY(180deg); }
+            100% { transform: translateX(-100px) rotateY(180deg); }
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        .gradient-circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, rgba(16,185,129,0) 70%);
+            position: absolute;
+            z-index: 0;
+        }
+        
+        .line-art {
+            stroke: #10B981;
+            stroke-width: 2;
+            fill: none;
+        }
+    </style>
+</head>
+<body class="relative">
+    <!-- 浮动装饰元素 -->
+    <div class="gradient-circle top-[-150px] left-[-150px] opacity-30"></div>
+    <div class="gradient-circle bottom-[-150px] right-[-150px] opacity-30"></div>
+    
+    <!-- 导航提示 -->
+    <div class="scroll-down hidden md:block">
+        <div class="animate-bounce w-10 h-16 rounded-full border-4 border-gray-300 flex items-start justify-center p-2">
+            <div class="w-3 h-3 rounded-full bg-gray-400 animate-bounce"></div>
+        </div>
+    </div>
+    
+    <!-- 顶部标题区 -->
+    <section class="min-h-screen relative flex items-center justify-center overflow-hidden water-bg">
+        <div class="absolute top-10 left-10">
+            <div class="text-sm font-medium text-gray-500">Philosophy of Zhuangzi</div>
+            <div class="text-xl font-bold text-gray-800">庄子哲学 · 逍遥之道</div>
+        </div>
+        
+        <div class="fish-icon">
+            <svg width="80" height="40" viewBox="0 0 120 60" class="text-accent-400">
+                <path d="M10,30 Q40,10 70,30 Q100,50 110,30 Q100,10 70,30 Q40,50 10,30" fill="currentColor" opacity="0.7"/>
+                <circle cx="90" cy="25" r="3" fill="#1F2937"/>
+            </svg>
+        </div>
+        
+        <div class="container mx-auto px-6 max-w-6xl relative z-10">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 section-title">
+                    <span class="highlight-text">相濡以沫</span>
+                    <span class="text-gray-400 mx-2">vs</span>
+                    <span class="highlight-text">相忘于江湖</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-10">
+                    我们该如何活出<span class="text-accent-500 font-bold">真实自然</span>的人生？
+                </p>
+                <div class="inline-block px-8 py-4 bg-accent-100 text-accent-800 rounded-full font-medium">
+                    《庄子·大宗师》的现代启示
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 核心内容区 - Bento网格布局 -->
+    <section class="py-20 bg-light-100">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="bento-grid">
+                <!-- 左上：问题引入 -->
+                <div class="grid-item col-span-12 md:col-span-6 row-span-2 p-6 relative overflow-hidden">
+                    <div class="big-number">01</div>
+                    <div class="relative z-10">
+                        <h2 class="text-2xl font-bold mb-4 section-title">相濡以沫的困境</h2>
+                        <p class="text-gray-600 mb-4">
+                            两条鱼在干涸的陆地上互相吐沫以求苟活，世人赞美此为"相濡以沫"。但庄子却问：<span class="text-accent-500 font-medium">与其在绝境中互相依存，不如在江湖中自由遨游而彼此相忘</span>。
+                        </p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-quote-left text-accent-400 mr-2"></i>
+                            <span>相濡以沫，不如相忘于江湖</span>
+                        </div>
+                    </div>
+                    <svg width="120" height="60" class="absolute bottom-4 right-4 opacity-20">
+                        <path d="M10,30 Q40,10 70,30 Q100,50 110,30" class="line-art"/>
+                    </svg>
+                </div>
+                
+                <!-- 右上：两种规矩 -->
+                <div class="grid-item col-span-14 md:col-span-6 p-6 relative">
+                    <div class="big-number">02</div>
+                    <div class="relative z-10">
+                        <h2 class="text-2xl font-bold mb-3 section-title">两种束缚人的规矩</h2>
+                        <div class="mb-3 p-3 bg-accent-50 rounded-lg">
+                            <h3 class="font-bold text-accent-700">世俗规矩</h3>
+                            <p class="text-sm text-gray-600">大多数人认同的成为规矩，反对的成为禁忌</p>
+                        </div>
+                        <div class="p-1 bg-gray-50 rounded-lg">
+                            <h3 class="font-bold text-gray-700">心理规矩</h3>
+                            <p class="text-sm text-gray-600">内在的枷锁，比外在束缚更难打破</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 中上：许由的故事 -->
+                <div class="grid-item col-span-12 md:col-span-4 p-6 relative bg-gray-50">
+                    <div class="absolute top-4 right-4 text-5xl text-gray-200">
+                        <i class="fas fa-mountain-sun"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">许由的智慧</h3>
+                    <p class="text-sm text-gray-600">
+                        尧打算将天下让给隐士许由，许由却说："你已用仁义是非给人套上枷锁，如何能遨游于自由境界？"
+                    </p>
+                </div>
+                
+                <!-- 中中：颜回的故事 -->
+                <div class="grid-item col-span-12 md:col-span-4 p-6 relative bg-accent-50">
+                    <div class="absolute top-4 right-4 text-5xl text-accent-200">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">颜回的领悟</h3>
+                    <p class="text-sm text-accent-800">
+                        颜回告诉孔子：我忘掉了仁义...忘掉了礼乐...达到了"坐忘"境界，与万物融通为一。
+                    </p>
+                </div>
+                
+                <!-- 中下：真人特质 -->
+                <div class="grid-item col-span-12 md:col-span-4 p-6 relative">
+                    <div class="big-number">03</div>
+                    <div class="relative z-10">
+                        <h2 class="text-2xl font-bold mb-4 section-title">真人的境界</h2>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent-500 mt-1 mr-2"></i>
+                                <span>睡觉不做梦，睡醒不忧愁</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent-500 mt-1 mr-2"></i>
+                                <span>不在意世俗名利，随性而行</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent-500 mt-1 mr-2"></i>
+                                <span>不因弱小而自卑，不因成功而自傲</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 左下：生死观 -->
+                <div class="grid-item col-span-12 md:col-span-6 p-6 relative">
+                    <div class="big-number">04</div>
+                    <div class="relative z-10">
+                        <h2 class="text-2xl font-bold mb-4 section-title">庄子的生死观</h2>
+                        <p class="text-gray-600 mb-4">
+                            "劳我以生，佚我以老，息我以死。故善吾生者，乃所以善吾死也。"
+                        </p>
+                        <p class="text-gray-600">
+                            道赋予我们生命让我们操劳，用衰老让我们安闲，用死亡让我们安息。因此，假如你把生当做好事，也应该把死当成好事。
+                        </p>
+                    </div>
+                    <div class="absolute bottom-4 right-4 w-20 h-20 rounded-full border-4 border-accent-300 opacity-30"></div>
+                </div>
+                
+                <!-- 右下：桑户的故事 -->
+                <div class="grid-item col-span-12 md:col-span-6 row-span-2 p-6 relative bg-dark-100 text-white">
+                    <div class="absolute top-4 right-4 text-8xl text-dark-200 opacity-50">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <h2 class="text-2xl font-bold mb-4 section-title">桑户之死</h2>
+                        <p class="text-gray-300 mb-4">
+                            子桑户死了，孔子派子贡去帮忙料理丧事。子贡却看到死者的两位朋友在编曲弹琴，相和而歌："桑户啊，你已经返璞归真了，而我们还在人世！"
+                        </p>
+                        <p class="text-gray-300 mb-4">
+                            子贡问："你们这样做合乎礼仪吗？"两人回答："你哪里懂得礼的真意呢？"
+                        </p>
+                        <div class="bg-accent-900 p-4 rounded-lg">
+                            <p class="text-accent-100">
+                                孔子感叹："他们是游弋在方外的人，而我是游弋在方内的人。"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 下中：数据可视化 -->
+                <div class="grid-item col-span-12 p-6 relative">
+                    <div class="big-number">05</div>
+                    <div class="relative z-10">
+                        <h2 class="text-2xl font-bold mb-4 section-title">现代人的束缚</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                <div class="text-center mb-3">
+                                    <div class="text-4xl font-bold text-accent-500">73%</div>
+                                    <div class="text-gray-600 text-sm">做着自己不喜欢的工作</div>
+                                </div>
+                                <div class="h-2 bg-gray-200 rounded-full">
+                                    <div class="h-2 bg-accent-500 rounded-full" style="width: 73%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                <div class="text-center mb-3">
+                                    <div class="text-4xl font-bold text-accent-500">68%</div>
+                                    <div class="text-gray-600 text-sm">迫于压力维持表面社交</div>
+                                </div>
+                                <div class="h-2 bg-gray-200 rounded-full">
+                                    <div class="h-2 bg-accent-500 rounded-full" style="width: 68%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                <div class="text-center mb-3">
+                                    <div class="text-4xl font-bold text-accent-500">81%</div>
+                                    <div class="text-gray-600 text-sm">感到被各种规矩束缚</div>
+                                </div>
+                                <div class="h-2 bg-gray-200 rounded-full">
+                                    <div class="h-2 bg-accent-500 rounded-full" style="width: 81%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 结论区 -->
+    <section class="py-20 bg-gradient-to-br from-accent-50 to-gray-50">
+        <div class="container mx-auto px-4 max-w-3xl text-center">
+            <div class="inline-block px-6 py-2 bg-accent-100 text-accent-800 rounded-full text-sm font-medium mb-8">
+                庄子哲学的现代启示
+            </div>
+            
+            <h2 class="text-4xl font-bold mb-8 section-title">
+                <span class="highlight-text">破除心中规矩</span>
+                <span class="text-gray-400 mx-2">·</span>
+                <span class="highlight-text">活出天道人生</span>
+            </h2>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-lg mb-10 text-left">
+                <p class="text-gray-700 mb-6 text-lg">
+                    我们常常被各种规矩束缚：被世俗捆绑，被名利捆绑，被内心怯弱捆绑。我们迫于压力做选择，维持表面和谐，却失去真实自然。
+                </p>
+                
+                <div class="border-l-4 border-accent-500 pl-4 py-2 mb-6">
+                    <p class="text-gray-700 italic">
+                        "天之小人，人之君子。人之君子，天之小人也。"
+                    </p>
+                    <p class="text-gray-500 text-sm mt-2">
+                        人间所谓君子，不过是合乎世俗标准，但这样的人往往是大自然的小人
+                    </p>
+                </div>
+                
+                <p class="text-gray-700 mb-6 text-lg">
+                    庄子告诉我们：真正厉害的人都不喜欢规矩，活在规矩之外。与其在世俗的赞美中束缚自己，不如"相忘于江湖"，在更广阔的天地中自由遨游。
+                </p>
+                
+                <div class="text-center mt-10">
+                    <div class="inline-block px-8 py-4 bg-accent-500 text-white rounded-full font-bold text-lg shadow-lg transform transition hover:scale-105">
+                        回归自然 · 活出真我
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-gray-500 text-sm">
+                <i class="fas fa-quote-left text-accent-400 mr-2"></i>
+                道法自然，可如今我们什么都不缺，唯独缺少自然
+            </div>
+        </div>
+    </section>
+    
+    <!-- 底部 -->
+    <footer class="py-10 bg-dark-100 text-gray-400">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-6">
+                <div class="text-xl font-bold text-white mb-2">庄子哲学 · 逍遥之道</div>
+                <div class="text-sm">相濡以沫不如相忘于江湖</div>
+            </div>
+            
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="text-gray-400 hover:text-white transition">
+                    <i class="fab fa-weixin text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition">
+                    <i class="fab fa-weibo text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+            </div>
+            
+            <div class="text-xs">
+                © 2023 庄子哲学探索 | 基于《庄子·大宗师》的现代解读
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 观察fade-in元素
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            fadeElements.forEach(el => {
+                observer.observe(el);
+            });
+            
+            // 苹果风格的滚动效果
+            let lastScrollY = window.scrollY;
+            const bentoItems = document.querySelectorAll('.grid-item');
+            
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                const scrollDirection = scrollY > lastScrollY ? 'down' : 'up';
+                lastScrollY = scrollY;
+                
+                bentoItems.forEach((item, index) => {
+                    const rect = item.getBoundingClientRect();
+                    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                    
+                    if (isVisible) {
+                        const delay = index * 0.1;
+                        const translateY = scrollDirection === 'down' ? Math.min(0, -20 + (rect.top / 10)) : 0;
+                        
+                        item.style.transform = `translateY(${translateY}px)`;
+                        item.style.transition = `transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

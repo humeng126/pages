@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>庄子德充符 - 生命智慧的现代诠释</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@9.0.0/dist/framer-motion.js"></script>
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap');
+        
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #a55a4a;
+            --accent: #4aa56f;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: linear-gradient(135deg, #f9f7f7 0%, #e8eaf6 100%);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* 修改 bento-grid 的样式 */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(min-content, max-content); /* 改为自适应行高 */
+            gap: 1.5rem;
+            min-height: 100vh; /* 改为最小高度 */
+            padding: 2rem;
+        }
+
+        /* 调整网格项的样式 */
+        .grid-item {
+            position: relative; /* 确保定位正确 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 200px; /* 设置最小高度 */
+            height: auto; /* 自适应高度 */
+        }
+
+        /* 调整特性数字的样式 */
+        .feature-number {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.1;
+        }
+        
+        .highlight-primary {
+            background: linear-gradient(135deg, rgba(74, 111, 165, 0.1) 0%, rgba(74, 111, 165, 0.03) 100%);
+        }
+        
+        .highlight-secondary {
+            background: linear-gradient(135deg, rgba(165, 90, 74, 0.1) 0%, rgba(165, 90, 74, 0.03) 100%);
+        }
+        
+        .highlight-accent {
+            background: linear-gradient(135deg, rgba(74, 165, 111, 0.1) 0%, rgba(74, 165, 111, 0.03) 100%);
+        }
+        
+        .chinese-title {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            color: var(--primary);
+        }
+        
+        .english-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: rgba(33, 37, 41, 0.6);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .feature-number {
+            font-size: 8rem;
+            font-weight: 900;
+            line-height: 1;
+            color: rgba(33, 37, 41, 0.05);
+            position: absolute;
+            z-index: 0;
+        }
+        
+        .feature-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-desc {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .character-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+            height: 100%;
+        }
+        
+        .character-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .character-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .quote-box {
+            border-left: 4px solid var(--primary);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .quote-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .comparison-card {
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            background: white;
+        }
+        
+        .comparison-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step-number {
+            min-width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 1rem;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .person-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #e0e7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .person-icon i {
+            font-size: 3rem;
+            color: var(--primary);
+        }
+        
+        .dao-graphic {
+            width: 100%;
+            height: 120px;
+            position: relative;
+            margin: 2rem 0;
+        }
+        
+        .dao-line {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        .dao-point {
+            position: absolute;
+            top: 50px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            transform: translateY(-50%);
+        }
+        
+        .dao-label {
+            position: absolute;
+            top: 90px;
+            font-size: 0.9rem;
+            text-align: center;
+            width: 100px;
+            left: -40px;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="bento-grid">
+        <!-- 标题区域 -->
+        <div class="grid-item highlight-primary" style="grid-column: 1 / span 6; grid-row: 1;">
+            <div class="flex flex-col justify-center h-full">
+                <div class="chinese-title">德充符</div>
+                <div class="english-subtitle">The Sign of Virtue Complete</div>
+            </div>
+        </div>
+        
+        <!-- 副标题区域 -->
+        <div class="grid-item" style="grid-column: 7 / span 6; grid-row: 1;">
+            <div class="flex flex-col justify-center h-full">
+                <p class="text-2xl font-bold mb-4">庄子的人生智慧：在残缺中寻找圆满</p>
+                <p class="text-lg opacity-75">"不试图违抗天命，但又不放弃自我。接受自己的开局，走出属于自己的人生"</p>
+            </div>
+        </div>
+        
+        <!-- 核心概念：德 -->
+        <div class="grid-item highlight-primary" style="grid-column: 1 / span 4; grid-row: 2; position: relative;">
+            <div class="feature-number">德</div>
+            <div class="relative z-10">
+                <h2 class="feature-title">德：行走大道</h2>
+                <p class="feature-desc">
+                    左边是双人旁，代表行走在大道上。右边是一只眼睛加上一条直线，意为看得直。德字的本意是看明大道的方向，并遵从大道行事。
+                </p>
+                <div class="mt-6">
+                    <div class="flex items-center mb-3">
+                        <i class="material-icons mr-2 text-blue-500">directions_walk</i>
+                        <span>行走在人生正途</span>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <i class="material-icons mr-2 text-blue-500">visibility</i>
+                        <span>看清生命方向</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="material-icons mr-2 text-blue-500">adjust</i>
+                        <span>遵从内心正道</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 核心概念：充 -->
+        <div class="grid-item highlight-accent" style="grid-column: 5 / span 4; grid-row: 2; position: relative;">
+            <div class="feature-number">充</div>
+            <div class="relative z-10">
+                <h2 class="feature-title">充：充盈圆满</h2>
+                <p class="feature-desc">
+                    充满、充盈，使之加多。代表内在的丰盈状态，即使面对外在的残缺，内心依然可以保持完满与充实。
+                </p>
+                <div class="mt-6">
+                    <div class="flex items-center mb-3">
+                        <i class="material-icons mr-2 text-green-500">bubble_chart</i>
+                        <span>内在精神的丰盈</span>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <i class="material-icons mr-2 text-green-500">self_improvement</i>
+                        <span>超越表象的充实</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="material-icons mr-2 text-green-500">water_drop</i>
+                        <span>生命能量的充盈</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 核心概念：符 -->
+        <div class="grid-item highlight-secondary" style="grid-column: 9 / span 4; grid-row: 2; position: relative;">
+            <div class="feature-number">符</div>
+            <div class="relative z-10">
+                <h2 class="feature-title">符：接受天命</h2>
+                <p class="feature-desc">
+                    符命代表上天赋予的命运。道家认为生命由天道安排，我们只能验证它，用这副身躯去适应生活，而非改变命运本身。
+                </p>
+                <div class="mt-6">
+                    <div class="flex items-center mb-3">
+                        <i class="material-icons mr-2 text-orange-500">check_circle</i>
+                        <span>接受生命现状</span>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <i class="material-icons mr-2 text-orange-500">autorenew</i>
+                        <span>适应而非改变</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="material-icons mr-2 text-orange-500">favorite</i>
+                        <span>验证生命意义</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 三个代表人物 -->
+        <div class="grid-item" style="grid-column: 1 / span 4; grid-row: 4;">
+            <div class="character-card">
+                <div class="person-icon">
+                    <i class="material-icons">accessibility</i>
+                </div>
+                <h3 class="character-name">王骀</h3>
+                <div class="character-tag bg-blue-100 text-blue-800">先天残疾</div>
+                <p class="mb-3">足部断裂，形体残缺，却获得孔子尊敬："王代先生是圣人，我孔丘上且落在后面，未曾前去请教"</p>
+                <div class="text-sm text-gray-500">
+                    <i class="material-icons align-middle text-xs">star</i> 代表：已知其德
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid-item" style="grid-column: 5 / span 4; grid-row: 4;">
+            <div class="character-card">
+                <div class="person-icon">
+                    <i class="material-icons">accessibility</i>
+                </div>
+                <h3 class="character-name">申徒嘉</h3>
+                <div class="character-tag bg-green-100 text-green-800">后天适应</div>
+                <p class="mb-3">一只脚缺失，却获得子产称赞，展示了在残疾状态下依然可以成就非凡</p>
+                <div class="text-sm text-gray-500">
+                    <i class="material-icons align-middle text-xs">star</i> 代表：将之其德
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid-item" style="grid-column: 9 / span 4; grid-row: 4;">
+            <div class="character-card">
+                <div class="person-icon">
+                    <i class="material-icons">accessibility</i>
+                </div>
+                <h3 class="character-name">叔山无趾</h3>
+                <div class="character-tag bg-orange-100 text-orange-800">过错受刑</div>
+                <p class="mb-3">脚趾全无，因过错受刑，仍获得孔子和老子的认可，展示罪过也是符命的一部分</p>
+                <div class="text-sm text-gray-500">
+                    <i class="material-icons align-middle text-xs">star</i> 代表：未知其德
+                </div>
+            </div>
+        </div>
+        
+        <!-- 如何得充符 -->
+        <div class="grid-item highlight-accent" style="grid-column: 1 / span 6; grid-row: 10;">
+            <h2 class="text-3xl font-bold mb-4">如何得充符</h2>
+            <div class="flex flex-wrap -mx-2">
+                <div class="w-full md:w-1/2 px-2 mb-4">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3 class="step-title">破除自我的心魔</h3>
+                            <p>克服分别心，不因自己的残缺、贫穷或卑微而自卑。认识到在真正的大道面前，有罪者与无罪者地位是平等的。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 px-2 mb-4">
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3 class="step-title">破除外道干扰</h3>
+                            <p>不被外界评价所左右，无论世人评价好坏，都无关内心。按天道指引，在既定命运中做有意义的事。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 庄学与儒学对比 -->
+        <div class="grid-item" style="grid-column: 7 / span 6; grid-row: 10;">
+            <h2 class="text-3xl font-bold mb-4">庄学与儒学的核心区别</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <h3 class="comparison-title text-blue-600">庄子思想</h3>
+                    <ul class="list-disc pl-5">
+                        <li class="mb-2">人的罪过也是一种符命，不必在意</li>
+                        <li class="mb-2">过去的事情已经过去，不必揪着不放</li>
+                        <li class="mb-2">超越过去，而非改过自新</li>
+                        <li class="mb-2">天地无私地平等对待万物</li>
+                    </ul>
+                </div>
+                <div class="comparison-card">
+                    <h3 class="comparison-title text-orange-600">儒家思想</h3>
+                    <ul class="list-disc pl-5">
+                        <li class="mb-2">人犯了错就一定要改正</li>
+                        <li class="mb-2">改造好了才是好同志</li>
+                        <li class="mb-2">强调道德上的改过自新</li>
+                        <li class="mb-2">对犯错者存在偏见和分别心</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 总结与结语 -->
+        <div class="grid-item highlight-primary" style="grid-column: 1 / span 12; grid-row: 12;">
+            <div class="flex items-center h-full">
+                <div class="w-2/3 pr-6">
+                    <h2 class="text-3xl font-bold mb-4">德充符的核心智慧</h2>
+                    <p class="text-xl">
+                        在面对先天局限时，不试图改变它，也不放弃自我，而是接受并不断调整验证，突破人生边界，获得精彩人生。
+                        无论外界如何评价，只需按天道指引，在既定命运中做有意义的事。
+                    </p>
+                </div>
+                <div class="w-1/3">
+                    <div class="dao-graphic">
+                        <div class="dao-line"></div>
+                        <div class="dao-point" style="left: 10%;"></div>
+                        <div class="dao-point" style="left: 50%;"></div>
+                        <div class="dao-point" style="left: 90%;"></div>
+                        <div class="dao-label" style="left: 5%;">接受天命</div>
+                        <div class="dao-label" style="left: 45%;">充盈内在</div>
+                        <div class="dao-label" style="left: 85%;">验证人生</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Framer Motion 动画初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 简单的滚动动画效果
+            const gridItems = document.querySelectorAll('.grid-item');
+            
+            gridItems.forEach((item, index) => {
+                // 设置初始状态（隐藏）
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                
+                // 设置动画
+                setTimeout(() => {
+                    item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 200 + index * 100);
+            });
+            
+            // 鼠标悬停效果增强
+            gridItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.05)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

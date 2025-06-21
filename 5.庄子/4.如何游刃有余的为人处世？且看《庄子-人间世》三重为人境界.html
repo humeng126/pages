@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>庄子人间世：三重境界的智慧之旅</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@9.0.0/dist/framer-motion.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B5FBF',
+                        secondary: '#6A9C89',
+                        accent: '#FFA630',
+                        light: '#F7F9F7',
+                        dark: '#2D3047'
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans SC', 'sans-serif'],
+                        serif: ['Noto Serif SC', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #F7F9F7 0%, #E6EDE9 100%);
+            color: #2D3047;
+            overflow-x: hidden;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .bento-cell {
+            border-radius: 20px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .bento-cell:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .glow-primary {
+            position: relative;
+        }
+        
+        .glow-primary::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 95, 191, 0.2) 0%, rgba(139, 95, 191, 0) 70%);
+            z-index: -1;
+        }
+        
+        .glow-secondary {
+            position: relative;
+        }
+        
+        .glow-secondary::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(106, 156, 137, 0.2) 0%, rgba(106, 156, 137, 0) 70%);
+            z-index: -1;
+        }
+        
+        .glow-accent {
+            position: relative;
+        }
+        
+        .glow-accent::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 166, 48, 0.2) 0%, rgba(255, 166, 48, 0) 70%);
+            z-index: -1;
+        }
+        
+        .big-number {
+            font-size: 10rem;
+            font-weight: 800;
+            line-height: 0.8;
+            color: rgba(45, 48, 71, 0.1);
+            position: absolute;
+            z-index: 0;
+        }
+        
+        .dao-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            font-size: 3rem;
+            color: #8B5FBF;
+        }
+        
+        .tree-svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: #6A9C89;
+            stroke-width: 2;
+        }
+        
+        .water-svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: #8B5FBF;
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+        
+        .scroll-hint {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-20px) translateX(-50%);}
+            60% {transform: translateY(-10px) translateX(-50%);}
+        }
+        
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #8B5FBF;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quote-box {
+            border-left: 4px solid #FFA630;
+            padding-left: 1.5rem;
+            font-style: italic;
+            color: #555;
+            margin: 1.5rem 0;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            height: calc(100% - 20px);
+            width: 2px;
+            background: #8B5FBF;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #FFA630;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #FFA630;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- 头部区域 -->
+    <header class="py-16 text-center relative overflow-hidden">
+        <div class="absolute top-10 left-1/4 w-40 h-40 rounded-full bg-primary opacity-10 blur-3xl"></div>
+        <div class="absolute bottom-10 right-1/4 w-60 h-60 rounded-full bg-secondary opacity-10 blur-3xl"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h1 class="text-6xl md:text-8xl font-bold mb-4 tracking-tight">
+                <span class="text-primary">庄子</span>
+                <span class="text-dark">人间世</span>
+            </h1>
+            <p class="text-2xl md:text-3xl text-dark font-light mb-8 max-w-3xl mx-auto">
+                入世三重境界的<span class="font-bold text-accent">大智慧</span>
+            </p>
+            <div class="inline-flex items-center bg-white rounded-full px-6 py-3 shadow-lg">
+                <span class="text-lg text-dark mr-2">无用之用，方为大用</span>
+                <span class="text-sm text-gray-500">The Great Usefulness of the Useless</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 核心内容区 - Bento Grid布局 -->
+    <main class="bento-grid pb-32">
+        <!-- 大标题区域 -->
+        <div class="bento-cell glow-primary col-span-12 row-span-2 relative">
+            <div class="big-number left-10 top-10">無</div>
+            <div class="relative z-10">
+                <h2 class="section-title">庄子处世哲学的三重境界</h2>
+                <p class="text-xl leading-relaxed max-w-4xl">
+                    在《人间世》中，庄子通过七则寓言故事阐述了精妙的处世哲学，总体包含三重智慧境界。这三重境界不仅指导我们如何在纷繁复杂的世间保全自身，更揭示了实现人生圆满的终极智慧。
+                </p>
+                <div class="flex mt-8 space-x-4">
+                    <div class="flex-1 bg-light p-6 rounded-xl">
+                        <div class="dao-icon mb-4">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">虚空自己</h3>
+                        <p>入世才能拨开迷雾</p>
+                    </div>
+                    <div class="flex-1 bg-light p-6 rounded-xl">
+                        <div class="dao-icon mb-4">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">顺道而为</h3>
+                        <p>入世才能游刃有余</p>
+                    </div>
+                    <div class="flex-1 bg-light p-6 rounded-xl">
+                        <div class="dao-icon mb-4">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">活出道性</h3>
+                        <p>人生才能逍遥圆满</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第一重境界 -->
+        <div class="bento-cell glow-secondary col-span-8 row-span-2 relative">
+            <div class="big-number left-10 top-10">一</div>
+            <div class="relative z-10">
+                <div class="section-subtitle">第一重境界</div>
+                <h2 class="section-title">虚空自己 · 入世才能拨开迷雾</h2>
+                
+                <div class="flex gap-8">
+                    <div class="flex-1">
+                        <p class="mb-4 text-lg">
+                            庄子借孔子教导颜回的寓言强调：入世首先要保全生命。颜回想用仁政理念改变魏国国君，孔子却预言这将导致杀身之祸。
+                        </p>
+                        
+                        <div class="quote-box">
+                            "德之所以过分是由于好名，智之所以外露是由于争胜。道德和智慧就像两把凶器，不过是人世间好名和好争的产物。"
+                        </div>
+                        
+                        <p class="mb-4">
+                            夏桀杀害关龙逢，商纣王杀害比干，这些贤臣都因道德修养太高而遭排斥杀害。庄子借孔子之口提出解决之道：
+                        </p>
+                        
+                        <ul class="list-disc pl-6 space-y-2 mb-4">
+                            <li><span class="font-bold">修炼心斋</span>：消除自我私欲、喜好、成见</li>
+                            <li><span class="font-bold">达到无极</span>：让心达到虚无空明境界</li>
+                            <li><span class="font-bold">诚意待人</span>：对别人好是真心而非为利益</li>
+                        </ul>
+                        
+                        <p class="font-bold text-secondary">
+                            虚室生白，吉祥止止：达到凡事无极的境界，心才能明亮，知道适可而止。
+                        </p>
+                    </div>
+                    
+                    <div class="flex-1 flex items-center justify-center">
+                        <svg class="water-svg" viewBox="0 0 200 200">
+                            <path d="M20,150 Q60,130 100,150 Q140,170 180,150" stroke-opacity="0.8"></path>
+                            <path d="M20,130 Q60,110 100,130 Q140,150 180,130" stroke-opacity="0.6"></path>
+                            <path d="M20,110 Q60,90 100,110 Q140,130 180,110" stroke-opacity="0.4"></path>
+                            <circle cx="100" cy="80" r="30" fill="none" stroke-width="3" stroke-dasharray="5,5"></circle>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 寓言故事 -->
+        <div class="bento-cell col-span-4 row-span-2 bg-dark text-light">
+            <div class="h-full flex flex-col">
+                <div class="flex-1">
+                    <div class="section-subtitle text-accent">颜回与孔子的寓言</div>
+                    <h3 class="text-2xl font-bold mb-4">心斋的智慧</h3>
+                    <p class="mb-4">
+                        颜回想去改变魏国国君，孔子教导他必须先"斋戒清心"——修炼心斋。消除一切自我私欲，让心达到虚无空明的境界。
+                    </p>
+                    <div class="bg-primary bg-opacity-20 p-4 rounded-lg mb-4">
+                        <p class="italic">
+                            "即使这样，我还是听听你的做法。"
+                        </p>
+                        <p class="text-right mt-2">——孔子</p>
+                    </div>
+                </div>
+                <div class="mt-auto">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold">颜回的困惑</p>
+                            <p class="text-sm opacity-75">外表端庄，内心虚怀，秉正诚直</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二重境界 -->
+        <div class="bento-cell glow-accent col-span-7 row-span-2 relative">
+            <div class="big-number left-10 top-10">二</div>
+            <div class="relative z-10">
+                <div class="section-subtitle">第二重境界</div>
+                <h2 class="section-title">顺道而为 · 入世才能游刃有余</h2>
+                
+                <div class="flex gap-8">
+                    <div class="flex-1">
+                        <p class="mb-4 text-lg">
+                            庄子通过楚国叶公子高出使齐国和言和担任魏太子师傅的寓言，阐述面对不得不做的事情时的处世之道。
+                        </p>
+                        
+                        <div class="bg-light p-4 rounded-lg mb-4">
+                            <p class="font-bold mb-2">庄子借孔子之口说：</p>
+                            <p>"做一个臣子的道义，就是要完成臣子道义之事。做一个臣子本来就有不得已的事，所谓物来顺应，直下承当。"</p>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold mb-2">应对法则：</h3>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li><span class="font-bold">按照实际情况办事</span>：不添加个人东西</li>
+                            <li><span class="font-bold">不超出实际去做</span>：这样才可以保全自己</li>
+                            <li><span class="font-bold">警惕谨慎</span>：像天真的孩子一样姑且随顺</li>
+                        </ul>
+                        
+                        <p class="mt-4 italic">
+                            用逍遥游中的无功思想：不追求功劳，顺其自然，由他自生自灭。
+                        </p>
+                    </div>
+                    
+                    <div class="flex-1 flex items-center">
+                        <svg class="tree-svg" viewBox="0 0 200 200">
+                            <path d="M100,200 L100,80" stroke-width="4"></path>
+                            <path d="M100,80 Q60,60 60,40" stroke-width="3"></path>
+                            <path d="M100,80 Q140,60 140,40" stroke-width="3"></path>
+                            <path d="M100,60 Q80,30 70,20" stroke-width="2"></path>
+                            <path d="M100,60 Q120,30 130,20" stroke-width="2"></path>
+                            <circle cx="60" cy="40" r="20" stroke-width="1" stroke-dasharray="3,3"></circle>
+                            <circle cx="140" cy="40" r="20" stroke-width="1" stroke-dasharray="3,3"></circle>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 职场应用 -->
+        <div class="bento-cell col-span-5 row-span-1 bg-primary text-light">
+            <div class="h-full flex items-center">
+                <div class="flex-1">
+                    <h3 class="text-2xl font-bold mb-2">职场中的顺道而为</h3>
+                    <p>
+                        只做好自己，成长自己，切不可为晋升耍小聪明。凭实力晋升才能走得稳、走得踏实。
+                    </p>
+                </div>
+                <div class="text-4xl">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第三重境界 -->
+        <div class="bento-cell glow-primary col-span-12 row-span-2 relative">
+            <div class="big-number left-10 top-10">三</div>
+            <div class="relative z-10">
+                <div class="section-subtitle">第三重境界</div>
+                <h2 class="section-title">活出道性 · 人生才能逍遥圆满</h2>
+                
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <p class="mb-4 text-lg">
+                            庄子通过四则寓言故事强调活出道性的重要性。道性就是无形、无为、无争、上善若水、柔弱无限性。
+                        </p>
+                        
+                        <div class="bg-accent bg-opacity-10 p-4 rounded-lg mb-4 border-l-4 border-accent">
+                            <p class="text-2xl font-bold text-accent mb-2">无用之用，方为大用</p>
+                            <p>
+                                世俗标准中的"无用"可能在道上大有用处。科学家可能不会洗衣服，但能发明电灯、计算机；哲学家可能不会赚钱，但能用文化拯救人心。
+                            </p>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold mb-2">现实意义：</h3>
+                        <p class="mb-4">
+                            现代人以金钱、房子、车子评判价值，造成各种社会矛盾。庄子提醒我们打破认知，活出道性，消除世俗评判概念，实现人生圆满。
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <div class="bg-light p-5 rounded-xl mb-6">
+                            <h3 class="text-xl font-bold mb-3 flex items-center">
+                                <i class="fas fa-tree text-secondary mr-2"></i>
+                                大树寓言
+                            </h3>
+                            <p>
+                                大树因材质不好、形状弯曲等"无用"现象得以存活，长得超出常人认知。而那些"有用"的树木却被早早砍伐。
+                            </p>
+                        </div>
+                        
+                        <div class="bg-light p-5 rounded-xl">
+                            <h3 class="text-xl font-bold mb-3 flex items-center">
+                                <i class="fas fa-user text-primary mr-2"></i>
+                                残疾人的启示
+                            </h3>
+                            <p>
+                                天生残疾的人无法像常人那样进取，但靠缝补、洗衣服养活家人。庄子借此说明：只要顺道而为，活出天赋价值，天不会不给你活下去的机会。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 总结区域 -->
+        <div class="bento-cell glow-secondary col-span-12 relative">
+            <div class="big-number left-10 top-10">道</div>
+            <div class="relative z-10 text-center py-8">
+                <h2 class="section-title">庄子智慧的现代启示</h2>
+                
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-xl mb-8">
+                        庄子不是"躺平学鼻祖"，而是教导我们在复杂世间如何智慧生存的哲人。当周边一片混沌时，不争、不沉迷名利场，活出自己本该成为的样子，才是逍遥圆满的选择。
+                    </p>
+                    
+                    <div class="inline-block bg-dark text-light px-8 py-4 rounded-full text-xl font-bold">
+                        <i class="fas fa-quote-left mr-2"></i>
+                        虚室生白，吉祥止止
+                        <i class="fas fa-quote-right ml-2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="py-12 text-center text-gray-600">
+        <div class="container mx-auto">
+            <p class="mb-4">庄子人间世 · 三重境界的智慧之旅</p>
+            <p class="text-sm">探索道家哲学在现代生活中的应用与实践</p>
+        </div>
+    </footer>
+
+    <!-- 滚动提示 -->
+    <div class="scroll-hint text-gray-500">
+        <i class="fas fa-chevron-down text-2xl"></i>
+    </div>
+
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 创建观察器
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            // 观察所有需要动画的元素
+            document.querySelectorAll('.bento-cell').forEach(cell => {
+                cell.classList.add('fade-in');
+                observer.observe(cell);
+            });
+            
+            // 添加Apple风格的滚动效果
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const bentoCells = document.querySelectorAll('.bento-cell');
+                
+                bentoCells.forEach((cell, index) => {
+                    const cellPosition = cell.getBoundingClientRect().top;
+                    const speed = index * 0.05;
+                    
+                    if (cellPosition < window.innerHeight * 0.8) {
+                        cell.style.transform = `translateY(${scrollPosition * speed * 0.1}px)`;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
