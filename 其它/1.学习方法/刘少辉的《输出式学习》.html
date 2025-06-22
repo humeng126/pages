@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>输出式学习 - 刘少辉</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/framer-motion@10.12.16/dist/framer-motion.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        accent: '#06b6d4',
+                        light: '#f0f9ff',
+                        dark: '#1e293b'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['"Noto Sans SC"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #fdf2f8 100%);
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 1.5rem;
+            height: 100vh;
+            padding: 2rem;
+        }
+        
+        .grid-item {
+            border-radius: 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .big-number {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(120deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .highlight-gradient {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .highlight-gradient::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 35%;
+            background: linear-gradient(120deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+            z-index: -1;
+            border-radius: 2px;
+        }
+        
+        .chart-bar {
+            height: 0.75rem;
+            border-radius: 0.5rem;
+            background: #e2e8f0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .chart-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            border-radius: 0.5rem;
+        }
+        
+        .output-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+        
+        .transform-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .bento-1 { grid-area: 1 / 1 / 2 / 3; }
+        .bento-2 { grid-area: 1 / 3 / 2 / 5; }
+        .bento-3 { grid-area: 2 / 1 / 3 / 2; }
+        .bento-4 { grid-area: 2 / 2 / 3 / 3; }
+        .bento-5 { grid-area: 2 / 3 / 3 / 5; }
+        .bento-6 { grid-area: 3 / 1 / 4 / 2; }
+        .bento-7 { grid-area: 3 / 2 / 4 / 4; }
+        .bento-8 { grid-area: 3 / 4 / 4 / 5; }
+        
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                height: auto;
+            }
+            
+            .bento-1, .bento-2, .bento-3, .bento-4, .bento-5, .bento-6, .bento-7, .bento-8 {
+                grid-area: auto;
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .circle-visual {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 0 auto;
+        }
+        
+        .circle-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(#6366f1 70%, #e2e8f0 0);
+        }
+        
+        .circle-content {
+            position: relative;
+            z-index: 2;
+            background: white;
+            width: 70%;
+            height: 70%;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+    <header class="w-full max-w-6xl text-center mb-12 pt-12">
+        <h1 class="text-5xl md:text-7xl font-black mb-4 text-dark">
+            输出式学习
+            <span class="text-primary">Output-Based Learning</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
+            知识不是你听进去的那一刻拥有的，而是你表达出来的那一刻才真正属于你
+        </p>
+    </header>
+    
+    <main class="w-full max-w-6xl">
+        <div class="bento-grid">
+            <!-- 知识保留率对比 -->
+            <div class="grid-item bento-1 fade-in" style="animation-delay: 0.1s">
+                <h2 class="text-2xl font-bold mb-6">知识保留率对比</h2>
+                <div class="mb-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-medium">被动阅读</span>
+                        <span class="font-bold">10%</span>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="chart-fill bg-secondary" style="width: 10%"></div>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-medium">观看视频</span>
+                        <span class="font-bold">20%</span>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="chart-fill bg-secondary" style="width: 20%"></div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-medium text-primary font-bold">主动输出</span>
+                        <span class="font-bold text-primary">90%</span>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="chart-fill bg-primary" style="width: 90%"></div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 text-sm text-gray-600">
+                    学习金字塔理论显示：主动输出的知识保留率远高于被动输入
+                </div>
+            </div>
+            
+            <!-- 遗忘曲线 -->
+            <div class="grid-item bento-2 fade-in" style="animation-delay: 0.2s">
+                <h2 class="text-2xl font-bold mb-6">艾宾浩斯遗忘曲线</h2>
+                <div class="flex items-end h-48 mb-4 gap-4">
+                    <div class="flex flex-col items-center flex-1">
+                        <div class="bg-primary w-full rounded-t" style="height: 100%"></div>
+                        <div class="mt-2 font-medium">学习后</div>
+                        <div class="text-sm text-gray-600">100%</div>
+                    </div>
+                    <div class="flex flex-col items-center flex-1">
+                        <div class="bg-primary w-full rounded-t" style="height: 30%"></div>
+                        <div class="mt-2 font-medium">24小时后</div>
+                        <div class="text-sm text-gray-600">30%</div>
+                    </div>
+                    <div class="flex flex-col items-center flex-1">
+                        <div class="bg-primary w-full rounded-t" style="height: 10%"></div>
+                        <div class="mt-2 font-medium">一周后</div>
+                        <div class="text-sm text-gray-600">10%</div>
+                    </div>
+                    <div class="flex flex-col items-center flex-1">
+                        <div class="bg-accent w-full rounded-t" style="height: 85%"></div>
+                        <div class="mt-2 font-medium text-accent">输出后</div>
+                        <div class="text-sm text-accent">85%</div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 p-4 bg-light rounded-xl">
+                    <p class="text-gray-700">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                        学习后1-2天内主动讲一遍、写一遍，遗忘率会骤降，形成长期记忆
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 核心数字1 -->
+            <div class="grid-item bento-3 flex flex-col items-center justify-center fade-in" style="animation-delay: 0.3s">
+                <div class="big-number">90%</div>
+                <p class="text-center font-bold mt-2">输出后知识保留率</p>
+                <p class="text-sm text-gray-600 text-center mt-1">vs 10% 被动阅读</p>
+            </div>
+            
+            <!-- 核心数字2 -->
+            <div class="grid-item bento-4 flex flex-col items-center justify-center fade-in" style="animation-delay: 0.4s">
+                <div class="big-number">6</div>
+                <p class="text-center font-bold mt-2">高效输出方法</p>
+                <p class="text-sm text-gray-600 text-center mt-1">让知识内化为能力</p>
+            </div>
+            
+            <!-- 六大输出法 -->
+            <div class="grid-item bento-5 fade-in" style="animation-delay: 0.5s">
+                <h2 class="text-2xl font-bold mb-6">六大输出方法</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="output-method">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                            1
+                        </div>
+                        <div>
+                            <h3 class="font-bold">复述法</h3>
+                            <p class="text-sm text-gray-600">用自己的话总结讲一遍</p>
+                        </div>
+                    </div>
+                    
+                    <div class="output-method">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                            2
+                        </div>
+                        <div>
+                            <h3 class="font-bold">笔记法</h3>
+                            <p class="text-sm text-gray-600">用自己的语言写笔记</p>
+                        </div>
+                    </div>
+                    
+                    <div class="output-method">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                            3
+                        </div>
+                        <div>
+                            <h3 class="font-bold">教学法</h3>
+                            <p class="text-sm text-gray-600">教给别人以检验理解</p>
+                        </div>
+                    </div>
+                    
+                    <div class="output-method">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                            4
+                        </div>
+                        <div>
+                            <h3 class="font-bold">写作法</h3>
+                            <p class="text-sm text-gray-600">知识最高级的整理方式</p>
+                        </div>
+                    </div>
+                    
+                    <div class="output-method">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                            5
+                        </div>
+                        <div>
+                            <h3 class="font-bold">问题驱动法</h3>
+                            <p class="text-sm text-gray-600">用问题带动思考和输出</p>
+                        </div>
+                    </div>
+                    
+                    <div class="output-method">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                            6
+                        </div>
+                        <div>
+                            <h3 class="font-bold">思维导图法</h3>
+                            <p class="text-sm text-gray-600">知识结构化输出更高效</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 三步闭环法 -->
+            <div class="grid-item bento-6 fade-in" style="animation-delay: 0.6s">
+                <h2 class="text-2xl font-bold mb-6">三步闭环法</h2>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white mt-1 flex-shrink-0">
+                            1
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold">输入转输出</h3>
+                            <p class="text-gray-600">每天将输入内容转化为输出任务（讲一遍/写一段/画个图）</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white mt-1 flex-shrink-0">
+                            2
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold">设立输出平台</h3>
+                            <p class="text-gray-600">朋友圈/微信群/笔记本/家人朋友，设定输出倒计时</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white mt-1 flex-shrink-0">
+                            3
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold">反馈复盘迭代</h3>
+                            <p class="text-gray-600">每次输出后复盘：哪里讲不清？对方感兴趣点？如何改进？</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl">
+                    <p class="text-gray-700">
+                        <i class="fas fa-chart-line text-primary mr-2"></i>
+                        21天输出挑战：参与者学习主动性、表达能力大幅提升
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 五大转变 -->
+            <div class="grid-item bento-7 fade-in" style="animation-delay: 0.7s">
+                <h2 class="text-2xl font-bold mb-6">输出带来的五大转变</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="transform-card">
+                        <div class="text-primary text-3xl mb-2">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">从被动到主动</h3>
+                        <p class="text-sm text-gray-600">学会主动总结分享，成长才不会停滞</p>
+                    </div>
+                    
+                    <div class="transform-card">
+                        <div class="text-primary text-3xl mb-2">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">从知道到做到</h3>
+                        <p class="text-sm text-gray-600">会讲会用，能力自然提升</p>
+                    </div>
+                    
+                    <div class="transform-card">
+                        <div class="text-primary text-3xl mb-2">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">从独行到共进</h3>
+                        <p class="text-sm text-gray-600">说出让你拥有同路人，获得反馈和激励</p>
+                    </div>
+                    
+                    <div class="transform-card">
+                        <div class="text-primary text-3xl mb-2">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">从焦虑到自信</h3>
+                        <p class="text-sm text-gray-600">表达力强的人更容易自我激励</p>
+                    </div>
+                    
+                    <div class="transform-card">
+                        <div class="text-primary text-3xl mb-2">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">从平庸到卓越</h3>
+                        <p class="text-sm text-gray-600">普通人也能靠输出积累影响力</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 影响力 -->
+            <div class="grid-item bento-8 flex flex-col items-center justify-center fade-in" style="animation-delay: 0.8s">
+                <div class="circle-visual">
+                    <div class="circle-bg"></div>
+                    <div class="circle-content">
+                        <div class="text-3xl font-black text-primary">70%</div>
+                        <div class="text-sm text-center px-2">能力提升</div>
+                    </div>
+                </div>
+                <p class="text-center font-bold mt-6">学习力 = 表达力</p>
+                <p class="text-sm text-gray-600 text-center mt-2">输出创造影响力</p>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="w-full max-w-3xl mt-16 mb-12 text-center px-4">
+        <div class="text-lg bg-gradient-to-r from-primary to-secondary text-white p-6 rounded-2xl shadow-xl">
+            <p class="font-bold italic">
+                "知道了不等于会用了，只有你讲出来、写出来、教出来，才是真的学会"
+            </p>
+            <p class="mt-4">—— 刘少辉《输出式学习》</p>
+        </div>
+        
+        <div class="mt-8 text-gray-600">
+            <p>知识不是你听进去的那一刻拥有的，而是你表达出来的那一刻才真正属于你</p>
+            <div class="mt-6 flex justify-center space-x-4">
+                <a href="#" class="text-primary hover:text-secondary text-xl">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="text-primary hover:text-secondary text-xl">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-primary hover:text-secondary text-xl">
+                    <i class="fab fa-weixin"></i>
+                </a>
+                <a href="#" class="text-primary hover:text-secondary text-xl">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            document.querySelectorAll('.grid-item').forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>

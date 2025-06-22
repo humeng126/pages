@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高敏感人群特质</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.16.4/dist/framer-motion.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#9c89b8',
+                        secondary: '#f0a6ca',
+                        accent: '#b8bedd',
+                        light: '#efc3e6',
+                        dark: '#5e548e'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(150px, auto);
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .card {
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .highlight-bg {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(158, 136, 184, 0.15) 0%, rgba(158, 136, 184, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .big-number {
+            font-size: 10rem;
+            font-weight: 900;
+            line-height: 0.8;
+            color: rgba(94, 84, 142, 0.1);
+            position: absolute;
+            bottom: -20px;
+            right: 20px;
+            z-index: 0;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: #5e548e;
+            margin-bottom: 15px;
+        }
+        
+        .radar-chart-container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, #9c89b8, #f0a6ca);
+            border-radius: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .big-number {
+                font-size: 6rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-12">
+    <div class="container mx-auto px-4">
+        <header class="text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-black mb-6 text-dark">高敏感人群特质</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Highly Sensitive Person Traits - 将敏感转化为力量，释放你的非凡潜力</p>
+        </header>
+        
+        <div class="bento-grid">
+            <!-- 成功基因 -->
+            <div class="card col-span-12 md:col-span-6 animate-on-scroll">
+                <div class="highlight-bg" style="background: radial-gradient(circle, rgba(158, 136, 184, 0.15) 0%, rgba(158, 136, 184, 0) 70%);"></div>
+                <div class="big-number">01</div>
+                <div class="relative z-10">
+                    <div class="feature-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h2 class="text-3xl font-black mb-3 text-dark">成功基因</h2>
+                    <p class="text-gray-600 mb-2"><span class="font-bold">Success Gene</span> - 高敏感人群拥有与生俱来的成功基因</p>
+                    <p class="text-lg">心理学研究表明，高敏感特质在人类进化中具有重要优势，赋予个体更强的环境适应能力和深度思考能力。</p>
+                </div>
+            </div>
+            
+            <!-- 核心天赋 -->
+            <div class="card col-span-12 md:col-span-6 animate-on-scroll">
+                <div class="highlight-bg" style="background: radial-gradient(circle, rgba(240, 166, 202, 0.15) 0%, rgba(240, 166, 202, 0) 70%);"></div>
+                <div class="big-number">02</div>
+                <div class="relative z-10">
+                    <div class="feature-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h2 class="text-3xl font-black mb-3 text-dark">核心天赋</h2>
+                    <p class="text-gray-600 mb-2"><span class="font-bold">Core Talents</span> - 高敏感人群的独特优势</p>
+                    <ul class="space-y-2 mt-4">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-secondary mr-2"></i> 深度思考与创造力</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-secondary mr-2"></i> 超强直觉与洞察力</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-secondary mr-2"></i> 共情能力与情感理解</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-secondary mr-2"></i> 细节感知与完美主义</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 动力转化 -->
+            <div class="card col-span-12 md:col-span-4 animate-on-scroll">
+                <div class="highlight-bg" style="background: radial-gradient(circle, rgba(184, 190, 221, 0.15) 0%, rgba(184, 190, 221, 0) 70%);"></div>
+                <div class="big-number">03</div>
+                <div class="relative z-10">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h2 class="text-2xl font-black mb-3 text-dark">动力转化</h2>
+                    <p class="text-gray-600 mb-2"><span class="font-bold">Power Transformation</span></p>
+                    <p class="text-lg">将敏感与内耗转化为前进动力，高敏感人群往往能迸发出惊人的创造力与执行力。</p>
+                    <div class="mt-4 bg-gray-100 rounded-full h-2.5">
+                        <div class="bg-accent h-2.5 rounded-full" style="width: 85%"></div>
+                    </div>
+                    <p class="text-sm mt-2 text-gray-600">85%的高敏感人群在找到方向后表现出超常动力</p>
+                </div>
+            </div>
+            
+            <!-- 道德高度 -->
+            <div class="card col-span-12 md:col-span-4 animate-on-scroll">
+                <div class="highlight-bg" style="background: radial-gradient(circle, rgba(239, 195, 230, 0.15) 0%, rgba(239, 195, 230, 0) 70%);"></div>
+                <div class="big-number">04</div>
+                <div class="relative z-10">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h2 class="text-2xl font-black mb-3 text-dark">道德高度</h2>
+                    <p class="text-gray-600 mb-2"><span class="font-bold">Moral Standards</span></p>
+                    <p class="text-lg">高敏感人群普遍具有道德洁癖，追求更高维度的价值实现而非简单的物质满足。</p>
+                    <div class="mt-4 flex justify-center">
+                        <div class="w-24 h-24 rounded-full border-4 border-light flex items-center justify-center">
+                            <span class="text-2xl font-bold text-dark">92%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 成长轨迹 -->
+            <div class="card col-span-12 md:col-span-4 animate-on-scroll">
+                <div class="highlight-bg" style="background: radial-gradient(circle, rgba(158, 136, 184, 0.15) 0%, rgba(158, 136, 184, 0) 70%);"></div>
+                <div class="big-number">05</div>
+                <div class="relative z-10">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2 class="text-2xl font-black mb-3 text-dark">成长轨迹</h2>
+                    <p class="text-gray-600 mb-2"><span class="font-bold">Growth Trajectory</span></p>
+                    <p class="text-lg">高敏感人群属于"大后期人格"，其发展轨迹往往呈现指数级上升趋势。</p>
+                    <div class="mt-4">
+                        <canvas id="growthChart" height="120"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 核心观点 -->
+            <div class="card col-span-12 animate-on-scroll">
+                <div class="highlight-bg" style="background: radial-gradient(circle, rgba(184, 190, 221, 0.15) 0%, rgba(184, 190, 221, 0) 70%);"></div>
+                <div class="relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h2 class="text-3xl font-black mb-6 text-dark">核心观点</h2>
+                            <p class="text-xl mb-4">高敏感人群应该把更多心思放在自己身上，因为：</p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-arrow-right text-secondary mt-1 mr-3"></i>
+                                    <span>拥有独特的天赋、智慧、直觉和创造力</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-arrow-right text-secondary mt-1 mr-3"></i>
+                                    <span>追求的是更高维度的价值实现和认可</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-arrow-right text-secondary mt-1 mr-3"></i>
+                                    <span>天生不适合在底层，具有道德高度</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-arrow-right text-secondary mt-1 mr-3"></i>
+                                    <span>将敏感转化为动力就能获得巨大成功</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <div class="radar-chart-container">
+                                <canvas id="radarChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 行动指南 -->
+            <div class="card col-span-12 md:col-span-6 animate-on-scroll">
+                <div class="highlight-bg" style="background: radial-gradient(circle, rgba(240, 166, 202, 0.15) 0%, rgba(240, 166, 202, 0) 70%);"></div>
+                <div class="big-number">06</div>
+                <div class="relative z-10">
+                    <div class="feature-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <h2 class="text-3xl font-black mb-3 text-dark">找到你的道路</h2>
+                    <p class="text-gray-600 mb-2"><span class="font-bold">Find Your Path</span></p>
+                    <p class="text-xl mb-4">一旦你找到自己独特的人生道路，发现自己独特的品质，你就会意识到自己所拥有的天赋。</p>
+                    <div class="mt-6 bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16 flex items-center justify-center mx-auto">
+                        <i class="fas fa-search text-2xl text-secondary"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 心态转换 -->
+            <div class="card col-span-12 md:col-span-6 animate-on-scroll">
+                <div class="highlight-bg" style="background: radial-gradient(circle, rgba(239, 195, 230, 0.15) 0%, rgba(239, 195, 230, 0) 70%);"></div>
+                <div class="big-number">07</div>
+                <div class="relative z-10">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h2 class="text-3xl font-black mb-3 text-dark">心态转换</h2>
+                    <p class="text-gray-600 mb-2"><span class="font-bold">Mindset Shift</span></p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                        <div class="p-4 bg-gradient-to-br from-primary/10 to-transparent rounded-xl">
+                            <h3 class="font-bold text-lg text-primary flex items-center">
+                                <i class="fas fa-check-circle mr-2"></i> 积极转化
+                            </h3>
+                            <p class="mt-2">将敏感视为动力来源，你会越来越好</p>
+                        </div>
+                        <div class="p-4 bg-gradient-to-br from-gray-200 to-transparent rounded-xl">
+                            <h3 class="font-bold text-lg text-gray-500 flex items-center">
+                                <i class="fas fa-times-circle mr-2"></i> 消极抵抗
+                            </h3>
+                            <p class="mt-2">将敏感视为痛苦，你会因此堕落</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <div class="inline-block px-6 py-3 bg-dark text-white rounded-full font-bold">
+                            选择你的心态，决定你的高度
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="mt-20 text-center text-gray-600">
+            <p>高敏感人群特质研究 · 心理学视角 · 2023</p>
+            <p class="mt-2">将你的敏感转化为超能力，释放内在潜力</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化图表
+            initCharts();
+            
+            // 滚动动画
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        });
+        
+        // 初始化图表
+        function initCharts() {
+            // 雷达图
+            const radarCtx = document.getElementById('radarChart').getContext('2d');
+            new Chart(radarCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['创造力', '共情力', '直觉', '洞察力', '自我意识', '完美主义'],
+                    datasets: [{
+                        label: '高敏感人群特质',
+                        data: [95, 90, 85, 88, 92, 87],
+                        fill: true,
+                        backgroundColor: 'rgba(158, 136, 184, 0.2)',
+                        borderColor: 'rgb(158, 136, 184)',
+                        pointBackgroundColor: 'rgb(158, 136, 184)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(158, 136, 184)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+            
+            // 成长轨迹图
+            const growthCtx = document.getElementById('growthChart').getContext('2d');
+            new Chart(growthCtx, {
+                type: 'line',
+                data: {
+                    labels: ['20岁', '25岁', '30岁', '35岁', '40岁', '45岁', '50岁'],
+                    datasets: [{
+                        label: '成长指数',
+                        data: [30, 45, 60, 75, 85, 92, 98],
+                        fill: true,
+                        backgroundColor: 'rgba(240, 166, 202, 0.2)',
+                        borderColor: 'rgb(240, 166, 202)',
+                        tension: 0.4,
+                        pointBackgroundColor: 'rgb(240, 166, 202)'
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            display: false
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

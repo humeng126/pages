@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>输出型爱好 - 人生杠杆的起点</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@10.12.16/dist/framer-motion.js"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --secondary: #10B981;
+            --accent: #8B5CF6;
+            --background: #F9FAFB;
+            --text: #1F2937;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            /* 增加行高以适应内容 */
+            grid-auto-rows: minmax(min-content, auto);
+            gap: 20px;
+            /* 移除固定高度，使用最小高度 */
+            min-height: 100vh;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* 添加网格区域的响应式高度 */
+        .bento-cell {
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            padding: 24px;
+            /* 添加最小高度确保内容不被挤压 */
+            min-height: 200px;
+            /* 允许内容溢出时显示滚动条 */
+            overflow-y: auto;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* 调整大尺寸单元格的高度 */
+        .bento-cell.row-span-2 {
+            min-height: 400px;
+        }
+
+        .bento-cell.row-span-3 {
+            min-height: 600px;
+        }
+        
+        .highlight-gradient {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(99, 102, 241, 0.05) 100%);
+        }
+        
+        .highlight-gradient.green {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
+        }
+        
+        .highlight-gradient.purple {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%);
+        }
+        
+        .giant-text {
+            font-size: 9rem;
+            font-weight: 800;
+            line-height: 0.9;
+            margin: 0;
+            color: var(--primary);
+        }
+        
+        .giant-text.green {
+            color: var(--secondary);
+        }
+        
+        .giant-text.purple {
+            color: var(--accent);
+        }
+        
+        .huge-text {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 0;
+        }
+
+        /* 调整图表容器的高度 */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+        }
+
+        /* 确保内容垂直居中 */
+        .flex.items-center {
+            min-height: 100%;
+        }
+        
+        .growth-line {
+            stroke: var(--primary);
+            stroke-width: 8;
+            stroke-linecap: round;
+            fill: none;
+        }
+        
+        .growth-dot {
+            fill: var(--primary);
+            stroke: white;
+            stroke-width: 3;
+            r: 10;
+        }
+
+        /* 调整滚动提示的位置 */
+        .scroll-hint {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: white;
+        }
+        
+        .icon-box.blue {
+            background: var(--primary);
+        }
+        
+        .icon-box.green {
+            background: var(--secondary);
+        }
+        
+        .icon-box.purple {
+            background: var(--accent);
+        }
+        
+        .comparison-row {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+        
+        .comparison-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .badge-red {
+            background: rgba(239, 68, 68, 0.15);
+            color: #EF4444;
+        }
+        
+        .badge-green {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10B981;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <!-- 主页面容器 -->
+    <div class="bento-grid">
+        <!-- 左上角标题区 -->
+        <div class="bento-cell col-span-4 row-span-1 flex flex-col justify-center">
+            <h1 class="text-4xl font-bold mb-2">输出型爱好</h1>
+            <p class="text-lg text-gray-600">Output Hobby · 人生杠杆的起点</p>
+        </div>
+        
+        <!-- 核心价值区 -->
+        <div class="bento-cell col-span-8 row-span-2 highlight-gradient flex flex-col justify-center">
+            <div class="flex items-end gap-6">
+                <div class="giant-text">产出</div>
+                <div class="pb-8">
+                    <p class="text-3xl font-bold mb-2">人生回报率 <span class="text-green-500">↑300%</span></p>
+                    <p class="text-gray-600 max-w-xl">输出型爱好最牛逼的地方在于自带复利，能力以20%的年增速增长，轻松甩开同龄人</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 输入型爱好的问题 -->
+        <div class="bento-cell col-span-4 row-span-2 flex flex-col justify-center">
+            <div class="icon-box blue">
+                <i class="fas fa-download"></i>
+            </div>
+            <h2 class="text-3xl font-bold mb-4">输入型爱好的陷阱</h2>
+            <ul class="space-y-3">
+                <li class="flex items-start">
+                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
+                    <span>价值无法变现</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
+                    <span>停留在知识表层</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
+                    <span>越努力越原地打转</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
+                    <span>主观价值无法验证</span>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- 增长图表 -->
+        <div class="bento-cell col-span-4 row-span-2 flex items-center justify-center">
+            <div class="chart-container">
+                <svg viewBox="0 0 400 300" width="100%" height="100%">
+                    <path class="growth-line" d="M50,250 C100,150 150,100 200,180 C250,260 300,120 350,80" />
+                    <circle class="growth-dot" cx="50" cy="250" />
+                    <circle class="growth-dot" cx="200" cy="180" />
+                    <circle class="growth-dot" cx="350" cy="80" />
+                    
+                    <text x="30" y="270" font-size="14" fill="#6B7280">输入</text>
+                    <text x="180" y="200" font-size="14" fill="#6B7280">输出</text>
+                    <text x="330" y="100" font-size="14" fill="#6B7280">复利</text>
+                    
+                    <text x="100" y="100" font-size="18" font-weight="bold" fill="#10B981">20%年增速</text>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- 输出型爱好的优势 -->
+        <div class="bento-cell col-span-4 row-span-2 highlight-gradient green flex flex-col justify-center">
+            <div class="icon-box green">
+                <i class="fas fa-upload"></i>
+            </div>
+            <h2 class="text-3xl font-bold mb-4">输出型爱好的力量</h2>
+            <ul class="space-y-3">
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                    <span>碎片想法变得系统</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                    <span>价值由外界评定可量化</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                    <span>能力复利式增长</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                    <span>创造时间自由和财富</span>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- 核心数据区 -->
+        <div class="bento-cell col-span-4 row-span-1 flex items-center justify-center">
+            <div class="text-center">
+                <div class="giant-text green">20%</div>
+                <p class="text-xl font-medium">能力年增长率</p>
+            </div>
+        </div>
+        
+        <!-- 区分示例 -->
+        <div class="bento-cell col-span-8 row-span-3 flex flex-col">
+            <h2 class="text-3xl font-bold mb-6">输入型 vs 输出型</h2>
+            
+            <div class="flex-1 grid grid-cols-3 gap-6">
+                <!-- 示例1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm">
+                    <div class="flex mb-4">
+                        <div class="comparison-badge badge-red">输入</div>
+                        <h3 class="ml-2 font-bold">追剧</h3>
+                    </div>
+                    <ul class="text-gray-600 space-y-2 mb-4">
+                        <li class="flex">
+                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                            <span>纯消费时间</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                            <span>无价值输出</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                            <span>无法变现</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-6 pt-4 border-t border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="comparison-badge badge-green">输出</div>
+                            <h3 class="ml-2 font-bold">剪辑+感悟</h3>
+                        </div>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>创作高光片段</span>
+                            </li>
+                            <li class="flex">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>增加人生感悟</span>
+                            </li>
+                            <li class="flex">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>涨粉且变现</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 示例2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm">
+                    <div class="flex mb-4">
+                        <div class="comparison-badge badge-red">输入</div>
+                        <h3 class="ml-2 font-bold">打游戏</h3>
+                    </div>
+                    <ul class="text-gray-600 space-y-2 mb-4">
+                        <li class="flex">
+                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                            <span>纯娱乐消耗</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                            <span>无技能提升</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                            <span>无法变现</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-6 pt-4 border-t border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="comparison-badge badge-green">输出</div>
+                            <h3 class="ml-2 font-bold">攻略+解说</h3>
+                        </div>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>制作游戏攻略</span>
+                            </li>
+                            <li class="flex">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>风趣解说技巧</span>
+                            </li>
+                            <li class="flex">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>涨粉且变现</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 示例3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm">
+                    <div class="flex mb-4">
+                        <div class="comparison-badge badge-red">输入</div>
+                        <h3 class="ml-2 font-bold">爱穿搭</h3>
+                    </div>
+                    <ul class="text-gray-600 space-y-2 mb-4">
+                        <li class="flex">
+                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                            <span>个人消费行为</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                            <span>无知识沉淀</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                            <span>无法变现</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-6 pt-4 border-t border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="comparison-badge badge-green">输出</div>
+                            <h3 class="ml-2 font-bold">公式+改造</h3>
+                        </div>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>拆解搭配公式</span>
+                            </li>
+                            <li class="flex">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>素人改造案例</span>
+                            </li>
+                            <li class="flex">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>涨粉且变现</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 三大秘诀 -->
+        <div class="bento-cell col-span-4 row-span-3 highlight-gradient purple flex flex-col">
+            <h2 class="text-3xl font-bold mb-8">输出型爱好的三大秘诀</h2>
+            
+            <div class="space-y-8">
+                <div class="flex items-start">
+                    <div class="huge-text mr-4 text-purple-600">1</div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">爱好变现</h3>
+                        <p class="text-gray-600">把你的爱好变成钱：生活类、文娱类、技能类、垂直领域类爱好。信息差永远存在，你的日常可能就是别人的救命稻草。</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="huge-text mr-4 text-purple-600">2</div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">解决痛点</h3>
+                        <p class="text-gray-600">把用户的痛点和爽点变成钱。你解决问题的经验本身就是很多人苦苦追寻的答案，所以你的输出天然就是金钱和财富。</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="huge-text mr-4 text-purple-600">3</div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">先完成再完美</h3>
+                        <p class="text-gray-600">先把面子丢掉，等你成功后再捡起来。一个粗糙的开始就是最好的开始。即使做成一坨屎，威攻心力已经打败了99%的空想家。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 双重快乐 -->
+        <div class="bento-cell col-span-4 row-span-1 flex items-center">
+            <div class="flex items-center">
+                <div class="mr-6">
+                    <div class="giant-text">2X</div>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold">双重快乐</p>
+                    <p class="text-gray-600">多巴胺 + 内啡肽</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 行动号召 -->
+        <div class="bento-cell col-span-8 row-span-1 flex items-center justify-between">
+            <div>
+                <p class="text-3xl font-bold">每个爆款的背后都是敢把脚踩进泥里野蛮生长的勇敢者</p>
+                <p class="text-gray-600 mt-2">你准备什么时候迈出第一步？</p>
+            </div>
+            <button class="px-8 py-4 bg-indigo-600 text-white rounded-full text-lg font-semibold hover:bg-indigo-700 transition-all">
+                开始输出 <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+        
+        <!-- 滚动提示 -->
+        <div class="scroll-hint">
+            <i class="fas fa-chevron-down text-2xl mb-2"></i>
+            <span>Scroll to explore</span>
+        </div>
+    </div>
+
+    <script>
+        // 使用Framer Motion实现滚动动画
+        document.addEventListener('DOMContentLoaded', function() {
+            // 创建观察器
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fadeInUp');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // 观察所有网格单元
+            document.querySelectorAll('.bento-cell').forEach(cell => {
+                cell.style.opacity = '0';
+                cell.style.transform = 'translateY(20px)';
+                cell.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(cell);
+            });
+            
+            // 添加动画类
+            const style = document.createElement('style');
+            style.textContent = `
+                .animate-fadeInUp {
+                    opacity: 1 !important;
+                    transform: translateY(0) !important;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老实人难升职的本质原因</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Framer Motion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.min.js"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            overflow-x: hidden;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto;
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        
+        .bento-item {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .bento-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .number-badge {
+            font-size: 120px;
+            font-weight: 900;
+            line-height: 1;
+            opacity: 0.08;
+            position: absolute;
+            top: -30px;
+            right: 20px;
+            z-index: 0;
+        }
+        
+        .highlight-gradient {
+            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 900;
+        }
+        
+        .chart-container {
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 20px 0;
+        }
+        
+        .chart-bar {
+            width: 40px;
+            background: linear-gradient(to top, #3b82f6, #8b5cf6);
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            transition: height 0.8s ease;
+        }
+        
+        .chart-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            font-weight: 500;
+            color: #64748b;
+        }
+        
+        .capital-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.7);
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .capital-item:hover {
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .icon-wrapper {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 24px;
+        }
+        
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-12 px-4">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+        <h1 class="text-5xl md:text-7xl font-black mb-6 text-gray-800">老实人难升职的<span class="highlight-gradient">本质原因</span></h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">苦没少吃，活没少干，但升职加薪总是轮不到自己？解析四大核心问题及解决方案</p>
+    </div>
+
+    <div class="bento-grid">
+        <!-- Item 1: 能力维度单一 -->
+        <div class="bento-item relative col-span-2 row-span-2">
+            <div class="number-badge">1</div>
+            <div class="relative z-10">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mr-4">
+                        <i class="material-icons text-blue-600">developer_board</i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">能力维度单一</h2>
+                </div>
+                
+                <p class="text-gray-600 mb-6 text-lg">只会干一类事，缺乏复合型能力结构，职业天花板明显。</p>
+                
+                <div class="flex mb-8">
+                    <div class="flex-1 pr-4">
+                        <h3 class="font-bold text-xl text-gray-800 mb-4">T型人才结构</h3>
+                        <div class="relative h-40">
+                            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 bg-gradient-to-t from-blue-500 to-purple-500" style="height: 120px;"></div>
+                            <div class="absolute top-1/2 left-0 right-0 h-6 bg-gradient-to-r from-blue-400 to-purple-400"></div>
+                        </div>
+                        <p class="text-center mt-4 text-gray-600">一专多能，横向扩展</p>
+                    </div>
+                    
+                    <div class="flex-1 pl-4">
+                        <h3 class="font-bold text-xl text-gray-800 mb-4">π型人才结构</h3>
+                        <div class="relative h-40">
+                            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 bg-gradient-to-t from-blue-500 to-purple-500" style="height: 120px;"></div>
+                            <div class="absolute top-1/2 left-0 right-0 h-6 bg-gradient-to-r from-blue-400 to-purple-400"></div>
+                            <div class="absolute bottom-0 left-1/4 transform -translate-x-1/2 w-6 bg-gradient-to-t from-green-500 to-teal-500" style="height: 90px;"></div>
+                            <div class="absolute bottom-0 left-3/4 transform -translate-x-1/2 w-6 bg-gradient-to-t from-amber-500 to-orange-500" style="height: 70px;"></div>
+                        </div>
+                        <p class="text-center mt-4 text-gray-600">多专多能，复合发展</p>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 rounded-2xl p-6">
+                    <h3 class="font-bold text-xl text-gray-800 mb-4">解决方案：影响力构建</h3>
+                    <div class="flex">
+                        <div class="flex-1 text-center p-4">
+                            <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                                <i class="material-icons text-blue-600">edit</i>
+                            </div>
+                            <h4 class="font-bold">写作能力</h4>
+                            <p class="text-sm text-gray-600 mt-2">文档、总结、自媒体</p>
+                        </div>
+                        <div class="flex-1 text-center p-4">
+                            <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                                <i class="material-icons text-purple-600">mic</i>
+                            </div>
+                            <h4 class="font-bold">演讲能力</h4>
+                            <p class="text-sm text-gray-600 mt-2">汇报、分享、表达</p>
+                        </div>
+                        <div class="flex-1 text-center p-4">
+                            <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                                <i class="material-icons text-amber-600">public</i>
+                            </div>
+                            <h4 class="font-bold">自媒体</h4>
+                            <p class="text-sm text-gray-600 mt-2">个人品牌建设</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Item 2: 能见度低 -->
+        <div class="bento-item relative">
+            <div class="number-badge">2</div>
+            <div class="relative z-10">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mr-4">
+                        <i class="material-icons text-purple-600">visibility_off</i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">能见度低</h2>
+                </div>
+                
+                <p class="text-gray-600 mb-6">埋头苦干但不会展示，缺乏高光时刻。</p>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-lg bg-purple-500 flex items-center justify-center mr-3 mt-1">
+                            <span class="text-white font-bold">1</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800">年终述职</h3>
+                            <p class="text-gray-600 text-sm">精心包装年度成果</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-lg bg-purple-500 flex items-center justify-center mr-3 mt-1">
+                            <span class="text-white font-bold">2</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800">重点项目</h3>
+                            <p class="text-gray-600 text-sm">争取参与核心项目</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-lg bg-purple-500 flex items-center justify-center mr-3 mt-1">
+                            <span class="text-white font-bold">3</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800">同框效应</h3>
+                            <p class="text-gray-600 text-sm">与关键人物建立联系</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 bg-purple-50 rounded-2xl p-4">
+                    <div class="flex items-center">
+                        <i class="material-icons text-purple-600 mr-2">lightbulb</i>
+                        <p class="font-medium">职场真相：会说的比会做的升职更快</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Item 3: 价值传递陷阱 -->
+        <div class="bento-item relative">
+            <div class="number-badge">3</div>
+            <div class="relative z-10">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center mr-4">
+                        <i class="material-icons text-green-600">link_off</i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">价值传递陷阱</h2>
+                </div>
+                
+                <p class="text-gray-600 mb-6">工作内容与公司战略重点脱节。</p>
+                
+                <div class="mb-6">
+                    <h3 class="font-bold text-xl text-gray-800 mb-4">战略重点识别</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <div class="w-6 h-6 rounded-full bg-green-500 mr-3"></div>
+                            <p>会议中放在前面说的内容</p>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-6 h-6 rounded-full bg-green-500 mr-3"></div>
+                            <p>反复强调的核心事项</p>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-6 h-6 rounded-full bg-green-500 mr-3"></div>
+                            <p>优秀员工代表的发言重点</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-green-50 rounded-2xl p-4">
+                    <h3 class="font-bold text-gray-800 mb-2">看齐意识</h3>
+                    <p class="text-gray-600 text-sm">使个人工作与公司战略方向保持一致</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Item 4: 风险规避倾向 -->
+        <div class="bento-item relative col-span-2">
+            <div class="number-badge">4</div>
+            <div class="relative z-10">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mr-4">
+                        <i class="material-icons text-amber-600">risk_management</i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">风险规避倾向</h2>
+                </div>
+                
+                <div class="flex">
+                    <div class="flex-1 pr-6">
+                        <p class="text-gray-600 mb-6">害怕失败，不愿承担风险，错失机会。</p>
+                        
+                        <div class="flex items-center mb-6">
+                            <div class="text-5xl font-black text-amber-500 mr-4">"</div>
+                            <p class="text-xl font-bold text-gray-800">风浪越大鱼越贵</p>
+                        </div>
+                        
+                        <div class="bg-amber-50 rounded-2xl p-4 mb-6">
+                            <div class="flex items-start">
+                                <i class="material-icons text-amber-600 mr-2">swap_horiz</i>
+                                <p class="font-medium">思维转换：从"万一"到"即便"</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1">
+                        <h3 class="font-bold text-xl text-gray-800 mb-4">风险管理策略</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center mr-3 mt-1">
+                                    <span class="text-white text-lg">1</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800">识别风险</h3>
+                                    <p class="text-gray-600 text-sm">明确潜在问题</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center mr-3 mt-1">
+                                    <span class="text-white text-lg">2</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800">应对措施</h3>
+                                    <p class="text-gray-600 text-sm">制定解决方案</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center mr-3 mt-1">
+                                    <span class="text-white text-lg">3</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800">执行预案</h3>
+                                    <p class="text-gray-600 text-sm">风险发生时照单抓药</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Item 5: 老实人的三大资本 -->
+        <div class="bento-item relative col-span-4">
+            <div class="relative z-10">
+                <h2 class="text-4xl font-bold text-gray-800 mb-2">老实人的<span class="highlight-gradient">三大资本</span></h2>
+                <p class="text-gray-600 mb-8 max-w-3xl">善用自身优势，将资本转化为晋升筹码</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="capital-item">
+                        <div class="icon-wrapper bg-blue-100">
+                            <i class="material-icons text-blue-600">verified_user</i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">信任资本</h3>
+                            <p class="text-gray-600">多年稳定表现积累的可靠性</p>
+                            <div class="mt-2">
+                                <span class="text-sm font-medium bg-blue-100 text-blue-800 px-2 py-1 rounded">转化为高价值任务执行者</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="capital-item">
+                        <div class="icon-wrapper bg-purple-100">
+                            <i class="material-icons text-purple-600">schedule</i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">长期主义</h3>
+                            <p class="text-gray-600">稳定感带来的差异化优势</p>
+                            <div class="mt-2">
+                                <span class="text-sm font-medium bg-purple-100 text-purple-800 px-2 py-1 rounded">承接长期项目的最佳人选</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="capital-item">
+                        <div class="icon-wrapper bg-green-100">
+                            <i class="material-icons text-green-600">history</i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">隐性权利</h3>
+                            <p class="text-gray-600">对组织历史与关系的深刻理解</p>
+                            <div class="mt-2">
+                                <span class="text-sm font-medium bg-green-100 text-green-800 px-2 py-1 rounded">成为协调工作的关键角色</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl border border-blue-100">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">行动策略</h3>
+                    <p class="text-gray-700">主动向领导表达："我在这家公司已工作多年，所有任务都完成妥帖。希望参与今年的重点项目，将我的信任资本转化为高价值贡献。"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto mt-16 text-center">
+        <div class="inline-block bg-white rounded-2xl px-8 py-6 shadow-lg">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">职场晋升自检清单</h3>
+            <p class="text-gray-600 mb-4">遇到升职瓶颈时，请检查以下维度：</p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <div class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium">能力维度是否多元？</div>
+                <div class="px-4 py-2 bg-purple-100 text-purple-800 rounded-full font-medium">能见度是否足够？</div>
+                <div class="px-4 py-2 bg-green-100 text-green-800 rounded-full font-medium">价值传递是否有效？</div>
+                <div class="px-4 py-2 bg-amber-100 text-amber-800 rounded-full font-medium">风险承担是否合理？</div>
+                <div class="px-4 py-2 bg-gray-100 text-gray-800 rounded-full font-medium">三大资本是否善用？</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const bentoItems = document.querySelectorAll('.bento-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            bentoItems.forEach(item => {
+                item.style.opacity = 0;
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(item);
+            });
+            
+            // 图表动画
+            const chartBars = document.querySelectorAll('.chart-bar');
+            chartBars.forEach((bar, index) => {
+                setTimeout(() => {
+                    bar.style.height = `${70 + index * 20}px`;
+                }, 300 + index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
