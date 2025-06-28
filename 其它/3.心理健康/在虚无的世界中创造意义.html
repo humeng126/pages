@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>存在主义哲学 | Existentialism</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        secondary: {
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            200: '#fbcfe8',
+                            300: '#f9a8d4',
+                            400: '#f472b6',
+                            500: '#ec4899',
+                            600: '#db2777',
+                            700: '#be185d',
+                        },
+                        accent: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        },
+                        dark: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        },
+                        slideUp: {
+                            '0%': { opacity: 0, transform: 'translateY(40px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #334155;
+            overflow-x: hidden;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(120px, auto);
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .grid-item {
+            border-radius: 24px;
+            box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlight-gradient {
+            position: relative;
+        }
+
+        .highlight-gradient::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .number-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 40px;
+            color: white;
+            position: relative;
+            z-index: 10;
+        }
+
+        .icon-container {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .philosopher-card {
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .philosopher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .wave-divider {
+            position: relative;
+            height: 150px;
+            overflow: hidden;
+        }
+
+        .wave-divider svg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .animated-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 20s linear infinite;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, #0ea5e9, #ec4899);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+<!-- 导航栏 -->
+<nav class="fixed top-0 left-0 right-0 z-50 py-4 px-8 backdrop-blur-md bg-white/80 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+                <span class="material-icons text-white">psychology</span>
+            </div>
+            <h1 class="text-xl font-bold text-gray-800">存在主义哲学</h1>
+        </div>
+        <div class="hidden md:flex space-x-8">
+            <a href="#introduction" class="text-gray-600 hover:text-primary-600 font-medium">导言</a>
+            <a href="#principles" class="text-gray-600 hover:text-primary-600 font-medium">核心理念</a>
+            <a href="#philosophers" class="text-gray-600 hover:text-primary-600 font-medium">哲学家</a>
+            <a href="#modern" class="text-gray-600 hover:text-primary-600 font-medium">现代意义</a>
+        </div>
+        <button class="px-4 py-2 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-full font-medium hover:opacity-90 transition-opacity">
+            探索更多
+        </button>
+    </div>
+</nav>
+
+<!-- 主内容区 -->
+<main class="pt-24 pb-32">
+    <!-- 引言部分 -->
+    <section id="introduction" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col items-center text-center mb-20">
+                <h2 class="text-5xl md:text-7xl font-black text-gray-800 mb-6">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600">
+                            存在主义
+                        </span>
+                </h2>
+                <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mb-8">
+                    <span class="font-bold">Existentialism</span> - 在无意义的宇宙中创造意义
+                </p>
+                <p class="text-gray-600 text-lg max-w-3xl">
+                    存在主义是20世纪影响深远的哲学思潮，其着重关注个体存在的独特性和自由选择问题以及探讨生命的意义，强调人在无预设意义的宇宙中如何通过行动和选择赋予自身意义。
+                </p>
+            </div>
+
+            <div class="bento-grid">
+                <!-- 核心概念 -->
+                <div class="grid-item highlight-gradient col-span-12 md:col-span-8 row-span-2 p-8 flex flex-col justify-center" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+                    <h3 class="text-3xl font-black text-gray-800 mb-4">核心观点</h3>
+                    <p class="text-gray-600 text-lg mb-6">
+                        存在主义认为你先存在于世界上，没有命运注定，你成为什么样的人完全要靠自己决定。你想做什么，什么就赋予了意义。
+                    </p>
+                    <div class="flex items-center">
+                        <div class="mr-4">
+                            <span class="material-icons text-primary-600 text-4xl">lightbulb</span>
+                        </div>
+                        <p class="text-gray-600">
+                            "人首先存在，遭遇自我，涌现在世界上，然后才定义自己。"<br>
+                            <span class="text-sm text-gray-500">—— 让-保罗·萨特</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 名言 -->
+                <div class="grid-item col-span-12 md:col-span-4 row-span-2 p-6 flex items-center justify-center" style="background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);">
+                    <div class="text-center">
+                        <span class="material-icons text-secondary-500 text-5xl mb-4">format_quote</span>
+                        <p class="text-gray-700 text-xl font-bold italic">
+                            "在荒谬的世界里生活本身就意味着反抗"
+                        </p>
+                        <p class="text-gray-500 mt-2">阿尔贝·加缪</p>
+                    </div>
+                </div>
+
+                <!-- 薯条梗 -->
+                <div class="grid-item col-span-12 md:col-span-5 p-6 flex items-center" style="background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);">
+                    <div class="flex items-center">
+                        <div class="mr-4">
+                            <span class="material-icons text-accent-600 text-4xl">fastfood</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-1">整点薯条的哲学</h4>
+                            <p class="text-gray-600">
+                                人生不必追寻宏大意义，有时"去码头整点薯条"就是最真实的存在
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 存在主义定义 -->
+                <div class="grid-item col-span-12 md:col-span-7 p-6 flex items-center" style="background: white;">
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">Existentialism Defined</h4>
+                        <p class="text-gray-600">
+                            存在主义是一种强调个体存在、自由选择和个人责任的哲学观点，认为生命的意义是由个体通过自由选择和行动创造的。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 波型分隔线 -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="fill-primary-100"></path>
+            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="fill-primary-100"></path>
+            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="fill-primary-100"></path>
+        </svg>
+    </div>
+
+    <!-- 核心理念部分 -->
+    <section id="principles" class="py-20 px-6 bg-primary-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-16 text-center section-title">
+                存在主义五大核心理念
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- 原则1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl transition-all duration-300 hover:shadow-2xl">
+                    <div class="number-circle bg-gradient-to-br from-primary-500 to-primary-700 mb-6">
+                        1
+                    </div>
+                    <h3 class="text-2xl font-black text-gray-800 mb-4">存在先于本质</h3>
+                    <p class="text-gray-600 mb-4">
+                        <span class="font-bold">Existence precedes essence</span> - 人先存在，然后才定义自己
+                    </p>
+                    <p class="text-gray-600">
+                        萨特说："你先存在，然后通过行为定义自己。你不是一出生就注定要成为某种人，你是谁？是你用一生的选择、行动、责任塑造出来的。"
+                    </p>
+                </div>
+
+                <!-- 原则2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl transition-all duration-300 hover:shadow-2xl">
+                    <div class="number-circle bg-gradient-to-br from-secondary-500 to-secondary-700 mb-6">
+                        2
+                    </div>
+                    <h3 class="text-2xl font-black text-gray-800 mb-4">绝对自由与责任</h3>
+                    <p class="text-gray-600 mb-4">
+                        <span class="font-bold">Absolute freedom and responsibility</span>
+                    </p>
+                    <p class="text-gray-600">
+                        个人的自由是绝对的，但必须为其负责。你有选择做任何事的自由，但这份自由也意味着你必须承担这个后果。
+                    </p>
+                    <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+                        <p class="text-sm text-gray-600 italic">
+                            "你可以选择不上学，选择辍学就是你的自由，只不过你没有选。所以不选择辍学本身就是一种选择。"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 原则3 -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl transition-all duration-300 hover:shadow-2xl">
+                    <div class="number-circle bg-gradient-to-br from-accent-500 to-accent-700 mb-6">
+                        3
+                    </div>
+                    <h3 class="text-2xl font-black text-gray-800 mb-4">荒诞与意义创造</h3>
+                    <p class="text-gray-600 mb-4">
+                        <span class="font-bold">The absurd and meaning creation</span>
+                    </p>
+                    <p class="text-gray-600">
+                        存在主义承认这个世界没有特殊意义，你来这个世界不是为找寻意义，而是来创造意义。就像加缪笔下的西西弗斯，一次次推石头上山也许徒劳，但他或许是快乐的。
+                    </p>
+                </div>
+
+                <!-- 原则4 -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl transition-all duration-300 hover:shadow-2xl">
+                    <div class="number-circle bg-gradient-to-br from-purple-500 to-purple-700 mb-6">
+                        4
+                    </div>
+                    <h3 class="text-2xl font-black text-gray-800 mb-4">本真与焦虑</h3>
+                    <p class="text-gray-600 mb-4">
+                        <span class="font-bold">Authenticity and anxiety</span>
+                    </p>
+                    <p class="text-gray-600">
+                        人应该真实的存在，而不是活在他人眼中。海德格尔称这种状态为本真存在，但这种自由一定会带来焦虑。
+                    </p>
+                    <div class="mt-4 flex items-start">
+                        <span class="material-icons text-yellow-500 mr-2">restaurant</span>
+                        <p class="text-gray-600 text-sm">
+                            点外卖的例子：你可以自由选择，但坚持自我选择会带来焦虑，这就是自由、本真、焦虑三者之间的关系。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 原则5 -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl transition-all duration-300 hover:shadow-2xl">
+                    <div class="number-circle bg-gradient-to-br from-amber-500 to-amber-700 mb-6">
+                        5
+                    </div>
+                    <h3 class="text-2xl font-black text-gray-800 mb-4">死亡与时间</h3>
+                    <p class="text-gray-600 mb-4">
+                        <span class="font-bold">Death and temporality</span>
+                    </p>
+                    <p class="text-gray-600">
+                        死亡不是终点，而是生命的界限，它迫使人们意识到生命的有限性，从而更真实地活在当下，做出有意义的选择。这就是海德格尔所说的"向死而生"。
+                    </p>
+                </div>
+
+                <!-- 总结卡片 -->
+                <div class="md:col-span-2 lg:col-span-3 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 text-white">
+                    <h3 class="text-2xl font-black mb-4">存在主义的现代启示</h3>
+                    <p class="mb-6">
+                        存在主义对当代年轻人来说，就像是一种灵魂的觉醒。它让你认清世界的荒诞，但不堕落，而是让你活得清醒真实，有血有肉。
+                    </p>
+                    <p class="text-lg italic">
+                        "在这个所有人都在试图活得正确的时代，存在主义提醒你：你要活得真实。你可以焦虑，可以迷茫，可以厌世，也可以在所有这些混乱里突然站起来说一句：算了，我先去码头整点薯条。"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 现代意义部分 -->
+    <section id="modern" class="py-20 px-6 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-4">存在主义的现代意义</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    存在主义对哲学史的影响深远且多元，它不仅颠覆了传统形而上学的讨论方式，还渗透到文学、心理学、政治学甚至大众文化中
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="bg-white p-8 rounded-2xl shadow-lg mb-8">
+                        <h3 class="text-2xl font-black text-gray-800 mb-4">在当代生活中的应用</h3>
+                        <ul class="space-y-4">
+                            <li class="flex">
+                                <span class="material-icons text-primary-500 mr-3">psychology</span>
+                                <span class="text-gray-600"><strong>心理治疗</strong> - 存在主义疗法帮助人们面对存在性焦虑，寻找生命意义</span>
+                            </li>
+                            <li class="flex">
+                                <span class="material-icons text-secondary-500 mr-3">theaters</span>
+                                <span class="text-gray-600"><strong>文学与电影</strong> - 从《黑客帝国》到《存在主义咖啡馆》，存在主义主题广泛传播</span>
+                            </li>
+                            <li class="flex">
+                                <span class="material-icons text-accent-500 mr-3">self_improvement</span>
+                                <span class="text-gray-600"><strong>个人发展</strong> - 鼓励个体为自己的选择负责，创造属于自己的生活</span>
+                            </li>
+                            <li class="flex">
+                                <span class="material-icons text-purple-500 mr-3">groups</span>
+                                <span class="text-gray-600"><strong>社会运动</strong> - 为女性主义、民权运动等提供哲学基础</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 text-white">
+                    <h3 class="text-2xl font-black mb-4">存在主义宣言</h3>
+                    <p class="mb-6">
+                        在这个充满不确定性的时代，存在主义比以往任何时候都更具现实意义：
+                    </p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <span class="material-icons mr-2 text-primary-300">check_circle</span>
+                            <span>接受世界的荒诞性，但不陷入绝望</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="material-icons mr-2 text-primary-300">check_circle</span>
+                            <span>拥抱选择的自由，同时承担相应责任</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="material-icons mr-2 text-primary-300">check_circle</span>
+                            <span>在无意义中创造个人意义</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="material-icons mr-2 text-primary-300">check_circle</span>
+                            <span>真实地生活，不伪装不逃避</span>
+                        </li>
+                    </ul>
+                    <p class="italic">
+                        "存在主义最终告诉我们：生活的意义不是被发现的，而是通过我们的选择和行动被创造的。"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- 页脚 -->
+<footer class="bg-gray-900 text-gray-300 py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+        <div class="footer-grid mb-12">
+            <div>
+                <h3 class="text-xl font-bold text-white mb-4">存在主义哲学</h3>
+                <p class="mb-4">
+                    探索生命意义，拥抱自由选择，在荒诞世界中创造个人价值。
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-600 transition-colors">
+                        <span class="material-icons">facebook</span>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-600 transition-colors">
+                        <span class="material-icons">forum</span>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-600 transition-colors">
+                        <span class="material-icons">import_contacts</span>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-bold text-white mb-4">核心概念</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition-colors">存在先于本质</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">自由与责任</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">荒诞与反抗</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">本真存在</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">向死而生</a></li>
+                </ul>
+            </div>
+
+
+
+            <div>
+                <h4 class="text-lg font-bold text-white mb-4">订阅更新</h4>
+                <p class="mb-4">获取存在主义哲学的最新内容与活动通知</p>
+                <form class="flex">
+                    <input type="email" placeholder="您的电子邮箱" class="px-4 py-2 w-full rounded-l-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-primary-500">
+                    <button class="bg-primary-600 px-4 py-2 rounded-r-lg font-medium hover:bg-primary-500 transition-colors">
+                        订阅
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="pt-8 border-t border-gray-800 text-center text-gray-500">
+            <p>© 2023 存在主义哲学探索. 本网站内容仅供学习交流使用。</p>
+        </div>
+    </div>
+</footer>
+
+<!-- 滚动到顶部按钮 -->
+<button id="scrollTopBtn" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-primary-600 text-white shadow-lg flex items-center justify-center opacity-0 invisible transition-all">
+    <span class="material-icons">arrow_upward</span>
+</button>
+
+<script>
+    // 滚动效果
+    document.addEventListener('DOMContentLoaded', function() {
+        // 滚动到顶部按钮
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.remove('opacity-0', 'invisible');
+                scrollTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                scrollTopBtn.classList.remove('opacity-100', 'visible');
+                scrollTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 导航平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 简单的滚动动画
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.grid-item, .philosopher-card').forEach(item => {
+            observer.observe(item);
+        });
+    });
+</script>
+</body>
+</html>

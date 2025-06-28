@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>好运算法 | 财富自由与提前退休的秘诀</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/9.0.0/framer-motion.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        secondary: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        },
+                        accent: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            color: #1f2937;
+            overflow-x: hidden;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* 调整行高为自动，确保内容不被压缩 */
+            grid-auto-rows: minmax(300px, auto);
+            gap: 24px;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .bento-item {
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            /* 修改溢出处理方式 */
+            overflow: auto;
+            /* 添加最小高度 */
+            min-height: 300px;
+            /* 设置合适的高度 */
+            height: fit-content;
+        }
+        
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 调整跨列元素 */
+        .grid-col-span-2 {
+            grid-column: span 2;
+            /* 增加最小高度 */
+            min-height: 400px;
+        }
+
+        /* 调整跨行元素 */
+        .grid-row-span-2 {
+            grid-row: span 2;
+            /* 增加最小高度 */
+            min-height: 600px;
+        }
+        
+        .highlight-bg {
+            background: linear-gradient(45deg, rgba(14, 165, 233, 0.1) 0%, rgba(14, 165, 233, 0.05) 100%);
+        }
+        
+        .accent-bg {
+            background: linear-gradient(45deg, rgba(168, 85, 247, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+        }
+        
+        .success-bg {
+            background: linear-gradient(45deg, rgba(20, 184, 166, 0.1) 0%, rgba(20, 184, 166, 0.05) 100%);
+        }
+        
+        .glow {
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.15);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* 调整卡片内部布局 */
+        .bg-white.p-6.rounded-2xl.shadow-sm {
+            height: auto;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* 优化图表容器 */
+        .chart-container {
+            position: relative;
+            height: 200px;
+            margin-top: 1rem;
+        }
+        
+        .chart-bar {
+            position: absolute;
+            bottom: 0;
+            width: 20px;
+            background: linear-gradient(to top, #0ea5e9, #38bdf8);
+            border-radius: 10px 10px 0 0;
+            transition: height 1s ease;
+        }
+
+        /* 调整饼图大小 */
+        .pie-chart {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto;
+        }
+        
+        .dashed-line {
+            stroke-dasharray: 5;
+            stroke: #9ca3af;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-12">
+    <div class="max-w-7xl mx-auto px-4">
+        <header class="text-center mb-16 fade-in">
+            <h1 class="text-5xl md:text-7xl font-black text-gray-900 mb-4">
+                好运算法
+                <span class="text-primary-600">LUCK ALGORITHM</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
+                掌握财富自由与提前退休的核心秘诀 | 探索35岁实现财务自由的可能性
+            </p>
+        </header>
+
+        <div class="bento-grid">
+            <!-- 财富自由公式 -->
+            <div class="bento-item grid-col-span-2 highlight-bg fade-in">
+                <div class="flex h-full">
+                    <div class="w-1/2 pr-6">
+                        <h2 class="text-4xl font-black mb-4">财富自由公式</h2>
+                        <p class="text-gray-600 mb-6">
+                            每年自由现金流覆盖年开销时实现自由
+                        </p>
+                        <div class="text-6xl font-black text-primary-600 mb-2">25×</div>
+                        <p class="text-gray-700">
+                            法则：年开销×25=所需本金<br>
+                            例：年开销20万×25=500万
+                        </p>
+                    </div>
+                    <div class="w-1/2 flex items-center justify-center">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-primary-500 rounded-full opacity-20 animate-ping"></div>
+                            <div class="w-40 h-40 rounded-full bg-primary-500 flex items-center justify-center text-white text-2xl font-bold relative">
+                                25×
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 财富自由核心 -->
+            <div class="bento-item success-bg fade-in">
+                <div class="flex flex-col h-full">
+                    <div class="flex-1">
+                        <div class="text-5xl font-black text-secondary-600 mb-2">4%</div>
+                        <h3 class="text-xl font-bold mb-3">被动收益法则</h3>
+                        <p class="text-gray-700 text-sm">
+                            500万×4%收益=20万/年<br>
+                            本金持续增值，利息覆盖生活
+                        </p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-secondary-500 flex items-center justify-center text-white mr-3">
+                                <i class="fas fa-egg"></i>
+                            </div>
+                            <p class="text-gray-700 text-sm">"财富自由就像拥有一窝鸡，每年下的蛋够你开销，鸡还在健康成长"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 成功三要素 -->
+            <div class="bento-item grid-row-span-2 grid-col-span-2 accent-bg fade-in">
+                <h2 class="text-4xl font-black mb-8">成功三要素</h2>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm">
+                        <div class="text-6xl font-black text-accent-500 mb-4">1</div>
+                        <h3 class="text-xl font-bold mb-3">意外与机遇</h3>
+                        <p class="text-gray-700">
+                            成功往往需要时代的"横财"<br>
+                            识别并抓住意外出现的机会
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm">
+                        <div class="text-6xl font-black text-accent-500 mb-4">2</div>
+                        <h3 class="text-xl font-bold mb-3">规模化复制</h3>
+                        <p class="text-gray-700">
+                            找到可复制的核心价值<br>
+                            建立系统护城河防止模仿
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm">
+                        <div class="text-6xl font-black text-accent-500 mb-4">3</div>
+                        <h3 class="text-xl font-bold mb-3">决策与概率</h3>
+                        <p class="text-gray-700">
+                            增加被选择的概率<br>
+                            做出增大好运概率的决策
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-8 bg-white p-6 rounded-2xl shadow-sm">
+                    <div class="flex">
+                        <div class="text-accent-500 text-3xl mr-4">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <p class="text-gray-700">
+                            "我们做出了选择，其实是在等待被选择。好的选择增大了你被选择的概率"
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 好运算法 -->
+            <div class="bento-item fade-in">
+                <div class="flex flex-col h-full">
+                    <h2 class="text-3xl font-black mb-4">好运算法</h2>
+                    <p class="text-gray-600 mb-6">人生牌局的三步策略</p>
+                    <div class="space-y-6 flex-1">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white mr-3 mt-1">
+                                <i class="fas fa-hand-paper"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">抓牌</h3>
+                                <p class="text-gray-700 text-sm">保持开放，获取更多可能性</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-secondary-500 flex items-center justify-center text-white mr-3 mt-1">
+                                <i class="fas fa-chess"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">打牌</h3>
+                                <p class="text-gray-700 text-sm">明智决策，寻求持续向好</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-accent-500 flex items-center justify-center text-white mr-3 mt-1">
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">弃牌</h3>
+                                <p class="text-gray-700 text-sm">远离厄运，接受差的结果</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 概率可视化 -->
+            <div class="bento-item fade-in">
+                <div class="flex flex-col h-full">
+                    <h3 class="text-2xl font-black mb-4">概率思维</h3>
+                    <p class="text-gray-600 mb-6">成功是概率的游戏</p>
+                    <div class="flex-1 flex items-center justify-center">
+                        <div class="relative">
+                            <div class="pie-chart"></div>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <div class="text-4xl font-black text-gray-900">80%</div>
+                                <div class="text-gray-600">天生因素</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center text-sm text-gray-600">
+                        <p>15%家庭环境 + 5%个人选择</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 大局观 -->
+            <div class="bento-item grid-col-span-2 success-bg fade-in">
+                <h2 class="text-4xl font-black mb-6">大局观三要素</h2>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="bg-white p-5 rounded-2xl shadow-sm">
+                        <div class="text-4xl font-black text-secondary-600 mb-3">空间</div>
+                        <p class="text-gray-700">
+                            扩展视野<br>
+                            了解更多可能性
+                        </p>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl shadow-sm">
+                        <div class="text-4xl font-black text-secondary-600 mb-3">时间</div>
+                        <p class="text-gray-700">
+                            长期视角<br>
+                            不追求短期回报
+                        </p>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl shadow-sm">
+                        <div class="text-4xl font-black text-secondary-600 mb-3">概率</div>
+                        <p class="text-gray-700">
+                            选择更高概率<br>
+                            30% > 20%
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-6 bg-white p-5 rounded-2xl shadow-sm">
+                    <p class="text-gray-700">
+                        "用一种大局观的方式：很多时候只是举手之劳，我为什么不让他更好一些？到最后你去实现某个大目标的概率就大幅增加"
+                    </p>
+                </div>
+            </div>
+
+            <!-- 诚实的力量 -->
+            <div class="bento-item grid-col-span-2 highlight-bg fade-in">
+                <div class="flex h-full">
+                    <div class="w-2/3 pr-8">
+                        <h2 class="text-4xl font-black mb-6">诚实的力量</h2>
+                        <div class="text-6xl font-black text-primary-600 mb-4">95%</div>
+                        <p class="text-gray-700 mb-6">
+                            80%天生特质 + 15%家庭环境<br>
+                            只有5%来自个人努力
+                        </p>
+                        <div class="bg-white p-5 rounded-2xl shadow-sm">
+                            <p class="text-gray-700">
+                                "对自己诚实是获得好运的基础。只有做到对自己诚实，你才能够处理和这个世界的真实关系，建立起真诚的关系"
+                            </p>
+                        </div>
+                    </div>
+                    <div class="w-1/3 flex items-center justify-center">
+                        <div class="relative">
+                            <div class="absolute -inset-4 bg-white rounded-full opacity-50"></div>
+                            <div class="w-32 h-32 rounded-full border-8 border-primary-500 flex items-center justify-center relative">
+                                <div class="text-3xl text-primary-500">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 结语 -->
+            <div class="bento-item grid-col-span-2 fade-in">
+                <div class="h-full flex flex-col items-center justify-center text-center p-8 bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl">
+                    <div class="text-6xl text-primary-500 mb-6">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h2 class="text-4xl font-black mb-4">保持美好期待</h2>
+                    <p class="text-xl text-gray-700 max-w-2xl mb-6">
+                        "相信自己的好运也是好运的秘诀之一。上天正在准备给你排布一些新的可能性"
+                    </p>
+                    <div class="text-3xl font-black text-accent-600">
+                        祝你越来越好运
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // 添加动态图表
+            const chartData = [75, 90, 60, 85, 70];
+            const chartContainer = document.createElement('div');
+            chartContainer.className = 'chart-container mt-6';
+            
+            chartData.forEach((value, index) => {
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar';
+                bar.style.height = '0';
+                bar.style.left = `${index * 25 + 20}px`;
+                setTimeout(() => {
+                    bar.style.height = `${value}%`;
+                }, 300 * index);
+                chartContainer.appendChild(bar);
+            });
+            
+            // 添加到概率思维区块
+            const probabilityItem = document.querySelector('.bento-item:nth-child(5)');
+            probabilityItem.appendChild(chartContainer);
+        });
+    </script>
+</body>
+</html>
