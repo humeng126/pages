@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情绪的九重觉醒之路</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Framer Motion via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10/dist/framer-motion.umd.min.js"></script>
+    
+    <!-- Font Awesome via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Custom font for a better feel, falling back to system defaults */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8f9fa; /* Soft off-white */
+            color: #1f2937;
+            overflow-x: hidden;
+        }
+
+        /* Bento Grid Item Base Style */
+        .bento-item {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 1.5rem; /* 24px */
+            padding: 2rem; /* 32px */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* Scroll-triggered animation initial state */
+        .scroll-anim {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* Scroll-triggered animation visible state */
+        .scroll-anim.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Techy gradient effect */
+        .tech-gradient-blue {
+            background: linear-gradient(180deg, rgba(96, 165, 250, 0.2) 0%, rgba(96, 165, 250, 0) 100%);
+        }
+        .tech-gradient-green {
+            background: linear-gradient(180deg, rgba(74, 222, 128, 0.2) 0%, rgba(74, 222, 128, 0) 100%);
+        }
+        .tech-gradient-purple {
+            background: linear-gradient(180deg, rgba(192, 132, 252, 0.2) 0%, rgba(192, 132, 252, 0) 100%);
+        }
+        .tech-gradient-amber {
+             background: linear-gradient(180deg, rgba(251, 191, 36, 0.2) 0%, rgba(251, 191, 36, 0) 100%);
+        }
+
+        /* Large visual element style */
+        .giant-icon {
+            position: absolute;
+            font-size: 20rem; /* 320px */
+            opacity: 0.04;
+            z-index: -1;
+            right: -2rem;
+            bottom: -2rem;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="max-w-7xl mx-auto p-4 md:p-8">
+
+        <!-- 1. Intro Section -->
+        <section class="min-h-[80vh] flex flex-col justify-center items-center text-center py-20 scroll-anim">
+            <p class="text-lg text-blue-500 font-semibold mb-4">THE PATH OF AWAKENING</p>
+            <h1 class="text-5xl md:text-8xl font-black tracking-tighter text-gray-800">情绪的九重觉醒</h1>
+            <p class="mt-6 max-w-2xl text-lg text-gray-500">
+                你有没有被情绪困扰过？是抑制不住的愤怒或恐惧，还是状态低迷时的焦虑和抑郁？今天，我们一起重新认识情绪这件事。
+            </p>
+        </section>
+
+        <!-- 2. The Misunderstanding & True Nature -->
+        <section class="py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Misunderstanding -->
+                <div class="bento-item scroll-anim">
+                    <h2 class="text-3xl font-bold">对抗，还是接纳？</h2>
+                    <p class="text-gray-600 mt-4">我们常将情绪视为需要驯服的猛兽，试图压制、控制。但这容易将我们带入误区，因为人其实不能完全控制情绪。</p>
+                    <div class="text-8xl font-black text-red-500/20 mt-8 self-end">VS</div>
+                </div>
+                <!-- True Nature -->
+                <div class="bento-item scroll-anim tech-gradient-blue relative overflow-hidden">
+                    <h2 class="text-3xl font-bold">生命的精密反馈系统</h2>
+                    <p class="text-gray-600 mt-4">情绪是演化馈赠的功能，是保护我们的信使。问题不在于情绪本身，而在于我们误解、抗拒了它。</p>
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-center gap-4"><i class="fa-solid fa-shield-halved text-2xl text-blue-500 w-8 text-center"></i> <span><strong class="font-bold">恐惧</strong>：拉响警报，远离危险。</span></div>
+                        <div class="flex items-center gap-4"><i class="fa-solid fa-fire-flame-curved text-2xl text-orange-500 w-8 text-center"></i> <span><strong class="font-bold">愤怒</strong>：点燃能量，捍卫利益。</span></div>
+                        <div class="flex items-center gap-4"><i class="fa-solid fa-heart-crack text-2xl text-indigo-500 w-8 text-center"></i> <span><strong class="font-bold">悲伤</strong>：连接内心，疗愈心灵。</span></div>
+                    </div>
+                     <i class="fa-solid fa-bell giant-icon"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. The System Mismatch -->
+        <section class="py-16 text-center scroll-anim">
+            <p class="text-lg text-green-600 font-semibold mb-4">THE GREAT MISMATCH</p>
+            <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-gray-800">古老系统与现代生活的错配</h2>
+            <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-500">
+                我们本质上还是石器时代的身心，却一头扎进了信息爆炸的洪流。这套为生死存亡设计的警报系统，在面对现代非致命性压力时，发生了不可避免的系统错配。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 text-left">
+                <div class="bento-item scroll-anim">
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-person-hiking text-5xl text-amber-700"></i>
+                        <div>
+                            <h3 class="text-2xl font-bold">石器时代的身心</h3>
+                             <p class="text-gray-500">STONE AGE BODY</p>
+                        </div>
+                    </div>
+                    <p class="mt-4">为应对猛兽、敌人、灾荒而设计，强大、高效、直接驱动行为。</p>
+                </div>
+                <div class="bento-item scroll-anim">
+                     <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-wifi text-5xl text-sky-500"></i>
+                        <div>
+                            <h3 class="text-2xl font-bold">信息时代的挑战</h3>
+                            <p class="text-gray-500">INFORMATION AGE CHALLENGES</p>
+                        </div>
+                    </div>
+                    <p class="mt-4">工作、房贷、网暴、琐事... 威胁不致命，却持续拉响生存警报。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. The Two Core Roots -->
+        <section class="py-16 scroll-anim">
+             <div class="text-center mb-12">
+                <p class="text-lg text-purple-600 font-semibold mb-4">THE TWO CORE ROOTS</p>
+                <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-gray-800">情绪的两大根源</h2>
+             </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Cognition -->
+                <div class="bento-item scroll-anim tech-gradient-purple relative overflow-hidden">
+                    <p class="text-sm font-bold text-purple-600">SOFTWARE</p>
+                    <h3 class="text-5xl font-black mt-2">认知</h3>
+                    <p class="text-gray-600 mt-4">
+                        决定我们情绪的往往不是事件本身，而是我们理解事物的方式。提升认知，就像升级系统软件，修正误报，从根本上减少情绪困扰。
+                    </p>
+                     <i class="fa-solid fa-brain giant-icon text-purple-500/20"></i>
+                </div>
+                <!-- Health -->
+                <div class="bento-item scroll-anim tech-gradient-green relative overflow-hidden">
+                    <p class="text-sm font-bold text-green-600">OPERATING ENVIRONMENT</p>
+                    <h3 class="text-5xl font-black mt-2">健康</h3>
+                    <p class="text-gray-600 mt-4">
+                        身心本为一体。健康是心智的指挥官，直接决定了情绪的弹性与稳定性。忽视身体健康的情绪管理，终是徒劳。
+                    </p>
+                    <i class="fa-solid fa-heart-pulse giant-icon text-green-500/20"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. External Traps -->
+        <section class="py-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                 <!-- Title -->
+                <div class="md:col-span-1 bento-item scroll-anim flex-col justify-center">
+                    <h2 class="text-3xl font-bold">外界的陷阱</h2>
+                    <p class="text-gray-600 mt-2">THE TRAPS OUTSIDE</p>
+                    <p class="mt-4 text-gray-500">在信息洪流中，我们需要警惕那些被异化和滥用的概念，建立独立思考的能力。</p>
+                </div>
+                 <!-- The "Emotional Value" Trap -->
+                <div class="md:col-span-2 bento-item scroll-anim tech-gradient-amber relative overflow-hidden">
+                    <h3 class="text-2xl font-bold">警惕“情绪价值”的异化</h3>
+                    <p class="text-gray-600 mt-2">当“共情”沦为“讨好”，当“支持”变成“绑架”。</p>
+                    <div class="mt-6 border-t border-amber-500/20 pt-6 grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="font-bold text-green-600">✓ 真正的价值</p>
+                            <ul class="list-disc list-inside text-sm text-gray-600 mt-2 space-y-1">
+                                <li>双向滋养</li>
+                                <li>真诚共情</li>
+                                <li>增强独立性</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="font-bold text-red-600">✗ 虚假的陷阱</p>
+                            <ul class="list-disc list-inside text-sm text-gray-600 mt-2 space-y-1">
+                                <li>单向榨取</li>
+                                <li>表演性输出</li>
+                                <li>导致精神依赖</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 6. The 3 Steps to Dance with Emotions -->
+        <section class="py-16">
+            <div class="text-center mb-12 scroll-anim">
+                <p class="text-lg text-blue-600 font-semibold mb-4">A NEW WAY TO COEXIST</p>
+                <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-gray-800">与情绪共舞三部曲</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 1. Accept -->
+                <div class="bento-item scroll-anim text-center">
+                    <p class="text-8xl font-black text-blue-500/20">01</p>
+                    <h3 class="text-3xl font-bold mt-4">接纳</h3>
+                    <p class="text-sm text-gray-500 uppercase">ACCEPT</p>
+                    <p class="text-gray-600 mt-4">允许一切情绪的自然流动，不抗拒，不压制。接纳不是放任，而是尊重身心规律。</p>
+                </div>
+                <!-- 2. Observe -->
+                <div class="bento-item scroll-anim text-center">
+                    <p class="text-8xl font-black text-blue-500/20">02</p>
+                    <h3 class="text-3xl font-bold mt-4">觉察</h3>
+                    <p class="text-sm text-gray-500 uppercase">OBSERVE</p>
+                    <p class="text-gray-600 mt-4">追溯情绪升起的源头，不怕念起，就怕觉迟。真正了解自己，才能驾驭情绪。</p>
+                </div>
+                <!-- 3. Respond -->
+                <div class="bento-item scroll-anim text-center">
+                    <p class="text-8xl font-black text-blue-500/20">03</p>
+                    <h3 class="text-3xl font-bold mt-4">回应</h3>
+                    <p class="text-sm text-gray-500 uppercase">RESPOND</p>
+                    <p class="text-gray-600 mt-4">有意识地选择建设性行动，化解与引导情绪能量，而非破坏性释放。</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 7. The 3 Pillars of Cultivation -->
+        <section class="py-16">
+             <div class="text-center mb-12 scroll-anim">
+                <p class="text-lg text-gray-500 font-semibold mb-4">LIFELONG CULTIVATION</p>
+                <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-gray-800">人生成长的三重路径</h2>
+             </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bento-item scroll-anim tech-gradient-blue">
+                    <i class="fa-solid fa-lightbulb text-4xl text-blue-500 mb-4"></i>
+                    <h3 class="text-2xl font-bold">认知升级</h3>
+                    <p class="text-gray-500">UPGRADE COGNITION</p>
+                    <p class="mt-4">拓展广度，思考深度，养成习惯，走向智慧之光。</p>
+                </div>
+                <div class="bento-item scroll-anim tech-gradient-green">
+                    <i class="fa-solid fa-dumbbell text-4xl text-green-500 mb-4"></i>
+                    <h3 class="text-2xl font-bold">健康投资</h3>
+                    <p class="text-gray-500">INVEST IN HEALTH</p>
+                    <p class="mt-4">科学饮食，规律作息，适度运动，稳住生命根基。</p>
+                </div>
+                <div class="bento-item scroll-anim tech-gradient-purple">
+                    <i class="fa-solid fa-dove text-4xl text-purple-500 mb-4"></i>
+                    <h3 class="text-2xl font-bold">心性修炼</h3>
+                    <p class="text-gray-500">CULTIVATE THE MIND</p>
+                    <p class="mt-4">从经典中获取营养，在生活中练习，洗涤灵魂，超越小我。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. The Ultimate State -->
+        <section class="py-20 my-16 bento-item tech-gradient-blue scroll-anim">
+            <div class="text-center">
+                 <p class="text-lg text-indigo-500 font-semibold mb-4">THE ULTIMATE REALM</p>
+                 <h2 class="text-4xl md:text-7xl font-black tracking-tighter text-gray-800">忘记情绪的存在</h2>
+                 <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-500">
+                    真正的自由，是超越情绪。情绪依然存在，但如风拂面，不惊不扰。内在澄明定静，与天地和谐一体。泰山崩于前而色不变，是看透世事后的云淡风轻。
+                 </p>
+                 <div class="mt-8 text-4xl text-indigo-300">
+                     <i class="fa-solid fa-water"></i>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-12 border-t border-gray-200 scroll-anim">
+            <p class="text-gray-600">视频有结束，但修行无终点。</p>
+            <p class="text-sm text-gray-400 mt-2">THE JOURNEY OF CULTIVATION HAS NO END. LET'S WALK TOGETHER.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Simple Intersection Observer for scroll animations
+        document.addEventListener("DOMContentLoaded", () => {
+            const scrollElements = document.querySelectorAll(".scroll-anim");
+
+            const elementInView = (el, dividend = 1) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+                );
+            };
+
+            const elementOutOfView = (el) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop > (window.innerHeight || document.documentElement.clientHeight)
+                );
+            };
+
+            const displayScrollElement = (element) => {
+                element.classList.add("is-visible");
+            };
+
+            const hideScrollElement = (element) => {
+                element.classList.remove("is-visible");
+            };
+
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 1.15)) {
+                        displayScrollElement(el);
+                    } 
+                    // Optional: uncomment below to hide elements when they scroll out of view
+                    /* else if (elementOutOfView(el)) {
+                        hideScrollElement(el)
+                    } */
+                });
+            };
+
+            // Initial check
+            handleScrollAnimation();
+            window.addEventListener("scroll", handleScrollAnimation);
+        });
+
+        // Framer Motion integration for potential future use or more complex animations
+        // For this demo, the CSS transition approach is sufficient and performant.
+        // If you wanted to use Framer Motion, you would typically do it in a React/Vue environment.
+        // A vanilla JS example would look something like this:
+        /*
+        const { animate } = motion;
+        document.querySelectorAll('.framer-anim').forEach(el => {
+            animate(el, { opacity: 1, y: 0 }, { duration: 0.8, delay: 0.2 });
+        });
+        */
+    </script>
+</body>
+</html>

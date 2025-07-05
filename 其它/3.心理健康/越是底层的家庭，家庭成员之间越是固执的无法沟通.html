@@ -3,586 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>家庭沟通与认知突破</title>
-    <!-- Tailwind CSS -->
+    <title>家庭的瓶颈：比贫穷更可怕的内耗</title>
+
+    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Framer Motion -->
-    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.12.18/dist/framer-motion.min.js"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#5b8fb9',
-                        secondary: '#301e67',
-                        accent: '#b6e2d3',
-                        dark: '#1a1a2e',
-                        light: '#f8f9fa'
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+
+    <!-- Font Awesome via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
-        
+        /* Custom font for a softer feel */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&display=swap');
+
         body {
             font-family: 'Noto Sans SC', sans-serif;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            color: #1a1a2e;
+            background-color: #f0f2f5; /* Soft grey background */
+            color: #1a202c;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
-        
+
         .bento-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-            gap: 20px;
-            height: 100vh;
-            padding: 20px;
+            gap: 1rem;
+            grid-template-columns: repeat(12, 1fr);
+            padding: 1rem;
+            max-width: 1400px;
+            margin: auto;
         }
-        
+
         .bento-item {
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            background: rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 1.5rem;
+            padding: 2rem;
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(230, 230, 230, 0.7);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.5);
         }
-        
+
         .bento-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.07);
         }
-        
-        .highlight-bg {
-            background: linear-gradient(135deg, rgba(182, 226, 211, 0.2) 0%, rgba(182, 226, 211, 0) 100%);
+
+        /* Responsive Grid Layout */
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(6, 1fr); }
+            .col-span-8 { grid-column: span 6 / span 6; }
+            .col-span-4 { grid-column: span 6 / span 6; }
+            .col-span-6 { grid-column: span 6 / span 6; }
+            .col-span-3 { grid-column: span 3 / span 3; }
+            .col-span-5 { grid-column: span 6 / span 6; }
+            .col-span-7 { grid-column: span 6 / span 6; }
         }
-        
-        .accent-bg {
-            background: linear-gradient(135deg, rgba(91, 143, 185, 0.2) 0%, rgba(91, 143, 185, 0) 100%);
+
+        @media (max-width: 640px) {
+            .bento-grid { grid-template-columns: repeat(1, 1fr); }
+            .col-span-3 { grid-column: span 1 / span 1; }
         }
-        
-        .large-number {
-            font-size: 15rem;
-            font-weight: 900;
-            line-height: 0.8;
-            color: rgba(48, 30, 103, 0.1);
+
+        /* Tech Glow Effect */
+        .glow-effect {
             position: absolute;
-            z-index: 0;
-        }
-        
-        .section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .window {
-            width: 300px;
-            height: 300px;
-            border: 3px solid #301e67;
-            border-radius: 10px;
-            position: relative;
-            margin: 0 auto;
-        }
-        
-        .window-part {
-            position: absolute;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-weight: 700;
-        }
-        
-        .hidden-scroll {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-        
-        .show-scroll {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .radial-gradient {
-            position: absolute;
-            width: 800px;
-            height: 800px;
+            opacity: 0.15;
+            filter: blur(40px);
             border-radius: 50%;
-            z-index: -1;
-            filter: blur(100px);
         }
-        
-        .grid-line {
+
+        /* Specific layouts */
+        .col-span-8 { grid-column: span 8 / span 8; }
+        .col-span-4 { grid-column: span 4 / span 4; }
+        .col-span-6 { grid-column: span 6 / span 6; }
+        .col-span-3 { grid-column: span 3 / span 3; }
+        .col-span-5 { grid-column: span 5 / span 5; }
+        .col-span-7 { grid-column: span 7 / span 7; }
+
+        .super-char {
             position: absolute;
-            background: rgba(48, 30, 103, 0.05);
-            z-index: -2;
+            font-size: 18rem;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.04);
+            right: -2rem;
+            bottom: -4rem;
+            z-index: 0;
+            line-height: 1;
+            pointer-events: none;
         }
-        
-        .grid-line-h {
-            width: 100%;
-            height: 1px;
-            left: 0;
+
+        .super-num {
+            position: absolute;
+            font-size: 16rem;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.04);
+            left: -1rem;
+            top: -2rem;
+            z-index: 0;
+            line-height: 1;
+            pointer-events: none;
         }
-        
-        .grid-line-v {
-            width: 1px;
-            height: 100%;
-            top: 0;
-        }
+
     </style>
 </head>
-<body class="overflow-x-hidden">
-    <!-- Background elements -->
-    <div class="radial-gradient bg-accent top-[-400px] right-[-400px]"></div>
-    <div class="radial-gradient bg-primary bottom-[-500px] left-[-400px]"></div>
-    
-    <!-- Grid lines -->
-    <div class="grid-line grid-line-h" style="top: 33%"></div>
-    <div class="grid-line grid-line-h" style="top: 66%"></div>
-    <div class="grid-line grid-line-v" style="left: 25%"></div>
-    <div class="grid-line grid-line-v" style="left: 50%"></div>
-    <div class="grid-line grid-line-v" style="left: 75%"></div>
+<body class="antialiased">
 
-    <!-- Hero Section -->
-    <section class="section">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col items-center justify-center text-center pt-20">
-                <h1 class="text-6xl md:text-8xl font-black mb-6 text-secondary relative z-10">
-                    家庭真正的<span class="text-primary">低端</span>
-                </h1>
-                <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-12 text-gray-700">
-                    不是物质的匮乏，而是弥漫在骨子里的<span class="font-bold text-primary">固执</span>
-                </p>
-                
-                <div class="flex items-center mb-20">
-                    <div class="h-1 w-24 bg-primary"></div>
-                    <span class="mx-4 text-gray-500">The Real Downside</span>
-                    <div class="h-1 w-24 bg-primary"></div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                    <div class="p-6 rounded-xl bg-white bg-opacity-80 shadow-lg">
-                        <div class="text-5xl text-primary mb-4">
-                            <i class="fas fa-comments"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">沟通崩溃</h3>
-                        <p class="text-gray-600">高成本低效率的对话模式</p>
-                    </div>
-                    
-                    <div class="p-6 rounded-xl bg-white bg-opacity-80 shadow-lg">
-                        <div class="text-5xl text-primary mb-4">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">认知封闭</h3>
-                        <p class="text-gray-600">拒绝接受新信息与观点</p>
-                    </div>
-                    
-                    <div class="p-6 rounded-xl bg-white bg-opacity-80 shadow-lg">
-                        <div class="text-5xl text-primary mb-4">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">共情缺失</h3>
-                        <p class="text-gray-600">无法理解彼此的情绪需求</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<main id="app" class="bento-grid py-12 md:py-24">
 
-    <!-- Problem Section -->
-    <section class="section bg-gray-50 py-20">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-12 md:mb-0">
-                    <div class="relative">
-                        <div class="large-number">1</div>
-                        <h2 class="text-4xl md:text-5xl font-black mb-8 relative z-10">
-                            认知封闭：<br>家庭僵化的根源
-                        </h2>
-                    </div>
-                    
-                    <div class="space-y-6 relative z-10">
-                        <div class="flex items-start">
-                            <div class="text-primary text-2xl mr-4 mt-1">
-                                <i class="fas fa-exclamation-triangle"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">认知刚性</h3>
-                                <p class="text-gray-700">家庭中每个人都像孤岛，坚信自己的地图就是全世界。思维缺乏弹性，拒绝改变固有认知。</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-primary text-2xl mr-4 mt-1">
-                                <i class="fas fa-sync-alt"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">代际传递</h3>
-                                <p class="text-gray-700">父母的固执模式被孩子继承，形成不可理喻的翻版，家庭失去学习和适应能力。</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-primary text-2xl mr-4 mt-1">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">能量消耗</h3>
-                                <p class="text-gray-700">家庭能量在捍卫各自立场中耗尽，难以形成合力应对挑战。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="md:w-1/2 flex justify-center">
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-accent rounded-full opacity-20 blur-3xl animate-pulse-slow"></div>
-                        <div class="bg-white p-8 rounded-2xl shadow-xl relative z-10 max-w-md">
-                            <div class="text-center mb-6">
-                                <div class="inline-block p-4 bg-primary bg-opacity-10 rounded-full">
-                                    <i class="fas fa-chart-line text-4xl text-primary"></i>
-                                </div>
-                            </div>
-                            <h3 class="text-2xl font-bold text-center mb-6">固执家庭发展曲线</h3>
-                            <div class="relative h-64">
-                                <div class="absolute bottom-0 left-0 w-full h-1 bg-gray-200"></div>
-                                <div class="absolute left-0 w-1 h-full bg-gray-200"></div>
-                                
-                                <!-- Development curve -->
-                                <div class="absolute left-4 bottom-4 w-5/6">
-                                    <div class="relative h-48">
-                                        <div class="absolute bottom-0 w-full h-1 bg-gray-300"></div>
-                                        <div class="absolute left-0 w-1 h-full bg-gray-300"></div>
-                                        
-                                        <div class="absolute bottom-0" style="left: 0%; width: 100%; height: 3px; background: #301e67;"></div>
-                                        
-                                        <!-- Data points -->
-                                        <div class="absolute w-3 h-3 rounded-full bg-primary" style="left: 10%; bottom: 20%"></div>
-                                        <div class="absolute w-3 h-3 rounded-full bg-primary" style="left: 30%; bottom: 35%"></div>
-                                        <div class="absolute w-3 h-3 rounded-full bg-primary" style="left: 50%; bottom: 50%"></div>
-                                        <div class="absolute w-3 h-3 rounded-full bg-primary" style="left: 70%; bottom: 45%"></div>
-                                        <div class="absolute w-3 h-3 rounded-full bg-primary" style="left: 90%; bottom: 40%"></div>
-                                        
-                                        <!-- Connecting lines -->
-                                        <div class="absolute bg-primary" style="left: 10%; bottom: 20%; width: 20%; height: 2px; transform-origin: left bottom; transform: rotate(15deg);"></div>
-                                        <div class="absolute bg-primary" style="left: 30%; bottom: 35%; width: 20%; height: 2px; transform-origin: left bottom; transform: rotate(25deg);"></div>
-                                        <div class="absolute bg-primary" style="left: 50%; bottom: 50%; width: 20%; height: 2px; transform-origin: left bottom; transform: rotate(-5deg);"></div>
-                                        <div class="absolute bg-primary" style="left: 70%; bottom: 45%; width: 20%; height: 2px; transform-origin: left bottom; transform: rotate(-15deg);"></div>
-                                    </div>
-                                </div>
-                                
-                                <div class="absolute bottom-0 left-0 text-xs text-gray-500">时间</div>
-                                <div class="absolute top-0 right-0 text-xs text-gray-500">发展水平</div>
-                            </div>
-                            <p class="text-center mt-4 text-gray-600">波动停滞的发展轨迹，难以形成上升趋势</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Main Title -->
+    <div data-motion class="bento-item col-span-12 lg:col-span-8 flex flex-col justify-center">
+        <p class="text-sm font-semibold text-cyan-500">FAMILY DYNAMICS REDEFINED</p>
+        <h1 class="text-4xl md:text-6xl font-bold mt-2 leading-tight">
+            家庭真正的瓶颈<br/>不是贫穷，而是<span class="text-cyan-600">固执</span>
+        </h1>
+        <p class="mt-4 text-lg text-gray-600">
+            比物质匮乏更可怕的，是弥漫在成员骨子里的认知与沟通困境，我们称之为“犟”种特质。
+        </p>
+    </div>
 
-    <!-- Communication Section -->
-    <section class="section py-20">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row-reverse items-center">
-                <div class="md:w-1/2 mb-12 md:mb-0">
-                    <div class="relative">
-                        <div class="large-number">2</div>
-                        <h2 class="text-4xl md:text-5xl font-black mb-8 relative z-10">
-                            沟通崩溃：<br>认知盲区的陷阱
-                        </h2>
-                    </div>
-                    
-                    <div class="space-y-6 relative z-10">
-                        <div class="flex items-start">
-                            <div class="text-primary text-2xl mr-4 mt-1">
-                                <i class="fas fa-window-restore"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">乔哈里窗理论</h3>
-                                <p class="text-gray-700">沟通存在四个区域：公开区、盲区、隐蔽区和未知区。固执者往往意识不到自身盲区。</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-primary text-2xl mr-4 mt-1">
-                                <i class="fas fa-deaf"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">倾听稀缺</h3>
-                                <p class="text-gray-700">家庭成员急于表达辩驳而非理解，导致盲区扩大，共识区缩小。</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-primary text-2xl mr-4 mt-1">
-                                <i class="fas fa-sync"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">无效循环</h3>
-                                <p class="text-gray-700">多数人听话不是为了理解，而是为了回应，形成无效沟通循环。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="md:w-1/2 flex justify-center">
-                    <div class="window">
-                        <div class="window-part" style="top:0; left:0; width:50%; height:50%; background: rgba(91, 143, 185, 0.1);">
-                            公开区<br>Known to self & others
-                        </div>
-                        <div class="window-part" style="top:0; left:50%; width:50%; height:50%; background: rgba(48, 30, 103, 0.1);">
-                            盲区<br>Blind Spot
-                        </div>
-                        <div class="window-part" style="top:50%; left:0; width:50%; height:50%; background: rgba(182, 226, 211, 0.1);">
-                            隐蔽区<br>Hidden Area
-                        </div>
-                        <div class="window-part" style="top:50%; left:50%; width:50%; height:50%; background: rgba(200, 200, 200, 0.1);">
-                            未知区<br>Unknown
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Question -->
+    <div data-motion class="bento-item col-span-12 lg:col-span-4 flex flex-col justify-center items-center text-center">
+        <i class="fa-solid fa-comments text-5xl text-orange-400"></i>
+        <h2 class="text-2xl font-bold mt-4">激烈的争吵之后</h2>
+        <p class="mt-2 text-gray-500">是解决了问题，还是耗尽了精力？</p>
+        <p class="text-xs uppercase text-gray-400 mt-4">THE REAL TRAGEDY OF A FAMILY</p>
+    </div>
 
-    <!-- Empathy Section -->
-    <section class="section bg-gray-50 py-20">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-12 md:mb-0">
-                    <div class="relative">
-                        <div class="large-number">3</div>
-                        <h2 class="text-4xl md:text-5xl font-black mb-8 relative z-10">
-                            共情缺失：<br>信任激素的断裂
-                        </h2>
-                    </div>
-                    
-                    <div class="space-y-6 relative z-10">
-                        <div class="flex items-start">
-                            <div class="text-primary text-2xl mr-4 mt-1">
-                                <i class="fas fa-heartbeat"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">催产素的作用</h3>
-                                <p class="text-gray-700">当被理解和共情时，大脑会释放催产素，带来安全感和信任感。</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-primary text-2xl mr-4 mt-1">
-                                <i class="fas fa-temperature-high"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">压力环境</h3>
-                                <p class="text-gray-700">在充满指责的环境中，催产素水平低下，沟通充满防御和抗拒。</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-primary text-2xl mr-4 mt-1">
-                                <i class="fas fa-handshake"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">情感连接</h3>
-                                <p class="text-gray-700">真正的倾听能促进催产素分泌，降低紧张感，打开沟通通道。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="md:w-1/2">
-                    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-md mx-auto">
-                        <div class="flex justify-between items-center mb-8">
-                            <div class="text-center">
-                                <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-2">
-                                    <i class="fas fa-times text-red-500 text-2xl"></i>
-                                </div>
-                                <span class="text-sm font-medium">低共情环境</span>
-                            </div>
-                            <div class="text-3xl text-gray-300">→</div>
-                            <div class="text-center">
-                                <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-2">
-                                    <i class="fas fa-arrow-down text-red-500 text-2xl"></i>
-                                </div>
-                                <span class="text-sm font-medium">催产素水平</span>
-                            </div>
-                            <div class="text-3xl text-gray-300">→</div>
-                            <div class="text-center">
-                                <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-2">
-                                    <i class="fas fa-shield-alt text-red-500 text-2xl"></i>
-                                </div>
-                                <span class="text-sm font-medium">防御性沟通</span>
-                            </div>
-                        </div>
-                        
-                        <div class="h-1 bg-gray-200 my-6"></div>
-                        
-                        <div class="flex justify-between items-center mt-8">
-                            <div class="text-center">
-                                <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-2">
-                                    <i class="fas fa-check text-green-500 text-2xl"></i>
-                                </div>
-                                <span class="text-sm font-medium">高共情环境</span>
-                            </div>
-                            <div class="text-3xl text-gray-300">→</div>
-                            <div class="text-center">
-                                <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-2">
-                                    <i class="fas fa-arrow-up text-green-500 text-2xl"></i>
-                                </div>
-                                <span class="text-sm font-medium">催产素水平</span>
-                            </div>
-                            <div class="text-3xl text-gray-300">→</div>
-                            <div class="text-center">
-                                <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-2">
-                                    <i class="fas fa-comments text-green-500 text-2xl"></i>
-                                </div>
-                                <span class="text-sm font-medium">建设性沟通</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Solution Section -->
-    <section class="section py-20">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-black mb-6">
-                    打破循环：<span class="text-primary">四步转变法</span>
-                </h2>
-                <p class="text-xl max-w-3xl mx-auto text-gray-700">
-                    成为家庭中打破僵局的"催产素诱导者"，建立新的沟通模式
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-                <div class="bento-item highlight-bg">
-                    <div class="text-5xl text-primary mb-6">
-                        <i class="fas fa-ear-listen"></i>
-                    </div>
-                    <h3 class="text-2xl font-black mb-4">深度倾听</h3>
-                    <p class="text-gray-700 mb-4">放下反驳冲动，全神贯注理解对方的情绪和需求</p>
-                    <div class="bg-primary bg-opacity-10 p-4 rounded-lg">
-                        <p class="text-sm italic">"倾听不是为了回应，而是为了理解"</p>
-                    </div>
-                </div>
-                
-                <div class="bento-item accent-bg">
-                    <div class="text-5xl text-primary mb-6">
-                        <i class="fas fa-sync-alt"></i>
-                    </div>
-                    <h3 class="text-2xl font-black mb-4">复述确认</h3>
-                    <p class="text-gray-700 mb-4">用自己的话复述对方观点，确认理解是否正确</p>
-                    <div class="bg-primary bg-opacity-10 p-4 rounded-lg">
-                        <p class="text-sm italic">"你说的是...的意思吗？"</p>
-                    </div>
-                </div>
-                
-                <div class="bento-item highlight-bg">
-                    <div class="text-5xl text-primary mb-6">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3 class="text-2xl font-black mb-4">揭示盲区</h3>
-                    <p class="text-gray-700 mb-4">用非评判方式分享观察，而非指责对方盲点</p>
-                    <div class="bg-primary bg-opacity-10 p-4 rounded-lg">
-                        <p class="text-sm italic">"我注意到当...时，你似乎..."</p>
-                    </div>
-                </div>
-                
-                <div class="bento-item accent-bg">
-                    <div class="text-5xl text-primary mb-6">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3 class="text-2xl font-black mb-4">表达共情</h3>
-                    <p class="text-gray-700 mb-4">即使不同意观点，也要理解对方情绪来源</p>
-                    <div class="bg-primary bg-opacity-10 p-4 rounded-lg">
-                        <p class="text-sm italic">"我能理解你感到...是因为..."</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-20 text-center">
-                <div class="inline-block bg-white p-8 rounded-2xl shadow-xl max-w-2xl">
-                    <h3 class="text-2xl font-black mb-6">关键原则</h3>
-                    <div class="text-6xl text-primary font-black mb-6">先处理心情，再处理事情</div>
-                    <p class="text-lg text-gray-700">
-                        理解不是认输，而是建立连接的桥梁，是诱导催产素分泌的魔法
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-secondary text-white py-12">
-        <div class="container mx-auto px-6 text-center">
-            <h3 class="text-2xl font-black mb-6">家庭沟通与认知突破</h3>
-            <p class="max-w-2xl mx-auto mb-8 text-gray-300">
-                改变根深蒂固的家庭文化需要勇气和自我觉察，但一个人的转变就能点燃星星之火，慢慢融化坚冰
-            </p>
-            <div class="text-4xl mb-6">
-                <i class="fas fa-quote-left text-primary"></i>
-            </div>
-            <p class="text-xl italic max-w-2xl mx-auto">
-                "我们有两只耳朵，一张嘴巴，所以我们应该多去听，少说"
+    <!-- Problem 1: Cognitive Rigidity -->
+    <div data-motion class="bento-item col-span-12 md:col-span-6 lg:col-span-5 relative">
+        <div class="glow-effect -top-1/4 -right-1/4 w-48 h-48 bg-red-400"></div>
+        <div class="relative z-10">
+            <i class="fa-solid fa-lock text-3xl text-red-500"></i>
+            <h2 class="text-3xl font-bold mt-4">认知封闭的开始</h2>
+            <p class="text-sm uppercase font-bold text-red-500 mt-1">COGNITIVE RIGIDITY</p>
+            <p class="mt-3 text-gray-600">
+                每个人都像一座孤岛，坚信自己的地图就是全世界。这种认知刚性导致家庭系统僵化，无法学习和适应，阻碍一切发展。
             </p>
         </div>
-    </footer>
+        <div class="super-char">犟</div>
+    </div>
 
-    <script>
-        // Scroll animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.2
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('show-scroll');
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe all elements with .hidden-scroll class
-            document.querySelectorAll('.hidden-scroll').forEach(el => {
-                observer.observe(el);
-            });
-            
-            // Observe sections
-            document.querySelectorAll('section').forEach(section => {
-                section.classList.add('hidden-scroll');
-                observer.observe(section);
-            });
+    <!-- Problem 2: Johari Window -->
+    <div data-motion class="bento-item col-span-12 md:col-span-6 lg:col-span-7 relative">
+        <div class="glow-effect -bottom-1/4 -left-1/4 w-56 h-56 bg-blue-400"></div>
+        <div class="relative z-10">
+            <i class="fa-solid fa-table-cells text-3xl text-blue-500"></i>
+            <h2 class="text-3xl font-bold mt-4">沟通的崩溃：认知盲区</h2>
+            <p class="text-sm uppercase font-bold text-blue-500 mt-1">JOHARI WINDOW</p>
+            <div class="mt-4 grid grid-cols-2 gap-2 text-center text-sm">
+                <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                    <strong class="block">公开区</strong>你知我知
+                </div>
+                <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                    <strong class="block text-blue-600">盲区</strong>你知我不知
+                </div>
+                <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                    <strong class="block text-blue-600">隐蔽区</strong>我知你不知
+                </div>
+                <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                    <strong class="block">未知区</strong>你我都不知
+                </div>
+            </div>
+            <p class="mt-3 text-gray-600">固执的人意识不到自身盲区，也拒绝探索对方的隐蔽区。倾听是唯一的工具，却极为稀缺。</p>
+        </div>
+    </div>
+
+    <!-- Problem 3: Lack of Empathy -->
+    <div data-motion class="bento-item col-span-12 lg:col-span-7 relative">
+        <div class="glow-effect -top-1/4 -right-1/4 w-56 h-56 bg-purple-400"></div>
+        <div class="relative z-10">
+            <i class="fa-solid fa-heart-crack text-3xl text-purple-500"></i>
+            <h2 class="text-3xl font-bold mt-4">缺乏共情，无法触发连接</h2>
+            <p class="text-sm uppercase font-bold text-purple-500 mt-1">LACK OF OXYTOCIN</p>
+            <p class="mt-3 text-gray-600">
+                催产素是“信任激素”。当被共情和理解时，大脑会分泌它，让人感到安全、平静。但在指责和抱怨中，催产素水平低下，沟通充满防御和抗拒。
+            </p>
+            <div class="mt-4 flex items-center gap-4 p-4 bg-purple-50 border border-purple-200 rounded-lg">
+                <i class="fa-solid fa-brain text-4xl text-purple-400"></i>
+                <div>
+                    <strong class="text-purple-700">共情 → 分泌催产素 → 建立连接</strong>
+                    <p class="text-sm text-gray-500">Empathy is the key to unlock communication channels.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Vicious Cycle -->
+    <div data-motion class="bento-item col-span-12 lg:col-span-5 flex flex-col justify-center items-center text-center">
+        <div class="glow-effect -bottom-1/4 -left-1/4 w-48 h-48 bg-yellow-400"></div>
+        <h2 class="text-2xl font-bold relative z-10">贫穷是结果，不是原因</h2>
+        <p class="text-sm uppercase font-bold text-yellow-500 mt-1 relative z-10">THE VICIOUS CYCLE</p>
+        <div class="mt-4 space-y-2 text-lg font-medium text-gray-700 relative z-10">
+            <p>固执思维</p>
+            <i class="fa-solid fa-arrow-down text-yellow-400"></i>
+            <p>沟通崩溃</p>
+            <i class="fa-solid fa-arrow-down text-yellow-400"></i>
+            <p>持续内耗</p>
+            <i class="fa-solid fa-arrow-down text-yellow-400"></i>
+            <p>发展停滞 & 贫困</p>
+        </div>
+    </div>
+
+    <!-- The Solution -->
+    <div data-motion class="bento-item col-span-12 lg:col-span-9 relative">
+        <div class="glow-effect -bottom-1/4 -right-1/4 w-64 h-64 bg-green-400"></div>
+        <div class="relative z-10">
+            <h2 class="text-4xl font-bold">成为打破僵局的<br/><span class="text-green-600">“催产素”诱导者</span></h2>
+            <p class="text-sm uppercase font-bold text-green-500 mt-2">BE THE GAME CHANGER</p>
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                    <i class="fa-solid fa-ear-listen text-2xl text-green-500"></i>
+                    <h3 class="font-bold mt-2">练习倾听</h3>
+                    <p class="text-sm text-gray-500">放下反驳的冲动，理解对方真实需求。</p>
+                </div>
+                <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                    <i class="fa-solid fa-lightbulb text-2xl text-green-500"></i>
+                    <h3 class="font-bold mt-2">拥抱盲区</h3>
+                    <p class="text-sm text-gray-500">承认自己有盲区，对反馈持开放态度。</p>
+                </div>
+                <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                    <i class="fa-solid fa-hand-holding-heart text-2xl text-green-500"></i>
+                    <h3 class="font-bold mt-2">刻意共情</h3>
+                    <p class="text-sm text-gray-500">理解不等于认输，而是连接的桥梁。</p>
+                </div>
+            </div>
+        </div>
+        <div class="super-num hidden lg:block">解</div>
+    </div>
+
+    <!-- Final Quote -->
+    <div data-motion class="bento-item col-span-12 lg:col-span-3 flex flex-col justify-center text-center bg-gray-800 text-white">
+        <i class="fa-solid fa-key text-4xl text-cyan-400"></i>
+        <h3 class="text-2xl font-bold mt-4">黄金法则</h3>
+        <p class="mt-2 text-gray-300">先处理心情<br/>再处理事情</p>
+        <p class="text-xs uppercase text-gray-400 mt-4">EMOTION FIRST, ISSUE SECOND</p>
+    </div>
+
+</main>
+
+<!-- Framer Motion via CDN -->
+<script type="module">
+    import { motion, stagger, animate } from "https://cdn.jsdelivr.net/npm/framer-motion@11.1.9/dist/framer-motion.es.js"
+
+    // Find all elements you want to animate
+    const motionElements = document.querySelectorAll('[data-motion]');
+
+    motionElements.forEach(element => {
+        motion(element, {
+            initial: { opacity: 0, y: 50, scale: 0.95 },
+            whileInView: { opacity: 1, y: 0, scale: 1 },
+            viewport: { once: true, amount: 0.3 },
+            transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
         });
-    </script>
+    });
+</script>
 </body>
 </html>
