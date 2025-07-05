@@ -5,280 +5,427 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>成长文件索引</title>
     <style>
-        body {
-            font-family: 'Microsoft YaHei', sans-serif;
+        * {
             margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #24243e 50%, #302b63 100%);
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 动态背景效果 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.2) 0%, transparent 50%);
+            animation: backgroundMove 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes backgroundMove {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        h1 {
+        .header {
             text-align: center;
-            color: white;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .main-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            position: relative;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.4)); }
+            100% { filter: drop-shadow(0 0 30px rgba(240, 147, 251, 0.6)); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            letter-spacing: 2px;
         }
 
         .section {
-            margin-bottom: 50px;
+            margin-bottom: 80px;
+            position: relative;
         }
 
         .section-title {
-            color: white;
-            font-size: 1.8em;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-weight: 700;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .subsection {
+            margin-bottom: 50px;
+        }
+
+        .subsection-title {
+            font-size: clamp(1.4rem, 3vw, 1.6rem);
+            color: #78d9c2;
             margin-bottom: 20px;
-            text-align: center;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-weight: 600;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 70%;
+            background: linear-gradient(45deg, #78d9c2, #4ecdc4);
+            border-radius: 2px;
         }
 
         .file-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             padding: 0;
             list-style: none;
         }
 
         .file-item {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
-            padding: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
         }
 
-        .file-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            background: rgba(255, 255, 255, 1);
-        }
-
-        .file-item a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            display: block;
-            font-size: 14px;
-            line-height: 1.4;
-            text-align: center;
-        }
-
-        .file-item:hover a {
-            color: #007bff;
-        }
-
-        /* 响应式设计 */
-        @media (max-width: 1200px) {
-            .file-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        @media (max-width: 800px) {
-            .file-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .file-item {
-                padding: 12px;
-            }
-
-            .file-item a {
-                font-size: 13px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .file-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            body {
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 2em;
-            }
-
-            .section-title {
-                font-size: 1.5em;
-            }
-        }
-
-        /* 添加一些视觉效果 */
         .file-item::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            border-radius: 12px 12px 0 0;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .file-item {
-            position: relative;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
         }
 
         .file-item:hover::before {
+            transform: translateX(100%);
+        }
+
+        .file-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(102, 126, 234, 0.3);
+            box-shadow:
+                    0 20px 40px rgba(0, 0, 0, 0.3),
+                    0 0 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .file-item a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            display: block;
+            font-size: 15px;
+            line-height: 1.5;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .file-item:hover a {
+            color: #f093fb;
+            text-shadow: 0 0 10px rgba(240, 147, 251, 0.5);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .file-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .file-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }
+
+            .file-item {
+                padding: 20px;
+            }
+
+            .file-item a {
+                font-size: 14px;
+            }
+
+            .section {
+                margin-bottom: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .file-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .file-item {
+                padding: 18px;
+            }
+
+            .section-title {
+                padding-left: 15px;
+            }
+
+            .subsection-title {
+                padding-left: 15px;
+            }
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #764ba2, #f093fb);
+        }
+
+        /* 加载动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .section:nth-child(even) {
+            animation-delay: 0.1s;
+        }
+
+        .section:nth-child(odd) {
+            animation-delay: 0.2s;
+        }
+
+        /* 鼠标悬停时的交互效果 */
+        .file-item {
+            cursor: pointer;
+        }
+
+        .file-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(240, 147, 251, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 16px;
+        }
+
+        .file-item:hover::after {
             opacity: 1;
-        }
-
-        h1 {
-            text-align: left;  /* 由 center 改为 left */
-            color: white;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .section-title {
-            text-align: left;  /* 由 center 改为 left */
-            color: white;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .section .section .section-title {
-            text-align: left;  /* 由 center 改为 left */
-            font-size: 1.4em;
-            color: #0d9488;
-            margin-bottom: 15px;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>成长文件索引</h1>
+    <div class="header">
+        <h1 class="main-title">成长文件索引</h1>
+        <p class="subtitle">探索智慧 · 成就未来</p>
+    </div>
 
     <div class="section">
-        <h2 class="section-title">1.牧言</h2>
+        <h2 class="section-title">牧言</h2>
         <ul class="file-grid">
             <li class="file-item">
-                <a href="1.牧言/1.解锁频率的奥秘.html">1.解锁频率的奥秘</a>
+                <a href="1.牧言/1.解锁频率的奥秘.html">解锁频率的奥秘</a>
             </li>
             <li class="file-item">
-                <a href="1.牧言/2.升维那些事儿.html">2.升维那些事儿</a>
+                <a href="1.牧言/2.升维那些事儿.html">升维那些事儿</a>
             </li>
             <li class="file-item">
-                <a href="1.牧言/3.内卷破局心法.html">3.内卷破局心法</a>
+                <a href="1.牧言/3.内卷破局心法.html">内卷破局心法</a>
             </li>
             <li class="file-item">
-                <a href="1.牧言/4.命运论.html">4.命运论</a>
+                <a href="1.牧言/4.命运论.html">命运论</a>
             </li>
             <li class="file-item">
-                <a href="1.牧言/4.1目标设定智慧.html">4.1目标设定智慧</a>
+                <a href="1.牧言/4.1目标设定智慧.html">目标设定智慧</a>
             </li>
             <li class="file-item">
-                <a href="1.牧言/5.预言的真相.html">5.预言的真相</a>
+                <a href="1.牧言/5.预言的真相.html">预言的真相</a>
             </li>
         </ul>
     </div>
 
     <div class="section">
-        <h2 class="section-title">2.了凡四训</h2>
+        <h2 class="section-title">了凡四训</h2>
         <ul class="file-grid">
             <li class="file-item">
-                <a href="2.了凡四训/1.反因循.html">1.反因循</a>
+                <a href="2.了凡四训/1.反因循.html">反因循</a>
             </li>
             <li class="file-item">
-                <a href="2.了凡四训/2.信因果.html">2.信因果</a>
+                <a href="2.了凡四训/2.信因果.html">信因果</a>
             </li>
             <li class="file-item">
-                <a href="2.了凡四训/3.向内求.html">3.向内求</a>
+                <a href="2.了凡四训/3.向内求.html">向内求</a>
             </li>
             <li class="file-item">
-                <a href="2.了凡四训/4.觉察心.html">4.觉察心</a>
+                <a href="2.了凡四训/4.觉察心.html">觉察心</a>
             </li>
             <li class="file-item">
-                <a href="2.了凡四训/5.昨日已死，今日当生，如何自我重塑.html">5.昨日已死，今日当生，如何自我重塑</a>
+                <a href="2.了凡四训/5.昨日已死，今日当生，如何自我重塑.html">昨日已死，今日当生，如何自我重塑</a>
             </li>
             <li class="file-item">
-                <a href="2.了凡四训/6.如何向大宗师们学习自我重塑？.html">6.如何向大宗师们学习自我重塑？</a>
+                <a href="2.了凡四训/6.如何向大宗师们学习自我重塑？.html">如何向大宗师们学习自我重塑？</a>
             </li>
             <li class="file-item">
-                <a href="2.了凡四训/7.人生如何避坑？识别假善很关键.html">7.人生如何避坑？识别假善很关键</a>
+                <a href="2.了凡四训/7.人生如何避坑？识别假善很关键.html">人生如何避坑？识别假善很关键</a>
             </li>
             <li class="file-item">
-                <a href="2.了凡四训/8.掌握低调的内核，摆脱底层的门槛.html">8.掌握低调的内核，摆脱底层的门槛</a>
+                <a href="2.了凡四训/8.掌握低调的内核，摆脱底层的门槛.html">掌握低调的内核，摆脱底层的门槛</a>
             </li>
             <li class="file-item">
-                <a href="2.了凡四训/9.如何提升气场让自己占据主动.html">9.如何提升气场让自己占据主动</a>
+                <a href="2.了凡四训/9.如何提升气场让自己占据主动.html">如何提升气场让自己占据主动</a>
             </li>
         </ul>
     </div>
 
     <div class="section">
-        <h2 class="section-title">3.心经</h2>
+        <h2 class="section-title">心经</h2>
         <ul class="file-grid">
             <li class="file-item">
-                <a href="3.心经/1.如何实现自我突破，达到内心圆满？且看《心经》系列：佛非神.html">1.如何实现自我突破，达到内心圆满？且看《心经》系列：佛非神</a>
+                <a href="3.心经/1.如何实现自我突破，达到内心圆满？且看《心经》系列：佛非神.html">如何实现自我突破，达到内心圆满？且看《心经》系列：佛非神</a>
             </li>
             <li class="file-item">
-                <a href="3.心经/2.如何正确理解缘起性空，走出内心困境？且看《心经》：色即是空.html">2.如何正确理解缘起性空，走出内心困境？且看《心经》：色即是空</a>
+                <a href="3.心经/2.如何正确理解缘起性空，走出内心困境？且看《心经》：色即是空.html">如何正确理解缘起性空，走出内心困境？且看《心经》：色即是空</a>
             </li>
             <li class="file-item">
-                <a href="3.心经/3.如何摒除肉眼，内观到宇宙真相？且看《心经》系列：佛的角度.html">3.如何摒除肉眼，内观到宇宙真相？且看《心经》系列：佛的角度</a>
+                <a href="3.心经/3.如何摒除肉眼，内观到宇宙真相？且看《心经》系列：佛的角度.html">如何摒除肉眼，内观到宇宙真相？且看《心经》系列：佛的角度</a>
             </li>
             <li class="file-item">
-                <a href="3.心经/4.如何开悟？让我们在《心经》中寻找符合现实的答案.html">4.如何开悟？让我们在《心经》中寻找符合现实的答案</a>
+                <a href="3.心经/4.如何开悟？让我们在《心经》中寻找符合现实的答案.html">如何开悟？让我们在《心经》中寻找符合现实的答案</a>
             </li>
             <li class="file-item">
-                <a href="3.心经/5.何为空性？如何体验空性的感觉？且看《心经》系列：缘起性空.html">5.何为空性？如何体验空性的感觉？且看《心经》系列：缘起性空</a>
+                <a href="3.心经/5.何为空性？如何体验空性的感觉？且看《心经》系列：缘起性空.html">何为空性？如何体验空性的感觉？且看《心经》系列：缘起性空</a>
             </li>
         </ul>
     </div>
 
     <div class="section">
-        <h2 class="section-title">4.道德经</h2>
+        <h2 class="section-title">道德经</h2>
         <ul class="file-grid">
             <li class="file-item">
-                <a href="4.道德经/1.道德经.html">1.道德经</a>
+                <a href="4.道德经/1.道德经.html">道德经</a>
             </li>
         </ul>
     </div>
 
     <div class="section">
-        <h2 class="section-title">5.庄子</h2>
+        <h2 class="section-title">庄子</h2>
         <ul class="file-grid">
             <li class="file-item">
-                <a href="5.庄子/1.看完庄子《逍遥游》，看我们如何穷游人生.html">1.看完庄子《逍遥游》，看我们如何穷游人生</a>
+                <a href="5.庄子/1.看完庄子《逍遥游》，看我们如何穷游人生.html">看完庄子《逍遥游》，看我们如何穷游人生</a>
             </li>
             <li class="file-item">
-                <a href="5.庄子/2.看完庄子《庄子-齐物论》，刨析12种认知缺陷，瞬间看透本质.html">2.看完庄子《庄子-齐物论》，刨析12种认知缺陷，瞬间看透本质</a>
+                <a href="5.庄子/2.看完庄子《庄子-齐物论》，刨析12种认知缺陷，瞬间看透本质.html">看完庄子《庄子-齐物论》，刨析12种认知缺陷，瞬间看透本质</a>
             </li>
             <li class="file-item">
-                <a href="5.庄子/3.看完庄子《庄子-养生主》，刨析如何在工作苦难生死中养生.html">3.看完庄子《庄子-养生主》，刨析如何在工作苦难生死中养生</a>
+                <a href="5.庄子/3.看完庄子《庄子-养生主》，刨析如何在工作苦难生死中养生.html">看完庄子《庄子-养生主》，刨析如何在工作苦难生死中养生</a>
             </li>
             <li class="file-item">
-                <a href="5.庄子/4.如何游刃有余的为人处世？且看《庄子-人间世》三重为人境界.html">4.如何游刃有余的为人处世？且看《庄子-人间世》三重为人境界</a>
+                <a href="5.庄子/4.如何游刃有余的为人处世？且看《庄子-人间世》三重为人境界.html">如何游刃有余的为人处世？且看《庄子-人间世》三重为人境界</a>
             </li>
             <li class="file-item">
-                <a href="5.庄子/5.如何让残缺的人生逐步精彩起来？且看《庄子-德充符》篇.html">5.如何让残缺的人生逐步精彩起来？且看《庄子-德充符》篇</a>
+                <a href="5.庄子/5.如何让残缺的人生逐步精彩起来？且看《庄子-德充符》篇.html">如何让残缺的人生逐步精彩起来？且看《庄子-德充符》篇</a>
             </li>
             <li class="file-item">
-                <a href="5.庄子/6.到底什么是规矩？如何破除规矩真正活着？且看庄子相濡以沫的真意.html">6.到底什么是规矩？如何破除规矩真正活着？且看庄子相濡以沫的真意</a>
+                <a href="5.庄子/6.到底什么是规矩？如何破除规矩真正活着？且看庄子相濡以沫的真意.html">到底什么是规矩？如何破除规矩真正活着？且看庄子相濡以沫的真意</a>
             </li>
-
         </ul>
     </div>
 
     <div class="section">
-        <h2 class="section-title">6.阳明心学</h2>
+        <h2 class="section-title">阳明心学</h2>
         <ul class="file-grid">
             <li class="file-item">
                 <a href="6.阳明心学/1.一口气%201小时看完王阳明的一生，照亮大明王朝天空的流星.html">一口气1小时看完王阳明的一生，照亮大明王朝天空的流星</a>
@@ -291,8 +438,9 @@
 
     <div class="section">
         <h2 class="section-title">其它</h2>
-        <div class="section">
-            <h2 class="section-title">1.学习方法</h2>
+
+        <div class="subsection">
+            <h3 class="subsection-title">学习方法</h3>
             <ul class="file-grid">
                 <li class="file-item">
                     <a href="其它/1.学习方法/3分钟助你重构人生，撬动人生回报率.html">3分钟助你重构人生，撬动人生回报率</a>
@@ -301,13 +449,13 @@
                     <a href="其它/1.学习方法/刘少辉的《输出式学习》.html">刘少辉的《输出式学习》</a>
                 </li>
                 <li class="file-item">
-                    <a href="其它/1.学习方法/如何借助AI%20比其它人快10x学习任何东西.html">AI学习：如何借助AI比其它人快10x学习任何东西</a>
+                    <a href="其它/1.学习方法/如何借助AI%20比其它人快10x学习任何东西.html">如何借助AI比其它人快10x学习任何东西</a>
                 </li>
                 <li class="file-item">
-                    <a href="其它/1.学习方法/如何成为AI先行者.html">学习方法：如何成为AI先行者</a>
+                    <a href="其它/1.学习方法/如何成为AI先行者.html">如何成为AI先行者</a>
                 </li>
                 <li class="file-item">
-                    <a href="其它/1.学习方法/项目驱动的10倍速学习法.html">学习方法：项目驱动的10倍速学习法</a>
+                    <a href="其它/1.学习方法/项目驱动的10倍速学习法.html">项目驱动的10倍速学习法</a>
                 </li>
                 <li class="file-item">
                     <a href="其它/1.学习方法/初高中怎么用最短时间超过同学.html">初高中怎么用最短时间超过同学</a>
@@ -318,17 +466,17 @@
             </ul>
         </div>
 
-        <div class="section">
-            <h2 class="section-title">2.能力提升</h2>
+        <div class="subsection">
+            <h3 class="subsection-title">能力提升</h3>
             <ul class="file-grid">
                 <li class="file-item">
-                    <a href="其它/2.技能提升/技术答辩五大要点%20高效展示技巧.html">技能提升：技术答辩五大要点高效展示技巧</a>
+                    <a href="其它/2.技能提升/技术答辩五大要点%20高效展示技巧.html">技术答辩五大要点高效展示技巧</a>
                 </li>
             </ul>
         </div>
 
-        <div class="section">
-            <h2 class="section-title">3.心理成长</h2>
+        <div class="subsection">
+            <h3 class="subsection-title">心理成长</h3>
             <ul class="file-grid">
                 <li class="file-item">
                     <a href="其它/3.心理健康/不和睦的家庭里往往有一个制造内耗的人.html">不和睦的家庭里往往有一个制造内耗的人</a>
@@ -363,11 +511,11 @@
             </ul>
         </div>
 
-        <div class="section">
-            <h2 class="section-title">4.经验总结</h2>
+        <div class="subsection">
+            <h3 class="subsection-title">经验总结</h3>
             <ul class="file-grid">
                 <li class="file-item">
-                    <a href="其它/4.经验总结/喻颖正访谈：财富自由与人生规划.html">老实喻颖正访谈：财富自由与人生规划</a>
+                    <a href="其它/4.经验总结/喻颖正访谈：财富自由与人生规划.html">喻颖正访谈：财富自由与人生规划</a>
                 </li>
                 <li class="file-item">
                     <a href="其它/4.经验总结/喻颖正访谈：财富自由与人生规划2.html">喻颖正访谈：财富自由与人生规划2</a>
@@ -376,19 +524,19 @@
                     <a href="其它/4.经验总结/老实人升职难的本质是什么？.html">老实人升职难的本质是什么？</a>
                 </li>
                 <li class="file-item">
-                    <a href="其它/4.经验总结/近十年面对复杂协调工作的经验.html">经验总结：近十年面对复杂协调工作的经验</a>
+                    <a href="其它/4.经验总结/近十年面对复杂协调工作的经验.html">近十年面对复杂协调工作的经验</a>
                 </li>
                 <li class="file-item">
-                    <a href="其它/4.经验总结/近十年面对复杂协调工作的经验2.html">经验总结：近十年面对复杂协调工作的经验2</a>
+                    <a href="其它/4.经验总结/近十年面对复杂协调工作的经验2.html">近十年面对复杂协调工作的经验2</a>
                 </li>
             </ul>
         </div>
 
-        <div class="section">
-            <h2 class="section-title">5.表达能力</h2>
+        <div class="subsection">
+            <h3 class="subsection-title">表达能力</h3>
             <ul class="file-grid">
                 <li class="file-item">
-                    <a href="其它/5.表达能力/好的表达先不用追求言之有物，敢说、能说利索就不错才.html">好地表达先不用追求言之有物，敢说、能说利索就不错</a>
+                    <a href="其它/5.表达能力/好的表达先不用追求言之有物，敢说、能说利索就不错才.html">好的表达先不用追求言之有物，敢说、能说利索就不错</a>
                 </li>
                 <li class="file-item">
                     <a href="其它/5.表达能力/沟通能力强的人，都在用这12个说话原理.html">沟通能力强的人，都在用这12个说话原理</a>
@@ -397,7 +545,7 @@
                     <a href="其它/5.表达能力/表达力快速提升技巧.html">表达力快速提升技巧</a>
                 </li>
                 <li class="file-item">
-                    <a href="其它/5.表达能力/金字塔原理%20能帮你大幅提升思考、表达和解决问题的能力.html">金字塔原理%20能帮你大幅提升思考、表达和解决问题的能力</a>
+                    <a href="其它/5.表达能力/金字塔原理%20能帮你大幅提升思考、表达和解决问题的能力.html">金字塔原理 能帮你大幅提升思考、表达和解决问题的能力</a>
                 </li>
             </ul>
         </div>
@@ -406,10 +554,37 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // 设置所有链接在新标签页打开
         const links = document.getElementsByTagName('a');
         for(let link of links) {
             link.target = '_blank';
         }
+
+        // 添加交互效果
+        const fileItems = document.querySelectorAll('.file-item');
+        fileItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // 添加滚动时的渐入动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0s';
+                    entry.target.style.animationName = 'fadeInUp';
+                }
+            });
+        });
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
     });
 </script>
 </body>
