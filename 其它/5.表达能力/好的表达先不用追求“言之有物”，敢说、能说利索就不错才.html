@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>口才提升指南 | 逻辑表达的艺术</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Framer Motion CDN -->
+    <script src="https://unpkg.com/framer-motion@9.0.0/dist/framer-motion.js"></script>
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-primary: #6366f1;
+            --color-secondary: #8b5cf6;
+            --color-accent: #0ea5e9;
+            --color-highlight: #ec4899;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            color: #1f2937;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            gap: 1.5rem;
+            height: 100vh;
+            padding: 1.5rem;
+            max-width: 2000px;
+            margin: 0 auto;
+        }
+        
+        .bento-item {
+            border-radius: 1.5rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+        
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .big-number {
+            font-size: 12rem;
+            font-weight: 900;
+            line-height: 0.9;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--color);
+            opacity: 0.15;
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .highlight-gradient {
+            background: linear-gradient(45deg, var(--color), transparent 70%);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .line-chart {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            opacity: 0.1;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-15px) translateX(-50%);}
+            60% {transform: translateY(-7px) translateX(-50%);}
+        }
+        
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-bar {
+            height: 0.5rem;
+            border-radius: 1rem;
+            background: #e5e7eb;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 1rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        accent: '#0ea5e9',
+                        highlight: '#ec4899'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen">
+    <!-- 主网格容器 -->
+    <div class="bento-grid">
+        <!-- 区域1: 核心观点 -->
+        <div class="bento-item relative" 
+             style="--color: var(--color-primary); grid-column: 1 / 7; grid-row: 1 / 5;">
+            <div class="big-number" style="--color: #6366f1;">1</div>
+            <div class="highlight-gradient"></div>
+            
+            <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center">
+                        <i class="fas fa-microphone text-indigo-600 text-xl"></i>
+                    </div>
+                    <span class="text-indigo-600 font-bold">CORE PRINCIPLE</span>
+                </div>
+                
+                <h2 class="section-title">脸皮厚就是实力强</h2>
+                <p class="section-subtitle">Thick skin equals real strength</p>
+                
+                <div class="text-gray-700 text-lg leading-relaxed space-y-3 max-w-2xl">
+                    <p>特别是对于比如刚上班的年轻人，不会有人认真听你到底说了什么，也没有人会在乎你说了什么。</p>
+                    <p>所以说不存在什么压力，你就记住你说话的状态决定了你的表达质量。</p>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-6 right-6">
+                <div class="text-indigo-600 font-bold text-lg">Confidence</div>
+                <div class="progress-bar w-48 mt-2">
+                    <div class="progress-fill bg-indigo-500" style="width: 85%"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 区域2: 什么是好状态 -->
+        <div class="bento-item relative" 
+             style="--color: var(--color-accent); grid-column: 7 / 13; grid-row: 1 / 3;">
+            <div class="big-number" style="--color: #0ea5e9;">2</div>
+            <div class="highlight-gradient"></div>
+            
+            <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-brain text-blue-600 text-lg"></i>
+                    </div>
+                    <span class="text-blue-600 font-bold">KEY CONCEPT</span>
+                </div>
+                
+                <h2 class="section-title">逻辑性强</h2>
+                <p class="section-subtitle">The essence of good expression</p>
+            </div>
+            
+            <div class="absolute bottom-4 right-4">
+                <svg class="line-chart" viewBox="0 0 200 100">
+                    <polyline points="10,90 50,30 90,70 130,50 170,20 190,40" 
+                              fill="none" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- 区域3: 逻辑的重要性 -->
+        <div class="bento-item relative" 
+             style="--color: var(--color-accent); grid-column: 7 / 10; grid-row: 3 / 5;">
+            <div class="relative z-10 h-full flex flex-col">
+                <div class="text-blue-600 font-bold mb-4">LOGICAL STRUCTURE</div>
+                <div class="flex-grow flex items-center justify-center">
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-list-ol text-white text-2xl"></i>
+                        </div>
+                        <p class="text-blue-600 font-bold text-lg">说话分个1234</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 区域4: 理解与表达的关系 -->
+        <div class="bento-item relative" 
+             style="--color: var(--color-accent); grid-column: 10 / 13; grid-row: 3 / 5;">
+            <div class="relative z-10 h-full flex flex-col">
+                <div class="text-blue-600 font-bold mb-4">UNDERSTANDING & EXPRESSION</div>
+                <div class="flex-grow flex items-center justify-center">
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full bg-blue-400 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-lightbulb text-white text-2xl"></i>
+                        </div>
+                        <p class="text-blue-600 font-bold text-lg">理解的明白，说的明白</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 区域5: 日常锻炼 -->
+        <div class="bento-item relative" 
+             style="--color: var(--color-highlight); grid-column: 1 / 5; grid-row: 5 / 9;">
+            <div class="big-number" style="--color: #ec4899;">3</div>
+            <div class="highlight-gradient"></div>
+            
+            <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-pink-100 flex items-center justify-center">
+                        <i class="fas fa-dumbbell text-pink-600 text-xl"></i>
+                    </div>
+                    <span class="text-pink-600 font-bold">PRACTICE MAKES PERFECT</span>
+                </div>
+                
+                <h2 class="section-title">日常锻炼</h2>
+                <p class="section-subtitle">Rapid improvement through practice</p>
+                
+                <div class="text-gray-700 text-lg leading-relaxed space-y-4 mt-6">
+                    <p>逻辑是完全可以靠日常锻炼快速提升的。</p>
+                    <p>开会不管用不用得着我说话，我都会在笔记本上大概列个发言提纲。</p>
+                    <p>自己想表达的点先一个一个的写出来，几个词儿，再不断重复调整完善。</p>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-6 left-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white"></i>
+                    </div>
+                    <div>
+                        <div class="text-pink-600 font-bold">Improvement</div>
+                        <div class="text-xs text-gray-500">+72% in 3 months</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 区域6: 实践机会 -->
+        <div class="bento-item relative" 
+             style="--color: var(--color-highlight); grid-column: 5 / 9; grid-row: 5 / 7;">
+            <div class="relative z-10 h-full flex flex-col">
+                <div class="text-pink-600 font-bold mb-4">OPPORTUNITIES</div>
+                <div class="flex-grow flex items-center justify-center">
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full bg-pink-500 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-bullhorn text-white text-2xl"></i>
+                        </div>
+                        <p class="text-pink-600 font-bold text-lg">开会、研讨、汇报、演讲</p>
+                        <p class="text-gray-600 mt-2">尽量争取得到的东西一辈子受益</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 区域7: 思考的价值 -->
+        <div class="bento-item relative" 
+             style="--color: var(--color-highlight); grid-column: 5 / 9; grid-row: 7 / 9;">
+            <div class="relative z-10 h-full flex flex-col">
+                <div class="text-pink-600 font-bold mb-4">THE REAL VALUE</div>
+                <div class="flex-grow flex items-center justify-center">
+                    <div class="text-center max-w-xs">
+                        <div class="text-4xl font-bold text-pink-500 mb-4">思考本身</div>
+                        <p class="text-pink-600 font-bold text-lg">才是我拿到的最重要的结果</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 区域8: 简洁表达 -->
+        <div class="bento-item relative" 
+             style="--color: var(--color-secondary); grid-column: 9 / 13; grid-row: 5 / 9;">
+            <div class="big-number" style="--color: #8b5cf6;">4</div>
+            <div class="highlight-gradient"></div>
+            
+            <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center">
+                        <i class="fas fa-comment-alt text-purple-600 text-xl"></i>
+                    </div>
+                    <span class="text-purple-600 font-bold">CONCISE COMMUNICATION</span>
+                </div>
+                
+                <h2 class="section-title">足够短</h2>
+                <p class="section-subtitle">The art of brevity in expression</p>
+                
+                <div class="text-gray-700 text-lg leading-relaxed space-y-4 mt-6 max-w-2xl">
+                    <p>大多数的听众注意力不集中，又没啥耐心。所以多说就是白说。</p>
+                    <p>说的越多越冲淡重点，废话越少越见水平。</p>
+                    <p class="font-bold text-purple-600">注意做做减法，不要当那种脚毛货。</p>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-6 right-6">
+                <div class="text-right">
+                    <div class="text-purple-600 font-bold text-lg">Conciseness</div>
+                    <div class="progress-bar w-48 mt-2">
+                        <div class="progress-fill bg-purple-500" style="width: 65%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <svg class="line-chart" viewBox="0 0 200 100">
+                <polyline points="10,80 30,40 70,60 110,30 150,50 190,20" 
+                          fill="none" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+        </div>
+    </div>
+    
+    <!-- 滚动指示器 -->
+    <div class="scroll-indicator hidden md:flex flex-col items-center text-gray-500">
+        <span class="mb-2">Scroll Down</span>
+        <i class="fas fa-chevron-down animate-bounce"></i>
+    </div>
+    
+    <script>
+        // 初始化Framer Motion
+        const { motion } = framer;
+        
+        // 页面滚动效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 创建滚动观察器
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // 为所有网格项添加动画
+            document.querySelectorAll('.bento-item').forEach((item, index) => {
+                item.style.opacity = 0;
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                item.style.transitionDelay = `${index * 0.1}s`;
+                
+                observer.observe(item);
+            });
+            
+            // 隐藏滚动指示器当滚动时
+            window.addEventListener('scroll', function() {
+                const indicator = document.querySelector('.scroll-indicator');
+                if (window.scrollY > 50) {
+                    indicator.style.opacity = '0';
+                } else {
+                    indicator.style.opacity = '1';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

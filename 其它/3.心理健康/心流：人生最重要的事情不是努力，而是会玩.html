@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心流状态：人生密码探索</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/framer-motion@10.12.18/dist/framer-motion.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f9f7fe 0%, #f0edfc 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 24px;
+            padding: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .bento-item {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 32px;
+            overflow: hidden;
+        }
+        
+        .highlight-gradient {
+            background: linear-gradient(45deg, rgba(100, 115, 255, 0.1) 0%, rgba(100, 115, 255, 0.05) 100%);
+            border: 1px solid rgba(100, 115, 255, 0.15);
+        }
+        
+        .flow-gradient {
+            background: linear-gradient(45deg, rgba(45, 206, 172, 0.1) 0%, rgba(45, 206, 172, 0.05) 100%);
+            border: 1px solid rgba(45, 206, 172, 0.15);
+        }
+        
+        .play-gradient {
+            background: linear-gradient(45deg, rgba(255, 109, 145, 0.1) 0%, rgba(255, 109, 145, 0.05) 100%);
+            border: 1px solid rgba(255, 109, 145, 0.15);
+        }
+        
+        .success-gradient {
+            background: linear-gradient(45deg, rgba(255, 179, 71, 0.1) 0%, rgba(255, 179, 71, 0.05) 100%);
+            border: 1px solid rgba(255, 179, 71, 0.15);
+        }
+        
+        .big-number {
+            font-size: 8rem;
+            font-weight: 900;
+            line-height: 0.9;
+            color: transparent;
+            -webkit-text-stroke: 2px #6473ff;
+            opacity: 0.2;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #6473ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .flow-diagram {
+            position: relative;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .flow-path {
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            border: 2px dashed rgba(45, 206, 172, 0.3);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .flow-point {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(45, 206, 172, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .flow-point i {
+            font-size: 12px;
+            color: white;
+        }
+        
+        .step-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #6473ff;
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+        
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .conclusion-box {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 247, 255, 0.9) 100%);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .conclusion-text {
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #6473ff, #ff6d91);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+        
+        .conclusion-subtext {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .scroll-hint {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #6473ff;
+            font-size: 0.9rem;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- 主标题区域 -->
+    <div class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-20 left-10 w-64 h-64 rounded-full bg-purple-100 blur-3xl opacity-50"></div>
+            <div class="absolute bottom-10 right-10 w-72 h-72 rounded-full bg-blue-100 blur-3xl opacity-50"></div>
+            <div class="absolute top-1/2 right-1/4 w-40 h-40 rounded-full bg-pink-100 blur-3xl opacity-40"></div>
+        </div>
+        
+        <div class="relative z-10 text-center max-w-4xl px-4">
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">不需要努力</span>
+                <br>的人生才是人生
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto">
+                那些看似轻松的学霸大佬，不是更能吃苦，而是更会玩
+                <span class="text-sm block mt-2 text-gray-400">The secret of success is not hard work, but knowing how to play</span>
+            </p>
+            
+            <div class="inline-flex items-center gap-4 bg-white rounded-full py-3 px-6 shadow-lg">
+                <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <span class="font-medium">进入心流状态</span>
+                <span class="text-sm text-gray-500">FLOW STATE</span>
+            </div>
+        </div>
+        
+        <div class="scroll-hint">
+            <i class="fas fa-chevron-down mb-2 text-xl"></i>
+            <span>Scroll to explore</span>
+        </div>
+    </div>
+    
+    <!-- Bento网格内容区域 -->
+    <div class="bento-grid pb-32">
+        <!-- 标题格 -->
+        <div class="bento-item highlight-gradient col-span-12">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="flex-1">
+                    <h2 class="section-title">
+                        努力是个<span class="text-blue-500">伪命题</span>，<br>
+                        会玩才是<span class="text-purple-500">人生密码</span>
+                    </h2>
+                    <p class="text-gray-600 text-lg max-w-3xl">
+                        很多人觉得自己做不成事，学不好，是因为自己不够努力，而真相是努力是个伪命题。
+                        如果说某件事情需要努力，证明你并不想去做，所以很容易放弃。而那些看起来很会玩的人，
+                        却总是能学得更快，做得更成功。
+                    </p>
+                </div>
+                <div class="mt-8 md:mt-0 md:w-1/3 flex justify-center">
+                    <div class="relative">
+                        <div class="big-number">玩</div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-black text-blue-500">PLAY</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 心流状态格 -->
+        <div class="bento-item flow-gradient col-span-12 md:col-span-7 row-span-2">
+            <div class="section-subtitle">心流状态 FLOW STATE</div>
+            <h2 class="section-title">沉浸忘我的<span class="text-green-500">超高效状态</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div>
+                    <p class="text-gray-600 mb-6">
+                        心理学家米哈里发现，当一个人面对难度适中的任务时，大脑会进入一种玩中带学的状态。
+                        他会让你感觉到时间感消失、效率爆表，甚至感觉不到累，这就是心流。
+                    </p>
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                            <i class="fas fa-clock text-green-500"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">时间感消失</h3>
+                            <p class="text-gray-600">完全沉浸，数小时感觉像几分钟</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                            <i class="fas fa-bolt text-green-500"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">效率爆表</h3>
+                            <p class="text-gray-600">生产力是普通状态的5倍以上</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                            <i class="fas fa-battery-full text-green-500"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">能量充沛</h3>
+                            <p class="text-gray-600">不消耗意志力，自然持续</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flow-diagram">
+                    <div class="flow-path">
+                        <div class="flow-point" style="top: 0; left: 50%; transform: translateX(-50%);">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="flow-point" style="top: 50%; right: 0; transform: translateY(-50%);">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="flow-point" style="bottom: 0; left: 50%; transform: translateX(-50%);">
+                            <i class="fas fa-flag-checkered"></i>
+                        </div>
+                        <div class="flow-point" style="top: 50%; left: 0; transform: translateY(-50%);">
+                            <i class="fas fa-infinity"></i>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-6xl font-black text-green-500 mb-4">心流</div>
+                        <div class="text-gray-500 uppercase tracking-widest">FLOW STATE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 心流对比格 -->
+        <div class="bento-item play-gradient col-span-12 md:col-span-5">
+            <div class="section-subtitle">心流对比 FLOW COMPARISON</div>
+            <h2 class="section-title">为什么你<span class="text-pink-500">玩游戏能嗨5小时</span>，<br>但工作五分钟就崩溃？</h2>
+            
+            <div class="mt-6">
+                <div class="flex justify-between mb-2">
+                    <span class="font-medium">游戏状态</span>
+                    <span class="text-pink-500 font-bold">心流状态</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-4 mb-6">
+                    <div class="bg-pink-500 h-4 rounded-full" style="width: 92%"></div>
+                </div>
+                
+                <div class="flex justify-between mb-2">
+                    <span class="font-medium">工作状态</span>
+                    <span class="text-blue-500">普通状态</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-4">
+                    <div class="bg-blue-500 h-4 rounded-full" style="width: 35%"></div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <div class="inline-block bg-white rounded-lg px-6 py-3 shadow">
+                        <span class="text-pink-500 font-bold">92%</span> 的人在游戏中更容易进入心流状态
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 方法1 -->
+        <div class="bento-item col-span-12 md:col-span-4">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3 class="step-title">设定游戏化目标</h3>
+                <p class="text-gray-600">
+                    别规定今天要工作8小时，而是接下来25分钟只写完报告第一段。
+                    将大任务分解为小关卡，每完成一个给自己小奖励。
+                </p>
+                <div class="mt-4 flex gap-2">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">目标分解</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">时间管理</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 方法2 -->
+        <div class="bento-item col-span-12 md:col-span-4">
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3 class="step-title">选择挑战难度</h3>
+                <p class="text-gray-600">
+                    找到那个刚刚好难度的事情。太简单会走神，太难会放弃。
+                    最佳挑战难度是比当前能力高10%-15%。
+                </p>
+                <div class="mt-6 relative h-20">
+                    <div class="absolute bottom-0 w-full h-1 bg-gray-200"></div>
+                    <div class="absolute bottom-0 left-1/4 w-1/2 h-2 bg-green-500 rounded-t"></div>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-3 py-1 rounded-lg text-sm">
+                        最佳挑战区
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 方法3 -->
+        <div class="bento-item col-span-12 md:col-span-4">
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3 class="step-title">创造沉浸环境</h3>
+                <p class="text-gray-600">
+                    手机静音或锁进抽屉，使用降噪耳机，清理工作台面。
+                    研究表明，每被干扰一次需要23分钟才能重新进入心流状态。
+                </p>
+                <div class="mt-4 flex justify-center">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
+                            <i class="fas fa-bell-slash text-red-500"></i>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-headphones text-blue-500"></i>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                            <i class="fas fa-broom text-green-500"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 结论格 -->
+        <div class="bento-item success-gradient col-span-12">
+            <div class="conclusion-box">
+                <div class="conclusion-text">不需要努力的人生才是人生</div>
+                <p class="conclusion-subtext">
+                    那些看似轻松的学霸大佬，不是更能吃苦，而是更会玩。
+                    掌握心流状态，让学习和工作变得像游戏一样充满乐趣和成就感。
+                </p>
+                <div class="mt-8 inline-flex items-center gap-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full py-3 px-8">
+                    <i class="fas fa-play-circle"></i>
+                    <span class="font-bold">开启你的心流之旅</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 使用Framer Motion实现滚动动画
+        const { motion } = framer;
+        
+        // 当页面加载完成后
+        document.addEventListener('DOMContentLoaded', function() {
+            // 创建滚动触发的动画元素
+            const bentoItems = document.querySelectorAll('.bento-item');
+            
+            bentoItems.forEach(item => {
+                motion(item, {
+                    initial: { opacity: 0, y: 50 },
+                    animate: { opacity: 1, y: 0 },
+                    transition: { duration: 0.8, ease: "easeOut" }
+                });
+            });
+            
+            // 添加视差滚动效果
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const bigNumbers = document.querySelectorAll('.big-number');
+                
+                bigNumbers.forEach(number => {
+                    number.style.transform = `translateY(${scrollPosition * 0.1}px)`;
+                });
+                
+                const flowPoints = document.querySelectorAll('.flow-point');
+                flowPoints.forEach((point, index) => {
+                    const speed = 0.05 + (index * 0.02);
+                    point.style.transform = `rotate(${scrollPosition * speed}deg)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

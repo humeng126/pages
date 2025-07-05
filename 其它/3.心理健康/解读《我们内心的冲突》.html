@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我们内心的冲突 | 卡伦·霍妮心理学解析</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #f9f7f7 0%, #eef2f6 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .grid-item {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+        }
+        
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .highlight-pink {
+            background: linear-gradient(135deg, rgba(255, 175, 189, 0.15) 0%, rgba(255, 175, 189, 0.05) 100%);
+        }
+        
+        .highlight-blue {
+            background: linear-gradient(135deg, rgba(173, 216, 230, 0.15) 0%, rgba(173, 216, 230, 0.05) 100%);
+        }
+        
+        .highlight-green {
+            background: linear-gradient(135deg, rgba(152, 251, 152, 0.15) 0%, rgba(152, 251, 152, 0.05) 100%);
+        }
+        
+        .highlight-purple {
+            background: linear-gradient(135deg, rgba(216, 191, 216, 0.15) 0%, rgba(216, 191, 216, 0.05) 100%);
+        }
+        
+        .highlight-yellow {
+            background: linear-gradient(135deg, rgba(255, 228, 181, 0.15) 0%, rgba(255, 228, 181, 0.05) 100%);
+        }
+        
+        .big-number {
+            font-size: 8rem;
+            font-weight: 900;
+            line-height: 0.8;
+            color: rgba(0, 0, 0, 0.07);
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            z-index: 0;
+        }
+        
+        .personality-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .personality-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .graphic-line {
+            stroke: rgba(0, 0, 0, 0.1);
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        .chart-container {
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 20px 0;
+        }
+        
+        .chart-bar {
+            width: 40px;
+            background: rgba(100, 149, 237, 0.6);
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+        
+        .chart-bar:hover {
+            background: rgba(70, 130, 180, 0.8);
+        }
+        
+        .chart-label {
+            position: absolute;
+            bottom: -30px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+        
+        .delay-4 {
+            animation-delay: 0.4s;
+        }
+        
+        .personality-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: rgba(0, 0, 0, 0.3);
+        }
+        
+        .iceberg {
+            position: relative;
+            height: 200px;
+            width: 100%;
+        }
+        
+        .iceberg-water {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 40%;
+            background: rgba(70, 130, 180, 0.15);
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .iceberg-top {
+            position: absolute;
+            width: 60%;
+            height: 30%;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px 20px 0 0;
+            top: 25%;
+            left: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .iceberg-bottom {
+            position: absolute;
+            width: 80%;
+            height: 50%;
+            background: rgba(255, 255, 255, 0.7);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            top: 55%;
+            left: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-10">
+    <div class="max-w-6xl mx-auto px-4">
+        <header class="text-center mb-16">
+            <h1 class="text-6xl md:text-8xl font-black text-gray-800 mb-4 tracking-tight">
+                我们内心的冲突
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">卡伦·霍妮的心理学解析</p>
+            <div class="w-24 h-1 bg-gray-300 mx-auto"></div>
+        </header>
+        
+        <div class="bento-grid">
+            <!-- Item 1: Introduction -->
+            <div class="grid-item highlight-pink col-span-2 row-span-1 animate-in">
+                <div class="big-number">01</div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-bold mb-4">内在冲突的本质</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        卡伦·霍妮认为，心理冲突源于成长过程中形成的三种基本人格倾向：
+                        <span class="font-bold">讨好型、对抗型和回避型</span>。这些冲突是
+                        <span class="font-bold">神经症痛苦的根源</span>，源于潜意识中被压抑的自我部分。
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Item 2: Iceberg Theory -->
+            <div class="grid-item col-span-2 row-span-2 animate-in delay-1">
+                <div class="big-number">02</div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-bold mb-6">弗洛伊德冰山理论</h2>
+                    <div class="iceberg mb-6">
+                        <div class="iceberg-water"></div>
+                        <div class="iceberg-top">意识层</div>
+                        <div class="iceberg-bottom">潜意识层</div>
+                    </div>
+                    <p class="text-gray-700">
+                        人的意识如冰山，海面上是<span class="font-bold">可觉察的意识</span>，海平面上下是<span class="font-bold">前意识</span>，
+                        海面下巨大的部分则是<span class="font-bold">潜意识</span>。心理治疗的目标是将潜意识冲突提升到意识层面，
+                        使冲突达成统一。
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Item 3: Three Personalities -->
+            <div class="grid-item col-span-1 row-span-2 highlight-blue animate-in delay-2">
+                <div class="big-number">03</div>
+                <div class="relative z-10 h-full flex flex-col">
+                    <h2 class="text-3xl font-bold mb-6">三种人格类型</h2>
+                    
+                    <div class="space-y-6 flex-grow">
+                        <div class="personality-card">
+                            <div class="flex items-start mb-2">
+                                <i class="material-icons personality-icon">people</i>
+                                <h3 class="text-xl font-bold ml-2">讨好型人格</h3>
+                            </div>
+                            <p class="text-gray-700 text-sm">
+                                通过屈从他人获得认同，压抑攻击性，常表现为自卑和过度寻求认可。
+                            </p>
+                        </div>
+                        
+                        <div class="personality-card mt-4">
+                            <div class="flex items-start mb-2">
+                                <i class="material-icons personality-icon">sports_mma</i>
+                                <h3 class="text-xl font-bold ml-2">对抗型人格</h3>
+                            </div>
+                            <p class="text-gray-700 text-sm">
+                                视世界为战场，追求控制与胜利，常表现为工作狂和排斥情感连接。
+                            </p>
+                        </div>
+                        
+                        <div class="personality-card mt-4">
+                            <div class="flex items-start mb-2">
+                                <i class="material-icons personality-icon">hide_source</i>
+                                <h3 class="text-xl font-bold ml-2">回避型人格</h3>
+                            </div>
+                            <p class="text-gray-700 text-sm">
+                                害怕亲密关系，保持情感距离，通过孤立获得安全感，常表现为孤僻。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 4: Conflict Comparison -->
+            <div class="grid-item col-span-3 row-span-1 highlight-yellow animate-in delay-3">
+                <div class="big-number">04</div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-bold mb-6">正常冲突 vs 神经症冲突</h2>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h3 class="text-xl font-bold text-green-700 mb-2">正常冲突</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>在两种渴求之间选择（如美食与身材）</li>
+                                <li>即使艰难也能做出决策</li>
+                                <li>痛苦程度在可承受范围内</li>
+                                <li>冲突在意识层面可觉察</li>
+                            </ul>
+                        </div>
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <h3 class="text-xl font-bold text-red-700 mb-2">神经症冲突</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>被方向相反的强迫性力量驱使</li>
+                                <li>无法做出任何选择，进退两难</li>
+                                <li>痛苦程度难以承受</li>
+                                <li>冲突部分存在于潜意识层面</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 5: Defense Mechanisms -->
+            <div class="grid-item col-span-2 row-span-1 highlight-purple animate-in delay-4">
+                <div class="big-number">05</div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-bold mb-4">防御机制</h2>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">理想化形象</h3>
+                            <p class="text-gray-700">
+                                创造"完美自我"的假象，混淆理想与现实的界限，拒绝面对真实自我。
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">外化（投射）</h3>
+                            <p class="text-gray-700">
+                                将自身问题归咎于外部因素，通过指责他人逃避自我责任。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 6: Personality Chart -->
+            <div class="grid-item col-span-2 row-span-1 animate-in">
+                <div class="big-number">06</div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-bold mb-4">人格形成因素分析</h2>
+                    <div class="chart-container">
+                        <div class="flex flex-col items-center">
+                            <div class="chart-bar" style="height: 70%"></div>
+                            <div class="chart-label">童年经历</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="chart-bar" style="height: 85%"></div>
+                            <div class="chart-label">父母影响</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="chart-bar" style="height: 60%"></div>
+                            <div class="chart-label">社会环境</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="chart-bar" style="height: 45%"></div>
+                            <div class="chart-label">遗传因素</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="chart-bar" style="height: 75%"></div>
+                            <div class="chart-label">创伤事件</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 7: Solution -->
+            <div class="grid-item col-span-2 row-span-1 highlight-green animate-in delay-2">
+                <div class="big-number">07</div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-bold mb-4">解决之道：面对恐惧</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        改变的第一步是<span class="font-bold">识别恐惧</span>而非压制它。通过转换视角（如为未来自己而做），
+                        逐步接触被压抑的自我部分。真正的成长是<span class="font-bold">接纳防御机制</span>，
+                        同时释放真实的自我。
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Item 8: Conclusion -->
+            <div class="grid-item col-span-4 row-span-1 bg-gradient-to-r from-blue-50 to-indigo-50 animate-in delay-3">
+                <div class="big-number">08</div>
+                <div class="relative z-10 text-center py-6">
+                    <h2 class="text-4xl font-black mb-4">热情与生命力</h2>
+                    <p class="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                        "人是靠一股热情活着的，这股热情来源于对世界的好奇。成长是压制冲突的过程，
+                        但成年人需要<span class="font-bold">释放真实的自己</span>，重新找回孩童般对世界的热情与生命力。"
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="mt-16 pt-8 border-t border-gray-200 text-center text-gray-600">
+            <p>《我们内心的冲突》心理学解析 | 基于卡伦·霍妮的理论</p>
+            <p class="mt-2">探索内心世界，开启自我成长之旅</p>
+        </footer>
+    </div>
+
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // 观察所有网格项
+            document.querySelectorAll('.grid-item').forEach(item => {
+                observer.observe(item);
+            });
+            
+            // 图表动画
+            setTimeout(() => {
+                document.querySelectorAll('.chart-bar').forEach(bar => {
+                    bar.style.transition = 'height 1.2s ease-in-out';
+                    bar.style.height = '0%';
+                    
+                    setTimeout(() => {
+                        bar.style.height = bar.getAttribute('data-height') || bar.style.height;
+                    }, 300);
+                });
+            }, 1000);
+        });
+        
+        // 初始化图表高度
+        window.onload = function() {
+            document.querySelectorAll('.chart-bar').forEach(bar => {
+                const height = bar.style.height;
+                bar.setAttribute('data-height', height);
+                bar.style.height = '0%';
+            });
+        };
+    </script>
+</body>
+</html>
