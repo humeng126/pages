@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阳明心学八大主题</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@10.12.4/dist/framer-motion.js"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        secondary: {
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            200: '#fbcfe8',
+                            300: '#f9a8d4',
+                            400: '#f472b6',
+                            500: '#ec4899',
+                            600: '#db2777',
+                            700: '#be185d',
+                        },
+                        accent: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'scale-in': 'scaleIn 0.5s ease-out forwards'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.8)', opacity: 0 },
+                            '100%': { transform: 'scale(1)', opacity: 1 }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: linear-gradient(135deg, #f9f7fe 0%, #f0f4ff 100%);
+            overflow-x: hidden;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 1.5rem;
+            height: calc(100vh - 5rem);
+            padding: 2rem;
+        }
+        
+        .bento-item {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .highlight-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            opacity: 0.1;
+            border-radius: inherit;
+        }
+        
+        .number-badge {
+            font-size: 6rem;
+            font-weight: 700;
+            opacity: 0.15;
+            position: absolute;
+            top: -1.5rem;
+            right: 1rem;
+            line-height: 1;
+            z-index: 0;
+        }
+        
+        .radial-gradient {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            border-radius: 50%;
+            opacity: 0.15;
+            z-index: -1;
+        }
+        
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .icon-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .scroll-line {
+            width: 2px;
+            height: 50px;
+            background: linear-gradient(to bottom, #0ea5e9, rgba(14, 165, 233, 0.2));
+            margin-top: 0.5rem;
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0ea5e9, #ec4899, #14b8a6);
+            z-index: 100;
+        }
+        
+        .title-gradient {
+            background: linear-gradient(90deg, #0ea5e9, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden">
+    <!-- 进度条 -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- 主标题 -->
+    <header class="text-center py-12 px-4">
+        <h1 class="text-5xl md:text-7xl font-bold mb-4 title-gradient">阳明心学<span class="text-3xl md:text-4xl font-normal text-gray-600"> · 八大主题</span></h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">探索王阳明心学核心思想，在浮躁世界中寻找内心安宁之道</p>
+    </header>
+    
+    <!-- Bento Grid 布局 -->
+    <main class="container mx-auto">
+        <div class="bento-grid">
+            <!-- 励志篇 -->
+            <div class="bento-item">
+                <div class="number-badge">1</div>
+                <div class="highlight-bg" style="background-color: #0ea5e9;"></div>
+                <div class="icon-circle">
+                    <div class="icon-bg" style="background-color: #0ea5e9;"></div>
+                    <span class="material-icons text-3xl" style="color: #0ea5e9;">flag</span>
+                </div>
+                <h2 class="text-3xl font-bold mb-3" style="color: #0ea5e9;">励志篇</h2>
+                <p class="text-gray-700 mb-2"><span class="font-bold">志不立，天下无可成之事</span></p>
+                <p class="text-sm text-gray-600">Like a ship without a rudder, life without purpose drifts aimlessly</p>
+                <div class="mt-4 text-gray-600 text-sm">
+                    <p>· 志向是人生的种子和根本</p>
+                    <p>· 区分欲望与志向的本质</p>
+                    <p>· 立志才能不迷失方向</p>
+                </div>
+                <div class="radial-gradient" style="background: radial-gradient(circle, #0ea5e9, transparent);"></div>
+            </div>
+            
+            <!-- 欲望篇 -->
+            <div class="bento-item">
+                <div class="number-badge">2</div>
+                <div class="highlight-bg" style="background-color: #ec4899;"></div>
+                <div class="icon-circle">
+                    <div class="icon-bg" style="background-color: #ec4899;"></div>
+                    <span class="material-icons text-3xl" style="color: #ec4899;">psychology</span>
+                </div>
+                <h2 class="text-3xl font-bold mb-3" style="color: #ec4899;">欲望篇</h2>
+                <p class="text-gray-700 mb-2"><span class="font-bold">破私欲，存天理</span></p>
+                <p class="text-sm text-gray-600">Release human desires, eliminate selfish desires</p>
+                <div class="mt-4 text-gray-600 text-sm">
+                    <p>· 人欲即天理，合理的人欲应释放</p>
+                    <p>· 私欲是执着后的人欲</p>
+                    <p>· 贪生之欲与名利之欲是主要私欲</p>
+                </div>
+                <div class="radial-gradient" style="background: radial-gradient(circle, #ec4899, transparent);"></div>
+            </div>
+            
+            <!-- 心中贼篇 -->
+            <div class="bento-item">
+                <div class="number-badge">3</div>
+                <div class="highlight-bg" style="background-color: #14b8a6;"></div>
+                <div class="icon-circle">
+                    <div class="icon-bg" style="background-color: #14b8a6;"></div>
+                    <span class="material-icons text-3xl" style="color: #14b8a6;">shield</span>
+                </div>
+                <h2 class="text-3xl font-bold mb-3" style="color: #14b8a6;">心中贼篇</h2>
+                <p class="text-gray-700 mb-2"><span class="font-bold">破山中贼易，破心中贼难</span></p>
+                <p class="text-sm text-gray-600">Three thieves: Anxiety, Desire, Hesitation</p>
+                <div class="mt-4 text-gray-600 text-sm">
+                    <p>· 坐中静破焦虑之贼</p>
+                    <p>· 舍中得破欲望之贼</p>
+                    <p>· 事上练破犹豫之贼</p>
+                </div>
+                <div class="radial-gradient" style="background: radial-gradient(circle, #14b8a6, transparent);"></div>
+            </div>
+            
+            <!-- 善恶篇 -->
+            <div class="bento-item">
+                <div class="number-badge">4</div>
+                <div class="highlight-bg" style="background-color: #f59e0b;"></div>
+                <div class="icon-circle">
+                    <div class="icon-bg" style="background-color: #f59e0b;"></div>
+                    <span class="material-icons text-3xl" style="color: #f59e0b;">balance</span>
+                </div>
+                <h2 class="text-3xl font-bold mb-3" style="color: #f59e0b;">善恶篇</h2>
+                <p class="text-gray-700 mb-2"><span class="font-bold">无善无恶心之体</span></p>
+                <p class="text-sm text-gray-600">Good and evil arise from the mind's intentions</p>
+                <div class="mt-4 text-gray-600 text-sm">
+                    <p>· 善恶只产生于内心</p>
+                    <p>· 善恶本为一体，相互转化</p>
+                    <p>· 善恶的源头在起心动念上</p>
+                </div>
+                <div class="radial-gradient" style="background: radial-gradient(circle, #f59e0b, transparent);"></div>
+            </div>
+            
+            <!-- 独知篇 -->
+            <div class="bento-item">
+                <div class="number-badge">5</div>
+                <div class="highlight-bg" style="background-color: #8b5cf6;"></div>
+                <div class="icon-circle">
+                    <div class="icon-bg" style="background-color: #8b5cf6;"></div>
+                    <span class="material-icons text-3xl" style="color: #8b5cf6;">self_improvement</span>
+                </div>
+                <h2 class="text-3xl font-bold mb-3" style="color: #8b5cf6;">独知篇</h2>
+                <p class="text-gray-700 mb-2"><span class="font-bold">自朝至暮，无非是独</span></p>
+                <p class="text-sm text-gray-600">The journey of life is fundamentally solitary</p>
+                <div class="mt-4 text-gray-600 text-sm">
+                    <p>· 终其一生，我们本就是孤独的</p>
+                    <p>· 独自之处便是诚的萌芽</p>
+                    <p>· 修炼独知力，保持内心光明</p>
+                </div>
+                <div class="radial-gradient" style="background: radial-gradient(circle, #8b5cf6, transparent);"></div>
+            </div>
+            
+            <!-- 格物致知篇 -->
+            <div class="bento-item">
+                <div class="number-badge">6</div>
+                <div class="highlight-bg" style="background-color: #10b981;"></div>
+                <div class="icon-circle">
+                    <div class="icon-bg" style="background-color: #10b981;"></div>
+                    <span class="material-icons text-3xl" style="color: #10b981;">lightbulb</span>
+                </div>
+                <h2 class="text-3xl font-bold mb-3" style="color: #10b981;">格物致知篇</h2>
+                <p class="text-gray-700 mb-2"><span class="font-bold">圣人之道，吾性自足</span></p>
+                <p class="text-sm text-gray-600">The way of the sage is innate to our nature</p>
+                <div class="mt-4 text-gray-600 text-sm">
+                    <p>· 龙场悟道：心外无物</p>
+                    <p>· 格物是纠正内心的不正意念</p>
+                    <p>· 格物致知需用知行合一来检验</p>
+                </div>
+                <div class="radial-gradient" style="background: radial-gradient(circle, #10b981, transparent);"></div>
+            </div>
+            
+            <!-- 心即理篇 -->
+            <div class="bento-item">
+                <div class="number-badge">7</div>
+                <div class="highlight-bg" style="background-color: #ef4444;"></div>
+                <div class="icon-circle">
+                    <div class="icon-bg" style="background-color: #ef4444;"></div>
+                    <span class="material-icons text-3xl" style="color: #ef4444;">favorite</span>
+                </div>
+                <h2 class="text-3xl font-bold mb-3" style="color: #ef4444;">心即理篇</h2>
+                <p class="text-gray-700 mb-2"><span class="font-bold">心外无物，心外无理</span></p>
+                <p class="text-sm text-gray-600">All principles reside within the heart</p>
+                <div class="mt-4 text-gray-600 text-sm">
+                    <p>· 心是身体的主宰和精神意识</p>
+                    <p>· 去除虚伪面具，回归本心</p>
+                    <p>· 反求诸己，多多反省自身</p>
+                </div>
+                <div class="radial-gradient" style="background: radial-gradient(circle, #ef4444, transparent);"></div>
+            </div>
+            
+            <!-- 知行合一篇 -->
+            <div class="bento-item">
+                <div class="number-badge">8</div>
+                <div class="highlight-bg" style="background-color: #6366f1;"></div>
+                <div class="icon-circle">
+                    <div class="icon-bg" style="background-color: #6366f1;"></div>
+                    <span class="material-icons text-3xl" style="color: #6366f1;">sync</span>
+                </div>
+                <h2 class="text-3xl font-bold mb-3" style="color: #6366f1;">知行合一篇</h2>
+                <p class="text-gray-700 mb-2"><span class="font-bold">真知即所以为行</span></p>
+                <p class="text-sm text-gray-600">True knowledge is action itself</p>
+                <div class="mt-4 text-gray-600 text-sm">
+                    <p>· 潜意识是真知，掌控行为</p>
+                    <p>· 知行合一的五大开挂方法</p>
+                    <p>· 训练潜意识，定期反省</p>
+                </div>
+                <div class="radial-gradient" style="background: radial-gradient(circle, #6366f1, transparent);"></div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator animate-float">
+            <span class="material-icons text-primary-500">expand_more</span>
+            <div class="scroll-line"></div>
+        </div>
+    </main>
+    
+    <!-- 底部信息 -->
+    <footer class="py-8 text-center text-gray-600">
+        <p>阳明心学八大主题 · 探索内心之旅</p>
+        <p class="text-sm mt-2">"破山中贼易，破心中贼难" —— 王阳明</p>
+    </footer>
+
+    <script>
+        // 滚动进度条
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progressBar').style.width = `${scrolled}%`;
+        });
+        
+        // Framer Motion 动画效果
+        document.addEventListener('DOMContentLoaded', () => {
+            const bentoItems = document.querySelectorAll('.bento-item');
+            
+            bentoItems.forEach((item, index) => {
+                // 使用Framer Motion创建动画
+                const motionElement = framerMotion.motion(item, {
+                    initial: { opacity: 0, y: 50 },
+                    animate: { opacity: 1, y: 0 },
+                    transition: { 
+                        duration: 0.6, 
+                        delay: index * 0.1,
+                        ease: "easeOut"
+                    }
+                });
+                
+                // 触发动画
+                motionElement.animate();
+            });
+        });
+    </script>
+</body>
+</html>

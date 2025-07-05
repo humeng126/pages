@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王阳明的一生 | 心学之旅</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@10.12.16/dist/framer-motion.js"></script>
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap');
+        
+        :root {
+            --primary: #4A6FA5;
+            --secondary: #8C6A5D;
+            --accent: #7AA95C;
+            --light: #F8F5F2;
+            --dark: #2D3748;
+        }
+        
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 24px;
+            padding: 24px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .bento-item {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 32px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(122, 169, 92, 0.1), rgba(122, 169, 92, 0.3));
+            border-left: 4px solid var(--accent);
+        }
+        
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+            left: -6px;
+            top: 8px;
+        }
+        
+        .quote {
+            position: relative;
+            padding-left: 24px;
+            font-style: italic;
+        }
+        
+        .quote::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .huge-number {
+            font-size: 8rem;
+            line-height: 1;
+            font-weight: 900;
+            color: var(--primary);
+            opacity: 0.15;
+            position: absolute;
+            right: 20px;
+            top: -20px;
+            z-index: 0;
+        }
+        
+        .icon-bg {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: rgba(74, 111, 165, 0.1);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .philosophy-card {
+            background: linear-gradient(135deg, rgba(74, 111, 165, 0.05), rgba(74, 111, 165, 0.15));
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .philosophy-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <!-- 页面顶部 -->
+    <header class="py-20 px-6 text-center bg-gradient-to-r from-[#4A6FA5] to-[#7AA95C] text-white">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">王阳明的一生</h1>
+            <p class="text-xl md:text-2xl opacity-90 mb-8">探索心学诞生之路</p>
+            <div class="flex justify-center">
+                <div class="bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 inline-flex items-center">
+                    <span class="material-icons mr-2">history_edu</span>
+                    <span class="font-medium">13个关键阶段 · 心学之旅</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 引言部分 -->
+    <section class="py-16 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">心即理 · 知行合一 · 致良知</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">王阳明创立的心学体系，影响了东亚思想史五百余年，至今仍启迪世人</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                <div class="philosophy-card">
+                    <div class="flex items-center mb-4">
+                        <div class="icon-bg">
+                            <span class="material-icons text-3xl text-[#4A6FA5]">psychology</span>
+                        </div>
+                        <h3 class="text-xl font-bold ml-4">心即理</h3>
+                    </div>
+                    <p class="text-gray-600">"心外无物，心外无理"，真理存在于每个人的心中，而非外部世界</p>
+                </div>
+                
+                <div class="philosophy-card">
+                    <div class="flex items-center mb-4">
+                        <div class="icon-bg">
+                            <span class="material-icons text-3xl text-[#8C6A5D]">directions_run</span>
+                        </div>
+                        <h3 class="text-xl font-bold ml-4">知行合一</h3>
+                    </div>
+                    <p class="text-gray-600">真知必能行，不行不足谓之知，知识与实践是统一不可分的</p>
+                </div>
+                
+                <div class="philosophy-card">
+                    <div class="flex items-center mb-4">
+                        <div class="icon-bg">
+                            <span class="material-icons text-3xl text-[#7AA95C]">self_improvement</span>
+                        </div>
+                        <h3 class="text-xl font-bold ml-4">致良知</h3>
+                    </div>
+                    <p class="text-gray-600">人人皆有良知，通过实践去除私欲遮蔽，恢复良知本体</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <div class="flex items-start">
+                    <div class="mr-6">
+                        <div class="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" />
+                    </div>
+                    <div>
+                        <p class="quote text-lg text-gray-700 mb-4">"你未看此花时，此花与汝同归于寂；你来看此花时，则此花颜色一时明白起来。"</p>
+                        <div class="flex items-center">
+                            <div class="h-px bg-gray-300 flex-grow mr-4"></div>
+                            <p class="text-gray-500">—— 王阳明《传习录》</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关键阶段展示 -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">王阳明的一生 · 13个关键阶段</h2>
+            <p class="text-center text-gray-600 mb-16">从少年立志到龙场悟道，从知行合一到此心光明</p>
+            
+            <div class="bento-grid">
+                <!-- 第1阶段 -->
+                <div class="bento-item col-span-2 row-span-1 fade-in">
+                    <div class="relative">
+                        <div class="huge-number">1</div>
+                        <h3 class="text-2xl font-bold mb-4 relative z-10">少年立志 (10岁)</h3>
+                        <p class="text-gray-600 mb-4">"登科高中的年年都有，怎么可能是第一等人呢？只有圣贤才是第一等人"</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="material-icons mr-2 text-sm">event</span>
+                            1481年 · 浙江余姚
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第2阶段 -->
+                <div class="bento-item row-span-1 fade-in">
+                    <div class="relative">
+                        <div class="huge-number">2</div>
+                        <h3 class="text-2xl font-bold mb-4 relative z-10">质疑科举 (12岁)</h3>
+                        <p class="text-gray-600 mb-4">质疑传统科举制度价值，思考读书的真正意义</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="material-icons mr-2 text-sm">event</span>
+                            1483年 · 北京
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第3阶段 -->
+                <div class="bento-item row-span-1 fade-in">
+                    <div class="relative">
+                        <div class="huge-number">3</div>
+                        <h3 class="text-2xl font-bold mb-4 relative z-10">研习兵法 (14岁)</h3>
+                        <p class="text-gray-600 mb-4">认为读书人最大的缺点是"不懂兵法"，开始学习弓马之术</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="material-icons mr-2 text-sm">event</span>
+                            1485年 · 余姚
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第4阶段 -->
+                <div class="bento-item col-span-2 row-span-2 fade-in">
+                    <div class="relative h-full">
+                        <div class="huge-number">4</div>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-4">新婚逃婚 (18岁)</h3>
+                            <p class="text-gray-600 mb-4">新婚之夜离家出走，在道观中静坐悟道，开始内心探索</p>
+                            <div class="flex items-center text-sm text-gray-500 mb-6">
+                                <span class="material-icons mr-2 text-sm">event</span>
+                                1489年 · 江西南昌
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm italic text-gray-600">"养生之诀，无过一境，老子清静，庄生逍遥，唯卿静而后能逍遥也"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第5阶段 -->
+                <div class="bento-item row-span-1 fade-in">
+                    <div class="relative">
+                        <div class="huge-number">5</div>
+                        <h3 class="text-2xl font-bold mb-4 relative z-10">初探圣学 (19岁)</h3>
+                        <p class="text-gray-600 mb-4">拜访大儒娄亮，开始研习朱熹格物之学</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="material-icons mr-2 text-sm">event</span>
+                            1490年 · 广信府
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第6阶段 -->
+                <div class="bento-item col-span-1 row-span-1 fade-in">
+                    <div class="relative">
+                        <div class="huge-number">6</div>
+                        <h3 class="text-2xl font-bold mb-4 relative z-10">格竹失败 (21岁)</h3>
+                        <p class="text-gray-600 mb-4">尝试朱熹"格物致知"方法，七天格竹失败病倒</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="material-icons mr-2 text-sm">event</span>
+                            1492年 · 北京
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第7阶段 -->
+                <div class="bento-item row-span-1 fade-in">
+                    <div class="relative">
+                        <div class="huge-number">7</div>
+                        <h3 class="text-2xl font-bold mb-4 relative z-10">考取进士 (28岁)</h3>
+                        <p class="text-gray-600 mb-4">历经三次会试，最终考取进士，开始官场生涯</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="material-icons mr-2 text-sm">event</span>
+                            1499年 · 北京
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第8阶段 -->
+                <div class="bento-item col-span-1 row-span-1 fade-in">
+                    <div class="relative">
+                        <div class="huge-number">8</div>
+                        <h3 class="text-2xl font-bold mb-4 relative z-10">养病修道 (31岁)</h3>
+                        <p class="text-gray-600 mb-4">病重请辞修养，在修仙问道过程中摆脱佛道束缚</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="material-icons mr-2 text-sm">event</span>
+                            1502年 · 余姚
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第9阶段 -->
+                <div class="bento-item col-span-2 row-span-1 fade-in">
+                    <div class="relative">
+                        <div class="huge-number">9</div>
+                        <h3 class="text-2xl font-bold mb-4 relative z-10">上疏被贬 (34岁)</h3>
+                        <p class="text-gray-600 mb-4">上疏谏言触怒宦官刘瑾，被贬至贵州龙场驿</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="material-icons mr-2 text-sm">event</span>
+                            1506年 · 北京
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第10阶段 -->
+                <div class="bento-item col-span-2 row-span-2 fade-in highlight-box">
+                    <div class="relative h-full">
+                        <div class="huge-number">10</div>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-4">龙场悟道 (36岁)</h3>
+                            <p class="text-gray-700 mb-4">在贵州龙场石椁中静坐，悟出"圣人之道，吾性自足"</p>
+                            <div class="flex items-center text-sm text-gray-600 mb-6">
+                                <span class="material-icons mr-2 text-sm">event</span>
+                                1508年 · 贵州龙场
+                            </div>
+                            <div class="bg-white/50 p-4 rounded-lg">
+                                <p class="text-gray-700 italic">"始知圣人之道，吾性自足，向之求理于事物者误也"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第11阶段 -->
+                <div class="bento-item col-span-2 row-span-1 fade-in">
+                    <div class="relative">
+                        <div class="huge-number">11</div>
+                        <h3 class="text-2xl font-bold mb-4 relative z-10">知行合一 (38岁)</h3>
+                        <p class="text-gray-600 mb-4">向席元山提出"知行合一"理论，心学体系初步形成</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="material-icons mr-2 text-sm">event</span>
+                            1509年 · 贵州
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第12阶段 -->
+                <div class="bento-item row-span-1 fade-in">
+                    <div class="relative">
+                        <div class="huge-number">12</div>
+                        <h3 class="text-2xl font-bold mb-4 relative z-10">南赣剿匪 (45岁)</h3>
+                        <p class="text-gray-600 mb-4">平定南赣匪患，提出"破山中贼易，破心中贼难"</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="material-icons mr-2 text-sm">event</span>
+                            1516年 · 江西
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第13阶段 -->
+                <div class="bento-item col-span-4 row-span-1 fade-in">
+                    <div class="relative text-center py-8">
+                        <div class="huge-number">13</div>
+                        <h3 class="text-3xl font-bold mb-4 relative z-10">此心光明 (57岁)</h3>
+                        <p class="text-xl text-gray-600 mb-6 max-w-3xl mx-auto">"此心光明，亦复何言" — 王阳明临终遗言</p>
+                        <div class="flex items-center justify-center text-gray-500">
+                            <span class="material-icons mr-2">event</span>
+                            1529年 · 江西南安
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 心学影响 -->
+    <section class="py-20 px-6 bg-gradient-to-br from-[#4A6FA5] to-[#3A557F] text-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">阳明心学的现代启示</h2>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">王阳明心学对个人成长、企业管理乃至社会治理的现代价值</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                    <div class="text-5xl font-bold text-[#7AA95C] mb-4">01</div>
+                    <h3 class="text-xl font-bold mb-3">个人成长</h3>
+                    <p class="opacity-90">心即理强调自我认知与内在力量，帮助现代人应对焦虑与迷茫</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                    <div class="text-5xl font-bold text-[#7AA95C] mb-4">02</div>
+                    <h3 class="text-xl font-bold mb-3">企业管理</h3>
+                    <p class="opacity-90">知行合一思想应用于执行力建设，提升组织效率与创新力</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                    <div class="text-5xl font-bold text-[#7AA95C] mb-4">03</div>
+                    <h3 class="text-xl font-bold mb-3">社会治理</h3>
+                    <p class="opacity-90">致良知思想启发道德重建与责任担当，促进社会和谐</p>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-black/20 rounded-2xl p-8 max-w-4xl mx-auto">
+                <div class="flex items-center">
+                    <div class="mr-6">
+                        <div class="bg-gray-400 border-2 border-dashed rounded-full w-16 h-16" />
+                    </div>
+                    <div>
+                        <p class="text-xl italic mb-4">"为学大病在好名。... 名与实对，务实之心重一分，则务名之心轻一分"</p>
+                        <p class="opacity-80">—— 王阳明《传习录》</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="py-12 bg-gray-900 text-gray-400">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="hover:text-white transition">
+                    <span class="material-icons">menu_book</span>
+                </a>
+                <a href="#" class="hover:text-white transition">
+                    <span class="material-icons">history_edu</span>
+                </a>
+                <a href="#" class="hover:text-white transition">
+                    <span class="material-icons">share</span>
+                </a>
+            </div>
+            <p class="mb-4">探索王阳明的哲学世界 · 心学启示录</p>
+            <p class="text-sm">© 2023 王阳明心学研究中心 · 传承五百年智慧</p>
+        </div>
+    </footer>
+
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Apple风格的滚动效果
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY;
+                const bentoItems = document.querySelectorAll('.bento-item');
+                
+                bentoItems.forEach((item, index) => {
+                    const itemPosition = item.getBoundingClientRect().top;
+                    const delay = index * 0.1;
+                    
+                    if (itemPosition < window.innerHeight * 0.75) {
+                        item.style.transitionDelay = `${delay}s`;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
