@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金字塔原理思维模型</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        accent: '#0ea5e9',
+                        light: '#f8fafc',
+                        dark: '#0f172a'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Bai Jamjuree', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(40px)', opacity: 0 },
+                            '100%': { transform: 'translateY(0)', opacity: 1 }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #0f172a;
+            overflow-x: hidden;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(150px, auto);
+            gap: 24px;
+            padding: 24px;
+        }
+        
+        .bento-cell {
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(241, 245, 249, 0.5);
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+        
+        .bento-cell:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .highlight-bg {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0) 100%);
+        }
+        
+        .accent-bg {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(14, 165, 233, 0) 100%);
+        }
+        
+        .secondary-bg {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0) 100%);
+        }
+        
+        .pyramid-graphic {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .pyramid-layer {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            opacity: 0.7;
+            transition: all 0.5s ease;
+        }
+        
+        .pyramid-layer:hover {
+            opacity: 1;
+        }
+        
+        .scroll-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 5%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-title {
+            font-family: 'Bai Jamjuree', sans-serif;
+            font-weight: 700;
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            border-radius: 2px;
+        }
+        
+        .big-number {
+            font-family: 'Bai Jamjuree', sans-serif;
+            font-size: 8rem;
+            font-weight: 700;
+            line-height: 0.8;
+            color: #6366f1;
+            opacity: 0.2;
+            position: absolute;
+            z-index: 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: white;
+        }
+        
+        .process-step {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 40px;
+        }
+        
+        .process-step::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .step-1::before {
+            content: '1';
+            background: #6366f1;
+        }
+        
+        .step-2::before {
+            content: '2';
+            background: #8b5cf6;
+        }
+        
+        .step-3::before {
+            content: '3';
+            background: #0ea5e9;
+        }
+        
+        .glow-effect {
+            position: relative;
+        }
+        
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+            z-index: -1;
+            border-radius: 24px;
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 0.9; }
+            100% { opacity: 0.6; }
+        }
+        
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+            
+            .big-number {
+                font-size: 6rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            
+            .big-number {
+                font-size: 4rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md py-4 px-6 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+                    <i class="fas fa-brain text-white text-xl"></i>
+                </div>
+                <span class="ml-3 text-xl font-bold text-dark">金字塔原理</span>
+            </div>
+            <div class="flex space-x-8">
+                <a href="#overview" class="text-dark hover:text-primary transition">概述</a>
+                <a href="#process" class="text-dark hover:text-primary transition">三阶段</a>
+                <a href="#core" class="text-dark hover:text-primary transition">核心方法</a>
+                <a href="#tools" class="text-dark hover:text-primary transition">工具</a>
+            </div>
+            <button class="bg-primary text-white px-5 py-2 rounded-lg font-medium hover:bg-indigo-500 transition">开始学习</button>
+        </div>
+    </nav>
+    
+    <!-- 英雄区 -->
+    <section id="overview" class="scroll-section pt-20">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="bento-grid">
+                <div class="bento-cell highlight-bg glow-effect col-span-8 row-span-2">
+                    <div class="relative">
+                        <span class="big-number">01</span>
+                        <h1 class="text-5xl md:text-7xl font-bold mb-6 relative z-10">金字塔原理<br><span class="text-primary">结构化思维模型</span></h1>
+                        <p class="text-xl text-slate-600 max-w-3xl relative z-10">提升思考、表达和解决问题的系统性方法，源自麦肯锡咨询公司，由芭芭拉·明托创立</p>
+                    </div>
+                </div>
+                
+                <div class="bento-cell secondary-bg col-span-4 row-span-2">
+                    <div class="pyramid-graphic flex items-center justify-center">
+                        <div class="relative" style="width: 220px; height: 200px;">
+                            <div class="pyramid-layer" style="border-width: 0 80px 140px 80px; border-color: transparent transparent #8b5cf6 transparent; bottom: 0; left: 50%; transform: translateX(-50%);"></div>
+                            <div class="pyramid-layer" style="border-width: 0 60px 100px 60px; border-color: transparent transparent #6366f1 transparent; bottom: 0; left: 50%; transform: translateX(-50%);"></div>
+                            <div class="pyramid-layer" style="border-width: 0 40px 60px 40px; border-color: transparent transparent #0ea5e9 transparent; bottom: 0; left: 50%; transform: translateX(-50%);"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bento-cell accent-bg col-span-4 row-span-1">
+                    <div class="flex items-center h-full">
+                        <div class="mr-4">
+                            <div class="w-14 h-14 rounded-xl bg-accent flex items-center justify-center">
+                                <i class="fas fa-lightbulb text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-1">思维三阶段</h3>
+                            <p class="text-slate-600">网状 → 树状 → 线性</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bento-cell highlight-bg col-span-4 row-span-1">
+                    <div class="flex items-center h-full">
+                        <div class="mr-4">
+                            <div class="w-14 h-14 rounded-xl bg-primary flex items-center justify-center">
+                                <i class="fas fa-sitemap text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-1">核心结构</h3>
+                            <p class="text-slate-600">横向绑定 + 纵向支撑</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bento-cell secondary-bg col-span-4 row-span-1">
+                    <div class="flex items-center h-full">
+                        <div class="mr-4">
+                            <div class="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center">
+                                <i class="fas fa-check-circle text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-1">MECE法则</h3>
+                            <p class="text-slate-600">相互独立，完全穷尽</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 三阶段流程 -->
+    <section id="process" class="scroll-section bg-gradient-to-br from-indigo-50 to-cyan-50 py-24">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="section-title text-4xl font-bold">思维三阶段 <span class="text-primary">Process</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+                <div class="process-step step-1">
+                    <h3 class="text-2xl font-bold mb-4">网状思维</h3>
+                    <p class="text-slate-600 mb-4">大脑在主题下收集碎片化信息，形成网状结构</p>
+                    <div class="bg-white rounded-xl p-5 shadow-sm">
+                        <h4 class="font-bold text-lg mb-3 text-primary">界定问题方法</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-question-circle text-secondary mt-1 mr-2"></i>
+                                <span><strong>追问法：</strong> 连续追问5个为什么，找到问题本质</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-bullseye text-secondary mt-1 mr-2"></i>
+                                <span><strong>SMART原则：</strong> 确保任务具体、可衡量、可达成、相关且有时限</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="process-step step-2">
+                    <h3 class="text-2xl font-bold mb-4">树状结构</h3>
+                    <p class="text-slate-600 mb-4">将网状信息转化为有组织的树状逻辑结构</p>
+                    <div class="bg-white rounded-xl p-5 shadow-sm">
+                        <h4 class="font-bold text-lg mb-3 text-secondary">组织方法</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-clock text-primary mt-1 mr-2"></i>
+                                <span><strong>时间顺序：</strong> 按事件发生先后排列</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-th-large text-primary mt-1 mr-2"></i>
+                                <span><strong>空间顺序：</strong> 按物理或结构维度归类</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-sort-amount-down text-primary mt-1 mr-2"></i>
+                                <span><strong>优先级顺序：</strong> 按重要性排序</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-project-diagram text-primary mt-1 mr-2"></i>
+                                <span><strong>逻辑演绎：</strong> 三段论推导（大前提→小前提→结论）</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="process-step step-3">
+                    <h3 class="text-2xl font-bold mb-4">线性表达</h3>
+                    <p class="text-slate-600 mb-4">将树状结构转化为易于理解的线性表达</p>
+                    <div class="bg-white rounded-xl p-5 shadow-sm">
+                        <h4 class="font-bold text-lg mb-3 text-accent">表达技巧</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-bars text-accent mt-1 mr-2"></i>
+                                <span><strong>结论先行：</strong> 先提出核心观点</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-layer-group text-accent mt-1 mr-2"></i>
+                                <span><strong>信息组块化：</strong> 将信息分组为7±2个模块</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-sort-alpha-down text-accent mt-1 mr-2"></i>
+                                <span><strong>逻辑递进：</strong> 内容按逻辑顺序层层推进</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 核心方法 -->
+    <section id="core" class="scroll-section py-24">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="section-title text-4xl font-bold">核心方法 <span class="text-secondary">Core Methods</span></h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-16">
+                <div class="bg-white rounded-3xl p-8 shadow-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center mr-4">
+                            <i class="fas fa-arrows-alt-h text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold">横向绑定</h3>
+                    </div>
+                    
+                    <p class="text-slate-600 mb-6">将零碎信息组织为逻辑清晰的组块，使用4种组织方式：</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="bg-indigo-50 p-4 rounded-xl">
+                            <div class="text-primary font-bold mb-2"><i class="fas fa-clock mr-2"></i>时间顺序</div>
+                            <p class="text-sm">按事件发生先后排列，如项目计划</p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl">
+                            <div class="text-primary font-bold mb-2"><i class="fas fa-th-large mr-2"></i>空间顺序</div>
+                            <p class="text-sm">按物理或结构维度归类，如地区、部门</p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl">
+                            <div class="text-primary font-bold mb-2"><i class="fas fa-sort-amount-down mr-2"></i>优先级</div>
+                            <p class="text-sm">按重要性和优先级排序，如决策依据</p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl">
+                            <div class="text-primary font-bold mb-2"><i class="fas fa-project-diagram mr-2"></i>逻辑演绎</div>
+                            <p class="text-sm">三段论推导（大前提→小前提→结论）</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-amber-50 p-5 rounded-xl border border-amber-200">
+                        <h4 class="font-bold text-lg text-amber-700 mb-2 flex items-center">
+                            <i class="fas fa-exclamation-circle mr-2"></i> MECE法则
+                        </h4>
+                        <p class="text-amber-700"><strong>相互独立，完全穷尽</strong> - 确保各部分不重叠且无遗漏</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-8 shadow-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-secondary flex items-center justify-center mr-4">
+                            <i class="fas fa-arrows-alt-v text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold">纵向支撑</h3>
+                    </div>
+                    
+                    <p class="text-slate-600 mb-6">在垂直方向搭建逻辑层级，确保上下层之间有严谨的逻辑关系</p>
+                    
+                    <div class="mb-8">
+                        <div class="flex items-start mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-arrow-down text-accent text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl text-accent mb-2">自上而下（演绎法）</h4>
+                                <p class="text-slate-600">先预设问题和结论，再逐层向下分析。更高效，符合日常场景。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-arrow-up text-secondary text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl text-secondary mb-2">自下而上（归纳法）</h4>
+                                <p class="text-slate-600">先收集碎片信息，再归类分组提炼结论。适合复杂问题分析。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-5 rounded-xl border border-blue-200">
+                        <h4 class="font-bold text-lg text-accent mb-2 flex items-center">
+                            <i class="fas fa-lightbulb mr-2"></i> 金字塔构建要点
+                        </h4>
+                        <ul class="text-slate-700 space-y-2">
+                            <li>每一层都是下一层的总结概括</li>
+                            <li>横向各组使用同一种逻辑顺序</li>
+                            <li>严格遵循MECE原则</li>
+                            <li>纵向关系必须具有逻辑支撑</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 工具与应用 -->
+    <section id="tools" class="scroll-section bg-gradient-to-br from-slate-50 to-indigo-50 py-24">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="section-title text-4xl font-bold">工具与应用 <span class="text-accent">Tools & Practice</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+                <div class="bg-white rounded-3xl p-8 shadow-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-secondary flex items-center justify-center mr-4">
+                            <i class="fas fa-mind-share text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold">思维导图工具</h3>
+                    </div>
+                    
+                    <p class="text-slate-600 mb-6">思维导图与金字塔原理完美结合，是构建结构化思维的最佳工具：</p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="mt-1 mr-3 text-secondary">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <p><strong>结构契合：</strong> 分层结构天然符合金字塔原理</p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="mt-1 mr-3 text-secondary">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <p><strong>效率提升：</strong> 利用AI工具可一键生成思维导图</p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="mt-1 mr-3 text-secondary">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <p><strong>可视化逻辑：</strong> 直观展示思维结构，强化逻辑表达</p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="mt-1 mr-3 text-secondary">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <p><strong>MECE检查：</strong> 可视化暴露逻辑漏洞，便于调整</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-slate-100 rounded-xl p-4">
+                        <h4 class="font-bold mb-3 text-slate-700">推荐工具：MindMaster</h4>
+                        <ul class="text-slate-600 space-y-2">
+                            <li>一键生成PPT功能，自动转换思维导图为演示文稿</li>
+                            <li>支持团队协作和云端同步</li>
+                            <li>丰富的模板库和图形库</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-8 shadow-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center mr-4">
+                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold">应用效果分析</h3>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <canvas id="improvementChart" height="250"></canvas>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                            <div class="text-3xl font-bold text-primary">72%</div>
+                            <p class="text-sm mt-1">思考效率提升</p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                            <div class="text-3xl font-bold text-secondary">68%</div>
+                            <p class="text-sm mt-1">表达清晰度提升</p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                            <div class="text-3xl font-bold text-accent">85%</div>
+                            <p class="text-sm mt-1">问题解决效率</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 总结 -->
+    <section class="scroll-section py-24">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="w-20 h-20 rounded-2xl bg-primary flex items-center justify-center mx-auto mb-8">
+                <i class="fas fa-crown text-white text-3xl"></i>
+            </div>
+            
+            <h2 class="text-4xl font-bold mb-6">金字塔原理核心总结</h2>
+            <p class="text-xl text-slate-600 mb-10">系统管理信息和结构化思考的操作系统，适用性广，拓展性强</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-7 gap-4 mb-16">
+                <div class="bg-indigo-50 p-4 rounded-xl">
+                    <div class="text-lg font-bold text-primary">1</div>
+                    <p class="text-sm">网状思维</p>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-xl">
+                    <div class="text-lg font-bold text-primary">2</div>
+                    <p class="text-sm">界定问题</p>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-xl">
+                    <div class="text-lg font-bold text-primary">3</div>
+                    <p class="text-sm">横向绑定</p>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-xl">
+                    <div class="text-lg font-bold text-primary">4</div>
+                    <p class="text-sm">纵向支撑</p>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-xl">
+                    <div class="text-lg font-bold text-primary">5</div>
+                    <p class="text-sm">MECE法则</p>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-xl">
+                    <div class="text-lg font-bold text-primary">6</div>
+                    <p class="text-sm">组块化</p>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-xl">
+                    <div class="text-lg font-bold text-primary">7</div>
+                    <p class="text-sm">线性表达</p>
+                </div>
+            </div>
+            
+            <button class="bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition">
+                立即应用金字塔原理 <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer class="bg-slate-900 text-slate-300 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+                            <i class="fas fa-brain text-white text-xl"></i>
+                        </div>
+                        <span class="ml-3 text-xl font-bold text-white">金字塔原理</span>
+                    </div>
+                    <p class="mt-3 max-w-md">提升思考、表达和解决问题的系统性思维模型</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-slate-400 hover:text-white transition">
+                        <i class="fab fa-weixin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-white transition">
+                        <i class="fab fa-weibo text-xl"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-white transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-white transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-800 mt-8 pt-8 text-center text-sm">
+                <p>© 2023 金字塔原理思维模型. 基于芭芭拉·明托的理论研究</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 初始化图表
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('improvementChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['思考能力', '表达清晰度', '问题解决', '决策效率', '逻辑严谨性', '信息组织'],
+                    datasets: [{
+                        label: '应用金字塔原理后',
+                        data: [85, 82, 88, 80, 90, 87],
+                        backgroundColor: 'rgba(99, 102, 241, 0.2)',
+                        borderColor: 'rgba(99, 102, 241, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(99, 102, 241, 1)'
+                    }, {
+                        label: '应用金字塔原理前',
+                        data: [45, 40, 50, 35, 30, 42],
+                        backgroundColor: 'rgba(203, 213, 225, 0.2)',
+                        borderColor: 'rgba(148, 163, 184, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(148, 163, 184, 1)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 12
+                                }
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    }
+                }
+            });
+            
+            // 滚动动画效果
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.bento-cell, .feature-card, .process-step').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
