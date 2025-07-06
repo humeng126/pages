@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 13: 关键述职的艺术</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome Icons via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Framer Motion (motion.js) via CDN -->
+    <script type="module">
+      import { animate, inView } from "https://cdn.skypack.dev/motion";
+
+      document.querySelectorAll('.bento-box').forEach(box => {
+        inView(box, (info) => {
+          animate(
+            box,
+            { 
+              opacity: [0, 1],
+              transform: ["translateY(30px)", "translateY(0px)"]
+            },
+            { duration: 0.8, delay: 0.1, easing: [0.17, 0.55, 0.55, 1] }
+          );
+        }, { amount: 0.3 });
+      });
+
+      // Special animation for the "So What" chain
+      const soWhatSequence = document.querySelectorAll('.so-what-item');
+      inView(document.querySelector('.so-what-box'), () => {
+        soWhatSequence.forEach((item, index) => {
+          animate(
+            item,
+            { opacity: [0, 1], transform: ["translateX(-20px)", "translateX(0px)"] },
+            { duration: 0.5, delay: index * 0.4 }
+          )
+        });
+      }, { amount: 0.5 });
+    </script>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+      
+      body {
+        font-family: 'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif;
+        background-color: #0c111d; /* A soft dark blue */
+        color: #e5e7eb;
+        overflow-x: hidden;
+      }
+
+      .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+        gap: 1rem; /* 16px */
+      }
+
+      .bento-box {
+        background-color: rgba(30, 41, 59, 0.5); /* slate-800 with opacity */
+        border-radius: 1.5rem; /* 24px */
+        padding: 2rem; /* 32px */
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(51, 65, 85, 0.5); /* slate-700 with opacity */
+        opacity: 0; /* Initially hidden for animation */
+      }
+
+      .glow-effect {
+        position: absolute;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .glow-1 {
+        top: -20%;
+        left: -20%;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, rgba(79, 70, 229, 0.2) 0%, rgba(79, 70, 229, 0) 70%); /* indigo */
+      }
+      .glow-2 {
+        bottom: -30%;
+        right: -30%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, rgba(14, 165, 233, 0) 70%); /* sky */
+      }
+      .glow-3 {
+        top: 10%;
+        right: -40%;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(132, 110, 255, 0.1) 0%, rgba(132, 110, 255, 0) 70%); /* violet */
+      }
+      
+      /* Bento grid item spans */
+      .col-span-1 { grid-column: span 1 / span 1; }
+      .col-span-2 { grid-column: span 2 / span 2; }
+      .col-span-3 { grid-column: span 3 / span 3; }
+      .col-span-4 { grid-column: span 4 / span 4; }
+      .row-span-1 { grid-row: span 1 / span 1; }
+      .row-span-2 { grid-row: span 2 / span 2; }
+
+      /* Responsive adjustments */
+      @media (max-width: 1024px) {
+        .bento-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .col-span-4, .col-span-3 {
+          grid-column: span 2 / span 2;
+        }
+      }
+      @media (max-width: 768px) {
+        .bento-grid {
+          grid-template-columns: repeat(1, 1fr);
+        }
+        .col-span-4, .col-span-3, .col-span-2, .col-span-1 {
+          grid-column: span 1 / span 1;
+        }
+        .bento-box {
+          padding: 1.5rem;
+        }
+        .text-9xl { font-size: 5rem; }
+      }
+      .content-wrapper {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <main class="max-w-7xl mx-auto">
+        <header class="text-center mb-12 bento-box col-span-4">
+            <div class="content-wrapper">
+                <p class="text-lg text-sky-400">INVEST IN YOURSELF / DAY 13</p>
+                <h1 class="text-4xl md:text-6xl font-black mt-2">关键述职：让你事半功倍的职场动作</h1>
+                <p class="text-gray-400 mt-4 max-w-3xl mx-auto">你干了什么不重要，老板认为你能干什么才重要。</p>
+            </div>
+            <div class="glow-effect glow-1"></div>
+        </header>
+
+        <div class="bento-grid">
+            <!-- 15 Minutes > 6 Months -->
+            <div class="bento-box col-span-2 row-span-2 flex flex-col justify-between">
+                <div class="glow-effect glow-2"></div>
+                <div class="content-wrapper">
+                    <p class="text-lg font-bold text-gray-300">The Turning Point</p>
+                    <h2 class="text-5xl md:text-7xl font-black mt-2">决定你命运的，是台上的 <span class="text-sky-400">15</span> 分钟</h2>
+                    <p class="text-gray-400 mt-4">而不是你辛勤努力的半年。升职加薪的窗口期，每一次汇报都是一次关键转折点。</p>
+                </div>
+                <div class="w-full mt-8 content-wrapper">
+                    <div class="relative h-2 bg-slate-700 rounded-full">
+                        <div class="absolute top-0 left-0 h-2 bg-sky-400 rounded-full w-1/4"></div>
+                    </div>
+                    <div class="flex justify-between mt-2 text-sm text-gray-500">
+                        <span>6 MONTHS' EFFORT</span>
+                        <span>15 MINS PRESENTATION</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Tech Guy "死脑筋" -->
+            <div class="bento-box col-span-2">
+                 <div class="content-wrapper">
+                    <h3 class="text-2xl font-bold">案例：技术大牛的“无效”述职</h3>
+                    <p class="text-gray-400 mt-2">技术小哥“死脑筋”罗列了半年的代码和术语，我承认他很牛，但我没有投他。</p>
+                </div>
+            </div>
+
+            <!-- Pitfall 1 -->
+            <div class="bento-box">
+                <div class="content-wrapper">
+                    <h4 class="text-xl font-bold text-red-400">误区一：流水账</h4>
+                    <p class="text-sm text-gray-400 mt-2">把述职当成罗列工作。听众心中只会不断冒出：<span class="font-bold text-gray-200">So What? (所以呢？)</span></p>
+                </div>
+            </div>
+
+            <!-- Pitfall 2 -->
+            <div class="bento-box">
+                <div class="content-wrapper">
+                    <h4 class="text-xl font-bold text-amber-400">误区二：邀功会</h4>
+                    <p class="text-sm text-gray-400 mt-2">只说价值，不解释方法论。无法总结规律，对未来决策帮助有限。</p>
+                </div>
+            </div>
+
+            <!-- Solution 1: SO WHAT -->
+            <div class="bento-box col-span-4 lg:col-span-2 row-span-2 so-what-box flex flex-col">
+                <div class="glow-effect glow-3"></div>
+                <div class="content-wrapper flex-grow">
+                    <p class="text-sm text-indigo-400">SUGGESTION 01</p>
+                    <h2 class="text-7xl md:text-9xl font-black my-4">SO<br>WHAT?</h2>
+                    <p class="text-gray-300">不断反问自己“所以呢？”，从做了什么，到产生什么价值，到这个价值产生的原因是是什么，到还可以怎样持续地产生这个价值。
+                        逼迫你进行深度思考，从现象到本质，从问题到措施。</p>
+                </div>
+                <div class="content-wrapper mt-6 space-y-4">
+                    <div class="so-what-item flex items-start space-x-3 opacity-0">
+                        <i class="fas fa-layer-group text-indigo-400 mt-1"></i>
+                        <div><strong class="text-white">做了什么 (What):</strong> 项目进度慢了点。</div>
+                    </div>
+                    <div class="so-what-item flex items-start space-x-3 opacity-0">
+                        <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                        <div><strong class="text-white">产生价值 (Value):</strong> 所以呢？流程把控不够严谨。</div>
+                    </div>
+                    <div class="so-what-item flex items-start space-x-3 opacity-0">
+                        <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                        <div><strong class="text-white">总结规律 (Rule):</strong> 所以呢？建议设项目管理岗，弥补不足。</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Solution 2: SAME PAGE -->
+            <div class="bento-box col-span-4 lg:col-span-2 row-span-2 flex flex-col justify-between">
+                <div class="glow-effect glow-1"></div>
+                <div class="content-wrapper">
+                    <p class="text-sm text-sky-400">SUGGESTION 02</p>
+                    <h2 class="text-7xl md:text-9xl font-black my-4">SAME<br>PAGE</h2>
+                    <p class="text-gray-300">与公司战略同步。公司战略层面的诉求，无外乎求增长，求利润，求生存三种。你要说明，你的动作将怎样配合这个战略。
+                        你的动作，必须配合公司下一步的核心诉求。</p>
+                    <blockquote class="mt-4 border-l-4 border-sky-400 pl-4 text-gray-400 italic">
+                        “无论马云的决定是什么，我的任务都只有一个，帮助这个决定成为最正确的决定。” - 彭蕾
+                    </blockquote>
+                </div>
+            </div>
+
+            <!-- Company Strategy -->
+            <div class="bento-box col-span-4">
+                <div class="content-wrapper">
+                    <h3 class="text-2xl font-bold mb-6 text-center">识别公司此刻的核心诉求</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                        <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-700">
+                            <i class="fas fa-rocket text-4xl text-green-400"></i>
+                            <h4 class="text-xl font-bold mt-4">A. 求增长</h4>
+                            <p class="text-sm text-gray-400 mt-2">子弹充沛，抢占市场。你的述职重点应是 <span class="text-white">速度</span> 和 <span class="text-white">扩张</span>。</p>
+                        </div>
+                        <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-700">
+                            <i class="fas fa-chart-line text-4xl text-blue-400"></i>
+                            <h4 class="text-xl font-bold mt-4">B. 求利润</h4>
+                            <p class="text-sm text-gray-400 mt-2">业务成熟，收割果实。你的述职重点应是 <span class="text-white">效率</span> 和 <span class="text-white">投产比 (ROI)</span>。</p>
+                        </div>
+                        <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-700">
+                            <i class="fas fa-shield-halved text-4xl text-amber-400"></i>
+                            <h4 class="text-xl font-bold mt-4">C. 求生存</h4>
+                            <p class="text-sm text-gray-400 mt-2">资本寒冬，勒紧腰带。你的述职重点应是 <span class="text-white">求稳</span>、<span class="text-white">降本</span> 和 <span class="text-white">风控</span>。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Final Thought / CTA -->
+            <div class="bento-box col-span-4">
+                <div class="glow-effect glow-2"></div>
+                <div class="content-wrapper text-center">
+                    <h3 class="text-2xl font-bold">延伸思考：关键面试</h3>
+                    <p class="text-gray-400 mt-2">重要的面试，就是一场关键述职。同样决定命运，同样需要在短时间内展现亮点。你同意吗？</p>
+                    <button class="mt-6 bg-sky-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-sky-600 transition-colors">
+                        投资自己，明天我们继续
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>
