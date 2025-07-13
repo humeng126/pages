@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>职场生存法则 - The Art of Workplace Strategy</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+    
+    <!-- Framer Motion via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10/dist/framer-motion.umd.min.js"></script>
+    
+    <!-- Google Fonts for a softer, professional look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f0f2f5; /* A soft, neutral background */
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, auto);
+            gap: 1.5rem; /* 24px */
+            padding: 2rem;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .bento-item {
+            border-radius: 1.5rem; /* 24px */
+            background-color: #ffffff;
+            padding: 2rem; /* 32px */
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        /* Spanning items for Bento layout */
+        .col-span-2 { grid-column: span 2; }
+        .row-span-2 { grid-row: span 2; }
+
+        /* Large text styling */
+        .highlight-text {
+            font-size: clamp(3rem, 6vw, 6rem); /* Responsive large text */
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: #1a202c;
+        }
+
+        /* Sub-text styling */
+        .sub-text {
+            font-size: 0.875rem; /* 14px */
+            font-weight: 300;
+            color: #4a5568;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Gradient Glow Effect */
+        .glow-effect {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(80px);
+            border-radius: 9999px;
+        }
+
+        .glow-blue {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0) 70%);
+            top: -100px;
+            right: -100px;
+        }
+
+        .glow-green {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0) 70%);
+            bottom: -80px;
+            left: -80px;
+        }
+        
+        .glow-purple {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0) 60%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Line art icon styling */
+        .line-art-icon {
+            font-size: 5rem; /* 80px */
+            color: rgba(0,0,0,0.08);
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 1;
+            transition: transform 0.4s ease-out;
+        }
+        
+        .bento-item:hover .line-art-icon {
+             transform: scale(1.1) rotate(5deg);
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div class="bento-grid">
+        <!-- Item 1: 以柔克刚 -->
+        <div id="item1" class="bento-item col-span-2 row-span-2">
+            <div class="glow-effect glow-purple"></div>
+            <div class="content flex flex-col h-full">
+                <div>
+                    <p class="sub-text">Core Philosophy</p>
+                    <h2 class="highlight-text mt-2">以柔克刚</h2>
+                </div>
+                <div class="mt-auto">
+                    <p class="text-gray-600 max-w-md">面对强势，要像棉花一样，让对方的拳头无处着力。这不是退缩，而是智慧。工作中最聪明的状态，是化解冲突于无形。</p>
+                    <p class="text-sm text-gray-400 mt-4">Be like cotton; let the force against you dissipate. It's the art of turning hardness into softness.</p>
+                </div>
+            </div>
+             <i class="fas fa-feather-alt line-art-icon"></i>
+        </div>
+
+        <!-- Item 2: 让子弹飞一会儿 -->
+        <div id="item2" class="bento-item col-span-2">
+            <div class="glow-effect glow-blue"></div>
+            <div class="content">
+                <p class="sub-text">Strategic Patience</p>
+                <h3 class="text-4xl font-bold mt-2">让子弹飞一会儿</h3>
+                <p class="text-gray-600 mt-4">很多事领导自己都没想明白。别急于行动，给事情一点发酵的时间，避免在朝令夕改中浪费精力。缓则圆，从容应对能减少焦虑内耗。</p>
+            </div>
+            <i class="fas fa-hourglass-half line-art-icon" style="font-size: 4rem; right: 2rem; bottom: 2rem;"></i>
+        </div>
+
+        <!-- Item 3: 摆清位置 -->
+        <div id="item3" class="bento-item">
+            <div class="content">
+                <p class="sub-text">Self-Positioning</p>
+                <h3 class="text-3xl font-bold mt-2">摆清位置</h3>
+                <p class="text-gray-600 mt-4">处于劣势时，较劲没有意义。要么寻求权力更高层的庇护，要么忍和等。</p>
+                 <i class="fas fa-map-marker-alt line-art-icon" style="font-size: 3rem; opacity: 0.1; bottom: 1rem; right: 1rem;"></i>
+            </div>
+        </div>
+        
+        <!-- Item 4: 谁沉不住气谁就输了 -->
+        <div id="item4" class="bento-item">
+             <div class="glow-effect glow-green"></div>
+             <div class="content text-center flex flex-col justify-center items-center h-full">
+                <h3 class="text-5xl font-bold">谁输了?</h3>
+                <p class="text-lg text-gray-700 mt-2">沉不住气的那个</p>
+                <p class="sub-text mt-4">He Who Loses Cool, Loses.</p>
+            </div>
+        </div>
+
+        <!-- Item 5: 工作不是为了生气 -->
+        <div id="item5" class="bento-item col-span-2">
+            <div class="content">
+                 <p class="sub-text">Mindset Focus</p>
+                <h3 class="text-4xl font-bold mt-2">工作不配浪费我的情感</h3>
+                <p class="text-gray-600 mt-4">你来上班是为了赚钱养家。当众争吵或生闷气是典型的拎不清。记住，这些人和事不值得你投入情绪，保护好自己的精力。</p>
+            </div>
+             <i class="fas fa-shield-alt line-art-icon" style="font-size: 4rem; right: 2rem; bottom: 2rem;"></i>
+        </div>
+        
+        <!-- Item 6: 磨刀不误砍柴工 -->
+        <div id="item6" class="bento-item col-span-2">
+            <div class="content">
+                <p class="sub-text">Preparation is Key</p>
+                <h3 class="text-4xl font-bold mt-2">磨刀不误砍柴工</h3>
+                <p class="text-gray-600 mt-4">工作前，先理清思路：分解内容，抓住重点，明确协作节点。心中有数，才能事半功倍，而不是一腔热血办得稀里糊涂。</p>
+            </div>
+            <i class="fas fa-tasks line-art-icon" style="font-size: 4rem; right: 2rem; bottom: 2rem;"></i>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const { motion, stagger, animate } = Motion;
+
+            // Simple scroll-triggered animation for each bento item
+            const items = document.querySelectorAll('.bento-item');
+            
+            items.forEach(item => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animate(
+                                entry.target,
+                                { opacity: [0, 1], y: [20, 0] },
+                                { duration: 0.6, ease: "easeOut" }
+                            );
+                            observer.unobserve(entry.target); // Animate only once
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                observer.observe(item);
+            });
+            
+            // A more complex entry animation for the whole grid if needed
+            // animate(".bento-item", 
+            //     { opacity: [0, 1], y: [30, 0] },
+            //     { delay: stagger(0.1), duration: 0.5, ease: "easeOut" }
+            // )
+        });
+    </script>
+</body>
+</html>

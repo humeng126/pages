@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在草台班子中保持自洽 | Maintain Self-Consistency in a Chaotic Team</title>
+
+    <!-- Tailwind CSS 3.4.1 via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome 6.5.2 via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Framer Motion 10.18.0 via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.18.0/framer-motion.cjs.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f0f2f5; /* A soft, gentle background */
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+            gap: 1.5rem; /* 24px */
+            padding: 1.5rem;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .bento-item {
+            border-radius: 1.5rem; /* 24px */
+            background-color: #ffffff;
+            padding: 2rem; /* 32px */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .highlight-gradient-blue {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-image: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0) 70%);
+            pointer-events: none;
+        }
+
+        .highlight-gradient-green {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background-image: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0) 70%);
+            pointer-events: none;
+        }
+
+        .large-text {
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .sub-text-en {
+            font-size: 0.875rem; /* 14px */
+            font-weight: 400;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .content-text {
+            font-size: 1rem; /* 16px */
+            color: #334155;
+            line-height: 1.75;
+        }
+
+        /* Define grid spans */
+        .item-1 { grid-column: span 12 / span 12; grid-row: span 1 / span 1; }
+        .item-2 { grid-column: span 7 / span 7; grid-row: span 2 / span 2; }
+        .item-3 { grid-column: span 5 / span 5; grid-row: span 2 / span 2; }
+        .item-4 { grid-column: span 5 / span 5; grid-row: span 2 / span 2; }
+        .item-5 { grid-column: span 7 / span 7; grid-row: span 2 / span 2; }
+        .item-6 { grid-column: span 7 / span 7; grid-row: span 2 / span 2; }
+        .item-7 { grid-column: span 5 / span 5; grid-row: span 2 / span 2; }
+        .item-8 { grid-column: span 5 / span 5; grid-row: span 1 / span 1; }
+        .item-9 { grid-column: span 7 / span 7; grid-row: span 1 / span 1; }
+
+        @media (max-width: 1024px) {
+            .item-2, .item-3, .item-4, .item-5, .item-6, .item-7, .item-8, .item-9 {
+                grid-column: span 12 / span 12;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+<div id="app" class="bento-grid">
+    <!-- Item 1: Main Title -->
+    <motion.div class="bento-item item-1 flex flex-col justify-center items-center text-center">
+        <div class="highlight-gradient-blue -top-20 -left-20"></div>
+        <p class="sub-text-en mb-4">HOW TO SURVIVE AND THRIVE</p>
+        <h1 class="large-text text-gray-800">在草台班子中保持自洽</h1>
+        <p class="mt-4 text-lg text-gray-500 max-w-3xl">别在无效的泥潭里用力翻滚，把成长当成筹码，才不会被提前清算。</p>
+    </motion.div>
+
+    <!-- Item 2: Step 01 -->
+    <motion.div class="bento-item item-2">
+        <div>
+            <p class="sub-text-en">STEP 01</p>
+            <h2 class="large-text text-3xl md:text-5xl mt-2">看清环境，<br>但不被拖着走</h2>
+            <p class="content-text mt-4">一个人的耗损，是从意识到无力改变却又深陷其中开始的。学会抽离对环境的过度感知，把自己拉回来是第一步。</p>
+        </div>
+        <div class="w-full mt-8">
+            <svg class="w-full h-24 text-gray-300" fill="none" viewBox="0 0 300 100" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 50 C 40 10, 60 90, 90 50 S 140 10, 170 50 S 220 90, 250 50 S 280 10, 310 50" style="stroke-dasharray: 5, 5;"/>
+                <path d="M10 50 C 40 50, 60 50, 90 50 S 140 50, 170 50 S 220 50, 250 50 S 280 50, 310 50" style="stroke: #3b82f6; stroke-width: 3;"/>
+                <circle cx="10" cy="50" r="5" fill="#3b82f6"/>
+                <text x="15" y="40" font-size="12" fill="#64748b">混乱</text>
+                <text x="175" y="40" font-size="12" fill="#3b82f6">自我</text>
+            </svg>
+        </div>
+    </motion.div>
+
+    <!-- Item 3: Step 02 -->
+    <motion.div class="bento-item item-3">
+        <div class="highlight-gradient-green -bottom-20 -right-20"></div>
+        <div>
+            <p class="sub-text-en">STEP 02</p>
+            <h2 class="large-text text-3xl md:text-5xl mt-2">守住节奏</h2>
+            <p class="content-text mt-4">别人的摆烂不是你放弃自律的借口。清楚什么是核心交付，守住边界，别去收拾别人的烂摊子。</p>
+        </div>
+        <div class="text-center mt-8">
+            <i class="fas fa-tasks text-6xl text-blue-200"></i>
+            <i class="fas fa-user-clock text-8xl text-blue-400 mx-4"></i>
+            <i class="fas fa-ban text-6xl text-blue-200"></i>
+        </div>
+    </motion.div>
+
+    <!-- Item 4: Step 03 -->
+    <motion.div class="bento-item item-4">
+        <div>
+            <p class="sub-text-en">STEP 03</p>
+            <h2 class="large-text text-3xl md:text-5xl mt-2">收回注意力</h2>
+            <p class="content-text mt-4">别再天天扫描他人情绪，把注意力收回，永远专注于三件事：手里的事、自己的状态、个人的成长。</p>
+        </div>
+        <div class="text-center mt-8 space-y-3">
+            <div class="flex items-center justify-center p-3 bg-gray-50 rounded-lg"><i class="fas fa-briefcase text-blue-500 w-6 text-center mr-3"></i> <span class="text-gray-700">手里的事 / Your Tasks</span></div>
+            <div class="flex items-center justify-center p-3 bg-gray-50 rounded-lg"><i class="fas fa-heart-pulse text-green-500 w-6 text-center mr-3"></i> <span class="text-gray-700">自己的状态 / Your State</span></div>
+            <div class="flex items-center justify-center p-3 bg-gray-50 rounded-lg"><i class="fas fa-chart-line text-indigo-500 w-6 text-center mr-3"></i> <span class="text-gray-700">个人的成长 / Your Growth</span></div>
+        </div>
+    </motion.div>
+
+    <!-- Item 5: Step 04 -->
+    <motion.div class="bento-item item-5">
+        <div class="highlight-gradient-blue -top-24 -right-24 opacity-80"></div>
+        <div>
+            <p class="sub-text-en">STEP 04</p>
+            <h2 class="large-text text-3xl md:text-5xl mt-2">建立内在评价系统</h2>
+            <p class="content-text mt-4">别人的评价是参考，不是指定。如果你对自己的判断毫无信心，就会永远在随波逐流中迷失。你要知道什么是合理要求，什么是强加的情绪。</p>
+        </div>
+        <div class="mt-8 flex justify-center items-center h-full">
+            <div class="relative">
+                <div class="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-blue-500 flex items-center justify-center">
+                    <span class="text-blue-500 font-bold text-lg">YOU</span>
+                </div>
+                <div class="absolute top-0 -left-16 text-center">
+                    <i class="fas fa-comment-dots text-2xl text-gray-400"></i>
+                    <p class="text-xs text-gray-400 mt-1">外界评价</p>
+                </div>
+                <div class="absolute bottom-0 -right-16 text-center">
+                    <i class="fas fa-thumbs-up text-2xl text-gray-400"></i>
+                    <p class="text-xs text-gray-400 mt-1">他人认可</p>
+                </div>
+            </div>
+        </div>
+    </motion.div>
+
+    <!-- Item 6: Step 05 -->
+    <motion.div class="bento-item item-6">
+        <div class="highlight-gradient-green -bottom-24 -left-24"></div>
+        <div>
+            <p class="sub-text-en">STEP 05</p>
+            <h2 class="large-text text-3xl md:text-5xl mt-2">保持成长，<br>才有离开的底气</h2>
+            <p class="content-text mt-4">职场最难受是被“困住”：既看不上这儿，又走不掉。环境再烂，也要有意识地把经验榨干，为下一份工作做准备。这里不是归宿，只是过程。</p>
+        </div>
+        <div class="mt-8">
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-gradient-to-r from-green-400 to-blue-500 h-2.5 rounded-full" style="width: 75%"></div>
+            </div>
+            <p class="text-right text-sm text-gray-500 mt-2">SKILL & EXPERIENCE GROWTH</p>
+        </div>
+    </motion.div>
+
+    <!-- Item 7: Quote -->
+    <motion.div class="bento-item item-7 bg-gray-800 text-white flex flex-col justify-center items-center text-center">
+        <i class="fas fa-quote-left text-5xl text-blue-400 opacity-50 absolute top-8 left-8"></i>
+        <h3 class="text-2xl md:text-3xl font-bold leading-snug">跟着蜜蜂找蜂蜜，<br>跟着苍蝇找厕所。</h3>
+        <p class="sub-text-en mt-4 text-gray-400">NEVER BE THE ONE WHO DRIFTS WITH THE CURRENT</p>
+    </motion.div>
+
+    <!-- Item 8: The Core Fear -->
+    <motion.div class="bento-item item-8 flex-row items-center justify-between">
+        <div>
+            <h3 class="font-bold text-xl text-red-500">真正的可怕</h3>
+            <p class="text-gray-600">不是混乱，而是<br>所有人都被拖入<br>低水平内耗。</p>
+        </div>
+        <i class="fas fa-sync-alt fa-spin text-7xl text-red-300"></i>
+    </motion.div>
+
+    <!-- Item 9: Final Thought -->
+    <motion.div class="bento-item item-9 bg-blue-500 text-white flex-col justify-center items-center text-center">
+        <h3 class="text-2xl font-bold">真正牛的人，是在坏环境中稳定节奏</h3>
+        <p class="mt-2 opacity-80">在好机会来临时，做到干净利落。</p>
+    </motion.div>
+
+    <!-- Item 9: Final Thought -->
+    <motion.div class="bento-item item-8 flex-row items-center justify-between">
+        <h3 class="text-2xl font-bold">工作最怕该干的不干，不该干的全接，因为这个他不是负责，而是你在帮别人收拾烂摊子。 </h3>
+        <p class="mt-2 opacity-80">草台班子里面最吃亏的是什么？从来不是能力差的人，而是那个总想把它变好的人。</p>
+    </motion.div>
+
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const { motion } = Motion;
+
+        document.querySelectorAll('motion\\.div').forEach(element => {
+            // This is a simplified approach for demonstration.
+            // In a real app, you'd use a library like React or Vue with Framer Motion.
+            // Here, we just add a class to trigger a CSS animation when it comes into view.
+
+            // Let's use Intersection Observer for the scroll effect
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(40px)';
+            element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(element);
+        });
+    });
+</script>
+
+</body>
+</html>

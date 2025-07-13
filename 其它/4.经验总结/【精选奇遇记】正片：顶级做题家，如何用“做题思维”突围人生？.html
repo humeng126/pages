@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抖音精选奇遇记 | 职场智慧与未来规划</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Framer Motion via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10/dist/framer-motion.umd.min.js"></script>
+    
+    <!-- Font Awesome via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f0f2f5;
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+
+        .bento-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(1, 1fr);
+            padding: 1.5rem;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        @media (min-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .bento-item {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 2rem;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(200, 200, 200, 0.2);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        .col-span-1 { grid-column: span 1 / span 1; }
+        .col-span-2 { grid-column: span 2 / span 2; }
+        .col-span-3 { grid-column: span 3 / span 3; }
+        .col-span-4 { grid-column: span 4 / span 4; }
+
+        @media (max-width: 767px) {
+            .col-span-1, .col-span-2, .col-span-3, .col-span-4 {
+                grid-column: span 1 / span 1;
+            }
+        }
+        
+        .highlight-gradient-blue {
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0));
+        }
+        
+        .highlight-gradient-green {
+            background: linear-gradient(45deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0));
+        }
+
+        .highlight-gradient-purple {
+            background: linear-gradient(45deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0));
+        }
+        
+        .large-text {
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 900;
+            line-height: 1;
+            position: absolute;
+            right: 1.5rem;
+            bottom: 0.5rem;
+            opacity: 0.08;
+            color: #a0aec0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .content-container h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-container p {
+            font-size: 1rem;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+        
+        .content-container .eng-sub {
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: #718096;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .icon-wrapper {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #4299e1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div id="app" class="w-full">
+        <header class="text-center py-16 px-4">
+            <motion.div initial="{ opacity: 0, y: 20 }" animate="{ opacity: 1, y: 0 }" transition="{ duration: 0.8 }">
+                <h1 class="text-5xl md:text-7xl font-black text-gray-800 tracking-tighter">职场奇遇记</h1>
+                <p class="text-lg md:text-xl text-gray-500 mt-4 uppercase tracking-widest">Navigating Career & Future</p>
+            </motion.div>
+        </header>
+
+        <main class="bento-grid">
+            
+            <!-- 小镇做题家 -->
+            <motion.div class="bento-item col-span-1 md:col-span-2" initial="{ opacity: 0, scale: 0.9 }" whileInView="{ opacity: 1, scale: 1 }" viewport="{ once: true, amount: 0.5 }" transition="{ duration: 0.6 }">
+                <div class="content-container relative z-10">
+                    <p class="eng-sub">THE IDENTITY</p>
+                    <h2 class="!text-5xl md:!text-6xl">小镇做题家</h2>
+                    <p class="mt-4">两位嘉宾都曾用“小镇做题家”自谦，这背后是小镇青年通过高考改变命运的骄傲与向上拼搏的精神内核。从家乡来到北上广，巨大的城市反差带来了冲击，也点燃了奋斗的野心。</p>
+                </div>
+                <div class="large-text">北大</div>
+            </motion.div>
+
+            <!-- 天赋论 -->
+            <motion.div class="bento-item col-span-1 md:col-span-2 highlight-gradient-blue" initial="{ opacity: 0, scale: 0.9 }" whileInView="{ opacity: 1, scale: 1 }" viewport="{ once: true, amount: 0.5 }" transition="{ duration: 0.6, delay: 0.1 }">
+                <div class="content-container relative z-10">
+                    <p class="eng-sub">THE TALENT</p>
+                    <h2>天赋论</h2>
+                    <p class="mt-4">“陆家嘴98%的从业者没有天赋。” 戴老板坦言自己投资上的成功源于赛道和时机，而真正的天赋在于写作。他认为，当老天爷给你递来一艘船时，要懂得抓住机会，并“知止而后有定”，在一个领域深耕。</p>
+                </div>
+                <div class="large-text -bottom-4">98%</div>
+            </motion.div>
+            
+            <!-- 两种路径 -->
+            <motion.div class="bento-item col-span-1 md:col-span-4" initial="{ opacity: 0, y: 40 }" whileInView="{ opacity: 1, y: 0 }" viewport="{ once: true, amount: 0.5 }" transition="{ duration: 0.7 }">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
+                    <div class="content-container">
+                        <p class="eng-sub">TWO PATHS</p>
+                        <h2 class="!text-4xl">两种路径</h2>
+                        <p class="mt-4">相似的起点，迥异的旅程。</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6 text-center">
+                        <div>
+                            <div class="icon-wrapper text-purple-500"><i class="fas fa-random"></i></div>
+                            <h3 class="text-xl font-bold">戴老板: 不断折腾</h3>
+                            <p class="text-gray-600">从造纸到电信，再到金融和媒体，通过7-8次“折腾”来修正认知偏差，不断跃升至更大的平台。</p>
+                        </div>
+                        <div>
+                            <div class="icon-wrapper text-green-500"><i class="fas fa-long-arrow-alt-right"></i></div>
+                            <h3 class="text-xl font-bold">大轩哥: 专注坚守</h3>
+                            <p class="text-gray-600">法学院毕业后深耕法律行业，在中国顶级的平台上一路前行，将“手艺”磨练到极致。</p>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+            
+            <!-- 做题思维 -->
+            <motion.div class="bento-item col-span-1 md:col-span-4 highlight-gradient-green" initial="{ opacity: 0, y: 40 }" whileInView="{ opacity: 1, y: 0 }" viewport="{ once: true, amount: 0.4 }" transition="{ duration: 0.7 }">
+                 <div class="content-container relative z-10">
+                    <p class="eng-sub">THE METHODOLOGY</p>
+                    <h2 class="!text-4xl">做题思维的力量</h2>
+                    <p class="mt-4 mb-8">“做题思维”并非贬义词，而是一套强大的解决问题方法论，能应对生活中70-80%的任务。世界可以被看作一套卷子。</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                        <div class="p-4 bg-white/50 rounded-2xl">
+                           <div class="text-3xl font-bold text-green-600 mb-2"><i class="fas fa-undo"></i></div>
+                           <h4 class="text-lg font-bold">倒推</h4>
+                           <p class="text-sm text-gray-600">从最终目标倒推计划</p>
+                        </div>
+                        <div class="p-4 bg-white/50 rounded-2xl">
+                           <div class="text-3xl font-bold text-green-600 mb-2"><i class="fas fa-calculator"></i></div>
+                           <h4 class="text-lg font-bold">量化</h4>
+                           <p class="text-sm text-gray-600">将任务拆解为可衡量指标</p>
+                        </div>
+                        <div class="p-4 bg-white/50 rounded-2xl">
+                           <div class="text-3xl font-bold text-green-600 mb-2"><i class="fas fa-sync-alt"></i></div>
+                           <h4 class="text-lg font-bold">重复</h4>
+                           <p class="text-sm text-gray-600">刻意练习，持续迭代</p>
+                        </div>
+                        <div class="p-4 bg-white/50 rounded-2xl">
+                           <div class="text-3xl font-bold text-green-600 mb-2"><i class="fas fa-fist-raised"></i></div>
+                           <h4 class="text-lg font-bold">坚信</h4>
+                           <p class="text-sm text-gray-600">相信付出必有回报</p>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+
+            <!-- 时代变迁 -->
+            <motion.div class="bento-item col-span-1 md:col-span-2" initial="{ opacity: 0, scale: 0.9 }" whileInView="{ opacity: 1, scale: 1 }" viewport="{ once: true, amount: 0.5 }" transition="{ duration: 0.6 }">
+                <div class="content-container relative z-10">
+                    <p class="eng-sub">THE ERA SHIFT</p>
+                    <h2>时代的变迁</h2>
+                    <p class="mt-4">相比十年前，行业风口的机会少了约70%。宏大叙事的影响在减弱，但“时代的一滴水，落到个人头上就是一片湖”。个体的努力和选择依旧重要。同时，社会保障的进步也在提高年轻人的生活下限。</p>
+                </div>
+                <div class="large-text -bottom-2 -right-2"><i class="fas fa-chart-line"></i></div>
+            </motion.div>
+
+            <!-- 新媒体转向 -->
+            <motion.div class="bento-item col-span-1 md:col-span-2 highlight-gradient-purple" initial="{ opacity: 0, scale: 0.9 }" whileInView="{ opacity: 1, scale: 1 }" viewport="{ once: true, amount: 0.5 }" transition="{ duration: 0.6, delay: 0.1 }">
+                 <div class="content-container relative z-10">
+                    <p class="eng-sub">THE NEW MEDIA</p>
+                    <h2>转向视频时代</h2>
+                    <p class="mt-4">从图文到视频，是媒介的升维。在AI时代，稀缺的是“活人感”。亲自出镜，打造个人IP，是与观众建立信任的更高级方式。这要求创作者不仅要有“脑瓜子”和“笔杆子”，更需要“嘴皮子、脸蛋子、身段子”。</p>
+                </div>
+                <div class="large-text"><i class="fab fa-youtube"></i></div>
+            </motion.div>
+            
+        </main>
+
+        <footer class="text-center py-12 text-gray-500">
+            <p>内容源自「抖音精选奇遇记」播客节目</p>
+            <p class="text-sm mt-2">Dynamic Webpage by Gemini</p>
+        </footer>
+    </div>
+
+    <script>
+        // A simple script to use framer-motion attributes in HTML
+        // In a real project, you would use React, but this simulates the effect for this static page.
+        document.addEventListener('DOMContentLoaded', () => {
+            const motionElements = document.querySelectorAll('[initial]');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const initial = JSON.parse(element.getAttribute('initial').replace(/'/g, '"'));
+                        const animate = JSON.parse(element.getAttribute('whileInView').replace(/'/g, '"'));
+                        const transition = JSON.parse(element.getAttribute('transition').replace(/'/g, '"'));
+
+                        // Simple animation simulation
+                        Object.keys(initial).forEach(key => {
+                            element.style[key] = initial[key];
+                        });
+                        element.style.transition = `all ${transition.duration || 0.5}s ease ${transition.delay || 0}s`;
+
+                        setTimeout(() => {
+                           Object.keys(animate).forEach(key => {
+                                element.style[key] = animate[key];
+                            });
+                        }, 50);
+
+                        if(element.getAttribute('viewport') && JSON.parse(element.getAttribute('viewport')).once) {
+                            observer.unobserve(element);
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.2 // trigger when 20% of the element is visible
+            });
+
+            motionElements.forEach(el => {
+                const initial = JSON.parse(el.getAttribute('initial').replace(/'/g, '"'));
+                 Object.keys(initial).forEach(key => {
+                     if(key === 'y' || key === 'x'){
+                        el.style.transform = `${key}(${initial[key]}px)`;
+                     } else {
+                        el.style[key] = initial[key];
+                     }
+                 });
+                observer.observe(el);
+            });
+            
+             // For non-React Framer Motion, we'll manually implement the logic
+             // This is a simplified version of what Framer Motion does.
+            const motionDivs = document.querySelectorAll('motion\\.div');
+
+            const scrollObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const initial = JSON.parse(el.getAttribute('initial').replace(/(\w+)/g, '"$1"').replace(/(\d+)/g, '$1'));
+                        const animate = JSON.parse(el.getAttribute('animate') || el.getAttribute('whileInView').replace(/(\w+)/g, '"$1"').replace(/(\d+)/g, '$1'));
+                        const transition = JSON.parse(el.getAttribute('transition').replace(/(\w+)/g, '"$1"').replace(/(\d+)/g, '$1'));
+                        
+                        let transformValue = '';
+                        if (animate.y === 0) transformValue += ' translateY(0px)';
+                        if (animate.x === 0) transformValue += ' translateX(0px)';
+                        if (animate.scale === 1) transformValue += ' scale(1)';
+
+                        el.style.transition = `opacity ${transition.duration}s ease, transform ${transition.duration}s ease`;
+                        el.style.opacity = animate.opacity;
+                        el.style.transform = transformValue;
+
+                        const viewportOptions = el.getAttribute('viewport');
+                        if (viewportOptions && JSON.parse(viewportOptions.replace(/'/g, '"')).once) {
+                            observer.unobserve(el);
+                        }
+                    }
+                });
+            }, { threshold: 0.4 });
+
+            motionDivs.forEach(div => {
+                const initial = JSON.parse(div.getAttribute('initial').replace(/(\w+)/g, '"$1"').replace(/(\d+)/g, '$1'));
+                
+                div.style.opacity = initial.opacity;
+                let transformValue = '';
+                if(initial.y) transformValue += ` translateY(${initial.y}px)`;
+                if(initial.x) transformValue += ` translateX(${initial.x}px)`;
+                if(initial.scale) transformValue += ` scale(${initial.scale})`;
+                
+                div.style.transform = transformValue;
+
+                scrollObserver.observe(div);
+            });
+
+        });
+    </script>
+
+</body>
+</html>
