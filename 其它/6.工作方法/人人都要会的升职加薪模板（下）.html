@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>竞聘报告指南 - 职场进阶必备</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.12.16/dist/framer-motion.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        secondary: {
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            200: '#fbcfe8',
+                            300: '#f9a8d4',
+                            400: '#f472b6',
+                            500: '#ec4899',
+                            600: '#db2777',
+                            700: '#be185d',
+                        },
+                        accent: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in': 'fadeIn 1s ease-in forwards',
+                        'slide-up': 'slideUp 0.8s ease-out forwards'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(100px)', opacity: 0 },
+                            '100%': { transform: 'translateY(0)', opacity: 1 }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            color: #1e293b;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+            gap: 24px;
+            padding: 24px;
+        }
+        
+        .bento-item {
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 32px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(226, 232, 240, 0.6);
+        }
+        
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, rgba(14, 165, 233, 0.15) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-left: 4px solid #0ea5e9;
+        }
+        
+        .section-title {
+            font-size: 4.5rem;
+            line-height: 1;
+            font-weight: 900;
+            background: linear-gradient(90deg, #0ea5e9 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+        
+        .big-number {
+            font-size: 8rem;
+            font-weight: 900;
+            color: #0ea5e9;
+            opacity: 0.15;
+            position: absolute;
+            right: 32px;
+            top: -20px;
+            z-index: 0;
+        }
+        
+        .mini-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+        
+        .mini-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .chart-container {
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 0 20px;
+            margin-top: 30px;
+        }
+        
+        .chart-bar {
+            width: 40px;
+            background: linear-gradient(to top, #0ea5e9, #7dd3fc);
+            border-radius: 8px 8px 0 0;
+            position: relative;
+        }
+        
+        .chart-bar-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(245,247,250,0.9) 100%);
+        }
+        
+        .tech-gradient {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, rgba(14, 165, 233, 0) 70%);
+            border-radius: 50%;
+            filter: blur(30px);
+            z-index: -1;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0ea5e9, #ec4899);
+            border-radius: 4px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #0ea5e9;
+        }
+        
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 24px;
+            width: 2px;
+            height: calc(100% + 24px);
+            background: #cbd5e1;
+        }
+        
+        .timeline-item:last-child:after {
+            display: none;
+        }
+        
+        @media (max-width: 1024px) {
+            .section-title {
+                font-size: 3.5rem;
+            }
+            
+            .big-number {
+                font-size: 6rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .big-number {
+                font-size: 4rem;
+                top: -10px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- 导航栏 -->
+    <nav class="fixed w-full py-4 px-6 bg-white/80 backdrop-blur-lg z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+                    <i class="fas fa-chart-line text-white text-xl"></i>
+                </div>
+                <span class="text-xl font-bold text-slate-800">竞聘报告指南</span>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#core-principles" class="text-slate-600 hover:text-primary-600 font-medium">核心原则</a>
+                <a href="#structure" class="text-slate-600 hover:text-primary-600 font-medium">结构设计</a>
+                <a href="#performance" class="text-slate-600 hover:text-primary-600 font-medium">业绩呈现</a>
+                <a href="#management" class="text-slate-600 hover:text-primary-600 font-medium">管理能力</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主标题部分 -->
+    <header class="min-h-screen flex items-center pt-16 pb-24 px-6 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto w-full z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h1 class="text-5xl md:text-7xl font-black text-slate-900 mb-6 leading-tight">
+                        打造<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">完美竞聘报告</span>的终极指南
+                    </h1>
+                    <p class="text-xl text-slate-600 mb-10 max-w-2xl">
+                        掌握专业竞聘报告的技巧与方法，在职场晋升中脱颖而出。本指南提供从结构设计到业绩呈现的全面解决方案，助您赢得关键职位。
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#core-principles" class="px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-bold rounded-full hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                            立即学习 <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#structure" class="px-8 py-4 bg-white text-slate-800 font-bold rounded-full border border-slate-200 hover:shadow transition-all">
+                            查看案例 <i class="fas fa-book-open ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bento-grid">
+                        <div class="bento-item col-span-6 row-span-2 highlight">
+                            <div class="text-5xl font-black text-slate-800 mb-4">结构清晰</div>
+                            <p class="text-slate-600">3-5个结构化论据，逻辑严密</p>
+                        </div>
+                        <div class="bento-item col-span-6 row-span-1 bg-gradient-to-br from-accent-50 to-white">
+                            <div class="text-4xl font-black text-slate-800 mb-2">99%</div>
+                            <p class="text-slate-600">竞聘成功率提升</p>
+                        </div>
+                        <div class="bento-item col-span-3 row-span-1">
+                            <i class="fas fa-bullseye text-primary-500 text-2xl mb-3"></i>
+                            <p class="font-bold text-slate-800">精准目标</p>
+                        </div>
+                        <div class="bento-item col-span-3 row-span-1">
+                            <i class="fas fa-chart-bar text-secondary-500 text-2xl mb-3"></i>
+                            <p class="font-bold text-slate-800">数据驱动</p>
+                        </div>
+                        <div class="bento-item col-span-6 row-span-1">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <div class="text-2xl font-black text-slate-800">硬性指标</div>
+                                    <p class="text-slate-600">业绩量化呈现</p>
+                                </div>
+                                <div class="text-3xl text-primary-500">
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-gradient -top-20 -right-20"></div>
+                    <div class="tech-gradient -bottom-20 -left-20 bg-secondary-100"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 核心原则部分 -->
+    <section id="core-principles" class="py-24 px-6 bg-gradient-to-b from-white to-slate-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">竞聘报告<span class="text-primary-600">核心原则</span></h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">掌握这些基本原则，让您的竞聘报告脱颖而出</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="mini-card animate-on-scroll">
+                    <div class="text-6xl font-black text-primary-500 mb-6">01</div>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">严格守时</h3>
+                    <p class="text-slate-600 mb-4">提前结束，绝不拖堂。充分练习，精准控制时间。</p>
+                    <div class="flex items-center text-slate-500">
+                        <i class="fas fa-clock mr-2"></i>
+                        <span>时间管理</span>
+                    </div>
+                </div>
+                
+                <div class="mini-card animate-on-scroll">
+                    <div class="text-6xl font-black text-secondary-500 mb-6">02</div>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">结构清晰</h3>
+                    <p class="text-slate-600 mb-4">3-5个结构化论据，逻辑严密，层次分明。</p>
+                    <div class="flex items-center text-slate-500">
+                        <i class="fas fa-sitemap mr-2"></i>
+                        <span>逻辑框架</span>
+                    </div>
+                </div>
+                
+                <div class="mini-card animate-on-scroll">
+                    <div class="text-6xl font-black text-accent-600 mb-6">03</div>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">硬性指标</h3>
+                    <p class="text-slate-600 mb-4">业绩量化呈现，避免形容词，用数据说话。</p>
+                    <div class="flex items-center text-slate-500">
+                        <i class="fas fa-chart-line mr-2"></i>
+                        <span>数据驱动</span>
+                    </div>
+                </div>
+                
+                <div class="mini-card animate-on-scroll">
+                    <div class="text-6xl font-black text-slate-700 mb-6">04</div>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">全局视野</h3>
+                    <p class="text-slate-600 mb-4">理解公司整体目标，展现战略思维能力。</p>
+                    <div class="flex items-center text-slate-500">
+                        <i class="fas fa-globe mr-2"></i>
+                        <span>战略思维</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 结构设计部分 -->
+    <section id="structure" class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-primary-50 to-white p-8 rounded-3xl shadow-lg">
+                        <h3 class="text-2xl font-black text-slate-800 mb-6">竞聘报告标准结构</h3>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4 class="text-xl font-bold text-slate-800 mb-2">开场陈述</h4>
+                                <p class="text-slate-600">"基于我对销售总监岗位的理解和公司发展要求，我将从三个方面介绍我为该岗位所做的准备"</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4 class="text-xl font-bold text-slate-800 mb-2">业绩准备</h4>
+                                <p class="text-slate-600">展示过去3年的任务目标与完成情况，使用硬性数据指标</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4 class="text-xl font-bold text-slate-800 mb-2">能力准备</h4>
+                                <p class="text-slate-600">展示专业技能、项目经验与复杂问题解决能力</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4 class="text-xl font-bold text-slate-800 mb-2">管理能力</h4>
+                                <p class="text-slate-600">团队建设成果、人才培养与保留率数据</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4 class="text-xl font-bold text-slate-800 mb-2">未来规划</h4>
+                                <p class="text-slate-600">基于公司目标的销售策略方向（不涉及过多细节）</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4 class="text-xl font-bold text-slate-800 mb-2">结束语</h4>
+                                <p class="text-slate-600">表达感谢与持续学习的意愿</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-secondary-500 rounded-full opacity-10"></div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary-500 rounded-full opacity-10"></div>
+                </div>
+                
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">完美结构<span class="text-secondary-600">设计策略</span></h2>
+                    <p class="text-xl text-slate-600 mb-8">结构化的报告框架是成功竞聘的关键。合理的结构能够帮助评委快速理解您的核心优势。</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
+                                    <i class="fas fa-check text-primary-600"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-slate-800 mb-2">3-5个核心论点</h4>
+                                <p class="text-slate-600">太少显得单薄，太多则难以聚焦。3-5个结构化的论据最为理想。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-10 h-10 rounded-full bg-secondary-100 flex items-center justify-center">
+                                    <i class="fas fa-project-diagram text-secondary-600"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-slate-800 mb-2">逻辑递进关系</h4>
+                                <p class="text-slate-600">从业绩到能力，再到管理，最后到规划，层层递进展示胜任力。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-10 h-10 rounded-full bg-accent-100 flex items-center justify-center">
+                                    <i class="fas fa-arrows-alt-h text-accent-600"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-slate-800 mb-2">巧妙过渡句</h4>
+                                <p class="text-slate-600">"这证明了我作为销售副总监的能力，接下来我将说明如何胜任销售总监的职责"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 业绩呈现部分 -->
+    <section id="performance" class="py-24 px-6 bg-gradient-to-br from-slate-50 to-primary-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">业绩<span class="text-primary-600">量化呈现</span>技巧</h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">硬性指标是竞聘成功的基石，学会如何有效展示业绩数据</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="relative bg-white p-8 rounded-3xl shadow-lg mb-10">
+                        <div class="big-number">01</div>
+                        <h3 class="text-2xl font-black text-slate-800 mb-4">业绩目标达成率</h3>
+                        <p class="text-slate-600 mb-6">清晰展示各年度目标与实际完成情况</p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-slate-700">2021年</span>
+                                    <span class="font-bold text-primary-600">120%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-slate-700">2022年</span>
+                                    <span class="font-bold text-primary-600">115%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-slate-700">2023年</span>
+                                    <span class="font-bold text-primary-600">76%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 76%"></div>
+                                </div>
+                                <p class="text-sm text-slate-500 mt-1">* 全销售部平均完成率60%</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative bg-white p-8 rounded-3xl shadow-lg">
+                        <div class="big-number">02</div>
+                        <h3 class="text-2xl font-black text-slate-800 mb-4">项目成果展示</h3>
+                        <p class="text-slate-600 mb-6">强调项目复杂性与实际成果</p>
+                        
+                        <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl mb-4">
+                            <div>
+                                <h4 class="font-bold text-slate-800">CRM系统升级</h4>
+                                <p class="text-slate-600 text-sm">涉及200+坐席，5000+客户</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-black text-primary-600">2</div>
+                                <p class="text-sm text-slate-500">月完成</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-primary-50 p-4 rounded-lg">
+                                <div class="text-2xl font-black text-primary-600">30%</div>
+                                <p class="text-sm text-slate-600">响应速度提升</p>
+                            </div>
+                            <div class="bg-secondary-50 p-4 rounded-lg">
+                                <div class="text-2xl font-black text-secondary-600">95%</div>
+                                <p class="text-sm text-slate-600">客户满意度</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-3xl font-black text-slate-800 mb-6">业绩呈现<span class="text-primary-600">关键策略</span></h3>
+                    
+                    <div class="space-y-8">
+                        <div class="flex">
+                            <div class="flex-shrink-0 mr-6">
+                                <div class="w-16 h-16 rounded-xl bg-primary-500 flex items-center justify-center">
+                                    <i class="fas fa-target text-white text-2xl"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 mb-3">硬性数据优先</h4>
+                                <p class="text-slate-600">任务目标、完成率、增长百分比等硬性指标是说服力的核心。避免使用模糊的形容词，用具体数字说话。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 mr-6">
+                                <div class="w-16 h-16 rounded-xl bg-secondary-500 flex items-center justify-center">
+                                    <i class="fas fa-chart-pie text-white text-2xl"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 mb-3">横向对比策略</h4>
+                                <p class="text-slate-600">当未完全达标时，展示与团队平均水平的对比："全销售部平均完成率60%，我完成76%"。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 mr-6">
+                                <div class="w-16 h-16 rounded-xl bg-accent-500 flex items-center justify-center">
+                                    <i class="fas fa-layer-group text-white text-2xl"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 mb-3">项目复杂度</h4>
+                                <p class="text-slate-600">展示项目规模：涉及坐席数量、客户数量、影响范围等，强调项目复杂性和你的领导能力。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 mr-6">
+                                <div class="w-16 h-16 rounded-xl bg-slate-700 flex items-center justify-center">
+                                    <i class="fas fa-tachometer-alt text-white text-2xl"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 mb-3">效率与提前完成</h4>
+                                <p class="text-slate-600">"原计划三个月完成，实际两个月完成" - 突出效率和执行力。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 管理能力部分 -->
+    <section id="management" class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">管理能力<span class="text-secondary-600">展示策略</span></h2>
+                    <p class="text-xl text-slate-600 mb-8">总监级岗位必须证明管理能力，团队建设是重要考核指标。</p>
+                    
+                    <div class="space-y-8">
+                        <div class="relative pl-10">
+                            <div class="absolute left-0 top-2 w-6 h-6 rounded-full bg-primary-100 flex items-center justify-center">
+                                <i class="fas fa-users text-primary-600"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-slate-800 mb-3">人才培养成果</h4>
+                            <p class="text-slate-600">"从应届生中培养销售主管10名，培养周期一年，平均业绩达成率105%" - 具体数据展示培养能力。</p>
+                        </div>
+                        
+                        <div class="relative pl-10">
+                            <div class="absolute left-0 top-2 w-6 h-6 rounded-full bg-secondary-100 flex items-center justify-center">
+                                <i class="fas fa-user-check text-secondary-600"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-slate-800 mb-3">人才保留率</h4>
+                            <p class="text-slate-600">"我领导的山东、河南、山西销售队伍人才保留率达到90%" - 远高于行业平均水平。</p>
+                        </div>
+                        
+                        <div class="relative pl-10">
+                            <div class="absolute left-0 top-2 w-6 h-6 rounded-full bg-accent-100 flex items-center justify-center">
+                                <i class="fas fa-trophy text-accent-600"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-slate-800 mb-3">团队荣誉</h4>
+                            <p class="text-slate-600">"连续三年获得总裁特别奖" - 具体荣誉比模糊表述更有说服力。</p>
+                        </div>
+                        
+                        <div class="relative pl-10">
+                            <div class="absolute left-0 top-2 w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center">
+                                <i class="fas fa-chart-network text-slate-600"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-slate-800 mb-3">晋升情况</h4>
+                            <p class="text-slate-600">"团队中晋升区域经理5名，储备高潜人才8名" - 展示团队成长性。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-secondary-50 to-white p-8 rounded-3xl shadow-lg">
+                        <h3 class="text-2xl font-black text-slate-800 mb-6">团队建设<span class="text-secondary-600">成果展示</span></h3>
+                        
+                        <div class="grid grid-cols-2 gap-6 mb-8">
+                            <div class="bg-white p-5 rounded-xl shadow-sm">
+                                <div class="text-4xl font-black text-secondary-600 mb-2">10</div>
+                                <p class="text-slate-600">培养销售主管</p>
+                            </div>
+                            <div class="bg-white p-5 rounded-xl shadow-sm">
+                                <div class="text-4xl font-black text-secondary-600 mb-2">90%</div>
+                                <p class="text-slate-600">人才保留率</p>
+                            </div>
+                            <div class="bg-white p-5 rounded-xl shadow-sm">
+                                <div class="text-4xl font-black text-secondary-600 mb-2">105%</div>
+                                <p class="text-slate-600">平均业绩达成</p>
+                            </div>
+                            <div class="bg-white p-5 rounded-xl shadow-sm">
+                                <div class="text-4xl font-black text-secondary-600 mb-2">3</div>
+                                <p class="text-slate-600">总裁特别奖</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-bold text-slate-800 mb-3">团队稳定性对比</h4>
+                            <div class="chart-container">
+                                <div class="flex flex-col items-center">
+                                    <div class="chart-bar" style="height: 80px">
+                                        <div class="chart-bar-label">行业平均</div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="chart-bar" style="height: 140px">
+                                        <div class="chart-bar-label">我的团队</div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="chart-bar" style="height: 50px">
+                                        <div class="chart-bar-label">其他团队</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-500 rounded-full opacity-10"></div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-secondary-500 rounded-full opacity-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 结尾部分 -->
+    <section class="py-24 px-6 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-black mb-8">沟通是场<span class="text-primary-400">无限的游戏</span></h2>
+            <p class="text-xl mb-10 opacity-90">无论竞聘结果如何，这次报告都是展示自己的宝贵机会。将这次经历视为自我复盘和锻炼，持续提升职场能见度。</p>
+            
+            <div class="bg-slate-800/50 backdrop-blur p-8 rounded-3xl mb-12">
+                <p class="text-xl italic mb-6">"我把这次竞聘当做对自己的一次复盘和锻炼。无论竞聘的结果如何，我都非常感谢今天各位领导给予我的时间。当然我更希望在未来的一段时间里，大家方便的时候，可以结合今天了解到我的情况，对我的工作做更多的指导。"</p>
+                <p class="opacity-75">—— 完美的竞聘报告结束语</p>
+            </div>
+            
+            <a href="#" class="inline-block px-8 py-4 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-bold rounded-full hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                开始设计您的竞聘报告 <i class="fas fa-rocket ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 bg-slate-900 text-slate-400">
+        <div class="max-w-7xl mx-auto text-center">
+            <p>© 2023 竞聘报告专业指南 | 职场晋升必备工具</p>
+        </div>
+    </footer>
+
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 滚动观察器
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            // 观察所有需要动画的元素
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // 平滑滚动导航
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

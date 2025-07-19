@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>竞聘报告优化指南 - PE模型解析</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5e72e4',
+                        secondary: '#11cdef',
+                        accent: '#2dce89',
+                        light: '#f7fafc',
+                        dark: '#32325d'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edfb 100%);
+            color: #32325d;
+            overflow-x: hidden;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 300px;
+            gap: 24px;
+            padding: 24px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .grid-item {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(50, 50, 93, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+        }
+        
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+        }
+        
+        .big-number {
+            font-size: 6rem;
+            font-weight: 800;
+            line-height: 1;
+            color: #5e72e4;
+            opacity: 0.2;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            z-index: 0;
+        }
+        
+        .highlight-bg {
+            background: linear-gradient(90deg, rgba(94, 114, 228, 0.1) 0%, rgba(94, 114, 228, 0) 100%);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .pe-model-card {
+            background: linear-gradient(135deg, rgba(94, 114, 228, 0.1) 0%, rgba(94, 114, 228, 0.05) 100%);
+            border-radius: 16px;
+            padding: 20px;
+            height: 100%;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-left: 10px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            height: calc(100% - 20px);
+            width: 2px;
+            background: linear-gradient(to bottom, #5e72e4, #11cdef);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #5e72e4;
+        }
+        
+        .visual-element {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .radar-chart-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .big-number {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-12">
+    <div class="max-w-7xl mx-auto px-4">
+        <header class="text-center mb-16 fade-in">
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 text-dark">竞聘报告优化指南</h1>
+            <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">基于PE模型提升你的晋升成功率</p>
+            <div class="mt-8">
+                <div class="inline-block px-6 py-3 bg-primary text-white rounded-full font-medium shadow-lg">
+                    Performance · Esteem · Visibility
+                </div>
+            </div>
+        </header>
+        
+        <!-- PE模型介绍 -->
+        <section class="mb-24 fade-in">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="md:w-1/2">
+                    <h2 class="section-title">晋升的核心模型：<br><span class="text-primary">PE模型解析</span></h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        管理学中决定晋升的三大关键因素：
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 mr-4">
+                                <span class="text-2xl font-bold">P</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Performance · 业绩表现</h3>
+                                <p class="text-gray-600">基础门槛，没有出色的业绩支撑，晋升无从谈起</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 mr-4">
+                                <span class="text-2xl font-bold">E</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Esteem · 声誉评价</h3>
+                                <p class="text-gray-600">他人对你的评价，尤其是上级和同事的认可</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-accent text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 mr-4">
+                                <span class="text-2xl font-bold">V</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Visibility · 能见度</h3>
+                                <p class="text-gray-600">领导和领导的领导是否认识你、知道你、经常听到你</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 relative">
+                    <div class="bg-white rounded-2xl p-8 shadow-xl">
+                        <div class="radar-chart-container">
+                            <canvas id="peRadarChart"></canvas>
+                        </div>
+                        <div class="mt-6 text-center">
+                            <p class="text-gray-600">成功的竞聘报告需要平衡展示这三个维度的优势</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 封面设计要点 -->
+        <section class="mb-24 fade-in">
+            <div class="text-center mb-16">
+                <h2 class="section-title inline-block">封面设计<span class="text-primary">关键原则</span></h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">第一印象决定了评委对整份报告的初始态度</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-red-200">
+                    <div class="text-red-500 text-4xl mb-4 text-center">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-4 text-red-500">错误做法</h3>
+                    <ul class="space-y-4 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-400 mt-1 mr-3"></i>
+                            <span>使用个人艺术照或过度美颜的照片</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-400 mt-1 mr-3"></i>
+                            <span>没有使用公司标准模板，自行设计</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-400 mt-1 mr-3"></i>
+                            <span>过多个人元素，缺乏专业感</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-400 mt-1 mr-3"></i>
+                            <span>花哨的设计分散评委注意力</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-green-200">
+                    <div class="text-green-500 text-4xl mb-4 text-center">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-4 text-green-500">正确做法</h3>
+                    <ul class="space-y-4 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+                            <span>使用公司标准模板，不要标新立异</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+                            <span>封面只放公司形象图，强化组织认同</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+                            <span>如需照片，使用真实工作场景照片</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+                            <span>保持简洁专业，突出核心信息</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-blue-50 rounded-2xl p-8 border border-blue-200">
+                <div class="flex items-start">
+                    <div class="text-blue-500 text-3xl mr-4">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-700 mb-2">专业建议</h3>
+                        <p class="text-gray-700">
+                            对于销售总监竞聘，封面可展示与客户互动的真实工作场景，例如在洪水灾害中坚持为客户送货，
+                            或与重要客户达成战略合作的照片。这些图像传递了"以客户为中心"、"吃苦耐劳"、"专业可靠"等
+                            文字无法传达的深层信息，同时避免了与本人实际形象的反差。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 个人简介优化 -->
+        <section class="mb-24 fade-in">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-2/5">
+                    <h2 class="section-title">个人简介的<span class="text-primary">优化策略</span></h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        将个人履历转化为组织认同和信任建立工具
+                    </p>
+                    <div class="bg-yellow-50 p-6 rounded-xl border border-yellow-200">
+                        <div class="flex items-start">
+                            <div class="text-yellow-500 text-2xl mr-3">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">避免事项</h4>
+                                <p class="text-gray-700">
+                                    "07年毕业于XX大学，奠定了坚实的理论基础" - 对于毕业多年的职场人，
+                                    强调理论基础反而显得不够成熟和专业。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-3/5">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl">
+                        <h3 class="text-2xl font-bold mb-6 text-center">职业发展时间线</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4 class="font-bold text-lg">2008年</h4>
+                                <p class="text-gray-600">以管培生身份加入公司，负责华东区域市场开拓</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4 class="font-bold text-lg">2009-2011年</h4>
+                                <p class="text-gray-600">成功拓展三个新区域市场，业绩增长120%</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4 class="font-bold text-lg">2012年</h4>
+                                <p class="text-gray-600">晋升区域经理，带领15人团队</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4 class="font-bold text-lg">2015年</h4>
+                                <p class="text-gray-600">调任全国销售副总监，负责标准化体系建设</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4 class="font-bold text-lg">2020年至今</h4>
+                                <p class="text-gray-600">担任销售副总监，团队规模80人，业绩连续三年超额完成</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-white rounded-2xl p-8 shadow-xl">
+                <div class="flex">
+                    <div class="text-purple-500 text-3xl mr-5">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">关键要点</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs mt-2 mr-3 text-purple-500"></i>
+                                <span>详细展示职业发展轨迹，让评委看到你的成长路径</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs mt-2 mr-3 text-purple-500"></i>
+                                <span>强调关键转折点（晋升、调岗、重要项目）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs mt-2 mr-3 text-purple-500"></i>
+                                <span>空降人才应突出带来的独特价值："引入成熟的终端管理体系"</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs mt-2 mr-3 text-purple-500"></i>
+                                <span>避免自我评价，用事实说话，创造"可靠"的专业印象</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 岗位理解 -->
+        <section class="mb-24 fade-in">
+            <div class="text-center mb-16">
+                <h2 class="section-title">岗位理解的<span class="text-primary">双维度表达</span></h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">展示专业认知与个人洞见的完美平衡</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-white rounded-2xl p-8 shadow-xl">
+                    <div class="text-center mb-6">
+                        <div class="inline-block bg-blue-100 text-blue-600 rounded-full p-3">
+                            <i class="fas fa-building text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-4">公司岗位描述</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span>负责制定全国销售战略与年度计划</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span>管理200+人销售团队，达成业绩目标</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span>建立完善销售流程与绩效管理体系</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span>控制销售预算，优化资源配置</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 shadow-xl border border-blue-200">
+                    <div class="text-center mb-6">
+                        <div class="inline-block bg-indigo-100 text-indigo-600 rounded-full p-3">
+                            <i class="fas fa-user-circle text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-4">个人独特理解</h3>
+                    <div class="space-y-6">
+                        <div class="bg-white p-4 rounded-xl">
+                            <h4 class="font-bold text-lg text-indigo-700 mb-2">1. 客户的经营顾问</h4>
+                            <p class="text-gray-700">
+                                客户只认同能帮助他们多挣钱的人，销售总监必须成为客户的经营顾问，
+                                深入理解客户业务，提供增值解决方案。
+                            </p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl">
+                            <h4 class="font-bold text-lg text-indigo-700 mb-2">2. 销售团队的教练</h4>
+                            <p class="text-gray-700">
+                                不仅是管理者，更是教练和导师，帮助团队成员成长，
+                                建立学习型组织，提升整体作战能力。
+                            </p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl">
+                            <h4 class="font-bold text-lg text-indigo-700 mb-2">3. 跨部门的合作伙伴</h4>
+                            <p class="text-gray-700">
+                                主动连接产品、研发部门，及时传递市场声音，
+                                推动产品创新，共同打造有竞争力的解决方案。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-indigo-50 rounded-2xl p-8">
+                <div class="flex items-center">
+                    <div class="text-indigo-600 text-4xl mr-5">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">表达策略</h3>
+                        <p class="text-indigo-800">
+                            从"人"和"合作"的角度阐述对岗位的理解，既展示高度又体现温度，
+                            避免生硬的职能描述，让评委看到你的格局和人际能力。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 证明胜任 -->
+        <section class="mb-24 fade-in">
+            <div class="text-center mb-16">
+                <h2 class="section-title">证明胜任的<span class="text-primary">三维策略</span></h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">基于PE模型构建你的说服力框架</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-b from-blue-50 to-white rounded-2xl p-6 shadow-xl">
+                    <div class="text-center mb-4">
+                        <div class="text-5xl font-bold text-blue-500 mb-2">P</div>
+                        <h3 class="text-xl font-bold">业绩证明</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-chart-line text-blue-400 mt-1 mr-3"></i>
+                            <span>3年业绩复合增长率37%</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-trophy text-blue-400 mt-1 mr-3"></i>
+                            <span>连续8个季度超额完成目标</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-coins text-blue-400 mt-1 mr-3"></i>
+                            <span>客户单价提升65%</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-percentage text-blue-400 mt-1 mr-3"></i>
+                            <span>销售成本降低22%</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gradient-to-b from-green-50 to-white rounded-2xl p-6 shadow-xl">
+                    <div class="text-center mb-4">
+                        <div class="text-5xl font-bold text-green-500 mb-2">E</div>
+                        <h3 class="text-xl font-bold">声誉证明</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-comments text-green-400 mt-1 mr-3"></i>
+                            <span>客户满意度评分9.8/10</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-handshake text-green-400 mt-1 mr-3"></i>
+                            <span>跨部门协作评价TOP 5%</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-users text-green-400 mt-1 mr-3"></i>
+                            <span>团队保留率92%</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-medal text-green-400 mt-1 mr-3"></i>
+                            <span>年度最佳管理者2次</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gradient-to-b from-purple-50 to-white rounded-2xl p-6 shadow-xl">
+                    <div class="text-center mb-4">
+                        <div class="text-5xl font-bold text-purple-500 mb-2">V</div>
+                        <h3 class="text-xl font-bold">能见度证明</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-bullhorn text-purple-400 mt-1 mr-3"></i>
+                            <span>6次高层会议专题汇报</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-microphone text-purple-400 mt-1 mr-3"></i>
+                            <span>3次公司级经验分享</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-book text-purple-400 mt-1 mr-3"></i>
+                            <span>主导编写2本销售手册</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-purple-400 mt-1 mr-3"></i>
+                            <span>企业文化大使</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl p-8 shadow-xl">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/3 text-center mb-6 md:mb-0">
+                        <div class="inline-flex items-center justify-center w-24 h-24 bg-white rounded-full shadow-lg">
+                            <i class="fas fa-lightbulb text-4xl text-yellow-500"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-3">展示策略进阶技巧</h3>
+                        <p class="text-gray-700">
+                            用"情境-行动-结果"(SAR)框架展示关键成就，例如：
+                            "当竞争对手降价30%抢夺市场时(情境)，我组织团队分析客户需求变化，
+                            推出增值服务包(行动)，不仅保住了90%的客户，还提升了客户单价25%(结果)"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 结语 -->
+        <section class="py-16 fade-in">
+            <div class="bg-gradient-to-r from-primary to-secondary rounded-3xl p-10 text-white text-center">
+                <h2 class="text-4xl font-bold mb-6">成功竞聘的核心公式</h2>
+                <div class="text-6xl font-black mb-8">P + E + V = 晋升</div>
+                <p class="text-xl max-w-2xl mx-auto mb-8 opacity-90">
+                    业绩是基础，声誉是保障，能见度是催化剂。三者的有机结合才能创造最大的晋升动能。
+                </p>
+                <div class="inline-block px-8 py-4 bg-white text-primary rounded-full font-bold text-lg shadow-lg">
+                    Make Your Promotion Inevitable
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 雷达图
+            const radarCtx = document.getElementById('peRadarChart').getContext('2d');
+            const radarChart = new Chart(radarCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['业绩表现', '专业能力', '团队领导', '声誉评价', '战略思维', '能见度'],
+                    datasets: [{
+                        label: '竞聘者评估',
+                        data: [9, 8, 8.5, 7.5, 8, 7],
+                        backgroundColor: 'rgba(94, 114, 228, 0.2)',
+                        borderColor: 'rgba(94, 114, 228, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(94, 114, 228, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(94, 114, 228, 1)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(200, 200, 200, 0.3)'
+                            },
+                            grid: {
+                                color: 'rgba(200, 200, 200, 0.3)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 12,
+                                    family: "'Inter', sans-serif"
+                                },
+                                color: '#6b7280'
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+            
+            // 滚动动画
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // 添加视差滚动效果
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                const header = document.querySelector('header');
+                if (header) {
+                    header.style.transform = `translateY(${scrollY * 0.5}px)`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
