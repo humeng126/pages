@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="bg-gray-50 text-gray-800">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>长谈精粹：与自己对话，重塑习惯</title>
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+    <script src="https://kit.fontawesome.com/1b3e735a16.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/framer-motion@11.2.10/dist/framer-motion.umd.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        .gradient-glow {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+            filter: blur(60px);
+            border-radius: 9999px;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem; /* Equivalent to gap-6 */
+        }
+
+        .bento-item {
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 1.5rem; /* rounded-3xl */
+            padding: 2rem; /* p-8 */
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02), 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.03), 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        @media (min-width: 1024px) {
+            .col-span-lg-8 { grid-column: span 8 / span 8; }
+            .col-span-lg-4 { grid-column: span 4 / span 4; }
+            .col-span-lg-3 { grid-column: span 3 / span 3; }
+            .col-span-lg-6 { grid-column: span 6 / span 6; }
+            .col-span-lg-5 { grid-column: span 5 / span 5; }
+            .col-span-lg-7 { grid-column: span 7 / span 7; }
+            .col-span-lg-12 { grid-column: span 12 / span 12; }
+        }
+        
+        .ultra-text {
+            font-weight: 900;
+            letter-spacing: -0.05em;
+        }
+
+        .habit-line {
+            stroke: #fb7185;
+            stroke-width: 2;
+            stroke-opacity: 0.4;
+        }
+        .main-node {
+            fill: url(#nodeGradient);
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+        .sub-node circle {
+            fill: #fb7185;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        .node-text {
+            fill: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .small-text {
+            fill: white;
+            font-size: 10px;
+            text-anchor: middle;
+            font-weight: 500;
+        }
+    </style>
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <div id="app" class="p-6 md:p-12">
+        <main class="max-w-7xl mx-auto">
+            <div class="bento-grid">
+
+                <!-- Title Section -->
+                <div class="bento-item col-span-12 lg:col-span-lg-7 flex flex-col justify-center">
+                    <div class="gradient-glow top-[-20%] left-[-10%] w-96 h-96 bg-blue-300 opacity-20"></div>
+                    <p class="text-lg text-gray-500 mb-2">The Self-Talk Method</p>
+                    <h1 class="text-4xl md:text-6xl ultra-text">与自己对话</h1>
+                    <h2 class="text-2xl md:text-4xl ultra-text text-gray-400">重塑大脑，退出坏习惯</h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl">对话源于笑来老师的一次分享。他无痛戒掉了近40年烟龄，其核心方法论“自言自语” (Self-Talk) ，揭示了我们如何通过简单的语言技巧，劫持潜意识，轻松地退出坏习惯、组建新习惯。</p>
+                </div>
+
+                <!-- Smoking Stats -->
+                <div class="bento-item col-span-12 lg:col-span-lg-5 flex flex-col justify-center items-center text-center">
+                    <div class="gradient-glow bottom-[-30%] right-[-20%] w-80 h-80 bg-orange-300 opacity-25"></div>
+                    <p class="text-lg text-gray-500">A Lifetime Habit</p>
+                    <p class="text-7xl md:text-9xl ultra-text text-orange-500">40万</p>
+                    <p class="text-xl font-bold">根香烟</p>
+                    <p class="text-gray-500 mt-2">近40年烟龄，每天一包烟的重复</p>
+                </div>
+                
+                <!-- The Core Method -->
+                <div class="bento-item col-span-12">
+                    <div class="gradient-glow top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-96 bg-purple-300 opacity-15"></div>
+                    <h3 class="text-2xl font-bold mb-4">无痛戒断的“咒语”三部曲</h3>
+                    <p class="text-sm text-gray-500 mb-6">The Three-Step Mantra</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-6 bg-white/50 rounded-2xl border border-black/5">
+                            <div class="flex items-center text-purple-600 mb-2">
+                                <i class="fas fa-user-check text-2xl mr-3"></i>
+                                <h4 class="text-lg font-bold">1. 自我陈述</h4>
+                            </div>
+                            <p class="text-sm text-gray-500">Identity Statement. 定义“我是谁”。</p>
+                            <p class="mt-3 p-3 bg-purple-50 rounded-lg text-purple-800 font-mono text-sm">"我是一个<span class="font-bold">从来不抽烟</span>的人。"</p>
+                        </div>
+                        <div class="p-6 bg-white/50 rounded-2xl border border-black/5">
+                            <div class="flex items-center text-green-600 mb-2">
+                                <i class="fas fa-lightbulb text-2xl mr-3"></i>
+                                <h4 class="text-lg font-bold">2. 添加理由</h4>
+                            </div>
+                            <p class="text-sm text-gray-500">Give a Reason. 大脑天生寻找因果。</p>
+                            <p class="mt-3 p-3 bg-green-50 rounded-lg text-green-800 font-mono text-sm">"...<span class="font-bold">因为</span>烟很臭。"</p>
+                        </div>
+                        <div class="p-6 bg-white/50 rounded-2xl border border-black/5">
+                            <div class="flex items-center text-red-600 mb-2">
+                                <i class="fas fa-heart-pulse text-2xl mr-3"></i>
+                                <h4 class="text-lg font-bold">3. 情绪标签</h4>
+                            </div>
+                             <p class="text-sm text-gray-500">Add Emotion. 情绪是理智的快捷方式。</p>
+                            <p class="mt-3 p-3 bg-red-50 rounded-lg text-red-800 font-mono text-sm">"...闻到烟味我<span class="font-bold">就不开心</span>。"</p>
+                        </div>
+                    </div>
+
+                    <!-- Self Talk Method Section -->
+                    <!-- Self Talk 核心方法论 -->
+                    <div class="bento-item col-span-12">
+                        <div class="gradient-glow top-0 left-0 w-96 h-96 bg-purple-300 opacity-20"></div>
+                        <h3 class="text-2xl font-bold">Self Talk 核心方法论</h3>
+                        <p class="text-sm text-gray-500 mb-8">Three-Step Method</p>
+
+                        <!-- 方法步骤卡片 -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <!-- 身份声明 -->
+                            <div class="bg-white/50 p-6 rounded-2xl border border-black/5">
+                                <div class="flex items-center text-purple-600 mb-4">
+                                    <i class="fas fa-user-check text-2xl mr-3"></i>
+                                    <h4 class="text-lg font-bold">身份声明</h4>
+                                    <span class="ml-2 text-xs text-gray-500">Step 1</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">使用"我从来都不..."句式定义新身份</p>
+                                <div class="mt-auto p-4 bg-purple-50 rounded-lg">
+                                    <p class="font-mono text-sm text-purple-800">"我是一个从来不抽烟的人"</p>
+                                </div>
+                            </div>
+
+                            <!-- 提供理由 -->
+                            <div class="bg-white/50 p-6 rounded-2xl border border-black/5">
+                                <div class="flex items-center text-blue-600 mb-4">
+                                    <i class="fas fa-lightbulb text-2xl mr-3"></i>
+                                    <h4 class="text-lg font-bold">提供理由</h4>
+                                    <span class="ml-2 text-xs text-gray-500">Step 2</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">大脑天生寻求因果关系，增加说服力</p>
+                                <div class="mt-auto p-4 bg-blue-50 rounded-lg">
+                                    <p class="font-mono text-sm text-blue-800">"因为烟很臭"</p>
+                                </div>
+                            </div>
+
+                            <!-- 情绪标签 -->
+                            <div class="bg-white/50 p-6 rounded-2xl border border-black/5">
+                                <div class="flex items-center text-teal-600 mb-4">
+                                    <i class="fas fa-heart-pulse text-2xl mr-3"></i>
+                                    <h4 class="text-lg font-bold">情绪标签</h4>
+                                    <span class="ml-2 text-xs text-gray-500">Step 3</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">加入情绪元素强化潜意识连接</p>
+                                <div class="mt-auto p-4 bg-teal-50 rounded-lg">
+                                    <p class="font-mono text-sm text-teal-800">"让我感到不舒服"</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 技术要领 -->
+                        <div class="mt-8 p-6 bg-gradient-to-r from-purple-500 to-blue-600 rounded-2xl text-white">
+                            <h4 class="text-xl font-bold mb-4">技术要领</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle mt-1"></i>
+                                    <span>必须说出声，让声音通过空气进入耳膜</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle mt-1"></i>
+                                    <span>脚本时长控制在5-10秒内</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle mt-1"></i>
+                                    <span>使用第二语言效果更佳</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle mt-1"></i>
+                                    <span>可录制语音重复播放强化效果</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subconscious -->
+                <!-- Subconscious -->
+                <div class="bento-item col-span-12 lg:col-span-lg-6 flex flex-col justify-between">
+                    <div class="gradient-glow top-0 right-0 w-72 h-72 bg-teal-300 opacity-20"></div>
+                    <div>
+                        <h3 class="text-2xl font-bold">劫持潜意识</h3>
+                        <p class="text-sm text-gray-500 mb-4">Hijacking the Subconscious</p>
+                        <p class="text-gray-600">潜意识行动比清醒意识<span class="font-bold text-teal-600">早 0.5 到 10 秒</span>。毅力无法战胜这个时间差。自言自语的脚本通过占据大脑资源，耗尽潜意识的"先发优势"，从而轻松获胜。</p>
+                    </div>
+                    <div class="w-full mt-8">
+                        <svg viewBox="0 0 300 120" class="w-full">
+                            <defs>
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:rgb(20, 184, 166);stop-opacity:0" />
+                                    <stop offset="100%" style="stop-color:rgb(20, 184, 166);stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <!-- 标签背景 -->
+                            <rect x="10" y="10" width="120" height="20" rx="4" fill="#f3f4f6"/>
+                            <rect x="180" y="10" width="100" height="20" rx="4" fill="#f3f4f6"/>
+
+                            <!-- 文字标签 -->
+                            <text x="15" y="24" font-family="monospace" font-size="12" fill="#6b7280">潜意识启动</text>
+                            <text x="185" y="24" font-family="monospace" font-size="12" fill="#6b7280">清醒意识</text>
+
+                            <!-- 主曲线 -->
+                            <path d="M 10 100 Q 40 40, 80 70 T 160 80 T 240 60 T 290 90"
+                                  stroke="url(#grad1)"
+                                  stroke-width="3"
+                                  fill="none"
+                                  class="path-anim"/>
+
+                            <!-- 指示点 -->
+                            <circle cx="10" cy="100" r="4" fill="rgb(20, 184, 166)" class="circle-anim"/>
+
+                            <!-- 垂直参考线 -->
+                            <line x1="80" y1="30" x2="80" y2="70" stroke="#6b7280" stroke-width="1" stroke-dasharray="2 2" />
+                            <line x1="240" y1="30" x2="240" y2="60" stroke="#6b7280" stroke-width="1" stroke-dasharray="2 2" />
+
+                            <!-- 时间标注 -->
+                            <text x="90" y="105" font-family="monospace" font-size="14" font-weight="bold" fill="#0d9488">10s</text>
+                            <path d="M 10 100 L 80 100" stroke="#0d9488" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Redefining Habits -->
+                <!-- Redefining Habits -->
+                <div class="bento-item col-span-12 lg:col-span-lg-6">
+                    <h3 class="text-2xl font-bold">重新理解习惯</h3>
+                    <p class="text-sm text-gray-500 mb-4">Redefining Habits</p>
+                    <p class="mb-4 text-gray-600">流行的"习惯三要素" (触发-行动-奖励) 具有误导性。很多坏习惯并无奖励。吸烟并非<span class="font-bold text-rose-600">一个</span>坏习惯，而是由无数个坏习惯（重启电脑时点烟、泡咖啡时点烟...）构成的复杂网络。</p>
+                    <p class="text-gray-600">因此，与其"戒断"，不如说是选择<span class="font-bold text-2xl text-rose-600 ultra-text">退出</span> (Exit)，这是一种充满主体性的选择。</p>
+
+                    <!-- 优化后的网络图表 -->
+                    <div class="relative w-full h-56 mt-6">
+                        <svg viewBox="0 0 300 200" class="w-full h-full">
+                            <!-- 定义渐变 -->
+                            <defs>
+                                <radialGradient id="nodeGradient">
+                                    <stop offset="0%" stop-color="#f43f5e"/>
+                                    <stop offset="100%" stop-color="#fb7185"/>
+                                </radialGradient>
+                            </defs>
+
+                            <!-- 连接线 -->
+                            <g class="lines">
+                                <!-- 中心到各节点的连线 -->
+                                <line x1="150" y1="100" x2="75" y2="50" class="habit-line"/>
+                                <line x1="150" y1="100" x2="225" y2="50" class="habit-line"/>
+                                <line x1="150" y1="100" x2="75" y2="150" class="habit-line"/>
+                                <line x1="150" y1="100" x2="225" y2="150" class="habit-line"/>
+                                <line x1="150" y1="100" x2="150" y2="30" class="habit-line"/>
+                                <line x1="150" y1="100" x2="150" y2="170" class="habit-line"/>
+                            </g>
+
+                            <!-- 节点 -->
+                            <g class="nodes">
+                                <!-- 中心节点 -->
+                                <circle cx="150" cy="100" r="25" class="main-node"/>
+                                <text x="150" y="105" class="node-text" text-anchor="middle">吸烟</text>
+
+                                <!-- 周边节点 -->
+                                <g class="sub-node">
+                                    <circle cx="75" cy="50" r="15"/>
+                                    <text x="75" y="54" class="small-text">休息</text>
+                                </g>
+                                <g class="sub-node">
+                                    <circle cx="225" cy="50" r="15"/>
+                                    <text x="225" y="54" class="small-text">社交</text>
+                                </g>
+                                <g class="sub-node">
+                                    <circle cx="75" cy="150" r="15"/>
+                                    <text x="75" y="154" class="small-text">咖啡</text>
+                                </g>
+                                <g class="sub-node">
+                                    <circle cx="225" cy="150" r="15"/>
+                                    <text x="225" y="154" class="small-text">饭后</text>
+                                </g>
+                                <g class="sub-node">
+                                    <circle cx="150" cy="30" r="15"/>
+                                    <text x="150" y="34" class="small-text">压力</text>
+                                </g>
+                                <g class="sub-node">
+                                    <circle cx="150" cy="170" r="15"/>
+                                    <text x="150" y="174" class="small-text">工作</text>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+
+                <!-- Advanced Techniques -->
+                <div class="bento-item col-span-12 lg:col-span-lg-4">
+                    <div class="flex items-center text-sky-600 mb-3">
+                        <i class="fas fa-microphone-alt text-2xl mr-3"></i>
+                        <h4 class="text-lg font-bold">高级技巧 1：录音</h4>
+                    </div>
+                    <p class="text-sm text-gray-500">Record Yourself</p>
+                    <p class="mt-2 text-gray-600">将你的“咒语”录下来，在不便出声的场合用耳机播放。用自己最熟悉的声音，重复轰炸大脑。</p>
+                </div>
+
+                <div class="bento-item col-span-12 lg:col-span-lg-4">
+                     <div class="flex items-center text-indigo-600 mb-3">
+                        <i class="fas fa-language text-2xl mr-3"></i>
+                        <h4 class="text-lg font-bold">高级技巧 2：第二语言</h4>
+                    </div>
+                    <p class="text-sm text-gray-500">Use Second Language</p>
+                    <p class="mt-2 text-gray-600">用你的第二语言说出“咒语”。大脑对不熟悉的语言抵抗力更弱，更容易被“欺骗”。</p>
+                </div>
+                
+                <div class="bento-item col-span-12 lg:col-span-lg-4">
+                     <div class="flex items-center text-amber-600 mb-3">
+                        <i class="fas fa-pen-ruler text-2xl mr-3"></i>
+                        <h4 class="text-lg font-bold">行动导向</h4>
+                    </div>
+                    <p class="text-sm text-gray-500">Action-Oriented</p>
+                    <p class="mt-2 text-gray-600">咒语必须基于可执行的<span class="font-bold">行动</span>，而不是空泛的愿望。 “我要变瘦”是许愿，而“我是一个每天都去健身房的人”是行动。</p>
+                </div>
+
+
+                <!-- Exploitation -->
+                <div class="bento-item col-span-12 lg:col-span-lg-12 text-center">
+                    <div class="gradient-glow top-0 left-0 w-full h-72 bg-rose-300 opacity-20"></div>
+                    <h3 class="text-3xl md:text-5xl ultra-text">消费即剥削</h3>
+                    <p class="text-base text-gray-500 mt-2">Consumption as Exploitation</p>
+                    <p class="text-gray-600 mt-4 max-w-3xl mx-auto">一切成瘾性消费，都是生产者对消费者赤裸裸的剥削。我们不仅不以为耻，甚至以被剥削的程度来标定身份。认识到这一点，能为“退出”提供最深刻的动力。</p>
+                    <p class="mt-4 p-4 bg-rose-50 rounded-lg text-rose-800 font-mono max-w-xl mx-auto">"我从来不抽烟，因为我<span class="font-bold">讨厌被剥削</span>的感觉。"</p>
+                </div>
+                
+                <!-- Cognitive Divide -->
+                <div class="bento-item col-span-12 lg:col-span-lg-5 flex flex-col justify-center items-center">
+                     <div class="gradient-glow bottom-[-50%] right-[-30%] w-96 h-96 bg-yellow-300 opacity-20"></div>
+                     <i class="fas fa-brain text-yellow-500 text-6xl mb-4"></i>
+                     <h3 class="text-2xl font-bold text-center">大脑是最好的玩具</h3>
+                     <p class="text-sm text-gray-500 mt-1 text-center">The Brain is the Best Toy</p>
+                     <p class="text-gray-600 mt-4 text-center">任何一个健康的大脑，都有潜力成为解决人类大问题的科学家。我们可以通过科学的方法，不断自我塑造，持续变好。</p>
+                </div>
+
+                <!-- 未来核心技能 -->
+                <div class="bento-item col-span-12 lg:col-span-lg-12">
+                    <div class="gradient-glow top-[-20%] left-[-10%] w-96 h-96 bg-blue-300 opacity-20"></div>
+                    <h2 class="text-2xl font-bold mb-2">未来核心技能</h2>
+                    <p class="text-sm text-gray-500 mb-8">阅读与研究</p>
+
+                    <p class="text-xl mb-8">在认知贫富差距加剧的时代，阅读和研究能力成为基础生存技能</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-white/50 p-6 rounded-2xl border border-black/5">
+                            <div class="flex items-center text-[#5e72e4] mb-4">
+                                <i class="material-icons text-2xl mr-3">auto_stories</i>
+                                <h3 class="text-xl font-bold">朗读训练</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">激活视觉和听觉多个脑区</p>
+                        </div>
+
+                        <div class="bg-white/50 p-6 rounded-2xl border border-black/5">
+                            <div class="flex items-center text-[#11cdef] mb-4">
+                                <i class="material-icons text-2xl mr-3">search</i>
+                                <h3 class="text-xl font-bold">AI辅助研究</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">让研究能力平权化</p>
+                        </div>
+
+                        <div class="bg-white/50 p-6 rounded-2xl border border-black/5">
+                            <div class="flex items-center text-[#2dce89] mb-4">
+                                <i class="material-icons text-2xl mr-3">psychology</i>
+                                <h3 class="text-xl font-bold">大脑可塑性</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">终身学习改变大脑结构</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-6 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl text-white">
+                        <h4 class="text-xl font-bold mb-4">AI研究技巧</h4>
+                        <p class="font-mono text-sm mb-4">"将以下提示词改良为最好的版本：[你的问题]"</p>
+                        <p class="text-sm">使用最贵的AI模型，投资生产力工具</p>
+                    </div>
+                </div>
+
+                    <div class="bento-item col-span-12 lg:col-span-lg-7">
+                        <h3 class="text-2xl font-bold">认知的贫富差距</h3>
+                        <p class="text-sm text-gray-500 mb-4">The Cognitive Divide</p>
+                        <p class="text-gray-600 mb-6">当今世界的核心矛盾，正从经济差距转向认知差距。手机等设备正在系统性地摧毁我们的注意力，尤其是儿童。未来的核心技能是<span class="font-bold text-blue-600">阅读</span>与<span class="font-bold text-blue-600">研究</span>。</p>
+
+                        <div class="space-y-6">
+                            <!-- 深度阅读能力 -->
+                            <div class="relative">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-sm font-medium text-gray-600">深度阅读能力</span>
+                                    <span class="text-sm font-medium text-blue-600">45%</span>
+                                </div>
+                                <div class="w-full bg-gray-100 rounded-full h-3">
+                                    <div class="bg-blue-600 h-3 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+
+                            <!-- 研究能力 -->
+                            <div class="relative">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-sm font-medium text-gray-600">独立研究能力</span>
+                                    <span class="text-sm font-medium text-indigo-600">25%</span>
+                                </div>
+                                <div class="w-full bg-gray-100 rounded-full h-3">
+                                    <div class="bg-indigo-600 h-3 rounded-full" style="width: 25%"></div>
+                                </div>
+                            </div>
+
+                            <!-- 信息检索能力 -->
+                            <div class="relative">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-sm font-medium text-gray-600">信息检索能力</span>
+                                    <span class="text-sm font-medium text-teal-600">65%</span>
+                                </div>
+                                <div class="w-full bg-gray-100 rounded-full h-3">
+                                    <div class="bg-teal-600 h-3 rounded-full" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 补充说明 -->
+                        <div class="mt-8 grid grid-cols-2 gap-4 text-sm">
+                            <div class="p-4 bg-blue-50 rounded-lg">
+                                <p class="text-blue-800">
+                                    <span class="font-bold block mb-1">75%</span>
+                                    每天花费超过4小时在社交媒体
+                                </p>
+                            </div>
+                            <div class="p-4 bg-indigo-50 rounded-lg">
+                                <p class="text-indigo-800">
+                                    <span class="font-bold block mb-1">-40%</span>
+                                    青少年持续注意力下降比例
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const { motion, useScroll, useTransform } = Framer;
+
+            const items = document.querySelectorAll('.bento-item');
+            items.forEach(item => {
+                const motionDiv = document.createElement('div');
+                while (item.firstChild) {
+                    motionDiv.appendChild(item.firstChild);
+                }
+                item.appendChild(motionDiv);
+
+                motion(item, {
+                    initial: { opacity: 0, y: 50, scale: 0.98 },
+                    whileInView: { opacity: 1, y: 0, scale: 1 },
+                    transition: { duration: 0.6, ease: [0.25, 1, 0.5, 1] },
+                    viewport: { once: true, amount: 0.3 }
+                });
+            });
+            
+            // For SVG animations if needed
+            const path = document.querySelector('.path-anim');
+            if(path) {
+                const pathLength = path.getTotalLength();
+                motion(path, {
+                    initial: { pathLength: 0, pathOffset: pathLength },
+                    whileInView: { pathLength: pathLength, pathOffset: 0 },
+                    transition: { duration: 2, ease: "easeInOut" },
+                    viewport: { once: true, amount: 0.5 }
+                });
+            }
+
+            const circle = document.querySelector('.circle-anim');
+            if (circle) {
+                motion(circle, {
+                    initial: { opacity: 0 },
+                    whileInView: { opacity: 1 },
+                    transition: { delay: 1.5, duration: 0.5 },
+                    viewport: { once: true, amount: 0.5 }
+                });
+            }
+            
+            // Animate node connections
+            const lines = document.querySelectorAll('.lines line');
+             lines.forEach((line, index) => {
+                motion(line, {
+                    initial: { opacity: 0, scale: 0 },
+                    whileInView: { opacity: 0.5, scale: 1 },
+                    transition: { duration: 0.5, delay: index * 0.1 },
+                    viewport: { once: true, amount: 0.8 }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
