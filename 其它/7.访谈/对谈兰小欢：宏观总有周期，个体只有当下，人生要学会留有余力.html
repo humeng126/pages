@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="bg-[#f0f2f5]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>经济学家蓝小欢播客精粹 | Economic Insights with Lan Xiaohuan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/framer-motion@10/dist/framer-motion.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #1d1d1f;
+        }
+        .bento-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 32px;
+            padding: 2.5rem;
+            overflow: hidden;
+            position: relative;
+            transform: translateZ(0); /* Promotes to a new layer for better animation performance */
+        }
+        .highlight-gradient-blue {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, rgba(59, 130, 246, 0) 70%);
+            z-index: -1;
+        }
+        .highlight-gradient-green {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0) 70%);
+            z-index: -1;
+        }
+         .highlight-gradient-purple {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, rgba(168, 85, 247, 0) 70%);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="bg-[#f0f2f5] min-h-screen p-4 sm:p-8">
+
+    <div id="app" class="max-w-7xl mx-auto">
+
+        <!-- Header -->
+        <header class="text-center py-16 motion-element">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 tracking-tight">经济、科技与人生</h1>
+            <p class="text-lg md:text-xl text-gray-500 mt-4 tracking-wide">INSIGHTS ON ECONOMY, TECH & LIFE</p>
+            <p class="text-gray-500 mt-2">经济学家蓝小欢教授播客精粹</p>
+        </header>
+
+        <!-- Bento Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Weight Loss -->
+            <div class="bento-box md:col-span-1 flex flex-col justify-between motion-element">
+                 <div class="highlight-gradient-blue -top-20 -left-20"></div>
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">意志力的数字化</h2>
+                    <p class="text-gray-500 mt-1">THE DIGITALIZATION OF WILLPOWER</p>
+                </div>
+                <div class="text-center my-8">
+                    <span id="weight-loss-counter" class="text-8xl md:text-9xl font-bold text-blue-500">0</span>
+                    <span class="text-5xl md:text-6xl font-semibold text-blue-500 ml-2">斤</span>
+                    <p class="text-gray-600 mt-2 text-lg">7个月的自律之旅</p>
+                </div>
+                <div class="flex items-center space-x-4 text-gray-700">
+                    <i class="fas fa-utensils text-2xl text-blue-400"></i>
+                    <p>1500大卡 & 7-8种固定食物</p>
+                </div>
+                 <div class="flex items-center space-x-4 mt-2 text-gray-700">
+                    <i class="fas fa-dumbbell text-2xl text-blue-400"></i>
+                    <p>1-2小时运动，消耗500-1000大卡</p>
+                </div>
+            </div>
+
+            <!-- 置身事内 -->
+            <div class="bento-box md:col-span-2 flex flex-col justify-between motion-element">
+                <div class="highlight-gradient-purple -top-20 -right-20"></div>
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">文字的力量</h2>
+                    <p class="text-gray-500 mt-1">THE POWER OF WORDS</p>
+                </div>
+                <div class="flex-grow flex items-center justify-center">
+                    <div class="text-center">
+                        <p class="text-5xl md:text-7xl font-bold text-purple-600">“置身事内”</p>
+                        <p class="text-gray-600 mt-4 text-lg">让文字和想法，打开一扇扇门，连接各行各业的智慧。</p>
+                        <p class="text-gray-500 mt-2 text-sm">A SINGLE BOOK CAN CREATE A LIBRARY OF PERSPECTIVES</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 text-gray-700 mt-4">
+                     <i class="fas fa-book-open text-2xl text-purple-400"></i>
+                     <p>从讲义到畅销书，连接了意想不到的读者群体。</p>
+                </div>
+                 <div class="flex items-center space-x-4 mt-2 text-gray-700">
+                    <i class="fas fa-comments text-2xl text-purple-400"></i>
+                    <p>现代技术（如微信读书）让书籍成为一个互动的、不断生长的生态。</p>
+                </div>
+            </div>
+            
+            <!-- 基建 -->
+            <div class="bento-box md:col-span-3 flex flex-col md:flex-row items-center gap-8 motion-element">
+                 <div class="highlight-gradient-green -bottom-24 -left-24"></div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl lg:text-5xl font-bold text-green-700 leading-tight">基建是每个普通人的资本</h2>
+                    <p class="text-gray-500 mt-2 text-lg">INFRASTRUCTURE IS THE CAPITAL OF EVERY COMMON PERSON</p>
+                    <p class="text-gray-600 mt-6 text-base">水电、网络、高铁...这些我们习以为常的服务，是商业活动和社会活力的基石。它不是一个纯粹的经济问题，而是一个关乎社会共识的政治能力。</p>
+                    <ul class="mt-6 space-y-3 text-gray-700">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i> 供给保障：在中国开工厂，不用担心生产要素。</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i> 成本优势：政府压低公共品价格，降低生活和商业成本。</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i> 赋能个体：让西藏的牧民也能直播带货，连接全国市场。</li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 w-full h-64 md:h-full flex items-center justify-center">
+                    <svg class="w-full h-full" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 180 C50 30, 150 30, 180 180" stroke="#a7f3d0" stroke-width="2" class="road-path-1"/>
+                        <path d="M120 180 C150 30, 250 30, 280 180" stroke="#a7f3d0" stroke-width="2" class="road-path-2"/>
+                        <path d="M50 80 H250" stroke="#6ee7b7" stroke-width="2" stroke-dasharray="4 4" class="road-path-3"/>
+                        <circle cx="20" cy="180" r="4" fill="#10b981"/>
+                        <circle cx="180" cy="180" r="4" fill="#10b981"/>
+                        <circle cx="120" cy="180" r="4" fill="#10b981"/>
+                        <circle cx="280" cy="180" r="4" fill="#10b981"/>
+                        <circle cx="50" cy="80" r="4" fill="#10b981"/>
+                        <circle cx="250" cy="80" r="4" fill="#10b981"/>
+                        <circle cx="150" cy="55" r="4" fill="#10b981"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- 内卷与机会 -->
+            <div class="bento-box lg:col-span-2 motion-element">
+                <div class="highlight-gradient-blue -top-20 -right-20"></div>
+                <h2 class="text-2xl font-bold text-gray-800">内卷与机会</h2>
+                <p class="text-gray-500 mt-1">HYPER-COMPETITION & OPPORTUNITY</p>
+                <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                    <div>
+                        <p class="text-4xl lg:text-5xl font-bold text-blue-600">供给大</p>
+                        <p class="text-gray-600 mt-2">生产要素充足，谁都能干</p>
+                    </div>
+                    <div>
+                        <p class="text-4xl lg:text-5xl font-bold text-blue-600">需求大</p>
+                        <p class="text-gray-600 mt-2">市场巨大，一滴水就够了</p>
+                    </div>
+                    <div>
+                        <p class="text-4xl lg:text-5xl font-bold text-blue-600">变化快</p>
+                        <p class="text-gray-600 mt-2">乾坤未定，你我皆是黑马</p>
+                    </div>
+                </div>
+                <p class="text-gray-700 mt-8">内卷的本质并非坏事，它源于中国庞大的供给能力和巨大的市场需求，以及快速变化带来的无限可能。每个人都觉得有机会，才会“乌央乌央”地冲过去。</p>
+            </div>
+
+            <!-- 消费 -->
+            <div class="bento-box lg:col-span-1 flex flex-col motion-element">
+                 <div class="highlight-gradient-purple -bottom-20 -right-20"></div>
+                <h2 class="text-2xl font-bold text-gray-800">消费的症结</h2>
+                <p class="text-gray-500 mt-1">THE CONSUMPTION CONUNDRUM</p>
+                <div class="flex-grow my-4">
+                     <canvas id="consumptionChart"></canvas>
+                </div>
+                <p class="text-gray-600 text-sm">提升消费需要社会结构的长期改造，将更多收入和闲暇时间还给居民。</p>
+            </div>
+
+             <!-- AI时代 -->
+            <div class="bento-box lg:col-span-1 flex flex-col justify-between motion-element">
+                <h2 class="text-2xl font-bold text-gray-800">AI 时代</h2>
+                <p class="text-gray-500 mt-1">THE AGE OF AI</p>
+                <div class="flex-grow flex items-center justify-center my-6">
+                    <i class="fas fa-robot text-8xl text-purple-400 opacity-80"></i>
+                </div>
+                <p class="text-gray-700">不要思考如何不被AI取代，而要思考如何用好AI。它是一个“AI+”的时代，是增强能力的工具，而非单纯的替代者。</p>
+                 <p class="text-gray-600 mt-4 text-sm"><span class="font-bold">核心：</span>你的知识体系越完善，就越能从AI中获益。</p>
+            </div>
+
+            <!-- 人生建议 -->
+            <div class="bento-box lg:col-span-2 motion-element">
+                <div class="highlight-gradient-green -bottom-24 -right-24"></div>
+                <h2 class="text-2xl font-bold text-gray-800">穿越周期的智慧</h2>
+                <p class="text-gray-500 mt-1">WISDOM FOR NAVIGATING LIFE'S CYCLES</p>
+                <div class="mt-8 text-center">
+                    <p class="text-3xl md:text-5xl font-bold text-green-700">知识和体验是两回事</p>
+                    <p class="text-gray-500 mt-2 text-md">KNOWLEDGE AND EXPERIENCE ARE TWO DIFFERENT THINGS</p>
+                    <p class="mt-6 text-gray-600">信息过载是焦虑的来源。如果20岁时就知道50岁的一切，你可能什么都不敢干了。人生的事是干出来的，不是选出来的。</p>
+                </div>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+                    <div class="bg-green-50 p-4 rounded-2xl">
+                        <h3 class="font-bold">留有余地</h3>
+                        <p class="text-sm mt-1">像耐力狩猎一样分配体能，永远为未知保留精力。</p>
+                    </div>
+                     <div class="bg-green-50 p-4 rounded-2xl">
+                        <h3 class="font-bold">团结身边人</h3>
+                        <p class="text-sm mt-1">多个朋友多条路，应对风险的本质是依靠群体。</p>
+                    </div>
+                </div>
+            </div>
+			
+			<!-- Card 7: Life Advice -->
+            <!-- 人生智慧 -->
+            <div class="bento-box lg:col-span-3 motion-element">
+                <div class="highlight-gradient-purple -bottom-20 -right-20"></div>
+                <h2 class="text-2xl font-bold text-gray-800">人生智慧</h2>
+                <p class="text-gray-500 mt-1">LIFE WISDOM</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                    <div class="bg-purple-50 p-6 rounded-2xl">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-users text-2xl text-purple-500 mr-3"></i>
+                            <h3 class="text-xl font-bold text-gray-800">耐力狩猎的启示</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">人生如耐力狩猎，需要策略而非蛮力：</p>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                群体合作而非单打独斗
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                永远留有余地
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                准备随时重启
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-purple-50 p-6 rounded-2xl">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-brain text-2xl text-purple-500 mr-3"></i>
+                            <h3 class="text-xl font-bold text-gray-800">决策的艺术</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">避免信息过载的决策陷阱：</p>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                决策只占成功的小部分
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                执行过程和运气同样重要
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                不要过度分析而忽视行动
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-purple-50 p-6 rounded-2xl">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-graduation-cap text-2xl text-purple-500 mr-3"></i>
+                            <h3 class="text-xl font-bold text-gray-800">终身学习</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">AI时代的自我提升：</p>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                学会利用AI工具增强能力
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                好奇心驱动学习
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                主动学习而非被动接收
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const { animate, stagger } = motion;
+
+            // Animate elements on scroll
+            const motionElements = document.querySelectorAll('.motion-element');
+            motionElements.forEach(el => {
+                animate(el, 
+                    { opacity: [0, 1], y: [50, 0] }, 
+                    { 
+                        duration: 0.8,
+                        delay: stagger(0.1),
+                        scroll: (info) => {
+                            // Start animation when element is 100px from the bottom of the viewport
+                            return info.y.current - info.y.total + window.innerHeight > 100;
+                        }
+                    }
+                )
+            });
+
+            // Counter animation
+            const weightCounter = document.querySelector('#weight-loss-counter');
+             animate(
+                (progress) => {
+                    weightCounter.textContent = (progress * 50).toFixed(0);
+                },
+                {
+                    duration: 2,
+                    ease: "easeOut",
+                    scroll: (info) => {
+                       return info.y.current - info.y.total + window.innerHeight > weightCounter.offsetHeight;
+                    }
+                }
+            );
+
+            // Chart.js
+            const ctx = document.getElementById('consumptionChart').getContext('2d');
+            const consumptionChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['居民消费', '投资与其他'],
+                    datasets: [{
+                        label: 'GDP占比',
+                        data: [40, 60],
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(230, 230, 230, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(59, 130, 246, 1)',
+                            'rgba(200, 200, 200, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#4b5563',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        tooltip: {
+                             callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '60%'
+                }
+            });
+
+            // SVG Path animation
+            const path1 = document.querySelector('.road-path-1');
+            const path2 = document.querySelector('.road-path-2');
+            const path3 = document.querySelector('.road-path-3');
+            
+            const animatePath = (path) => {
+                const length = path.getTotalLength();
+                path.style.strokeDasharray = length;
+                path.style.strokeDashoffset = length;
+                animate(path, 
+                    { strokeDashoffset: [length, 0] },
+                    { 
+                        duration: 3, 
+                        ease: "easeInOut",
+                        scroll: (info) => info.y.current - info.y.total + window.innerHeight > path.getBoundingClientRect().height
+                    }
+                );
+            };
+
+            animatePath(path1);
+            animatePath(path2);
+            animatePath(path3);
+        });
+    </script>
+</body>
+</html>
