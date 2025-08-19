@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>少有人走的路 - 心智成熟的旅程</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+    
+    <!-- Framer Motion via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.16.4/dist/framer-motion.umd.min.js"></script>
+    
+    <!-- Font Awesome via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        body {
+            background-color: #f0f2f5;
+            color: #1a202c;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            overflow-x: hidden;
+        }
+        .bento-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(1, 1fr);
+        }
+        @media (min-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: auto auto auto;
+            }
+        }
+        .bento-item {
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .highlight-gradient {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            filter: blur(100px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        .highlight-blue {
+            background: radial-gradient(circle, #3b82f6 0%, rgba(59,130,246,0) 70%);
+        }
+        .highlight-green {
+            background: radial-gradient(circle, #22c55e 0%, rgba(34,197,94,0) 70%);
+        }
+        .highlight-purple {
+            background: radial-gradient(circle, #8b5cf6 0%, rgba(139,92,246,0) 70%);
+        }
+         .highlight-red {
+            background: radial-gradient(circle, #ef4444 0%, rgba(239,68,68,0) 70%);
+        }
+
+        .huge-text {
+            font-size: 10rem;
+            font-weight: 900;
+            line-height: 1;
+            color: rgba(0, 0, 0, 0.04);
+            position: absolute;
+            right: 1rem;
+            bottom: -2rem;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="app" class="container mx-auto p-4 md:p-8">
+
+        <!-- Hero Section -->
+        <motion.section initial="{ opacity: 0, y: 20 }" animate="{ opacity: 1, y: 0 }" transition="{ duration: 0.8 }" class="text-center my-12 md:my-24">
+            <h1 class="text-5xl md:text-8xl font-black text-gray-800 tracking-tighter">少有人走的路</h1>
+            <p class="text-xl md:text-2xl text-gray-500 mt-4">The Road Less Traveled</p>
+            <p class="max-w-3xl mx-auto mt-6 text-gray-600">
+                一本震撼心灵的杰作，一场心智成熟的旅程。它告诉我们，解决人生所有问题的首要方案，就是<span class="font-bold text-blue-600">自律</span>。
+            </p>
+        </motion.section>
+
+        <!-- Main Bento Grid -->
+        <div class="bento-grid">
+            
+            <!-- Intro Card -->
+            <motion.div initial="{ opacity: 0, y: 50 }" whileInView="{ opacity: 1, y: 0 }" viewport="{ once: true, amount: 0.3 }" transition="{ duration: 0.7 }"
+                class="bento-item lg:col-span-4 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-8">
+                <div class="highlight-gradient highlight-blue -top-20 -left-20"></div>
+                <div class="content">
+                    <p class="text-sm uppercase text-blue-500 font-semibold">The Great Truth</p>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-gray-800 mt-2">人生苦难重重</h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl">这是世界上最伟大的真理之一。一旦接受它，你就能停止抱怨，把精力用于解决问题，而不再幻想人生本该一帆风顺。</p>
+                </div>
+                <div class="flex-shrink-0">
+                    <svg class="w-24 h-24 text-blue-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
+                    </svg>
+                </div>
+            </motion.div>
+
+            <!-- 1. Delaying Gratification -->
+            <motion.div initial="{ opacity: 0, y: 50 }" whileInView="{ opacity: 1, y: 0 }" viewport="{ once: true, amount: 0.3 }" transition="{ duration: 0.7, delay: 0.1 }"
+                class="bento-item lg:col-span-2">
+                <div class="huge-text">1</div>
+                <div class="content">
+                    <p class="text-sm uppercase text-green-500 font-semibold">Principle One</p>
+                    <h3 class="text-3xl font-bold mt-2">推迟满足感</h3>
+                    <p class="text-gray-600 mt-4">重新设置人生快乐与痛苦的次序：先面对问题并感受痛苦，然后解决问题并享受更大的快乐。</p>
+                    <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <p class="font-semibold">你是先吃奶油，还是先吃蛋糕？</p>
+                        <p class="text-sm text-gray-500 mt-1">This simple choice reflects a deep pattern: do you tackle the hard tasks first, or save them for last?</p>
+                    </div>
+                </div>
+            </motion.div>
+            
+            <!-- 2. Accepting Responsibility -->
+            <motion.div initial="{ opacity: 0, y: 50 }" whileInView="{ opacity: 1, y: 0 }" viewport="{ once: true, amount: 0.3 }" transition="{ duration: 0.7, delay: 0.2 }"
+                class="bento-item lg:col-span-2">
+                <div class="huge-text">2</div>
+                <div class="content">
+                    <p class="text-sm uppercase text-green-500 font-semibold">Principle Two</p>
+                    <h3 class="text-3xl font-bold mt-2">承担责任</h3>
+                    <p class="text-gray-600 mt-4">勇敢地对自己的人生说：“这是我的问题，由我来解决。” 放弃扮演受害者，拿回人生的主导权。</p>
+                    <div class="mt-6 flex items-center gap-4">
+                        <i class="fa-solid fa-people-arrows text-3xl text-green-400"></i>
+                        <div>
+                            <p class="font-bold">不再甩锅</p>
+                            <p class="text-sm text-gray-500">Stop blaming others, society, or fate. The power to change lies within you.</p>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+
+            <!-- 3. Dedication to Reality -->
+            <motion.div initial="{ opacity: 0, y: 50 }" whileInView="{ opacity: 1, y: 0 }" viewport="{ once: true, amount: 0.3 }" transition="{ duration: 0.7, delay: 0.3 }"
+                class="bento-item lg:col-span-2">
+                 <div class="huge-text">3</div>
+                <div class="content">
+                    <p class="text-sm uppercase text-green-500 font-semibold">Principle Three</p>
+                    <h3 class="text-3xl font-bold mt-2">尊重事实</h3>
+                    <p class="text-gray-600 mt-4">我们对现实的观念就像一张“人生地图”。如果地图是错的，我们就会迷路。要勇敢地、持续地修正自己的地图。</p>
+                    <div class="mt-6 flex items-center gap-4">
+                       <i class="fa-solid fa-map-location-dot text-3xl text-green-400"></i>
+                        <div>
+                            <p class="font-bold">更新你的地图</p>
+                            <p class="text-sm text-gray-500">Be willing to challenge your old beliefs and embrace the truth, even when it's uncomfortable.</p>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+
+            <!-- 4. Balancing -->
+            <motion.div initial="{ opacity: 0, y: 50 }" whileInView="{ opacity: 1, y: 0 }" viewport="{ once: true, amount: 0.3 }" transition="{ duration: 0.7, delay: 0.4 }"
+                class="bento-item lg:col-span-2">
+                <div class="huge-text">4</div>
+                <div class="content">
+                    <p class="text-sm uppercase text-green-500 font-semibold">Principle Four</p>
+                    <h3 class="text-3xl font-bold mt-2">保持平衡</h3>
+                    <p class="text-gray-600 mt-4">在坚持与变通、愤怒与冷静之间取得平衡。这需要一种更高阶的智慧，其最高原则是——<span class="font-extrabold">放弃</span>。</p>
+                     <div class="mt-6 flex items-center gap-4">
+                       <i class="fa-solid fa-scale-balanced text-3xl text-green-400"></i>
+                        <div>
+                            <p class="font-bold">学会放弃</p>
+                            <p class="text-sm text-gray-500">To maintain balance at life's turning points, you must learn to let go of old habits, beliefs, and even parts of yourself.</p>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+
+            <!-- Love Section -->
+            <motion.div initial="{ opacity: 0, y: 50 }" whileInView="{ opacity: 1, y: 0 }" viewport="{ once: true, amount: 0.3 }" transition="{ duration: 0.7 }"
+                class="bento-item lg:col-span-4">
+                <div class="highlight-gradient highlight-purple -bottom-20 -right-20"></div>
+                <div class="content text-center">
+                    <p class="text-sm uppercase text-purple-500 font-semibold">The Ultimate Force</p>
+                    <h2 class="text-4xl md:text-6xl font-extrabold text-gray-800 mt-2">爱，是自律的原动力</h2>
+                    <p class="text-gray-600 mt-4 max-w-3xl mx-auto">爱不是感觉，而是行动和意愿，是为了促进自我和他人心智成熟，而具有的一种自我完善的意愿。</p>
+                    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                            <p class="font-bold text-red-700"><i class="fa-solid fa-times-circle mr-2"></i>爱不是什么</p>
+                            <ul class="mt-2 text-sm text-red-600 space-y-1">
+                                <li><span class="font-semibold">坠入情网：</span>激情和幻觉，非意志选择。</li>
+                                <li><span class="font-semibold">过度依赖：</span>填补内心空虚的寄生关系。</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200 col-span-1 md:col-span-2">
+                            <p class="font-bold text-green-700"><i class="fa-solid fa-check-circle mr-2"></i>爱是什么</p>
+                             <ul class="mt-2 text-sm text-green-600 space-y-2">
+                                <li><span class="font-semibold">关注与倾听：</span>全身心投入，是爱的首要体现。</li>
+                                <li><span class="font-semibold">勇气与行动：</span>敢于承诺、尊重独立、直面冲突。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+            
+            <!-- Grace/Miracle Section -->
+            <motion.div initial="{ opacity: 0, y: 50 }" whileInView="{ opacity: 1, y: 0 }" viewport="{ once: true, amount: 0.3 }" transition="{ duration: 0.7, delay: 0.2 }"
+                class="bento-item lg:col-span-4">
+                 <div class="highlight-gradient highlight-red -top-20 -right-20"></div>
+                 <div class="content grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <p class="text-sm uppercase text-red-500 font-semibold">The Inner Battle</p>
+                        <h3 class="text-3xl font-bold mt-2">神奇的力量与熵增定律</h3>
+                        <p class="text-gray-600 mt-4">我们内心是两种力量的战场。一种是向下的<span class="font-bold">懒惰（熵）</span>，它让我们得过且过。另一种是向上的<span class="font-bold">爱与成长（神奇的力量）</span>，它通过潜意识召唤我们走向更艰难、但却能让我们生命跃升的路。</p>
+                    </div>
+                    <div class="relative h-48 flex flex-col justify-center items-center p-4">
+                        <!-- Upward Arrow -->
+                        <div class="flex flex-col items-center">
+                            <span class="font-bold text-blue-600">爱 & 成长 (反熵)</span>
+                            <i class="fa-solid fa-arrow-up text-5xl text-blue-400 my-2"></i>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="w-full h-px bg-gray-300 my-2 border-dashed"></div>
+
+                        <!-- Downward Arrow -->
+                        <div class="flex flex-col items-center">
+                            <i class="fa-solid fa-arrow-down text-5xl text-gray-400 my-2"></i>
+                            <span class="font-bold text-gray-500">懒惰 & 混乱 (熵)</span>
+                        </div>
+                    </div>
+                 </div>
+            </motion.div>
+        </div>
+
+        <!-- Conclusion -->
+        <motion.footer initial="{ opacity: 0 }" whileInView="{ opacity: 1 }" viewport="{ once: true }" transition="{ duration: 1, delay: 0.5 }" class="text-center my-16 md:my-24">
+            <h3 class="text-3xl font-bold text-gray-800">踏上这条路</h3>
+            <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                这条路没有捷径，也没有终点。但一旦踏上，障碍将变成挑战，恐惧将化为希望，你将收获一个不断成长、日趋完善的真正自由的灵魂。
+            </p>
+        </motion.footer>
+
+    </div>
+
+    <script>
+        // Framer Motion Integration
+        // This script finds all elements with Framer Motion attributes and applies the animations.
+        // The attributes are declarative, so minimal JS is needed.
+        document.addEventListener('DOMContentLoaded', () => {
+            const motionElements = document.querySelectorAll('[initial]');
+            motionElements.forEach(el => {
+                const initial = JSON.parse(el.getAttribute('initial').replace(/'/g, '"'));
+                const animate = el.hasAttribute('animate') ? JSON.parse(el.getAttribute('animate').replace(/'/g, '"')) : null;
+                const whileInView = el.hasAttribute('whileInView') ? JSON.parse(el.getAttribute('whileInView').replace(/'/g, '"')) : null;
+                const transition = el.hasAttribute('transition') ? JSON.parse(el.getAttribute('transition').replace(/'/g, '"')) : { duration: 0.5 };
+                const viewport = el.hasAttribute('viewport') ? JSON.parse(el.getAttribute('viewport').replace(/'/g, '"')) : { once: true };
+
+                const motionInstance = new motion.div(el, {
+                    initial: initial,
+                    animate: animate,
+                    whileInView: whileInView,
+                    transition: transition,
+                    viewport: viewport
+                });
+            });
+
+            // Replace placeholder tags with actual motion.div
+            const motionTags = document.querySelectorAll('motion\\.div, motion\\.section, motion\\.footer');
+            motionTags.forEach(tag => {
+                const div = document.createElement(tag.tagName.split('.')[1] || 'div');
+                Array.from(tag.attributes).forEach(attr => {
+                    div.setAttribute(attr.name, attr.value);
+                });
+                div.innerHTML = tag.innerHTML;
+                tag.parentNode.replaceChild(div, tag);
+            });
+        });
+    </script>
+
+</body>
+</html>
