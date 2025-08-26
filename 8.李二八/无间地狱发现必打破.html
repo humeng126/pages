@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超高性价比人生方法论 | 打破你的“无间地狱”</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.16.4/framer-motion.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f0f2f5;
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+        .bento-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(12, 1fr);
+            padding: 1.5rem;
+            max-width: 1400px;
+            margin: auto;
+        }
+        .bento-item {
+            border-radius: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02), 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .bento-item h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 900;
+            line-height: 1.2;
+        }
+        .bento-item p {
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            color: #4a5568;
+        }
+        .highlight-glow {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .highlight-blue {
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0) 70%);
+        }
+        .highlight-green {
+            background: radial-gradient(circle at center, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0) 70%);
+        }
+        .highlight-purple {
+            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0) 70%);
+        }
+        .ultra-large-text {
+            font-size: clamp(5rem, 15vw, 12rem);
+            font-weight: 900;
+            line-height: 1;
+            color: #e2e8f0;
+            position: absolute;
+            right: 0rem;
+            bottom: -2rem;
+            z-index: 0;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+        /* Grid spans for responsiveness */
+        .col-span-12 { grid-column: span 12; }
+        .col-span-8 { grid-column: span 8; }
+        .col-span-6 { grid-column: span 6; }
+        .col-span-4 { grid-column: span 4; }
+        @media (max-width: 1024px) {
+            .col-span-l-12 { grid-column: span 12; }
+        }
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(1, 1fr);
+                padding: 1rem;
+                gap: 1rem;
+            }
+            .bento-item {
+                grid-column: span 1 !important;
+                padding: 1.5rem;
+            }
+            .ultra-large-text {
+                font-size: 6rem;
+                bottom: -1rem;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main id="app" class="bento-grid">
+        <div id="intro" class="bento-item col-span-12 relative flex flex-col justify-center items-center text-center min-h-[60vh] lg:min-h-[80vh]">
+            <div class="highlight-glow highlight-blue top-[-20%] left-[-20%] w-[150%] h-[150%]"></div>
+            <div class="relative z-10">
+                <p class="text-lg text-blue-500 font-semibold mb-2">The Ultimate Life Methodology</p>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight text-gray-800">
+                    敏锐觉察你生活中的<br>
+                    <span class="text-blue-600">无间地狱</span>
+                </h1>
+                <p class="max-w-3xl mx-auto mt-6 text-lg text-gray-600">
+                    从“咒延期”现象中，学习她们超高性价比的人生方法论。这不是三观批判，而是一场关于效率与自救的深度剖析。
+                </p>
+            </div>
+        </div>
+
+        <div id="what-is-hell" class="bento-item col-span-12 col-span-l-12 relative">
+            <div class="highlight-glow highlight-purple top-0 right-0 w-full h-full"></div>
+            <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="mb-4">什么是<br>无间地狱？</h2>
+                    <p class="text-gray-600 mb-6">
+                        佛教概念，指最痛苦、永不停歇的地狱。在生活中，它代表一种被负面状态<strong class="text-purple-600">无缝包围、持续消耗、永无喘息</strong>的状态。
+                    </p>
+                    <p class="text-gray-500 text-sm">CONCEPT / ETERNAL SUFFERING</p>
+                </div>
+                <div class="flex flex-col gap-6 p-6 bg-white/50 rounded-2xl">
+                    <div class="text-center">
+                        <p class="font-bold text-xl mb-2 text-blue-700">北方 · 干冷 · 物理攻击</p>
+                        <div class="flex justify-center items-center gap-4">
+                            <i class="fas fa-snowflake text-3xl text-blue-400"></i>
+                            <p class="text-gray-700">室外酷寒</p>
+                            <i class="fas fa-arrow-right text-2xl text-gray-400"></i>
+                            <i class="fas fa-house-chimney text-3xl text-green-500"></i>
+                            <p class="text-gray-700 font-bold">室内满血复活</p>
+                        </div>
+                        <p class="text-sm text-green-600 mt-2 font-semibold">HELL INTERRUPTED</p>
+                    </div>
+                    <div class="w-full h-[1px] bg-gray-200"></div>
+                    <div class="text-center">
+                        <p class="font-bold text-xl mb-2 text-purple-700">南方 · 湿冷 · 魔法攻击</p>
+                        <div class="flex justify-center items-center gap-4 flex-wrap">
+                            <i class="fas fa-cloud-rain text-3xl text-purple-400"></i>
+                            <p class="text-gray-700">全天候无缝包围</p>
+                             <i class="fas fa-bed text-3xl text-purple-400"></i>
+                             <p class="text-gray-700 font-bold">持续能量侵蚀</p>
+                        </div>
+                        <p class="text-sm text-red-600 mt-2 font-semibold">UNINTERRUPTED HELL</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="methodology" class="bento-item col-span-4 col-span-l-12 flex flex-col justify-center items-center text-center">
+             <div class="highlight-glow highlight-green w-[200%] h-[200%] -top-1/2 -left-1/2"></div>
+            <div class="relative z-10">
+                <p class="text-green-600 font-bold">THE SOLUTION</p>
+                <h2 class="text-5xl my-4">以小<br>换大</h2>
+                <p>主动牺牲一小部分，换取全局的喘息与高效，这是打破无间地狱的唯一核心思路。</p>
+            </div>
+        </div>
+
+        <div id="example-mom" class="bento-item col-span-8 col-span-l-12 relative">
+             <i class="fas fa-baby text-9xl text-gray-200 absolute bottom-4 right-6 opacity-80"></i>
+            <div class="relative z-10">
+                <h3 class="text-2xl font-bold mb-2">案例: 单独带孩子的宝妈</h3>
+                <p class="text-gray-600 mb-4">24小时全天候待命，需求随时随地，心弦从未松弛。这是典型的无间地狱。</p>
+                <div class="flex items-center gap-4 bg-green-50 p-4 rounded-xl border border-green-200">
+                    <i class="fas fa-exchange-alt text-3xl text-green-500"></i>
+                    <div>
+                        <p class="font-bold text-green-800">以小换大: 创造专属休息时间</p>
+                        <p class="text-sm text-green-700">将夜晚的几个小时完全独立出来，交给丈夫、父母或保姆，换取整夜高质量的休息和白天的精力。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="example-waist" class="bento-item col-span-6 col-span-l-12 relative">
+             <p class="ultra-large-text">9HR</p>
+             <div class="relative z-10">
+                <h3 class="text-2xl font-bold mb-2">案例: 久坐不动的腰</h3>
+                <p class="text-gray-600 mb-4">以错误姿势持续受力 <strong class="text-red-500">9小时</strong> 即可造成永久性损伤。因为脊柱没有得到片刻缓解。</p>
+                <div class="flex items-center gap-4 bg-green-50 p-4 rounded-xl border border-green-200">
+                     <i class="fas fa-clock text-3xl text-green-500"></i>
+                    <div>
+                        <p class="font-bold text-green-800">以小换大: 每40分钟中断一次</p>
+                        <p class="text-sm text-green-700">站起来几秒钟，就能大幅降低患病几率。牺牲片刻专注，换取一生的健康。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="example-money" class="bento-item col-span-6 col-span-l-12 relative">
+             <i class="fas fa-motorcycle text-9xl text-gray-200 absolute bottom-4 right-6 opacity-80"></i>
+            <div class="relative z-10">
+                <h3 class="text-2xl font-bold mb-2">案例: 被生活捆绑的外卖员</h3>
+                <p class="text-gray-600 mb-4">高收入背后是拼命硬扛，去掉所有开销后所剩无几，陷入“停下来就完蛋”的无间地狱。</p>
+                <div class="flex items-center gap-4 bg-green-50 p-4 rounded-xl border border-green-200">
+                     <i class="fas fa-arrows-split-up-and-left text-3xl text-green-500"></i>
+                    <div>
+                        <p class="font-bold text-green-800">以小换大: 开源或节流</p>
+                        <p class="text-sm text-green-700">让妻子上班，或卖掉车/房。牺牲部分生活品质，换取精神上的松弛和人生的长远发展。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="my-story-header" class="bento-item col-span-12 text-center">
+            <h2 class="text-blue-600">我的实操案例</h2>
+            <p>我是如何利用这个方法，在零收入时开启自媒体事业的。</p>
+            <p class="text-sm text-gray-500">MY CASE STUDY / BREAKING MY OWN HELL</p>
+        </div>
+
+        <div id="my-story-1" class="bento-item col-span-6 col-span-l-12">
+            <h3 class="text-2xl font-bold mb-2">打破第一个地狱: <span class="text-red-600">筋疲力尽的工作</span></h3>
+            <p class="text-gray-600 mb-4">业余时间完全被耗尽，不可能发展副业。所以，辞职是唯一选择。</p>
+             <div class="flex items-center gap-4 bg-gray-100 p-4 rounded-xl">
+                 <i class="fas fa-briefcase text-4xl text-gray-400"></i>
+                <div class="flex-1 border-l-4 border-red-500 pl-4">
+                    <p class="font-bold">状态</p>
+                    <p class="text-sm">高压工作，无个人时间</p>
+                </div>
+                <i class="fas fa-arrow-right text-2xl text-green-500"></i>
+                <div class="flex-1 border-l-4 border-green-500 pl-4">
+                    <p class="font-bold">打破</p>
+                    <p class="text-sm">辞职，获得时间</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="my-story-2" class="bento-item col-span-6 col-span-l-12">
+            <h3 class="text-2xl font-bold mb-2">打破第二个地狱: <span class="text-red-600">零收入的焦虑</span></h3>
+            <p class="text-gray-600 mb-4">完全没收入也是无间地狱。焦虑会摧毁一切。必须找到一个低压收入源。</p>
+            <div class="flex items-center gap-4 bg-blue-50 p-4 rounded-xl border border-blue-200">
+                <i class="fas fa-box-open text-3xl text-blue-500"></i>
+                <div>
+                    <p class="font-bold text-blue-800">我的选择: 社区团购搬货</p>
+                    <p class="text-sm text-blue-700">每天 <strong class="text-xl">3</strong> 小时，月入 <strong class="text-xl">2000</strong> 元。虽然不多，但足以打破焦虑，让我能轻松创作。</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="my-story-3" class="bento-item col-span-12 col-span-l-12 relative grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div class="highlight-glow highlight-purple w-full h-full top-0 left-0"></div>
+            <div class="relative z-10">
+                <h3 class="text-2xl font-bold mb-2">在创作中持续打破<span class="text-red-600">小地狱</span></h3>
+                <p class="text-gray-600 mb-4">创作过程充满无数消耗心力的“牛毛小地狱”，必须一一打破，否则无法推进。</p>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-camera text-xl text-purple-500 mt-1"></i>
+                        <div>
+                            <p class="font-bold">拒绝“相机地狱”</p>
+                            <p class="text-sm">用299元手机镜头代替昂贵相机，避免“高投入无产出”的压力。</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-redo text-xl text-purple-500 mt-1"></i>
+                        <div>
+                            <p class="font-bold">拒绝“完美主义地狱”</p>
+                            <p class="text-sm">面对镜头社恐，就只拍三遍，选最好的。不纠结，保证能出片。</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-tasks text-xl text-purple-500 mt-1"></i>
+                        <div>
+                            <p class="font-bold">拒绝“死磕地狱”</p>
+                            <p class="text-sm">问题用六分精力解决不掉，就先忽略。牺牲部分质量，换取项目推进的乐趣和长久的动力。</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="relative w-full h-64 lg:h-full flex items-center justify-center">
+                <svg viewBox="0 0 200 200" class="w-full h-full max-w-sm">
+                    <path fill="none" stroke="#e2e8f0" stroke-width="4" d="M 50,100 A 50,50 0 1 1 150,100 A 50,50 0 1 1 50,100"></path>
+                    <path class="progress-circle" fill="none" stroke="#8b5cf6" stroke-width="6" stroke-linecap="round" d="M 50,100 A 50,50 0 1 1 150,100 A 50,50 0 1 1 50,100" style="stroke-dasharray: 314; stroke-dashoffset: 100;"></path>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="middle" font-size="24" font-weight="bold" fill="#4c1d95">60%</text>
+                    <text x="100" y="125" text-anchor="middle" dominant-baseline="middle" font-size="12" fill="#6b7280">Effort Rule</text>
+                </svg>
+            </div>
+        </div>
+
+        <div id="tip-1" class="bento-item col-span-6 col-span-l-12 flex flex-col items-center text-center">
+            <div class="highlight-glow highlight-green w-[200%] h-[200%] -top-1/2 -left-1/2"></div>
+            <i class="fas fa-leaf text-5xl text-green-500 mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2">成本极低的小技巧 #1</h3>
+            <p class="font-semibold text-xl mb-4">养一盆栽</p>
+            <p class="text-gray-600">生活本身就是炼狱，而植物能提供最珍贵的东西——<strong class="text-green-600">希望</strong>。它的生长，能让你短暂地原谅这个世界几分钟。</p>
+        </div>
+
+        <div id="tip-2" class="bento-item col-span-6 col-span-l-12 flex flex-col items-center text-center">
+             <div class="highlight-glow highlight-blue w-[200%] h-[200%] -top-1/2 -right-1/2"></div>
+            <i class="fas fa-shower text-5xl text-blue-500 mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2">成本极低的小技巧 #2</h3>
+            <p class="font-semibold text-xl mb-4">下班先洗澡</p>
+            <p class="text-gray-600">在生理和心理上，有效<strong class="text-blue-600">切断与公司的联系</strong>。让你感觉是为自己而活，得到彻底的放松，告别报复性熬夜。</p>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const { motion, useInView, useAnimation } = window.Motion;
+
+            const allItems = document.querySelectorAll('.bento-item');
+
+            allItems.forEach(item => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = 1;
+                            entry.target.style.transform = 'translateY(0px)';
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                item.style.opacity = 0;
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(item);
+            });
+
+            // Specific animation for SVG
+            const svgElement = document.querySelector('.progress-circle');
+            if (svgElement) {
+                 const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.transition = 'stroke-dashoffset 1.5s ease-in-out';
+                            entry.target.style.strokeDashoffset = '188.4'; // 314 * (1 - 0.4) for 60%
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                observer.observe(svgElement);
+            }
+        });
+    </script>
+</body>
+</html>
