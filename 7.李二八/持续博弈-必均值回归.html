@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>从零到年入30万的秘密</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+    
+    <!-- Framer Motion CDN -->
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* 自定义全局样式 */
+        body {
+            background-color: #f0f2f5; /* 柔和的浅灰色背景 */
+            color: #1a202c;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 科技感高光渐变效果 */
+        .highlight-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        .highlight-glow::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0) 60%);
+            animation: rotate 15s linear infinite;
+            z-index: 0;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .bento-grid-item {
+            background-color: white;
+            border-radius: 1.5rem; /* 24px */
+            padding: 2rem; /* 32px */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .bento-grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+        }
+
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div id="app" class="container mx-auto p-4 md:p-8">
+
+        <!-- 主网格容器 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Section 1: The GOAL -->
+            <motion.div class="md:col-span-3 bento-grid-item text-center flex flex-col justify-center items-center highlight-glow"
+                :initial="{ opacity: 0, y: 50 }"
+                :while-in-view="{ opacity: 1, y: 0 }"
+                :transition="{ duration: 0.8, ease: 'easeInOut' }"
+            >
+                <div class="content-wrapper">
+                    <p class="text-xl md:text-2xl text-gray-500 tracking-widest">THE EIGHT-MONTH CHALLENGE</p>
+                    <h1 class="text-5xl md:text-8xl font-extrabold my-4 text-gray-800">从零开始，年入 <span class="text-blue-500">30万</span></h1>
+                    <p class="text-lg md:text-xl text-gray-600">方法其实只有四个字，一个数学定律的威力</p>
+                </div>
+            </motion.div>
+
+            <!-- Section 2: 大数定律 -->
+            <motion.div class="md:col-span-2 bento-grid-item flex flex-col justify-between"
+                :initial="{ opacity: 0, x: -50 }"
+                :while-in-view="{ opacity: 1, x: 0 }"
+                :transition="{ duration: 0.8, delay: 0.2 }"
+            >
+                <div>
+                    <p class="text-sm text-gray-400">THE CORE PRINCIPLE</p>
+                    <h2 class="text-6xl md:text-8xl font-bold text-gray-800">大数定律</h2>
+                    <p class="mt-4 text-xl text-gray-600">一个随机事件在大量的重复之后，会呈现出<span class="font-semibold text-blue-500">几乎必然</span>的规律。</p>
+                </div>
+                <div class="mt-8">
+                    <svg width="100%" height="100" viewBox="0 0 400 100" preserveAspectRatio="xMidYMid meet">
+                        <path d="M0 50 Q 50 10, 100 50 T 200 50 T 300 50 T 400 50" stroke="#3b82f6" fill="none" stroke-width="2" stroke-dasharray="5,5">
+                            <animate attributeName="d" values="M0 50 Q 50 10, 100 50 T 200 50 T 300 50 T 400 50;M0 50 Q 50 80, 100 50 T 200 50 T 300 50 T 400 50;M0 50 Q 50 10, 100 50 T 200 50 T 300 50 T 400 50" dur="5s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M 0 50 L 400 50" stroke="#10b981" stroke-width="3"></path>
+                        <text x="5" y="20" font-family="sans-serif" font-size="12" fill="#6b7280">偶然 (Randomness)</text>
+                        <text x="340" y="80" font-family="sans-serif" font-size="12" fill="#10b981">必然 (Certainty)</text>
+                    </svg>
+                </div>
+            </motion.div>
+            
+            <motion.div class="bento-grid-item flex flex-col justify-center items-center text-center"
+                :initial="{ opacity: 0, scale: 0.8 }"
+                :while-in-view="{ opacity: 1, scale: 1 }"
+                :transition="{ duration: 0.8, delay: 0.3 }"
+            >
+                <i class="fas fa-dice text-9xl text-blue-400"></i>
+                <p class="mt-4 text-xl font-bold">偶然中包含着必然</p>
+                <p class="text-gray-500">量变引起质变</p>
+            </motion.div>
+
+            <!-- Section 3: The STRATEGY -->
+            <motion.div class="bento-grid-item text-center"
+                :initial="{ opacity: 0, y: 50 }"
+                :while-in-view="{ opacity: 1, y: 0 }"
+                :transition="{ duration: 0.8, delay: 0.2 }"
+            >
+                <p class="text-sm text-gray-400">WHEN YOU HAVE AN EDGE</p>
+                <h3 class="text-4xl font-bold text-gray-800 mt-2">拥有概率优势</h3>
+                <p class="text-gray-600 mt-4">你的最佳策略就是：</p>
+                <p class="text-3xl font-bold text-blue-500 mt-2">持续的博弈</p>
+                <p class="text-3xl font-bold text-blue-500">反复的输出</p>
+            </motion.div>
+            
+            <motion.div class="bento-grid-item text-center"
+                :initial="{ opacity: 0, y: 50 }"
+                :while-in-view="{ opacity: 1, y: 0 }"
+                :transition="{ duration: 0.8, delay: 0.3 }"
+            >
+                 <p class="text-sm text-gray-400">WHEN YOU DON'T</p>
+                <h3 class="text-4xl font-bold text-gray-800 mt-2">没有概率优势</h3>
+                <p class="text-gray-600 mt-4">普通人炒股的最佳策略：</p>
+                <p class="text-3xl font-bold text-red-500 mt-2">梭哈一把</p>
+                <p class="text-3xl font-bold text-red-500">长期持有</p>
+            </motion.div>
+
+            <motion.div class="bento-grid-item flex flex-col justify-center items-center text-center highlight-glow"
+                :initial="{ opacity: 0, y: 50 }"
+                :while-in-view="{ opacity: 1, y: 0 }"
+                :transition="{ duration: 0.8, delay: 0.4 }"
+            >
+                <div class="content-wrapper">
+                    <i class="fas fa-chart-line text-8xl text-blue-500"></i>
+                    <p class="mt-4 text-xl font-bold">博弈次数越多</p>
+                    <p class="text-gray-500">你的获利就必然越多</p>
+                </div>
+            </motion.div>
+
+            <!-- Section 4: Life is a SUM -->
+            <motion.div class="md:col-span-3 bento-grid-item text-center"
+                 :initial="{ opacity: 0, scale: 0.9 }"
+                 :while-in-view="{ opacity: 1, scale: 1 }"
+                 :transition="{ duration: 0.8 }"
+            >
+                <p class="text-lg text-gray-500">THE SUM OF ALL YOUR CHOICES</p>
+                <h2 class="text-4xl md:text-7xl font-extrabold text-gray-800 my-4">你现在的生活，大概率是你应得的</h2>
+                <p class="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">因为它由你一生中无数个大大小小的决定亲手换来。但好消息是，你的人生不会在这一刻定型。</p>
+            </motion.div>
+            
+            <motion.div class="bento-grid-item"
+                 :initial="{ opacity: 0, x: -50 }"
+                 :while-in-view="{ opacity: 1, x: 0 }"
+                 :transition="{ duration: 0.8, delay: 0.2 }"
+            >
+                <div class="flex items-center">
+                    <i class="fas fa-brain text-4xl text-blue-500 mr-4"></i>
+                    <div>
+                        <h4 class="font-bold text-lg">认知 > 运气</h4>
+                        <p class="text-gray-600">才不配位，必有灾殃。凭运气得到的钱，会凭实力亏掉。</p>
+                    </div>
+                </div>
+            </motion.div>
+
+            <motion.div class="md:col-span-2 bento-grid-item"
+                 :initial="{ opacity: 0, x: 50 }"
+                 :while-in-view="{ opacity: 1, x: 0 }"
+                 :transition="{ duration: 0.8, delay: 0.3 }"
+            >
+                <div class="flex items-center">
+                    <i class="fas fa-robot text-4xl text-blue-500 mr-4"></i>
+                    <div>
+                        <h4 class="font-bold text-lg">算法的必然性</h4>
+                        <p class="text-gray-600">你能刷到这个内容，不是偶然。它由你近期的观看、互动和思考共同决定，是你寻求改变的必然结果。</p>
+                    </div>
+                </div>
+            </motion.div>
+
+            <!-- Section 5: My PLAN & Your EDGE -->
+             <motion.div class="md:col-span-2 bento-grid-item highlight-glow"
+                 :initial="{ opacity: 0, y: 50 }"
+                 :while-in-view="{ opacity: 1, y: 0 }"
+                 :transition="{ duration: 0.8, delay: 0.2 }"
+            >
+                <div class="content-wrapper">
+                    <p class="text-sm text-gray-400">MY PROBABILITY ADVANTAGE</p>
+                    <h3 class="text-4xl font-bold mt-2">我的计划：在文案上持续博弈</h3>
+                    <p class="text-gray-600 mt-4">我的优势在于好奇心、深度思考和清晰表达。我不需要每个视频都上热门，大数定律会保证，只要我持续输出高质量内容，就必然会到达我应得的位置。</p>
+                    <div class="mt-6 p-4 bg-blue-50 rounded-lg text-center">
+                        <span class="font-bold text-blue-600 text-2xl">1 个优质视频 = 1 次与市场的正向博弈</span>
+                    </div>
+                </div>
+            </motion.div>
+            
+            <motion.div class="bento-grid-item flex flex-col justify-center items-center text-center bg-blue-500 text-white"
+                 :initial="{ opacity: 0, scale: 0.8 }"
+                 :while-in-view="{ opacity: 1, scale: 1 }"
+                 :transition="{ duration: 0.8, delay: 0.3 }"
+            >
+                <p class="text-sm text-blue-200">YOUR ULTIMATE EDGE</p>
+                <h3 class="text-4xl font-extrabold mt-2">你的优势</h3>
+                <p class="text-8xl md:text-9xl font-black my-4">>90%</p>
+                <p class="text-lg text-blue-100">你能看到这里，说明你拥有最宝贵的概率优势：<span class="font-bold">耐心和积极的态度</span>。保持下去，你早晚会变得生猛无比。</p>
+            </motion.div>
+
+        </div>
+    </div>
+
+    <script>
+        // Vue (or similar reactivity) is not needed for this simple setup.
+        // We'll use the Motion One library that comes with Framer Motion for simple animations.
+        const { motion } = Motion;
+
+        document.querySelectorAll('motion\\.div').forEach(element => {
+            const initial = JSON.parse(element.getAttribute(':initial').replace(/'/g, '"'));
+            const whileInView = JSON.parse(element.getAttribute(':while-in-view').replace(/'/g, '"'));
+            const transition = JSON.parse(element.getAttribute(':transition').replace(/'/g, '"'));
+            
+            motion(element, {
+                initial: initial,
+                inView: whileInView,
+                transition: {
+                    ...transition,
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 20,
+                    mass: 1
+                }
+            });
+        });
+    </script>
+</body>
+</html>

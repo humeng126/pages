@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打破封印：从高认知穷人到巅峰自我</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Framer Motion via CDN -->
+    <script type="module">
+        import { motion, useScroll, useTransform, inView } from "https://cdn.jsdelivr.net/npm/framer-motion@10.16.4/dist/framer-motion.es.js";
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f0f2f5; /* A soft, light grey background */
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+        .bento-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(12, 1fr);
+            padding: 1.5rem;
+            max-width: 1400px;
+            margin: auto;
+        }
+        .bento-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        /* Grid spans */
+        .col-span-12 { grid-column: span 12; }
+        .col-span-8 { grid-column: span 8; }
+        .col-span-7 { grid-column: span 7; }
+        .col-span-6 { grid-column: span 6; }
+        .col-span-5 { grid-column: span 5; }
+        .col-span-4 { grid-column: span 4; }
+
+        @media (max-width: 1024px) {
+            .bento-item {
+                grid-column: span 12 !important;
+            }
+        }
+        
+        .highlight-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+            background: radial-gradient(circle at top left, #818cf8, transparent 50%);
+        }
+        
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <div id="app">
+        <main class="bento-grid">
+            <!-- Hero Section -->
+            <div class="bento-item col-span-7 flex flex-col justify-between animate-on-scroll">
+                <div class="content">
+                    <p class="text-sm font-semibold text-indigo-500 uppercase">THE AWAKENING</p>
+                    <h1 class="text-4xl md:text-6xl font-black mt-2 leading-tight">我不是没有能力<br>而是<span class="text-indigo-600">封印</span>了自己</h1>
+                    <p class="mt-6 text-lg text-gray-600">高认知、聪明，却郁郁不得志？这并非能力问题，而是一种自我施加的禁锢。是时候扭转心态，解放你被封印的力量。</p>
+                </div>
+            </div>
+
+            <div class="bento-item col-span-5 flex flex-col justify-center items-center text-center animate-on-scroll">
+                <div class="highlight-gradient" style="background: radial-gradient(circle at bottom right, #a78bfa, transparent 60%);"></div>
+                <div class="content">
+                    <p class="text-sm font-semibold text-purple-500 uppercase">THE PROOF</p>
+                    <div class="my-4">
+                        <span class="text-8xl md:text-9xl font-black text-purple-600">7.1<span class="text-5xl">万</span></span>
+                    </div>
+                    <p class="text-lg text-gray-700">三条视频涨粉，几十个付费请求被我拒绝。重要的不是流量，而是我验证了：我拥有成功的能力。</p>
+                </div>
+            </div>
+
+            <!-- The Core Problem: Perfectionism -->
+            <div class="bento-item col-span-12 text-center animate-on-scroll">
+                <div class="content">
+                    <p class="text-sm font-semibold text-red-500 uppercase">THE HIDDEN ENEMY</p>
+                    <h2 class="text-6xl md:text-9xl font-black my-4 text-gray-800">完美主义</h2>
+                    <p class="text-xl max-w-4xl mx-auto text-gray-600">拖延症、选择困难、眼高手低、高认知穷人... 它们背后的本质，都是完美主义。要么不做，要么一鸣惊人。</p>
+                </div>
+            </div>
+            
+            <div class="bento-item col-span-6 animate-on-scroll">
+                <div class="highlight-gradient" style="background: radial-gradient(circle at top right, #f472b6, transparent 50%);"></div>
+                <div class="content">
+                    <p class="text-sm font-semibold text-pink-500 uppercase">CASE STUDY: APPLE</p>
+                    <h3 class="text-3xl font-bold mt-2">苹果造车的失败</h3>
+                    <p class="mt-4 text-gray-600">强如苹果，也输给了自己。2014年便立下L5自动驾驶的“天方夜谭”目标，追求断层第一，最终项目搁浅。它不是败给对手，而是败给了不切实际的完美主义。</p>
+                    <div class="mt-6 p-4 bg-gray-100 rounded-lg text-gray-700">
+                        <i class="fas fa-bullseye mr-2 text-pink-500"></i>
+                        <span class="font-bold">核心表现 1:</span> 定下不切实际的目标。
+                        <br>
+                        <i class="fas fa-shield-halved mr-2 text-pink-500"></i>
+                        <span class="font-bold">核心表现 2:</span> 极度惧怕不确定性。
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Origin: Cognitive Dissonance -->
+            <div class="bento-item col-span-6 animate-on-scroll">
+                 <div class="content">
+                    <p class="text-sm font-semibold text-teal-500 uppercase">THE ORIGIN</p>
+                    <h3 class="text-3xl font-bold mt-2">认知失衡的循环</h3>
+                    <p class="mt-4 text-gray-600">你可能从小就是优等生，习惯了“稍微努力就比别人强”的路径。这种“一分耕耘，五分收获”的错觉，让你高估了自己，低估了现实。</p>
+                    <div class="mt-6 space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-arrow-up-right-dots text-teal-500 text-xl w-8 text-center"></i>
+                            <div>
+                                <h4 class="font-bold">良性循环</h4>
+                                <p class="text-sm text-gray-500">轻松获得好成绩 → 获得赞赏与高期待 → 更加努力 → 强化路径依赖</p>
+                            </div>
+                        </div>
+                         <div class="flex items-center">
+                            <i class="fas fa-balance-scale-left text-red-500 text-xl w-8 text-center"></i>
+                            <div>
+                                <h4 class="font-bold">认知失衡</h4>
+                                <p class="text-sm text-gray-500">误以为自己天赋异禀，忽视了天时地利人和的综合因素。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Trap -->
+            <div class="bento-item col-span-8 animate-on-scroll">
+                <div class="content">
+                    <p class="text-sm font-semibold text-orange-500 uppercase">THE TRAP</p>
+                    <h3 class="text-3xl font-bold mt-2">高认知的“穷人”陷阱</h3>
+                    <p class="mt-4 text-gray-600">当现实的模糊性与校园的确定性碰撞，你本能地退回最舒适的方式——学习理论。你收藏知识，什么都懂一点，却都是皮毛。</p>
+                    <blockquote class="mt-6 border-l-4 border-orange-400 pl-4 italic text-gray-700">
+                        "备前则后寡，备后则前寡，备左则右寡，备右则左寡，无所不备，则无所不寡。"
+                        <cite class="block mt-2 text-sm not-italic">— 孙子兵法</cite>
+                    </blockquote>
+                    <p class="mt-4 text-gray-600">什么都想抓住，最终什么都抓不住。真正的认知，是理论与实践碰撞的产物。</p>
+                </div>
+            </div>
+            
+            <div class="bento-item col-span-4 flex flex-col justify-center items-center text-center animate-on-scroll">
+                <div class="highlight-gradient" style="background: radial-gradient(circle at center, #fb923c, transparent 70%);"></div>
+                <div class="content">
+                    <i class="fas fa-brain text-6xl text-orange-500"></i>
+                    <h4 class="text-2xl font-bold mt-4">心理防御机制</h4>
+                    <p class="mt-2 text-gray-600">为保护脆弱的自尊，大脑会让你封闭，让你对新方法摆出“我不稀罕”的态度，本能地去批判。</p>
+                </div>
+            </div>
+
+            <!-- The Solution -->
+            <div class="bento-item col-span-12 text-center animate-on-scroll">
+                <div class="content">
+                    <p class="text-sm font-semibold text-green-500 uppercase">THE SOLUTION</p>
+                    <h2 class="text-5xl md:text-7xl font-black my-4 text-gray-800">校准认知，尊重规律</h2>
+                    <p class="text-xl max-w-4xl mx-auto text-gray-600">破除禁锢无需吃药，只需彻底搞懂成因，并用行动来校准失衡的认知。</p>
+                </div>
+            </div>
+
+            <div class="bento-item col-span-5 animate-on-scroll">
+                <div class="content">
+                     <p class="text-sm font-semibold text-sky-500 uppercase">ACTION > PERFECTION</p>
+                     <h3 class="text-3xl font-bold mt-2">干中学，事上练</h3>
+                     <p class="mt-4 text-gray-600">这篇文章的深度，是我在写的过程中才悟出来的。如果我追求完美，它根本不会诞生。</p>
+                     <ul class="mt-4 space-y-2 text-gray-600 list-inside">
+                        <li class="line-through"><i class="fas fa-times-circle text-red-400 mr-2"></i>选题要惊艳，不能和别人一样。</li>
+                        <li class="line-through"><i class="fas fa-times-circle text-red-400 mr-2"></i>表达不如人？放弃是最好的办法。</li>
+                        <li class="line-through"><i class="fas fa-times-circle text-red-400 mr-2"></i>没流量就分析数据，找不到原因就崩溃。</li>
+                        <li class="line-through"><i class="fas fa-times-circle text-red-400 mr-2"></i>发现别人效率更高？停下就是前进。</li>
+                     </ul>
+                </div>
+            </div>
+
+            <div class="bento-item col-span-7 animate-on-scroll">
+                <div class="highlight-gradient" style="background: radial-gradient(circle at bottom left, #22d3ee, transparent 50%);"></div>
+                <div class="content">
+                    <p class="text-sm font-semibold text-cyan-500 uppercase">MACRO PERSPECTIVE</p>
+                    <h3 class="text-3xl font-bold mt-2">从宏观规律看问题</h3>
+                    <p class="mt-4 text-gray-600">别在细节上内耗，抓住最本质的东西。大方向对了，怎么走都对。</p>
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-bold text-cyan-700">自媒体的本质</h4>
+                            <p class="text-sm text-gray-600">平台的命脉是用户。持续输出价值，帮平台留住用户，商业价值水到渠成。</p>
+                        </div>
+                        <div>
+                             <h4 class="font-bold text-cyan-700">天才导演姜文</h4>
+                             <p class="text-sm text-gray-600">素材比高达 <span class="font-extrabold text-xl">1:15</span>。天才也懂得尊重规律：好作品是磨出来的。</p>
+                        </div>
+                        <div>
+                             <h4 class="font-bold text-cyan-700">作家的秘诀</h4>
+                             <p class="text-sm text-gray-600">唯一的技巧就是“硬写”。写的多了，自然就好了。</p>
+                        </div>
+                         <div>
+                             <h4 class="font-bold text-cyan-700">人生的规律</h4>
+                             <p class="text-sm text-gray-600">吃亏要趁早，大道至简。你走过的每一步，未来都会反哺给你。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Conclusion -->
+            <div class="bento-item col-span-12 animate-on-scroll">
+                <div class="content text-center">
+                    <i class="fas fa-road-spikes text-6xl text-indigo-500"></i>
+                    <h2 class="text-4xl font-bold mt-4">人生没有弯路</h2>
+                    <p class="mt-4 text-xl max-w-3xl mx-auto text-gray-700">
+                        正是过去四年的痛苦内耗，才成就了今天的果敢。放下对确定性的偏执，拥抱过程中的不完美。你走过的每一步，都是通往巅峰的必经之路。
+                    </p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module">
+        // This is a simple implementation of scroll-triggered animations
+        // In a real app, you might use Intersection Observer for better performance
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+    <style>
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.17, 0.55, 0.55, 1), transform 0.8s cubic-bezier(0.17, 0.55, 0.55, 1);
+        }
+        .animate-on-scroll.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</body>
+</html>

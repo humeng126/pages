@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高主观能动性 | High Agency</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+    
+    <!-- Font Awesome (Icons) via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Custom Font & Base Styling */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            background-color: #f0f2f5; /* Soft background */
+            color: #1a202c;
+        }
+
+        /* Gradient Glow Effect */
+        .glow-effect {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(29, 78, 216, 0.15) 0%, rgba(29, 78, 216, 0) 70%);
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Animation Styling for Scroll Effect */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.215, 0.610, 0.355, 1), transform 0.8s cubic-bezier(0.215, 0.610, 0.355, 1);
+            transition-delay: 0.1s;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Customizing grid items */
+        .bento-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .bento-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <!-- Main Grid Container -->
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+
+            <!-- Header -->
+            <div class="reveal md:col-span-3 lg:col-span-4 p-8 md:p-12 rounded-2xl bento-box flex flex-col justify-center items-center text-center">
+                <h1 class="text-5xl md:text-8xl font-extrabold tracking-tighter text-gray-800">高主观能动性</h1>
+                <p class="text-xl md:text-2xl mt-2 text-blue-600 font-light">High Agency</p>
+                <p class="mt-4 max-w-3xl text-gray-600">
+                    一个在外网高知圈爆火的词，成为了评价一个人能否成事的新标准。它指向一种内核：不把未来看作静止的实体，而是可以被行动所改造的东西。
+                </p>
+            </div>
+
+            <!-- The Question -->
+            <div class="reveal md:col-span-3 lg:col-span-2 p-8 rounded-2xl bento-box relative overflow-hidden">
+                <div class="glow-effect -top-20 -left-20"></div>
+                <i class="fas fa-phone-volume text-5xl text-blue-500 absolute top-8 right-8 opacity-20"></i>
+                <h2 class="text-2xl font-bold text-gray-800">一个思想实验</h2>
+                <p class="text-sm uppercase text-gray-500 tracking-wider">The Core Question</p>
+                <p class="mt-4 text-gray-700 text-lg">
+                    假如你身处小国监狱，只能打一通电话求助，你会打给谁？
+                </p>
+                <p class="mt-2 text-gray-600">
+                    你选择此人的标准，就藏着“高主观能动性”的答案。你最终选择的人，身上那种难以言喻的搞定事情的气质，就是 High Agency。
+                </p>
+            </div>
+            
+            <!-- Core Concept: Master of Own World -->
+             <div class="reveal md:col-span-3 lg:col-span-2 p-8 rounded-2xl bento-box flex flex-col justify-between">
+                <div>
+                     <h2 class="text-2xl font-bold text-gray-800">生活的主宰者</h2>
+                     <p class="text-sm uppercase text-gray-500 tracking-wider">Master of Their World</p>
+                     <p class="mt-4 text-gray-600">悲观者看半杯水是空的，乐观者看是满的。高主观能动性的人看到的是一个容器，如果需要，他有一万种方法把它装满。</p>
+                </div>
+                 <div class="w-full mt-4">
+                     <svg viewBox="0 0 300 100" class="w-full" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M 50 80 L 55 20 H 115 L 120 80 Z" stroke="#a0aec0" stroke-width="2" fill="none"/>
+                         <path d="M 57 50 H 113" stroke="#3b82f6" stroke-width="2" fill="none"/>
+                         <text x="85" y="95" text-anchor="middle" font-size="10" fill="#718096">Pessimist / Optimist</text>
+                         
+                         <path d="M 180 80 L 185 20 H 245 L 250 80 Z" stroke="#a0aec0" stroke-width="2" fill="none"/>
+                         <path d="M 187 50 H 243" stroke="#3b82f6" stroke-width="2" fill="none"/>
+                         <path d="M 215 50 L 215 23" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="3,3"/>
+                         <path d="M 210 28 L 215 23 L 220 28" stroke="#2563eb" stroke-width="1.5" fill="none"/>
+                         <text x="215" y="95" text-anchor="middle" font-size="10" fill="#4a5568">High Agency</g>
+                     </svg>
+                 </div>
+            </div>
+
+
+            <!-- Trait 1 -->
+            <div class="reveal p-8 rounded-2xl bento-box relative flex flex-col justify-between">
+                 <div class="absolute top-0 right-0 text-8xl md:text-9xl font-black text-gray-200/50 -z-10 -mr-2 -mt-2">1</div>
+                 <div>
+                    <i class="fas fa-bug text-3xl text-green-500 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-800">异于常人的爱好</h3>
+                    <p class="text-xs uppercase text-gray-500">Unconventional Since Youth</p>
+                    <p class="mt-3 text-gray-600">青少年时期就拥有小众爱好，意味着内在驱动力远大于对外部认同的需求。比如马斯克沉迷于阅读大英百科全书。</p>
+                 </div>
+                 <p class="text-sm mt-4 text-green-700 font-semibold">内在驱动 > 外部认同</p>
+            </div>
+
+            <!-- Trait 2 -->
+            <div class="reveal md:col-span-2 p-8 rounded-2xl bento-box relative flex flex-col justify-between">
+                <div class="absolute top-0 right-0 text-8xl md:text-9xl font-black text-gray-200/50 -z-10 -mr-2 -mt-2">2</div>
+                <div>
+                    <i class="fas fa-comments text-3xl text-purple-500 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-800">不惧付出社会成本</h3>
+                    <p class="text-xs uppercase text-gray-500">Unafraid of Social Costs</p>
+                    <ul class="mt-3 text-gray-600 list-none space-y-2">
+                        <li><i class="fas fa-check-circle text-purple-400 mr-2"></i>当面批评人，背后赞美人。</li>
+                        <li><i class="fas fa-briefcase text-purple-400 mr-2"></i>曾放弃过显赫的职位或远离家乡。</li>
+                        <li><i class="fas fa-user-astronaut text-purple-400 mr-2"></i>拥有强大的自学能力和从零开始的勇气。</li>
+                    </ul>
+                </div>
+                <p class="text-sm mt-4 text-purple-700 font-semibold">反人性的勇气与行动力</p>
+            </div>
+            
+            <!-- Trait 3 -->
+            <div class="reveal p-8 rounded-2xl bento-box relative flex flex-col justify-between">
+                <div class="absolute top-0 right-0 text-8xl md:text-9xl font-black text-gray-200/50 -z-10 -mr-2 -mt-2">3</div>
+                <div>
+                     <i class="fas fa-question-circle text-3xl text-orange-500 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-800">质疑问题本身</h3>
+                    <p class="text-xs uppercase text-gray-500">Question The Question</p>
+                    <p class="mt-3 text-gray-600">给错误问题找答案，不如发现一个正确问题。他们能从战术层面跃升到战略层面思考。</p>
+                </div>
+                <p class="text-sm mt-4 text-orange-700 font-semibold">战略思维 > 战术执行</p>
+            </div>
+
+            <!-- Trait 4 -->
+            <div class="reveal md:col-span-2 p-8 rounded-2xl bento-box relative overflow-hidden">
+                 <div class="absolute top-0 right-0 text-8xl md:text-9xl font-black text-gray-200/50 -z-10 -mr-2 -mt-2">4</div>
+                 <div class="glow-effect -bottom-20 -right-20" style="background: radial-gradient(circle, rgba(234, 88, 12, 0.15) 0%, rgba(234, 88, 12, 0) 70%);"></div>
+                <i class="fas fa-bolt text-3xl text-yellow-500 mb-4"></i>
+                <h3 class="text-xl font-bold text-gray-800">能量的引爆者</h3>
+                <p class="text-xs uppercase text-gray-500">Energy Amplifier</p>
+                <p class="mt-3 text-gray-600">当你疲惫消沉时，和他们聊天能让你重燃斗志。他们能将劣势解读为优势，引爆自己和别人的能量。</p>
+                <blockquote class="mt-4 border-l-4 border-yellow-400 pl-4 text-sm text-gray-700 italic">
+                    “Ebay是海里的大鲨鱼，我们是扬子江里的鳄鱼。在扬子江交战，我们未必会输。” - 马云
+                </blockquote>
+            </div>
+
+             <!-- Your Turn -->
+            <div class="reveal md:col-span-1 lg:col-span-2 p-8 rounded-2xl bento-box flex flex-col items-center justify-center text-center">
+                 <i class="fas fa-user-check text-5xl text-blue-500 mb-4"></i>
+                 <h3 class="text-xl font-bold text-gray-800">现在，轮到你了</h3>
+                 <p class="text-xs uppercase text-gray-500">Your Turn</p>
+                 <p class="mt-3 text-gray-600">你的朋友会打电话给你吗？能看到这里的你，已是小众中的小众。这本身，就是一种 High Agency 的体现。</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for scroll-triggered animations
+        document.addEventListener("DOMContentLoaded", function() {
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Optional: unobserve after revealing to save resources
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            revealElements.forEach(elem => {
+                observer.observe(elem);
+            });
+        });
+    </script>
+</body>
+</html>
