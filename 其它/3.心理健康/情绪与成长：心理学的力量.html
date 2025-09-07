@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情绪心理学洞察</title>
+    
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #F5F5F7;
+            color: #1d1d1f;
+            overflow-x: hidden;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem; /* 24px */
+        }
+        
+        .bento-item {
+            background-color: #FFFFFF;
+            border-radius: 1.5rem; /* 24px */
+            padding: 2.5rem; /* 40px */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .highlight-glow {
+            position: absolute;
+            opacity: 0.15;
+            filter: blur(40px);
+            border-radius: 50%;
+        }
+
+        .col-span-12 { grid-column: span 12; }
+        .col-span-8 { grid-column: span 8; }
+        .col-span-7 { grid-column: span 7; }
+        .col-span-6 { grid-column: span 6; }
+        .col-span-5 { grid-column: span 5; }
+        .col-span-4 { grid-column: span 4; }
+
+        @media (max-width: 1024px) {
+            .bento-item { padding: 1.5rem; }
+            .col-span-12, .col-span-8, .col-span-7, .col-span-6, .col-span-5, .col-span-4 {
+                grid-column: span 12;
+            }
+        }
+        
+        .ultra-large {
+            font-size: clamp(4rem, 12vw, 10rem);
+            line-height: 1;
+            font-weight: 900;
+        }
+        
+        .sub-text-en {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #86868b;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="app" class="p-6 md:p-10 lg:p-12 max-w-screen-2xl mx-auto">
+        <main class="bento-grid">
+
+            <!-- 1. 情绪波动 -->
+            <motion.div class="bento-item col-span-12 lg:col-span-7 flex flex-col justify-between"
+                :initial="{ opacity: 0, y: 50 }"
+                :while-in-view="{ opacity: 1, y: 0 }"
+                :transition="{ duration: 0.7, delay: 0.1 }">
+                <div class="highlight-glow" style="background-color: #0071e3; width: 300px; height: 300px; top: -50px; left: -50px;"></div>
+                <div>
+                    <p class="sub-text-en">Emotional Fluctuation</p>
+                    <h2 class="text-3xl md:text-5xl font-bold mt-2">负面情绪是正常反应</h2>
+                    <p class="mt-4 text-lg text-gray-600">
+                        预期的奖金没拿到手不高兴，这很正常。短暂的不开心是人之常情，不要把正常的情绪体验当作心理疾病。
+                    </p>
+                </div>
+                <div class="text-right mt-12">
+                    <span class="ultra-large text-gray-200">21</span>
+                    <p class="text-xl md:text-2xl font-semibold -mt-4 mr-2">连续 <span class="text-blue-600">21</span> 天不开心，才需要警惕。</p>
+                </div>
+            </motion.div>
+
+            <!-- 2. EAP -->
+            <motion.div class="bento-item col-span-12 lg:col-span-5"
+                :initial="{ opacity: 0, y: 50 }"
+                :while-in-view="{ opacity: 1, y: 0 }"
+                :transition="{ duration: 0.7, delay: 0.2 }">
+                <div class="highlight-glow" style="background-color: #66ccff; width: 250px; height: 250px; bottom: -80px; right: -80px;"></div>
+                <p class="sub-text-en">Employee Assistance Program</p>
+                <h2 class="text-3xl md:text-5xl font-bold mt-2">心理服务是支持，而非治疗</h2>
+                <p class="mt-4 text-lg text-gray-600">
+                    在国外，心理服务(EAP)旨在帮助优秀的人做得更好，是一种正常的社会需求，如同专属教练。它是一个支持计划，而非治疗计划。
+                </p>
+                <div class="mt-8">
+                    <svg class="w-full" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+                        <motion.path d="M 10 80 C 80 20, 120 20, 190 80 S 260 20, 290 80" stroke="#0071e3" stroke-width="2" fill="none"
+                            :initial="{ pathLength: 0 }"
+                            :while-in-view="{ pathLength: 1 }"
+                            :transition="{ duration: 2, ease: 'easeInOut' }"/>
+                        <text x="10" y="95" font-size="10" fill="#86868b">支持 SUPPORT</text>
+                        <text x="250" y="95" font-size="10" fill="#86868b">陪伴 ACCOMPANY</text>
+                    </svg>
+                </div>
+            </motion.div>
+
+            <!-- 3. Neuroplasticity -->
+            <motion.div class="bento-item col-span-12 lg:col-span-8"
+                :initial="{ opacity: 0, y: 50 }"
+                :while-in-view="{ opacity: 1, y: 0 }"
+                :transition="{ duration: 0.7, delay: 0.1 }">
+                <div class="highlight-glow" style="background-color: #34c759; width: 400px; height: 400px; top: 50%; right: -100px; transform: translateY(-50%);"></div>
+                <p class="sub-text-en">Neuroplasticity</p>
+                <h2 class="text-3xl md:text-5xl font-bold mt-2">神经可塑性：人是可以改变的</h2>
+                 <p class="mt-4 text-lg text-gray-600">
+                    过去十年最伟大的心理学发现之一。通过有意识的活动，我们可以改造神经网络，记忆、创伤甚至原生家庭的影响都可以被重塑。不要相信宿命论。
+                </p>
+                <div class="mt-8 flex justify-center items-center h-48">
+                     <svg width="80%" height="80%" viewBox="0 0 200 100">
+                        <motion.circle cx="40" cy="50" r="10" fill="#a0aec0"
+                            :initial="{ cx: 40 }" :while-in-view="{ cx: 160 }" :transition="{ duration: 2, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }"/>
+                        <line x1="40" y1="50" x2="160" y2="50" stroke="#e2e8f0" stroke-width="2"/>
+                        <circle cx="40" cy="50" r="4" fill="#34c759"/>
+                        <motion.line x1="100" y1="20" x2="100" y2="80" stroke="#34c759" stroke-width="2" stroke-dasharray="4 4"
+                            :initial="{ pathLength: 0, opacity: 0 }"
+                            :while-in-view="{ pathLength: 1, opacity: 1 }"
+                            :transition="{ duration: 1.5, delay: 0.5 }"/>
+                        <circle cx="160" cy="50" r="4" fill="#34c759"/>
+                        <text x="80" y="95" font-size="10" fill="#86868b">改造 REMODEL</text>
+                    </svg>
+                </div>
+            </motion.div>
+
+            <!-- 4. 改写过去 -->
+            <motion.div class="bento-item col-span-12 lg:col-span-4 flex flex-col"
+                 :initial="{ opacity: 0, y: 50 }"
+                 :while-in-view="{ opacity: 1, y: 0 }"
+                 :transition="{ duration: 0.7, delay: 0.2 }">
+                <p class="sub-text-en">Rewrite the Past</p>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2">改造，而非遗忘</h2>
+                <p class="mt-4 text-lg text-gray-600 flex-grow">
+                    改造过去的伤害，意味着理解其发生的原因，并从中汲取力量，让它不再对你产生约束性影响，升华为积极的能量。
+                </p>
+                <div class="mt-6 text-center">
+                    <i class="fas fa-feather-alt fa-4x text-green-500"></i>
+                    <p class="mt-2 font-semibold">化茧成蝶</p>
+                </div>
+            </motion.div>
+            
+            <!-- 5. 宽恕三部曲 -->
+            <motion.div class="bento-item col-span-12"
+                :initial="{ opacity: 0, y: 50 }"
+                :while-in-view="{ opacity: 1, y: 0 }"
+                :transition="{ duration: 0.7, delay: 0.1 }">
+                <div class="highlight-glow" style="background-color: #ff9500; width: 500px; height: 500px; top: -150px; left: 50%; transform: translateX(-50%);"></div>
+                <div class="text-center mb-8">
+                    <p class="sub-text-en">The Trilogy of Forgiveness</p>
+                    <h2 class="text-4xl md:text-6xl font-bold mt-2">人类宽恕的三部曲</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <motion.div :initial="{ opacity: 0, y: 30 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.3 }">
+                        <div class="text-5xl font-black text-orange-400">1</div>
+                        <h3 class="text-2xl font-bold mt-4">寻求正义</h3>
+                        <p class="mt-2 text-gray-600">Justice</p>
+                        <p class="mt-2">大胆说出伤害，寻求社会、情感和心理层面的正义感，这是疗愈的第一步。</p>
+                    </motion.div>
+                    <motion.div :initial="{ opacity: 0, y: 30 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.5 }">
+                        <div class="text-5xl font-black text-orange-400">2</div>
+                        <h3 class="text-2xl font-bold mt-4">选择放下</h3>
+                        <p class="mt-2 text-gray-600">Let Go</p>
+                        <p class="mt-2">不让坏人坏事继续摧毁自己的人生。放下，是为了开启自己的新生活。</p>
+                    </motion.div>
+                    <motion.div :initial="{ opacity: 0, y: 30 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.7 }">
+                        <div class="text-5xl font-black text-orange-400">3</div>
+                        <h3 class="text-2xl font-bold mt-4">自我超越</h3>
+                        <p class="mt-2 text-gray-600">Transcend</p>
+                        <p class="mt-2">因创伤而活出更灿烂的生命，不再受其影响，达到真正的自在与超越。</p>
+                    </motion.div>
+                </div>
+            </motion.div>
+
+             <!-- 6. 拒绝麻木 -->
+            <motion.div class="bento-item col-span-12 lg:col-span-6 flex flex-col items-center justify-center text-center"
+                 :initial="{ opacity: 0, scale: 0.9 }"
+                 :while-in-view="{ opacity: 1, scale: 1 }"
+                 :transition="{ duration: 0.7, delay: 0.2 }">
+                <div class="highlight-glow" style="background-color: #ff3b30; width: 300px; height: 300px; top: 10%; left: 10%;"></div>
+                <p class="sub-text-en">Against Numbness</p>
+                <h2 class="text-4xl md:text-6xl font-bold mt-2">别冷漠，别麻木，别躺平</h2>
+                <p class="mt-6 text-xl text-gray-600 max-w-md">
+                   挖掘内在情绪的力量：去<span class="text-red-500 font-semibold">爱</span>，去<span class="text-red-500 font-semibold">行动</span>，去<span class="text-red-500 font-semibold">运动</span>，去<span class="text-red-500 font-semibold">关心他人</span>，去感受<span class="text-red-500 font-semibold">美</span>。激发原始的生命力。
+                </p>
+                <div class="mt-8 text-5xl text-red-400">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+            </motion.div>
+            
+            <!-- 7. 个人IP -->
+            <motion.div class="bento-item col-span-12 lg:col-span-6"
+                 :initial="{ opacity: 0, y: 50 }"
+                 :while-in-view="{ opacity: 1, y: 0 }"
+                 :transition="{ duration: 0.7, delay: 0.1 }">
+                 <div class="highlight-glow" style="background-color: #5856d6; width: 250px; height: 250px; bottom: -50px; left: -50px;"></div>
+                <p class="sub-text-en">Personal Branding</p>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2">见天地、见众生、见自己</h2>
+                <p class="mt-4 text-lg text-gray-600">
+                   如果你也想通过对话打造自己的个人IP，欢迎私信我们，关注我们的课程。
+                </p>
+                <div class="mt-8">
+                     <button class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-full hover:bg-indigo-700 transition-colors duration-300">
+                        了解更多 <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </motion.div>
+        </main>
+    </div>
+
+    <script>
+        const { motion, useScroll, useTransform } = Motion;
+
+        const app = {
+            components: {
+                motion: motion.div
+            },
+            setup() {
+                // You can define reactive properties and methods here if needed
+                return {};
+            }
+        };
+
+        Vue.createApp(app).mount('#app');
+    </script>
+</body>
+</html>

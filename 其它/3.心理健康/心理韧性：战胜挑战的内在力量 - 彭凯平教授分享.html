@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心理韧性：战胜挑战的内在力量 - 彭凯平教授分享</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+
+    <!-- Font Awesome Icons via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Framer Motion via CDN -->
+    <script src="https://unpkg.com/framer-motion@10.18.0/dist/framer-motion.umd.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f0f2f5; /* A soft, gentle background */
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(180px, auto);
+            gap: 1.5rem; /* 24px */
+        }
+
+        .bento-item {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 24px;
+            padding: 2rem; /* 32px */
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        /* Responsive Grid Layout */
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            .bento-item {
+                padding: 1.5rem;
+            }
+        }
+        
+        .glow-effect {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+            width: 300px;
+            height: 300px;
+            border-radius: 9999px;
+            opacity: 0.5;
+            filter: blur(80px);
+        }
+        
+        .giant-text {
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 900;
+            line-height: 1;
+            color: rgba(0, 0, 0, 0.08);
+            position: absolute;
+            right: 1rem;
+            bottom: -1rem;
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="app" class="container mx-auto p-4 md:p-8 lg:p-12">
+        <!-- Header Section -->
+        <motion.header class="text-center mb-16"
+            :initial="{ opacity: 0, y: -50 }"
+            :animate="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.8, ease: 'easeOut' }"
+        >
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500">
+                    韧性
+                </span>
+            </h1>
+            <p class="text-lg md:text-2xl text-gray-500 mt-2 tracking-widest">PSYCHOLOGICAL RESILIENCE</p>
+            <p class="max-w-3xl mx-auto text-gray-600 mt-4">
+                由清华大学心理学系主任彭凯平教授，从科学心理学角度，解读我们时代所需的宝贵心理资源。
+            </p>
+        </motion.header>
+
+        <!-- Bento Grid Layout -->
+        <div class="bento-grid">
+            
+            <!-- Item 1: What is Resilience? -->
+            <motion.div class="bento-item col-span-4 md:col-span-2 row-span-2 relative"
+                :initial="{ opacity: 0, y: 50, scale: 0.95 }"
+                :while-in-view="{ opacity: 1, y: 0, scale: 1 }"
+                :viewport="{ once: true, amount: 0.3 }"
+                :transition="{ duration: 0.7, ease: 'easeOut' }"
+            >
+                <div class="glow-effect -top-20 -left-20 bg-cyan-400/30"></div>
+                <h2 class="text-sm uppercase text-cyan-600 font-bold tracking-widest">DEFINITION</h2>
+                <p class="text-3xl md:text-4xl font-bold mt-2">韧性的三个层次</p>
+                <div class="mt-8 space-y-6 relative z-10">
+                    <div class="flex items-start space-x-4">
+                        <i class="fa-solid fa-arrow-rotate-left text-3xl text-cyan-500 w-8 text-center"></i>
+                        <div>
+                            <h3 class="font-bold text-lg">反弹力 Bounce Back</h3>
+                            <p class="text-gray-600">受压后恢复到正常状态的能力。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <i class="fa-solid fa-shield-halved text-3xl text-cyan-500 w-8 text-center"></i>
+                        <div>
+                            <h3 class="font-bold text-lg">抗压力 Endurance</h3>
+                            <p class="text-gray-600">持之以恒，抵抗持续磨损的能力。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <i class="fa-solid fa-seedling text-3xl text-cyan-500 w-8 text-center"></i>
+                        <div>
+                            <h3 class="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">创伤后成长 Post-Traumatic Growth</h3>
+                            <p class="text-gray-600">经历重大挫折后，实现超越自我的心理升华，是韧性的最高境界。</p>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+
+            <!-- Item 2: True Resilience -->
+            <motion.div class="bento-item col-span-4 md:col-span-2 relative"
+                :initial="{ opacity: 0, y: 50, scale: 0.95 }"
+                :while-in-view="{ opacity: 1, y: 0, scale: 1 }"
+                :viewport="{ once: true, amount: 0.5 }"
+                :transition="{ duration: 0.7, ease: 'easeOut', delay: 0.2 }"
+            >
+                <h2 class="text-sm uppercase text-purple-600 font-bold tracking-widest">PERSPECTIVE</h2>
+                <p class="text-3xl font-bold mt-2">不是伪装，而是正视</p>
+                <p class="text-gray-600 mt-4 max-w-md">鲁迅先生提醒我们，表面的微笑不代表真正的韧性。真正的力量源于真诚地面对挑战与痛苦。</p>
+                <div class="absolute bottom-4 right-4 flex items-center space-x-4">
+                     <div class="text-center">
+                        <i class="far fa-smile text-4xl text-gray-300"></i>
+                        <p class="text-xs text-gray-400">罗素看到的微笑</p>
+                    </div>
+                    <i class="fas fa-arrow-right text-gray-400"></i>
+                    <div class="text-center">
+                        <i class="fas fa-eye text-4xl text-purple-500"></i>
+                        <p class="text-xs text-purple-600">鲁迅倡导的正视</p>
+                    </div>
+                </div>
+            </motion.div>
+
+            <!-- Item 3: Self-Acceptance -->
+            <motion.div class="bento-item col-span-4 md:col-span-2 relative"
+                :initial="{ opacity: 0, y: 50, scale: 0.95 }"
+                :while-in-view="{ opacity: 1, y: 0, scale: 1 }"
+                :viewport="{ once: true, amount: 0.5 }"
+                :transition="{ duration: 0.7, ease: 'easeOut', delay: 0.3 }"
+            >
+                 <div class="glow-effect -bottom-20 -right-20 bg-rose-400/30"></div>
+                <h2 class="text-sm uppercase text-rose-600 font-bold tracking-widest">METHOD 01</h2>
+                <p class="text-3xl font-bold mt-2">悦纳自我</p>
+                <p class="text-gray-600 mt-4">放下“自我批评的冲动”，欣赏不完美的自己。每天对着镜子笑一笑，进行自我肯定。</p>
+                <i class="fa-solid fa-heart-circle-check text-8xl text-rose-200/80 absolute bottom-4 right-4"></i>
+            </motion.div>
+
+            <!-- Item 4: The 8 Methods (Toolkit) -->
+            <motion.div class="bento-item col-span-4 row-span-2"
+                :initial="{ opacity: 0, y: 50, scale: 0.95 }"
+                :while-in-view="{ opacity: 1, y: 0, scale: 1 }"
+                :viewport="{ once: true, amount: 0.2 }"
+                :transition="{ duration: 0.7, ease: 'easeOut', delay: 0.2 }"
+            >
+                <h2 class="text-sm uppercase text-indigo-600 font-bold tracking-widest">METHOD 03: TOOLKIT</h2>
+                <p class="text-3xl md:text-4xl font-bold mt-2">情绪调节的8阵法 (精选)</p>
+                <p class="text-gray-600 mt-4 mb-8">当情绪耗损时，可用一些简单的科学技巧，快速恢复心理能量。</p>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-indigo-50 p-4 rounded-lg">
+                        <i class="fas fa-wind text-3xl text-indigo-500"></i>
+                        <p class="mt-2 font-semibold">放松呼吸</p>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-lg">
+                        <i class="fas fa-leaf text-3xl text-indigo-500"></i>
+                        <p class="mt-2 font-semibold">闻香</p>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-lg">
+                        <i class="fas fa-mug-hot text-3xl text-indigo-500"></i>
+                        <p class="mt-2 font-semibold">自我关怀</p>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-lg">
+                        <i class="fas fa-person-running text-3xl text-indigo-500"></i>
+                        <p class="mt-2 font-semibold">运动</p>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-lg">
+                        <i class="fas fa-book-open-reader text-3xl text-indigo-500"></i>
+                        <p class="mt-2 font-semibold">回味开心事</p>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-lg">
+                        <i class="fas fa-water text-3xl text-indigo-500"></i>
+                        <p class="mt-2 font-semibold">体验心流</p>
+                    </div>
+                </div>
+            </motion.div>
+            
+            <!-- Item 5: Social Support -->
+            <motion.div class="bento-item col-span-4 md:col-span-2 relative"
+                :initial="{ opacity: 0, y: 50, scale: 0.95 }"
+                :while-in-view="{ opacity: 1, y: 0, scale: 1 }"
+                :viewport="{ once: true, amount: 0.5 }"
+                :transition="{ duration: 0.7, ease: 'easeOut', delay: 0.2 }"
+            >
+                <div class="glow-effect -top-20 -right-20 bg-amber-400/30"></div>
+                <h2 class="text-sm uppercase text-amber-600 font-bold tracking-widest">METHOD 02</h2>
+                <p class="text-3xl font-bold mt-2">积极的人际关系</p>
+                <p class="text-gray-600 mt-4">家人朋友的支持能促进大脑分泌“催产素”，这是提升韧性的天然化学物质。</p>
+  

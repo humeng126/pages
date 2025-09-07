@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>道 > 术 | 克服拖延的底层逻辑</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Framer Motion CDN -->
+    <script src="https://unpkg.com/framer-motion@10.0.0/dist/framer-motion.js"></script>
+    
+    <!-- ApexCharts CDN for Charts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f0f2f5;
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .bento-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            overflow: hidden;
+            position: relative;
+            transform: perspective(1000px);
+        }
+        .highlight-gradient-blue {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(59, 130, 246, 0.2), transparent);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .highlight-gradient-green {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 50%;
+            background: linear-gradient(to bottom right, rgba(16, 185, 129, 0.15), transparent);
+            z-index: 0;
+            pointer-events: none;
+            border-top-right-radius: 1.5rem;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+        .ultralarge-text {
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 900;
+            line-height: 1;
+            color: rgba(0, 0, 0, 0.08);
+            position: absolute;
+            right: -1rem;
+            bottom: -2rem;
+            z-index: 0;
+            user-select: none;
+        }
+        .ultralarge-text-left {
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 900;
+            line-height: 1;
+            color: rgba(0, 0, 0, 0.08);
+            position: absolute;
+            left: -1rem;
+            top: -2rem;
+            z-index: 0;
+            user-select: none;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <main id="app" class="space-y-12">
+        <!-- Header Section -->
+        <motion.section
+            class="text-center py-16"
+            initial="{ opacity: 0, y: 20 }"
+            animate="{ opacity: 1, y: 0 }"
+            transition="{ duration: 0.8 }"
+        >
+            <h1 class="text-5xl md:text-8xl font-black tracking-tighter">道 > 术</h1>
+            <p class="text-lg md:text-2xl text-gray-500 mt-4">THE PRINCIPLE IS GREATER THAN THE TECHNIQUE</p>
+            <p class="max-w-2xl mx-auto mt-6 text-gray-600">
+                所有教你克服拖延的方法，本质上都是在术的层面。而真正的改变，源于对“道”的理解。这会是你看过的，收获感最大的内容。
+            </p>
+        </motion.section>
+
+        <!-- Main Bento Grid -->
+        <div class="bento-grid">
+            
+            <!-- Item 1: The Lie -->
+            <motion.div class="bento-item col-span-12 md:col-span-8 row-span-1 flex flex-col justify-between">
+                <div class="content-wrapper">
+                    <p class="text-sm font-bold text-blue-500">PART 01 | 戳穿谎言</p>
+                    <h2 class="text-3xl md:text-5xl font-bold mt-2">你没有拖延症</h2>
+                    <p class="mt-4 text-lg text-gray-700 max-w-lg">你只是害怕<strong class="text-blue-600">不确定性</strong>。当付出和收益足够清晰时，执行力自然就来了。就像没人会拖延到汽车彻底没油才去加油。</p>
+                </div>
+                <div class="w-full mt-8 opacity-20 text-right">
+                     <i class="fas fa-brain text-9xl"></i>
+                </div>
+                <div class="highlight-gradient-blue"></div>
+            </motion.div>
+
+            <!-- Item 2: The Belief -->
+            <motion.div class="bento-item col-span-12 md:col-span-4 row-span-1 flex flex-col">
+                 <div class="content-wrapper">
+                    <p class="text-sm font-bold text-emerald-500">PART 02 | 重建信念</p>
+                    <h2 class="text-3xl font-bold mt-2">跑赢其他羚羊</h2>
+                    <p class="mt-4 text-gray-700">普通人的生存法则是比较级。你不需要成为狮子，只需要比大多数同类多跑几步。努力绝对有用。</p>
+                </div>
+                <div class="flex-grow flex items-center justify-center mt-4 opacity-50 space-x-4">
+                    <i class="fas fa-running text-6xl text-emerald-600"></i>
+                    <i class="fas fa-angle-double-right text-4xl text-gray-400"></i>
+                    <i class="fas fa-running text-4xl text-gray-400"></i>
+                    <i class="fas fa-running text-4xl text-gray-400"></i>
+                </div>
+            </motion.div>
+
+            <!-- Item 3: Matthew Effect Chart -->
+            <motion.div class="bento-item col-span-12 md:col-span-12 row-span-1">
+                <div class="content-wrapper">
+                                <!-- Item 2: The Antelope Analogy -->
+            <section class="bento-item col-span-5">
+                <h2 class="text-3xl font-bold mb-2">重建努力的信念</h2>
+                <p class="text-sm text-gray-500 uppercase tracking-widest mb-4">REBUILDING YOUR FAITH IN EFFORT</p>
+                <p class="text-gray-700 mb-4">羚羊不需要跑赢狮子，只需跑赢其他羚羊。努力，是为了成为更强壮的羚羊，抢占更多资源。</p>
+                <div class="flex items-center justify-around text-center text-gray-400">
+                    <div class="flex flex-col items-center">
+                        <i class="fa-solid fa-hippo text-5xl text-red-400"></i>
+                        <span class="text-xs mt-1">狮子 (LION)</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-2xl"></i>
+                    <div class="flex flex-col items-center">
+                        <i class="fa-solid fa-person-running text-5xl text-green-500"></i>
+                        <span class="text-xs mt-1">强壮羚羊 (YOU)</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-2xl"></i>
+                    <div class="flex flex-col items-center">
+                         <i class="fa-solid fa-people-group text-5xl text-gray-300"></i>
+                         <span class="text-xs mt-1">其他 (OTHERS)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Item 3: Matthew Effect -->
+            <section class="bento-item col-span-12 lg:col-span-8 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-3xl font-bold mb-2">马太效应</h2>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest mb-4">THE MATTHEW EFFECT</p>
+                    <p class="text-gray-700 mb-6">收益不是线性增长，而是指数级增长。日更字数翻倍，收益可能是16倍的差距。越努力，越幸运，这不是鸡汤。微小的优势会通过良性循环带来指数级的回报。</p>
+                </div>
+                <div class="w-full h-48 flex items-end justify-around gap-4 pt-4 border-t border-gray-200">
+                    <div class="flex flex-col items-center w-1/4">
+                        <div class="w-full bg-blue-100 rounded-t-lg flex items-end justify-center" style="height: 6.25%;">
+                            <span class="text-sm font-bold text-blue-800">1x</span>
+                        </div>
+                        <p class="text-xs mt-2 text-center text-gray-500">日更1000字</p>
+                    </div>
+                    <div class="flex flex-col items-center w-1/4">
+                        <div class="w-full bg-blue-200 rounded-t-lg flex items-end justify-center" style="height: 25%;">
+                            <span class="text-sm font-bold text-blue-800">4x</span>
+                        </div>
+                        <p class="text-xs mt-2 text-center text-gray-500">日更2000字</p>
+                    </div>
+                    <div class="flex flex-col items-center w-1/4">
+                        <div class="w-full bg-blue-400 rounded-t-lg flex items-end justify-center" style="height: 100%;">
+                            <span class="text-lg font-bold text-white pb-2"><span class="counter" data-target="16">16</span>x</span>
+                        </div>
+                        <p class="text-xs mt-2 text-center text-gray-500">日更4000字</p>
+                    </div>
+                </div>
+            </section>
+                </div>
+            </motion.div>
+			
+			 <!-- Item 3: Matthew Effect Chart -->
+            <motion.div class="bento-item col-span-12 md:col-span-12 row-span-1">
+                <div class="content-wrapper">
+                    <p class="text-sm font-bold text-purple-500">THE MATTHEW EFFECT</p>
+                    <h2 class="text-3xl md:text-5xl font-bold mt-2">越努力，越幸运</h2>
+                     <p class="mt-4 text-lg text-gray-700 max-w-2xl">收益的增长往往是指数级的。日更4000字的作者收益可能是日更1000字的16倍，而不是4倍。优势会不断累积，形成良性循环。</p>
+                    <div id="matthew-chart" class="mt-4"></div>
+                </div>
+            </motion.div>
+            
+            <!-- Section Title: 6 Don'ts -->
+            <motion.div class="col-span-12 text-center py-12">
+                <h2 class="text-6xl md:text-9xl font-black tracking-tighter">六件不要做的事</h2>
+                <p class="text-xl text-gray-500 mt-4">AVOID THESE SIX THINGS</p>
+            </motion.div>
+
+            <!-- Don't Items Grid -->
+            <motion.div class="bento-item col-span-12 md:col-span-4 flex flex-col justify-between">
+                <span class="ultralarge-text-left">1</span>
+                <div class="content-wrapper text-right">
+                    <h3 class="text-2xl font-bold">不要纵容<br>无所不能的神</h3>
+                    <p class="mt-2 text-gray-600">KILL THE GOD IN YOUR MIND</p>
+                    <p class="mt-4 text-sm text-gray-500">意淫的快感会阻碍现实的行动。当你发现自己开始幻想宏大叙事时，立刻击毙他。</p>
+                </div>
+            </motion.div>
+
+            <motion.div class="bento-item col-span-12 md:col-span-4">
+                <span class="ultralarge-text-left">2</span>
+                <div class="content-wrapper text-right">
+                    <h3 class="text-2xl font-bold">不要陷入<br>多巴胺陷阱</h3>
+                    <p class="mt-2 text-gray-600">ESCAPE THE DOPAMINE TRAP</p>
+                    <p class="mt-4 text-sm text-gray-500">多巴胺是期待因子，它会挖出越来越大的欲望空洞。刷视频越刷越烦就是这个原因，及时止损。</p>
+                </div>
+            </motion.div>
+            
+            <motion.div class="bento-item col-span-12 md:col-span-4">
+                <span class="ultralarge-text-left">3</span>
+                <div class="content-wrapper text-right">
+                    <h3 class="text-2xl font-bold">不要奢望<br>拖延会消失</h3>
+                    <p class="mt-2 text-gray-600">IT'S YOUR LIFELONG ENEMY</p>
+                    <p class="mt-4 text-sm text-gray-500">只要事情有难度和不确定性，拖延就会出现。接受它，不用内耗，直接开干。</p>
+                </div>
+            </motion.div>
+
+            <motion.div class="bento-item col-span-12 md:col-span-4">
+                 <span class="ultralarge-text-left">4</span>
+                <div class="content-wrapper text-right">
+                    <h3 class="text-2xl font-bold">不要有<br>“上岸”思维</h3>
+                    <p class="mt-2 text-gray-600">NO FINISH LINE</p>
+                    <p class="mt-4 text-sm text-gray-500">不存在一劳永逸。新问题每天都会出现。矛盾永远存在，竖起中指跟它干。</p>
+                </div>
+            </motion.div>
+
+            <motion.div class="bento-item col-span-12 md:col-span-4">
+                 <span class="ultralarge-text-left">5</span>
+                <div class="content-wrapper text-right">
+                    <h3 class="text-2xl font-bold">不要有<br>受害者心态</h3>
+                    <p class="mt-2 text-gray-600">YOU ARE NOT THE VICTIM</p>
+                    <p class="mt-4 text-sm text-gray-500">老天爷并不知道你是谁。不要因自己的失败而嫉妒朋友的成功，那会把你拖入泥潭。</p>
+                </div>
+            </motion.div>
+
+            <motion.div class="bento-item col-span-12 md:col-span-4">
+                 <span class="ultralarge-text-left">6</span>
+                <div class="content-wrapper text-right">
+                    <h3 class="text-2xl font-bold">不要定下<br>过高的目标</h3>
+                    <p class="mt-2 text-gray-600">SET REALISTIC GOALS</p>
+                    <p class="mt-4 text-sm text-gray-500">接受万事开头难，接受笨拙和低效。不挨几年打的戏子成不了角。</p>
+                </div>
+            </motion.div>
+
+            <!-- Section Title: 4 Do's -->
+            <motion.div class="col-span-12 text-center py-12">
+                <h2 class="text-6xl md:text-9xl font-black tracking-tighter">四件必须做的事</h2>
+                <p class="text-xl text-gray-500 mt-4">FOUR THINGS YOU MUST DO</p>
+            </motion.div>
+
+            <!-- Do Items Grid -->
+            <motion.div class="bento-item col-span-12 md:col-span-6 row-span-2 flex flex-col justify-between">
+                <span class="ultralarge-text">1</span>
+                <div class="content-wrapper">
+                    <h3 class="text-4xl font-bold">内圣外王</h3>
+                    <p class="mt-2 text-gray-600 text-lg">INNER SAGE, OUTER KING</p>
+                    <p class="mt-6 text-gray-700">给自己找一个伟光正的愿景，并从内心深处相信它。这种坚定会感染他人，让你能带着问题前进。记住，很多时候成功只是因为你还在牌桌上。</p>
+                </div>
+                <div class="w-full mt-8 opacity-20">
+                     <i class="fas fa-crown text-9xl"></i>
+                </div>
+                 <div class="highlight-gradient-green"></div>
+            </motion.div>
+
+            <motion.div class="bento-item col-span-12 md:col-span-6">
+                <span class="ultralarge-text">2</span>
+                <div class="content-wrapper">
+                    <h3 class="text-3xl font-bold">搜集客观的确定性</h3>
+                    <p class="mt-2 text-gray-600">GATHER OBJECTIVE CERTAINTY</p>
+                    <p class="mt-4 text-gray-700">了解一个行业真实的付出回报周期。比如做自媒体，前半年可能没大钱，但一到两年后可能成为普通人的天花板。</p>
+                </div>
+            </motion.div>
+
+            <motion.div class="bento-item col-span-12 md:col-span-3">
+                <span class="ultralarge-text">3</span>
+                 <div class="content-wrapper">
+                    <h3 class="text-3xl font-bold">增加外部约束</h3>
+                    <p class="mt-2 text-gray-600">EXTERNAL CONSTRAINTS</p>
+                    <p class="mt-4 text-gray-700">公开承诺你的计划。被盯着的感觉会形成压力，迫使你行动，维持社会形象。</p>
+                </div>
+            </motion.div>
+            
+            <motion.div class="bento-item col-span-12 md:col-span-3">
+                 <span class="ultralarge-text">4</span>
+                 <div class="content-wrapper">
+                    <h3 class="text-3xl font-bold">做流程之神</h3>
+                    <p class="mt-2 text-gray-600">BECOME A GOD OF PROCESS</p>
+                    <p class="mt-4 text-gray-700">用小脑启动流程，用流程绑架大脑。把第一个动作练成肌肉记忆，毫不痛苦地开始。</p>
+                </div>
+            </motion.div>
+
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const { motion, stagger, animate } = Motion;
+
+            // Animate each bento item on scroll
+            const items = document.querySelectorAll('.bento-item, .text-center');
+            items.forEach((item, i) => {
+                const motionDiv = document.createElement('motion.div');
+                while (item.firstChild) {
+                    motionDiv.appendChild(item.firstChild);
+                }
+                item.appendChild(motionDiv);
+                
+                animate(motionDiv, 
+                    { opacity: [0, 1], y: [50, 0] }, 
+                    { 
+                        duration: 0.8,
+                        delay: i * 0.05,
+                        ease: "easeOut",
+                        scroll: { 
+                            target: item, 
+                            offset: ["start end", "end end"],
+                            once: true
+                        }
+                    }
+                );
+            });
+
+            // Initialize ApexCharts for the Matthew Effect
+            var options = {
+                series: [{
+                    name: '收益倍数',
+                    data: [1, 4, 16]
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 250,
+                    toolbar: {
+                        show: false
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: '45%',
+                        endingShape: 'rounded',
+                        distributed: true,
+                    },
+                },
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                    }
+                },
+                stroke: {
+                    show: true,
+                    width: 2,
+                    colors: ['transparent']
+                },
+                xaxis: {
+                    categories: ['日更1000字', '日更2000字', '日更4000字'],
+                    labels: {
+                        style: {
+                            colors: '#6b7280',
+                            fontSize: '14px'
+                        }
+                    }
+                },
+                yaxis: {
+                    title: {
+                        text: '收益（相对倍数）',
+                        style: {
+                            color: '#6b7280'
+                        }
+                    }
+                },
+                fill: {
+                    opacity: 1
+                },
+                colors: ['#8b5cf6', '#a78bfa', '#c4b5fd'],
+                legend: {
+                    show: false
+                },
+                tooltip: {
+                    y: {
+                        formatter: function (val) {
+                            return val + " 倍"
+                        }
+                    }
+                },
+                grid: {
+                    borderColor: '#e5e7eb',
+                    strokeDashArray: 4
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#matthew-chart"), options);
+            chart.render();
+        });
+    </script>
+</body>
+</html>
