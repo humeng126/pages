@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成长的本质：极致、重复与刻意练习</title>
+    
+    <!-- TailwindCSS v3 Play CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f0f2f5;
+            color: #1a202c;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .bento-item {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .bento-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .col-span-1 { grid-column: span 1 / span 1; }
+        .col-span-2 { grid-column: span 2 / span 2; }
+        .col-span-3 { grid-column: span 3 / span 3; }
+        .col-span-4 { grid-column: span 4 / span 4; }
+        .row-span-1 { grid-row: span 1 / span 1; }
+        .row-span-2 { grid-row: span 2 / span 2; }
+
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .col-span-lg-2 { grid-column: span 2 / span 2; }
+        }
+        @media (max-width: 768px) {
+            .bento-grid { grid-template-columns: repeat(1, 1fr); }
+            .col-span-md-1 { grid-column: span 1 / span 1; }
+        }
+
+        .glow-effect {
+            position: absolute;
+            pointer-events: none;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .bento-item.is-visible .glow-effect {
+            opacity: 0.15;
+        }
+        
+        .huge-text {
+            font-size: clamp(4rem, 12vw, 8rem);
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .line-art-svg {
+            stroke-width: 2;
+            stroke: currentColor;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        .transition-stagger {
+            transition-delay: var(--stagger-delay, 0ms);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <main class="container mx-auto">
+        
+        <div class="bento-grid">
+
+            <!-- Title Card -->
+            <div class="bento-item col-span-4 col-span-lg-2 col-span-md-1 row-span-1 flex flex-col justify-center items-center text-center bg-gray-900 text-white">
+                <div class="glow-effect" style="background-color: #6366f1; width: 400px; height: 400px; top: -100px; left: -100px;"></div>
+                <p class="text-sm uppercase tracking-widest text-indigo-300 transition-stagger" style="--stagger-delay: 100ms;">The Truth of Mastery</p>
+                <h1 class="text-5xl md:text-7xl font-black my-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 transition-stagger" style="--stagger-delay: 200ms;">成长的残酷真相</h1>
+                <p class="text-gray-400 max-w-2xl transition-stagger" style="--stagger-delay: 300ms;">你所羡慕的能力，都藏在两个词里：极致与重复。那些遥不可及的高手，靠的从来不是捷径。</p>
+            </div>
+
+            <!-- 10,000 Times Card -->
+            <div class="bento-item col-span-2 col-span-lg-2 col-span-md-1 flex flex-col justify-between">
+                 <div class="glow-effect" style="background-color: #22c55e; width: 300px; height: 300px; bottom: -150px; right: -150px;"></div>
+                <div>
+                    <h2 class="text-3xl font-bold transition-stagger">10,000次定律</h2>
+                    <p class="text-gray-500 uppercase text-xs transition-stagger" style="--stagger-delay: 100ms;">The 10,000 Times Rule</p>
+                </div>
+                <div class="text-center my-8">
+                    <p class="huge-text text-green-500 transition-stagger" style="--stagger-delay: 200ms;">1<span class="text-gray-800">x</span>10000</p>
+                    <p class="text-gray-600 mt-2 transition-stagger" style="--stagger-delay: 300ms;">真正可怕的，是把一种拳法练一万遍的人。</p>
+                </div>
+                <p class="text-sm text-gray-500 transition-stagger" style="--stagger-delay: 400ms;">当技能嵌入你的思维和动作，形成肌肉记忆时，你才算真正拥有它。重复是通往任何专业的基础。</p>
+            </div>
+            
+            <!-- The Shortcut Fallacy -->
+            <div class="bento-item col-span-2 col-span-lg-2 col-span-md-1 flex flex-col justify-center items-center text-center">
+                 <div class="glow-effect" style="background-color: #ef4444; width: 250px; height: 250px; top: -50px; left: 50%;"></div>
+                <i class="fas fa-ban text-red-500 text-6xl mb-4 transition-stagger"></i>
+                <h3 class="text-2xl font-bold transition-stagger" style="--stagger-delay: 100ms;">速成的幻想</h3>
+                <p class="text-gray-500 uppercase text-xs mb-4 transition-stagger" style="--stagger-delay: 150ms;">THE ILLUSION OF QUICK FIXES</p>
+                <p class="text-gray-600 transition-stagger" style="--stagger-delay: 200ms;">人性中的贪婪和懒惰让人执着于寻找捷径，寄希望于“三天精通”。这类人最容易被收割焦虑，却从未意识到任何技能都逃不过<span class="font-bold text-red-600">“周期+重复”</span>的规律。</p>
+            </div>
+			
+			           <!-- 10,000 Times Card -->
+            <div class="bento-item col-span-2 col-span-lg-2 col-span-md-1 flex flex-col justify-between">
+				<h2 class="text-3xl font-bold text-slate-800 mb-4">速成的陷阱</h2>
+				<p class="text-lg mb-4">人性有两个底色，<span class="text-primary-dark font-bold">贪婪</span>和<span class="text-primary-dark font-bold">懒惰</span>。</p>
+				<p class="text-sm text-slate-600 mb-6">Greed makes us want more, laziness makes us want it faster. This combination makes us vulnerable to "quick fix" solutions that rarely work.</p>
+				<div class="flex space-x-4">
+					<div class="flex-1 bg-red-50 p-4 rounded-lg">
+						<span class="material-icons text-red-500 block text-center mb-2">flash_on</span>
+						<p class="text-center text-sm">速成神话</p>
+					</div>
+					<div class="flex-1 bg-yellow-50 p-4 rounded-lg">
+						<span class="material-icons text-yellow-500 block text-center mb-2">psychology</span>
+						<p class="text-center text-sm">浅尝辄止</p>
+					</div>
+					<div class="flex-1 bg-purple-50 p-4 rounded-lg">
+						<span class="material-icons text-purple-500 block text-center mb-2">paid</span>
+						<p class="text-center text-sm">焦虑收割</p>
+					</div>
+				</div>
+            </div>
+            
+            <!-- The Shortcut Fallacy -->
+            <div class="bento-item col-span-2 col-span-lg-2 col-span-md-1 flex flex-col justify-center items-center text-center">
+				<h2 class="text-3xl font-bold text-slate-800 mb-4">成长曲线对比</h2>
+				<div class="chart-container" id="growthChart">
+					<canvas id="growthChartCanvas" width="600" height="250"></canvas>
+				</div>
+            </div>
+            
+            <!-- Deliberate Practice Main -->
+            <div class="bento-item col-span-4 col-span-md-1 bg-blue-800 text-white">
+                 <div class="glow-effect" style="background-color: white; width: 500px; height: 500px; top: 0; right: -150px;"></div>
+                <h2 class="text-4xl font-bold text-center transition-stagger">不止是重复，更是<span class="text-blue-400">刻意练习</span></h2>
+                <p class="text-center text-gray-400 uppercase text-sm mb-8 transition-stagger" style="--stagger-delay: 100ms;">High-Quality Training: Deliberate Practice</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 1. Clear Goals -->
+                    <div class="text-center transition-stagger" style="--stagger-delay: 200ms;">
+                        <div class="bg-gray-700 w-20 h-20 rounded-full mx-auto flex items-center justify-center mb-4 border-2 border-blue-400">
+                             <i class="fas fa-bullseye text-blue-300 text-4xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white">明确目标</h4>
+                        <p class="text-gray-400 text-sm">Clear Goals</p>
+                        <p class="text-sm mt-2 text-gray-300">练习的核心是“练得准”。模糊的目标只能堆时间，解决不了问题。时间不是目的，解决问题才是。</p>
+                    </div>
+                    <!-- 2. Timely Feedback -->
+                    <div class="text-center transition-stagger" style="--stagger-delay: 300ms;">
+                        <div class="bg-gray-700 w-20 h-20 rounded-full mx-auto flex items-center justify-center mb-4 border-2 border-blue-400">
+                             <i class="fas fa-comments text-blue-300 text-4xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white">及时反馈</h4>
+                        <p class="text-gray-400 text-sm">Timely Feedback</p>
+                        <p class="text-sm mt-2 text-gray-300">没有反馈就不知道哪里出错，只能靠运气进步。你需要有人指出问题，或通过对比、复盘来及时调整方向。</p>
+                    </div>
+                    <!-- 3. Targeted Investment -->
+                    <div class="text-center transition-stagger" style="--stagger-delay: 400ms;">
+                        <div class="bg-gray-700 w-20 h-20 rounded-full mx-auto flex items-center justify-center mb-4 border-2 border-blue-400">
+                             <i class="fas fa-brain text-blue-300 text-4xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white">针对性投入</h4>
+                        <p class="text-gray-400 text-sm">Targeted Effort</p>
+                        <p class="text-sm mt-2 text-gray-300">逼自己在最难的地方死磕，直到突破。真正的练习伴随着不适，那不是退步，而是正在突破舒适区。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personal Story -->
+            <div class="bento-item col-span-2 col-span-lg-2 col-span-md-1 row-span-2">
+                <div class="glow-effect" style="background-color: #f59e0b; width: 400px; height: 400px; bottom: -100px; left: -100px;"></div>
+                <h3 class="text-2xl font-bold transition-stagger">我的故事：从零到超越</h3>
+                <p class="text-gray-500 uppercase text-xs mb-4 transition-stagger" style="--stagger-delay: 100ms;">Case Study: Zero to Hero</p>
+                <p class="text-gray-600 mb-6 transition-stagger" style="--stagger-delay: 200ms;">我曾插班进入一个绘画培训班，零基础起步。结课时，我的作品评分却超过了班里很多同学。我并非天赋异禀，只是把每个知识点都用刻意练习的方法拆解再练习。别人练一遍，我练十遍。</p>
+                 <div class="w-full h-64 bg-gray-100 rounded-lg p-4 flex flex-col justify-end transition-stagger" style="--stagger-delay: 300ms;">
+                     <svg class="w-full h-full" viewBox="0 0 300 150">
+                        <defs>
+                            <linearGradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+                                <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.6"/>
+                                <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Grid Lines -->
+                        <line x1="0" y1="130" x2="300" y2="130" stroke="#e2e8f0" stroke-width="1"/>
+                        <line x1="0" y1="90" x2="300" y2="90" stroke="#e2e8f0" stroke-width="1"/>
+                        <line x1="0" y1="50" x2="300" y2="50" stroke="#e2e8f0" stroke-width="1"/>
+                        <!-- Path -->
+                        <path d="M 20 110 C 80 120, 100 40, 160 50 S 220 20, 280 25" stroke="#f59e0b" fill="none" stroke-width="3" class="line-art-svg" />
+                         <!-- Fill area -->
+                        <path d="M 20 110 C 80 120, 100 40, 160 50 S 220 20, 280 25 L 280 130 L 20 130 Z" fill="url(#chartGradient)" />
+                        <!-- Labels -->
+                        <text x="20" y="145" font-size="10" fill="#a0aec0">起点 (Start)</text>
+                        <text x="250" y="145" font-size="10" fill="#a0aec0">结课 (End)</text>
+                    </svg>
+                 </div>
+                 <p class="text-center text-sm text-gray-500 mt-2 transition-stagger" style="--stagger-delay: 400ms;">成长曲线：尊重学习本质的结果。</p>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="bento-item col-span-2 col-span-lg-2 col-span-md-1 row-span-2 flex flex-col justify-center items-center text-center bg-gray-100">
+                <div class="glow-effect" style="background-color: #8b5cf6; width: 300px; height: 300px; top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+                <svg viewBox="0 0 100 100" class="w-24 h-24 text-purple-500 transition-stagger" style="--stagger-delay: 100ms;">
+                    <path class="line-art-svg" d="M50,10 a40,40 0 1,1 0,80 a40,40 0 1,1 0,-80" />
+                    <path class="line-art-svg" d="M50,20 a30,30 0 1,1 0,60 a30,30 0 1,1 0,-60" />
+                    <polyline class="line-art-svg" points="35,50 45,60 65,40" stroke-width="4"/>
+                </svg>
+                <h3 class="text-2xl font-bold mt-4 transition-stagger" style="--stagger-delay: 200ms;">成为那个做到极致的人</h3>
+                <p class="text-gray-500 uppercase text-xs mb-4 transition-stagger" style="--stagger-delay: 250ms;">Be the one who achieves mastery</p>
+                <p class="text-gray-700 transition-stagger" style="--stagger-delay: 300ms;">成长，取决于你是否愿意用最“笨”的方式走一条最长的路。它是一个人面对重复、承受延迟满足、穿透枯燥的能力。别再幻想速成，用时间打磨动作，用刻意练出能力。</p>
+                <p class="font-bold text-purple-600 mt-6 transition-stagger" style="--stagger-delay: 400ms;">成长是一场踏实的、持续不断的积累之战，而你终将胜出。</p>
+            </div>
+
+
+        </div>
+
+    </main>
+    
+    <script>
+        // Framer Motion is a React library. To achieve a similar Apple-like scroll-triggered animation effect
+        // in vanilla HTML/JS, we use the modern and performant Intersection Observer API.
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.bento-item');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        
+                        // Stagger children animations
+                        const children = entry.target.querySelectorAll('.transition-stagger');
+                        children.forEach((child, index) => {
+                            const delay = child.style.getPropertyValue('--stagger-delay') || `${index * 100}ms`;
+                            child.style.transition = `opacity 0.6s ${delay} ease-in-out, transform 0.6s ${delay} ease-in-out`;
+                        });
+                        
+                        // Unobserve after animation to save resources
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+			
+            // 绘制成长曲线图
+            const canvas = document.getElementById('growthChartCanvas');
+            if (canvas.getContext) {
+                const ctx = canvas.getContext('2d');
+                
+                // 绘制坐标轴
+                ctx.beginPath();
+                ctx.moveTo(50, 30);
+                ctx.lineTo(50, 230);
+                ctx.lineTo(550, 230);
+                ctx.strokeStyle = '#cbd5e1';
+                ctx.stroke();
+                
+                // 绘制刻度
+                for (let i = 0; i <= 10; i++) {
+                    // Y轴刻度
+                    ctx.beginPath();
+                    ctx.moveTo(45, 30 + i * 20);
+                    ctx.lineTo(50, 30 + i * 20);
+                    ctx.strokeStyle = '#cbd5e1';
+                    ctx.stroke();
+                    
+                    ctx.fillStyle = '#64748b';
+                    ctx.font = '10px Arial';
+                    ctx.fillText((10 - i).toString(), 30, 35 + i * 20);
+                }
+                
+                // X轴刻度
+                const timeLabels = ['1周', '1月', '3月', '6月', '1年', '3年', '5年', '10年'];
+                for (let i = 0; i < timeLabels.length; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(50 + i * 60, 230);
+                    ctx.lineTo(50 + i * 60, 235);
+                    ctx.strokeStyle = '#cbd5e1';
+                    ctx.stroke();
+                    
+                    ctx.fillStyle = '#64748b';
+                    ctx.font = '10px Arial';
+                    ctx.fillText(timeLabels[i], 45 + i * 60, 250);
+                }
+                
+                // 绘制浅尝辄止曲线
+                ctx.beginPath();
+                ctx.moveTo(50, 200);
+                for (let i = 1; i <= 7; i++) {
+                    ctx.lineTo(50 + i * 60, 200 - Math.random() * 30);
+                }
+                ctx.strokeStyle = '#f87171';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // 绘制普通练习曲线
+                ctx.beginPath();
+                ctx.moveTo(50, 200);
+                for (let i = 1; i <= 7; i++) {
+                    ctx.lineTo(50 + i * 60, 200 - i * 15 - Math.random() * 10);
+                }
+                ctx.strokeStyle = '#60a5fa';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // 绘制刻意练习曲线
+                ctx.beginPath();
+                ctx.moveTo(50, 200);
+                for (let i = 1; i <= 7; i++) {
+                    ctx.lineTo(50 + i * 60, 200 - i * 25 + Math.random() * 5);
+                }
+                ctx.strokeStyle = '#34d399';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+                
+                // 添加图例
+				ctx.fillStyle = '#34d399';
+                ctx.fillText('刻意练习', 400, 40);
+				ctx.fillStyle = '#60a5fa';
+                ctx.fillText('普通练习', 400, 95);
+                ctx.fillStyle = '#f87171';
+                ctx.fillText('浅尝辄止', 400, 180);
+            }
+        });
+    </script>
+
+</body>
+</html>

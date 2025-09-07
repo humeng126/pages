@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>胃癌，离我们有多近？</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#faf6f0',
+                            100: '#f5ebdc',
+                            200: '#edd8bb',
+                            300: '#e2bd8f',
+                            400: '#d69a5c',
+                            500: '#c97f3a',
+                            600: '#ab6530',
+                            700: '#8a4f2a',
+                            800: '#6f4026',
+                            900: '#5a3522',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf7f5;
+            color: #333;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 24px;
+            padding: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .grid-item {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .highlight-bg {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .big-number {
+            font-size: 6rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 20px;
+            color: #0c4a6e;
+        }
+        
+        .title-cn {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .title-en {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .content-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .visual-element {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        .animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 自定义动画 */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8">
+    <div class="bento-grid">
+        <!-- 标题区域 -->
+        <div class="grid-item col-span-12 row-span-1 flex items-center justify-center relative">
+            <div class="highlight-bg bg-primary-400" style="top: -150px; right: -100px;"></div>
+            <div class="text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-4 text-primary-900">胃癌，离我们有多近？</h1>
+                <p class="text-xl text-gray-600">Understanding High Gastric Cancer Rates in East Asia</p>
+            </div>
+        </div>
+        
+        <!-- 排名区域 -->
+        <div class="grid-item col-span-12 md:col-span-6 relative overflow-hidden scroll-animate">
+            <div class="highlight-bg bg-secondary-400" style="top: -100px; left: -100px;"></div>
+            <i class="fas fa-trophy visual-element" style="font-size: 180px; right: 30px; bottom: 30px;"></i>
+            
+            <p class="title-en">Global Ranking</p>
+            <h2 class="title-cn">全球胃癌发病率排名</h2>
+            
+            <div class="relative z-10">
+                <div class="flex items-center mb-6">
+                    <div class="big-number text-secondary-700">1</div>
+                    <div class="ml-4">
+                        <h3 class="text-2xl font-bold">韩国</h3>
+                        <p class="text-gray-600">South Korea</p>
+                    </div>
+                </div>
+                
+                <div class="flex justify-around mt-10">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-secondary-700">2</div>
+                        <p class="font-medium">日本</p>
+                        <p class="text-sm text-gray-600">Japan</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-secondary-700">3</div>
+                        <p class="font-medium">中国</p>
+                        <p class="text-sm text-gray-600">China</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-secondary-700">4</div>
+                        <p class="font-medium">蒙古</p>
+                        <p class="text-sm text-gray-600">Mongolia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 数据区域 -->
+        <div class="grid-item col-span-12 md:col-span-6 relative overflow-hidden scroll-animate">
+            <div class="highlight-bg bg-primary-300" style="bottom: -150px; right: -100px;"></div>
+            <i class="fas fa-chart-pie visual-element" style="font-size: 160px; left: 30px; top: 30px;"></i>
+            
+            <p class="title-en">Statistics</p>
+            <h2 class="title-cn">全球近半数胃癌在中国</h2>
+            
+            <div class="relative z-10">
+                <div class="big-number text-primary-700">50<span class="text-4xl">%</span></div>
+                <p class="content-text">全世界接近一半的胃癌病例发生在中国，东亚地区成为全球胃癌最高发区域。</p>
+                
+                <div class="bg-gray-100 p-4 rounded-lg mt-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-medium">幽门螺杆菌感染者</span>
+                        <span class="font-bold text-primary-700">60%</span>
+                    </div>
+                    <div class="w-full bg-gray-300 rounded-full h-2.5">
+                        <div class="bg-primary-600 h-2.5 rounded-full" style="width: 60%"></div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center mb-2 mt-4">
+                        <span class="font-medium">风险增加</span>
+                        <span class="font-bold text-primary-700">3-6倍</span>
+                    </div>
+                    <div class="w-full bg-gray-300 rounded-full h-2.5">
+                        <div class="bg-primary-600 h-2.5 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 幽门螺杆菌区域 -->
+        <div class="grid-item col-span-12 md:col-span-4 relative overflow-hidden scroll-animate">
+            <div class="highlight-bg bg-red-200" style="top: -100px; left: -50px;"></div>
+            <i class="fas fa-bacteria visual-element float-animation" style="font-size: 140px; right: 20px; bottom: 20px;"></i>
+            
+            <p class="title-en">Helicobacter Pylori</p>
+            <h2 class="title-cn">幽门螺杆菌</h2>
+            
+            <div class="relative z-10">
+                <p class="content-text">感染幽门螺杆菌的人患胃癌的风险是正常人的 <span class="font-bold text-red-600">3到6倍</span>。</p>
+                
+                <div class="mt-6 p-4 bg-red-50 rounded-lg">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 text-red-600 text-xl mr-3">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <p>主要通过饮食传播，与不分餐的饮食习惯密切相关</p>
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <h4 class="font-bold mb-2">治疗方法：</h4>
+                    <div class="flex items-center text-sm bg-white p-3 rounded-lg shadow-sm">
+                        <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded mr-3">三联疗法</div>
+                        <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded">四联疗法</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 饮食习惯区域 -->
+        <div class="grid-item col-span-12 md:col-span-4 relative overflow-hidden scroll-animate">
+            <div class="highlight-bg bg-amber-200" style="bottom: -100px; right: -50px;"></div>
+            <i class="fas fa-drumstick-bite visual-element" style="font-size: 120px; left: 20px; top: 40px;"></i>
+            
+            <p class="title-en">Dietary Habits</p>
+            <h2 class="title-cn">饮食习惯</h2>
+            
+            <div class="relative z-10">
+                <p class="content-text">腌制和高盐食物是胃癌的重要风险因素。</p>
+                
+                <div class="mt-6 space-y-4">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-flag text-amber-600"></i>
+                        </div>
+                        <span>韩国泡菜</span>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-flag text-amber-600"></i>
+                        </div>
+                        <span>日本拉面(高盐)</span>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-flag text-amber-600"></i>
+                        </div>
+                        <span>中式咸鱼(一级致癌物)</span>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-flag text-amber-600"></i>
+                        </div>
+                        <span>香肠腊肉</span>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-3 bg-amber-50 rounded-lg text-sm">
+                    <i class="fas fa-info-circle text-amber-600 mr-2"></i>
+                    世界卫生组织将中式咸鱼列为一类致癌物
+                </div>
+            </div>
+        </div>
+        
+        <!-- 冰箱区域 -->
+        <div class="grid-item col-span-12 md:col-span-4 relative overflow-hidden scroll-animate">
+            <div class="highlight-bg bg-blue-200" style="top: -100px; right: -50px;"></div>
+            <i class="fas fa-snowflake visual-element float-animation" style="font-size: 130px; left: 30px; bottom: 30px;"></i>
+            
+            <p class="title-en">Refrigerator</p>
+            <h2 class="title-cn">冰箱的普及</h2>
+            
+            <div class="relative z-10">
+                <p class="content-text">1950年前胃癌是欧美的第一大癌症，冰箱普及后胃癌死亡率<span class="font-bold text-blue-700">30年下降50%</span>。</p>
+                
+                <div class="mt-8 text-center">
+                    <div class="inline-flex items-center bg-blue-100 px-4 py-2 rounded-full">
+                        <i class="fas fa-arrow-down text-blue-700 mr-2"></i>
+                        <span class="font-bold text-blue-800">胃癌死亡率下降</span>
+                    </div>
+                    
+                    <div class="big-number text-blue-700">50<span class="text-4xl">%</span></div>
+                </div>
+                
+                <p class="content-text">冰箱使人们能够储存新鲜食物，减少腌制食品的摄入。</p>
+            </div>
+        </div>
+        
+        <!-- 烟酒区域 -->
+        <div class="grid-item col-span-12 md:col-span-6 relative overflow-hidden scroll-animate">
+            <div class="highlight-bg bg-purple-200" style="bottom: -100px; left: -50px;"></div>
+            <i class="fas fa-smoking visual-element" style="font-size: 140px; right: 30px; top: 30px;"></i>
+            
+            <p class="title-en">Tobacco & Alcohol</p>
+            <h2 class="title-cn">烟酒的影响</h2>
+            
+            <div class="relative z-10">
+                <p class="content-text">烟酒与十几种癌症相关，对胃部健康也有显著影响。</p>
+                
+                <div class="flex mt-8">
+                    <div class="flex-1 text-center p-4 bg-purple-50 rounded-lg mr-4">
+                        <i class="fas fa-smoking text-3xl text-purple-600 mb-3"></i>
+                        <h3 class="font-bold mb-2">吸烟</h3>
+                        <p>增加胃癌风险</p>
+                    </div>
+                    
+                    <div class="flex-1 text-center p-4 bg-purple-50 rounded-lg">
+                        <i class="fas fa-glass-martini-alt text-3xl text-purple-600 mb-3"></i>
+                        <h3 class="font-bold mb-2">饮酒</h3>
+                        <p>损伤胃黏膜</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 预防措施区域 -->
+        <div class="grid-item col-span-12 md:col-span-6 relative overflow-hidden scroll-animate">
+            <div class="highlight-bg bg-green-200" style="top: -100px; right: -50px;"></div>
+            <i class="fas fa-shield-alt visual-element float-animation" style="font-size: 140px; left: 30px; bottom: 30px;"></i>
+            
+            <p class="title-en">Prevention</p>
+            <h2 class="title-cn">预防措施</h2>
+            
+            <div class="relative z-10">
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                            <i class="fas fa-stethoscope text-green-600"></i>
+                        </div>
+                        <p>检查并治疗幽门螺杆菌感染，有家族史者风险可<strong>降低75%</strong></p>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                            <i class="fas fa-utensils text-green-600"></i>
+                        </div>
+                        <p>减少腌制和高盐食物摄入，多吃新鲜蔬果</p>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                            <i class="fas fa-ban text-green-600"></i>
+                        </div>
+                        <p>戒烟控酒，减少胃部刺激</p>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                            <i class="fas fa-blender text-green-600"></i>
+                        </div>
+                        <p>推广分餐制，避免幽门螺杆菌传播</p>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-4 bg-green-50 rounded-lg">
+                    <p class="text-sm">通过以上措施，中国的胃癌发病率有望逐步降低</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.scroll-animate');
+            
+            // 初始显示一些元素
+            setTimeout(() => {
+                document.querySelector('.bento-grid').style.opacity = '1';
+            }, 300);
+            
+            // 创建Intersection Observer来检测元素是否进入视图
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-in');
+                        }, 100);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            // 观察所有需要动画的元素
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // 添加鼠标滚动效果
+            let lastScrollY = window.scrollY;
+            const visualElements = document.querySelectorAll('.visual-element');
+            
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                const scrollDirection = scrollY > lastScrollY ? 'down' : 'up';
+                lastScrollY = scrollY;
+                
+                // 为视觉元素添加微妙的视差效果
+                visualElements.forEach((element, index) => {
+                    const speed = 0.05 + (index * 0.02);
+                    const yPos = scrollY * speed;
+                    element.style.transform = `translateY(${yPos}px)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
