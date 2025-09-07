@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>凯哥情感宝典 - 识人避坑指南</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+    
+    <!-- Framer Motion via CDN -->
+    <script type="module">
+        import { motion, animate, stagger } from "https://cdn.skypack.dev/framer-motion@10.16.4";
+    </script>
+
+    <!-- Font Awesome via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f0f2f5;
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem; /* 24px */
+        }
+        
+        .bento-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 1.5rem; /* 24px */
+            padding: 2rem; /* 32px */
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            transform: perspective(1000px); /* for 3D effects */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .bento-item:hover {
+            transform: translateY(-5px) perspective(1000px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        /* Define grid spans */
+        .col-span-12 { grid-column: span 12; }
+        .col-span-8 { grid-column: span 8; }
+        .col-span-6 { grid-column: span 6; }
+        .col-span-4 { grid-column: span 4; }
+        .row-span-2 { grid-row: span 2; }
+        
+        /* Typography */
+        .super-text {
+            font-size: clamp(2rem, 10vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.05em;
+        }
+        
+        .sub-text-en {
+            font-family: 'system-ui', sans-serif;
+            font-size: 0.875rem;
+            color: #a0aec0;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Highlight Gradient Effect */
+        .highlight-gradient-blue::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0) 60%);
+            animation: rotate 10s linear infinite;
+        }
+        
+        .highlight-gradient-red::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0) 70%);
+            border-radius: 50%;
+            transform: translate(40%, -40%);
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body class="p-4 sm:p-8 md:p-12">
+
+    <div id="app" class="max-w-7xl mx-auto">
+        <main class="bento-grid">
+            
+            <!-- Header -->
+            <motion.div class="bento-item col-span-12 lg:col-span-8 flex flex-col justify-center highlight-gradient-blue">
+                <p class="sub-text-en">Kai's Relationship Advice</p>
+                <h1 class="super-text text-gray-800">千万别找<br>底层的美女</h1>
+                <p class="mt-4 text-gray-600 max-w-xl">为什么越是底层的美女对你的消耗就越大？她们会在不知不觉间掏空你的钱包，消耗你的精力，摧毁你的自信。这可能是最危险的自我选择。</p>
+            </motion.div>
+
+            <!-- Point 1 -->
+            <motion.div class="bento-item col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col justify-between">
+                <div>
+                    <span class="super-text text-blue-500/30">01</span>
+                    <h2 class="text-2xl font-bold mt-2">扭曲的世界观</h2>
+                    <p class="sub-text-en">Distorted Worldview</p>
+                    <p class="mt-4 text-gray-600">将美貌视为唯一资本，认为男人的付出是理所当然的成本，缺乏感恩之心。底层美女因外貌获得超常关注，形成美貌是唯一生存资本的扭曲观念。她们将你的付出视为理所当然，不断试探底线，一心算计能从你这里得到什么。</p>
+                </div>
+                <div class="w-full mt-6 text-right">
+                    <i class="fas fa-gem text-6xl text-blue-500/20"></i>
+                </div>
+            </motion.div>
+
+            <!-- Point 2 -->
+            <motion.div class="bento-item col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col justify-between">
+                 <div>
+                    <span class="super-text text-blue-500/30">02</span>
+                    <h2 class="text-2xl font-bold mt-2">病态的补偿心理</h2>
+                    <p class="sub-text-en">Pathological Compensation</p>
+                    <p class="mt-4 text-gray-600">内心极度缺乏安全感，通过不断向伴侣索取物质来证明自身价值，攀比心重。资源匮乏导致极度缺乏安全感，通过不断索求证明自身价值。你会永远活在"别人家男朋友"的阴影下，难以达到她的期望。</p>
+                </div>
+                <div class="w-full mt-6 text-right">
+                    <i class="fas fa-shopping-bag text-6xl text-blue-500/20"></i>
+                </div>
+            </motion.div>
+
+            <!-- Point 3 -->
+            <motion.div class="bento-item col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col justify-between">
+                 <div>
+                    <span class="super-text text-blue-500/30">03</span>
+                    <h2 class="text-2xl font-bold mt-2">外貌的恶性循环</h2>
+                    <p class="sub-text-en">Vicious Cycle of Appearance</p>
+                    <p class="mt-4 text-gray-600">极度依赖外貌，害怕衰老，将外貌焦虑和维持成本全部转嫁给伴侣。因缺乏其他价值，只能更依赖外貌。越依赖越害怕衰老，越要砸钱维护，最终所有成本都落到伴侣头上。</p>
+                </div>
+                <div class="w-full mt-6 text-right">
+                    <i class="fas fa-mask-face text-6xl text-blue-500/20"></i>
+                </div>
+            </motion.div>
+
+            <!-- Point 4 -->
+             <motion.div class="bento-item col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col justify-between">
+                 <div>
+                    <span class="super-text text-blue-500/30">04</span>
+                    <h2 class="text-2xl font-bold mt-2">零和博弈思维</h2>
+                    <p class="sub-text-en">Zero-Sum Game Mentality</p>
+                    <p class="mt-4 text-gray-600">不相信真正的信任，关系中充满试探与算计，不断消耗你的情绪价值。将亲密关系视为不是你占我便宜，就是我占你便宜。难以建立真正信任，通过各种测试消耗你的精力。</p>
+                </div>
+                 <div class="w-full mt-6 text-right">
+                    <i class="fas fa-balance-scale-left text-6xl text-blue-500/20"></i>
+                </div>
+            </motion.div>
+
+            <!-- Divider/Quote -->
+            <motion.div class="bento-item col-span-12 lg:col-span-12 text-center flex flex-col justify-center items-center py-12 highlight-gradient-red">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-red-500/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 class="text-xl md:text-3xl font-bold mt-4">贫瘠之地开出娇艳之花，<span class="text-red-500">必定有毒</span>找一个和自己匹配的合适的女生才是最好的。</h3>
+                <p class="sub-text-en mt-2">A beautiful flower in barren land is bound to be poisonous.</p>
+            </motion.div>
+
+            <!-- Type 1 -->
+            <motion.div class="bento-item col-span-12 lg:col-span-6">
+                <p class="sub-text-en text-red-500">避雷类型 1 / Type 1 to Avoid</p>
+                <h2 class="text-3xl font-bold mt-2">挣得少，花得多</h2>
+                <p class="mt-4 text-gray-600">月薪几千却指望你买几万的包。这类女性虚荣、缺乏安全感，是典型的“向上社交者”。一旦遇到资源更好的对象，会毫不犹豫地离开你。</p>
+                <div class="mt-6 p-4 bg-gray-100 rounded-lg border border-gray-200">
+                    <p class="font-bold text-gray-700">核心特征：</p>
+                    <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                        <li>能力与欲望严重不匹配</li>
+                        <li>极度虚荣，攀比心强</li>
+                        <li>缺乏道德底线，随时准备跳板</li>
+                    </ul>
+                </div>
+            </motion.div>
+
+            <!-- Type 2 -->
+            <motion.div class="bento-item col-span-12 lg:col-span-6">
+                <p class="sub-text-en text-red-500">避雷类型 2 / Type 2 to Avoid</p>
+                <h2 class="text-3xl font-bold mt-2">我错，我有理</h2>
+                <p class="mt-4 text-gray-600">从不认错，善于反向指责（PUA/CPU）。即便原生家庭和学历不错，但格局低下，缺乏同理心。长期相处会让你陷入自我怀疑，磨灭你的优点。</p>
+                 <div class="mt-6 p-4 bg-gray-100 rounded-lg border border-gray-200">
+                    <p class="font-bold text-gray-700">核心特征：</p>
+                    <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                        <li>以自我为中心，不懂人情世故</li>
+                        <li>习惯性推卸责任</li>
+                        <li>用“爱不爱我”进行道德绑架</li>
+                    </ul>
+                </div>
+            </motion.div>
+
+             <!-- Point 5 & 6 -->
+            <motion.div class="bento-item col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col justify-between">
+                 <div>
+                    <span class="super-text text-blue-500/30">05</span>
+                    <h2 class="text-2xl font-bold mt-2">索取无上限</h2>
+                    <p class="sub-text-en">Endless Demands</p>
+                    <p class="mt-4 text-gray-600">内心的匮乏无法被物质填满，你的付出只会换来更多、更大的要求，形成恶性循环。内心的匮乏靠外在物质根本填不满。今天满足一个要求，明天变成两个，陷入付出越多她越不满意的怪圈。</p>
+                </div>
+                <div class="w-full mt-6 text-right">
+                     <i class="fas fa-infinity text-6xl text-blue-500/20"></i>
+                </div>
+            </motion.div>
+            
+            <motion.div class="bento-item col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col justify-between">
+                 <div>
+                    <span class="super-text text-blue-500/30">06</span>
+                    <h2 class="text-2xl font-bold mt-2">全方位消耗</h2>
+                    <p class="sub-text-en">Holistic Drain</p>
+                    <p class="mt-4 text-gray-600">不仅消耗你的金钱，更把你当成整个家庭的“长期饭票”，全方位榨取你的价值。价值消耗 + 金钱消耗。贫困家庭观念让她将你视为长期饭票和提升面子的工具，攀比心极重。</p>
+                </div>
+                <div class="w-full mt-6 text-right">
+                    <i class="fas fa-battery-empty text-6xl text-blue-500/20"></i>
+                </div>
+            </motion.div>
+
+            <!-- Conclusion -->
+            <motion.div class="bento-item col-span-12 lg:col-span-4 text-white bg-gray-800 flex flex-col justify-center items-center text-center">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
+                 </svg>
+                <h2 class="text-3xl font-bold mt-4">提升自己<br>最为重要</h2>
+                <p class="sub-text-en mt-2 text-gray-400">Improve yourself, that's what matters most.</p>
+                <p class="mt-4 text-gray-300">优秀的人总是在努力地翻山越岭。找到与自己匹配的合适的女生才是最好的选择。检查你的关系是否处于健康状态：是否相互尊重、平等付出、共同成长？</p>
+            </motion.div>
+        </main>
+    </div>
+
+    <script type="module">
+        // This is a placeholder for Framer Motion integration.
+        // In a real project, you'd use React or Vue, but for this static HTML,
+        // we'll simulate the entrance animation using a simple script.
+        
+        // This script is conceptual. True Framer Motion 'motion.div' requires a framework like React.
+        // However, we can use the library's animation functions for a similar effect.
+        import { animate, stagger, inView } from "https://cdn.skypack.dev/framer-motion@10.16.4";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const items = document.querySelectorAll('.bento-item');
+            
+            items.forEach(item => {
+                // Set initial state
+                item.style.opacity = 0;
+                item.style.transform = 'translateY(50px)';
+                
+                // Animate when in view
+                inView(item, () => {
+                    animate(
+                        item,
+                        { 
+                            opacity: 1, 
+                            transform: 'translateY(0px)' 
+                        },
+                        { 
+                            duration: 0.8, 
+                            ease: [0.17, 0.55, 0.55, 1] 
+                        }
+                    );
+                }, { amount: 0.2 }); // Trigger when 20% of the element is visible
+            });
+        });
+
+    </script>
+</body>
+</html>
