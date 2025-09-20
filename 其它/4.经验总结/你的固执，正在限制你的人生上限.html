@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>认知与偏见：打破固执，提升思维灵活性</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome (Icons) via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- AOS (Animate On Scroll) via CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Google Fonts for a modern look (Optional but recommended) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom Styles */
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Noto Sans SC', 'Roboto', sans-serif;
+            color: #333;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+            gap: 1.5rem; /* 24px */
+            padding: 1.5rem;
+            max-width: 1400px;
+            margin: auto;
+        }
+        .bento-item {
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 2rem; /* 32px */
+            border: 1px solid #e9ecef;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+        }
+        
+        /* Grid item spans */
+        .item-col-12 { grid-column: span 12; }
+        .item-col-8 { grid-column: span 12; }
+        .item-col-7 { grid-column: span 12; }
+        .item-col-6 { grid-column: span 12; }
+        .item-col-5 { grid-column: span 12; }
+        .item-col-4 { grid-column: span 12; }
+
+        @media (min-width: 1024px) {
+            .item-col-8 { grid-column: span 8; }
+            .item-col-7 { grid-column: span 7; }
+            .item-col-6 { grid-column: span 6; }
+            .item-col-5 { grid-column: span 5; }
+            .item-col-4 { grid-column: span 4; }
+        }
+
+        .item-row-2 { grid-row: span 2; }
+        .item-row-3 { grid-row: span 3; }
+
+        /* Highlight effect */
+        .highlight-gradient-blue {
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0) 100%);
+        }
+        .highlight-gradient-green {
+            background: linear-gradient(90deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0) 100%);
+        }
+
+        /* Typography */
+        .super-text {
+            font-size: clamp(3.5rem, 8vw, 9rem);
+            font-weight: 900;
+            line-height: 1;
+            color: #e9ecef;
+            position: absolute;
+            right: 2rem;
+            bottom: 1rem;
+            z-index: 0;
+            user-select: none;
+        }
+        .main-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+        .sub-eng {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            color: #adb5bd;
+            text-transform: uppercase;
+        }
+        .icon-wrapper {
+            font-size: 3rem;
+            color: #3b82f6;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bento-grid">
+        
+        <!-- 1. Main Title -->
+        <div class="bento-item item-col-8 item-row-2 relative overflow-hidden" data-aos="fade-up">
+            <div class="relative z-10">
+                <p class="sub-eng">Cognitive Rigidity</p>
+                <h1 class="main-title mt-2">为什么认知越低的人<br>往往越顽固？</h1>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl">
+                    固执是低认知、自我保护以及内心恐惧的外部显现。认知边界被挑战时，大脑才真正开始思考。
+                </p>
+            </div>
+            <div class="mt-auto">
+                <i class="fas fa-brain text-9xl text-gray-100 absolute right-8 bottom-8 z-0 opacity-80"></i>
+            </div>
+        </div>
+
+        <!-- 2. What is Cognition? -->
+        <div class="bento-item item-col-4 highlight-gradient-blue" data-aos="fade-left" data-aos-delay="100">
+            <p class="sub-eng">Defining Cognition</p>
+            <h2 class="text-3xl font-bold mt-2">什么是认知?</h2>
+            <p class="mt-4 text-gray-600 flex-grow">
+                广义上，指大脑对外部信息进行接收、加工、理解和应用的思维反应。一定阅历后，会形成思维惯性。
+            </p>
+            <div class="icon-wrapper">
+                <i class="fas fa-project-diagram"></i>
+            </div>
+        </div>
+
+        <!-- 3. Pathological Stubbornness -->
+        <div class="bento-item item-col-4" data-aos="fade-up" data-aos-delay="200">
+             <p class="sub-eng">The Cognitive Cage</p>
+            <h2 class="text-3xl font-bold mt-2">病态的固执</h2>
+            <p class="mt-4 text-gray-600 flex-grow">
+                认知僵化会阻碍知识获取、损害决策能力、限制成长空间，最终影响你的事业与人际关系。
+            </p>
+            <div class="icon-wrapper">
+                <i class="fas fa-lock"></i>
+            </div>
+        </div>
+
+        <!-- 4. The Goal -->
+        <div class="bento-item item-col-4" data-aos="fade-up" data-aos-delay="300">
+             <p class="sub-eng">The Goal</p>
+            <h2 class="text-3xl font-bold mt-2">打破固执的目的</h2>
+            <p class="mt-4 text-gray-600 flex-grow">
+                核心在于提升<b class="text-blue-500">认知灵活性</b>，及时的自我纠偏，避免认知僵化的长期存在。
+            </p>
+            <div class="icon-wrapper">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+        </div>
+
+        <!-- 5. Key Benefits -->
+        <div class="bento-item item-col-4" data-aos="fade-up" data-aos-delay="400">
+            <p class="sub-eng">Core Benefits of Openness</p>
+            <h2 class="text-3xl font-bold mt-2">开放性的三大好处</h2>
+            <p class="mt-4 text-gray-600 flex-grow">
+                保持主动开放的心态，是提升认知最有效的措施。
+            </p>
+            <div class="icon-wrapper">
+                <i class="fas fa-unlock-alt"></i>
+            </div>
+        </div>
+        
+        <!-- Benefit 1 -->
+        <div class="bento-item item-col-4 relative overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
+            <span class="super-text">1</span>
+            <div class="relative z-10">
+                <h3 class="text-2xl font-bold">高效获取新认知</h3>
+                <p class="mt-2 text-gray-600">拓宽信息来源，丰富知识结构，提升判断力和思维远见。</p>
+            </div>
+        </div>
+
+        <!-- Benefit 2 -->
+        <div class="bento-item item-col-4 relative overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
+            <span class="super-text">2</span>
+            <div class="relative z-10">
+                <h3 class="text-2xl font-bold">优化决策模型</h3>
+                <p class="mt-2 text-gray-600">减少固有偏见和过往经验的干扰，做出更理性的选择。</p>
+            </div>
+        </div>
+        
+        <!-- Benefit 3 -->
+        <div class="bento-item item-col-4 relative overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
+            <span class="super-text">3</span>
+            <div class="relative z-10">
+                <h3 class="text-2xl font-bold">提高解决问题能力</h3>
+                <p class="mt-2 text-gray-600">学会用更多元的视角、更多样的工具以找到最优解。</p>
+            </div>
+        </div>
+        
+        <!-- 6. Methods for Openness -->
+        <div class="bento-item item-col-7 item-row-3" data-aos="fade-right">
+            <p class="sub-eng">Methodology</p>
+            <h2 class="text-3xl font-bold mt-2">主动开放的训练方法</h2>
+            <div class="mt-6 space-y-6 flex-grow">
+                <div class="flex items-start space-x-4 p-4 rounded-lg highlight-gradient-green">
+                    <i class="fas fa-book-reader text-3xl text-green-500 w-12 text-center"></i>
+                    <div>
+                        <h4 class="font-bold text-lg">高质量输入</h4>
+                        <p class="text-gray-600">跨学科学习，与不同领域的人深度交流。</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4 p-4 rounded-lg highlight-gradient-green">
+                    <i class="fas fa-retweet text-3xl text-green-500 w-12 text-center"></i>
+                    <div>
+                        <h4 class="font-bold text-lg">刻意练习</h4>
+                        <p class="text-gray-600">进行反向思考、假设推导和自我辩论。</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4 p-4 rounded-lg highlight-gradient-green">
+                     <i class="fas fa-globe-asia text-3xl text-green-500 w-12 text-center"></i>
+                    <div>
+                        <h4 class="font-bold text-lg">拓展信息源</h4>
+                        <p class="text-gray-600">阅读不同立场的书籍，关注少数派观点。</p>
+                    </div>
+                </div>
+                 <div class="flex items-start space-x-4 p-4 rounded-lg highlight-gradient-green">
+                    <i class="fas fa-plane-departure text-3xl text-green-500 w-12 text-center"></i>
+                    <div>
+                        <h4 class="font-bold text-lg">其他方式</h4>
+                        <p class="text-gray-600">旅行、学习新技能、正念冥想等。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Daily Practice -->
+        <div class="bento-item item-col-5 item-row-2" data-aos="fade-left">
+            <p class="sub-eng">Daily Habits</p>
+            <h2 class="text-3xl font-bold mt-2">日常有意识的训练</h2>
+            <ul class="mt-6 space-y-4 text-lg text-gray-700 list-none flex-grow">
+                <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i> 定期复盘自己的观点</li>
+                <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i> 主动接触反对的意见</li>
+                <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i> 把犯错当成学习机会</li>
+                <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i> 对世界保持好奇之心</li>
+            </ul>
+        </div>
+        
+        <!-- 8. Final Message -->
+        <div class="bento-item item-col-12 text-center highlight-gradient-blue" data-aos="fade-up">
+            <p class="sub-eng">The Only Path to True Growth</p>
+            <h2 class="text-4xl font-black mt-4 max-w-4xl mx-auto">真正的认知提升，是硬着头皮去接触<br>那些让你<span class="text-blue-600">不适</span>甚至被<span class="text-blue-600">冒犯</span>的信息。</h2>
+            <p class="mt-6 text-xl text-gray-600">你必须主动的、刻意的去给自己“找不痛快”，这才是打破固执的唯一路径。</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800, // animation duration
+            once: true, // whether animation should happen only once - while scrolling down
+            offset: 50, // offset (in px) from the original trigger point
+        });
+    </script>
+</body>
+</html>
