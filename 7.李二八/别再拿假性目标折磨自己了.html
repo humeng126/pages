@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>真假目标：找到驱动你人生的那团火</title>
+    
+    <!-- TailwindCSS 3.4.1 via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome 6.5.2 via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Framer Motion 11.1.9 via CDN (ES Module) -->
+    <script type="importmap">
+    {
+        "imports": {
+            "framer-motion": "https://cdn.jsdelivr.net/npm/framer-motion@11.1.9/dist/framer-motion.es.js"
+        }
+    }
+    </script>
+
+    <style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a202c; /* dark gray */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a5568; /* medium gray */
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #718096; /* light gray */
+        }
+        /* Base styles */
+        body {
+            background-color: #0d1117;
+            color: #e2e8f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            overflow-x: hidden;
+        }
+        .bento-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(1, 1fr);
+            padding: 1rem;
+        }
+        @media (min-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: auto;
+            }
+        }
+        .bento-item {
+            background-color: rgba(30, 41, 59, 0.5); /* slate-800 with opacity */
+            border: 1px solid rgba(51, 65, 85, 0.7); /* slate-700 */
+            border-radius: 1.5rem; /* 24px */
+            padding: 2rem; /* 32px */
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .highlight-gradient-cyan {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150%;
+            height: 50%;
+            background: radial-gradient(circle at 10% 20%, rgba(34, 211, 238, 0.2), transparent 40%);
+        }
+        .highlight-gradient-purple {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 150%;
+            height: 50%;
+            background: radial-gradient(circle at 90% 80%, rgba(192, 132, 252, 0.2), transparent 40%);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="app" class="max-w-7xl mx-auto">
+        <main class="bento-grid">
+            <!-- Item 1: Main Title -->
+            <div class="bento-item lg:col-span-2 lg:row-span-2 flex flex-col justify-between">
+                <div class="highlight-gradient-cyan"></div>
+                <div>
+                    <p class="text-sm font-light text-slate-400">THE TRAP OF FALSE GOALS</p>
+                    <h1 class="text-6xl lg:text-8xl font-bold tracking-tighter text-slate-100 mt-2">假性目标</h1>
+                    <p class="mt-6 text-lg text-slate-300">
+                        我们深受其害，却浑然不觉。它让你疲惫、压抑、拖延，最终一事无成。
+                    </p>
+                </div>
+                <div class="w-full mt-8">
+                    <div class="w-full h-2 bg-slate-700 rounded-full overflow-hidden">
+                         <div class="h-full bg-cyan-400 w-1/4 rounded-full"></div>
+                    </div>
+                    <p class="text-right text-sm text-cyan-400 mt-2">TRAPPED</p>
+                </div>
+            </div>
+
+            <!-- Item 2: The Duck King Case -->
+            <div class="bento-item lg:col-span-2">
+                 <div class="flex items-center gap-4">
+                    <i class="fa-solid fa-lock text-3xl text-purple-400"></i>
+                    <div>
+                         <p class="text-sm font-light text-slate-400">CASE STUDY 01: PERFORMANCE ANXIETY</p>
+                         <h2 class="text-2xl font-bold text-slate-100">表现焦虑的枷锁</h2>
+                    </div>
+                </div>
+                <p class="mt-4 text-slate-300">
+                    当目标变成一项需要“完美完成”的KPI，过程便沦为考场。你越是追求结果，身体和心灵就越是紧张，自然的生理反应被焦虑抑制，最终“不治而愈”的本质是打破了目标的绑架。
+                </p>
+            </div>
+            
+            <!-- Item 3: Zhang Yiming Case -->
+            <div class="bento-item lg:col-span-2 lg:row-span-2">
+                <div class="highlight-gradient-purple"></div>
+                <div>
+                    <p class="text-sm font-light text-slate-400">CASE STUDY 02: THE POWER OF TRUE GOALS</p>
+                    <h2 class="text-3xl font-bold text-slate-100">真目标的驱动力</h2>
+                    <p class="mt-4 text-slate-300">
+                        字节跳动的创始人张一鸣，一个把浪漫给了数据的理工男。对他而言，沉浸在算法和数据中从不感觉累，因为他知道自己在做什么。
+                    </p>
+                </div>
+                <div class="mt-8 flex items-end justify-between gap-4">
+                    <div class="text-center">
+                        <p class="text-5xl lg:text-7xl font-bold text-cyan-400">3-4<span class="text-3xl lg:text-5xl text-slate-400">/10</span></p>
+                        <p class="text-sm mt-2 text-slate-400">假性目标下的实力发挥</p>
+                        <p class="text-xs text-slate-500">被内耗、纠结、评判所占据</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-5xl lg:text-7xl font-bold text-purple-400">10<span class="text-3xl lg:text-5xl text-slate-400">/10</span></p>
+                        <p class="text-sm mt-2 text-slate-400">真目标下的心无旁骛</p>
+                        <p class="text-xs text-slate-500">轻松进入心流，超常发挥</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4: The Core Difference -->
+            <div class="bento-item lg:col-span-2 flex flex-col justify-center items-center text-center">
+                <h2 class="text-4xl lg:text-7xl font-bold tracking-tighter">
+                    <span class="text-red-400">疲惫</span> VS <span class="text-green-400">热腾腾</span>
+                </h2>
+                <p class="mt-4 text-slate-300">
+                    想到<span class="font-bold text-red-400">假性目标</span>，你只感到被外部标准和社会认同所累。
+                    <br/>
+                    想到<span class="font-bold text-green-400">真目标</span>，你心中如有一团火，源源不断地给你能量。
+                </p>
+            </div>
+            
+            <!-- Item 5: Criterion 1 -->
+            <div class="bento-item">
+                <div class="flex items-center gap-4">
+                    <span class="text-6xl font-bold text-slate-500">1</span>
+                    <h3 class="text-2xl font-bold text-slate-100">越来越像自己</h3>
+                </div>
+                <p class="mt-4 text-slate-300">
+                    这个目标是让你变得更真实，还是更焦虑、虚伪和割裂？
+                </p>
+                <p class="text-xs text-slate-400 mt-2">FEELING MORE LIKE YOURSELF</p>
+            </div>
+            
+            <!-- Item 6: Criterion 2 -->
+            <div class="bento-item">
+                <div class="flex items-center gap-4">
+                     <span class="text-6xl font-bold text-slate-500">2</span>
+                     <h3 class="text-2xl font-bold text-slate-100">燃烧还是消耗</h3>
+                </div>
+                 <p class="mt-4 text-slate-300">
+                    是心甘情愿地<span class="text-cyan-400">燃烧热情</span>，累并快乐着；还是为了缓解焦虑而被迫<span class="text-purple-400">消耗自己</span>？
+                </p>
+                <p class="text-xs text-slate-400 mt-2">BURNING PASSION VS. CONSUMING ENERGY</p>
+            </div>
+
+            <!-- Item 7: Criterion 3 -->
+            <div class="bento-item lg:col-span-2">
+                 <div class="flex items-center gap-4">
+                     <span class="text-6xl font-bold text-slate-500">3</span>
+                     <h3 class="text-2xl font-bold text-slate-100">具有长期价值</h3>
+                </div>
+                <p class="mt-4 text-slate-300">
+                    一个简单的判断标准：三年后，这件事还值得你花时间吗？知识会复利，影响力会积累，这才是真正的资产。
+                </p>
+                <p class="text-xs text-slate-400 mt-2">LONG-TERM VALUE & COMPOUNDING GROWTH</p>
+            </div>
+            
+            <!-- Item 8: Conclusion -->
+            <div class="bento-item lg:col-span-4 text-center">
+                 <div class="highlight-gradient-cyan"></div>
+                 <div class="highlight-gradient-purple"></div>
+                <p class="text-sm font-light text-slate-400">THE ULTIMATE STRATEGY</p>
+                <h2 class="text-3xl lg:text-5xl font-bold tracking-tight text-slate-100 mt-4">
+                    抬头定方向，低头学走路
+                </h2>
+                <p class="mt-6 max-w-3xl mx-auto text-lg text-slate-300">
+                    真正的成功，是把热爱的事情做到极致后，世界给予你的奖励。让赚钱、涨粉成为追求<span class="text-cyan-400 font-semibold">真目标</span>过程中顺其自然的结果，而非你行动的唯一目的。
+                </p>
+                 <div class="mt-8 flex justify-center items-center gap-6">
+                    <div class="text-center">
+                        <i class="fa-solid fa-compass text-4xl text-cyan-400"></i>
+                        <p class="mt-2 font-semibold">大处着眼</p>
+                        <p class="text-xs text-slate-400">Define Strategy</p>
+                    </div>
+                    <div class="text-slate-600 text-2xl">&rarr;</div>
+                    <div class="text-center">
+                        <i class="fa-solid fa-shoe-prints text-4xl text-purple-400"></i>
+                        <p class="mt-2 font-semibold">小处着手</p>
+                        <p class="text-xs text-slate-400">Focus on Action</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module">
+        import { motion, stagger, animate } from "framer-motion";
+
+        // Apple-like scroll-triggered animations for each bento item
+        const items = document.querySelectorAll(".bento-item");
+        
+        items.forEach(item => {
+            const initial = { opacity: 0, y: 50, scale: 0.95 };
+            
+            motion(item, {
+                initial,
+                whileInView: { opacity: 1, y: 0, scale: 1 },
+                viewport: { once: true, amount: 0.3 },
+                transition: { 
+                    type: "spring", 
+                    stiffness: 100,
+                    damping: 20,
+                    mass: 1
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

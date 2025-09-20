@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人生的第一性原理 First Principles of Life</title>
+    <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/11.1.9/motion.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f0f2f5;
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+            gap: 1.5rem;
+            padding: 2rem;
+            max-width: 1600px;
+            margin: auto;
+        }
+        .bento-item {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(200, 200, 200, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        .highlight-glow {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+        .grid-col-span-1 { grid-column: span 1; }
+        .grid-col-span-2 { grid-column: span 2; }
+        .grid-col-span-3 { grid-column: span 3; }
+        .grid-col-span-4 { grid-column: span 4; }
+        .grid-col-span-5 { grid-column: span 5; }
+        .grid-col-span-6 { grid-column: span 6; }
+        .grid-col-span-7 { grid-column: span 7; }
+        .grid-col-span-8 { grid-column: span 8; }
+        .grid-col-span-12 { grid-column: span 12; }
+        
+        .grid-row-span-1 { grid-row: span 1; }
+        .grid-row-span-2 { grid-row: span 2; }
+        .grid-row-span-3 { grid-row: span 3; }
+
+        .super-text {
+            font-size: 8rem;
+            line-height: 1;
+            font-weight: 700;
+            color: rgba(0,0,0,0.05);
+            position: absolute;
+            right: -1rem;
+            bottom: -1rem;
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+        .card-subtitle {
+            font-size: 0.875rem;
+            opacity: 0.6;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        
+        .icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        /* Softer color palette */
+        .color-1 { background: linear-gradient(135deg, rgba(168, 198, 224, 0.5) 0%, rgba(168, 198, 224, 0) 70%); }
+        .color-2 { background: linear-gradient(135deg, rgba(255, 204, 213, 0.5) 0%, rgba(255, 204, 213, 0) 70%); }
+        .color-3 { background: linear-gradient(135deg, rgba(179, 229, 252, 0.5) 0%, rgba(179, 229, 252, 0) 70%); }
+        .color-4 { background: linear-gradient(135deg, rgba(200, 230, 201, 0.5) 0%, rgba(200, 230, 201, 0) 70%); }
+        .color-5 { background: linear-gradient(135deg, rgba(255, 224, 178, 0.5) 0%, rgba(255, 224, 178, 0) 70%); }
+        .color-6 { background: linear-gradient(135deg, rgba(209, 196, 233, 0.5) 0%, rgba(209, 196, 233, 0) 70%); }
+
+        .text-color-1 { color: #3b5998; }
+        .text-color-2 { color: #e1306c; }
+        .text-color-3 { color: #0077b5; }
+        .text-color-4 { color: #4caf50; }
+        .text-color-5 { color: #ff9800; }
+        .text-color-6 { color: #673ab7; }
+        
+        /* Chart.js canvas styling */
+        canvas {
+            max-height: 100%;
+            max-width: 100%;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="bento-grid">
+        <!-- Header -->
+        <div id="item-0" class="bento-item grid-col-span-12 grid-row-span-1 flex flex-col justify-center items-center text-center">
+            <div class="highlight-glow color-1 -top-1/2 -left-1/4 w-full h-full"></div>
+            <div class="content-wrapper">
+                <h1 class="text-6xl md:text-8xl font-bold tracking-tight">人生的第一性原理</h1>
+                <p class="text-xl md:text-2xl text-gray-500 mt-4">FIRST PRINCIPLES OF LIFE</p>
+            </div>
+        </div>
+        
+        <!-- Principles -->
+        <div id="item-1" class="bento-item grid-col-span-4 grid-row-span-2">
+            <div class="highlight-glow color-2 -top-1/4 -right-1/4 w-3/4 h-3/4"></div>
+            <div class="content-wrapper justify-between">
+                <div>
+                    <i class="fas fa-landmark icon text-color-2"></i>
+                    <p class="card-subtitle">Family</p>
+                    <p class="card-title">家庭的第一性原理是经济，不是感情</p>
+                </div>
+                <div class="w-full h-32 flex items-center justify-center">
+                   <svg class="w-48 h-48 opacity-20" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                       <path d="M50 10V90 M10 50H90 M25 25L75 75 M25 75L75 25" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+                       <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="1"/>
+                   </svg>
+                </div>
+            </div>
+            <div class="super-text">1</div>
+        </div>
+
+        <div id="item-2" class="bento-item grid-col-span-4 grid-row-span-2">
+            <div class="content-wrapper justify-between">
+                <div>
+                    <i class="fas fa-briefcase icon text-color-3"></i>
+                    <p class="card-subtitle">Workplace</p>
+                    <p class="card-title">职场的第一性原理是价值，不是努力</p>
+                </div>
+                <div class="w-full h-32">
+                    <canvas id="valueChart"></canvas>
+                </div>
+            </div>
+            <div class="super-text">2</div>
+        </div>
+
+        <div id="item-3" class="bento-item grid-col-span-4 grid-row-span-2">
+            <div class="highlight-glow color-4 -bottom-1/4 -left-1/4 w-3/4 h-3/4"></div>
+            <div class="content-wrapper">
+                 <i class="fas fa-graduation-cap icon text-color-4"></i>
+                <p class="card-subtitle">Education</p>
+                <p class="card-title">教育的第一性原理是培养能力，不是分数</p>
+                <div class="flex-grow flex items-center justify-center mt-4">
+                    <div class="w-full space-y-2">
+                         <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-green-400 h-2.5 rounded-full" style="width: 85%"></div></div>
+                         <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-green-400 h-2.5 rounded-full" style="width: 60%"></div></div>
+                         <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-gray-300 h-2.5 rounded-full" style="width: 95%"></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="super-text">3</div>
+        </div>
+        
+        <div id="item-4" class="bento-item grid-col-span-3 grid-row-span-1">
+             <div class="content-wrapper">
+                <i class="fas fa-heart-pulse icon text-color-5"></i>
+                <p class="card-subtitle">Health</p>
+                <p class="card-title">健康的第一性原理是自律，不是医疗</p>
+             </div>
+             <div class="super-text">4</div>
+        </div>
+
+        <div id="item-5" class="bento-item grid-col-span-3 grid-row-span-1">
+             <div class="highlight-glow color-6 -top-1/2 -right-1/2 w-full h-full"></div>
+             <div class="content-wrapper">
+                <i class="fas fa-rocket icon text-color-6"></i>
+                <p class="card-subtitle">Startup</p>
+                <p class="card-title">创业的第一性原理是市场需求，不是个人喜好</p>
+             </div>
+             <div class="super-text">5</div>
+        </div>
+
+        <div id="item-6" class="bento-item grid-col-span-3 grid-row-span-1">
+             <div class="content-wrapper">
+                <i class="fas fa-shield-halved icon text-color-1"></i>
+                <p class="card-subtitle">Investment</p>
+                <p class="card-title">投资的第一性原理是风险控制，不是高回报</p>
+             </div>
+             <div class="super-text">6</div>
+        </div>
+        
+        <div id="item-7" class="bento-item grid-col-span-3 grid-row-span-1">
+            <div class="highlight-glow color-3 -bottom-1/2 -left-1/2 w-full h-full"></div>
+             <div class="content-wrapper">
+                <i class="fas fa-umbrella-beach icon text-color-3"></i>
+                <p class="card-subtitle">Retirement</p>
+                <p class="card-title">养老的第一性原理是提前规划，不是依赖子女</p>
+             </div>
+             <div class="super-text">7</div>
+        </div>
+
+        <div id="item-8" class="bento-item grid-col-span-2 grid-row-span-1">
+             <div class="content-wrapper items-center justify-center text-center">
+                <i class="fas fa-brain icon text-color-2"></i>
+                <p class="card-subtitle">成长的第一性原理是反思，不是经历</p>
+                <p class="text-xl font-bold">反思 > 经历</p>
+             </div>
+             <div class="super-text">8</div>
+        </div>
+        
+        <div id="item-9" class="bento-item grid-col-span-2 grid-row-span-1">
+             <div class="content-wrapper items-center justify-center text-center">
+                <i class="fas fa-filter icon text-color-4"></i>
+                <p class="card-subtitle">爱情的第一性原理是筛选，不是死磕</p>
+                <p class="text-xl font-bold">筛选 > 死磕</p>
+             </div>
+             <div class="super-text">9</div>
+        </div>
+
+        <div id="item-10" class="bento-item grid-col-span-2 grid-row-span-1">
+             <div class="content-wrapper items-center justify-center text-center">
+                <i class="fas fa-gem icon text-color-5"></i>
+                <p class="card-subtitle">社交的第一性原理是品质，而非数量</p>
+                <p class="text-xl font-bold">品质 > 数量</p>
+             </div>
+             <div class="super-text">10</div>
+        </div>
+        
+        <div id="item-11" class="bento-item grid-col-span-2 grid-row-span-1">
+             <div class="content-wrapper items-center justify-center text-center">
+                <i class="fas fa-map-signs icon text-color-6"></i>
+                <p class="card-subtitle">旅行的第一性原理是体验，并非打卡</p>
+                <p class="text-xl font-bold">体验 > 打卡</p>
+             </div>
+             <div class="super-text">11</div>
+        </div>
+        
+        <div id="item-12" class="bento-item grid-col-span-2 grid-row-span-1">
+             <div class="content-wrapper items-center justify-center text-center">
+                <i class="fas fa-book-open-reader icon text-color-1"></i>
+                <p class="card-subtitle">阅读的第一性原理是思考，而非浏览</p>
+                <p class="text-xl font-bold">思考 > 浏览</p>
+             </div>
+             <div class="super-text">12</div>
+        </div>
+        
+        <div id="item-13" class="bento-item grid-col-span-2 grid-row-span-1">
+             <div class="content-wrapper items-center justify-center text-center">
+                <i class="fas fa-layer-group icon text-color-3"></i>
+                <p class="card-subtitle">时间管理的第一性原理是优先级，不是计划表</p>
+                <p class="text-xl font-bold">优先级 > 计划表</p>
+             </div>
+             <div class="super-text">13</div>
+        </div>
+
+        <div id="item-14" class="bento-item grid-col-span-3 grid-row-span-1">
+             <div class="content-wrapper">
+                <i class="fas fa-comments icon text-color-4"></i>
+                <p class="card-subtitle">Communication</p>
+                <p class="card-title">沟通的第一性原理是理解，不是说服</p>
+             </div>
+             <div class="super-text">14</div>
+        </div>
+        
+        <div id="item-15" class="bento-item grid-col-span-3 grid-row-span-1">
+            <div class="highlight-glow color-5 -top-1/2 -left-1/2 w-full h-full"></div>
+             <div class="content-wrapper">
+                <i class="fas fa-wallet icon text-color-5"></i>
+                <p class="card-subtitle">Finance</p>
+                <p class="card-title">理财的第一性原理是现金流，不是投资收益</p>
+             </div>
+             <div class="super-text">15</div>
+        </div>
+        
+        <div id="item-16" class="bento-item grid-col-span-3 grid-row-span-1">
+             <div class="content-wrapper">
+                <i class="fas fa-face-smile icon text-color-6"></i>
+                <p class="card-subtitle">Emotion</p>
+                <p class="card-title">情绪管理的第一性原理是接纳，不是对抗</p>
+             </div>
+             <div class="super-text">16</div>
+        </div>
+        
+        <div id="item-17" class="bento-item grid-col-span-3 grid-row-span-1">
+             <div class="content-wrapper">
+                <i class="fas fa-handshake icon text-color-1"></i>
+                <p class="card-subtitle">Relationship</p>
+                <p class="card-title">人际关系的第一性原理是互利，不是讨好</p>
+             </div>
+             <div class="super-text">17</div>
+        </div>
+        
+        <div id="item-18" class="bento-item grid-col-span-4 grid-row-span-2">
+            <div class="highlight-glow color-2 -bottom-1/4 -right-1/4 w-3/4 h-3/4"></div>
+            <div class="content-wrapper items-center justify-center">
+                <i class="fas fa-cogs icon text-color-2 text-4xl"></i>
+                <p class="card-subtitle">Learning</p>
+                <p class="card-title text-center">学习的第一性原理是实践，不是记忆<br/><span class="text-4xl">是目标，不是选项</span></p>
+            </div>
+            <div class="super-text">18/20</div>
+        </div>
+
+        <div id="item-19" class="bento-item grid-col-span-4 grid-row-span-2">
+            <div class="content-wrapper items-center justify-center text-center">
+                <i class="fas fa-bullseye icon text-color-3 text-4xl"></i>
+                <p class="card-subtitle">Decision Making</p>
+                <p class="card-title">决策的第一性原理是目标，不是选项</p>
+                 <div class="flex items-center justify-center mt-4">
+                    <svg class="w-24 h-24 text-blue-300" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 50 L85 35" stroke="currentColor" stroke-width="2"/>
+                        <path d="M50 50 L30 75" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/>
+                        <path d="M50 50 L65 80" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/>
+                        <circle cx="50" cy="50" r="10" fill="currentColor"/>
+                        <circle cx="85" cy="35" r="5" stroke="currentColor" stroke-width="2" fill="white"/>
+                        <circle cx="30" cy="75" r="5" stroke="currentColor" stroke-width="2" fill="white"/>
+                        <circle cx="65" cy="80" r="5" stroke="currentColor" stroke-width="2" fill="white"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="super-text">19</div>
+        </div>
+
+        <div id="item-21" class="bento-item grid-col-span-4 grid-row-span-2">
+            <div class="content-wrapper items-center justify-center">
+                <i class="fas fa-dumbbell icon text-color-4 text-4xl"></i>
+                <p class="card-subtitle">Practice</p>
+                <p class="card-title text-center">练习的第一性原理是解决问题，不是煎熬</p>
+            </div>
+            <div class="super-text">21</div>
+        </div>
+
+        <div id="item-22" class="bento-item grid-col-span-3 grid-row-span-1">
+             <div class="content-wrapper">
+                <i class="fas fa-lightbulb icon text-color-5"></i>
+                <p class="card-subtitle">Self-Growth</p>
+                <p class="card-title">自己成长的第一原理是思考，不是经验</p>
+             </div>
+             <div class="super-text">22</div>
+        </div>
+        <div id="item-23" class="bento-item grid-col-span-3 grid-row-span-1">
+             <div class="content-wrapper">
+                <i class="fas fa-fist-raised icon text-color-6"></i>
+                <p class="card-subtitle">Control</p>
+                <p class="card-title">掌控人生的第一性原理是主动出击，不是被动等待</p>
+             </div>
+             <div class="super-text">23</div>
+        </div>
+        <div id="item-24" class="bento-item grid-col-span-3 grid-row-span-1">
+             <div class="content-wrapper">
+                <i class="fas fa-fire icon text-color-1"></i>
+                <p class="card-subtitle">Discipline</p>
+                <p class="card-title">自律上瘾的第一性原理是欲望驱使，不是意志力强迫</p>
+             </div>
+             <div class="super-text">24</div>
+        </div>
+        <div id="item-25" class="bento-item grid-col-span-3 grid-row-span-1">
+            <div class="highlight-glow color-4 -bottom-1/2 -right-1/2 w-full h-full"></div>
+             <div class="content-wrapper">
+                <i class="fas fa-smile-beam icon text-color-4"></i>
+                <p class="card-subtitle">Success</p>
+                <p class="card-title">成功人生的第一性原理是享受过程，不是去纠结</p>
+             </div>
+             <div class="super-text">25</div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const { motion, useScroll, useTransform } = Motion;
+            
+            const items = document.querySelectorAll('.bento-item');
+            
+            items.forEach((item, i) => {
+                const id = item.getAttribute('id');
+                motion(
+                    `#${id}`,
+                    {
+                        initial: { opacity: 0, y: 50, scale: 0.95 },
+                        animate: { opacity: 1, y: 0, scale: 1 },
+                        transition: { delay: i * 0.05, duration: 0.5, ease: 'easeOut' }
+                    }
+                );
+            });
+
+            // Apple-like scroll animations
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                items.forEach(item => {
+                    const itemTop = item.offsetTop;
+                    const itemHeight = item.offsetHeight;
+                    const windowHeight = window.innerHeight;
+
+                    // A simple parallax effect on scroll
+                    const scrollPercent = (scrollY + windowHeight - itemTop) / (windowHeight + itemHeight);
+                    if (scrollPercent > 0 && scrollPercent < 1) {
+                         const yOffset = (0.5 - scrollPercent) * 40; // move 40px max
+                         item.style.transform = `translateY(${yOffset}px)`;
+                    }
+                });
+            });
+
+            // Chart.js example for "Workplace"
+            const ctx = document.getElementById('valueChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Effort', 'Effort', 'Effort', 'Value', 'Value', 'Value'],
+                    datasets: [{
+                        label: 'Impact',
+                        data: [10, 20, 30, 80, 85, 90],
+                        borderColor: '#0077b5',
+                        tension: 0.4,
+                        fill: false,
+                        pointBackgroundColor: '#0077b5',
+                        pointRadius: 0
+                    }, {
+                        label: 'Baseline',
+                        data: [10, 20, 30, 30, 30, 30],
+                        borderColor: 'rgba(200, 200, 200, 0.5)',
+                        borderDash: [5, 5],
+                        tension: 0.4,
+                        fill: false,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    },
+                    scales: {
+                        x: { display: false },
+                        y: { display: false }
+                    },
+                    animation: {
+                        duration: 2000
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
