@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>焦虑的解药：现代嬉皮士精神内核</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- AOS (Animate On Scroll) Library via CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* 自定义字体，增加设计感 */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8f9fa; /* 使用柔和的浅灰色背景 */
+            color: #343a40;
+        }
+        /* Bento Grid 容器样式 */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(10, 5.5rem); /* 定义行高来控制整体布局 */
+            gap: 1.5rem; /* 间隙 */
+            padding: 2rem;
+            max-width: 1400px;
+            margin: auto;
+        }
+        /* Bento Box 基础样式 */
+        .bento-box {
+            background-color: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .bento-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+        }
+        /* 定义各个模块在网格中的位置和大小 */
+        .item-header { grid-column: span 12; grid-row: span 2; }
+        .item-1 { grid-column: span 8; grid-row: span 4; }
+        .item-2 { grid-column: span 4; grid-row: span 8; }
+        .item-3 { grid-column: span 8; grid-row: span 4; }
+        .item-footer { grid-column: span 12; grid-row: span 1; }
+        
+        /* 超大数字/文字样式 */
+        .giant-text {
+            position: absolute;
+            font-size: 14rem;
+            font-weight: 900;
+            color: #e9ecef;
+            z-index: 0;
+            line-height: 1;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+        .bento-box:hover .giant-text {
+            color: #dee2e6;
+        }
+        /* 高亮色透明渐变效果 */
+        .highlight-gradient {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 191, 255, 0.15) 0%, rgba(0, 191, 255, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        /* 内容样式 */
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                padding: 1rem;
+            }
+            .item-header, .item-1, .item-2, .item-3, .item-footer {
+                grid-column: span 1 / span 1;
+                grid-row: auto;
+            }
+            .giant-text {
+                font-size: 8rem;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="bento-grid">
+        
+        <!-- Header -->
+        <div class="bento-box item-header flex flex-col justify-center" data-aos="fade-down">
+            <div class="content">
+                <p class="text-sm text-gray-500 uppercase tracking-widest">Lao Luo & Ren Ke's Interview</p>
+                <h1 class="text-4xl md:text-6xl font-bold mt-2">焦虑的解药</h1>
+                <p class="text-lg text-gray-600 mt-3">现代嬉皮士精神内核：一个普遍焦虑社会的完美克星</p>
+            </div>
+            <div class="highlight-gradient -top-20 -right-20"></div>
+        </div>
+
+        <!-- Point 1 -->
+        <div class="bento-box item-1" data-aos="fade-right" data-aos-delay="200">
+            <div class="giant-text top-4 right-8">1</div>
+            <div class="content h-full flex flex-col justify-between">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold">反抗主流，摆脱恐惧</h2>
+                    <p class="text-xs text-gray-400 mt-1">Rebel Against Mainstream Values</p>
+                    <p class="mt-4 text-base text-gray-700 leading-relaxed">
+                        焦虑源于对“不体面”的恐惧。但在这个饿不死人的时代，糊口的营生遍地都是。不敢说“不”，是因为放不下面子。这本质上是精神与物质的抉择。牺牲暂时的物质，换取长久的内心自由，这笔账其实很划算。
+                    </p>
+                </div>
+                <div class="flex items-center gap-4 text-cyan-600 mt-6">
+                    <i class="fa-solid fa-link-slash fa-2x"></i>
+                    <div class="w-full bg-gray-200 rounded-full h-1.5">
+                        <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-1.5 rounded-full" style="width: 75%"></div>
+                    </div>
+                    <span class="font-semibold">精神自由</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Point 2 -->
+        <div class="bento-box item-2" data-aos="fade-left" data-aos-delay="300">
+            <div class="giant-text -bottom-10 -left-6 transform -rotate-12 scale-110">2</div>
+            <div class="highlight-gradient -bottom-24 -right-24"></div>
+            <div class="content h-full flex flex-col justify-between">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold">甘于平凡，接受赠与</h2>
+                    <p class="text-xs text-gray-400 mt-1">Embrace The Ordinary, Accept The Gifts</p>
+                    <p class="mt-4 text-base text-gray-700 leading-relaxed">
+                        焦虑的另一来源是“求不得”。我们总看到媒体上年薪百万的极端案例，却忽视了平凡的大多数才是社会的正态分布。接受自己可能就是那个“运气不好”的S先生，那么所有成就都会成为惊喜的赠与。放弃不切实际的幻想，做好当下，你会发现自己走得更稳、更快。
+                    </p>
+                </div>
+                 <div class="mt-6">
+                    <svg class="w-full" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M 0 40 Q 25 5, 50 20 T 100 25" stroke="#d1d5db" fill="transparent" stroke-width="2"/>
+                      <path d="M 0 40 Q 25 10, 50 20 T 100 25" stroke="url(#line-gradient)" fill="transparent" stroke-width="2" stroke-dasharray="4" class="path-anim">
+                        <animate attributeName="d" values="M 0 40 Q 25 10, 50 20 T 100 25; M 0 40 Q 25 30, 50 20 T 100 25; M 0 40 Q 25 10, 50 20 T 100 25" dur="5s" repeatCount="indefinite" />
+                      </path>
+                      <defs>
+                        <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" style="stop-color:#38bdf8;"/>
+                          <stop offset="100%" style="stop-color:#3b82f6;"/>
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <p class="text-center text-sm text-cyan-700 font-semibold mt-2">走出自己的不凡人生路</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Point 3 -->
+        <div class="bento-box item-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="giant-text bottom-4 left-8">3</div>
+            <div class="content h-full flex flex-col justify-between">
+                 <div>
+                    <h2 class="text-3xl md:text-4xl font-bold">跳出因果，审视生活</h2>
+                    <p class="text-xs text-gray-400 mt-1">Observer's Perspective, Escape The Causality</p>
+                    <p class="mt-4 text-base text-gray-700 leading-relaxed">
+                        一个看似荒诞的理念：把自己当做从未来穿越回来的人。这个思维游戏能让你跳出当下的困惑，以几十年的长远视角重新审视现在的焦虑。你会发现，许多烦恼只是短暂的因果循环。找到生命中的根本点，才能彻底摆脱内耗。
+                    </p>
+                </div>
+                <div class="flex items-center justify-end gap-4 text-cyan-600 mt-6">
+                    <span class="font-semibold">聚焦长期价值</span>
+                    <i class="fa-solid fa-crosshairs fa-2x"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="bento-box item-footer flex items-center justify-center text-center" data-aos="fade-up" data-aos-delay="200">
+             <div class="content">
+                <p class="text-gray-600">
+                    嬉皮士精神诞生于焦虑的年代，如今我们同样需要这种精神慰藉。
+                    <span class="font-bold text-cyan-600">找到你的内核，摆脱内耗。反抗主流价值观的约束，找到自己的根本点，摆脱精神内耗，过上真正想过的生活。</span>
+                </p>
+             </div>
+             <div class="highlight-gradient -bottom-32 -left-32"></div>
+        </div>
+
+    </div>
+
+    <!-- AOS (Animate On Scroll) Library Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800, // 动画持续时间
+        easing: 'ease-in-out-quad', // 动画缓动效果
+        once: false, // 动画是否只触发一次
+        mirror: true, // 元素离开视窗时是否反向播放动画
+      });
+    </script>
+</body>
+</html>
