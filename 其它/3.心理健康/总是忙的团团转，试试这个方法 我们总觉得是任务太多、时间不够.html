@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>告别救火：用身份排序法重塑你的优先级</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+    
+    <!-- Framer Motion via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.16.4/dist/framer-motion.umd.min.js"></script>
+    
+    <!-- Font Awesome via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts for a softer look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            overflow: hidden; /* Prevent scrolling to fit in one screen */
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+            height: 100%;
+        }
+        .bento-item {
+            border-radius: 1.5rem;
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            padding: 1.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .highlight-gradient {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle at 100% 0%, rgba(0, 123, 255, 0.1) 0%, rgba(0, 123, 255, 0) 35%);
+            pointer-events: none;
+        }
+        .large-text {
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 900;
+            line-height: 1;
+            color: #212529;
+        }
+        .outline-icon {
+            color: #007bff;
+            font-size: 2.5rem;
+        }
+    </style>
+</head>
+<body class="w-screen h-screen p-6 md:p-10">
+    <div id="app" class="w-full h-full">
+        <div class="bento-grid">
+            <!-- Main Title -->
+            <motion.div class="bento-item col-span-4 md:col-span-2 row-span-1 !justify-start !pt-8"
+                :initial="{ opacity: 0, y: 20 }" :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.1 }">
+                <p class="text-xs uppercase text-gray-400 tracking-widest">The Core Question</p>
+                <h1 class="text-4xl md:text-6xl font-black text-gray-800 mt-2">你想成为谁?</h1>
+                <p class="text-lg text-gray-500 mt-4">冲突并非来自事情，而是来自<span class="font-bold text-blue-500">身份</span>。</p>
+                <div class="highlight-gradient" style="background: radial-gradient(circle at 100% 0%, rgba(0, 123, 255, 0.1) 0%, rgba(0, 123, 255, 0) 40%);"></div>
+            </motion.div>
+
+            <!-- The Trap -->
+            <motion.div class="bento-item col-span-4 md:col-span-2 row-span-1 items-center !flex-row"
+                :initial="{ opacity: 0, y: 20 }" :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.2 }">
+                <div class="flex-shrink-0">
+                    <p class="large-text text-blue-500">80%</p>
+                </div>
+                <div class="ml-6">
+                    <h2 class="text-2xl font-bold text-gray-800">成长的陷阱</h2>
+                    <p class="text-gray-600 mt-2">时间都花在<b class="text-gray-800">“做得好，但并不享受”</b>的事上，只因它成了你的责任。</p>
+                </div>
+                <div class="highlight-gradient" style="background: radial-gradient(circle at 0% 100%, rgba(23, 162, 184, 0.08) 0%, rgba(23, 162, 184, 0) 40%);"></div>
+            </motion.div>
+
+            <!-- Identity Sorting Method -->
+            <motion.div class="bento-item col-span-4 row-span-2"
+                :initial="{ opacity: 0, y: 20 }" :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.3 }">
+                <div class="w-full h-full flex flex-col justify-between">
+                    <div>
+                        <p class="text-xs uppercase text-gray-400 tracking-widest">Solution</p>
+                        <h2 class="text-3xl font-bold text-gray-800">身份排序法</h2>
+                        <p class="text-gray-600">四步找到最重要的自己</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6 w-full">
+                        <!-- Step 1 -->
+                        <motion.div class="flex items-start space-x-4" :initial="{ opacity: 0, y: 15 }" :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.5 }">
+                            <div class="outline-icon w-12 text-center"><i class="fa-solid fa-layer-group"></i></div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-900">01. 列出所有身份</h3>
+                                <p class="text-gray-600 text-sm">写下你扮演的所有角色。</p>
+                            </div>
+                        </motion.div>
+                        <!-- Step 2 -->
+                        <motion.div class="flex items-start space-x-4" :initial="{ opacity: 0, y: 15 }" :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.6 }">
+                            <div class="outline-icon w-12 text-center"><i class="fa-regular fa-heart"></i></div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-900">02. 诚实面对自己</h3>
+                                <p class="text-gray-600 text-sm">哪些是主动选择，哪些是被动承担？</p>
+                            </div>
+                        </motion.div>
+                        <!-- Step 3 -->
+                        <motion.div class="flex items-start space-x-4" :initial="{ opacity: 0, y: 15 }" :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.7 }">
+                            <div class="outline-icon w-12 text-center"><i class="fa-solid fa-scale-balanced"></i></div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-900">03. 分析选择代价</h3>
+                                <p class="text-gray-600 text-sm">想清楚保留或放弃每个身份的利弊。</p>
+                            </div>
+                        </motion.div>
+                        <!-- Step 4 -->
+                        <motion.div class="flex items-start space-x-4" :initial="{ opacity: 0, y: 15 }" :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.8 }">
+                           <div class="outline-icon w-12 text-center"><i class="fa-solid fa-filter-circle-xmark"></i></div>
+                           <div>
+                                <h3 class="font-bold text-lg text-gray-900">04. 排序做减法</h3>
+                                <p class="text-gray-600 text-sm">只保留2-3个最关键的身份。</p>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+                <div class="highlight-gradient" style="background: radial-gradient(circle at 100% 100%, rgba(40, 167, 69, 0.07) 0%, rgba(40, 167, 69, 0) 40%);"></div>
+            </motion.div>
+        </div>
+    </div>
+
+    <script>
+        const { motion } = Motion;
+        const app = document.getElementById('app');
+
+        function render() {
+            const motionDivs = app.querySelectorAll('motion\\.div');
+            motionDivs.forEach(el => {
+                const component = motion.div;
+                const props = {};
+                for (const attr of el.attributes) {
+                    if (attr.name.startsWith(':')) {
+                        const propName = attr.name.slice(1);
+                        try {
+                            props[propName] = JSON.parse(attr.value.replace(/'/g, '"'));
+                        } catch (e) {
+                            props[propName] = attr.value;
+                        }
+                    } else {
+                         props[attr.name] = attr.value;
+                    }
+                }
+                // This is a simplified mount for demo. A real implementation would use a VDOM library.
+                // For now, we manually apply styles based on animate props.
+                const initialStyles = props.initial || {};
+                const animateStyles = props.animate || {};
+                const transition = props.transition || { duration: 0.5 };
+                
+                Object.assign(el.style, {
+                    opacity: initialStyles.opacity,
+                    transform: `translateY(${initialStyles.y}px)`
+                });
+
+                setTimeout(() => {
+                    Object.assign(el.style, {
+                        transition: `opacity ${transition.duration}s, transform ${transition.duration}s`,
+                        transitionDelay: `${transition.delay || 0}s`,
+                        opacity: animateStyles.opacity,
+                        transform: `translateY(${animateStyles.y}px)`
+                    });
+                }, 50); // Small delay to ensure initial styles apply
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', render);
+
+    </script>
+</body>
+</html>
