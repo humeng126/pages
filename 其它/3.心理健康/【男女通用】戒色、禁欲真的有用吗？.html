@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dopamine Detox | 活出充满动力的生活</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+
+    <!-- Font Awesome via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google Fonts for typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
+            background-color: #f8f9fa; /* Soft background */
+            color: #212529;
+            overflow-x: hidden;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+            gap: 1.5rem; /* 24px */
+        }
+        .bento-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 24px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        .highlight-gradient-blue {
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0) 100%);
+        }
+        .highlight-gradient-green {
+            background: linear-gradient(180deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0) 100%);
+        }
+        .highlight-gradient-purple {
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0) 100%);
+        }
+        .font-chinese-bold {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-weight: 900;
+        }
+        .font-english-light {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8 md:p-12">
+
+    <div id="app" class="max-w-7xl mx-auto">
+        <div class="bento-grid">
+            
+            <!-- Header -->
+            <div class="bento-item col-span-12 md:col-span-7 flex flex-col justify-center">
+                <p class="font-english-light text-gray-500 text-lg">THE DOPAMINE NATION</p>
+                <h1 class="font-chinese-bold text-5xl md:text-7xl !leading-tight mt-2">戒瘾的本质<br>是多巴胺排毒</h1>
+                <p class="mt-4 text-gray-600 max-w-lg">源自斯坦福教授安娜·伦布克的理论，理解成瘾机制，重获生活的驱动力。</p>
+            </div>
+
+            <!-- Dopamine Chart -->
+            <div class="bento-item col-span-12 md:col-span-5 relative flex flex-col justify-between">
+                <div>
+                  <h2 class="font-chinese-bold text-2xl">渴望的过山车</h2>
+                  <p class="font-english-light text-xs text-gray-400">Pleasure & Pain Cycle</p>
+                </div>
+                <!-- SVG Chart -->
+                <div class="w-full h-48 flex items-end">
+                    <svg width="100%" height="100%" viewBox="0 0 300 120" preserveAspectRatio="none">
+                        <path d="M0 60 H300" stroke="#e5e7eb" stroke-dasharray="4 2" stroke-width="2"/>
+                        <path d="M20 60 C 40 10, 60 10, 80 60 S 120 110, 150 60 S 180 10, 210 60 S 240 110, 270 60" stroke="#3B82F6" stroke-width="3" fill="none" class="path-animation"/>
+                        <text x="135" y="115" font-size="10" fill="#9ca3af">Dopamine Baseline</text>
+                        <text x="65" y="10" font-size="12" fill="#3B82F6" font-weight="bold">Spike</text>
+                        <text x="125" y="95" font-size="12" fill="#ef4444" font-weight="bold">Crash</text>
+                    </svg>
+                </div>
+                <div class="absolute top-0 right-0 p-4 highlight-gradient-blue w-2/3 h-full z-[-1]"></div>
+            </div>
+            
+            <!-- 7 Days Peak -->
+            <div class="bento-item col-span-6 md:col-span-3 flex flex-col items-center justify-center text-center">
+                 <i class="fa-solid fa-arrow-trend-up text-5xl text-emerald-500 mb-4"></i>
+                <p class="font-english-light text-xs text-gray-400">Testosterone Level</p>
+                <p class="font-chinese-bold text-6xl">第 <span class="text-emerald-500">7</span> 天</p>
+                <p class="text-gray-600 mt-2">一项小型研究发现禁欲后睾酮水平在第7天达到峰值。</p>
+            </div>
+            
+            <!-- Pain & Pleasure Seesaw -->
+            <div class="bento-item col-span-12 md:col-span-6 flex flex-col">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-scale-unbalanced-flip text-2xl text-violet-500"></i>
+                    <div>
+                        <h2 class="font-chinese-bold text-2xl">快乐与痛苦的跷跷板</h2>
+                        <p class="font-english-light text-xs text-gray-400">Brain's Reward System</p>
+                    </div>
+                </div>
+                <p class="text-gray-600 mt-4 flex-grow">大脑中掌管快乐与痛苦的区域重叠。主动寻求良性痛苦（如冷水浴、高强度健身），可以“撬起”天然的快乐和动力。</p>
+                <div class="mt-4 p-4 bg-gray-50 rounded-xl flex justify-around items-center">
+                    <div class="text-center">
+                        <p class="text-3xl">🏃</p>
+                        <p class="font-semibold text-sm mt-1 text-red-500">良性痛苦</p>
+                        <p class="text-xs text-gray-500">Benign Pain</p>
+                    </div>
+                    <div class="h-px w-16 bg-gray-300"></div>
+                    <div class="text-center">
+                        <p class="text-3xl">😊</p>
+                        <p class="font-semibold text-sm mt-1 text-blue-500">天然快乐</p>
+                        <p class="text-xs text-gray-500">Natural Joy</p>
+                    </div>
+                </div>
+                 <div class="absolute top-0 right-0 p-4 highlight-gradient-purple w-1/2 h-full z-[-1]"></div>
+            </div>
+
+            <!-- 21 Days Habit -->
+            <div class="bento-item col-span-6 md:col-span-3 flex flex-col items-center justify-center text-center">
+                <div class="relative">
+                    <p class="font-chinese-bold text-9xl text-blue-500">21</p>
+                    <p class="absolute bottom-0 right-0 font-chinese-bold text-4xl">天</p>
+                </div>
+                <p class="font-english-light mt-2 text-gray-500">Days to form a habit</p>
+                <p class="mt-4 text-gray-600">让习惯引领你，而非“自律”。连续21天，行动会成为本能。</p>
+            </div>
+            
+            <!-- Morning Routine -->
+            <div class="bento-item col-span-12 md:col-span-5 flex flex-col">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-mug-saucer text-3xl text-emerald-500"></i>
+                    <div>
+                        <h2 class="font-chinese-bold text-2xl">晨间 <span class="text-emerald-500">30</span> 分钟法则</h2>
+                        <p class="font-english-light text-xs text-gray-400">The Golden Morning</p>
+                    </div>
+                </div>
+                <p class="text-gray-600 mt-4">醒来后30分钟内远离手机。规划一天，先做最难的事，维持多巴胺基线稳定，让新的一天充满动力。</p>
+                <ul class="mt-4 space-y-2 text-gray-700">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i><span>列出计划 Plan your day</span></li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i><span>锻炼或散步 Walk or workout</span></li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i><span>阅读或学习 Read or learn</span></li>
+                </ul>
+                <div class="absolute bottom-0 left-0 p-4 highlight-gradient-green w-2/3 h-2/3 z-[-1]"></div>
+            </div>
+
+            <!-- Cyclical Method -->
+            <div class="bento-item col-span-12 md:col-span-4 flex flex-col justify-between">
+                <div>
+                  <h2 class="font-chinese-bold text-2xl">循环戒断法</h2>
+                  <p class="font-english-light text-xs text-gray-400">Cyclical Method</p>
+                </div>
+                <p class="my-4 text-gray-600">从小目标开始，逐步延长周期，用健康的奖励代替旧的刺激源。此法同样适用于戒烟、戒糖。</p>
+                <div class="flex items-center justify-around text-center text-sm font-semibold">
+                    <span>1 天</span>
+                    <i class="fa-solid fa-arrow-right-long text-gray-300"></i>
+                    <span>2 天</span>
+                    <i class="fa-solid fa-arrow-right-long text-gray-300"></i>
+                    <span>3 天</span>
+                     <i class="fa-solid fa-arrow-right-long text-gray-300"></i>
+                    <span class="text-blue-500">7+ 天</span>
+                </div>
+            </div>
+            
+            <!-- Final Message -->
+            <div class="bento-item col-span-12 md:col-span-3 flex flex-col items-center justify-center text-center bg-gray-800 text-white">
+                <i class="fa-solid fa-book-open text-5xl text-gray-300 mb-4"></i>
+                <h3 class="font-chinese-bold text-2xl">保持“无聊”的能力</h3>
+                <p class="font-english-light text-xs opacity-50">THE POWER OF BOREDOM</p>
+                <p class="mt-4 text-sm text-gray-300">看书、散步、锻炼、和朋友相处。这些看似“无聊”的事，是让你对生活重燃热情的关键。</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Framer Motion via CDN -->
+    <script type="module">
+        import { motion, stagger, animate } from "https://cdn.jsdelivr.net/npm/framer-motion@11.2.10/dist/framer-motion.mjs";
+
+        // Animate Bento Grid Items on scroll
+        const items = document.querySelectorAll('.bento-item');
+        items.forEach(item => {
+            const motionDiv = motion(item);
+            motionDiv.set({ opacity: 0, y: 50 });
+            motionDiv.inView((info) => {
+                animate(info.target, { opacity: 1, y: 0 }, { duration: 0.8, delay: 0.1, ease: [0.17, 0.55, 0.55, 1] });
+                return (onLeave) => motionDiv.set({ opacity: 0, y: 50 });
+            });
+        });
+        
+        // Animate SVG Path
+        const path = document.querySelector('.path-animation');
+        if (path) {
+            const pathLength = path.getTotalLength();
+            path.style.strokeDasharray = pathLength;
+            path.style.strokeDashoffset = pathLength;
+            const motionPath = motion(path);
+             motionPath.inView((info) => {
+                animate(info.target, { strokeDashoffset: 0 }, { duration: 2, ease: "easeInOut" });
+            });
+        }
+    </script>
+
+</body>
+</html>

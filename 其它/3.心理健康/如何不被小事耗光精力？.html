@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>挣破认知陷阱：决定的迷宫</title>
+    
+    <!-- Tailwind CSS 3.0+ via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Framer Motion via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10/dist/framer-motion.umd.min.js"></script>
+    
+    <style>
+        /* Custom font for a cleaner look */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8f9fa; /* Soft background color */
+            color: #212529;
+        }
+        /* Custom class for the highlight effect with transparency gradient */
+        .highlight-glow-cyan {
+            background: linear-gradient(90deg, rgba(34, 211, 238, 0.3) 0%, rgba(34, 211, 238, 0) 100%);
+        }
+        .highlight-glow-amber {
+            background: linear-gradient(90deg, rgba(251, 191, 36, 0.3) 0%, rgba(251, 191, 36, 0) 100%);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div id="app" class="container mx-auto p-4 md:p-8">
+        
+        <main class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+
+            <!-- 1. Intro Section -->
+            <motion.div class="md:col-span-4 p-8 md:p-12 rounded-3xl bg-white/60 backdrop-blur-sm border border-gray-200/80 flex flex-col justify-center items-center text-center">
+                <p class="text-gray-500 uppercase tracking-widest">The Maze of Micro-Decisions</p>
+                <h1 class="text-6xl md:text-9xl font-black my-4">决定的<span class="text-cyan-500">迷宫</span></h1>
+                <p class="max-w-2xl text-lg md:text-xl text-gray-600">
+                    外卖点不点，会员开不开，消息回不回？我们似乎被无数碎片化的决定所困，不断消耗着心力。
+                </p>
+            </motion.div>
+
+            <!-- 2. The 4D Rule -->
+            <motion.div class="md:col-span-2 p-8 rounded-3xl bg-white/60 backdrop-blur-sm border border-gray-200/80">
+                <p class="text-gray-500 uppercase">A Flawed Framework</p>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">著名的 4D 法则</h2>
+                <div class="grid grid-cols-2 gap-4 text-center">
+                    <div class="p-4 rounded-lg bg-gray-100 border">
+                        <p class="font-bold text-lg text-green-600">重要 & 紧急</p>
+                        <p class="text-3xl font-black">DO</p>
+                        <p>马上做</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-100 border">
+                        <p class="font-bold text-lg text-blue-600">重要 & 不紧急</p>
+                        <p class="text-3xl font-black">PLAN</p>
+                        <p>计划做</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-100 border">
+                        <p class="font-bold text-lg text-orange-600">不重要 & 紧急</p>
+                        <p class="text-3xl font-black">DELEGATE</p>
+                        <p>找人做</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-100 border">
+                        <p class="font-bold text-lg text-red-600">不重要 & 不紧急</p>
+                        <p class="text-3xl font-black">DELETE</p>
+                        <p>直接删</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-gray-600">为工作设计的法则，难以衡量生活中的“感觉”。</p>
+            </motion.div>
+
+            <!-- 3. The Salary Method -->
+            <motion.div class="md:col-span-2 p-8 rounded-3xl bg-gray-800 text-white flex flex-col justify-center items-center text-center highlight-glow-cyan">
+                <p class="text-gray-400 uppercase">A Personal Metric</p>
+                <h2 class="text-4xl font-bold mb-4">半天工资法</h2>
+                <p class="text-7xl md:text-9xl font-black text-cyan-400">¥15</p>
+                <p class="mt-4 text-gray-300">假设月薪1000g，15元就是你的“小事价”。<br>用一小时到七天工资法，找到你的“无所谓”区间。</p>
+            </motion.div>
+
+            <!-- 4. Big vs Small Matters -->
+            <motion.div class="md:col-span-1 p-8 rounded-3xl bg-white/60 backdrop-blur-sm border border-gray-200/80 flex flex-col items-center text-center">
+                <i class="fa-solid fa-cookie-bite text-6xl text-amber-500 mb-4"></i>
+                <h3 class="text-2xl font-bold">小事</h3>
+                <p class="uppercase text-gray-400 text-sm">Trivial</p>
+                <p class="mt-2 text-gray-600">用哪个优惠券？<br>看不看新消息？<br>这些可用金钱衡量，可以被“删除”。</p>
+            </motion.div>
+
+            <motion.div class="md:col-span-1 p-8 rounded-3xl bg-white/60 backdrop-blur-sm border border-gray-200/80 flex flex-col items-center text-center">
+                 <i class="fa-solid fa-map-signs text-6xl text-indigo-500 mb-4"></i>
+                <h3 class="text-2xl font-bold">大事</h3>
+                <p class="uppercase text-gray-400 text-sm">Crucial</p>
+                <p class="mt-2 text-gray-600">要不要分手？<br>要不要离职？<br>关乎人性与志向，值得花时间犹豫。</p>
+            </motion.div>
+            
+            <!-- 5. Societal Pressure -->
+            <motion.div class="md:col-span-2 p-8 rounded-3xl bg-white/60 backdrop-blur-sm border border-gray-200/80 flex flex-col justify-between">
+                <div>
+                    <p class="text-gray-500 uppercase">The Trap of "Turning Points"</p>
+                    <h2 class="text-4xl md:text-5xl font-bold">人生转折<span class="text-red-500">谬误</span></h2>
+                    <p class="mt-4 text-gray-600 text-lg">社会倾向于把一切“大事化”，让你以为每个选择都是命运的转折点。但大部分人的成就是渐变，而非突变。</p>
+                </div>
+                <div class="w-full h-20 mt-6 flex items-center justify-center rounded-lg highlight-glow-amber">
+                    <i class="fa-solid fa-arrows-spin text-5xl text-amber-500 animate-spin" style="--fa-animation-duration: 10s;"></i>
+                    <p class="ml-4 text-2xl font-bold text-gray-700">循环与渐变，才是常态</p>
+                </div>
+            </motion.div>
+            
+            <!-- 6. The Core Problem: Fear -->
+            <motion.div class="md:col-span-4 p-8 md:p-12 rounded-3xl bg-red-500 text-white text-center flex flex-col md:flex-row items-center justify-center gap-8">
+                <div class="text-9xl font-black">
+                   恐<br>惧
+                </div>
+                <div class="text-left max-w-xl">
+                    <p class="uppercase tracking-widest text-red-200">The Default Setting</p>
+                    <p class="text-2xl md:text-3xl font-bold mt-2">
+                        空间上的原子化，时间上的碎片化，让我们在自己的心里变小，恐惧成为情绪的默认设置。
+                    </p>
+                    <p class="mt-4 text-red-100">不敢决定是怕，随意决定是怕到放弃。贯穿始终的都是恐惧。</p>
+                </div>
+            </motion.div>
+
+            <!-- 7. The Solution -->
+            <motion.div class="md:col-span-4 p-8 md:p-12 rounded-3xl bg-gray-800 text-white text-center flex flex-col items-center justify-center">
+                 <p class="text-gray-400 uppercase">The Solution</p>
+                 <h2 class="text-5xl md:text-7xl font-black my-4">建立你的<span class="text-cyan-400">坐标杆</span></h2>
+                 <p class="text-lg text-gray-300 max-w-2xl">城里看不到北斗星，我们得把自己变成北斗星。在流动的社会里，重新校准自己。</p>
+                 <div class="mt-8 flex gap-8">
+                     <div class="text-center">
+                        <div class="w-24 h-24 rounded-full border-2 border-cyan-400 flex items-center justify-center">
+                            <p class="text-5xl font-bold text-cyan-400">1</p>
+                        </div>
+                        <p class="mt-2 text-xl font-bold">先开始</p>
+                        <p class="text-gray-400">Start Anywhere</p>
+                     </div>
+                     <div class="text-center">
+                        <div class="w-24 h-24 rounded-full border-2 border-cyan-400 flex items-center justify-center">
+                            <p class="text-5xl font-bold text-cyan-400">2</p>
+                        </div>
+                        <p class="mt-2 text-xl font-bold">多测试</p>
+                         <p class="text-gray-400">Test & Adjust</p>
+                     </div>
+                 </div>
+            </motion.div>
+
+            <!-- 8. Conclusion -->
+            <motion.div class="md:col-span-4 p-8 md:p-12 rounded-3xl bg-white/60 backdrop-blur-sm border border-gray-200/80 text-center">
+                 <p class="text-gray-500 uppercase">Your North Star</p>
+                 <h3 class="text-3xl md:text-5xl font-bold max-w-4xl mx-auto leading-tight">
+                    没有<span class="highlight-glow-cyan px-2 rounded-md">决定人</span>的事儿，<br>只有<span class="highlight-glow-amber px-2 rounded-md">决定事儿</span>的人。
+                 </h3>
+            </motion.div>
+
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Find all elements with the 'motion.div' class we're using conceptually
+            const motionElements = document.querySelectorAll('main > div');
+
+            motionElements.forEach(el => {
+                // Wrap the element's content to animate it
+                const motion = new framer.Motion(el, {
+                    initial: { opacity: 0, y: 50, scale: 0.98 },
+                    whileInView: { opacity: 1, y: 0, scale: 1 },
+                    transition: { duration: 0.6, ease: "easeOut" },
+                    viewport: { once: true, amount: 0.3 } // Trigger animation when 30% of the element is in view
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
