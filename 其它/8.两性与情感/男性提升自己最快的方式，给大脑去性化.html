@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大脑去性化 - 男性自我提升的高效思维模型</title>
+    <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+    <script src="https://unpkg.com/framer-motion@10/dist/framer-motion.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #F8F7F4;
+            color: #333;
+            overflow-x: hidden;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, auto);
+            gap: 1.5rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: auto;
+        }
+        .bento-item {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.08);
+        }
+        .grid-col-span-2 { grid-column: span 2; }
+        .grid-col-span-4 { grid-column: span 4; }
+        .grid-row-span-2 { grid-row: span 2; }
+
+        .highlight-gradient {
+            background: linear-gradient(90deg, rgba(52, 211, 153, 0.3) 0%, rgba(52, 211, 153, 0) 100%);
+        }
+         .highlight-gradient-blue {
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0) 100%);
+        }
+        .highlight-gradient-red {
+            background: linear-gradient(90deg, rgba(239, 68, 68, 0.3) 0%, rgba(239, 68, 68, 0) 100%);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animated-item {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app" class="bento-grid">
+        
+        <!-- Header -->
+        <div class="bento-item grid-col-span-4 flex flex-col justify-center items-center text-center">
+            <h1 class="text-5xl md:text-7xl font-bold mb-2">大脑去性化</h1>
+            <p class="text-lg md:text-2xl text-gray-500">BRAIN DE-SEXUALIZATION</p>
+            <p class="mt-4 max-w-3xl">一个被无数成功男性验证过的高效思维模型，主动切断大脑中性相关信息的输入通道，让理智重新掌控人生方向。</p>
+        </div>
+
+        <!-- 80% Attention -->
+        <div class="bento-item grid-col-span-2 grid-row-span-2 flex flex-col justify-center items-center text-center">
+             <div class="relative w-full h-full flex justify-center items-center">
+                <i class="fas fa-eye text-blue-200" style="font-size: 18rem; position: absolute; opacity: 0.3;"></i>
+                <div class="z-10">
+                    <p class="text-8xl md:text-9xl font-extrabold text-blue-500">80%</p>
+                    <p class="text-xl font-bold mt-2">注意力资源被抢占</p>
+                    <p class="text-gray-500 mt-2">ATTENTION HIJACKED</p>
+                    <p class="mt-4 text-left">性相关的刺激，会瞬间抢占近80%的注意力资源。大脑被驯化成只对即时快感敏感，而对需长期投入的学习工作失去兴趣。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stanford Study -->
+        <div class="bento-item grid-col-span-2">
+            <p class="text-gray-400 text-sm">STANFORD UNIVERSITY RESEARCH</p>
+            <h2 class="text-2xl font-bold mt-2">前额叶皮层活跃度下降</h2>
+            <div class="flex items-center mt-4">
+                <p class="text-7xl font-bold text-red-500 mr-4">40%</p>
+                <div class="w-full bg-gray-200 rounded-full h-4">
+                  <div class="bg-red-500 h-4 rounded-full" style="width: 40%"></div>
+                </div>
+            </div>
+            <p class="mt-4">接触性相关内容后，负责<strong class="text-red-500">理性思考、决策和自控能力</strong>的区域活跃度显著下降，直接影响专注与深度思考的表现。</p>
+        </div>
+
+        <!-- 3 Failure Modes -->
+        <div class="bento-item grid-col-span-2">
+             <h2 class="text-2xl font-bold">3种失败模式 <span class="text-gray-400 font-light">TRAPS</span></h2>
+             <p class="text-gray-500 mb-6">在大脑被性化的陷阱里最易陷入的模式</p>
+            <div class="space-y-4">
+                <div class="flex items-start p-3 rounded-lg highlight-gradient-red">
+                    <i class="fas fa-user-clock fa-2x text-red-500 mr-4 mt-1"></i>
+                    <div>
+                        <h3 class="font-bold">1. 自欺欺人型</h3>
+                        <p class="text-gray-600">总安慰自己只看几分钟，结果被算法牵着走，不知不觉消耗几小时。</p>
+                    </div>
+                </div>
+                <div class="flex items-start p-3 rounded-lg highlight-gradient-red">
+                    <i class="fas fa-recycle fa-2x text-red-500 mr-4 mt-1"></i>
+                    <div>
+                        <h3 class="font-bold">2. 破罐破摔型</h3>
+                        <p class="text-gray-600">一旦接触，就索性看到够，彻底放弃当天计划。</p>
+                    </div>
+                </div>
+                <div class="flex items-start p-3 rounded-lg highlight-gradient-red">
+                    <i class="fas fa-arrow-down-wide-short fa-2x text-red-500 mr-4 mt-1"></i>
+                    <div>
+                        <h3 class="font-bold">3. 渐渐沦陷型</h3>
+                        <p class="text-gray-600">从被动刷到，到主动搜索，最终形成依赖难以自控。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 Steps to Change -->
+        <div class="bento-item grid-col-span-4">
+            <h2 class="text-3xl font-bold text-center mb-2">掌控人生，从这三步开始</h2>
+            <p class="text-center text-gray-500 mb-8">TAKE CONTROL: A THREE-STEP GUIDE</p>
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-emerald-100 flex items-center justify-center mb-4">
+                        <i class="fas fa-broom fa-2x text-emerald-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">1. 清理信息环境</h3>
+                    <p class="text-gray-600">删掉相关APP，取关消耗注意力的账号，主动隔绝干扰源。</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-emerald-100 flex items-center justify-center mb-4">
+                        <i class="fas fa-book-open fa-2x text-emerald-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">2. 寻找优质替代</h3>
+                    <p class="text-gray-600">用专业书籍、行业报告、学习新技能等高质量内容填补空闲时间。</p>
+                </div>
+                <div class="flex flex-col items-center">
+                   <div class="w-20 h-20 rounded-full bg-emerald-100 flex items-center justify-center mb-4">
+                        <i class="fas fa-users fa-2x text-emerald-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">3. 建立监督机制</h3>
+                    <p class="text-gray-600">与同频的人组成监督小组，定期分享进度，用外部约束帮助自己坚持。</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Conclusion -->
+        <div class="bento-item grid-col-span-4 text-center">
+             <div class="relative w-full h-full flex flex-col justify-center items-center">
+                <i class="fas fa-brain text-emerald-200" style="font-size: 12rem; position: absolute; opacity: 0.3;"></i>
+                <div class="z-10">
+                    <h2 class="text-3xl font-bold">停止做欲望的奴隶，开始做理性的主人</h2>
+                    <p class="mt-4 text-lg max-w-4xl mx-auto">你的大脑就像一台精密的机器，输入高质量的知识、深度的思考、明确的目标，他就会帮你输出专注的状态、优秀的业绩，以及不断向上的人生轨迹。</p>
+                    <p class="mt-2 text-xl font-bold text-emerald-600">INPUT HIGH-QUALITY KNOWLEDGE, OUTPUT AN UPWARD LIFE.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { motion, stagger, animate } = Motion;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const items = document.querySelectorAll('.bento-item');
+            items.forEach((item, i) => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animate(
+                                item,
+                                { opacity: [0, 1], y: [20, 0] },
+                                { duration: 0.5, delay: i * 0.1 }
+                            );
+                            observer.unobserve(item);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                observer.observe(item);
+            });
+        });
+    </script>
+
+</body>
+</html>

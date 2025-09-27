@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中层管理的困境与破局</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Framer Motion via CDN -->
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+
+    <style>
+        /* Custom font for a more modern look, falling back to system defaults */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f3f4f6; /* Soft, light gray background */
+            overflow-x: hidden;
+        }
+        .bento-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, minmax(100px, auto));
+        }
+        .bento-item {
+            background-color: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+        }
+        .highlight-glow {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+            width: 300px;
+            height: 300px;
+            border-radius: 9999px;
+            filter: blur(100px);
+        }
+        /* Custom styles for oversized text and visual elements */
+        .text-super {
+            font-size: 10rem;
+            line-height: 1;
+            font-weight: 900;
+            color: rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div id="app" class="max-w-7xl mx-auto p-4 md:p-8">
+        <div class="bento-grid">
+
+            <!-- 1. The Main Thesis -->
+            <motion.div class="bento-item col-span-4 md:col-span-2 row-span-2 flex flex-col justify-between"
+                :initial="{ opacity: 0, y: 20 }"
+                :while-in-view="{ opacity: 1, y: 0 }"
+                :transition="{ duration: 0.5 }">
+                <div class="highlight-glow" style="background: rgba(59, 130, 246, 0.2); top: -50%; left: -50%;"></div>
+                <div>
+                    <p class="text-xs uppercase text-blue-500 font-bold">THE CORE CONFLICT</p>
+                    <h1 class="text-4xl md:text-5xl font-black mt-2">提拔成中层，<br>是毁掉一个人的开始。</h1>
+                </div>
+                <p class="text-slate-500 mt-4">表面看是晋升，现实却是加速陷入疲惫、焦虑与发展停滞的开始。这是一个普遍存在于职场的深层矛盾。</p>
+            </motion.div>
+
+            <!-- 2. Stuck in the Middle -->
+            <motion.div class="bento-item col-span-4 md:col-span-2 row-span-1 flex flex-col justify-center items-center"
+                :initial="{ opacity: 0, y: 20 }"
+                :while-in-view="{ opacity: 1, y: 0 }"
+                :transition="{ duration: 0.5, delay: 0.1 }">
+                <div class="text-center z-10">
+                    <h2 class="text-2xl font-bold">上压下顶，卡在中间</h2>
+                    <p class="text-sm text-slate-500">既要扛KPI，又要管情绪，心力交瘁。</p>
+                </div>
+                <div class="flex justify-between items-center w-full mt-4 z-10">
+                    <div class="text-center">
+                        <i class="fas fa-angles-down text-3xl text-red-400"></i>
+                        <p class="font-bold mt-1">上压</p>
+                        <p class="text-xs text-slate-400">高层只看结果</p>
+                    </div>
+                    <svg width="100" height="50" viewBox="0 0 100 50" class="flex-grow mx-4">
+                        <path d="M10 25 C 30 10, 70 10, 90 25" stroke="#f87171" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="4 4"/>
+                        <path d="M10 25 C 30 40, 70 40, 90 25" stroke="#60a5fa" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="4 4"/>
+                    </svg>
+                    <div class="text-center">
+                        <i class="fas fa-angles-up text-3xl text-blue-400"></i>
+                        <p class="font-bold mt-1">下顶</p>
+                        <p class="text-xs text-slate-400">下属诉求各异</p>
+                    </div>
+                </div>
+            </motion.div>
+
+            <!-- 3. The Shift in Role -->
+            <motion.div class="bento-item col-span-4 md:col-span-2 row-span-1 relative flex items-center"
+                :initial="{ opacity: 0, y: 20 }"
+                :while-in-view="{ opacity: 1, y: 0 }"
+                :transition="{ duration: 0.5, delay: 0.2 }">
+                <div class="z-10">
+                    <h2 class="text-2xl font-bold">核心任务的转变</h2>
+                    <p class="text-sm text-slate-500">FROM DOER TO ENABLER</p>
+                    <p class="mt-2">从 <span class="font-bold text-teal-600">自己把事做好</span> <i class="fas fa-arrow-right mx-2"></i> 到 <span class="font-bold text-violet-600">让别人把事做好</span>。</p>
+                </div>
+                <i class="fas fa-people-arrows absolute right-8 text-8xl text-slate-100 -z-0"></i>
+            </motion.div>
+
+            <!-- 6. The Root Cause -->
+            <motion.div class="bento-item col-span-4 md:col-span-4 row-span-1 flex items-center"
+                        :initial="{ opacity: 0, y: 20 }"
+                        :while-in-view="{ opacity: 1, y: 0 }"
+                        :transition="{ duration: 0.5, delay: 0.3 }">
+                <div class="highlight-glow" style="background: rgba(234, 179, 8, 0.15); bottom: -60%; right: -50%;"></div>
+                <div class="w-1/3 text-center">
+                    <i class="fas fa-building-shield text-5xl text-slate-300"></i>
+                </div>
+                <div class="w-2/3">
+                    <p class="text-xs uppercase text-amber-600 font-bold">THE REAL CAUSE</p>
+                    <h3 class="font-bold text-xl">本质原因：公司结构性缺陷</h3>
+                    <p class="text-sm text-slate-500 mt-1">战略模糊、流程混乱、文化内耗，压力最终传导至中层。多数公司用强化中层管理，来掩盖战略、流程与文化的结构性缺陷。</p>
+                </div>
+            </motion.div>
+            
+            <!-- 4. The Scapegoat -->
+            <motion.div class="bento-item col-span-4 md:col-span-1 row-span-1 flex flex-col justify-center items-center text-center"
+                :initial="{ opacity: 0, y: 20 }"
+                :while-in-view="{ opacity: 1, y: 0 }"
+                :transition="{ duration: 0.5, delay: 0.3 }">
+                <i class="fas fa-crosshairs text-5xl text-red-500"></i>
+                <h3 class="font-bold text-xl mt-3">最易背锅</h3>
+                <p class="text-xs text-slate-400">THE SCAPEGOAT</p>
+                <p class="text-sm mt-2">上级不信任，下属不追随，同级不协作。</p>
+            </motion.div>
+
+            <!-- 5. Skill Atrophy -->
+            <motion.div class="bento-item col-span-4 md:col-span-1 row-span-1 flex flex-col justify-center items-center text-center"
+                :initial="{ opacity: 0, y: 20 }"
+                :while-in-view="{ opacity: 1, y: 0 }"
+                :transition="{ duration: 0.5, delay: 0.4 }">
+                <i class="fas fa-brain text-5xl text-amber-500"></i>
+                <h3 class="font-bold text-xl mt-3">专业退化</h3>
+                <p class="text-xs text-slate-400">SKILL ATROPHY</p>
+                 <p class="text-sm mt-2">想退回一线，却发现已拼不过新人。</p>
+            </motion.div>
+
+            <!-- 5. Skill Atrophy -->
+            <motion.div class="bento-item col-span-4 md:col-span-1 row-span-1 flex flex-col justify-center items-center text-center"
+                        :initial="{ opacity: 0, y: 20 }"
+                        :while-in-view="{ opacity: 1, y: 0 }"
+                        :transition="{ duration: 0.5, delay: 0.4 }">
+                <i class="fas fa-brain text-5xl text-amber-500"></i>
+                <h3 class="font-bold text-xl mt-3">自我价值感稀释</h3>
+                <p class="text-xs text-slate-400">SKILL ATROPHY</p>
+                <p class="text-sm mt-2">自我价值感稀释。</p>
+            </motion.div>
+
+
+
+            <!-- 7. Four Solutions -->
+            <motion.div class="bento-item col-span-4 row-span-2 md:row-span-1 relative"
+                :initial="{ opacity: 0, y: 20 }"
+                :while-in-view="{ opacity: 1, y: 0 }"
+                :transition="{ duration: 0.5, delay: 0.5 }">
+                <div class="absolute top-8 right-8 text-super text-slate-50 z-0">4</div>
+                <div class="relative z-10">
+                    <p class="text-xs uppercase text-green-500 font-bold">4 WAYS TO BREAK THROUGH</p>
+                    <h2 class="text-3xl font-black mt-1">清醒认知与主动破局</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 text-sm">
+                        <div class="bg-slate-50 p-3 rounded-lg">
+                            <i class="fas fa-users text-green-500"></i>
+                            <p class="font-bold mt-1">培养团队</p>
+                            <p class="text-xs text-slate-400">下属的成长是你的隐形KPI</p>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded-lg">
+                             <i class="fas fa-recycle text-green-500"></i>
+                            <p class="font-bold mt-1">心态归零</p>
+                            <p class="text-xs text-slate-400">定期回归一线保持业务敏感</p>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded-lg">
+                            <i class="fas fa-sitemap text-green-500"></i>
+                            <p class="font-bold mt-1">向上管理</p>
+                            <p class="text-xs text-slate-400">同步工作，争取资源</p>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded-lg">
+                            <i class="fas fa-lightbulb text-green-500"></i>
+                            <p class="font-bold mt-1">不断警醒</p>
+                            <p class="text-xs text-slate-400">中层只是跳板，不是终点</p>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+
+        </div>
+    </div>
+
+    <script type="module">
+        const { motion, stagger, animate } = Motion;
+        
+        // This is a simple script to apply animations to all direct children of .bento-grid
+        const gridItems = document.querySelectorAll(".bento-grid > div");
+        
+        gridItems.forEach((item, index) => {
+            const motionProperties = {
+                initial: { opacity: 0, y: 30 },
+                whileInView: { opacity: 1, y: 0 },
+                viewport: { once: true },
+                transition: { 
+                    duration: 0.6, 
+                    delay: index * 0.05, // Staggered delay
+                    ease: "easeInOut" 
+                }
+            };
+            
+            // Framer Motion's "animate" function can apply these properties to a DOM element.
+            // Since we can't directly use JSX-like <motion.div> here, we use the animate function.
+            // Note: For complex interactions, a framework like React/Vue would be better.
+            // For this static page, we manually apply the 'whileInView' logic.
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animate(
+                            item, 
+                            motionProperties.whileInView,
+                            motionProperties.transition
+                        );
+                        observer.unobserve(item); // Animate only once
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Set initial state
+            animate(item, motionProperties.initial, {duration: 0});
+            
+            observer.observe(item);
+        });
+
+    </script>
+</body>
+</html>
