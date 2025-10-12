@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知道与做到：五个层次的认知突破</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+    
+    <!-- Font Awesome for Icons via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Framer Motion via CDN -->
+    <script type="module">
+        import { motion, useScroll, useTransform } from "https://cdn.jsdelivr.net/npm/framer-motion@11.0.25/dist/framer-motion.es.js";
+    </script>
+    
+    <style>
+        body {
+            background-color: #F8F7F4;
+            color: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+            gap: 1.5rem; /* 24px */
+        }
+        .bento-item {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 24px;
+            padding: 2rem; /* 32px */
+            border: 1px solid rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .highlight-gradient {
+            position: absolute;
+            opacity: 0.15;
+            filter: blur(50px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        /* Custom styles for responsiveness */
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            .bento-item {
+                grid-column: span 1 !important;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <main id="app" class="max-w-7xl mx-auto">
+        <div class="bento-grid">
+
+            <!-- Hero Section -->
+            <div class="bento-item col-span-12 lg:col-span-7 row-span-2 flex flex-col justify-between">
+                <div class="z-10">
+                    <p class="text-lg md:text-xl text-gray-500 font-light">The Agony of Knowing</p>
+                    <h1 class="text-5xl md:text-7xl font-bold mt-2 leading-tight">人生最大的痛苦，是你明明知道什么是对的，但却总是做出错误的选择。</h1>
+                </div>
+                <div class="z-10 mt-8">
+                    <p class="text-gray-600 max-w-xl">我们总以为“知道”就足够了，但事实是，从“听说”到“坚信”，认知有五个截然不同的层次。这决定了我们是半途而废，还是知行合一。</p>
+                </div>
+                <div class="highlight-gradient -top-1/4 -left-1/4 w-full h-full bg-cyan-300 rounded-full"></div>
+            </div>
+
+            <!-- The 5 Levels Intro -->
+            <div class="bento-item col-span-12 lg:col-span-5 row-span-2 flex flex-col items-center justify-center text-center">
+                 <div class="highlight-gradient -bottom-1/4 -right-1/4 w-3/4 h-3/4 bg-violet-300 rounded-full"></div>
+                <i class="fa-solid fa-layer-group text-5xl text-violet-500 mb-4 z-10"></i>
+                <h2 class="text-6xl md:text-8xl font-black z-10">5</h2>
+                <p class="text-2xl font-bold mt-2 z-10">认知的层次</p>
+                <p class="text-gray-500 mt-1 z-10">LEVELS OF UNDERSTANDING</p>
+            </div>
+
+            <!-- Level 1 & 2 -->
+            <div class="bento-item col-span-12 lg:col-span-6 flex flex-col md:flex-row items-center gap-8">
+                <div class="text-center md:text-left">
+                    <p class="text-5xl font-extrabold text-gray-300">01</p>
+                    <h3 class="text-2xl font-bold mt-1">听说</h3>
+                    <p class="text-sm text-gray-500">HEARSAY</p>
+                    <p class="mt-2 text-gray-600">大概知道有这么回事，但内心毫无波澜，与我无关。</p>
+                </div>
+                <div class="w-full md:w-px h-px md:h-full bg-gray-200"></div>
+                <div class="text-center md:text-left">
+                    <p class="text-5xl font-extrabold text-gray-400">02</p>
+                    <h3 class="text-2xl font-bold mt-1">了解</h3>
+                    <p class="text-sm text-gray-500">AWARENESS</p>
+                    <p class="mt-2 text-gray-600">听多了，觉得有道理，甚至能复述，但不足以去实践。</p>
+                </div>
+            </div>
+
+            <!-- Level 3 - The Pain Zone -->
+            <div class="bento-item col-span-12 lg:col-span-6 row-span-2 bg-yellow-50 border-yellow-200">
+                 <div class="highlight-gradient -top-1/4 -right-1/4 w-3/4 h-3/4 bg-yellow-300 rounded-full"></div>
+                <div class="z-10 relative">
+                    <p class="text-7xl font-extrabold text-yellow-300">03</p>
+                    <h3 class="text-3xl font-bold mt-1">相信 <span class="text-xl font-light text-yellow-600">(最痛苦的阶段)</span></h3>
+                    <p class="text-sm text-gray-500">BELIEF - THE PAIN ZONE</p>
+                    <p class="mt-4 text-gray-700">开始相信这是真理，愿意践行，却不知从何下手。尝试几次失败后，陷入了进退两难的境地。</p>
+                    <p class="mt-4 text-gray-700 font-semibold">“你想回去躺平，但心魔已种下，躺不回去了。懂得越多，反而越痛苦。”</p>
+                    <div class="mt-6 flex items-center gap-4 text-yellow-700">
+                        <i class="fa-solid fa-person-digging text-2xl"></i>
+                        <div class="w-full bg-yellow-200 rounded-full h-2.5">
+                          <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 45%"></div>
+                        </div>
+                        <i class="fa-solid fa-lightbulb text-2xl"></i>
+                    </div>
+                     <p class="text-center text-sm text-yellow-600 mt-2">接近开悟的临界点</p>
+                </div>
+            </div>
+            
+            <!-- Level 4 -->
+            <div class="bento-item col-span-12 lg:col-span-6">
+                 <div class="highlight-gradient bottom-0 -left-1/4 w-3/4 h-3/4 bg-green-300 rounded-full"></div>
+                <div class="z-10 relative">
+                    <p class="text-7xl font-extrabold text-green-300">04</p>
+                    <h3 class="text-3xl font-bold mt-1">坚信</h3>
+                    <p class="text-sm text-gray-500">CONVICTION</p>
+                    <p class="mt-4 text-gray-700">亲身实践并获得了结果，道理融入价值观，成为信仰。遇到问题会先反思自己，而不是质疑方法。</p>
+                </div>
+            </div>
+
+            <!-- Breakthrough -->
+            <div class="bento-item col-span-12 lg:col-span-8 row-span-2 flex flex-col justify-between items-start">
+                 <div class="highlight-gradient -bottom-1/4 -right-1/4 w-3/4 h-3/4 bg-blue-300 rounded-full"></div>
+                <div class="z-10">
+                    <p class="text-lg text-gray-500">The Breakthrough</p>
+                    <h2 class="text-5xl md:text-7xl font-bold mt-2">从瞎想到狂做</h2>
+                    <p class="text-2xl mt-4 text-blue-600 font-semibold">"知是行之始，行是知之成"</p>
+                </div>
+                <div class="z-10 mt-8">
+                    <p class="text-gray-600 max-w-xl">如何从第三层进入第四层？答案很简单：不计回报地去行动，去碰壁，去积累失败。当失败的积累突破阈值，内核将无比稳定，后面便如顺水行舟。</p>
+                     <p class="mt-4 text-sm font-mono p-4 bg-blue-50 border-l-4 border-blue-400 text-blue-800">王阳明心学：以知引行，以行补知。</p>
+                </div>
+            </div>
+
+            <!-- Level 5 -->
+            <div class="bento-item col-span-12 lg:col-span-4 row-span-2 flex flex-col">
+                <div class="z-10 relative">
+                    <p class="text-7xl font-extrabold text-rose-300">05</p>
+                    <h3 class="text-3xl font-bold mt-1">坚信并知其优先级</h3>
+                    <p class="text-sm text-gray-500">MASTERY & PRIORITY</p>
+                    <p class="mt-4 text-gray-700">通过大量实践和复盘，将抽象的道理无限具体化，为所有不清晰的场景制定出自己的标准和决断。
+                        你必须给自己一个“完成”的标准。灯不亮了，就不用灯；没整块时间，就分段录。</p>
+                </div>
+                <div class="flex-grow flex items-center justify-center mt-6 z-10">
+                    <div class="text-center">
+                        <i class="fa-solid fa-bullseye text-6xl text-rose-400"></i>
+                        <p class="font-bold text-lg mt-4">完成 > 完美</p>
+                        <p class="text-gray-500">Completion > Perfection</p>
+                        <p class="text-sm mt-2 text-gray-600">你为这句话定的标准是什么？<br>是80分，还是“一坨屎”？</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final Quote -->
+            <div class="bento-item col-span-12 flex flex-col items-center justify-center text-center">
+                 <div class="highlight-gradient top-0 left-0 w-full h-1/2 bg-indigo-300"></div>
+                <i class="fa-solid fa-quote-left text-4xl text-indigo-400 z-10"></i>
+                <p class="text-2xl md:text-4xl font-bold max-w-4xl my-6 z-10">
+                    所有不清晰都必须有一个决断，<br class="hidden md:block" />再差的决断也好过没有决断。
+                </p>
+                <p class="text-gray-500 z-10">A bad decision is better than no decision.</p>
+                <p class="text-3xl font-black text-rose-500">知道做不到 = 不知道。</p>
+                <p class="text-gray-400 text-sm">Knowing without doing is not knowing.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <script type="module">
+        import { motion, stagger } from "https://cdn.jsdelivr.net/npm/framer-motion@11.0.25/dist/framer-motion.es.js";
+
+        const items = document.querySelectorAll('.bento-item');
+        
+        items.forEach(item => {
+            const motionDiv = document.createElement('motion-div');
+            
+            // Move all children of item into motionDiv
+            while (item.firstChild) {
+                motionDiv.appendChild(item.firstChild);
+            }
+            item.appendChild(motionDiv);
+
+            // This is a conceptual representation.
+            // In a real framework (like React), you would wrap components like <motion.div>
+            // For vanilla JS, we'll manually animate with the library's core functions if available,
+            // or just use CSS transitions triggered by JS as a fallback.
+            // A more robust vanilla JS approach involves Intersection Observer.
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(50px)';
+            item.style.transition = 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights for Modern Life</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/framer-motion@10/dist/framer-motion.umd.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #F8F7F4;
+            color: #333;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 1.5rem;
+            height: calc(100vh - 4rem);
+            padding: 2rem;
+        }
+        .bento-item {
+            background-color: #FFFFFF;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #EAEAEA;
+        }
+        .highlight-glow {
+            position: absolute;
+            opacity: 0.2;
+            filter: blur(50px);
+            border-radius: 50%;
+        }
+        .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div id="app" class="bento-grid">
+        <!-- Item 1 -->
+        <motion.div class="bento-item col-span-2 row-span-2 flex flex-col justify-between"
+            :initial="{ opacity: 0, y: 50 }"
+            :while-in-view="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.5, delay: 0.1 }">
+            <div>
+                <i class="fas fa-hourglass-half icon" style="color: #8E7AB5;"></i>
+                <h2 class="text-4xl font-bold">不管你的游戏时间是多长，请把它翻三倍。</h2>
+                <p class="text-gray-500">Triple your playtime, whatever it may be.</p>
+            </div>
+            <div class="relative w-full h-32">
+                <div class="highlight-glow" style="background-color: #8E7AB5; width: 200px; height: 200px; top: -50px; left: -50px;"></div>
+                <div class="absolute bottom-0 right-0 text-9xl font-bold text-gray-200">3x</div>
+            </div>
+        </motion.div>
+
+        <!-- Item 2 -->
+        <motion.div class="bento-item col-span-1 row-span-1"
+            :initial="{ opacity: 0, y: 50 }"
+            :while-in-view="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.5, delay: 0.2 }">
+             <i class="fas fa-wind icon" style="color: #B4E197;"></i>
+            <h3 class="text-xl font-bold">追求持续的高效，大概率只会得到持续的混乱。</h3>
+            <p class="text-gray-500">The pursuit of constant efficiency often leads to constant chaos.</p>
+            <div class="highlight-glow" style="background-color: #B4E197; width: 150px; height: 150px; bottom: -50px; right: -50px;"></div>
+        </motion.div>
+
+        <!-- Item 3 -->
+        <motion.div class="bento-item col-span-1 row-span-2"
+            :initial="{ opacity: 0, y: 50 }"
+            :while-in-view="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.5, delay: 0.3 }">
+            <i class="fas fa-bed icon" style="color: #FFC0CB;"></i>
+            <h3 class="text-2xl font-bold">犹豫要不要去做某件事的时候，看自己是否愿意把这件事当做睡前故事讲给你的孩子听。</h3>
+            <p class="text-gray-500">When hesitant, ask if you'd tell it as a bedtime story to your child.</p>
+             <div class="highlight-glow" style="background-color: #FFC0CB; width: 150px; height: 150px; top: -20px; right: -50px;"></div>
+        </motion.div>
+
+        <!-- Item 4 -->
+        <motion.div class="bento-item col-span-1 row-span-1"
+            :initial="{ opacity: 0, y: 50 }"
+            :while-in-view="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.5, delay: 0.4 }">
+            <i class="fas fa-battery-full icon" style="color: #A0DEFF;"></i>
+            <h3 class="text-xl font-bold">想要保持精力旺盛很简单：累身不累心。</h3>
+            <p class="text-gray-500">To stay energetic: tire the body, not the mind.</p>
+             <div class="highlight-glow" style="background-color: #A0DEFF; width: 150px; height: 150px; bottom: -50px; left: -50px;"></div>
+        </motion.div>
+
+        <!-- Item 5 -->
+        <motion.div class="bento-item col-span-2 row-span-1"
+            :initial="{ opacity: 0, y: 50 }"
+            :while-in-view="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.5, delay: 0.5 }">
+            <div class="flex items-center justify-between">
+                <div>
+                     <i class="fas fa-shoe-prints icon" style="color: #FFD3B0;"></i>
+                    <h3 class="text-2xl font-bold">一个人做事不顺的时候，大概率是因为想同时解决多个问题，或者总想三步并做两步。</h3>
+                    <p class="text-gray-500">Struggles often arise from tackling too much at once or skipping steps.</p>
+                </div>
+                 <div class="highlight-glow" style="background-color: #FFD3B0; width: 150px; height: 150px; top: -50px; right: -50px;"></div>
+                <div class="text-6xl font-bold text-gray-200 transform -rotate-12">2→3</div>
+            </div>
+        </motion.div>
+        
+        <!-- Item 6 -->
+        <motion.div class="bento-item col-span-1 row-span-1"
+             :initial="{ opacity: 0, y: 50 }"
+            :while-in-view="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.5, delay: 0.6 }">
+            <i class="fas fa-brain icon" style="color: #FFB347;"></i>
+            <h3 class="text-xl font-bold">解决问题需要思考，但单纯的思考往往只会让问题变得更大。</h3>
+            <p class="text-gray-500">Solving problems requires thought, but overthinking often enlarges them.</p>
+             <div class="highlight-glow" style="background-color: #FFB347; width: 120px; height: 120px; bottom: -40px; right: -40px;"></div>
+        </motion.div>
+
+        <!-- Item 7 -->
+        <motion.div class="bento-item col-span-1 row-span-1"
+            :initial="{ opacity: 0, y: 50 }"
+            :while-in-view="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.5, delay: 0.7 }">
+            <i class="fas fa-fire icon" style="color: #FF6961;"></i>
+            <h3 class="text-xl font-bold">身体越舒展，性张力越强。</h3>
+            <p class="text-gray-500">The more relaxed the body, the stronger the sexual tension.</p>
+             <div class="highlight-glow" style="background-color: #FF6961; width: 100px; height: 100px; top: -30px; left: -30px;"></div>
+        </motion.div>
+        
+        <!-- Item 8 -->
+        <motion.div class="bento-item col-span-1 row-span-1"
+            :initial="{ opacity: 0, y: 50 }"
+            :while-in-view="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.5, delay: 0.8 }">
+            <i class="fas fa-star icon" style="color: #FDFD96;"></i>
+            <h3 class="text-xl font-bold">向内归因是所有顶级高手的共同特征。</h3>
+            <p class="text-gray-500">Internal attribution is a common trait of all top performers.</p>
+            <div class="highlight-glow" style="background-color: #FDFD96; width: 150px; height: 150px; bottom: -50px; right: -50px;"></div>
+        </motion.div>
+
+        <!-- Item 9 -->
+        <motion.div class="bento-item col-span-2 row-span-1"
+            :initial="{ opacity: 0, y: 50 }"
+            :while-in-view="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.5, delay: 0.9 }">
+            <i class="fas fa-link icon" style="color: #CDB4DB;"></i>
+            <h3 class="text-2xl font-bold">你学会的所有东西都会成为你理解其它事物的捷径。</h3>
+            <p class="text-gray-500">Everything you learn becomes a shortcut to understanding other things.</p>
+             <div class="highlight-glow" style="background-color: #CDB4DB; width: 200px; height: 200px; top: -60px; right: -60px;"></div>
+        </motion.div>
+        
+        <!-- Item 10 -->
+        <motion.div class="bento-item col-span-1 row-span-1 flex flex-col justify-center items-center text-center"
+            :initial="{ opacity: 0, scale: 0.8 }"
+            :while-in-view="{ opacity: 1, scale: 1 }"
+            :transition="{ duration: 0.5, delay: 1.0 }">
+             <i class="fas fa-water icon" style="color: #87CEEB;"></i>
+            <h3 class="text-2xl font-bold">当自我意识消失的时候，就是心流降临的时刻。</h3>
+            <p class="text-gray-500">Flow arrives when self-consciousness disappears.</p>
+            <div class="highlight-glow" style="background-color: #87CEEB; width: 150px; height: 150px; bottom: -75px; left: 50%; transform: translateX(-50%);"></div>
+        </motion.div>
+    </div>
+
+    <script>
+        const { motion, useScroll, useTransform } = FramerMotion;
+
+        function App() {
+            // This is a placeholder for a more complex app structure.
+            // For this specific case, we are adding motion components directly to the HTML.
+        }
+
+        // Since we are not using a framework like React or Vue, 
+        // we'll manually initialize motion attributes on the elements.
+        document.querySelectorAll('[class*="bento-item"]').forEach(el => {
+            const motionProps = {
+                initial: { opacity: 0, y: 50 },
+                whileInView: { opacity: 1, y: 0 },
+                transition: { duration: 0.5 }
+            };
+
+            const delay = parseFloat(el.getAttribute('data-delay') || '0.1');
+            motionProps.transition.delay = delay;
+
+            // This is a simplified representation. Framer Motion's real power
+            // is in its integration with JavaScript frameworks. This manual approach
+            // gives a feel for the declarative animation style.
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        el.style.opacity = 1;
+                        el.style.transform = 'translateY(0)';
+                        el.style.transition = `opacity ${motionProps.transition.duration}s, transform ${motionProps.transition.duration}s`;
+                        el.style.transitionDelay = `${delay}s`;
+                    } else {
+                         el.style.opacity = 0;
+                         el.style.transform = 'translateY(50px)';
+                    }
+                });
+            });
+
+            observer.observe(el);
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(50px)';
+        });
+    </script>
+</body>
+</html>
