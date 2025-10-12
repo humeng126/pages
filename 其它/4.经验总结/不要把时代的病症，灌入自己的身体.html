@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>构建深度安全感 | A Guide to Navigating the Downturn</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts for a softer, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8f9fa;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+        .bento-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(180px, auto);
+            padding: 2rem;
+            max-width: 1400px;
+            margin: auto;
+        }
+        .bento-item {
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 24px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+        }
+        .grid-col-span-2 { grid-column: span 2; }
+        .grid-col-span-4 { grid-column: span 4; }
+        .grid-row-span-2 { grid-row: span 2; }
+        
+        .highlight-gradient {
+            position: absolute;
+            right: -80px;
+            top: -80px;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(29, 201, 183, 0.15) 0%, rgba(29, 201, 183, 0) 70%);
+            z-index: 0;
+        }
+
+        .highlight-gradient-blue {
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0) 70%);
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .line-chart-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .line-chart-svg {
+            width: 90%;
+            height: 80%;
+        }
+
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="bento-grid">
+        <!-- 1. Main Title -->
+        <div class="bento-item grid-col-span-4" id="item-1">
+            <div class="highlight-gradient"></div>
+            <div class="content flex flex-col justify-center h-full">
+                <p class="text-xs uppercase tracking-widest text-teal-600">A Guide to Navigating the Downturn</p>
+                <h1 class="text-5xl md:text-8xl font-black tracking-tighter mt-2">构建深度安全感</h1>
+                <p class="text-lg text-slate-500 mt-4 max-w-3xl">在悬而未决的时代，我们需要从认知、情绪、行动三个维度，重新搭建内心秩序。</p>
+            </div>
+        </div>
+
+        <!-- 2. The Concept of "Cycle" -->
+        <div class="bento-item grid-col-span-2" id="item-2">
+            <div class="content">
+                <p class="text-sm uppercase tracking-wider text-slate-500">The Cycle</p>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2">万物皆有周期</h2>
+                <p class="text-slate-600 mt-3">繁荣、衰退、萧条、复苏。周期提醒我们，所有的“正确”都是暂时的。</p>
+            </div>
+            <div class="flex items-center justify-center mt-auto">
+                <svg width="80%" height="60" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 0,20 C 40,0 60,0 100,20 S 160,40 200,20" stroke="#14b8a6" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- 3. Japan's Data -->
+        <div class="bento-item grid-col-span-2" id="item-3">
+             <div class="highlight-gradient highlight-gradient-blue"></div>
+            <div class="content flex flex-col h-full">
+                <p class="text-sm uppercase tracking-wider text-slate-500">Data Point</p>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2">时代的烙印</h2>
+                <div class="flex-grow flex items-center justify-center relative">
+                    <p class="absolute top-0 left-0 text-slate-500 text-sm">就业繁荣期 vs 冰河期</p>
+                    <div class="text-center">
+                        <span class="text-8xl font-black text-blue-500">-25%</span>
+                        <p class="text-slate-600">35岁时平均收入差距</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 4. The New Methodology: Survive & Overturn -->
+        <div class="bento-item grid-col-span-4 grid-row-span-2" id="item-4">
+             <div class="highlight-gradient"></div>
+            <div class="content flex flex-col md:flex-row gap-8 h-full">
+                <!-- Part 1: 不死 (Survive) -->
+                <div class="flex-1 flex flex-col p-6 rounded-xl border border-slate-200 bg-slate-50/50">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-shield-halved text-2xl text-teal-600"></i>
+                        <h3 class="text-5xl font-black">不死</h3>
+                    </div>
+                    <p class="text-sm uppercase tracking-wider text-teal-600 mt-1">SURVIVAL NARRATIVE</p>
+                    <p class="mt-4 text-slate-600 flex-grow">只要还在桌上，就是成功。核心是<strong class="text-black">不做蠢事</strong>：那些收益有限，但风险无限或无法承担的事。</p>
+                    <div class="mt-auto p-3 bg-red-100/50 border border-red-200 rounded-lg text-red-700 text-sm">
+                        <i class="fa-solid fa-triangle-exclamation mr-2"></i> 避免：掏空家底买房、与不靠谱的人结婚…
+                    </div>
+                </div>
+                <!-- Part 2: 翻盘 (Overturn) -->
+                <div class="flex-1 flex flex-col p-6 rounded-xl border border-slate-200 bg-slate-50/50">
+                     <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-dice-d20 text-2xl text-blue-500"></i>
+                        <h3 class="text-5xl font-black">翻盘</h3>
+                    </div>
+                    <p class="text-sm uppercase tracking-wider text-blue-500 mt-1">EMBRACE RANDOMNESS</p>
+                    <p class="mt-4 text-slate-600 flex-grow">利用随机性，押注可能爆发的机会。核心是做<strong class="text-black">风险有限，但收益无限</strong>的事。</p>
+                    <div class="mt-auto p-3 bg-green-100/50 border border-green-200 rounded-lg text-green-700 text-sm">
+                         <i class="fa-solid fa-arrow-trend-up mr-2"></i>尝试：学习新技能、参加陌生人聚会…
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Flawed Strategies -->
+        <div class="bento-item" id="item-5">
+            <div class="content flex flex-col h-full">
+                <i class="fa-solid fa-eye-slash text-4xl text-amber-500"></i>
+                <h3 class="text-2xl font-bold mt-4">无视周期</h3>
+                <p class="text-sm text-slate-500 mt-2">REFUSE DANGER SIGNALS</p>
+                <p class="text-slate-600 mt-auto">把焦虑当敌人，强行叛逆和潇洒，只会让信号越叫越大声。</p>
+            </div>
+        </div>
+        <div class="bento-item" id="item-6">
+            <div class="content flex flex-col h-full">
+                <i class="fa-solid fa-crystal-ball text-4xl text-purple-500"></i>
+                <h3 class="text-2xl font-bold mt-4">妄想预测</h3>
+                <p class="text-sm text-slate-500 mt-2">CONTROL THE UNCONTROLLABLE</p>
+                <p class="text-slate-600 mt-auto">过度准备、决策瘫痪，不过是噪声之上的噪声。</p>
+            </div>
+        </div>
+
+        <!-- 6. The New Freedom -->
+        <div class="bento-item grid-col-span-2" id="item-7">
+            <div class="highlight-gradient"></div>
+            <div class="content flex items-center gap-6 h-full">
+                <i class="fa-solid fa-suitcase-rolling text-8xl text-teal-500 opacity-80"></i>
+                <div>
+                    <p class="text-sm uppercase tracking-wider text-slate-500">A New Mindset</p>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-2">工人阶级式的自由</h2>
+                    <p class="text-slate-600 mt-3">我并没有什么可以失去的。一根毫毛，就足以让小人物翻身。</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 7. Conclusion -->
+        <div class="bento-item grid-col-span-4" id="item-8">
+            <div class="content text-center flex flex-col justify-center items-center h-full">
+                 <p class="text-sm uppercase tracking-widest text-blue-600">Our Generation's Socialization</p>
+                 <h2 class="text-4xl md:text-6xl font-black tracking-tighter mt-4">缩减行囊，伺机而动</h2>
+                 <p class="text-lg text-slate-500 mt-4 max-w-3xl">在变化的浪潮中，学会游泳。</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Framer Motion CDN and Animation Script -->
+    <script type="module">
+        import { animate } from "https://cdn.skypack.dev/framer-motion@10.16.4";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const items = document.querySelectorAll(".bento-item");
+            
+            animate(
+                items,
+                { 
+                    opacity: [0, 1],
+                    y: [30, 0]
+                },
+                {
+                    duration: 0.5,
+                    delay: (i) => i * 0.08,
+                    ease: "easeOut"
+                }
+            );
+        });
+    </script>
+</body>
+</html>

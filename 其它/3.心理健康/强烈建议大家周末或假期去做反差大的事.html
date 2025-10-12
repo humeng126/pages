@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>认知对冲法则 - 用反差激活你的潜能</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+    
+    <!-- Framer Motion CDN -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/framer-motion@11.2.10/dist/framer-motion.es.js"></script>
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* 自定义字体和柔和的滚动条样式 */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+        body::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, and Opera */
+        }
+        /* 为渐变高光定义 CSS 变量，便于统一管理 */
+        :root {
+            --highlight-blue: #00B2FF;
+            --highlight-green: #22C55E;
+            --highlight-orange: #F97316;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F4F7FA] text-[#1A202C] antialiased overflow-x-hidden">
+
+    <div id="app" class="container mx-auto p-4 md:p-8">
+        
+        <!-- Bento Grid 布局容器 -->
+        <div class="grid grid-cols-6 grid-rows-6 gap-4 md:gap-6 max-w-7xl mx-auto">
+
+            <!-- 主标题：认知对冲法则 -->
+            <div class="bento-item col-span-6 row-span-2 md:col-span-4 rounded-3xl bg-white p-6 md:p-8 flex flex-col justify-between relative overflow-hidden">
+                <div>
+                    <p class="text-sm text-slate-500 uppercase tracking-widest">The Principle of</p>
+                    <h1 class="text-5xl md:text-8xl font-black text-slate-800 leading-none tracking-tighter">认知对冲<br>法则</h1>
+                </div>
+                <p class="text-lg md:text-xl text-slate-600 font-bold max-w-md">
+                    真正的休息不是停止活动，而是转换活动。平庸人用相同填满生活<br>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-[var(--highlight-blue)] to-[var(--highlight-green)]">优秀的人用反差点燃生命</span>
+                </p>
+                <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-gradient-to-tr from-[var(--highlight-blue)] to-[var(--highlight-blue)]/0 opacity-30 rounded-full"></div>
+            </div>
+
+            <!-- 数据提升：效率 -->
+            <div class="bento-item col-span-3 row-span-1 md:col-span-2 rounded-3xl bg-white p-4 flex flex-col justify-center items-center relative overflow-hidden">
+                <p class="text-slate-500 text-sm">WORK EFFICIENCY</p>
+                <div class="text-7xl font-black text-slate-800 flex items-baseline">
+                    <span class="stat-number">40</span><span class="text-5xl">%↑</span>
+                </div>
+                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[var(--highlight-green)] to-[var(--highlight-green)]/0 opacity-40 rounded-bl-full"></div>
+            </div>
+
+            <!-- 数据提升：创意 -->
+            <div class="bento-item col-span-3 row-span-1 md:col-span-2 rounded-3xl bg-white p-4 flex flex-col justify-center items-center relative overflow-hidden">
+                <p class="text-slate-500 text-sm">CREATIVE OUTPUT</p>
+                <div class="text-7xl font-black text-slate-800 flex items-baseline">
+                    <span class="stat-number">60</span><span class="text-5xl">%↑</span>
+                </div>
+                 <div class="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-[var(--highlight-orange)] to-[var(--highlight-orange)]/0 opacity-40 rounded-tr-full"></div>
+            </div>
+            
+            <!-- 问题：适应性麻木 -->
+            <div class="bento-item col-span-6 row-span-1 md:col-span-3 rounded-3xl bg-slate-800 text-white p-6 flex items-center gap-4">
+                 <i class="fa-solid fa-brain text-5xl text-[var(--highlight-orange)]"></i>
+                 <div>
+                    <h2 class="text-2xl font-bold">警惕：适应性麻木</h2>
+                    <p class="text-slate-400">长期处在同种状态，感知力急剧下降。
+                        创造力会枯竭，甚至快乐的阈值都会越来越高。反差，是在重新激活你的神经回路。</p>
+                </div>
+            </div>
+
+            <!-- 反差公式 -->
+            <div class="bento-item col-span-6 row-span-2 md:col-span-3 rounded-3xl bg-white p-6 grid grid-cols-2 gap-4">
+                <h2 class="col-span-2 text-2xl font-bold text-slate-800">周末反差公式</h2>
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-computer fa-2x w-8 text-center text-[var(--highlight-blue)]"></i>
+                    <p class="font-semibold text-slate-600">动脑多 → 去动手</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-users fa-2x w-8 text-center text-[var(--highlight-green)]"></i>
+                    <p class="font-semibold text-slate-600">社交多 → 去独处</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-house-chimney fa-2x w-8 text-center text-[var(--highlight-orange)]"></i>
+                    <p class="font-semibold text-slate-600">室内多 → 去户外</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-bolt-lightning fa-2x w-8 text-center text-slate-500"></i>
+                    <p class="font-semibold text-slate-600">快节奏 → 慢体验</p>
+                </div>
+                 <div class="flex items-center gap-3 col-span-2">
+                    <i class="fa-solid fa-chart-line fa-2x w-8 text-center text-[var(--highlight-blue)]"></i>
+                    <p class="font-semibold text-slate-600">追求效率 → 追求美感</p>
+                </div>
+            </div>
+            
+             <!-- 案例：名人反差 -->
+            <div class="bento-item col-span-6 row-span-1 md:col-span-4 rounded-3xl bg-white p-6 flex flex-col justify-center">
+                <h3 class="text-xl font-bold text-slate-800 mb-2">真正厉害的人，都在玩反差</h3>
+                 <div class="flex justify-around items-center text-center text-slate-600">
+                    <div><p class="font-bold">马云</p><p class="text-sm">商业 x 太极</p></div>
+                    <div class="h-8 w-px bg-slate-200"></div>
+                    <div><p class="font-bold">乔布斯</p><p class="text-sm">科技 x 禅修</p></div>
+                     <div class="h-8 w-px bg-slate-200"></div>
+                    <div><p class="font-bold">村上春树</p><p class="text-sm">写作 x 马拉松</p></div>
+                </div>
+            </div>
+
+            <!-- 行动呼吁 -->
+            <div class="bento-item col-span-6 row-span-1 md:col-span-2 rounded-3xl bg-gradient-to-br from-[var(--highlight-blue)] to-[var(--highlight-green)] text-white p-6 flex flex-col items-center justify-center text-center">
+                 <h2 class="text-3xl font-black">别再刷手机了！</h2>
+                <p class="mt-1 font-semibold">这个周末，去做一件完全不同的事。
+                    别怕不舒服，那是大脑在重新布线。这种投资的回报率，会让你震惊。</p>
+                <i class="fa-solid fa-arrow-right mt-3 text-2xl"></i>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module">
+        // 导入 Framer Motion 的核心功能
+        const { motion, animate, stagger } = Motion;
+        
+        // 当文档加载完成后执行动画
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 整体网格项的入场动画
+            const items = document.querySelectorAll('.bento-item');
+            items.forEach((item, index) => {
+                const motionItem = motion(item);
+                motionItem.dom.style.opacity = 0;
+                motionItem.dom.style.transform = "translateY(50px)";
+                
+                // 使用 animate 函数创建滚动触发动画
+                animate(
+                    item,
+                    { opacity: 1, y: 0 },
+                    { 
+                        duration: 0.8, 
+                        delay: index * 0.1, // 创建阶梯效果
+                        ease: [0.16, 1, 0.3, 1] // 优雅的缓动曲线
+                    }
+                );
+            });
+
+            // 数字滚动动画
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(numberEl => {
+                const targetNumber = parseInt(numberEl.textContent, 10);
+                // 设置初始值为 0
+                numberEl.textContent = '0';
+
+                // 使用 animate 函数创建数字滚动效果
+                // 延迟启动，在其他元素动画之后
+                setTimeout(() => {
+                    animate(0, targetNumber, {
+                        duration: 2,
+                        ease: "easeOut",
+                        onUpdate: (latest) => {
+                            numberEl.textContent = Math.round(latest);
+                        }
+                    });
+                }, 800);
+            });
+        });
+    </script>
+
+</body>
+</html>

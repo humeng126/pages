@@ -48,9 +48,41 @@
             z-index: 1;
         }
 
+        .stats {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 14px 18px;
+            border-radius: 12px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 14px;
+            backdrop-filter: blur(8px);
+        }
+
+        .stats .left {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .stats .badge {
+            background: linear-gradient(90deg,#667eea,#764ba2);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
         .header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 30px;
             position: relative;
         }
 
@@ -61,7 +93,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             position: relative;
             animation: titleGlow 3s ease-in-out infinite alternate;
         }
@@ -72,21 +104,21 @@
         }
 
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.0rem;
             color: rgba(255, 255, 255, 0.7);
             font-weight: 300;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
         .section {
-            margin-bottom: 80px;
+            margin-bottom: 50px;
             position: relative;
         }
 
         .section-title {
-            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            font-size: clamp(1.6rem, 4vw, 2.0rem);
             color: #ffffff;
-            margin-bottom: 30px;
+            margin-bottom: 18px;
             font-weight: 700;
             position: relative;
             padding-left: 20px;
@@ -105,13 +137,13 @@
         }
 
         .subsection {
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
 
         .subsection-title {
-            font-size: clamp(1.4rem, 3vw, 1.6rem);
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
             color: #78d9c2;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             font-weight: 600;
             padding-left: 20px;
             position: relative;
@@ -146,6 +178,7 @@
             backdrop-filter: blur(20px);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .file-item::before {
@@ -217,7 +250,7 @@
             }
 
             .section {
-                margin-bottom: 50px;
+                margin-bottom: 40px;
             }
         }
 
@@ -283,11 +316,6 @@
             animation-delay: 0.2s;
         }
 
-        /* 鼠标悬停时的交互效果 */
-        .file-item {
-            cursor: pointer;
-        }
-
         .file-item::after {
             content: '';
             position: absolute;
@@ -308,13 +336,25 @@
 </head>
 <body>
 <div class="container">
+    <div class="stats" role="region" aria-label="文件统计">
+        <div class="left">
+            <div class="badge">文件总数: 100</div>
+            <div>数字开头文件夹: 7（共 34 个文件）</div>
+            <div>其他开头文件夹: 9（共 53 个文件）</div>
+        </div>
+        <div class="right" style="color:rgba(255,255,255,0.8);font-size:13px;">
+            <div>生成时间: 2025-10-12 12:49:05</div>
+            <div>文件夹: <span style="opacity:0.9;">D:\project\y_project\pages</span></div>
+        </div>
+    </div>
+
     <div class="header">
         <h1 class="main-title">成长文件索引</h1>
         <p class="subtitle">探索智慧 · 成就未来</p>
     </div>
 
     <div class="section">
-        <h2 class="section-title">牧言</h2>
+        <h2 class="section-title">牧言 （7）</h2>
         <ul class="file-grid">
             <li class="file-item">
                 <a href="1.牧言/1.解锁频率的奥秘.html">解锁频率的奥秘</a>
@@ -341,307 +381,169 @@
     </div>
 
     <div class="section">
-        <h2 class="section-title">了凡四训</h2>
+        <h2 class="section-title">了凡四训 （9）</h2>
         <ul class="file-grid">
-            <li class="file-item">
-                <a href="2.了凡四训/1.反因循.html">反因循</a>
-            </li>
-            <li class="file-item">
-                <a href="2.了凡四训/2.信因果.html">信因果</a>
-            </li>
-            <li class="file-item">
-                <a href="2.了凡四训/3.向内求.html">向内求</a>
-            </li>
-            <li class="file-item">
-                <a href="2.了凡四训/4.觉察心.html">觉察心</a>
-            </li>
-            <li class="file-item">
-                <a href="2.了凡四训/5.昨日已死，今日当生，如何自我重塑.html">昨日已死，今日当生，如何自我重塑</a>
-            </li>
-            <li class="file-item">
-                <a href="2.了凡四训/6.如何向大宗师们学习自我重塑？.html">如何向大宗师们学习自我重塑？</a>
-            </li>
-            <li class="file-item">
-                <a href="2.了凡四训/7.人生如何避坑？识别假善很关键.html">人生如何避坑？识别假善很关键</a>
-            </li>
-            <li class="file-item">
-                <a href="2.了凡四训/8.掌握低调的内核，摆脱底层的门槛.html">掌握低调的内核，摆脱底层的门槛</a>
-            </li>
-            <li class="file-item">
-                <a href="2.了凡四训/9.如何提升气场让自己占据主动.html">如何提升气场让自己占据主动</a>
-            </li>
+            <li class="file-item"><a href="2.了凡四训/1.反因循.html">反因循</a></li>
+            <li class="file-item"><a href="2.了凡四训/2.信因果.html">信因果</a></li>
+            <li class="file-item"><a href="2.了凡四训/3.向内求.html">向内求</a></li>
+            <li class="file-item"><a href="2.了凡四训/4.觉察心.html">觉察心</a></li>
+            <li class="file-item"><a href="2.了凡四训/5.昨日已死，今日当生，如何自我重塑.html">昨日已死，今日当生，如何自我重塑</a></li>
+            <li class="file-item"><a href="2.了凡四训/6.如何向大宗师们学习自我重塑？.html">如何向大宗师们学习自我重塑？</a></li>
+            <li class="file-item"><a href="2.了凡四训/7.人生如何避坑？识别假善很关键.html">人生如何避坑？识别假善很关键</a></li>
+            <li class="file-item"><a href="2.了凡四训/8.掌握低调的内核，摆脱底层的门槛.html">掌握低调的内核，摆脱底层的门槛</a></li>
+            <li class="file-item"><a href="2.了凡四训/9.如何提升气场让自己占据主动.html">如何提升气场让自己占据主动</a></li>
         </ul>
     </div>
 
     <div class="section">
-        <h2 class="section-title">心经</h2>
+        <h2 class="section-title">心经 （3）</h2>
         <ul class="file-grid">
-            <li class="file-item">
-                <a href="3.心经/1.如何实现自我突破，达到内心圆满？且看《心经》系列：佛非神.html">如何实现自我突破，达到内心圆满？且看《心经》系列：佛非神</a>
-            </li>
-            <li class="file-item">
-                <a href="3.心经/2.如何正确理解缘起性空，走出内心困境？且看《心经》：色即是空.html">如何正确理解缘起性空，走出内心困境？且看《心经》：色即是空</a>
-            </li>
-            <li class="file-item">
-                <a href="3.心经/3.如何摒除肉眼，内观到宇宙真相？且看《心经》系列：佛的角度.html">如何摒除肉眼，内观到宇宙真相？且看《心经》系列：佛的角度</a>
-            </li>
-            <li class="file-item">
-                <a href="3.心经/4.如何开悟？让我们在《心经》中寻找符合现实的答案.html">如何开悟？让我们在《心经》中寻找符合现实的答案</a>
-            </li>
-            <li class="file-item">
-                <a href="3.心经/5.何为空性？如何体验空性的感觉？且看《心经》系列：缘起性空.html">何为空性？如何体验空性的感觉？且看《心经》系列：缘起性空</a>
-            </li>
+            <li class="file-item"><a href="3.心经/1.如何实现自我突破，达到内心圆满？且看《心经》系列：佛非神.html">如何实现自我突破，达到内心圆满？且看《心经》系列：佛非神</a></li>
+            <li class="file-item"><a href="3.心经/2.如何正确理解缘起性空，走出内心困境？且看《心经》：色即是空.html">如何正确理解缘起性空，走出内心困境？且看《心经》：色即是空</a></li>
+            <li class="file-item"><a href="3.心经/3.如何摒除肉眼，内观到宇宙真相？且看《心经》系列：佛的角度.html">如何摒除肉眼，内观到宇宙真相？且看《心经》系列：佛的角度</a></li>
         </ul>
     </div>
 
     <div class="section">
-        <h2 class="section-title">道德经</h2>
+        <h2 class="section-title">道德经 （1）</h2>
         <ul class="file-grid">
-            <li class="file-item">
-                <a href="4.道德经/1.道德经.html">道德经</a>
-            </li>
+            <li class="file-item"><a href="4.道德经/1.道德经.html">道德经</a></li>
         </ul>
     </div>
 
     <div class="section">
-        <h2 class="section-title">庄子</h2>
+        <h2 class="section-title">庄子 （6）</h2>
         <ul class="file-grid">
-            <li class="file-item">
-                <a href="5.庄子/1.看完庄子《逍遥游》，看我们如何穷游人生.html">看完庄子《逍遥游》，看我们如何穷游人生</a>
-            </li>
-            <li class="file-item">
-                <a href="5.庄子/2.看完庄子《庄子-齐物论》，刨析12种认知缺陷，瞬间看透本质.html">看完庄子《庄子-齐物论》，刨析12种认知缺陷，瞬间看透本质</a>
-            </li>
-            <li class="file-item">
-                <a href="5.庄子/3.看完庄子《庄子-养生主》，刨析如何在工作苦难生死中养生.html">看完庄子《庄子-养生主》，刨析如何在工作苦难生死中养生</a>
-            </li>
-            <li class="file-item">
-                <a href="5.庄子/4.如何游刃有余的为人处世？且看《庄子-人间世》三重为人境界.html">如何游刃有余的为人处世？且看《庄子-人间世》三重为人境界</a>
-            </li>
-            <li class="file-item">
-                <a href="5.庄子/5.如何让残缺的人生逐步精彩起来？且看《庄子-德充符》篇.html">如何让残缺的人生逐步精彩起来？且看《庄子-德充符》篇</a>
-            </li>
-            <li class="file-item">
-                <a href="5.庄子/6.到底什么是规矩？如何破除规矩真正活着？且看庄子相濡以沫的真意.html">到底什么是规矩？如何破除规矩真正活着？且看庄子相濡以沫的真意</a>
-            </li>
+            <li class="file-item"><a href="5.庄子/1.看完庄子《逍遥游》，看我们如何穷游人生.html">看完庄子《逍遥游》，看我们如何穷游人生</a></li>
+            <li class="file-item"><a href="5.庄子/2.看完庄子《庄子-齐物论》，刨析12种认知缺陷，瞬间看透本质.html">看完庄子《庄子-齐物论》，刨析12种认知缺陷，瞬间看透本质</a></li>
+            <li class="file-item"><a href="5.庄子/3.看完庄子《庄子-养生主》，刨析如何在工作苦难生死中养生.html">看完庄子《庄子-养生主》，刨析如何在工作苦难生死中养生</a></li>
+            <li class="file-item"><a href="5.庄子/4.如何游刃有余的为人处世？且看《庄子-人间世》三重为人境界.html">如何游刃有余的为人处世？且看《庄子-人间世》三重为人境界</a></li>
+            <li class="file-item"><a href="5.庄子/5.如何让残缺的人生逐步精彩起来？且看《庄子-德充符》篇.html">如何让残缺的人生逐步精彩起来？且看《庄子-德充符》篇</a></li>
+            <li class="file-item"><a href="5.庄子/6.到底什么是规矩？如何破除规矩真正活着？且看庄子相濡以沫的真意.html">到底什么是规矩？如何破除规矩真正活着？且看庄子相濡以沫的真意</a></li>
         </ul>
     </div>
 
     <div class="section">
-        <h2 class="section-title">阳明心学</h2>
+        <h2 class="section-title">阳明心学 （2）</h2>
         <ul class="file-grid">
-            <li class="file-item">
-                <a href="6.阳明心学/1.一口气%201小时看完王阳明的一生，照亮大明王朝天空的流星.html">一口气1小时看完王阳明的一生，照亮大明王朝天空的流星</a>
-            </li>
-            <li class="file-item">
-                <a href="6.阳明心学/2.一口气%202小时看完《阳明心学》8大核心，指导人生开挂.html">一口气2小时看完《阳明心学》8大核心，指导人生开挂</a>
-            </li>
+            <li class="file-item"><a href="6.阳明心学/1.一口气%201小时看完王阳明的一生，照亮大明王朝天空的流星.html">一口气1小时看完王阳明的一生，照亮大明王朝天空的流星</a></li>
+            <li class="file-item"><a href="6.阳明心学/2.一口气%202小时看完《阳明心学》8大核心，指导人生开挂.html">一口气2小时看完《阳明心学》8大核心，指导人生开挂</a></li>
         </ul>
     </div>
 
     <div class="section">
-        <h2 class="section-title">李二八</h2>
+        <h2 class="section-title">李二八 （6）</h2>
         <ul class="file-grid">
-            <li class="file-item">
-                <a href="7.李二八/完美主义封印你的能力.html">完美主义封印你的能力</a>
-            </li>
-            <li class="file-item">
-                <a href="7.李二八/成事标准-主观能动性.html">成事标准-主观能动性</a>
-            </li>
-            <li class="file-item">
-                <a href="7.李二八/持续博弈-必均值回归.html">持续博弈-必均值回归</a>
-            </li>
-            <li class="file-item">
-                <a href="7.李二八/无间地狱发现必打破.html">无间地狱发现必打破</a>
-            </li>
-            <li class="file-item">
-                <a href="7.李二八/二十分钟认清执行力.html">二十分钟认清执行力</a>
-            </li>
-            <li class="file-item">
-                <a href="7.李二八/别再拿假性目标折磨自己了.html">别再拿假性目标折磨自己了</a>
-            </li>
+            <li class="file-item"><a href="7.李二八/完美主义封印你的能力.html">完美主义封印你的能力</a></li>
+            <li class="file-item"><a href="7.李二八/成事标准-主观能动性.html">成事标准-主观能动性</a></li>
+            <li class="file-item"><a href="7.李二八/持续博弈-必均值回归.html">持续博弈-必均值回归</a></li>
+            <li class="file-item"><a href="7.李二八/无间地狱发现必打破.html">无间地狱发现必打破</a></li>
+            <li class="file-item"><a href="7.李二八/二十分钟认清执行力.html">二十分钟认清执行力</a></li>
+            <li class="file-item"><a href="7.李二八/别再拿假性目标折磨自己了.html">别再拿假性目标折磨自己了</a></li>
         </ul>
     </div>
 
     <div class="section">
-        <h2 class="section-title">其它</h2>
+        <h2 class="section-title">其它 （共 53）</h2>
 
         <div class="subsection">
-            <h3 class="subsection-title">学习方法</h3>
+            <h3 class="subsection-title">学习方法 （7）</h3>
             <ul class="file-grid">
-                <li class="file-item">
-                    <a href="其它/1.学习方法/3分钟助你重构人生，撬动人生回报率.html">3分钟助你重构人生，撬动人生回报率</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/1.学习方法/刘少辉的《输出式学习》.html">刘少辉的《输出式学习》</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/1.学习方法/如何借助AI%20比其它人快10x学习任何东西.html">如何借助AI比其它人快10x学习任何东西</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/1.学习方法/如何成为AI先行者.html">如何成为AI先行者</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/1.学习方法/项目驱动的10倍速学习法.html">项目驱动的10倍速学习法</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/1.学习方法/初高中怎么用最短时间超过同学.html">初高中怎么用最短时间超过同学</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/1.学习方法/输出型爱好.html">输出型爱好</a>
-                </li>
+                <li class="file-item"><a href="其它/1.学习方法/3分钟助你重构人生，撬动人生回报率.html">3分钟助你重构人生，撬动人生回报率</a></li>
+                <li class="file-item"><a href="其它/1.学习方法/刘少辉的《输出式学习》.html">刘少辉的《输出式学习》</a></li>
+                <li class="file-item"><a href="其它/1.学习方法/如何借助AI%20比其它人快10x学习任何东西.html">如何借助AI比其它人快10x学习任何东西</a></li>
+                <li class="file-item"><a href="其它/1.学习方法/如何成为AI先行者.html">如何成为AI先行者</a></li>
+                <li class="file-item"><a href="其它/1.学习方法/项目驱动的10倍速学习法.html">项目驱动的10倍速学习法</a></li>
+                <li class="file-item"><a href="其它/1.学习方法/初高中怎么用最短时间超过同学.html">初高中怎么用最短时间超过同学</a></li>
+                <li class="file-item"><a href="其它/1.学习方法/输出型爱好.html">输出型爱好</a></li>
             </ul>
         </div>
 
         <div class="subsection">
-            <h3 class="subsection-title">能力提升</h3>
+            <h3 class="subsection-title">技能提升 （2）</h3>
             <ul class="file-grid">
-                <li class="file-item">
-                    <a href="其它/2.技能提升/技术答辩五大要点%20高效展示技巧.html">技术答辩五大要点高效展示技巧</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/2.技能提升/关键述职：让你事半功倍的职场动作.html">关键述职：让你事半功倍的职场动作</a>
-                </li>
+                <li class="file-item"><a href="其它/2.技能提升/技术答辩五大要点%20高效展示技巧.html">技术答辩五大要点 高效展示技巧</a></li>
+                <li class="file-item"><a href="其它/2.技能提升/关键述职：让你事半功倍的职场动作.html">关键述职：让你事半功倍的职场动作</a></li>
             </ul>
         </div>
 
         <div class="subsection">
-            <h3 class="subsection-title">心理健康</h3>
+            <h3 class="subsection-title">心理健康 （18）</h3>
             <ul class="file-grid">
-                <li class="file-item">
-                    <a href="其它/3.心理健康/不和睦的家庭里往往有一个制造内耗的人.html">不和睦的家庭里往往有一个制造内耗的人</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/3.心理健康/越是底层的家庭，家庭成员之间越是固执的无法沟通.html">越是底层的家庭，家庭成员之间越是固执的无法沟通</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/3.心理健康/人类16种基本需求心理学分析.html">人类16种基本需求心理学分析</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/3.心理健康/在虚无的世界中创造意义.html">在虚无的世界中创造意义</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/3.心理健康/心流：人生最重要的事情不是努力，而是会玩.html">心流：人生最重要的事情不是努力，而是会玩</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/3.心理健康/成瘾科学：戒色禁欲对大脑的影响.html">成瘾科学：戒色禁欲对大脑的影响</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/3.心理健康/注意力缺失.html">注意力缺失</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/3.心理健康/解读《我们内心的冲突》.html.html">解读《我们内心的冲突》</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/3.心理健康/解读：底层逻辑.html">解读：底层逻辑</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/3.心理健康/高敏感的人属于大后期人格，只要熬过前面的，越往后越顺.html">高敏感的人属于大后期人格，只要熬过前面的，越往后越顺</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/3.心理健康/少有人走的路.html">少有人走的路</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/3.心理健康/心理韧性：战胜挑战的内在力量%20-%20彭凯平教授分享.html">心理韧性：战胜挑战的内在力量%20-%20彭凯平教授分享</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/3.心理健康/情绪与成长：心理学的力量.html">情绪与成长：心理学的力量</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/3.心理健康/你活得太累，就是因为你不够自私.html">你活得太累，就是因为你不够自私</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/3.心理健康/总是忙的团团转，试试这个方法%20我们总觉得是任务太多、时间不够.html">总是忙的团团转，试试这个方法%20我们总觉得是任务太多、时间不够</a>
-                </li>
+                <li class="file-item"><a href="其它/3.心理健康/【男女通用】戒色、禁欲真的有用吗？.html">【男女通用】戒色、禁欲真的有用吗？</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/不和睦的家庭里往往有一个制造内耗的人.html">不和睦的家庭里往往有一个制造内耗的人</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/人类16种基本需求心理学分析.html">人类16种基本需求心理学分析</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/你活得太累，就是因为你不够自私.html">你活得太累，就是因为你不够自私</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/在虚无的世界中创造意义.html">在虚无的世界中创造意义</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/如何不被小事耗光精力？.html">如何不被小事耗光精力？</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/少有人走的路.html">少有人走的路</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/心流：人生最重要的事情不是努力，而是会玩.html">心流：人生最重要的事情不是努力，而是会玩</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/心理韧性：战胜挑战的内在力量 - 彭凯平教授分享.html">心理韧性：战胜挑战的内在力量 - 彭凯平教授分享</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/总是忙的团团转，试试这个方法 我们总觉得是任务太多、时间不够.html">总是忙的团团转，试试这个方法 我们总觉得是任务太多、时间不够</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/情绪与成长：心理学的力量.html">情绪与成长：心理学的力量</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/成瘾科学：戒色禁欲对大脑的影响.html">成瘾科学：戒色禁欲对大脑的影响</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/注意力缺失.html">注意力缺失</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/活的越抽象越能走出焦虑.html">活的越抽象越能走出焦虑</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/解读《我们内心的冲突》.html">解读《我们内心的冲突》</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/解读：底层逻辑.html">解读：底层逻辑</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/越是底层的家庭，家庭成员之间越是固执的无法沟通.html">越是底层的家庭，家庭成员之间越是固执的无法沟通</a></li>
+                <li class="file-item"><a href="其它/3.心理健康/高敏感的人属于大后期人格，只要熬过前面的，越往后越顺.html">高敏感的人属于大后期人格，只要熬过前面的，越往后越顺</a></li>
             </ul>
         </div>
 
         <div class="subsection">
-            <h3 class="subsection-title">经验总结</h3>
+            <h3 class="subsection-title">经验总结 （12）</h3>
             <ul class="file-grid">
-                <li class="file-item">
-                    <a href="其它/4.经验总结/喻颖正访谈：财富自由与人生规划.html">喻颖正访谈：财富自由与人生规划</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/4.经验总结/喻颖正访谈：财富自由与人生规划2.html">喻颖正访谈：财富自由与人生规划2</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/4.经验总结/老实人升职难的本质是什么？.html">老实人升职难的本质是什么？</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/4.经验总结/近十年面对复杂协调工作的经验.html">近十年面对复杂协调工作的经验</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/4.经验总结/近十年面对复杂协调工作的经验2.html">近十年面对复杂协调工作的经验2</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/4.经验总结/【精选奇遇记】正片：顶级做题家，如何用“做题思维”突围人生？.html">【精选奇遇记】正片：顶级做题家，如何用“做题思维”突围人生？</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/4.经验总结/胃癌，离我们有多近？.html">胃癌，离我们有多近？</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/4.经验总结/习得技能得本质是极致得重复+刻意练习.html">习得技能得本质是极致得重复+刻意练习</a>
-                </li>
+                <li class="file-item"><a href="其它/4.经验总结/【精选奇遇记】正片：顶级做题家，如何用“做题思维”突围人生？.html">【精选奇遇记】正片：顶级做题家，如何用“做题思维”突围人生？</a></li>
+                <li class="file-item"><a href="其它/4.经验总结/为什么很多人做了中层反而更惨？.html">为什么很多人做了中层反而更惨？</a></li>
+                <li class="file-item"><a href="其它/4.经验总结/习得技能得本质是极致得重复+刻意练习.html">习得技能得本质是极致得重复+刻意练习</a></li>
+                <li class="file-item"><a href="其它/4.经验总结/人生的第一性原理.html">人生的第一性原理</a></li>
+                <li class="file-item"><a href="其它/4.经验总结/你的固执，正在限制你的人生上限.html">你的固执，正在限制你的人生上限</a></li>
+                <li class="file-item"><a href="其它/4.经验总结/喻颖正访谈：财富自由与人生规划.html">喻颖正访谈：财富自由与人生规划</a></li>
+                <li class="file-item"><a href="其它/4.经验总结/喻颖正访谈：财富自由与人生规划2.html">喻颖正访谈：财富自由与人生规划2</a></li>
+                <li class="file-item"><a href="其它/4.经验总结/当代大学生不懂大模型.html">当代大学生不懂大模型</a></li>
+                <li class="file-item"><a href="其它/4.经验总结/老实人升职难的本质是什么？.html">老实人升职难的本质是什么？</a></li>
+                <li class="file-item"><a href="其它/4.经验总结/胃癌，离我们有多近？.html">胃癌，离我们有多近？</a></li>
+                <li class="file-item"><a href="其它/4.经验总结/近十年面对复杂协调工作的经验.html">近十年面对复杂协调工作的经验</a></li>
+                <li class="file-item"><a href="其它/4.经验总结/近十年面对复杂协调工作的经验2.html">近十年面对复杂协调工作的经验2</a></li>
             </ul>
         </div>
 
         <div class="subsection">
-            <h3 class="subsection-title">表达能力</h3>
+            <h3 class="subsection-title">表达能力 （4）</h3>
             <ul class="file-grid">
-                <li class="file-item">
-                    <a href="其它/5.表达能力/好的表达先不用追求言之有物，敢说、能说利索就不错才.html">好的表达先不用追求言之有物，敢说、能说利索就不错</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/5.表达能力/沟通能力强的人，都在用这12个说话原理.html">沟通能力强的人，都在用这12个说话原理</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/5.表达能力/表达力快速提升技巧.html">表达力快速提升技巧</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/5.表达能力/金字塔原理%20能帮你大幅提升思考、表达和解决问题的能力.html">金字塔原理 能帮你大幅提升思考、表达和解决问题的能力</a>
-                </li>
+                <li class="file-item"><a href="其它/5.表达能力/好的表达先不用追求言之有物，敢说、能说利索就不错才.html">好的表达先不用追求言之有物，敢说、能说利索就不错</a></li>
+                <li class="file-item"><a href="其它/5.表达能力/沟通能力强的人，都在用这12个说话原理.html">沟通能力强的人，都在用这12个说话原理</a></li>
+                <li class="file-item"><a href="其它/5.表达能力/表达力快速提升技巧.html">表达力快速提升技巧</a></li>
+                <li class="file-item"><a href="其它/5.表达能力/金字塔原理%20能帮你大幅提升思考、表达和解决问题的能力.html">金字塔原理 能帮你大幅提升思考、表达和解决问题的能力</a></li>
             </ul>
         </div>
 
         <div class="subsection">
-            <h3 class="subsection-title">工作方法</h3>
+            <h3 class="subsection-title">工作方法 （6）</h3>
             <ul class="file-grid">
-                <li class="file-item">
-                    <a href="其它/6.工作方法/PPP工作法-投资自己.html">PPP工作法-投资自己</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/6.工作方法/在草台班子中保持自洽.html">在草台班子中保持自洽</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/6.工作方法/事缓则圆，不在意结果也许会更好。工作中最聪明的做法，就是以柔克刚.html">事缓则圆，不在意结果也许会更好。工作中最聪明的做法，就是以柔克刚</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/6.工作方法/人人都要会的升职加薪模板（上）.html">人人都要会的升职加薪模板（上）</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/6.工作方法/人人都要会的升职加薪模板（下）.html">人人都要会的升职加薪模板（下）</a>
-                </li>
+                <li class="file-item"><a href="其它/6.工作方法/PPP工作法-投资自己.html">PPP工作法-投资自己</a></li>
+                <li class="file-item"><a href="其它/6.工作方法/事缓则圆，不在意结果也许会更好。工作中最聪明的做法，就是以柔克刚.html">事缓则圆，不在意结果也许会更好。工作中最聪明的做法，就是以柔克刚</a></li>
+                <li class="file-item"><a href="其它/6.工作方法/人人都要会的升职加薪模板（上）.html">人人都要会的升职加薪模板（上）</a></li>
+                <li class="file-item"><a href="其它/6.工作方法/人人都要会的升职加薪模板（下）.html">人人都要会的升职加薪模板（下）</a></li>
+                <li class="file-item"><a href="其它/6.工作方法/在草台班子中保持自洽.html">在草台班子中保持自洽</a></li>
+                <li class="file-item"><a href="其它/6.工作方法/管理的本质.html">管理的本质</a></li>
             </ul>
         </div>
 
         <div class="subsection">
-            <h3 class="subsection-title">访谈</h3>
+            <h3 class="subsection-title">访谈 （2）</h3>
             <ul class="file-grid">
-                <li class="file-item">
-                    <a href="其它/7.访谈/对谈兰小欢：宏观总有周期，个体只有当下，人生要学会留有余力.html">对谈兰小欢：宏观总有周期，个体只有当下，人生要学会留有余力</a>
-                </li>
-                <li class="file-item">
-                    <a href="其它/7.访谈/李笑来教你“骗”过大脑潜意识，轻松变好.html">李笑来教你“骗”过大脑潜意识，轻松变好</a>
-                </li>
+                <li class="file-item"><a href="其它/7.访谈/对谈兰小欢：宏观总有周期，个体只有当下，人生要学会留有余力.html">对谈兰小欢：宏观总有周期，个体只有当下，人生要学会留有余力</a></li>
+                <li class="file-item"><a href="其它/7.访谈/李笑来教你“骗”过大脑潜意识，轻松变好.html">李笑来教你“骗”过大脑潜意识，轻松变好</a></li>
             </ul>
         </div>
+
         <div class="subsection">
-            <h3 class="subsection-title">两性与情感</h3>
+            <h3 class="subsection-title">两性与情感 （2）</h3>
             <ul class="file-grid">
-                <li class="file-item">
-                    <a href="其它/8.两性与情感/千万别找底层的女生，尤其是底层美女.html">千万别找底层的女生，尤其是底层美女</a>
-                </li>
+                <li class="file-item"><a href="其它/8.两性与情感/千万别找底层的女生，尤其是底层美女.html">千万别找底层的女生，尤其是底层美女</a></li>
+                <li class="file-item"><a href="其它/8.两性与情感/男性提升自己最快的方式，给大脑去性化.html">男性提升自己最快的方式，给大脑去性化</a></li>
             </ul>
         </div>
     </div>

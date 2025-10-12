@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>献祭与托举：一个家族的逆天改命之路</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+    
+    <!-- Framer Motion via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.16.4/dist/framer-motion.umd.min.js"></script>
+    
+    <!-- Font Awesome via CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: #f8f7f4;
+            color: #333;
+            overflow-x: hidden;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 200px);
+            gap: 1.25rem;
+            width: 100%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        .bento-item {
+            border-radius: 24px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        .bento-item:hover {
+            transform: translateY(-5px);
+        }
+        .highlight-cyan {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 255, 255, 0));
+        }
+        .highlight-magenta {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(255, 0, 255, 0));
+        }
+        .grid-col-span-2 { grid-column: span 2; }
+        .grid-row-span-2 { grid-row: span 2; }
+
+        .super-text {
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 900;
+            line-height: 1;
+            position: absolute;
+            bottom: -10px;
+            right: 20px;
+            color: rgba(0, 0, 0, 0.8);
+            z-index: 1;
+        }
+
+        .line-art {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="w-full">
+
+    <main id="app" class="bento-grid">
+        <!-- Item 1: 献祭 (The Sacrifice) -->
+        <div class="bento-item grid-col-span-2 grid-row-span-2 highlight-cyan motion-div">
+            <h2 class="text-2xl font-bold text-gray-800">献祭</h2>
+            <p class="text-sm text-gray-500 uppercase">The Art of Generational Sacrifice</p>
+            <p class="mt-4 text-gray-700">一个家族想要逆天改命，<br>一定需要有一个人冲出来，<br>完成对整个家庭的献祭。</p>
+            <div class="super-text">献祭</div>
+            <i class="fas fa-fire-alt text-cyan-300 text-8xl absolute top-10 right-10 opacity-20"></i>
+        </div>
+
+        <!-- Item 2: 血脉觉醒 (The Awakening) -->
+        <div class="bento-item highlight-magenta motion-div">
+            <h2 class="text-2xl font-bold text-gray-800">血脉觉醒</h2>
+            <p class="text-sm text-gray-500 uppercase">The Awakened Individual</p>
+             <i class="fas fa-user-astronaut text-magenta-300 text-6xl absolute bottom-4 right-4 opacity-30"></i>
+            <p class="text-gray-700 mt-2">但凡你血脉里有一个人觉醒，投入他毕生的心血。</p>
+        </div>
+        
+        <!-- Item 3: The First Mover -->
+        <div class="bento-item motion-div">
+            <h2 class="text-2xl font-bold text-gray-800">冲锋与代价</h2>
+            <p class="text-sm text-gray-500 uppercase">The First to Charge</p>
+            <div class="line-art">
+                <svg width="100%" height="100%" viewBox="0 0 200 100" preserveAspectRatio="none">
+                    <path d="M 20 80 Q 80 80, 100 50 T 180 20" stroke="#9ca3af" stroke-width="2" fill="none" stroke-dasharray="4"/>
+                    <path d="M 175 15 L 180 20 L 175 25" stroke="#9ca3af" stroke-width="2" fill="none"/>
+                </svg>
+            </div>
+            <p class="text-gray-700 z-10 relative">他大概率会倒下，<br>像尘土洒向历史的天空。</p>
+        </div>
+
+        <!-- Item 4: The Three-Generation Leap -->
+        <div class="bento-item grid-col-span-2 highlight-magenta motion-div">
+            <h2 class="text-2xl font-bold text-gray-800">三代人的托举</h2>
+            <p class="text-sm text-gray-500 uppercase">The Three-Generation Leap</p>
+            <div class="flex justify-between items-center mt-8 text-center">
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-seedling text-3xl text-gray-400"></i>
+                    <p class="font-bold mt-2">农村</p>
+                    <p class="text-xs text-gray-500">VILLAGE</p>
+                </div>
+                <i class="fas fa-arrow-right text-gray-300 mx-2"></i>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-city text-3xl text-gray-500"></i>
+                    <p class="font-bold mt-2">县城</p>
+                    <p class="text-xs text-gray-500">TOWN</p>
+                </div>
+                <i class="fas fa-arrow-right text-gray-300 mx-2"></i>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-building text-3xl text-gray-600"></i>
+                    <p class="font-bold mt-2">省城</p>
+                     <p class="text-xs text-gray-500">CITY</p>
+                </div>
+                <i class="fas fa-arrow-right text-gray-300 mx-2"></i>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-landmark text-3xl text-gray-800"></i>
+                    <p class="font-bold mt-2">一线</p>
+                    <p class="text-xs text-gray-500">METROPOLIS</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Item 5: Our Mission -->
+        <div class="bento-item grid-col-span-2 grid-row-span-1 motion-div">
+            <h2 class="text-2xl font-bold text-gray-800">我们的使命</h2>
+            <p class="text-sm text-gray-500 uppercase">Our Mission Is To Uplift</p>
+            <p class="mt-4 text-5xl font-extrabold text-gray-800 tracking-tighter">用我们的生命，<br>完成对下一代的<span class="text-cyan-500">托举</span>。</p>
+            <div class="line-art">
+                 <svg width="100%" height="100%" viewBox="0 0 200 100" preserveAspectRatio="xMidYMid meet">
+                    <path d="M 120 80 C 130 60, 160 60, 170 80" stroke="#06b6d4" stroke-width="2.5" fill="none" />
+                    <path d="M 145 50 L 145 20 M 140 25 L 145 20 L 150 25" stroke="#06b6d4" stroke-width="2.5" fill="none" />
+                 </svg>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const motionDivs = document.querySelectorAll('.motion-div');
+            
+            motionDivs.forEach((div, i) => {
+                const motion = new framer.motion.div(div, {
+                    initial: { opacity: 0, y: 50, scale: 0.98 },
+                    whileInView: { opacity: 1, y: 0, scale: 1 },
+                    viewport: { once: false, amount: 0.3 },
+                    transition: { duration: 0.6, delay: i * 0.1, ease: [0.25, 1, 0.5, 1] }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

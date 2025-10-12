@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>戒掉“性缘脑” | Beyond Romantic Potential</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+    
+    <!-- Font Awesome via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Framer Motion via CDN -->
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.umd.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f0f2f5;
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1.5rem; /* 24px */
+        }
+        .bento-item {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 24px;
+            padding: 2rem; /* 32px */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        .highlight-gradient-blue {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0) 60%);
+        }
+        .highlight-gradient-green {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0) 60%);
+        }
+        .highlight-gradient-purple {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0) 60%);
+        }
+        .bento-item h2, .bento-item .giant-text {
+            font-weight: 900;
+        }
+        .bento-item .sub-text {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #4a5568;
+        }
+        .giant-icon {
+            position: absolute;
+            right: -20px;
+            bottom: -30px;
+            font-size: 10rem;
+            color: rgba(0, 0, 0, 0.04);
+            z-index: 0;
+            transform: rotate(-15deg);
+        }
+        
+        /* Grid spans */
+        .col-span-6 { grid-column: span 6 / span 6; }
+        .col-span-4 { grid-column: span 4 / span 4; }
+        .col-span-3 { grid-column: span 3 / span 3; }
+        .col-span-2 { grid-column: span 2 / span 2; }
+        
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(4, 1fr); }
+            .col-span-6, .col-span-4, .col-span-3, .col-span-2 { grid-column: span 4 / span 4; }
+        }
+        @media (max-width: 640px) {
+            .bento-grid { grid-template-columns: repeat(1, 1fr); }
+            .col-span-6, .col-span-4, .col-span-3, .col-span-2 { grid-column: span 1 / span 1; }
+            .bento-item { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8 md:p-12">
+
+    <main id="app" class="max-w-7xl mx-auto">
+        <div class="bento-grid">
+            <!-- Header -->
+            <motion.div class="bento-item col-span-6 text-center" :initial="{ opacity: 0, y: 20 }" :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5 }">
+                <p class="sub-text">A New Perspective on Personal Growth</p>
+                <h1 class="text-5xl md:text-8xl font-black my-4 tracking-tighter">戒掉<span class="text-blue-500">性缘脑</span></h1>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    把对爱情的渴望，转化为对世界的好奇。看见人，看见事，看见真正的自由。
+                </p>
+            </motion.div>
+
+            <!-- What is it? -->
+            <motion.div class="bento-item col-span-6 lg:col-span-2 flex flex-col justify-between" :initial="{ opacity: 0, scale: 0.95 }" :while-in-view="{ opacity: 1, scale: 1 }" :viewport="{ once: true, amount: 0.5 }" :transition="{ duration: 0.5, delay: 0.1 }">
+                <div>
+                    <p class="sub-text">DEFINITION</p>
+                    <h2 class="text-3xl mt-2">什么是性缘脑？</h2>
+                </div>
+                <p class="text-gray-700 text-base mt-4">
+                    一种将<span class="font-bold text-blue-600">性缘关系</span>置于首位的思维定势。看待任何异性都优先从“是否可能成为伴侣”的角度出发，限制了人际交往的其它可能性。
+                </p>
+                <i class="fa-solid fa-brain giant-icon"></i>
+            </motion.div>
+
+            <!-- Problem 1 -->
+            <motion.div class="bento-item col-span-6 lg:col-span-4 highlight-gradient-blue" :initial="{ opacity: 0, scale: 0.95 }" :while-in-view="{ opacity: 1, scale: 1 }" :viewport="{ once: true, amount: 0.5 }" :transition="{ duration: 0.5, delay: 0.2 }">
+                <div class="flex items-start">
+                    <div class="text-7xl font-black text-blue-500 mr-6">1</div>
+                    <div>
+                        <p class="sub-text">THE COST</p>
+                        <h2 class="text-3xl mt-2">错失<span class="text-blue-500">50%</span>的机遇</h2>
+                        <p class="text-gray-700 mt-2">
+                            如果无法妥善处理与异性的非恋爱关系，你将损失一半的潜在朋友、职场贵人和成长机会。人脉与发展的可能性被严重局限。
+                        </p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-users-slash giant-icon"></i>
+            </motion.div>
+
+            <!-- Problem 2 -->
+            <motion.div class="bento-item col-span-6 lg:col-span-4 highlight-gradient-green" :initial="{ opacity: 0, scale: 0.95 }" :while-in-view="{ opacity: 1, scale: 1 }" :viewport="{ once: true, amount: 0.5 }" :transition="{ duration: 0.5, delay: 0.1 }">
+                <div class="flex items-start">
+                    <div class="text-7xl font-black text-green-500 mr-6">2</div>
+                    <div>
+                        <p class="sub-text">THE IMBALANCE</p>
+                        <h2 class="text-3xl mt-2">偷走成长的机会</h2>
+                        <p class="text-gray-700 mt-2">
+                           它让女性的精力向内消耗于评估情感，而男性的精力则可能被转化为向外拓展事业的动力。一个越来越强，一个原地踏步。
+                        </p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-trend-down giant-icon"></i>
+            </motion.div>
+            
+            <!-- Problem 3 -->
+            <motion.div class="bento-item col-span-6 lg:col-span-2" :initial="{ opacity: 0, scale: 0.95 }" :while-in-view="{ opacity: 1, scale: 1 }" :viewport="{ once: true, amount: 0.5 }" :transition="{ duration: 0.5, delay: 0.2 }">
+                <div class="text-7xl font-black text-purple-500">3</div>
+                <p class="sub-text">THE NARROWING</p>
+                <h2 class="text-3xl mt-2">世界越来越小</h2>
+                <p class="text-gray-700 mt-2">
+                    唯一的评判维度变成“他/她对我有意思吗？”。你失去看见“人”本身的能力，你的世界只剩下喜欢与不喜欢。
+                </p>
+            </motion.div>
+
+            <!-- Quote -->
+            <motion.div class="bento-item col-span-6 text-center" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :viewport="{ once: true, amount: 0.8 }" :transition="{ duration: 0.6 }">
+                <p class="text-2xl md:text-4xl font-bold leading-tight">当大脑被<span class="text-purple-500">关系</span>填满，<br>就没空间构建<span class="text-purple-500">自己</span>的人生。</p>
+                <p class="sub-text mt-4">Attention is a scarce resource</p>
+            </motion.div>
+
+            <!-- Solution 1 -->
+            <motion.div class="bento-item col-span-6 sm:col-span-3 lg:col-span-2 highlight-gradient-purple" :initial="{ opacity: 0, scale: 0.95 }" :while-in-view="{ opacity: 1, scale: 1 }" :viewport="{ once: true, amount: 0.5 }" :transition="{ duration: 0.5, delay: 0.1 }">
+                <p class="sub-text">ACTION 01</p>
+                <h2 class="text-3xl mt-2">脱敏疗法</h2>
+                <p class="mt-4 text-gray-700">多结交异性朋友，不带目的地相处。见多了，了解多了，就“脱敏”了。</p>
+                <div class="text-right mt-6">
+                    <i class="fa-solid fa-people-group text-6xl text-purple-500/50"></i>
+                </div>
+            </motion.div>
+
+            <!-- Solution 2 -->
+            <motion.div class="bento-item col-span-6 sm:col-span-3 lg:col-span-2" :initial="{ opacity: 0, scale: 0.95 }" :while-in-view="{ opacity: 1, scale: 1 }" :viewport="{ once: true, amount: 0.5 }" :transition="{ duration: 0.5, delay: 0.2 }">
+                <p class="sub-text">ACTION 02</p>
+                <h2 class="text-3xl mt-2">优化输入</h2>
+                <p class="mt-4 text-gray-700">少看纯爱、玛丽苏爽剧。多看《天道》《大明王朝》等成长型、权谋型作品，提升认知质量。</p>
+                 <div class="text-right mt-6">
+                    <i class="fa-solid fa-book-open-reader text-6xl text-gray-500/50"></i>
+                </div>
+            </motion.div>
+
+            <!-- Solution 3 -->
+            <motion.div class="bento-item col-span-6 lg:col-span-2" :initial="{ opacity: 0, scale: 0.95 }" :while-in-view="{ opacity: 1, scale: 1 }" :viewport="{ once: true, amount: 0.5 }" :transition="{ duration: 0.5, delay: 0.3 }">
+                <p class="sub-text">ACTION 03</p>
+                <h2 class="text-3xl mt-2">多方求证</h2>
+                <p class="mt-4 text-gray-700">怀疑对方有意思时，跳出来客观寻找证据链，不要过早下结论。</p>
+                 <div class="text-right mt-6">
+                    <i class="fa-solid fa-magnifying-glass text-6xl text-gray-500/50"></i>
+                </div>
+            </motion.div>
+        </div>
+    </main>
+
+    <script type="module">
+        const { motion, useScroll, useTransform } = Motion;
+
+        const motionComponents = {
+            'motion.div': motion.div,
+        };
+
+        const app = {
+            components: motionComponents,
+            template: `
+                <div class="bento-grid">
+                    <!-- Header -->
+                    <motion.div class="bento-item col-span-6 text-center" :initial="{ opacity: 0, y: 20 }" :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5 }">
+                        <p class="sub-text">A New Perspective on Personal Growth</p>
+                        <h1 class="text-5xl md:text-8xl font-black my-4 tracking-tighter">戒掉<span class="text-blue-500">性缘脑</span></h1>
+                        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                            把对爱情的渴望，转化为对世界的好奇。看见人，看见事，看见真正的自由。
+                        </p>
+                    </motion.div>
+        
+                    <!-- What is it? -->
+                    <motion.div class="bento-item col-span-6 lg:col-span-2 flex flex-col justify-between" :initial="{ opacity: 0, scale: 0.95 }" :while-in-view="{ opacity: 1, scale: 1 }" :viewport="{ once: true, amount: 0.5 }" :transition="{ duration: 0.5, delay: 0.1 }">
+                        <div>
+                            <p class="sub-text">DEFINITION</p>
+                            <h2 class="text-3xl mt-2">什么是性缘脑？</h2>
+                        </div>
+                        <p class="text-gray-700 text-base mt-4">
+                            一种将<span class="font-bold text-blue-600">性缘关系</span>置于首位的思维定势。看待任何异性都优先从“是否可能成为伴侣”的角度出发，限制了人际交往的其它可能性。
+                        </p>
+                        <i class="fa-solid fa-brain giant-icon"></i>
+                    </motion.div>
+        
+                    <!-- Problem 1 -->
+                    <motion.div class="bento-item col-span-6 lg:col-span-4 highlight-gradient-blue" :initial="{ opacity: 0, scale: 0.95 }" :while-in-view="{ opacity: 1, scale: 1 }" :viewport="{ once: true, amount: 0.5 }" :transition="{ duration: 0.5, delay: 0.2 }">
+                        <div class="flex items-start">
+                            <div class="text-7xl font-black text-blue-500 mr-6">1</div>
+                            <div>
+                                <p class="sub-text">THE COST</p>
+                                <h2 class="text-3xl mt-2">错失<span class="text-blue-500">50%</span>的机遇</h2>
+                                <p class="text-gray-700 mt-2">
+                                    如果无法妥善处理与异性的非恋爱关系，你将损失一半的潜在朋友、职场贵人和成长机会。人脉与发展的可能性被严重局限。
+                                </p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-users-slash giant-icon"></i>
+                    </motion.div>
+        
+                    <!-- Problem 2 -->
+                    <motion.div class="bento-item col-span-6 lg:col-span-4 highlight-gradient-green" :initial="{ opacity: 0, scale: 0.95 }" :while-in-view="{ opacity: 1, scale: 1 }" :viewport="{ once: true, amount: 0.5 }" :transition="{ duration: 0.5, delay: 0.1 }">
+                        <div class="flex items-start">
+                            <div class="text-7xl font-black text-green-500 mr-6">2</div>
+                            <div>
+                                <p class="sub-text">THE IMBALANCE</p>
+                                <h2 class="text-3xl mt-2">偷走成长的机会</h2>
+                                <p class="text-gray-700 mt-2">
+                                   它让女性的精力向内消耗于评估情感，而男性的精力则可能被转化为向外拓展事业的动力。一个越来越强，一个原地踏步。
+                                </p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-arrow-trend-down giant-icon"></i>
+                    </motion.div>
+                    
+                    <!-- Problem 3 -->
+                    <motion.div class="bento-item col-span-6 lg:col-span-2" :initial="{ opacity: 0, scale: 0.95 }" :while-in-view="{ opacity: 1, scale: 1 }" :viewport="{ once: true, amount: 0.5 }" :transition="{ duration: 0.5, delay: 0.2 }">
+                        <div class="text-7xl font-black text-purple-500">3</div>
+                        <p class="sub-text">THE NARROWING</p>
+                        <h2 class="text-3xl mt-2">世界越来越小</h2>
+                        <p class="text-gray-700 mt-2">
+                            唯一的评判维度变成“他/她对我有意思吗？”。你失去看见“人”本身的能力，你的世界只剩下喜欢与不喜欢。
+                        </p>
+                    </motion.div>
+        
+                    <!-- Quote -->
+                    <motion.div class="bento-item col-span-6 text-center" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :viewport="{ once: true, amount: 0.8 }" :transition="{ duration: 0.6 }">
+                        <p class="text-2xl md:text-4xl font-bold leading-tight">当大脑被<span class="text-purple-500">关系</span>填满，<br>就没空间构建<span class="text-purple-500">自己</span>的人生。</p>
+                        <p class="sub-text mt-4">Attention is a scarce resource</p>
+                    </motion.div>
+        
+                    <!-- Solution 1 -->
+                    <motion.div class="bento-item col-span-6 sm:col-span-3 lg:col-span-2 highlight-gradient-purple" :initial="{ opacity: 0, scale: 0.95 }" :while-in-view="{ opacity: 1, scale: 1 }" :viewport="{ once: true, amount: 0.5 }" :transition="{ duration: 0.5, delay: 0.1 }">
+                        <p class="sub-text">ACTION 01</p>
+                        <h2 class="text-3xl mt-2">脱敏疗法</h2>
+                        <p class="mt-4 text-gray-700">多结交异性朋友，不带目的地相处。见多了，了解多了，就“脱敏”了。</p>
+                        <div class="text-right mt-6">
+                            <i class="fa-solid fa-people-group text-6xl text-purple-500/50"></i>
+                        </div>
+                    </motion.div>
+        
+                    <!-- Solution 2 -->
+                    <motion.div class="bento-item col-span-6 sm:col-span-3 lg:col-span-2" :initial="{ opacity: 0, scale: 0.95 }" :while-in-view="{ opacity: 1, scale: 1 }" :viewport="{ once: true, amount: 0.5 }" :transition="{ duration: 0.5, delay: 0.2 }">
+                        <p class="sub-text">ACTION 02</p>
+                        <h2 class="text-3xl mt-2">优化输入</h2>
+                        <p class="mt-4 text-gray-700">少看纯爱、玛丽苏爽剧。多看《天道》《大明王朝》等成长型、权谋型作品，提升认知质量。</p>
+                         <div class="text-right mt-6">
+                            <i class="fa-solid fa-book-open-reader text-6xl text-gray-500/50"></i>
+                        </div>
+                    </motion.div>
+        
+                    <!-- Solution 3 -->
+                    <motion.div class="bento-item col-span-6 lg:col-span-2" :initial="{ opacity: 0, scale: 0.95 }" :while-in-view="{ opacity: 1, scale: 1 }" :viewport="{ once: true, amount: 0.5 }" :transition="{ duration: 0.5, delay: 0.3 }">
+                        <p class="sub-text">ACTION 03</p>
+                        <h2 class="text-3xl mt-2">多方求证</h2>
+                        <p class="mt-4 text-gray-700">怀疑对方有意思时，跳出来客观寻找证据链，不要过早下结论。</p>
+                         <div class="text-right mt-6">
+                            <i class="fa-solid fa-magnifying-glass text-6xl text-gray-500/50"></i>
+                        </div>
+                    </motion.div>
+                </div>
+            `
+        };
+        
+        // This is a simplified setup for Framer Motion with Vue-like syntax for the demo.
+        // It dynamically replaces custom <motion.div> tags with actual animated elements.
+        document.addEventListener('DOMContentLoaded', () => {
+            const appContainer = document.getElementById('app');
+            const motionElements = appContainer.querySelectorAll('motion\\.div');
+            
+            motionElements.forEach(el => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const props = {};
+                            for (const attr of el.attributes) {
+                                if (attr.name.startsWith(':')) {
+                                    try {
+                                        props[attr.name.substring(1)] = JSON.parse(attr.value.replace(/'/g, '"'));
+                                    } catch(e) { console.error('Could not parse prop: ', attr.value, e); }
+                                } else {
+                                    el.style[attr.name] = attr.value;
+                                }
+                            }
+                            
+                            const initial = props.initial || {};
+                            const animate = props['while-in-view'] || props.animate || {};
+                            const transition = props.transition || { duration: 0.5 };
+                            
+                            // Apply initial styles
+                            Object.keys(initial).forEach(key => {
+                                if (key === 'opacity') el.style.opacity = initial[key];
+                                if (key === 'scale') el.style.transform = `scale(${initial[key]})`;
+                                if (key === 'y') el.style.transform = `translateY(${initial[key]}px)`;
+                            });
+                             el.style.transition = `all ${transition.duration || 0.5}s ease-out ${transition.delay || 0}s`;
+
+                            // Apply animate styles
+                            setTimeout(() => {
+                                Object.keys(animate).forEach(key => {
+                                    if (key === 'opacity') el.style.opacity = animate[key];
+                                    if (key === 'scale') el.style.transform = el.style.transform.replace(/scale\([^)]+\)/, '') + ` scale(${animate[key]})`;
+                                    if (key === 'y') el.style.transform = el.style.transform.replace(/translateY\([^)]+\)/, '') + ` translateY(${animate[key]}px)`;
+                                });
+                                // Reset transform if no y or scale
+                                if (!animate.y && !animate.scale) el.style.transform = 'none';
+                            }, 10);
+
+                            observer.unobserve(el);
+                        }
+                    });
+                }, { threshold: 0.5, rootMargin: '0px 0px -50px 0px' });
+                
+                observer.observe(el);
+            });
+        });
+
+    </script>
+</body>
+</html>

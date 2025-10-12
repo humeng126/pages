@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>精力充沛的习惯系统 | 夏冰雹</title>
+    
+    <!-- TailwindCSS via CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    
+    <!-- Font Awesome Icons via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Framer Motion (Motion One) via CDN -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.es.js"></script>
+
+    <style>
+        /* Custom soft color palette */
+        body {
+            background-color: #f8f9fa; /* Soft off-white */
+            color: #343a40; /* Dark grey for text */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        .bento-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(1, 1fr);
+            padding: 1rem;
+        }
+        @media (min-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(4, 1fr);
+                padding: 2rem;
+            }
+        }
+        .bento-item {
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* Softer, larger radius */
+            padding: 1.5rem;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        .highlight-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+        .giant-text {
+            font-size: 8rem;
+            font-weight: 800;
+            line-height: 1;
+            color: #495057;
+        }
+        .giant-text-sm {
+             font-size: 6rem;
+        }
+        @media (max-width: 768px) {
+            .giant-text {
+                font-size: 6rem;
+            }
+             .giant-text-sm {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto max-w-7xl">
+        <!-- Header -->
+        <header class="text-center p-8 md:p-12 animate-in">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-800">15年高能量生活习惯系统</h1>
+            <p class="mt-4 text-lg text-gray-500">How to Supercharge Your Life <span class="text-blue-500">by Xia Bingbao</span></p>
+        </header>
+
+        <!-- Bento Grid Layout -->
+        <main class="bento-grid">
+
+            <!-- 1. Sleep Section -->
+            <div class="bento-item md:col-span-2 md:row-span-2 flex flex-col justify-between animate-in">
+                <div class="highlight-gradient" style="background: linear-gradient(to bottom, #89cff0, transparent);"></div>
+                <div class="content-wrapper">
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-moon text-3xl text-blue-500"></i>
+                        <div>
+                            <h2 class="text-2xl font-bold">良好睡眠</h2>
+                            <p class="text-sm text-gray-400">The Best Investment for Your Brain</p>
+                        </div>
+                    </div>
+                    <div class="flex items-baseline mt-8">
+                        <span class="giant-text text-blue-900/40">7-9</span>
+                        <span class="text-4xl font-bold ml-2 text-gray-600">小时</span>
+                    </div>
+                    <p class="mt-4 text-gray-600">成年人每日所需睡眠。晚上11点至凌晨2点是大脑自我修复的黄金时段，深度睡眠中大脑会清除毒素，巩固记忆。缺觉会像债务一样累积。</p>
+                </div>
+                <div class="content-wrapper mt-6">
+                    <h3 class="font-semibold mb-2">睡眠习惯养成：</h3>
+                    <ul class="space-y-2 text-gray-500">
+                        <li class="flex items-start gap-3"><i class="fa-regular fa-circle-check text-blue-500 mt-1"></i><span><strong class="text-gray-700">固定起床时间</strong>，接触自然光同步生物钟。</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-regular fa-circle-check text-blue-500 mt-1"></i><span>下午2点后<strong class="text-gray-700">避免咖啡因</strong>，午睡不超过30分钟。</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-regular fa-circle-check text-blue-500 mt-1"></i><span>睡前20分钟<strong class="text-gray-700">远离电子设备</strong>，减少蓝光干扰。</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 2. Exercise Section -->
+            <div class="bento-item md:col-span-2 md:row-span-3 flex flex-col justify-between animate-in">
+                 <div class="highlight-gradient" style="background: linear-gradient(to bottom, #98fb98, transparent);"></div>
+                 <div class="content-wrapper h-full flex flex-col">
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-person-running text-3xl text-green-500"></i>
+                        <div>
+                            <h2 class="text-2xl font-bold">户外运动</h2>
+                            <p class="text-sm text-gray-400">Effective Mental Charger</p>
+                        </div>
+                    </div>
+                    <div class="flex-grow flex flex-col items-center justify-center text-center my-8">
+                        <p class="text-lg text-gray-500">每周中等强度运动</p>
+                        <div class="giant-text giant-text-sm text-green-900/40 my-2">150+</div>
+                        <p class="text-lg text-gray-500">分钟 (WHO 建议)</p>
+                    </div>
+                    <p class="text-gray-600">运动不只强身健体，更能激活大脑海马体，促进神经元再生，提升学习力和记忆力。坚持锻炼能激活大脑前额叶，增强专注力与自控力，有效对抗拖延。</p>
+                    <div class="mt-4 p-4 bg-green-50 rounded-xl border border-green-200">
+                        <p class="text-green-800"><i class="fa-solid fa-leaf mr-2"></i>每周在大自然中待2小时，能显著缓解焦虑，提升幸福感。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 3. Diet Section -->
+            <div class="bento-item md:col-span-2 md:row-span-3 flex flex-col animate-in">
+                <div class="highlight-gradient" style="background: linear-gradient(to bottom, #ffdab9, transparent);"></div>
+                <div class="content-wrapper flex flex-col h-full">
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-apple-whole text-3xl text-orange-500"></i>
+                        <div>
+                            <h2 class="text-2xl font-bold">拒绝超加工食品</h2>
+                            <p class="text-sm text-gray-400">You Are What You Eat</p>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-600">只吃食物原型，不吃被反复加工的“食物尸体”。超加工食品与肥胖、糖尿病、抑郁症高度相关，并被精心设计让你上瘾。</p>
+                    <div class="flex-grow flex items-center justify-center my-6">
+                        <div class="w-full text-center">
+                            <h3 class="text-2xl font-bold text-orange-900/60">20 / 80</h3>
+                            <p class="text-gray-500 mt-2">法则</p>
+                            <div class="w-full bg-gray-200 rounded-full h-4 mt-4 overflow-hidden">
+                                <div class="bg-gradient-to-r from-orange-400 to-amber-500 h-4 rounded-full" style="width: 80%"></div>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-2">保证至少 <strong class="text-gray-700">80%</strong> 的饮食是天然食物</p>
+                        </div>
+                    </div>
+                     <p class="text-gray-600">当你戒掉高糖饮料和垃圾食品，你会发现皮肤、肠胃和脑力都会得到惊人的改善。</p>
+                </div>
+            </div>
+
+            <!-- 4. Brain Management Section -->
+            <div class="bento-item md:col-span-2 md:row-span-2 flex flex-col justify-between animate-in">
+                <div class="highlight-gradient" style="background: linear-gradient(to bottom, #d8b4fe, transparent);"></div>
+                <div class="content-wrapper">
+                     <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-brain text-3xl text-purple-500"></i>
+                        <div>
+                            <h2 class="text-2xl font-bold">脑力管理</h2>
+                            <p class="text-sm text-gray-400">Master Your Peak Hours</p>
+                        </div>
+                    </div>
+                    <div class="flex items-baseline mt-8">
+                        <span class="giant-text text-purple-900/40">4</span>
+                        <span class="text-4xl font-bold ml-2 text-gray-600">小时</span>
+                    </div>
+                    <p class="mt-4 text-gray-600">把握每日最清醒、最有创造力的<strong class="text-purple-600">巅峰4小时</strong>，处理最重要、最有挑战的事。避免将黄金时间浪费在刷手机等琐事上。</p>
+                </div>
+                 <div class="content-wrapper mt-6">
+                    <h3 class="font-semibold mb-2">提升效率：</h3>
+                    <ul class="space-y-2 text-gray-500">
+                        <li class="flex items-start gap-3"><i class="fa-regular fa-circle-check text-purple-500 mt-1"></i><span><strong class="text-gray-700">减少决策疲劳</strong>：固定衣着、饮食等，为重要决策节省脑力。</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-regular fa-circle-check text-purple-500 mt-1"></i><span><strong class="text-gray-700">聪明休息</strong>：专注30-40分钟后休息5分钟，能快速恢复注意力。</span></li>
+                    </ul>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- JavaScript for Animation -->
+    <script type="module">
+        import { animate, inView, stagger } from "https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.es.js";
+
+        // Select all elements with the 'animate-in' class
+        const items = document.querySelectorAll(".animate-in");
+
+        // Use inView to trigger the animation when elements scroll into view
+        inView(items, (info) => {
+            animate(
+                info.target,
+                { 
+                    y: [20, 0], 
+                    opacity: [0, 1] 
+                },
+                { 
+                    duration: 0.8,
+                    delay: stagger(0.1),
+                    easing: [0.22, 1, 0.36, 1] // A smooth ease-out curve
+                }
+            );
+        }, {
+            // Optional: Adjust the margin to trigger the animation earlier or later
+            margin: "-10% 0px -10% 0px"
+        });
+    </script>
+</body>
+</html>

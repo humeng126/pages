@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>穷人最大的知识陷阱 | The Learning Trap</title>
+    
+    <!-- TailwindCSS 3.4.1 via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome 6.5.2 via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Framer Motion (Motion One) 10.18.0 via CDN -->
+    <script type="module">
+        import { inView, animate, stagger } from "https://cdn.skypack.dev/motion";
+
+        // Animate elements with the "animate-in" class when they enter the viewport
+        inView(".animate-in", (info) => {
+            animate(
+                info.target,
+                { y: [20, 0], opacity: [0, 1] },
+                { duration: 0.8, delay: (info.target.dataset.delay || 0) * 0.1, easing: [0.34, 1.56, 0.64, 1] }
+            );
+        });
+        
+        // Animate the chart bars
+        inView("#chart", () => {
+             animate("#bar-knowledge", { width: ['0%', '90%'] }, { duration: 1.5, delay: 0.5, easing: 'ease-out' });
+             animate("#bar-savings", { width: ['0%', '15%'] }, { duration: 1, delay: 0.7, easing: 'ease-out' });
+        });
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Roboto:wght@300;400&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', 'Roboto', sans-serif;
+            background-color: #F8F7F4;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(4, minmax(120px, auto));
+            gap: 1.25rem; /* 20px */
+            padding: 1.25rem;
+            max-width: 1400px;
+            margin: auto;
+            min-height: 95vh;
+        }
+
+        .bento-item {
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .glow-effect {
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        .glow-cyan {
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle at center, rgba(34, 211, 238, 0.15) 0%, rgba(34, 211, 238, 0) 60%);
+        }
+
+        .glow-orange {
+            bottom: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(251, 146, 60, 0.2) 0%, rgba(251, 146, 60, 0) 70%);
+        }
+        
+        .grid-col-span-3 { grid-column: span 3; }
+        .grid-col-span-2 { grid-column: span 2; }
+        .grid-row-span-2 { grid-row: span 2; }
+        .grid-row-span-4 { grid-row: span 4; }
+
+        .super-text {
+            font-weight: 900;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        .eng-sub {
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+
+    <main class="bento-grid">
+        
+        <!-- 1. Main Title -->
+        <div class="bento-item grid-col-span-3 grid-row-span-2 flex flex-col justify-between animate-in" data-delay="0">
+            <div class="glow-effect glow-cyan"></div>
+            <div>
+                <p class="eng-sub text-cyan-600">The Learning Trap</p>
+                <h1 class="text-4xl md:text-6xl super-text mt-2">穷人掉过最深的坑<br>就是不停的学习</h1>
+            </div>
+            <p class="text-lg text-gray-600 max-w-2xl">
+                把输入当努力，把收藏当拥有。囤积一辈子的精神食粮，最后却饿死在粮仓里。
+            </p>
+        </div>
+
+        <!-- 2. Knowledge vs Savings Chart -->
+        <div id="chart" class="bento-item grid-col-span-2 grid-row-span-2 flex flex-col justify-center animate-in" data-delay="1">
+             <div class="glow-effect glow-orange"></div>
+             <p class="eng-sub text-orange-600 mb-4">The Imbalance</p>
+             <div class="w-full space-y-4">
+                 <div>
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="font-bold text-gray-700">知识储备 KNOWLEDGE</span>
+                        <span class="text-2xl font-bold text-cyan-500">90%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-4">
+                        <div id="bar-knowledge" class="bg-cyan-500 h-4 rounded-full" style="width: 0%;"></div>
+                    </div>
+                 </div>
+                 <div>
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="font-bold text-gray-700">存款余额 SAVINGS</span>
+                        <span class="text-2xl font-bold text-orange-500">15%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-4">
+                        <div id="bar-savings" class="bg-orange-500 h-4 rounded-full" style="width: 0%;"></div>
+                    </div>
+                 </div>
+             </div>
+             <p class="text-center mt-6 text-gray-500">存款余额，永远追不上知识储备</p>
+        </div>
+
+        <!-- 3. Rule 1 -->
+        <div class="bento-item flex flex-col justify-between animate-in" data-delay="2" style="grid-column: 1; grid-row: 3 / span 2;">
+            <div class="flex justify-between items-start">
+                <span class="text-7xl font-black text-gray-200">01</span>
+                <i class="fa-solid fa-bullseye text-3xl text-cyan-500"></i>
+            </div>
+            <div>
+                <p class="eng-sub text-cyan-600">Rule One</p>
+                <h2 class="text-2xl super-text mt-1">用需求倒逼学习</h2>
+                <p class="mt-2 text-gray-600">任何不能马上换钱的知识都是负债。先学看懂施工图，而不是元宇宙投资指南。</p>
+            </div>
+        </div>
+
+        <!-- 4. The Problem & The Illusion -->
+        <div class="bento-item grid-col-span-2 flex flex-col justify-around animate-in" data-delay="3" style="grid-column: 2 / span 2; grid-row: 3;">
+            <div class="flex items-center">
+                <i class="fa-solid fa-pills text-4xl text-orange-500 mr-4"></i>
+                <div>
+                    <h3 class="text-xl super-text">学习是最廉价的止痛药</h3>
+                    <p class="text-gray-600">学习让你感觉良好，仿佛明天就能成功，但现实是连瓶矿泉水都换不来。
+                        白天被痛骂，晚上学情商沟通术；月光了，就买理财入门课。学习让你感觉良好，但现实是往自动售卖机里塞了999个硬币，却什么也得不到。</p>
+                </div>
+            </div>
+             <hr class="my-4 border-gray-200">
+             <div class="flex items-center">
+                <i class="fa-solid fa-layer-group text-4xl text-cyan-500 mr-4"></i>
+                <div>
+                    <h3 class="text-xl super-text">知识仓储症晚期</h3>
+                    <p class="text-gray-600">信息爆炸时代，知识和噪音界限模糊，大脑被堆成了垃圾场。
+                        A博主说要怼脸拍，B博主说要远镜头。算法把你感兴趣的一切都喂给你，你的大脑被堆成了垃圾场。</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 5. Rule 2 -->
+        <div class="bento-item flex flex-col justify-between animate-in" data-delay="4" style="grid-column: 2; grid-row: 4;">
+            <div class="flex justify-between items-start">
+                <span class="text-7xl font-black text-gray-200">02</span>
+                <i class="fa-solid fa-person-digging text-3xl text-cyan-500"></i>
+            </div>
+            <div>
+                 <p class="eng-sub text-cyan-600">Rule Two</p>
+                <h2 class="text-2xl super-text mt-1">学一招，用一招</h2>
+                <p class="mt-2 text-gray-600">把90%的精力，砸向一个能变现的针尖，然后把它磨成金箍棒。</p>
+            </div>
+        </div>
+        
+        <!-- 6. Rule 3 -->
+        <div class="bento-item flex flex-col justify-between animate-in" data-delay="5" style="grid-column: 3; grid-row: 4;">
+             <div class="flex justify-between items-start">
+                <span class="text-7xl font-black text-gray-200">03</span>
+                <i class="fa-solid fa-flask-vial text-3xl text-cyan-500"></i>
+            </div>
+            <div>
+                 <p class="eng-sub text-cyan-600">Rule Three</p>
+                <h2 class="text-2xl super-text mt-1">把自己当小白鼠</h2>
+                <p class="mt-2 text-gray-600">把学习成本转嫁给市场，让真实的用户和结果来投票。</p>
+            </div>
+        </div>
+        
+        <!-- 7. Final Punchline -->
+        <div class="bento-item grid-col-span-2 grid-row-span-2 flex flex-col justify-center items-center text-center animate-in" data-delay="6" style="grid-column: 4 / span 2; grid-row: 3 / span 2;">
+            <div class="glow-effect glow-cyan"></div>
+            <svg class="w-16 h-16 text-cyan-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <p class="eng-sub text-cyan-600">Final advice</p>
+            <h2 class="text-2xl md:text-3xl super-text mt-2 leading-tight">
+                别在知识的海洋里当游客<br>跳进离你最近的泥潭
+            </h2>
+            <p class="mt-4 text-gray-600">
+                你囤积的课程不会让你富有，但贩卖课程的人正靠你的焦虑买保时捷。
+            </p>
+        </div>
+
+    </main>
+
+</body>
+</html>
