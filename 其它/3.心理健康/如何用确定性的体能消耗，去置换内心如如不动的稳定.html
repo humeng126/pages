@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王阳明的精力管理智慧</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+
+    <!-- Font Awesome via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Framer Motion via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10/dist/framer-motion.umd.min.js"></script>
+    
+    <style>
+        /* Custom font for a more elegant look, falling back to system defaults */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc; /* A soft, light background color (slate-50) */
+            overflow-x: hidden;
+        }
+        .bento-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+            padding: 1rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .bento-item {
+            background-color: white;
+            border-radius: 1.5rem; /* Softer, larger border radius */
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e2e8f0; /* Subtle border */
+        }
+        /* Spanning items */
+        .col-span-2 { grid-column: span 2; }
+        .col-span-4 { grid-column: span 4; }
+        .row-span-2 { grid-row: span 2; }
+        
+        /* Techy gradient highlight */
+        .highlight-gradient-blue::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0) 60%);
+            animation: rotate 15s linear infinite;
+        }
+
+        .highlight-gradient-green::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(to top, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0));
+            border-radius: 50%;
+            filter: blur(30px);
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+<div id="app">
+    <div class="bento-grid">
+        <!-- Item 1: Main Title -->
+        <motion.div class="bento-item col-span-2 row-span-2 flex flex-col justify-between highlight-gradient-blue">
+            <div>
+                <span class="text-sm font-semibold text-blue-500">THE SECRET OF ENERGY</span>
+                <h1 class="text-6xl md:text-8xl font-black leading-tight mt-2">身累，<br>但不累心</h1>
+            </div>
+            <p class="text-slate-500 mt-4">身体的疲惫是物质的，而心力的浩劫是精神的。前者可靠休息归零，后者却能在静止中无限发酵。</p>
+        </motion.div>
+
+        <!-- Item 2: Wang Yangming's Quote -->
+        <motion.div class="bento-item col-span-2 flex flex-col justify-center items-center text-center">
+             <i class="fa-solid fa-mountain-sun text-4xl text-emerald-500 mb-4"></i>
+            <h2 class="text-3xl md:text-5xl font-bold">山高万仞，<br>只登一步</h2>
+            <span class="text-xs text-slate-400 mt-2">WANG YANGMING'S WISDOM</span>
+            <p class="text-sm text-slate-600 mt-4">无论山有多高，专注于脚下。踏实前进，便能轻松登顶。</p>
+        </motion.div>
+
+        <!-- Item 3: Comparison Chart -->
+        <motion.div class="bento-item col-span-2 row-span-2">
+            <h3 class="font-bold text-lg mb-4">两种疲惫的曲线 <span class="text-xs ml-1">THE CURVES OF FATIGUE</span></h3>
+            <div class="space-y-6">
+                <div>
+                    <div class="flex justify-between items-center text-sm mb-1">
+                        <span class="font-semibold"><i class="fa-solid fa-person-running mr-2 text-sky-500"></i>身体的疲惫</span>
+                        <span class="text-sky-500 font-mono">ARITHMETIC</span>
+                    </div>
+                    <svg width="100%" height="60" viewBox="0 0 200 60" preserveAspectRatio="none">
+                        <path d="M 10 50 L 190 10" stroke="#38bdf8" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <circle cx="10" cy="50" r="3" fill="#38bdf8" />
+                        <circle cx="190" cy="10" r="3" fill="#38bdf8" />
+                    </svg>
+                    <p class="text-xs text-slate-500 mt-2">累加于肌肉，消散于睡眠。曲线可测，上限可知。</p>
+                </div>
+                <div>
+                    <div class="flex justify-between items-center text-sm mb-1">
+                        <span class="font-semibold"><i class="fa-solid fa-brain mr-2 text-red-500"></i>心力的浩劫</span>
+                        <span class="text-red-500 font-mono">EXPONENTIAL</span>
+                    </div>
+                    <svg width="100%" height="60" viewBox="0 0 200 60" preserveAspectRatio="none">
+                         <path d="M 10 50 Q 100 50, 150 30 T 190 10" stroke="#ef4444" stroke-width="3" fill="none" stroke-linecap="round"/>
+                         <circle cx="10" cy="50" r="3" fill="#ef4444" />
+                         <circle cx="190" cy="10" r="3" fill="#ef4444" />
+                    </svg>
+                    <p class="text-xs text-slate-500 mt-2">滋生于心念，繁衍于情绪。没有边界，无法丈量。</p>
+                </div>
+            </div>
+        </motion.div>
+
+        <!-- Item 4: The Flow State -->
+        <motion.div class="bento-item col-span-2 flex flex-col items-center justify-center text-center highlight-gradient-green">
+            <i class="fa-solid fa-person-snowboarding text-4xl text-green-500 mb-4"></i>
+            <h2 class="text-4xl font-extrabold">精神内耗</h2>
+            <span class="text-sm font-semibold text-green-600 mt-1">Mental Friction</span>
+            <p class="text-slate-600 mt-4">想太多、拖延、不行动，在思绪中枯萎。</p>
+        </motion.div>
+
+        <!-- Item 4: The Flow State -->
+        <motion.div class="bento-item col-span-2 flex flex-col items-center justify-center text-center highlight-gradient-green">
+            <i class="fa-solid fa-person-snowboarding text-4xl text-green-500 mb-4"></i>
+            <h2 class="text-4xl font-extrabold">心流状态</h2>
+            <span class="text-sm font-semibold text-green-600 mt-1">THE FLOW STATE</span>
+            <p class="text-slate-600 mt-4">用确定性的体能消耗，去置换内心的“如如不动”。身体在燃烧，内心却格外平静。</p>
+        </motion.div>
+
+        <!-- Item 5: The Solution -->
+        <motion.div class="bento-item col-span-2">
+            <i class="fa-solid fa-key text-2xl text-amber-500 mb-3"></i>
+            <h3 class="text-xl font-bold">真正的放松</h3>
+            <span class="text-xs text-slate-400">TRUE RELAXATION</span>
+            <p class="mt-3 text-3xl font-bold leading-snug">物来则应，过去不留。</p>
+            </br>
+            <h3 class="text-xl font-bold">当自己的能量管理员</h3>
+            <span class="text-xs text-slate-400 mt-1">BE YOUR ENERGY MANAGER</span>
+        </motion.div>
+
+    </div>
+</div>
+
+<script>
+    const { motion, stagger, animate } = Motion;
+
+    // A simple function to apply scroll-triggered animations to all bento items
+    function setupAnimations() {
+        const items = document.querySelectorAll('.bento-item');
+        
+        items.forEach((item, index) => {
+            const motionDiv = motion(item);
+            motionDiv.set({ opacity: 0, y: 50 });
+
+            // Animate into view
+            animate(
+                item,
+                { opacity: 1, y: 0 },
+                { 
+                    duration: 0.6, 
+                    delay: index * 0.1, // Staggered delay for each item
+                    ease: "easeOut"
+                }
+            );
+
+            // Optional: Add hover effect
+            item.addEventListener('mouseenter', () => {
+                animate(item, { scale: 1.03 }, { duration: 0.3 });
+            });
+            item.addEventListener('mouseleave', () => {
+                animate(item, { scale: 1.0 }, { duration: 0.3 });
+            });
+        });
+    }
+
+    // Run the setup function when the DOM is ready
+    document.addEventListener('DOMContentLoaded', setupAnimations);
+
+</script>
+
+</body>
+</html>
