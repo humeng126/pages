@@ -131,3 +131,6 @@ Each article should include:
 ## Deployment
 
 The site is configured for automatic deployment to GitHub Pages. No manual build process required - simply push changes to the main branch and the workflow will handle deployment.
+
+## 提示词
+请你根据目录及里面内容更新index.html 
