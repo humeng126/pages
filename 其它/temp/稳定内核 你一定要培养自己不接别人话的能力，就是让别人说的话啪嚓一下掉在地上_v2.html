@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>稳定内核 - 坚不可摧的成长法则</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Custom configuration for soft/light colors */
+        :root {
+            --color-primary: #818cf8; /* Light Indigo */
+            --color-accent: #22d3ee; /* Light Cyan/Aqua */
+            --color-bg: #f8fafc; /* Pale Blue/White */
+        }
+        body {
+            background-color: var(--color-bg);
+            font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Bento Grid Card Base Styling */
+        .bento-card {
+            border-radius: 20px;
+            padding: 30px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 15px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        /* Line Art Decoration using pseudo elements (Subtle Tech Border) */
+        .line-deco::before {
+            content: '';
+            position: absolute;
+            width: calc(100% - 2px);
+            height: calc(100% - 2px);
+            top: 1px;
+            left: 1px;
+            border-radius: 19px;
+            border: 2px solid var(--color-accent);
+            opacity: 0.15;
+            pointer-events: none;
+            /* Simple Animation example */
+            animation: breathe-opacity 5s infinite ease-in-out;
+        }
+
+        @keyframes breathe-opacity {
+            0% { opacity: 0.15; }
+            50% { opacity: 0.05; }
+            100% { opacity: 0.15; }
+        }
+
+        /* Scroll Reveal base state (mimicking Apple fade-in scale) */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-item.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        /* Custom glow effect for text */
+        .text-glow {
+            text-shadow: 0 0 8px rgba(34, 211, 238, 0.4);
+        }
+        
+        /* Radial Gradient for Core Section (Highlighter transparency gradient) */
+        .core-glow {
+            background: radial-gradient(circle at center, rgba(34, 211, 238, 0.15) 0%, rgba(34, 211, 238, 0.0) 70%);
+        }
+
+        /* Adjustments for the collapsible transcript */
+        #transcript-content {
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            overflow: hidden;
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        #transcript-content.visible {
+            max-height: 500px; /* Sufficient height for content */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="max-w-7xl mx-auto p-4 md:p-8 pt-10">
+
+    <!-- Metadata Header -->
+    <header id="header-sticky" class="mb-10 p-5 bg-white rounded-xl shadow-lg border border-slate-100">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-b pb-2">坚不可摧的内核：成长之道</h1>
+        <div class="text-sm text-gray-500 space-y-1">
+            <p><strong>视频标题:</strong> 稳定内核 你一定要培养自己不接别人话的能力，就是让别人说的话啪嚓一下掉在地上</p>
+            <p><strong>视频链接:</strong> <a href="https://v.douyin.com/DSh5JsqvQPQ/" target="_blank" class="text-indigo-500 hover:underline">https://v.douyin.com/DSh5JsqvQPQ/</a></p>
+            <p><strong>提取时间:</strong> 2025-12-28 07:58:35</p>
+        </div>
+
+        <!-- Toggle Button for Transcript -->
+        <button id="toggle-transcript" class="mt-4 px-4 py-2 bg-indigo-100 text-indigo-700 rounded-lg font-semibold hover:bg-indigo-200 transition">
+            <i class="fas fa-file-alt mr-2"></i> 显示原文
+        </button>
+
+        <!-- Collapsible Transcript Area -->
+        <div id="transcript-content" class="mt-4 border border-slate-200 rounded-lg bg-slate-50 text-sm">
+            <p class="whitespace-pre-wrap p-4">我告诉你，一定要培养自己坚不可摧的内核。要做的不要可怜自己，就是不要莫名其妙的有委屈感。什么原生家庭不好呀，工作不顺利啊，为什么打拼事业这么苦啊，不要哀怨，因为这个世界没有人来。记住很重要的一点，你不要入任何人的局，任何人说什么都不重要，因为你的世界你做主，他人的评价不要入耳，不要期待任何人的认可，因为他人的态度与你无关。任何时候都不要有委屈感，不要向外界去期待，期待父母帮衬，期待朋友帮忙，期待贵人相助，这种向外界注定你会受伤害，真相是没有人来。芒格的一句话一直刻在我的骨子里，我从来不花时间去感受背叛，我始终告诉自己，我不是受害者，我是幸存者。成长唯一的途径就是早点经历挫折和教训，然后早点醒悟，人生没有白走的路，越早经历越早校正。很喜欢的一个词叫不破不立，有些东西必须摧毁才能赢得新生。做到以下这三点让你拥有稳如泰山的内核。第一点，你一定要培养自己不接别人话的能力，就是让别人的话啪嚓一声掉在地上。心理学说不回应会引发畏惧，放慢回应速度对方就会讨好你，别急于搭话圆场，哪怕空气安静也没有关系，不用怕冷场，冷场的压力本就该让制造尴尬的人承担。人性又贱又坏，别太好说话，有人故意问尴尬的问题时直接无视，让话掉在地上，别为了维护形象陷入弱者位置，你没有义务做气氛组，尊重是相互的，不必留面子。遇到故意冒犯的人，沉默比争辩更有力量，你越从容不迫，对方越不敢轻易的越界。不要把情绪随便的透支，不要把时间廉价的交付，不战而胜才是大智慧。第二，永远。
+
+出你身边人的任何问题，包括你的亲戚、朋友、恋人，包括你的亲妈，我是深有体会。你不但帮不了他，还会惹他生气，气坏了身体呢，你还得给他治，何必呢？他高兴就好。人生最大的清醒就是不介入别人的生活，不用自己的标准去指点别人。每个人都有自己的活法和价值取向，你的经验不可能预知他人的未来，他选择的结果是好也罢，坏也罢，让他自己慢慢体会就好了。你以为的为别人着想，很有可能是多管闲事。真正的智慧是看破不说破，点到为止。第三，直面这个世界最残酷的真相，但依然热爱生活。他们总是把你愤怒时的模样称作真面目，你数年如一日的陪伴付出瞬间清零。陪他们熬过所有的难关，在没有人愿意出现的时候你挺身而出，可你刚一发脾气，转眼就成了真实的你，你做过的所有的好，都被这一个不好的瞬间一笔勾销。他们忘了你无数次伸出援手，忘了你始终保持的耐心，忘了你毫无保留的付出，却偏偏把你失控时的样子记得一清二楚，仿佛他们早就在等着你出错，等着找到你没有看起来那么好的证据，等你终于绷不住的时候，他们就会说，我就知道这才是你本来的样子，可真正的你日复一日，始终如一的模样，不是困在情绪低谷时的狼狈样子。人总是更容易记住愤怒，即便如此，也请你不要收回你的善意，就像不会因为玫瑰有刺儿就否定它的芬芳，也不要因为误解而改变善良的本性。当世界急着给你贴标签的时候，你要记得自己完整的模样，毕竟真正的品格不在于永不失控，而在于即使看透这般荒诞，依然选择在暴风雨中为他人撑伞。</p>
+        </div>
+    </header>
+
+    <!-- CORE CONCEPT: The Unbreakable Nucleus -->
+    <div class="relative mb-16 py-10 md:py-20 overflow-hidden reveal-item">
+        <!-- Giant Background Text (Visual Element) -->
+        <h2 class="text-[12rem] md:text-[18rem] lg:text-[20rem] font-black text-gray-100 absolute inset-0 flex items-center justify-center pointer-events-none tracking-tight leading-[0.8]">
+            CORE
+        </h2>
+        <div class="relative z-20 max-w-4xl mx-auto text-center p-6 core-glow rounded-xl">
+            <h3 class="text-5xl md:text-7xl font-extrabold mb-4 text-gray-900 leading-tight text-glow">
+                培养 <span class="text-cyan-600">坚不可摧的内核</span>
+            </h3>
+            <p class="text-xl md:text-2xl font-light text-gray-500 mb-6 font-mono">
+                Cultivating an Unbreakable Core
+            </p>
+
+            <div class="text-md text-gray-700 max-w-3xl mx-auto space-y-4">
+                <p class="text-xl font-bold">
+                    不要哀怨，不要可怜自己，因为这个世界 <strong class="text-red-500">没有人来</strong>。
+                </p>
+                
+                <div class="italic text-base bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-400 shadow-inner">
+                    <i class="fas fa-brain text-indigo-400 mr-2"></i>
+                    <span class="font-semibold text-indigo-700">幸存者思维：</span> 始终告诉自己，我不是受害者，我是幸存者。
+                </div>
+                
+                <p class="text-lg">
+                    成长唯一的途径就是早点经历挫折和教训。
+                    <strong class="text-cyan-600">不破不立</strong>，有些东西必须摧毁才能赢得新生。
+                </p>
+            </div>
+            
+             <h4 class="mt-12 text-3xl font-bold text-gray-800 inline-block p-2 rounded-lg ring-4 ring-cyan-200 bg-white shadow-md">
+                稳如泰山的内核 <span class="text-cyan-600">三步法</span>
+             </h4>
+        </div>
+    </div>
+
+    <!-- Main Content Grid (Bento Grid Style) -->
+    <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 p-4">
+
+        <!-- POINT 1: 不接别人话的能力 -->
+        <section class="bento-card lg:col-span-2 relative reveal-item" data-delay="100">
+            <div class="line-deco"></div>
+            <div class="relative z-20">
+                <!-- Super Large Number (Cyan Accent) -->
+                <p class="text-[10rem] font-black tracking-tighter text-cyan-100 absolute top-[-50px] left-[-10px] opacity-90 pointer-events-none">
+                    1
+                </p>
+                
+                <h3 class="text-5xl font-extrabold mb-3 text-cyan-700 pt-8 flex items-center">
+                    <i class="fas fa-handshake-slash mr-4 text-cyan-500"></i>
+                    不接别人话的能力
+                </h3>
+                <p class="text-lg text-gray-500 mb-6 font-mono">
+                    Non-Engagement Protocol (NEP)
+                </p>
+
+                <p class="text-3xl font-bold text-gray-900 leading-relaxed mb-6 bg-cyan-50 p-3 rounded-lg border-l-4 border-cyan-400">
+                    <span class="text-red-500">让别人的话</span> 啪嚓一声掉在地上。
+                </p>
+
+                <ul class="space-y-4 text-gray-700">
+                    <li class="flex items-start">
+                        <span class="mr-3 mt-1 text-cyan-500"><i class="fas fa-shield-alt"></i></span>
+                        <div class="flex-1">
+                            <strong class="font-semibold text-gray-800">维护边界：</strong> 别为了维护形象陷入弱者位置。你没有义务做气氛组。
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-3 mt-1 text-cyan-500"><i class="fas fa-clock"></i></span>
+                        <div class="flex-1">
+                            <strong class="font-semibold text-gray-800">运用沉默：</strong> 沉默比争辩更有力量。越从容不迫，对方越不敢轻易越界。
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-3 mt-1 text-cyan-500"><i class="fas fa-check-double"></i></span>
+                        <div class="flex-1">
+                            <strong class="font-semibold text-gray-800">大智慧：</strong> 不要把情绪随便的透支，不战而胜。
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- POINT 2: 不介入别人的生活 -->
+        <section class="bento-card relative flex flex-col justify-start reveal-item" data-delay="300">
+             <div class="line-deco"></div>
+             <div class="relative z-20">
+                <!-- Super Large Number (Indigo Accent) -->
+                <p class="text-[10rem] font-black tracking-tighter text-indigo-100 absolute top-[-50px] right-[-10px] opacity-90 pointer-events-none">
+                    2
+                </p>
+
+                <h3 class="text-5xl font-extrabold mb-3 text-indigo-700 pt-8 flex items-center">
+                    <i class="fas fa-street-view mr-3 text-indigo-500"></i>
+                    不介入生活
+                </h3>
+                <p class="text-lg text-gray-500 mb-6 font-mono">
+                    Do Not Intervene
+                </p>
+
+                <div class="text-3xl font-semibold text-gray-900 mb-4">
+                    不介入，<span class="text-indigo-600">不指点</span> 别人。
+                </div>
+                
+                <div class="p-4 bg-indigo-50 rounded-lg space-y-3">
+                    <p class="text-gray-700">你不但帮不了他，还会惹他生气。他高兴就好。</p>
+                    <p class="text-gray-700">
+                        真正的智慧是<strong class="font-bold">看破不说破</strong>，点到为止。
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- POINT 3: 直面残酷真相，依然热爱生活 -->
+        <section class="bento-card lg:col-span-3 relative mt-4 reveal-item" data-delay="500">
+            <div class="line-deco"></div>
+            <div class="relative z-20">
+                <!-- Super Large Number (Green Accent) -->
+                <p class="text-[10rem] font-black tracking-tighter text-green-100 absolute top-[-50px] left-[50%] transform -translate-x-1/2 opacity-90 pointer-events-none">
+                    3
+                </p>
+
+                <h3 class="text-5xl font-extrabold mb-4 text-green-700 pt-8 text-center">
+                    直面残酷，<span class="bg-green-100 px-2 rounded-lg">依然热爱生活</span>
+                </h3>
+                <p class="text-xl text-gray-500 mb-8 font-mono text-center">
+                    A Brutal Truth & Unwavering Kindness
+                </p>
+
+                <div class="grid md:grid-cols-5 gap-8 items-start">
+                    
+                    <div class="md:col-span-3">
+                        <h4 class="text-2xl font-semibold text-gray-800 mb-3 border-b-2 border-green-300 pb-1">人性的荒诞与忘却</h4>
+                        <p class="text-gray-700 mb-4">
+                            当你终于绷不住的时候，他们就会说：<strong class="text-red-600">我就知道这才是你本来的样子。</strong>
+                        </p>
+                        <p class="text-lg italic text-gray-600 p-3 bg-red-50 rounded-lg">
+                            他们偏偏把你失控时的样子记得一清二楚，仿佛在等着你出错。
+                        </p>
+                    </div>
+                    
+                    <div class="md:col-span-2 p-5 bg-green-50 rounded-xl shadow-inner text-center h-full flex flex-col justify-center">
+                        <h4 class="text-2xl font-semibold text-green-700 mb-3">真正的品格</h4>
+                        
+                        <div class="mt-4">
+                            <i class="fas fa-umbrella text-7xl text-green-500 mb-3 block"></i>
+                            <p class="text-xl font-bold text-green-800">
+                                选择在暴风雨中为他人撑伞。
+                            </p>
+                            <p class="text-sm mt-2 text-gray-600">
+                                不要因为误解而改变善良的本性。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Bottom Filler/Footer -->
+        <footer class="lg:col-span-3 text-center pt-10 pb-20 text-gray-400 text-sm">
+            <p>&copy; 2024 Stable Core Insight. | Version 2.0 Bento Layout.</p>
+        </footer>
+    </main>
+</div>
+
+<script>
+    // 1. Transcript Toggle
+    document.getElementById('toggle-transcript').addEventListener('click', function() {
+        const content = document.getElementById('transcript-content');
+        const icon = this.querySelector('i');
+        
+        if (content.classList.contains('visible')) {
+            content.classList.remove('visible');
+            this.innerHTML = '<i class="fas fa-file-alt mr-2"></i> 显示原文';
+        } else {
+            content.classList.add('visible');
+            this.innerHTML = '<i class="fas fa-angle-up mr-2"></i> 隐藏原文';
+        }
+    });
+
+    // 2. Apple Style Scroll Reveal (using Intersection Observer)
+    document.addEventListener("DOMContentLoaded", function() {
+        const revealItems = document.querySelectorAll('.reveal-item');
+
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.15 // Trigger when 15% of the item is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Use data-delay for staggered effect
+                    const delay = entry.target.getAttribute('data-delay') || 0;
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, parseInt(delay));
+                    
+                    // Stop observing once visible
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealItems.forEach(item => {
+            observer.observe(item);
+        });
+    });
+</script>
+</body>
+</html>

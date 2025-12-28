@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>稳定内核构建指南 - V3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom Tailwind Configuration for Soft Colors and Large Typography */
+        @layer base {
+            html {
+                font-family: 'Inter', sans-serif; /* Using a modern default font */
+            }
+        }
+        
+        /* Soft, Light Background */
+        body {
+            background-color: #fcfcfc; /* Very light, almost white */
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* Apple-esque Scroll Reveal Setup */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition-delay: var(--delay, 0s);
+        }
+
+        .reveal-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Gradient for Tech Feel (Soft Lavender) */
+        .tech-gradient {
+            background: radial-gradient(circle at top left, rgba(235, 226, 255, 0.6) 0%, rgba(255, 255, 255, 0) 50%);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Massive Numbers Styling */
+        .massive-number {
+            font-size: clamp(8rem, 15vw, 20rem);
+            line-height: 1;
+            font-weight: 900;
+            color: rgba(100, 100, 100, 0.05); /* Very faint large number */
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            z-index: 0;
+            transition: all 0.5s;
+        }
+
+        /* Outline Graphics Style */
+        .outline-icon {
+            stroke: #1a1a1a;
+            stroke-width: 2;
+            fill: none;
+        }
+        
+    </style>
+</head>
+<body>
+
+<!-- Header Metadata -->
+<header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-4 py-3">
+        <div class="flex justify-between items-center text-sm text-gray-500">
+            <div>
+                <span class="font-bold text-gray-700">视频标题:</span> 稳定内核 你一定要培养自己不接别人话的能力，就是让别人说的话啪嚓一下掉在地上
+            </div>
+            <div class="flex space-x-4">
+                <span>视频链接: <a href="https://v.douyin.com/DSh5JsqvQPQ/" target="_blank" class="text-blue-500 hover:underline">点击查看</a></span>
+                <span>提取时间: 2025-12-28 08:03:01</span>
+            </div>
+        </div>
+        
+        <div class="mt-2">
+            <button id="toggleOriginalBtn" class="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-sm rounded-full text-gray-600 transition duration-150">
+                显示原文
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Original Content Area (Hidden by Default) -->
+<div id="originalContent" class="hidden max-w-6xl mx-auto px-4 py-4 bg-gray-50 border-b border-t border-gray-200">
+    <p class="text-sm whitespace-pre-wrap text-gray-600 leading-relaxed">
+我告诉你，一定要培养自己坚不可摧的内核。要做的不要可怜自己，就是不要莫名其妙的有委屈感。什么原生家庭不好呀，工作不顺利啊，为什么打拼事业这么苦啊，不要哀怨，因为这个世界没有人来。记住很重要的一点，你不要入任何人的局，任何人说什么都不重要，因为你的世界你做主，他人的评价不要入耳，不要期待任何人的认可，因为他人的态度与你无关。任何时候都不要有委屈感，不要向外界去期待，期待父母帮衬，期待朋友帮忙，期待贵人相助，这种向外界注定你会受伤害，真相是没有人来。芒格的一句话一直刻在我的骨子里，我从来不花时间去感受背叛，我始终告诉自己，我不是受害者，我是幸存者。成长唯一的途径就是早点经历挫折和教训，然后早点醒悟，人生没有白走的路，越早经历越早校正。很喜欢的一个词叫不破不立，有些东西必须摧毁才能赢得新生。做到以下这三点让你拥有稳如泰山的内核。第一点，你一定要培养自己不接别人话的能力，就是让别人的话啪嚓一声掉在地上。心理学说不回应会引发畏惧，放慢回应速度对方就会讨好你，别急于搭话圆场，哪怕空气安静也没有关系，不用怕冷场，冷场的压力本就该让制造尴尬的人承担。人性又贱又坏，别太好说话，有人故意问尴尬的问题时直接无视，让话掉在地上，别为了维护形象陷入弱者位置，你没有义务做气氛组，尊重是相互的，不必留面子。遇到故意冒犯的人，沉默比争辩更有力量，你越从容不迫，对方越不敢轻易的越界。不要把情绪随便的透支，不要把时间廉价的交付，不战而胜才是大智慧。第二，永远。
+
+出你身边人的任何问题，包括你的亲戚、朋友、恋人，包括你的亲妈，我是深有体会。你不但帮不了他，还会惹他生气，气坏了身体呢，你还得给他治，何必呢？他高兴就好。人生最大的清醒就是不介入别人的生活，不用自己的标准去指点别人。每个人都有自己的活法和价值取向，你的经验不可能预知他人的未来，他选择的结果是好也罢，坏也罢，让他自己慢慢体会就好了。你以为的为别人着想，很有可能是多管闲事。真正的智慧是看破不说破，点到为止。第三，直面这个世界最残酷的真相，但依然热爱生活。他们总是把你愤怒时的模样称作真面目，你数年如一日的陪伴付出瞬间清零。陪他们熬过所有的难关，在没有人愿意出现的时候你挺身而出，可你刚一发脾气，转眼就成了真实的你，你做过的所有的好，都被这一个不好的瞬间一笔勾销。他们忘了你无数次伸出援手，忘了你始终保持的耐心，忘了你毫无保留的付出，却偏偏把你失控时的样子记得一清二楚，仿佛他们早就在等着你出错，等着找到你没有看起来那么好的证据，等你终于绷不住的时候，他们就会说，我就知道这才是你本来的样子，可真正的你日复一日，始终如一的模样，不是困在情绪低谷时的狼狈样子。人总是更容易记住愤怒，即便如此，也请你不要收回你的善意，就像不会因为玫瑰有刺儿就否定它的芬芳，也不要因为误解而改变善良的本性。当世界急着给你贴标签的时候，你要记得自己完整的模样，毕竟真正的品格不在于永不失控，而在于即使看透这般荒诞，依然选择在暴风雨中为他人撑伞。
+    </p>
+</div>
+
+<!-- Main Content Area -->
+<main class="min-h-screen pt-12 pb-24 max-w-6xl mx-auto px-4">
+
+    <!-- Section: Core Mantra -->
+    <section class="mb-20">
+        <h1 class="text-6xl md:text-8xl font-black text-center mb-4 leading-tight reveal-item" style="--delay: 0.1s;">
+            培养<span class="text-pink-600/80">坚不可摧</span>的内核
+        </h1>
+        <p class="text-xl md:text-2xl text-center text-gray-500 reveal-item max-w-3xl mx-auto" style="--delay: 0.2s;">
+            CULTIVATE AN INDESTRUCTIBLE CORE
+        </p>
+
+        <!-- Munger Quote Block (Super Large Element) -->
+        <div class="relative mt-16 p-8 md:p-12 tech-gradient rounded-3xl shadow-xl reveal-item" style="--delay: 0.3s;">
+            <div class="absolute inset-0 bg-white/20 rounded-3xl -z-10"></div>
+            <p class="text-3xl md:text-4xl font-extrabold italic text-gray-700 leading-snug relative z-10">
+                “我从来不花时间去感受背叛，我始终告诉自己，我不是受害者，我是幸存者。”
+            </p>
+            <p class="text-lg text-gray-500 mt-4 text-right">— 芒格 (Charlie Munger)</p>
+        </div>
+    </section>
+
+    <!-- Section: The Three Pillars (Bento Grid) -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-12">
+        
+        <!-- Pillar 1: Don't Receive Words -->
+        <div class="relative bg-white p-6 md:p-8 rounded-3xl shadow-lg hover:shadow-2xl transition duration-500 overflow-hidden col-span-1 reveal-item" style="--delay: 0.4s;">
+            
+            <div class="massive-number">1</div>
+
+            <h2 class="text-3xl font-bold mb-4 relative z-10 text-gray-800">
+                第一点: 不接别人话
+            </h2>
+            <p class="text-sm font-light uppercase text-blue-500 mb-6 relative z-10">
+                THE POWER OF SILENCE
+            </p>
+            
+            <div class="relative z-10 text-gray-700">
+                <p class="mb-3">
+                    培养自己不接别人话的能力，让别人的话<span class="font-extrabold text-red-500">啪嚓一声掉在地上</span>。
+                </p>
+                <ul class="space-y-2 text-sm list-inside">
+                    <li class="flex items-start">
+                        <i class="fas fa-hand-rock text-pink-400 mt-1 mr-2 flex-shrink-0"></i> 
+                        <span class="font-medium">心理学：</span> 不回应引发畏惧，放慢回应速度对方就会讨好你。
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-eye-slash text-pink-400 mt-1 mr-2 flex-shrink-0"></i> 
+                        <span class="font-medium">无视尴尬：</span> 有人故意问尴尬问题时直接无视，让话掉在地上。
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-shield-alt text-pink-400 mt-1 mr-2 flex-shrink-0"></i> 
+                        <span class="font-medium">保持从容：</span> 沉默比争辩更有力量。
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+
+        <!-- Pillar 2: Don't Intervene -->
+        <div class="relative bg-white p-6 md:p-8 rounded-3xl shadow-lg hover:shadow-2xl transition duration-500 overflow-hidden col-span-1 reveal-item" style="--delay: 0.5s;">
+            
+            <div class="massive-number">2</div>
+
+            <h2 class="text-3xl font-bold mb-4 relative z-10 text-gray-800">
+                第二点: 不介入生活
+            </h2>
+            <p class="text-sm font-light uppercase text-green-600 mb-6 relative z-10">
+                NON-INTERVENTION IS WISDOM
+            </p>
+
+            <div class="relative z-10 text-gray-700">
+                <p class="mb-3">
+                    永远不要试图解决你身边人的任何问题 (包括亲妈)。<span class="font-extrabold text-green-700">人生最大的清醒</span>就是不介入别人的生活。
+                </p>
+                <div class="p-3 bg-green-50/50 rounded-lg border border-green-200/50">
+                    <p class="text-sm font-medium mb-2">【看破不说破】</p>
+                    <p class="text-sm">
+                        不用自己的标准去指点别人。你以为的为别人着想，很有可能是多管闲事。他选择的结果让他自己体会。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Simple data visualization element - Value Indicator -->
+            <svg class="w-16 h-16 absolute bottom-4 right-4 text-green-400/50 opacity-50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" class="outline-icon"/>
+                <path d="M12 8v4l3 3" class="outline-icon"/>
+            </svg>
+        </div>
+        
+        <!-- Pillar 3: Face the Truth -->
+        <div class="relative bg-white p-6 md:p-8 rounded-3xl shadow-lg hover:shadow-2xl transition duration-500 overflow-hidden col-span-1 reveal-item" style="--delay: 0.6s;">
+            
+            <div class="massive-number">3</div>
+
+            <h2 class="text-3xl font-bold mb-4 relative z-10 text-gray-800">
+                第三点: 仍热爱生活
+            </h2>
+            <p class="text-sm font-light uppercase text-indigo-500 mb-6 relative z-10">
+                LOVE AMIDST THE ABSURD
+            </p>
+            
+            <div class="relative z-10 text-gray-700">
+                <p class="mb-3 text-sm italic">
+                    直面这个世界最残酷的真相：他们更容易记住你失控的瞬间，而不是数年如一日的付出。
+                </p>
+                <div class="bg-indigo-50/50 p-3 rounded-lg border border-indigo-200/50">
+                    <p class="font-semibold text-base mb-1">
+                        真正的品格 (True Character)
+                    </p>
+                    <p class="text-sm">
+                        不在于永不失控，而在于<span class="font-bold text-indigo-700">即使看透这般荒诞，依然选择在暴风雨中为他人撑伞。</span>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Outline Graphic - Resilience -->
+            <svg class="w-20 h-20 absolute top-4 right-4 text-indigo-400/50 opacity-40" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path class="outline-icon" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"/>
+                <path class="outline-icon" d="M8 13v-2a4 4 0 0 1 8 0v2"/>
+            </svg>
+        </div>
+
+    </section>
+    
+    <!-- Final Takeaway Section (Full Width) -->
+    <section class="mt-20 reveal-item" style="--delay: 0.7s;">
+        <div class="bg-gray-100 p-8 rounded-2xl text-center">
+            <h3 class="text-2xl md:text-3xl font-extrabold text-gray-800 mb-4">
+                不破不立 <span class="text-orange-500">·</span> 越早经历越早校正
+            </h3>
+            <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                Growth is not always comfortable. The path to an iron core is forged through lessons learned early. 
+                Don't lament, awaken. (不要哀怨，早点醒悟。)
+            </p>
+        </div>
+    </section>
+
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- 1. Original Content Toggle Functionality ---
+        const toggleBtn = document.getElementById('toggleOriginalBtn');
+        const contentDiv = document.getElementById('originalContent');
+        
+        toggleBtn.addEventListener('click', () => {
+            const isHidden = contentDiv.style.display === 'none' || contentDiv.style.display === '';
+            if (isHidden) {
+                contentDiv.style.display = 'block';
+                toggleBtn.textContent = '收起原文';
+            } else {
+                contentDiv.style.display = 'none';
+                toggleBtn.textContent = '显示原文';
+            }
+        });
+
+        // Initialize content to hidden if browser state retained display: block
+        contentDiv.style.display = 'none'; 
+        
+        // --- 2. Scroll Reveal Animation (Apple Style Mimicry) ---
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.2 // Item is considered visible when 20% of it is in view
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Stop observing once visible
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-item').forEach(item => {
+            observer.observe(item);
+        });
+        
+    });
+</script>
+
+</body>
+</html>

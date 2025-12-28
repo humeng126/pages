@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>顶级管理精髓：管人低三分，管事高三分</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Custom Tailwind Configuration for soft, tech-forward aesthetic */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'soft-white': '#f5f7fa',
+                        'accent-soft': '#90cdf4', /* Light Blue */
+                        'accent-strong': '#48bb78', /* Soft Green */
+                        'text-primary': '#2d3748', /* Dark but not black */
+                        'highlight-blue': 'rgba(144, 205, 244, 0.4)',
+                        'highlight-green': 'rgba(72, 187, 120, 0.4)',
+                    },
+                    boxShadow: {
+                        'bento': '0 4px 10px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+        
+        /* Bento Grid Card Styling */
+        .bento-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+            border: 1px solid rgba(240, 240, 240, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Initial state for scroll-triggered animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Final state when visible */
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* High-light transparency gradient effect */
+        .highlight-bg-blue::before,
+        .highlight-bg-green::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150%;
+            height: 150%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        .highlight-bg-blue::before {
+            background: radial-gradient(circle at top right, var(--accent-soft) 10%, transparent 70%);
+        }
+        .highlight-bg-green::before {
+            background: radial-gradient(circle at bottom left, var(--accent-strong) 10%, transparent 70%);
+        }
+
+        /* Typography customization */
+        .super-title {
+            font-size: 10rem; /* Adjusted for impact */
+            line-height: 0.9;
+        }
+        .text-huge {
+            font-size: 5rem;
+            line-height: 1;
+        }
+
+    </style>
+</head>
+<body class="bg-soft-white text-text-primary min-h-screen">
+
+    <!-- Metadata Section -->
+    <header class="p-4 bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto">
+            <p class="text-sm font-semibold mb-1">视频标题: 为什么总是做不好管理？问题就出现在这两点！<span class="text-gray-500">#管理 #180干部陪练营 #中层管理 #职场 #领导力</span></p>
+            <p class="text-xs text-gray-500 mb-2">视频链接: <a href="https://v.douyin.com/BO_xGGQMCBw/" target="_blank" class="underline hover:text-accent-soft">https://v.douyin.com/BO_xGGQMCBw/</a> | 提取时间: 2025-12-28 08:02:47</p>
+            
+            <button id="toggle-original" class="text-xs px-3 py-1 bg-gray-100 rounded-full hover:bg-gray-200 transition duration-150">
+                显示原文 <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            </button>
+            
+            <div id="original-text-content" class="mt-4 p-4 bg-gray-50 border border-gray-200 rounded-lg text-sm leading-relaxed" style="display: none;">
+                <!-- Original Text Content -->
+                想当个好领导，就记住一句话：管人低三分，管事儿高三分。这到底什么意思呢？来，我给你掰开揉碎了讲。这个管人低三分呢，说白了就是让你把姿态放低一点，别总端着个架子，把你的员工当成真正的伙伴，给足他们尊重。那管事高三分呢，正好反过来，就是对事不对人，标准必须往上拉，咱们要的是最好的结果，要的就是卓越。那咱们先聊聊怎么管人，其实核心就四个字儿，向下赋能，你记住了。一个真正顶级的管理者，你看他，哎呀好像一天到晚啥也没干，这是为什么呢？因为他最厉害的本事就是给手下的人搭好一个大舞台，让每一个人都能站上去当主角，尽情的发光发热。不信咱们聊聊韩信的故事，你想想啊，他在项羽手下的时候算个啥？就是个小兵，提点建议都没人听，一身的才华全给耽误了。但是你看他跟了刘邦以后，哇，那就不一样了，直接被拜为大将军，刘邦给了他足够的信任，给了他一个天大的舞台，结果咱们都知道了，韩信那是百战百胜，帮刘邦把天下都给打下来了。所以说你给你的员工多大的舞台，他就能给你多大的惊喜，甚至是奇迹。我们说了，对人要和气，要赋能，那么对事儿呢，恰恰要反过来，绝对不能含糊，关键也是四个字，向上要成果。作为管理者，你心里必须得有股狠劲儿，什么狠劲儿？就是今天我们团队做出的最好成绩，到了明天就是我们最低的要求，就是起跑线。在这个时代，你不拼命往前跑，那等着你的就是被淘汰。那具体怎么拉高标准呢？来，我给你三招。第一，你自己必须带头冲，做事要果断，别拖泥带水。第二呢，你要想办法驱动整个团队，大家一起学习，一起进步，不断进化。第三点我觉得也是最重要的，就是要把你心里的那团火点燃团队里每一个人的斗志，让他们从心底里渴望胜利。现在你明白了吧？顶级管理的精髓，说穿了就这么简单，向下去成就你的员工，向上去成就你的事业。
+
+                把这两点都做到了，这才是一个管理者真正的价值所在。当然了，今天咱们聊的这些也只是冰山一角。如果你想系统的去打磨自己的管理能力，想成为一个真正能带队打胜仗的好领导，私信我们来了解一下我们的幺八零干部陪练营吧，我们聊聊怎么帮你做到。
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Bento Grid -->
+    <main class="max-w-7xl mx-auto p-4 md:p-8 pt-10">
+
+        <!-- Core Philosophy Headline -->
+        <section class="mb-12 text-center animate-on-scroll">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-text-primary tracking-tight mb-2">
+                顶级管理的精髓：<span class="text-accent-soft">双向成就</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-500 font-light italic">The Essence of Elite Leadership: Achieving People, Achieving Business.</p>
+        </section>
+
+        <!-- Bento Grid Container -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min">
+
+            <!-- Card 1: Manage People (Low 3 Points) - Empower Downward -->
+            <div class="bento-card highlight-bg-blue md:col-span-7 row-span-2 animate-on-scroll">
+                <div class="relative z-10">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <i class="fas fa-handshake fa-2xl text-accent-soft"></i>
+                        <h2 class="text-2xl font-bold text-accent-soft uppercase tracking-wider">
+                            Manage People <span class="text-gray-400">| Low</span>
+                        </h2>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="text-huge font-black italic text-gray-100 opacity-90 absolute left-4 -top-8 z-0 select-none">LOW</div>
+                        
+                        <div class="flex-grow z-10">
+                             <p class="text-huge font-extrabold text-text-primary">
+                                管人 <span class="super-title text-accent-soft font-mono">3</span> 分
+                            </p>
+                        </div>
+                        <div class="text-center">
+                             <div class="super-title text-accent-soft font-extrabold -mt-6">低</div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-4xl font-extrabold mt-6 mb-4 text-text-primary">向下赋能</h3>
+                    <p class="text-xl leading-relaxed border-l-4 border-accent-soft pl-4">
+                        把姿态放低，视员工为伙伴，给予充分的尊重。<br>
+                        核心：搭好一个<span class="font-semibold text-accent-soft">大舞台</span>，让每个人都站上去当主角。
+                    </p>
+                    
+                    <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                        <p class="text-sm font-semibold text-gray-600">案例洞察 (Insight):</p>
+                        <p class="text-md italic mt-1">
+                            韩信在项羽手下被耽误，但在刘邦的“大舞台”上，百战百胜，成就天下。信任与平台，带来惊喜和奇迹。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Core Value Statement -->
+             <div class="bento-card bg-accent-soft/10 md:col-span-5 row-span-1 flex flex-col justify-between animate-on-scroll">
+                <div class="relative z-10">
+                    <p class="text-xl font-bold mb-3 text-text-primary">管理核心法则</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-3 rounded-xl bg-white shadow-bento/50">
+                            <i class="fas fa-chart-line text-accent-strong mr-3 text-xl"></i>
+                            <span class="font-semibold">对事不对人</span>
+                            <span class="ml-auto text-gray-500">Focus on Results</span>
+                        </div>
+                        <div class="flex items-center p-3 rounded-xl bg-white shadow-bento/50">
+                            <i class="fas fa-user-friends text-accent-soft mr-3 text-xl"></i>
+                            <span class="font-semibold">给予真尊重</span>
+                            <span class="ml-auto text-gray-500">True Partnership</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: The Manager's True Value -->
+            <div class="bento-card md:col-span-5 row-span-1 bg-white/50 animate-on-scroll" style="background-color: var(--soft-white);">
+                <div class="relative z-10">
+                    <h3 class="text-2xl font-bold mb-3">管理者真正的价值</h3>
+                    <div class="text-3xl font-extrabold text-text-primary border-l-4 border-gray-300 pl-4">
+                        <p class="text-accent-soft mb-1">向下去成就员工</p>
+                        <p class="text-accent-strong">向上去成就事业</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Card 4: Manage Tasks (High 3 Points) - Demand Results -->
+            <div class="bento-card highlight-bg-green md:col-span-5 animate-on-scroll">
+                 <div class="relative z-10">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <i class="fas fa-medal fa-2xl text-accent-strong"></i>
+                        <h2 class="text-2xl font-bold text-accent-strong uppercase tracking-wider">
+                            Manage Tasks <span class="text-gray-400">| High</span>
+                        </h2>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="text-huge font-black italic text-gray-100 opacity-90 absolute left-4 -top-8 z-0 select-none">HIGH</div>
+                        <div class="flex-grow z-10">
+                             <p class="text-huge font-extrabold text-text-primary">
+                                管事 <span class="super-title text-accent-strong font-mono">3</span> 分
+                            </p>
+                        </div>
+                        <div class="text-center">
+                             <div class="super-title text-accent-strong font-extrabold -mt-6">高</div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-4xl font-extrabold mt-6 mb-4 text-text-primary">向上要成果</h3>
+                    <p class="text-xl leading-relaxed border-l-4 border-accent-strong pl-4">
+                        绝不能含糊！心里必须有股“狠劲儿”，追求卓越的结果。<br>
+                        标准：<span class="font-semibold text-accent-strong">今天的最好成绩，是明天的最低要求（起跑线）。</span>
+                    </p>
+                 </div>
+            </div>
+            
+            <!-- Card 5: The Three Strategies (Tips) -->
+            <div class="bento-card md:col-span-7 animate-on-scroll">
+                 <div class="relative z-10">
+                    <h3 class="text-3xl font-extrabold mb-5 text-text-primary flex items-center">
+                        <i class="fas fa-rocket text-accent-strong mr-3"></i>
+                        拉高标准，具体三招 (3 Elevation Strategies)
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                        
+                        <!-- Tip 1 -->
+                        <div class="p-4 border border-gray-100 rounded-xl bg-soft-white shadow-sm hover:shadow-lg transition">
+                            <span class="text-4xl font-bold text-accent-strong block mb-2">①</span>
+                            <p class="text-lg font-semibold mb-1">自己带头冲</p>
+                            <p class="text-sm text-gray-500">果断行动，绝不拖泥带水。</p>
+                        </div>
+                        
+                        <!-- Tip 2 -->
+                         <div class="p-4 border border-gray-100 rounded-xl bg-soft-white shadow-sm hover:shadow-lg transition">
+                            <span class="text-4xl font-bold text-accent-strong block mb-2">②</span>
+                            <p class="text-lg font-semibold mb-1">驱动团队进化</p>
+                            <p class="text-sm text-gray-500">一起学习，不断进步，超越过去。</p>
+                        </div>
+                        
+                        <!-- Tip 3 -->
+                        <div class="p-4 border border-gray-100 rounded-xl bg-soft-white shadow-sm hover:shadow-lg transition">
+                            <span class="text-4xl font-bold text-accent-strong block mb-2">③</span>
+                            <p class="text-lg font-semibold mb-1">点燃斗志</p>
+                            <p class="text-sm text-gray-500">让团队从心底里渴望胜利，激发火种。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Card 6: CTA and Program Information -->
+            <div class="bento-card md:col-span-12 mt-6 p-8 text-center bg-accent-soft/20 animate-on-scroll">
+                <p class="text-lg font-semibold mb-3 text-text-primary">
+                    管理能力系统提升？我们为您提供实践指导：
+                </p>
+                <h3 class="text-4xl md:text-5xl font-extrabold text-accent-soft tracking-wider mb-4">
+                    幺八零干部陪练营 (180 Coaching Camp)
+                </h3>
+                <p class="text-xl text-gray-700 mb-6">
+                    系统打磨您的领导力，成为真正能带队<span class="font-bold">打胜仗</span>的好领导。
+                </p>
+                <button class="px-8 py-3 bg-accent-soft text-white text-xl font-bold rounded-full hover:bg-accent-strong transition duration-300 shadow-xl shadow-accent-soft/40">
+                    私信我们了解详情 <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+
+        </div> <!-- End of Bento Grid -->
+
+    </main>
+
+    <!-- JavaScript for Toggle and Scroll Animation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Original Text Toggle Functionality
+            const toggleButton = document.getElementById('toggle-original');
+            const originalContent = document.getElementById('original-text-content');
+            const icon = toggleButton.querySelector('i');
+
+            toggleButton.addEventListener('click', function() {
+                const isHidden = originalContent.style.display === 'none';
+                if (isHidden) {
+                    originalContent.style.display = 'block';
+                    toggleButton.innerHTML = '收起原文 <i class="fas fa-chevron-up ml-1 text-xs"></i>';
+                } else {
+                    originalContent.style.display = 'none';
+                    toggleButton.innerHTML = '显示原文 <i class="fas fa-chevron-down ml-1 text-xs"></i>';
+                }
+            });
+
+            // 2. Scroll Animation (Intersection Observer)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2 // Trigger when 20% of the item is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        entry.target.classList.remove('animate-on-scroll'); // Remove initial class if needed
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+
+</body>
+</html>

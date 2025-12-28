@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抗炎生活方式革命 - Anti-Inflammatory Lifestyle Revolution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for professional icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* Custom styles for the soft tech aesthetic and Bento Grid alignment */
+        body {
+            font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f8faff; /* Very light blue-ish white */
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        .bento-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(3, 1fr);
+            padding: 2rem;
+            max-width: 1400px;
+            margin: auto;
+        }
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+        }
+        .bento-item {
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            min-height: 180px;
+            box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -2px rgba(0, 0, 0, 0.02);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: #ffffff;
+            border: 1px solid rgba(220, 230, 255, 0.6); /* Soft border */
+            position: relative;
+            overflow: hidden;
+        }
+        .bento-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.1), 0 5px 10px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Tech Glow Effect */
+        .tech-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.4;
+            border-radius: 1.5rem;
+            z-index: 0;
+        }
+        .bg-pink-50.tech-glow::before { background: radial-gradient(circle at top right, rgba(255, 200, 220, 0.4), transparent 50%); }
+        .bg-teal-50.tech-glow::before { background: radial-gradient(circle at bottom left, rgba(200, 255, 220, 0.4), transparent 50%); }
+        .bg-yellow-50.tech-glow::before { background: radial-gradient(circle at top, rgba(255, 240, 200, 0.4), transparent 50%); }
+        .bg-purple-50.tech-glow::before { background: radial-gradient(circle at center, rgba(220, 200, 255, 0.3), transparent 60%); }
+        .bg-red-50.tech-glow::before { background: radial-gradient(circle at 10% 90%, rgba(255, 200, 200, 0.4), transparent 50%); }
+        
+        /* Custom drawing effect for outline graphics */
+        .outline-graphic {
+            border: 2px solid;
+            border-radius: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            width: 50px;
+            height: 50px;
+        }
+
+        /* Apple Scroll Mimicry (Simple fixed header and smooth reveal) */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="p-4">
+
+    <!-- Header & Metadata -->
+    <header class="max-w-7xl mx-auto mb-8 p-6 rounded-3xl shadow-xl bg-white border border-blue-100 scroll-reveal">
+        <p class="text-xs text-gray-500 mb-2 font-mono">
+            视频标题: 哈佛研究实锤！抗炎习惯降低62%疾病风险，从吃饭开始逆转衰老 哈佛团队在《自然·医学》证实：80%健康问题源于慢性炎症！但普通人通过3个改变就能降低62%风险
+        </p>
+        <p class="text-xs text-gray-500 mb-4 font-mono">
+            视频链接: <a href="https://v.douyin.com/1WKgXEtJTY4/" target="_blank" class="text-blue-500 hover:underline">https://v.douyin.com/1WKgXEtJTY4/</a> | 提取时间: 2025-12-28 08:14:19
+        </p>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-2 leading-tight">
+            健康革命：从慢性炎症到 <span class="text-red-600">62%</span> 风险降低
+        </h1>
+        <p class="text-xl text-gray-600">八大核心策略，将抗炎融入日常可持续生活方式。</p>
+
+        <!-- Original Transcript Toggle -->
+        <button id="toggleOriginal" class="mt-5 text-sm font-medium px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition duration-150 shadow-md">
+            <i class="fas fa-caret-down mr-1"></i> 显示原文
+        </button>
+        <div id="originalTranscript" class="hidden mt-4 p-4 bg-gray-50 rounded-lg text-sm text-gray-700 max-h-80 overflow-y-auto border border-gray-200">
+            <!-- Original Transcript Content -->
+            单不饱和脂肪酸能抑制炎症通路，每天用二十五毫升特级初榨橄榄油烹饪，炎症标志物能下降百分之二十九呢。对，而且用油还有三个原则：凉拌用特级初榨橄榄油，炒菜用精炼橄榄油或菜籽油，最重要的是别反复油炸。西班牙格拉纳达大学研究发现，遵循这三个原则的家庭，代谢综合征风险能降低百分之四十三。哎，说到吃的，饮品也不能忽略。你平时喝咖啡和牛奶多吗？我最近才知道这两样可能是隐藏的炎症源。大概百分之十五的成年人对牛奶里的 alpha s 一酪蛋白敏感，喝了之后肠道通透性会增加。咖啡里的绿原酸也可能让部分人胃酸过多，间接诱发炎症。啊，这个我还真没注意过，那有什么替代方案吗？其实很简单，换成燕麦奶就不错，里面的贝塔葡聚糖有抗炎作用。薄荷茶也挺好，薄荷醇能降低压力激素皮质醇。还有红茶，发酵后产生的茶黄素抗炎效果比绿茶强两倍呢。学到了学到了，不过有时候难免会放纵一下，比如吃点高糖食物或者喝点酒，这种情况有什么补救办法吗？还真有个破戒急救方案，吃高糖食物后马上喝生姜水，姜辣素能抑制炎症因子释放。聚餐饮酒后补充维生素 C，比如吃点猕猴桃或者柠檬，每天五百毫克能减少百分之三十五的氧化应激损伤。日本东京大学实验显示，这样能把单次高糖饮食的炎症影响缩短到四小时内。这个急救方案得记下来。除了吃和喝，运动和环境也很重要吧？我以前总觉得运动要高强度才有效，后来才知道低强度运动反而更适合抗炎。对，美国运动医学会二零二五年指南说了，每天三十分钟中等强度运动，比如快走、瑜伽，能让抗炎因子 IL 六水平提升二点三倍，过量运动反而会导致炎症反弹。哦。
+
+            原来如此，说到环境，我最近在室内摆了几盆植物，听说有些植物能吸收有毒物质。你摆的什么植物？NASA 研究证实，虎眼兰能吸收百分之九十的甲醛和苯系物，这些可是诱发皮肤和呼吸道慢性炎症的元凶。哇，那我得赶紧换成虎眼兰。对了，你听说过那个二十一天抗炎行动清单吗？好像已经有超过十万用户验证有效了。知道知道，这个清单设计的挺科学的。第一周专注饮食替换，第二周加入运动和饮品调整，第三周优化家居环境。完成全程的人不仅体重平均降了三点二公斤，晨起血压平均低了八毫米汞柱，空腹血糖也改善了百分之十二，这些变化其实都跟炎症水平下降有关。这个清单听起来很容易执行啊，不过我觉得抗炎的核心还是肠道健康吧，毕竟肠道是人体最大的免疫器官。没错，肠道菌群平衡直接决定炎症状态。当肠道屏障被破坏，脂多糖这些促炎物质会漏进血液，引发全身炎症。所以补充膳食纤维、发酵食品和多酚类物质特别重要。每天吃二十五到三十克膳食纤维，再吃点无糖酸奶、泡菜，还有蓝莓、紫甘蓝这些，能让肠道菌群多样性提升百分之四十。原来如此，其实说了这么多，我觉得抗炎不是什么苦行僧式的自律，更像是跟身体和解的过程。比如把橄榄油淋在沙拉上，闻着薄荷茶的香气，穿着运动鞋去公园走走，这些小选择慢慢就织成了一张保护网。对，关键不是完美执行每一条规则，而是让抗炎成为一种可持续的生活方式。毕竟降低百分之六十二风险的秘诀，就藏在这些日常的小习惯里。没错，现在我的厨房已经备好了橄榄油、燕麦奶和各种抗炎食材，接下来就该行动起来了。希望今天的分享能给大家一些启发，咱们一起开启这场健康革命吧。好的，今天的节目就到这里。
+
+            感谢大家的收听，咱们下期再见。再见。
+        </div>
+    </header>
+
+    <!-- Main Content: Bento Grid Layout -->
+    <main class="bento-grid">
+
+        <!-- Grid 1: 油脂策略 (Large Feature Panel) -->
+        <div class="bento-item lg:col-span-2 relative bg-pink-50 tech-glow flex flex-col justify-between scroll-reveal">
+            <span class="absolute top-4 right-6 text-xs font-mono text-gray-400 z-10">01. FAT STRATEGY / Olive Oil</span>
+            <div class="z-20">
+                <p class="text-6xl md:text-8xl font-black text-pink-700 leading-none">
+                    <span class="relative">29<span class="text-4xl">%</span>
+                        <span class="absolute text-2xl md:text-4xl top-[-20px] left-[-20px] font-thin opacity-50 text-pink-900">↓</span>
+                    </span>
+                </p>
+                <p class="text-2xl md:text-4xl font-extrabold mt-3 text-gray-800">特级初榨橄榄油：<span class="text-pink-600">抑制炎症通路</span></p>
+                <p class="text-sm text-gray-600 mt-2">Daily 25ml Extra Virgin Olive Oil intake reduces inflammation markers.</p>
+            </div>
+            
+            <div class="mt-6 p-4 rounded-xl border border-pink-200 bg-white shadow-inner">
+                <p class="font-bold text-gray-800 mb-2 text-lg">抗炎用油三大原则 <span class="text-xs text-pink-500 ml-2">Metabolic Syndrome Risk -43%</span></p>
+                <ul class="space-y-1 text-sm text-gray-700">
+                    <li class="flex items-start"><i class="fas fa-hand-holding-water text-pink-400 w-4 mr-2 mt-1"></i>凉拌：特级初榨 (Extra Virgin)</li>
+                    <li class="flex items-start"><i class="fas fa-fire-burner text-pink-400 w-4 mr-2 mt-1"></i>炒菜：精炼橄榄油或菜籽油 (Refined/Seed Oil)</li>
+                    <li class="flex items-start"><i class="fas fa-bomb text-red-500 w-4 mr-2 mt-1"></i>禁忌：别反复油炸 (Avoid Re-Frying)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Grid 2: 隐藏的炎症源 (Small Panel) -->
+        <div class="bento-item bg-white flex flex-col justify-start scroll-reveal">
+            <span class="text-xs font-mono text-gray-400 mb-2">02. HIDDEN INFLAMMATION</span>
+            <div class="outline-graphic border-blue-400 text-blue-600 mb-4 text-3xl">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <p class="text-3xl font-bold text-gray-800 leading-snug">隐形炎症源</p>
+            <ul class="text-sm text-gray-600 mt-3 space-y-2">
+                <li><strong class="text-red-500">牛奶: 15%</strong> 成人敏感，增加肠道通透性 (α-s1 Casein)</li>
+                <li><strong class="text-red-500">咖啡:</strong> 绿原酸可能引发胃酸过多，间接炎症</li>
+            </ul>
+        </div>
+
+        <!-- Grid 3: 饮品替换 (Alternative Drinks) -->
+        <div class="bento-item lg:col-span-1 bg-teal-50 tech-glow scroll-reveal">
+            <span class="text-xs font-mono text-gray-400 mb-3 block">03. DRINK UPGRADE</span>
+            <p class="text-4xl font-black text-teal-700 mb-4">最佳饮品方案</p>
+            
+            <div class="space-y-3">
+                <div class="p-3 bg-white rounded-lg border border-teal-200 shadow-sm">
+                    <p class="font-bold text-lg text-teal-600 flex justify-between items-center">燕麦奶
+                        <span class="text-sm font-normal text-gray-500">β-Glucan</span>
+                    </p>
+                </div>
+                <div class="p-3 bg-white rounded-lg border border-teal-200 shadow-sm">
+                    <p class="font-bold text-lg text-teal-600 flex justify-between items-center">红茶 (发酵)
+                        <span class="text-sm font-normal text-gray-500">比绿茶强 <strong class="text-xl">2倍</strong></span>
+                    </p>
+                </div>
+                <div class="p-3 bg-white rounded-lg border border-teal-200 shadow-sm">
+                    <p class="font-bold text-lg text-teal-600 flex justify-between items-center">薄荷茶
+                        <span class="text-sm font-normal text-gray-500">降低皮质醇</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Grid 4: 破戒急救方案 (Small Panel, Highlighted) -->
+        <div class="bento-item lg:col-span-2 bg-yellow-50 flex flex-col justify-start relative overflow-hidden tech-glow scroll-reveal">
+            <span class="text-xs font-mono text-gray-400 mb-2">04. EMERGENCY FIX (4 HOUR RULE)</span>
+            <p class="text-4xl font-black text-yellow-700 mb-4 leading-tight">高糖/酒精 破戒急救</p>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <!-- High Sugar -->
+                <div class="p-4 bg-white rounded-xl border border-yellow-200 shadow-sm">
+                    <p class="font-bold text-xl text-gray-800 flex items-center mb-1">
+                        <i class="fas fa-cookie-bite text-yellow-500 mr-2"></i> 高糖后
+                    </p>
+                    <p class="text-base text-gray-700">立即饮用 <strong class="text-yellow-600">生姜水</strong> (姜辣素抑制炎症因子)。</p>
+                </div>
+                
+                <!-- Alcohol/Gathering -->
+                <div class="p-4 bg-white rounded-xl border border-yellow-200 shadow-sm">
+                    <p class="font-bold text-xl text-gray-800 flex items-center mb-1">
+                        <i class="fas fa-wine-glass-alt text-yellow-500 mr-2"></i> 聚餐饮酒后
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <p class="text-base text-gray-700">补充 500mg <strong class="text-yellow-600">维生素 C</strong> (如猕猴桃/柠檬)。</p>
+                        <span class="text-2xl font-bold text-yellow-600">-35%</span>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">减少氧化应激损伤</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Grid 5: 运动策略 (Big Number Panel) -->
+        <div class="bento-item bg-blue-50 relative overflow-hidden flex flex-col justify-center scroll-reveal">
+            <span class="text-xs font-mono text-gray-400 mb-4">05. LOW-INTENSITY MOVEMENT</span>
+            
+            <div class="text-center my-4">
+                <p class="text-7xl md:text-8xl font-black text-blue-700 leading-none">
+                    <span class="relative">2.3
+                        <span class="text-4xl">X</span>
+                        <span class="text-sm font-normal block text-blue-600">IL-6 Level Lift</span>
+                    </span>
+                </p>
+                <p class="text-xl font-bold mt-3 text-gray-800">中等强度：抗炎因子提升</p>
+            </div>
+            
+            <div class="p-3 bg-white rounded-lg border border-blue-200">
+                <p class="text-sm text-gray-600 mt-1">每天 30分钟快走、瑜伽。美运动医学会：<strong class="text-blue-600">避免过量运动</strong>，防止炎症反弹。</p>
+            </div>
+        </div>
+
+        <!-- Grid 7: 21天行动清单 (Big Grid spanning 3 columns for structure) -->
+        <div class="bento-item lg:col-span-3 bg-purple-50 tech-glow scroll-reveal">
+             <span class="text-xs font-mono text-gray-400 mb-3 block">06. 21-DAY ACTION PLAN (Over 100k+ Success)</span>
+             <p class="text-3xl md:text-4xl font-black text-purple-700 mb-4">科学三周：系统抗炎清单</p>
+
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                
+                <!-- Week 1 -->
+                <div class="p-4 bg-white rounded-xl border border-purple-200 hover:shadow-lg transition">
+                    <p class="text-3xl font-black text-purple-500 mb-1">W1</p>
+                    <p class="text-xl font-bold text-gray-800">饮食替换</p>
+                </div>
+
+                <!-- Week 2 -->
+                <div class="p-4 bg-white rounded-xl border border-purple-200 hover:shadow-lg transition">
+                    <p class="text-3xl font-black text-purple-500 mb-1">W2</p>
+                    <p class="text-xl font-bold text-gray-800">运动 & 饮品</p>
+                </div>
+
+                <!-- Week 3 -->
+                <div class="p-4 bg-white rounded-xl border border-purple-200 hover:shadow-lg transition">
+                    <p class="text-3xl font-black text-purple-500 mb-1">W3</p>
+                    <p class="text-xl font-bold text-gray-800">家居环境</p>
+                </div>
+
+             </div>
+
+             <div class="grid grid-cols-3 gap-4 mt-6 text-center pt-4 border-t border-purple-200">
+                 <div class="border-l-4 border-purple-400 pl-2">
+                     <p class="text-3xl font-bold text-purple-600">3.2<span class="text-xl">kg</span></p>
+                     <p class="text-sm text-gray-600">体重下降</p>
+                 </div>
+                 <div class="border-l-4 border-purple-400 pl-2">
+                    <p class="text-3xl font-bold text-purple-600">8<span class="text-xl">mmHg</span></p>
+                    <p class="text-sm text-gray-600">血压降低</p>
+                </div>
+                <div class="border-l-4 border-purple-400 pl-2">
+                    <p class="text-3xl font-bold text-purple-600">12<span class="text-xl">%</span></p>
+                    <p class="text-sm text-gray-600">血糖改善</p>
+                </div>
+             </div>
+        </div>
+
+        <!-- Grid 6/8: 肠道健康 (Gut Health - Core Focus) -->
+        <div class="bento-item lg:col-span-3 bg-red-50 tech-glow scroll-reveal">
+            <span class="text-xs font-mono text-gray-400 mb-3 block">07. CORE IMMUNITY / Gut Health</span>
+
+            <div class="flex items-center space-x-6">
+                <div class="text-8xl text-red-400 opacity-80">
+                    <i class="fas fa-lungs"></i> <!-- Using lungs/gut representation -->
+                </div>
+                <div>
+                    <p class="text-4xl md:text-5xl font-black text-red-700 leading-snug">
+                        肠道是核心：<span class="text-red-500">最大免疫器官</span>
+                    </p>
+                    <p class="text-lg text-gray-700 mt-2">平衡菌群，避免LPS渗漏引发全身炎症。</p>
+                </div>
+            </div>
+            
+            <div class="mt-6 grid md:grid-cols-3 gap-4">
+                <div class="p-3 bg-white rounded-xl border border-red-200 shadow-sm">
+                    <p class="font-bold text-gray-800 flex items-center mb-1">
+                        <i class="fas fa-carrot text-red-500 mr-2"></i> 膳食纤维 (25-30g)
+                    </p>
+                </div>
+                <div class="p-3 bg-white rounded-xl border border-red-200 shadow-sm">
+                    <p class="font-bold text-gray-800 flex items-center mb-1">
+                        <i class="fas fa-vial text-red-500 mr-2"></i> 发酵食品 (无糖酸奶/泡菜)
+                    </p>
+                </div>
+                <div class="p-3 bg-white rounded-xl border border-red-200 shadow-sm">
+                    <div class="flex justify-between items-center">
+                         <p class="font-bold text-gray-800 flex items-center">
+                            <i class="fas fa-star text-red-500 mr-2"></i> 多酚类物质
+                         </p>
+                         <span class="text-2xl font-bold text-red-600">40<span class="text-lg">%</span></span>
+                    </div>
+                    <p class="text-xs text-gray-500">蓝莓/紫甘蓝 - 提升菌群多样性</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid 9: 环境植物 -->
+        <div class="bento-item lg:col-span-1 bg-white flex flex-col justify-start scroll-reveal">
+            <span class="text-xs font-mono text-gray-400 mb-2">08. AIR QUALITY</span>
+            <div class="flex items-center space-x-4">
+                <div class="outline-graphic border-green-400 text-green-600 text-3xl">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <div>
+                    <p class="text-xl font-bold text-green-700">NASA 推荐净化植物</p>
+                    <p class="text-xs text-gray-500">Fight Chronic Respiratory Inflammation</p>
+                </div>
+            </div>
+            
+            <div class="mt-4 p-3 bg-green-50 rounded-xl border border-green-200">
+                <p class="text-2xl font-bold text-green-700 mb-1">虎眼兰</p>
+                <p class="text-sm text-gray-700">吸收 <strong class="text-lg text-green-600">90%</strong> 甲醛和苯系物。</p>
+            </div>
+        </div>
+
+    </main>
+    
+    <!-- Footer Conclusion -->
+    <footer class="max-w-7xl mx-auto mt-8 mb-4 p-8 text-center bg-white rounded-3xl border border-gray-200 shadow-xl scroll-reveal">
+        <p class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-3">
+            抗炎，是一种 <span class="text-blue-600">可持续的生活方式</span>
+        </p>
+        <p class="text-xl text-gray-600">
+            降低 62% 风险的秘诀，藏在日常的小习惯里。
+        </p>
+    </footer>
+
+
+    <script>
+        // JavaScript for Collapsible Transcript
+        document.getElementById('toggleOriginal').addEventListener('click', function() {
+            const transcript = document.getElementById('originalTranscript');
+            
+            if (transcript.classList.contains('hidden')) {
+                transcript.classList.remove('hidden');
+                this.innerHTML = '<i class="fas fa-caret-up mr-1"></i> 隐藏原文';
+            } else {
+                transcript.classList.add('hidden');
+                this.innerHTML = '<i class="fas fa-caret-down mr-1"></i> 显示原文';
+            }
+        });
+
+        // JavaScript for Scroll Reveal Effect (Simple Intersection Observer)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // We keep observing for the Bento items in case the user scrolls quickly back up, 
+                    // but for simpler designs, unobserve is usually preferred. Let's keep it simple.
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        });
+
+        document.querySelectorAll('.scroll-reveal').forEach(item => {
+            observer.observe(item);
+        });
+
+    </script>
+</body>
+</html>

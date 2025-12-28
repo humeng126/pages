@@ -1,0 +1,234 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《被讨厌的勇气》：我们90%的烦恼</title>
+
+<!-- Tailwind CSS 3.0+ via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Font Awesome Icons via CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+    /* Custom utility classes for light gradient glow (Requirement 5) */
+    .glow-cyan-light {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(165, 243, 252, 0.4); /* Light border matching accent */
+    }
+
+    /* Subtle overlay for the internal glow effect */
+    .glow-cyan-light::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(165, 243, 252, 0.1), transparent 50%);
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    /* Initial state for Apple-style animation (hidden/moved) */
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    /* Active state for animation */
+    .animate-on-scroll.in-view {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+</style>
+
+<body class="bg-gray-50 font-sans p-4 md:p-10 min-h-screen">
+
+    <!-- REQUIRED METADATA HEADER -->
+    <header class="max-w-6xl mx-auto p-4 bg-white/70 backdrop-blur-sm rounded-xl shadow-lg mb-8 border border-gray-100">
+        <h1 class="text-xl md:text-3xl font-extrabold text-gray-800">
+            《被讨厌的勇气》：我们90%的烦恼，都是因为付出得不到回报
+        </h1>
+        <p class="text-base text-cyan-600 font-medium mt-1">
+            “付出与回应，从来不是因果关系。”
+        </p>
+        <div class="text-sm text-gray-500 mt-2 space-x-2">
+            <span class="bg-gray-100 px-2 py-0.5 rounded-full text-xs">#文学</span>
+            <span class="bg-gray-100 px-2 py-0.5 rounded-full text-xs">#好书推荐</span>
+            <span class="bg-gray-100 px-2 py-0.5 rounded-full text-xs">#成长</span>
+            <span class="bg-gray-100 px-2 py-0.5 rounded-full text-xs">#情感共鸣</span>
+        </div>
+        <div class="text-xs text-gray-400 mt-2">
+            <p>视频链接: <a href="https://v.douyin.com/gEE2MH4erPc/" target="_blank" class="text-cyan-500 hover:text-cyan-700">https://v.douyin.com/gEE2MH4erPc/</a></p>
+            <p>提取时间: 2025-12-28 04:59:19</p>
+        </div>
+
+        <!-- Toggle Button for Original Text -->
+        <button id="toggleOriginal" class="mt-4 text-xs font-semibold px-4 py-2 bg-cyan-100 text-cyan-700 rounded-lg hover:bg-cyan-200 transition duration-300">
+            显示原文
+        </button>
+
+        <!-- Original Content Area (Default Hidden) -->
+        <div id="originalText" class="mt-4 p-4 text-sm italic text-gray-600 bg-gray-50 rounded-lg shadow-inner hidden">
+            分之九十的烦恼都是因为付出得不到回报。今天分享《被讨厌的勇气》。你可以选择对别人好，但不能要求别人同样对你好。你如何待人是你的品格，别人如何待你那是他的课题。这从来不是因果关系，而是两条平行线。看不透这一点，只会徒增烦恼。你越把被回应当做付出的奖赏，就越容易在别人的沉默里撕扯自己。真正折磨你的从来不是任何人的绝情，而是你心怀幻想的期待。记住，爱人先爱己。
+        </div>
+    </header>
+
+    <!-- BENTO GRID LAYOUT CONTAINER -->
+    <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 pb-12">
+
+        <!-- PANEL 1: THE 90% PROBLEM (Huge Visual Emphasis) -->
+        <div class="md:col-span-7 p-6 md:p-10 bg-white rounded-2xl shadow-xl glow-cyan-light animate-on-scroll">
+            <div class="relative">
+                <p class="text-3xl font-extrabold text-gray-800 leading-snug">
+                    <span class="text-red-400">分之九十</span>的烦恼
+                </p>
+                <h2 class="text-9xl md:text-[14rem] font-black text-cyan-200 opacity-70 leading-none mt-[-10px]">
+                    90%
+                </h2>
+                <div class="absolute top-0 left-0 mt-20 md:mt-16 w-3/4">
+                    <p class="text-lg font-medium text-gray-600">
+                        ... are caused by <span class="text-red-500 font-bold">Unreciprocated Effort</span>.
+                    </p>
+                    <p class="text-5xl font-extrabold text-gray-800 mt-4">
+                        付出得不到回报
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANEL 2: THE BOOK/INTRODUCTION (Bento Tile) -->
+        <div class="md:col-span-5 p-6 bg-white rounded-2xl shadow-xl border border-gray-100 flex flex-col justify-between animate-on-scroll">
+            <div>
+                <i class="fas fa-book-open text-cyan-500 text-4xl mb-4"></i>
+                <p class="text-base text-gray-500 mb-2 font-medium">
+                    The Courage to Be Disliked
+                </p>
+                <h3 class="text-4xl font-extrabold text-gray-800">
+                    被讨厌的勇气
+                </h3>
+            </div>
+            <p class="mt-4 text-gray-600">
+                You can choose Kindness, but you cannot demand Reciprocity.
+            </p>
+        </div>
+
+        <!-- PANEL 3: TASK SEGREGATION (The Core Principle) -->
+        <div class="md:col-span-6 p-6 bg-white rounded-2xl shadow-xl glow-cyan-light animate-on-scroll">
+            <h3 class="text-xl font-bold text-cyan-600 mb-2 uppercase tracking-widest">
+                Task Segregation
+            </h3>
+            <div class="flex items-start space-x-4">
+                <div class="w-1/2 p-3 border-r border-gray-100">
+                    <p class="text-5xl font-extrabold text-gray-800">
+                        我的品格
+                    </p>
+                    <p class="text-base text-gray-500 mt-1">
+                        How you treat others (Your Character)
+                    </p>
+                    <div class="text-right mt-3">
+                        <i class="fas fa-fingerprint text-3xl text-red-300 opacity-50"></i>
+                    </div>
+                </div>
+                <div class="w-1/2 p-3">
+                    <p class="text-5xl font-extrabold text-gray-800">
+                        他的课题
+                    </p>
+                    <p class="text-base text-gray-500 mt-1">
+                        How others treat you (Their Task)
+                    </p>
+                    <div class="text-left mt-3">
+                        <i class="fas fa-users text-3xl text-cyan-300 opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANEL 4: THE PARALLEL LINE (Visualizing Separation) -->
+        <div class="md:col-span-6 p-6 bg-white rounded-2xl shadow-xl border border-gray-100 flex flex-col justify-center animate-on-scroll">
+            <h3 class="text-4xl font-extrabold text-gray-800 mb-2">
+                两条平行线
+            </h3>
+            <p class="text-lg font-medium text-gray-500 mb-4">
+                This is never a Causation, only two Parallel Lines.
+            </p>
+            <!-- Simple Parallel Line Visualization -->
+            <div class="relative w-full h-10 mt-2">
+                <div class="absolute inset-x-0 top-1/4 h-1 bg-cyan-400 rounded-full opacity-70"></div>
+                <div class="absolute inset-x-0 bottom-1/4 h-1 bg-red-400 rounded-full opacity-70"></div>
+                <i class="fas fa-arrows-left-right-to-line absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-gray-500 bg-white p-1 rounded-full border border-gray-200"></i>
+            </div>
+            <p class="text-sm text-gray-400 italic mt-4">
+                Failing to see this separation only increases distress.
+            </p>
+        </div>
+
+        <!-- PANEL 5: THE PAIN OF EXPECTATION (Tearing oneself apart) -->
+        <div class="md:col-span-8 p-6 md:p-8 bg-white rounded-2xl shadow-xl border border-gray-100 flex flex-col justify-between animate-on-scroll">
+            <div class="flex items-center space-x-4 mb-4">
+                <i class="fas fa-heart-crack text-5xl text-red-500 opacity-80"></i>
+                <h3 class="text-3xl font-extrabold text-gray-800">
+                    折磨你的，是<span class="text-cyan-600">幻想的期待</span>
+                </h3>
+            </div>
+            <p class="text-lg font-medium text-gray-600 leading-relaxed border-l-4 border-red-300 pl-4 py-2">
+                你越把<span class="text-red-500">被回应当作付出的奖赏</span>，就越容易在别人的沉默里撕扯自己。
+            </p>
+            <p class="text-base text-gray-500 mt-4 italic">
+                What truly tears you apart is not anyone's coldness (绝情), but your self-imposed expectation.
+            </p>
+        </div>
+
+        <!-- PANEL 6: THE SOLUTION (Love Yourself First) -->
+        <div class="md:col-span-4 p-6 bg-cyan-50 rounded-2xl shadow-xl glow-cyan-light border border-cyan-200 flex flex-col justify-between items-center text-center animate-on-scroll">
+            <i class="fas fa-hand-holding-heart text-6xl text-cyan-600 mb-4 animate-pulse"></i>
+            <h3 class="text-5xl font-extrabold text-gray-800 mb-2 leading-tight">
+                爱人先爱己
+            </h3>
+            <p class="text-sm text-gray-600 uppercase tracking-widest font-bold">
+                Remember: Love yourself first.
+            </p>
+        </div>
+
+    </main>
+
+    <!-- JAVASCRIPT FOR TOGGLE AND SCROLL EFFECTS -->
+    <script>
+        // 1. Original Text Toggle
+        document.getElementById('toggleOriginal').addEventListener('click', function() {
+            const content = document.getElementById('originalText');
+            const button = this;
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                button.textContent = '收起原文';
+            } else {
+                content.classList.add('hidden');
+                button.textContent = '显示原文';
+            }
+        });
+
+        // 2. Intersection Observer for Scroll Animation (Apple-like fade-in)
+        document.addEventListener("DOMContentLoaded", () => {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        // Optional: Stop observing once it's visible
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                // Root margin ensures elements start animating slightly before reaching the center of the viewport
+                rootMargin: '0px 0px -10% 0px',
+                threshold: 0.1
+            });
+
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

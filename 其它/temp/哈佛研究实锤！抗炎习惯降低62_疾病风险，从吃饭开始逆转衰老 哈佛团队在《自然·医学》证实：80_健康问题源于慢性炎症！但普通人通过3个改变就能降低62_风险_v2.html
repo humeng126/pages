@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抗炎生活方式革命</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* Custom Tailwind Configuration (Soft Colors V2: Teal/Coral) */
+        :root {
+            --color-primary: #14b8a6; /* Teal 500 */
+            --color-secondary: #f472b6; /* Pink 400 (Coral/Soft Highlight) */
+            --bg-light: #f9fafb; /* Light Gray */
+        }
+
+        .bento-card {
+            background-color: var(--bg-light);
+            border: 1px solid rgba(20, 184, 166, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .bento-card:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 0 0 3px rgba(20, 184, 166, 0.1);
+            transform: translateY(-4px) scale(1.005);
+        }
+
+        .outline-graphic {
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+            opacity: 0.8;
+            box-shadow: inset 0 0 0 2px var(--color-primary);
+        }
+
+        .text-huge {
+            font-size: 5rem; /* 80px */
+            line-height: 1;
+        }
+
+        .gradient-overlay {
+            /* Simulating high-light transparency gradient */
+            background: radial-gradient(circle at 100% 100%, rgba(20, 184, 166, 0.1), transparent 50%);
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (min-width: 768px) {
+            .text-huge {
+                font-size: 8rem; /* 128px on desktop */
+            }
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen text-gray-800 p-4 md:p-8">
+
+    <!-- Metadata Header -->
+    <header class="max-w-7xl mx-auto mb-8 md:mb-12">
+        <div class="bg-teal-50/50 p-6 rounded-2xl shadow-sm border border-teal-100/80">
+            <h1 class="text-3xl md:text-4xl font-extrabold mb-2 leading-tight text-teal-800">
+                哈佛研究实锤！抗炎习惯降低<span class="text-red-500">62%</span>疾病风险
+            </h1>
+            <p class="text-lg text-gray-600 mb-4">
+                <span class="font-medium text-teal-600">哈佛团队在《自然·医学》证实：</span>80%健康问题源于慢性炎症！但普通人通过3个改变就能降低62%风险
+            </p>
+            <div class="flex flex-col md:flex-row md:items-center justify-between text-sm text-gray-500 border-t pt-3">
+                <div class="space-x-4">
+                    <span><i class="fas fa-link mr-1"></i> 视频链接: <a href="https://v.douyin.com/1WKgXEtJTY4/" target="_blank" class="hover:text-teal-600">https://v.douyin.com/1WKgXEtJTY4/</a></span>
+                    <span>|</span>
+                    <span><i class="far fa-clock mr-1"></i> 提取时间: 2025-12-28 08:15:14</span>
+                </div>
+                <button id="toggleRawText" class="mt-3 md:mt-0 text-sm font-medium px-4 py-2 rounded-full bg-pink-100/70 text-pink-600 hover:bg-pink-200 transition">
+                    显示原文 <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Collapsible Raw Transcript -->
+        <div id="rawTextContainer" class="hidden mt-4 p-5 bg-gray-100/70 rounded-xl text-gray-700 text-sm overflow-hidden transition-all duration-500 ease-in-out">
+            <h3 class="font-bold text-base mb-2">抖音视频完整文字内容：</h3>
+            <p class="leading-relaxed">单不饱和脂肪酸能抑制炎症通路，每天用二十五毫升特级初榨橄榄油烹饪，炎症标志物能下降百分之二十九呢。对，而且用油还有三个原则：凉拌用特级初榨橄榄油，炒菜用精炼橄榄油或菜籽油，最重要的是别反复油炸。西班牙格拉纳达大学研究发现，遵循这三个原则的家庭，代谢综合征风险能降低百分之四十三。哎，说到吃的，饮品也不能忽略。你平时喝咖啡和牛奶多吗？我最近才知道这两样可能是隐藏的炎症源。大概百分之十五的成年人对牛奶里的 alpha s 一酪蛋白敏感，喝了之后肠道通透性会增加。咖啡里的绿原酸也可能让部分人胃酸过多，间接诱发炎症。啊，这个我还真没注意过，那有什么替代方案吗？其实很简单，换成燕麦奶就不错，里面的贝塔葡聚糖有抗炎作用。薄荷茶也挺好，薄荷醇能降低压力激素皮质醇。还有红茶，发酵后产生的茶黄素抗炎效果比绿茶强两倍呢。学到了学到了，不过有时候难免会放纵一下，比如吃点高糖食物或者喝点酒，这种情况有什么补救办法吗？还真有个破戒急救方案，吃高糖食物后马上喝生姜水，姜辣素能抑制炎症因子释放。聚餐饮酒后补充维生素 C，比如吃点猕猴桃或者柠檬，每天五百毫克能减少百分之三十五的氧化应激损伤。日本东京大学实验显示，这样能把单次高糖饮食的炎症影响缩短到四小时内。这个急救方案得记下来。除了吃和喝，运动和环境也很重要吧？我以前总觉得运动要高强度才有效，后来才知道低强度运动反而更适合抗炎。对，美国运动医学会二零二五年指南说了，每天三十分钟中等强度运动，比如快走、瑜伽，能让抗炎因子 IL 六水平提升二点三倍，过量运动反而会导致炎症反弹。哦。原来如此，说到环境，我最近在室内摆了几盆植物，听说有些植物能吸收有毒物质。你摆的什么植物？NASA 研究证实，虎眼兰能吸收百分之九十的甲醛和苯系物，这些可是诱发皮肤和呼吸道慢性炎症的元凶。哇，那我得赶紧换成虎眼兰。对了，你听说过那个二十一天抗炎行动清单吗？好像已经有超过十万用户验证有效了。知道知道，这个清单设计的挺科学的。第一周专注饮食替换，第二周加入运动和饮品调整，第三周优化家居环境。完成全程的人不仅体重平均降了三点二公斤，晨起血压平均低了八毫米汞柱，空腹血糖也改善了百分之十二，这些变化其实都跟炎症水平下降有关。这个清单听起来很容易执行啊，不过我觉得抗炎的核心还是肠道健康吧，毕竟肠道是人体最大的免疫器官。没错，肠道菌群平衡直接决定炎症状态。当肠道屏障被破坏，脂多糖这些促炎物质会漏进血液，引发全身炎症。所以补充膳食纤维、发酵食品和多酚类物质特别重要。每天吃二十五到三十克膳食纤维，再吃点无糖酸奶、泡菜，还有蓝莓、紫甘蓝这些，能让肠道菌群多样性提升百分之四十。原来如此，其实说了这么多，我觉得抗炎不是什么苦行僧式的自律，更像是跟身体和解的过程。比如把橄榄油淋在沙拉上，闻着薄荷茶的香气，穿着运动鞋去公园走走，这些小选择慢慢就织成了一张保护网。对，关键不是完美执行每一条规则，而是让抗炎成为一种可持续的生活方式。毕竟降低百分之六十二风险的秘诀，就藏在这些日常的小习惯里。没错，现在我的厨房已经备好了橄榄油、燕麦奶和各种抗炎食材，接下来就该行动起来了。希望今天的分享能给大家一些启发，咱们一起开启这场健康革命吧。好的，今天的节目就到这里。感谢大家的收听，咱们下期再见。再见。</p>
+        </div>
+    </header>
+
+    <!-- Bento Grid Container -->
+    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-6 gap-6 pb-12">
+        
+        <!-- 1. 脂肪与油脂 (29% Drop) - Column Span 2, Row Span 1 -->
+        <div class="bento-card relative md:col-span-2 p-6 md:p-8 rounded-3xl overflow-hidden group scroll-reveal" style="animation-delay: 0.1s;">
+            <div class="gradient-overlay bg-teal-500/50"></div>
+            <h2 class="text-xs uppercase font-semibold tracking-widest text-teal-600 mb-3">DIET CORE: FATS</h2>
+            <p class="text-2xl font-bold mb-4">橄榄油抗炎三原则：降<span class="text-pink-600">代谢综合征风险43%</span></p>
+            
+            <div class="flex items-end justify-between">
+                <div>
+                    <span class="text-huge font-extrabold text-teal-700 block transition-transform duration-300 group-hover:scale-105">29%</span>
+                    <span class="text-lg md:text-xl font-medium text-gray-600 ml-1">炎症标志物下降</span>
+                </div>
+                <div class="w-24 h-24 flex items-center justify-center outline-graphic rounded-full shrink-0">
+                     <i class="fas fa-oil-can text-3xl"></i>
+                </div>
+            </div>
+            
+            <ul class="mt-4 text-sm space-y-1 text-gray-700 list-inside font-medium">
+                <li class="flex items-start"><i class="fas fa-check-circle text-teal-500 mt-1 mr-2 flex-shrink-0"></i> 凉拌：特级初榨橄榄油</li>
+                <li class="flex items-start"><i class="fas fa-check-circle text-teal-500 mt-1 mr-2 flex-shrink-0"></i> 炒菜：精炼油/菜籽油</li>
+                <li class="flex items-start"><i class="fas fa-check-circle text-teal-500 mt-1 mr-2 flex-shrink-0"></i> 禁忌：勿反复油炸</li>
+            </ul>
+        </div>
+        
+        <!-- 2. 饮品替代方案 - Column Span 2, Row Span 1 -->
+        <div class="bento-card relative md:col-span-2 p-6 md:p-8 rounded-3xl group scroll-reveal" style="animation-delay: 0.2s;">
+            <h2 class="text-xs uppercase font-semibold tracking-widest text-pink-600 mb-3">DRINKS SWAP</h2>
+            <p class="text-2xl font-bold mb-4 text-gray-900">替代隐藏炎症源：燕麦奶与红茶</p>
+            
+            <div class="grid grid-cols-2 gap-4 text-center">
+                <div class="bg-red-50/70 p-4 rounded-xl">
+                    <i class="fas fa-times-circle text-2xl text-red-500 mb-2"></i>
+                    <p class="text-sm font-semibold">牛奶 / 咖啡</p>
+                    <span class="text-xs text-gray-500">（酪蛋白/绿原酸）</span>
+                </div>
+                 <div class="bg-teal-50/70 p-4 rounded-xl">
+                    <i class="fas fa-arrow-right text-2xl text-teal-500 mb-2"></i>
+                    <p class="text-sm font-semibold">燕麦奶 / 红茶</p>
+                    <span class="text-xs text-gray-500">（<span class="font-bold">茶黄素抗炎效果是绿茶2倍</span>）</span>
+                </div>
+            </div>
+            
+            <div class="mt-4 text-sm">
+                <p><span class="font-bold text-pink-600">牛奶敏感：</span>15%成年人对酪蛋白敏感，增肠道通透性。</p>
+                <p><span class="font-bold text-teal-600">薄荷茶：</span>薄荷醇降低压力激素皮质醇。</p>
+            </div>
+        </div>
+
+        <!-- 3. 破戒急救方案 - Column Span 2, Row Span 1 -->
+        <div class="bento-card relative md:col-span-2 p-6 md:p-8 rounded-3xl group scroll-reveal" style="animation-delay: 0.3s;">
+             <h2 class="text-xs uppercase font-semibold tracking-widest text-teal-600 mb-3">EMERGENCY PROTOCOL</h2>
+            <p class="text-2xl font-bold mb-4 text-gray-900">高糖/酒精急救：将炎症影响<span class="text-teal-600">缩短至4小时</span></p>
+
+            <div class="space-y-3">
+                <div class="flex items-start">
+                    <div class="w-10 h-10 flex items-center justify-center bg-yellow-100 rounded-lg shrink-0 mr-3">
+                        <i class="fas fa-candy-cane text-xl text-yellow-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold">高糖后：<span class="text-pink-600">生姜水</span></p>
+                        <p class="text-sm text-gray-600">（姜辣素抑制炎症因子释放）</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="w-10 h-10 flex items-center justify-center bg-green-100 rounded-lg shrink-0 mr-3">
+                         <i class="fas fa-wine-glass text-xl text-green-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold">饮酒后：<span class="text-pink-600">维生素C</span> (500mg)</p>
+                        <p class="text-sm text-gray-600">减少<span class="font-bold">35%</span>氧化应激损伤</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 4. 运动策略 (Medium Intensity) - Column Span 3, Row Span 1 -->
+        <div class="bento-card relative md:col-span-3 p-6 md:p-8 rounded-3xl overflow-hidden group scroll-reveal" style="animation-delay: 0.4s;">
+            <h2 class="text-xs uppercase font-semibold tracking-widest text-pink-600 mb-3">MOVEMENT & EXERCISE</h2>
+            <p class="text-2xl font-bold mb-4">中等强度运动，更适合抗炎！</p>
+            
+            <div class="flex justify-between items-center">
+                <div class="w-24 h-24 flex items-center justify-center outline-graphic rounded-full shrink-0 mr-6 bg-pink-50/50">
+                     <i class="fas fa-walking text-4xl text-pink-600"></i>
+                </div>
+                <div>
+                    <span class="text-huge font-extrabold text-pink-700 block transition-transform duration-300 group-hover:scale-105">2.3<span class="text-5xl">x</span></span>
+                    <p class="text-xl font-medium text-gray-600">抗炎因子IL-6水平提升</p>
+                </div>
+            </div>
+            
+            <ul class="mt-4 text-sm space-y-1 text-gray-700 font-medium">
+                <li class="flex items-start"><i class="fas fa-calendar-alt text-teal-500 mt-1 mr-2 flex-shrink-0"></i> 每日30分钟中等强度（快走/瑜伽）</li>
+                <li class="flex items-start"><i class="fas fa-exclamation-triangle text-red-500 mt-1 mr-2 flex-shrink-0"></i> 过量高强度运动会导致炎症反弹</li>
+            </ul>
+        </div>
+
+        <!-- 5. 环境抗炎：虎眼兰 (NASA) - Column Span 3, Row Span 1 -->
+        <div class="bento-card relative md:col-span-3 p-6 md:p-8 rounded-3xl overflow-hidden group scroll-reveal" style="animation-delay: 0.5s;">
+             <h2 class="text-xs uppercase font-semibold tracking-widest text-teal-600 mb-3">ENVIRONMENT OPTIMIZATION</h2>
+            <p class="text-2xl font-bold mb-4">室内植物吸收慢性炎症诱因</p>
+            
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-lg font-semibold text-gray-700 mb-2">虎眼兰吸收甲醛和苯系物达：</p>
+                    <span class="text-huge font-extrabold text-teal-700 block transition-transform duration-300 group-hover:scale-105">90%</span>
+                </div>
+                <div class="w-32 h-32 flex items-center justify-center outline-graphic rounded-xl shrink-0">
+                     <i class="fas fa-leaf text-5xl"></i>
+                </div>
+            </div>
+            <p class="mt-2 text-sm text-gray-600">（NASA研究证实，减少呼吸道/皮肤慢性炎症元凶）</p>
+        </div>
+
+        <!-- 6. 21天抗炎行动清单 - Column Span 3, Row Span 2 (Tall Box) -->
+        <div class="bento-card relative md:col-span-3 row-span-2 p-6 md:p-8 rounded-3xl overflow-hidden group flex flex-col justify-between scroll-reveal" style="animation-delay: 0.6s;">
+            <h2 class="text-xs uppercase font-semibold tracking-widest text-pink-600 mb-4">21-DAY ACTION PLAN</h2>
+            <h3 class="text-3xl font-extrabold mb-4 leading-snug">超过十万用户验证有效的<br><span class="text-teal-600">分阶段抗炎清单</span></h3>
+            
+            <div class="space-y-4">
+                 <div class="text-lg font-medium">
+                    <p class="mb-1"><span class="font-extrabold text-pink-600">第一周：</span>饮食替换 (Diet Swap)</p>
+                    <p class="mb-1"><span class="font-extrabold text-pink-600">第二周：</span>运动与饮品调整 (Movement & Drinks)</p>
+                    <p><span class="font-extrabold text-pink-600">第三周：</span>优化家居环境 (Environment)</p>
+                </div>
+                
+                <div class="p-4 bg-teal-50/70 rounded-xl outline-graphic">
+                    <h4 class="font-bold mb-2 text-gray-800 flex items-center"><i class="fas fa-chart-line text-teal-600 mr-2"></i> 核心成果数据:</h4>
+                    <div class="grid grid-cols-3 text-center gap-3">
+                        <div>
+                            <p class="text-xl font-bold text-teal-700">3.2kg</p>
+                            <p class="text-xs text-gray-600">体重平均下降</p>
+                        </div>
+                         <div>
+                            <p class="text-xl font-bold text-teal-700">8 mmHg</p>
+                            <p class="text-xs text-gray-600">晨起血压降低</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-teal-700">12%</p>
+                            <p class="text-xs text-gray-600">空腹血糖改善</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. 肠道健康 (Gut Health) - Column Span 3, Row Span 1 -->
+        <div class="bento-card relative md:col-span-3 p-6 md:p-8 rounded-3xl overflow-hidden group scroll-reveal" style="animation-delay: 0.7s;">
+             <h2 class="text-xs uppercase font-semibold tracking-widest text-teal-600 mb-3">GUT HEALTH: IMMUNE CORE</h2>
+            <p class="text-2xl font-bold mb-4">膳食纤维与发酵食品，重建肠道屏障</p>
+            
+            <div class="flex items-end justify-between">
+                <div class="flex-grow">
+                    <span class="text-huge font-extrabold text-teal-700 block transition-transform duration-300 group-hover:scale-105">40%</span>
+                    <span class="text-lg font-medium text-gray-600">肠道菌群多样性提升</span>
+                    <p class="mt-2 text-sm text-gray-700">（通过补充膳食纤维/发酵食品/多酚类）</p>
+                </div>
+                <div class="w-24 h-24 flex items-center justify-center outline-graphic rounded-full shrink-0 bg-teal-50/50">
+                     <i class="fas fa-bacteria text-4xl text-teal-600"></i>
+                </div>
+            </div>
+        </div>
+
+         <!-- 8. 总结与行动号召 (The 62% Goal) - Column Span 3, Row Span 1 -->
+        <div class="bento-card relative md:col-span-3 p-6 md:p-8 rounded-3xl overflow-hidden bg-pink-50/80 border-pink-100 group scroll-reveal" style="animation-delay: 0.8s;">
+            <div class="gradient-overlay bg-pink-500/50"></div>
+            <h2 class="text-xs uppercase font-semibold tracking-widest text-pink-700 mb-3">LIFESTYLE CONCLUSION</h2>
+            
+            <h3 class="text-3xl font-extrabold mb-4 leading-tight">
+                <span class="text-pink-800">降低62%风险</span>的秘诀，
+            </h3>
+            <p class="text-xl text-gray-700 font-medium">
+                藏在日常的小习惯里：抗炎是跟身体和解的过程。
+            </p>
+            <div class="mt-4 text-sm font-light text-gray-600 italic">
+                “关键不是完美执行每一条规则，而是让抗炎成为一种可持续的生活方式。”
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="text-center text-gray-400 py-6 text-sm mt-8">
+        © 2024 Anti-Inflammatory Guide. Designed with Bento Grid principle.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleButton = document.getElementById('toggleRawText');
+            const rawTextContainer = document.getElementById('rawTextContainer');
+            const icon = toggleButton.querySelector('i');
+            
+            toggleButton.addEventListener('click', () => {
+                const isHidden = rawTextContainer.classList.contains('hidden');
+                
+                if (isHidden) {
+                    rawTextContainer.classList.remove('hidden');
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                    toggleButton.innerHTML = '收起原文 <i class="fas fa-chevron-up ml-1 text-xs"></i>';
+                } else {
+                    rawTextContainer.classList.add('hidden');
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                    toggleButton.innerHTML = '显示原文 <i class="fas fa-chevron-down ml-1 text-xs"></i>';
+                }
+            });
+
+            // Intersection Observer for scroll reveal effect (Apple Vibe simulation)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

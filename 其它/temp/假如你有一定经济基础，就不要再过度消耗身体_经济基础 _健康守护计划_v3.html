@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命宽度与长度的平衡：Bento Grid 动态展示</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Material Icons CDN -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        /* Custom styles for soft design and animations */
+        .bento-card {
+            background-color: white;
+            border: 1px solid #f3f4f6; /* Very light border */
+            border-radius: 1.5rem; 
+            transition: all 0.8s cubic-bezier(0.2, 0.5, 0.2, 1); /* Smoother cubic transition */
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.03), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+            position: relative;
+        }
+
+        /* Initial state for scroll animation */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        /* Target state for scroll animation */
+        .scroll-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Tech gradient simulation using pseudo-elements */
+        /* Note: Colors are light and rely on transparency for softness */
+        .tech-glow::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+            border-radius: 1.5rem;
+        }
+        .glow-mint::before {
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.15) 0%, rgba(255, 255, 255, 0) 65%); /* Green/Mint Glow */
+        }
+        .glow-coral::before {
+             background: radial-gradient(circle at bottom left, rgba(244, 114, 182, 0.15) 0%, rgba(255, 255, 255, 0) 65%); /* Pink/Coral Glow */
+        }
+
+        /* Custom outline style for visualization elements */
+        .outline-graphic {
+            border: 2px solid;
+            box-sizing: border-box;
+            background: none;
+            border-radius: 0.5rem;
+        }
+
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'accent-mint': '#10b981', /* Emerald */
+                        'accent-coral': '#f472b6', /* Pink */
+                        'accent-blue': '#3b82f6', /* Blue */
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans p-4 sm:p-8 min-h-screen">
+
+    <div class="max-w-6xl mx-auto py-4">
+
+        <!-- Header Metadata -->
+        <header class="mb-8 border-b border-gray-200 pb-4 sticky top-0 bg-gray-50/90 backdrop-blur-sm z-20">
+            <h1 class="text-xl font-bold text-gray-900">生命长度与宽度的平衡</h1>
+            <p class="text-sm text-gray-500 mt-1">
+                <span class="font-semibold">视频标题:</span> 假如你有一定经济基础，就不要再过度消耗身体 <span class="text-accent-mint">#健康守护计划</span>
+            </p>
+            <p class="text-xs text-gray-500">
+                <span class="font-semibold">视频链接:</span> <a href="https://v.douyin.com/CcrTcecSLwo/" target="_blank" class="hover:underline text-accent-blue">Douyin Link</a> | 
+                <span class="font-semibold">提取时间:</span> 2025-12-28 08:02:43
+            </p>
+
+            <!-- 原文 Toggle Button -->
+            <button id="toggleOriginal" class="mt-4 px-4 py-2 bg-gray-200 text-sm rounded-lg hover:bg-gray-300 transition duration-300 flex items-center">
+                <span class="material-icons text-base mr-1">menu_book</span>
+                显示原文
+            </button>
+            <div id="originalContent" class="hidden mt-3 p-4 bg-gray-100 border border-gray-200 rounded-lg text-sm text-gray-600 leading-relaxed max-h-48 overflow-y-auto">
+                <pre class="whitespace-pre-wrap font-sans text-xs">你有一定经济基础，固定存款一百个以后就不要再过度消耗身体，上班挣一下生活费就好了。一百个在大部分城市作为保险已经足够了。这个时候活着才是最大的课题，长寿才是最牛的英雄。活着才能看到人类社会的文明进步程度，才能享受人类未来科技文明高度发展带来的成果。以生命的长度延迟获得更大的生命宽度，不要过度被工作中各种PUA，传统的各种禁锢等影响心境。这个时候请淡淡享受生命后半场的时光。人类寿命之短暂不应该浪费，生命中的每一天都是无比珍贵的，应该让自己舒适的度过，不要做一辈子的工蚁工蜂。如果你已经三十岁了，你会在你人生未来这十年里快速感觉到什么叫衰老，从而真实意识到你在二十到三十岁时基于对自己身体和精神状态有序的错误默认，而信誓旦旦做出的结论是颇为幼稚的。你们中的绝大多数人，绝对肯定大于百分之九十九会很快发现最典型的人生道路和节奏很可能确实就是最优的人生道路和节奏。你自己是完全没有那个资质和资源去走一条特立独行而拉风的叛逆人生路线的。你也将真实的意识到，人的一生真的漫长而蛋疼，要耗大几十年，且其中的大半光阴皆无可能处于青春的旺盛状态，而是处于稳定的衰老和持续变得更衰老中。显然你也会很快意识到自己当初做出的那些幼稚和想当然的人生决策，其中相当一些已经没有后悔药可吃了。进而也就很快能亲自验证一个略微残酷但普世的道理，每个人都不必然是自己正确决策和行为所带来福祉的唯一受益人，但几乎一定肯定是自己错误决策和行为所引发代价的唯一承担者。</pre>
+            </div>
+        </header>
+
+        <!-- Bento Grid Layout (3-Column Base, Flexible Spanning) -->
+        <main class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- Card 1: The Threshold (Financial Base) - Tall Card -->
+            <div id="card1" class="bento-card p-6 md:row-span-2 relative scroll-animate glow-mint flex flex-col justify-between">
+                <div class="relative z-10">
+                    <p class="text-sm font-light text-gray-500 mb-2 tracking-widest">SAFETY NET GOAL</p>
+                    <h2 class="text-7xl lg:text-9xl font-black text-accent-mint leading-tight">
+                        ¥100<span class="text-5xl font-extrabold align-top">M</span>
+                    </h2>
+                    <p class="text-3xl font-extrabold text-gray-900 mt-2">
+                        固定存款门槛
+                    </p>
+                </div>
+                
+                <div class="relative z-10 mt-6">
+                    <p class="text-gray-600 text-sm">
+                        此为保险金，<span class="font-bold text-accent-mint">足够覆盖大部分城市的生存需求</span>。工作降级，挣生活费即可，停止过度消耗身体。
+                    </p>
+                    <div class="outline-graphic border-accent-mint p-3 mt-4 text-center">
+                        <span class="font-semibold text-accent-mint text-lg">上班挣生活费 ONLY</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Core Philosophy (Longevity) - Wide Card -->
+            <div id="card2" class="bento-card p-6 md:col-span-2 relative scroll-animate glow-coral">
+                <div class="relative z-10 flex items-center">
+                    <span class="material-icons text-7xl text-accent-coral mr-4 opacity-70">shield_with_heart</span>
+                    <div>
+                        <p class="text-sm font-light text-gray-500 tracking-widest">ULTIMATE HERO</p>
+                         <h2 class="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
+                            长寿 <span class="text-accent-coral">才是最牛</span> 的英雄
+                        </h2>
+                        <h3 class="text-xl font-semibold text-gray-800 mt-1">
+                            LIVING IS THE BIGGEST CHALLENGE
+                        </h3>
+                    </div>
+                </div>
+                <p class="mt-4 text-gray-600 text-sm">
+                    以生命的<span class="font-bold">长度 (Length)</span> 延迟，才能获得更大的生命<span class="font-bold">宽度 (Width)</span>，享受未来文明成果。
+                </p>
+            </div>
+
+            <!-- Card 3: The Aging Reality (A Decade Checkpoint) - Normal Card -->
+            <div id="card3" class="bento-card p-6 relative scroll-animate">
+                <p class="text-sm font-light text-gray-500 mb-2 tracking-widest">AGE CHECKPOINT</p>
+                <h2 class="text-4xl font-black text-accent-blue leading-tight">
+                    30岁以后
+                </h2>
+                <p class="text-xl font-bold text-gray-900 mt-1 mb-4">
+                    你将快速感觉到衰老
+                </p>
+
+                <!-- Visualization Simulation: Age realization curve -->
+                <div class="relative h-20 mt-4">
+                    <div class="outline-graphic absolute inset-0 border-gray-200"></div>
+                    <div class="absolute w-full h-full p-1">
+                        <svg viewBox="0 0 100 100" class="w-full h-full" preserveAspectRatio="none">
+                            <polyline fill="none" stroke="#3b82f6" stroke-width="3" points="5,95 30,70 50,50 75,30 95,10"></polyline>
+                        </svg>
+                        <span class="absolute left-1/4 bottom-0 text-xs text-gray-500">20-30Y 幼稚决策</span>
+                        <span class="absolute right-1/4 top-0 text-sm font-semibold text-accent-blue">30-40Y 衰老加速</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 4: Life's Rhythm (The Majority Path) - Normal Card -->
+            <div id="card4" class="bento-card p-6 relative scroll-animate">
+                 <p class="text-sm font-light text-gray-500 mb-2 tracking-widest">DEFAULT RHYTHM</p>
+                 <div class="relative">
+                    <h2 class="text-6xl font-black text-accent-coral leading-none">
+                        >99%
+                    </h2>
+                    <span class="text-lg font-bold text-gray-900 mt-2 block">是注定的最优解</span>
+                 </div>
+                 
+                 <p class="mt-4 text-gray-600 text-sm">
+                    特立独行而拉风的叛逆人生路线？
+                    <span class="font-extrabold text-red-500 block">你没有那个资质和资源。</span>
+                 </p>
+                 
+                 <!-- Simple check icon -->
+                 <div class="mt-4 text-center">
+                     <span class="material-icons text-5xl text-gray-300">cancel</span>
+                 </div>
+            </div>
+
+            <!-- Card 5: Avoiding the Trap (PUA & Worker Bee) - Normal Card -->
+            <div id="card5" class="bento-card p-6 relative scroll-animate glow-mint">
+                <div class="relative z-10">
+                    <h2 class="text-4xl font-black text-gray-900 leading-tight">
+                        不做一辈子
+                    </h2>
+                    <p class="text-5xl font-black text-accent-mint leading-none mt-2">
+                        工蚁工蜂
+                    </p>
+                    <p class="text-sm font-light text-gray-500 mt-3 tracking-widest">RESIST PUA & TRADITION</p>
+                    
+                    <ul class="mt-4 space-y-2 text-gray-600 text-sm">
+                        <li class="flex items-center">
+                            <span class="material-icons text-lg text-accent-mint mr-2">sentiment_satisfied_alt</span>
+                            让自己舒适度过每一天
+                        </li>
+                         <li class="flex items-center">
+                            <span class="material-icons text-lg text-accent-mint mr-2">block</span>
+                            拒绝工作中的PUA和禁锢
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Card 6: The Long Drag (Decades of Decay) - Wide Card -->
+            <div id="card6" class="bento-card p-6 md:col-span-2 relative scroll-animate">
+                <p class="text-sm font-light text-gray-500 mb-2 tracking-widest">LIFE SPAN REALIZATION</p>
+                <h2 class="text-4xl font-black text-gray-900 leading-tight">
+                    人的一生真的<span class="text-accent-blue">漫长而蛋疼</span>
+                </h2>
+                
+                <!-- Visualization: Time Split -->
+                <div class="mt-6 w-full flex text-sm font-bold">
+                    <div class="bg-accent-mint h-8 rounded-l-lg flex items-center justify-center text-white" style="width: 25%;">
+                        旺盛青春 (Short)
+                    </div>
+                     <div class="bg-red-300 h-8 rounded-r-lg flex items-center justify-center text-red-800" style="width: 75%;">
+                        稳定的持续衰老 (Long Decay)
+                    </div>
+                </div>
+                 <p class="text-xs text-gray-500 mt-2">
+                    大半光阴皆无可能处于青春的旺盛状态。
+                </p>
+            </div>
+            
+            <!-- Card 7: Consequence Management (Cruel Truth) - Normal Card -->
+            <div id="card7" class="bento-card p-6 md:col-span-1 relative scroll-animate glow-coral">
+                 <div class="relative z-10">
+                    <p class="text-sm font-light text-gray-500 mb-2 tracking-widest">CRUEL TRUTH</p>
+                    <h2 class="text-3xl font-black text-gray-900 leading-tight">
+                        代价的<span class="text-accent-coral">唯一承担者</span>
+                    </h2>
+                    
+                    <ul class="mt-4 space-y-3 text-gray-600 text-sm">
+                        <li class="border-l-4 border-gray-300 pl-2">
+                            <span class="font-bold">正确行为的福祉：</span>不必然是你的。
+                        </li>
+                         <li class="border-l-4 border-accent-coral pl-2 font-bold">
+                            错误决策的代价：<span class="text-red-600">几乎一定肯定是你自己</span>。
+                        </li>
+                    </ul>
+                 </div>
+            </div>
+
+
+        </main>
+        
+        <footer class="mt-12 text-center text-gray-400 text-xs">
+            Life Simulation Interface V3 | Scroll Down for Dynamics.
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. 原文 Toggle Logic
+            const toggleButton = document.getElementById('toggleOriginal');
+            const originalContent = document.getElementById('originalContent');
+
+            toggleButton.addEventListener('click', () => {
+                const isHidden = originalContent.classList.contains('hidden');
+                
+                if (isHidden) {
+                    originalContent.classList.remove('hidden');
+                    toggleButton.innerHTML = '<span class="material-icons text-base mr-1">menu_book</span> 隐藏原文';
+                } else {
+                    originalContent.classList.add('hidden');
+                    toggleButton.innerHTML = '<span class="material-icons text-base mr-1">menu_book</span> 显示原文';
+                }
+            });
+
+            // 2. Apple Style Scroll Animation (Intersection Observer)
+            const cards = document.querySelectorAll('.scroll-animate');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2 // Trigger when 20% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('scroll-visible');
+                        // Optional: stop observing once triggered for performance
+                        // observer.unobserve(entry.target);
+                    } else {
+                        // Revert on leaving viewport for continuous effect 
+                        entry.target.classList.remove('scroll-visible');
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach((card, index) => {
+                // Staggered delay for cascade effect (index * 150ms)
+                card.style.transitionDelay = `${index * 150}ms`; 
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

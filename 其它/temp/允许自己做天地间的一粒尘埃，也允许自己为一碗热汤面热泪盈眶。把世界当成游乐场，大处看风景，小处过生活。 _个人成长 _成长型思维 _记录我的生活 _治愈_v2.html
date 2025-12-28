@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>允许自己做天地间的一粒尘埃</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Font Awesome for icon support -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Custom Tailwind Configuration adjustments for softer colors and effects */
+        :root {
+            --soft-bg: #f8f9fa;
+            --soft-card: #ffffff;
+            --highlight-cyan: rgba(0, 191, 255, 0.7); /* Electric Sky Blue */
+            --highlight-coral: rgba(255, 99, 71, 0.7); /* Tomato/Coral */
+        }
+        
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'soft-bg': var(--soft-bg),
+                        'soft-card': var(--soft-card),
+                        'cyan-500': '#00BFFF',
+                        'coral-500': '#FF6347',
+                    },
+                    boxShadow: {
+                        'bento': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+        
+        /* Bento Grid Card Base Styling */
+        .bento-card {
+            background-color: var(--soft-card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.03), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eee;
+        }
+
+        /* Apple-style Scroll Reveal Transition */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Outline Graphics Style (Using SVG in HTML for specific cards) */
+        .outline-graphic {
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* Gradient Shine Effect (Light and subtle tech look) */
+        .shine-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            border-radius: 20px;
+            pointer-events: none;
+        }
+        .shine-cyan {
+             background: radial-gradient(circle at top left, var(--highlight-cyan) 0%, transparent 70%);
+        }
+        .shine-coral {
+             background: radial-gradient(circle at bottom right, var(--highlight-coral) 0%, transparent 70%);
+        }
+    </style>
+</head>
+
+<body class="bg-soft-bg min-h-screen p-4 md:p-8 font-sans antialiased text-gray-800">
+
+    <!-- Metadata Header -->
+    <header class="max-w-6xl mx-auto mb-10 p-4 bg-white rounded-xl shadow-bento">
+        <h1 class="text-2xl md:text-3xl font-extrabold text-cyan-700 leading-tight">
+            允许自己做天地间的一粒尘埃，也允许自己为一碗热汤面热泪盈眶。
+        </h1>
+        <p class="text-lg text-gray-500 mt-1">把世界当成游乐场，大处看风景，小处过生活。</p>
+        
+        <div class="mt-4 flex flex-wrap gap-x-4 text-sm text-gray-600">
+            <span class="font-medium">#个人成长</span>
+            <span class="font-medium">#成长型思维</span>
+            <span class="font-medium">#记录我的生活</span>
+            <span class="font-medium">#治愈</span>
+        </div>
+        <div class="mt-2 text-xs text-gray-400">
+            <p>视频链接: <a href="https://v.douyin.com/izN_-TPz1Hg/" target="_blank" class="text-blue-500 hover:underline">https://v.douyin.com/izN_-TPz1Hg/</a></p>
+            <p>提取时间: 2025-12-28 07:56:58</p>
+        </div>
+        
+        <!-- Collapsible Transcript Toggle -->
+        <button id="toggle-transcript" class="mt-4 px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition">
+            显示原文 <i class="fas fa-chevron-down ml-2 text-xs"></i>
+        </button>
+        
+        <div id="full-transcript" class="mt-4 p-4 border border-gray-200 bg-gray-50 rounded-lg max-h-96 overflow-y-auto" style="display: none;">
+            <p class="whitespace-pre-wrap text-sm leading-relaxed text-gray-700">用宏大的世界稀释痛苦，用微小的事情感知幸福。不知道大家最近有没有刷到这句话？我这次出来旅行，我感觉自己像被这种感觉洗了一遍。我就发现人真的很奇怪啊，就是只要一离开熟悉的环境，然后那些把你困在原地的，让你夜里睡不着的焦虑，好像突然就被抛到脑后去了。我以前也不懂啊，就是为什么有那么多的人到了周末就像疯了一样的要去爬山、去看海、去徒步。为什么当我们站在那些巨大的雪山、无边的旷野面前，就会忍不住想哭？现在我懂了，就是一种被物理的宏大降维的治愈的感觉。当我们把自己扔进那个宏大的世界里，当你的视线被拉的无限的长、无限的远的时候，你就会突然发现，这个巨大的坐标系里，我此时此刻的这一点痛苦，真的连一粒灰尘都算不上。这个宏大它有可能不光是风景，它更是一种抽象的时间和空间感。仔细想想啊，山川湖海存在了有上亿年，他们见过无数人的悲欢离合，他们不在乎你的K P I，不在乎你失恋了没有，他们就在那里沉默又包容。当你把生命拉长到几十年的跨度，或者横向去看这个地球上几十亿人的生活，你就会发现有人正在经历比你严峻的更多的寒冬，但是他们依旧在生火取暖。这种比较不是在比惨，就是让你觉得很宽慰，原来我也只是这个天地间的一个过客，天地都包容了我，我为什么不能放过我自己呢？也就是在这样的瞬间，压抑了很久的情绪就像找到了出口一样，我们终于可以毫无顾忌的去释放了。这就是为什么很多人说我们需要去见天地，因为见天地最终是为了见自己，然后接纳自己。但是假如我们一直在盯着宏大的东西看，人有时候就会觉得很空虚，觉得自己实在是太渺小了，好像做什么都没有意义。这时候就非常的需要后半段，就是用微小的事情感知幸福。宏大是用来帮我们忘掉痛苦的，而微小是帮我们抓住当下的。就当你觉得内心空落落的时候，可以试着去做一件极度具体的小事情，就不需要有多难，可能就是今天出门刚好在路边遇到了一只冲你摇尾巴的小狗，或者是早上醒来看到阳光正好打在那碗热腾腾的面条上，那种升起来的白雾，那种实实在在的烟火气。
+
+你就会突然觉得，哇，原来生活还是热乎的，原来我还是被这个世界爱着的。然后就让我想起来詹青云之前有说过，就是有一次当他拎着一个沉重的袋子走在那个路上的时候，然后他当时就哭了，他就在想，到底有什么值得的事情，到底有什么要紧的事情值得我去错过三餐和四季。就是那种你的感官全部都打开了，你聚焦在此刻的那种幸福感。那在宏大的空间里呢，我们其实很容易飘，但是在微小的事物里，我们能找到锚点，稳稳的扎根进去。所以啊，幸福其实它不需要很高的门槛，如果你现在正陷在痛苦里出不来，觉得生活实在是太拥挤了，试着去把视角拉远，去旅行，去读书，去和不同的人聊一聊，去看看那个更辽阔更丰富的世界，拓宽你认知的边界，你就会发现烦恼真的变小了。把世界当成游乐场，大处看风景，小处过生活，这就是我最近悟到的最治愈的活法。</p>
+        </div>
+    </header>
+
+    <!-- Main Content Bento Grid -->
+    <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 p-4">
+
+        <!-- Card 1: Core Motto & Scale (Large Panel) -->
+        <section class="bento-card md:col-span-2 relative overflow-hidden flex flex-col justify-between scroll-reveal" data-delay="0">
+            <div class="shine-bg shine-cyan"></div>
+            
+            <h2 class="text-8xl md:text-9xl font-extrabold text-cyan-600/10 tracking-tighter">
+                SCALE
+            </h2>
+            
+            <div class="z-10">
+                <p class="text-4xl md:text-5xl font-black mb-3 leading-snug">
+                    用宏大的世界 稀释痛苦
+                </p>
+                <p class="text-xl md:text-3xl font-semibold text-gray-600">
+                    用微小的事情 感知幸福
+                </p>
+                <p class="mt-4 text-xs font-mono text-cyan-500 uppercase tracking-widest">
+                    Macro Dilution & Micro Perception
+                </p>
+            </div>
+            
+        </section>
+
+        <!-- Card 2: Macro Healing - Dimension Reduction (Tall/Medium Panel) -->
+        <section class="bento-card md:col-span-2 relative overflow-hidden scroll-reveal" data-delay="100">
+            <div class="shine-bg shine-coral"></div>
+
+            <div class="flex items-start mb-4">
+                 <span class="material-icons text-4xl text-coral-500 mr-3">landscape</span>
+                 <h3 class="text-xl font-bold uppercase text-gray-500 pt-1">Phase I: MACRO PERSPECTIVE</h3>
+            </div>
+            
+            <div class="flex flex-col items-start">
+                <div class="w-full">
+                    <p class="text-4xl font-extrabold text-gray-800 leading-tight mb-2">
+                        被物理宏大降维的治愈
+                    </p>
+                    <p class="text-lg text-gray-600">
+                        当你站在雪山、旷野面前，你就会发现，你的痛苦连一粒灰尘都算不上。
+                    </p>
+                </div>
+                <!-- Outline Graphic: Vastness -->
+                <div class="w-full flex justify-end items-center mt-4">
+                     <svg viewBox="0 0 100 100" class="w-20 h-20 text-cyan-500 outline-graphic">
+                        <path d="M5 95 L50 15 L95 95 L5 95 Z" stroke-dasharray="2,2"/>
+                        <circle cx="50" cy="95" r="10" stroke-dasharray="1,1"/>
+                     </svg>
+                </div>
+            </div>
+           
+            <div class="mt-6 border-t pt-4 text-sm text-gray-500">
+                <p class="font-medium flex items-center"><i class="fas fa-route mr-2 text-cyan-500"></i> The cure is found by redefining the coordinate system.</p>
+            </div>
+        </section>
+        
+        <!-- Card 3: Macro - Time and Tolerance (Small Card) -->
+        <section class="bento-card md:col-span-1 relative overflow-hidden scroll-reveal" data-delay="200">
+             <div class="shine-bg shine-cyan"></div>
+
+             <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800">天地间的过客</h3>
+                <i class="fas fa-history text-3xl text-cyan-600/50"></i>
+            </div>
+            
+             <p class="text-3xl font-extrabold mb-3 leading-snug">
+                亿年包容
+            </p>
+            <p class="text-sm text-gray-600">
+                山川湖海，不在乎你的KPI。它们沉默而永恒。
+            </p>
+            
+        </section>
+        
+        <!-- Card 4: Transition - Release and Acceptance (Small Card) -->
+        <section class="bento-card md:col-span-1 flex flex-col justify-center items-center relative scroll-reveal" data-delay="300">
+             <div class="shine-bg shine-coral"></div>
+
+            <p class="text-xl font-semibold text-gray-500 uppercase mb-2">SEE THE WORLD</p>
+            <div class="my-2">
+                <span class="text-7xl font-black text-gray-200 block transition duration-500 group-hover:text-coral-400">-></span>
+                <p class="text-4xl font-extrabold text-coral-700">见自己</p>
+            </div>
+            <p class="text-sm text-gray-500 text-center mt-2">
+                情绪找到出口，我们接纳自己。
+            </p>
+        </section>
+
+         <!-- Card 5: Micro Focus - Grasping the Present (Small Card) -->
+        <section class="bento-card md:col-span-1 flex flex-col justify-center items-center relative scroll-reveal" data-delay="400">
+             <div class="shine-bg shine-cyan"></div>
+
+            <p class="text-xl font-semibold text-gray-500 uppercase mb-2">GRASP THE NOW</p>
+             <div class="my-2">
+                 <span class="material-icons text-7xl text-gray-200 block">anchor</span>
+                <p class="text-4xl font-extrabold text-cyan-700">找到锚点</p>
+            </div>
+            <p class="text-sm text-gray-500 text-center mt-2">
+                在微小的事物中稳稳扎根。
+            </p>
+        </section>
+
+        <!-- Card 6: Micro Examples - The Warmth of Life (Medium Panel) -->
+        <section class="bento-card md:col-span-2 relative overflow-hidden scroll-reveal" data-delay="500">
+            <div class="shine-bg shine-coral"></div>
+            
+            <div class="flex items-start mb-4">
+                 <span class="material-icons text-4xl text-coral-500 mr-3">restaurant</span>
+                 <h3 class="text-xl font-bold uppercase text-gray-500 pt-1">Phase II: LIFE'S WARMTH</h3>
+            </div>
+            
+            <p class="text-4xl font-extrabold text-gray-800 leading-tight mb-4">
+                实实在在的烟火气
+            </p>
+
+            <div class="space-y-3">
+                <div class="flex items-center text-lg text-gray-700">
+                    <i class="fas fa-dog text-2xl w-8 text-cyan-500"></i>
+                    <span class="ml-3">路边冲你摇尾巴的小狗。</span>
+                </div>
+                <div class="flex items-center text-lg text-gray-700">
+                    <i class="fas fa-cloud-sun text-2xl w-8 text-cyan-500"></i>
+                    <span class="ml-3">热气腾腾面条上的白雾。</span>
+                </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-dashed text-sm text-gray-500 italic">
+                <p>“原来生活还是热乎的，原来我还是被这个世界爱着的。”</p>
+            </div>
+        </section>
+        
+        <!-- Card 7: Conclusion - The Optimized Life (Full Width Panel) -->
+        <section class="bento-card md:col-span-4 relative overflow-hidden flex flex-col md:flex-row justify-between items-center p-6 scroll-reveal" data-delay="600">
+            <div class="shine-bg shine-cyan"></div>
+            
+            <div class="md:w-1/3 mb-4 md:mb-0 z-10">
+                <p class="text-xl font-semibold text-gray-500 uppercase tracking-widest">
+                    The Healing Approach
+                </p>
+                <p class="text-5xl font-extrabold text-cyan-700 leading-tight">
+                    世界游乐场
+                </p>
+            </div>
+
+            <div class="md:w-2/3 text-left md:pl-8 border-l-0 md:border-l border-gray-200 z-10">
+                <div class="text-3xl font-black mb-2 leading-snug">
+                    <span class="text-cyan-500 mr-2">大处</span>看风景, 
+                    <span class="text-coral-500 ml-2">小处</span>过生活。
+                </div>
+                <p class="text-lg text-gray-600">
+                    拓宽认知的边界，把视角拉远：旅行、读书、和不同的人聊一聊，烦恼自然变小。
+                </p>
+            </div>
+
+             <!-- Outline Graphic: Compass/Focus (Large background visual) -->
+             <div class="absolute right-0 top-0 opacity-10">
+                 <svg viewBox="0 0 100 100" class="w-full h-full max-w-lg text-cyan-400 outline-graphic">
+                    <line x1="10" y1="50" x2="90" y2="50" />
+                    <line x1="50" y1="10" x2="50" y2="90" />
+                    <path d="M 50 10 A 40 40 0 0 1 90 50" stroke-dasharray="5,5"/>
+                    <path d="M 50 90 A 40 40 0 0 1 10 50" stroke-dasharray="5,5"/>
+                    <circle cx="50" cy="50" r="5" fill="currentColor"/>
+                 </svg>
+             </div>
+        </section>
+
+    </main>
+    
+    <!-- JavaScript for Dynamic Interactions -->
+    <script>
+        // 1. Transcript Toggle
+        document.getElementById('toggle-transcript').addEventListener('click', function() {
+            const transcript = document.getElementById('full-transcript');
+            const icon = this.querySelector('i');
+            
+            if (transcript.style.display === 'none' || transcript.style.display === '') {
+                transcript.style.display = 'block';
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+                this.childNodes[0].nodeValue = '收起原文 '; 
+            } else {
+                transcript.style.display = 'none';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+                this.childNodes[0].nodeValue = '显示原文 '; 
+            }
+        });
+
+        // 2. Scroll Reveal Animation (Apple style mimic)
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+        
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.15 // Start animation when 15% of the element is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delay = parseInt(entry.target.getAttribute('data-delay')) || 0;
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, delay);
+                    // Stop observing once visible
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>

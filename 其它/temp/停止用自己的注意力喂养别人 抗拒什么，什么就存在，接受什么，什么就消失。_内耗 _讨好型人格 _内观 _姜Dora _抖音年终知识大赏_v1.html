@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注意力就是燃料：内耗与主体意识</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom Tailwind Configuration */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'soft-white': '#fdfdfd',
+                        'pale-mint': '#E6F4EA',
+                        'soft-peach': '#FFEAE8',
+                        'pale-lavender': '#EAE8FF',
+                        'highlight-blue': '#a8c0ff',
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03)',
+                    }
+                }
+            }
+        }
+
+        /* Base styles for the Bento Grid and dynamic effects */
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            overflow-y: auto; /* Allow necessary scrolling if content slightly overflows */
+        }
+
+        .bento-card {
+            background-color: var(--card-bg, white);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.02);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+            opacity: 0; /* Initial state for animation */
+            transform: translateY(20px);
+        }
+
+        /* Highlighting graphic effect */
+        .highlight-gradient {
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            pointer-events: none;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        .gradient-peach {
+            background: radial-gradient(circle at 10% 90%, rgba(255, 234, 232, 0.7), transparent 70%);
+        }
+        
+        .gradient-lavender {
+            background: radial-gradient(circle at 90% 10%, rgba(234, 232, 255, 0.7), transparent 70%);
+        }
+
+        /* Line graphic style */
+        .line-graphic {
+            fill: none;
+            stroke: #4B5563; /* Dark gray for visibility */
+            stroke-width: 2;
+            transition: stroke-dasharray 0.5s;
+        }
+
+        /* Specific card heights for one-screen layout */
+        .h-full-md {
+            min-height: 250px;
+        }
+    </style>
+</head>
+<body class="p-6 md:p-10 bg-soft-white">
+
+    <!-- Meta Information Header -->
+    <header class="mb-8 p-4 bg-gray-50 rounded-lg shadow-soft">
+        <h1 class="text-xl font-bold text-gray-800">停止用自己的注意力喂养别人</h1>
+        <p class="text-sm text-gray-600 italic">抗拒什么，什么就存在，接受什么，什么就消失。</p>
+        <p class="text-xs mt-2">
+            <span class="font-semibold">标签:</span> #内耗 #讨好型人格 #内观 #姜Dora #抖音年终知识大赏
+        </p>
+        <p class="text-xs mt-1 text-blue-600">
+            <i class="fas fa-link mr-1"></i> <a href="https://v.douyin.com/5zf3OadXVvg/" target="_blank">视频链接</a>
+        </p>
+        <p class="text-xs text-gray-500">提取时间: 2025-12-28 05:04:43</p>
+    </header>
+
+    <!-- Raw Transcript Toggle -->
+    <div class="mb-8">
+        <button id="toggleRaw" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg text-sm hover:bg-gray-300 transition-colors">
+            显示原文
+        </button>
+        <div id="rawTranscript" class="mt-4 p-4 bg-white border border-gray-200 rounded-lg text-sm leading-relaxed max-h-96 overflow-y-auto" style="display: none;">
+            人不如物，有些人活得连部车都不如。一部车我们都会想着要保养好它才能开，自我价值感低的人就会默认别人的期待大于你的期待。厕所一二三四，我就会选那个第四号坑位，最里面的。人家一敲门你就着急，拉屎的时候都会夹断让给别人，你一半夹断是很痛苦的。其实这些人就主体意识丢失了。注意力就像钱，一切能诞生钱的地方，就有些人发明很多技巧想卷走它。做事太想做好，这就是怕死。什么情况？我是耐不住寂寞了吗？我的内心如此骚动吗？欢迎来到姜多尔的一百场职业访谈，你好，我是姜多尔，致力于为职场中的年轻人提供精神力量跟解决方案。大家好，我叫李胜远，出生在一九七六年，出生在内蒙古，我现在的职业是一个创业者。我看到你在书里边说自己是第四号坑位的人，也就是每次上厕所选择最里面位置的人，这意味着内心深处严重缺乏安全感，自我价值感低且回避冲突。最初我也不知道我是自我价值感低，也就是做这个测试题，嗯，厕所一二三四，其中四是在最里面的，那么我们我就会选那个第四号坑位。如果里面是住着一个一号坑位的人，外面有人敲门，他就说敲敲啥敲，里面有人你知道吗？我在即是正确和真理，哦，你敲门叫做你打扰了我，那么重要，四号坑位的人叫做你在你才是真理，那么我在里面是我打扰了你，所以我就想让给你。然后你就知道那个人有期待，你就不得不响应那种期待。对，自我价值感低的人就会默认别人的期待大于你的期待。拉屎的时候都会夹断让给别人。对，你一半夹断是很痛苦的，但人家一敲门你就着急，其实着急的潜台词就是你认为你应该让。对，而且来到第四号坑位敲门的人，他也是另一个第四号坑位的人。对，你只需要大声说有人，他说啊对不起对不起，大哥打扰你了，你继续。甚至你不需要回应，里面不答应他就说哦应该是有人了，我就先退，我就默默等待。对的对的，而且我们这样的人还容易发展出另一个特质叫做什么呢？讨好型人格，表演一个好人，第一个自我价值感得到了填充。
+
+人嘛，对对对。第二个冲突也容易回避，谁会跟一个好人起冲突呢？你会回避冲突到什么程度啊？就是最严重的时候。哇，我是那种很多年教学生，学生请我吃饭都是我买单的。其实有些学生比我有钱，都会想着未来有一天不好发生的时候，学生们都找回我来说，老师就他要和我撕逼了。哦，我说你有资格跟我撕逼吗？每顿饭都是我请你吃的，我想象中他垂头丧气的走了，我获得了胜利。我在回避未来的冲突。嗯，这就是我从小经历了父母的家暴和争吵，其实我是在逃避这件事情。我们误以为我们讨厌和人们建立链接，嗯，其实我们极度的匮乏链接，是那种友好善良的链接。汗流浃背了，大家可以在弹幕上分享一下你是几号坑位的人？啊，一号还是四号？我明天就要去一号坑位拉屎，谁也无法阻拦。是的，当我们这种第四号坑位的人发现这件事情的时候，会做一个很好笑的行为，为了证明自己要摆脱这件事情，会刻意的去一号坑位，但这个确实是一种疗愈，其实是我们要为自己的生活模式合理化或者赋予价值化。比如说我以前特别喜欢开个客栈住在山里，我一直以为我是一个隐士一样的人，淡泊名利，不喜欢人多的地方，我还有这种社恐，我不喜欢跟很多人交朋友。但有一次我在大理的古城十字街头，人来人往，我诞生了一种幸福感，那一瞬间我觉得我产生了自我怀疑，我说什么情况？我不是一个隐士般的爱好者吗？我是耐不住寂寞了吗？我的内心如此骚动吗？在人群中感到了幸福，但我确定我感受到幸福了。原来因为出来旅游的人，他们内心都在寻找光明。嗯，你在大理街头踩到一个人的鞋，可能你说大哥对不起，人都没空跟你吵架，人家正在陪着女朋友欣赏风花雪月，摆摆手根本不介意就走掉了。嗯，但在城市里，在办公室里，我们开车有个人挤了一下位置，可能这个人下来要跟你喊打喊杀。对，原来本质上我。
+
+所谓的社恐其实是回避冲突的人际关系。老师，你刚才讲，我有一种你在念我身份证的感觉。我觉得如果第四号坑位可以打开，会发现那里面挤满了人。我们不是少数群体，我们很有可能是一个大多数的群体。所以其实我们这样的人是在回避跟那种A号坑位的人相处和发生关系的，就是那种超级自我价值感强的人，他们那种理所当然的为了自己的目标和欲望奋勇向前，而我们是什么呢？经常把别人放在我们的目标里面进行干扰。会总是会找到一个社交最优解，就老在琢磨这个。对的，因为小时候嘛，你的生存必须要靠父母，很多父母没有这种觉醒，就是在他越弱小的时候，其实是越需要保护他的主体意识，但我们经常是要把他的主体意识硬生生的剥离和拿走，让他融入到了这个社会意识里面，你内在的东西是没有任何人在意的。就是说比如说你做一件事情，他不是从首先从自我出发，他会立刻从社会意识出发去感受做的好不好，不是你的感受，是爸爸妈妈怎么看，叔叔阿姨怎么看，爷爷奶奶，邻居们怎么看，急于让这个生命去满足外面的一个环境诉求，社会诉求，群体诉求。所以呢，就完全忽略了这个生命的个体的状态，只是一味的强调让他去迎合外面，过后呢，他会诞生一种内在巨强的这种分裂，其实这些人就主体意识丢失了。你刚才说要在意他的状态，我想知道在意一个人的状态，他具体是怎么表现的？好比我们去开车，这个车如果很有问题，开这个车很容易有不好的结果，有些人活的连部车都不如，一部车我们都会想着要保养好它才能开，人不如物。哦，当我们都跟一个员工讲话的时候，跟一个孩子亲人讲话的时候，我们不介意他带病的状态的，我们从来没有问他你今天的心情好吗？你状态可以吗？我们告诉他这么简单的事情你都做不好，那你还能有什么用？我们工作。
+
+做的不好，老板说你能干干，不能干就滚蛋，就把你当成个这个轴承，你就得转，你转不好你就滚蛋，我换一个，你就被批评，你不好你就被否定，不会有人问你到底为什么，在另一个生命的眼里，你是一段代码，他没有把你当成一个生命看。但是我有些时候我觉得我自己应该要对自己好一点，我应该多休息，可是我算这些活可能会干不完呀，然后甲方就催得很紧嘛，我为了交付就不得不那段时间熬夜写稿子，就搞到最后我身上都长那个湿疹，非常疼，我觉得我很想爱自己，我也很想爱周围的人，但是我在这个环境当中总是会感受到有些时候我不得不要多为难。对，工作的目的如果说是赚钱，很多要消费的东西，我们去消费这些东西的目的是为了什么？为了感受到幸福，感受到美好。对，其实真正回到最底层的动机就是为了生命变得美好，但是我们却又用拿生命的美好去交换赚钱，甚至加倍盘剥生命去赚钱。我们不是反对努力，我们反对的是到了该休息的时候没有办法休息，最后大家活的标志就是说很努力的满足了一些资本和社会赋予我们的所谓成功的标签，它的设计底层逻辑就不是为你快乐而设计的，是为你努力而设计的。为什么是指向努力这两个字？对，我以为会指向消费什么的。消费就得努力啊，你得赚钱呢。哦。他们所有的设计底层逻辑就是让你的生命要尽可能的爆发出最大的生产力。嗯，所以那我觉得我是一个时时刻刻在让自己爆发生产力的状态。这时候应该慢下来和停下来，要先处理你的生命状态。那这种比如说想停就停，想关怀自己就关怀自己，它对于普通人来说会不会太奢侈了呢？一个普通的年轻人，如果他歇一歇，可能他真的就这份工作就没有了。我觉得时代发展到今天，在我看来，除非物质上发生了这种事情，你得了不可挽救的疾病，生命不应该遭。
+
+与生存的这种作业题，假如一个人为难自己，就是他活在一种生存里面。就比如说我们举个例子，老板跟你说这都不行，你还有什么用？不行你就滚蛋。选择题是我们可以离开这个地方去另一个地方，这地方不适合我们。一旦这是一个生存问题的时候，他愿意面对任何问题，这时候就开始为难自己了。就相当于一个被追捕的野兽，他被狩猎夹夹到的时候，他都能忘了疼痛，他奋力的挣扎，甚至可以咬断自己的腿来逃跑，因为这时候苦不苦不重要了，活下去才最重要。啊，我觉得有些时候大部分时候是未到了生存的阶段的，像松鼠会在冬天把食物埋在地下，啊，没有这种觉悟的人呢，像熊这些就会冬眠，它会吃很多的食物，通过休眠活下去。所以在生存的程度之下，人是可以扭曲到通过冬眠不吃饭来度过的。当生存解决了以后，其实我们向往的第二件事情是活得更美好，就是开始创造。老师，就我对你有一个感觉，就是你坐在那个沙发上和我在视频上看你不太一样，我不知道为什么你视频看起来总有点匪气。哼。对。对，那你刚刚坐那儿的时候，然后看着又很和善，我想知道那个匪气是我的错觉吗？还是你本身就有的？有的，因为我和善是我真的是特别信仰这种善良，信仰生命的这种友好。匪气是善良和友好，他有敌人。我在某些讲课的时候，对这些兄弟姐妹们说一定是和和善善的，嗯，其实我还在看着那些敌人说话，所以有时候是同时挟着两种力量讲话的。嗯嗯。哦，所以你脑海中有你想象的敌人，匪气就显现了。是的，就如同一个战士在战场上看着敌人在讲话。敌人不单单是说有恶意的人，而是所有会干扰我的所有因因素都是敌人，是吗？是的，其实我们去见一个甲方的客户，或者的一个快递小哥，一个喝醉酒的。
+
+人他们是携带一种信息和能量的，比如说有人带着急，有人带着一种不善，有人带着一种压迫、物化别人。嗯，环境不是没意识的，环境带着各种能量和信息在对个体进行一种叫做预训练。所以当我们希望保持自己的生命的状态的时候，你需要有一种内在的预训练去对抗环境给你的预训练。但我现在莫名会觉得你那个匪气还挺可爱的，就是表面上看我是在讲课，其实我在预想中的敌人修来靠近的感觉。是的，所以要坚定的跟动机待在一起，投给美好。注意力就像钱，嗯，一切能诞生钱的地方，就有些人会发明很多技巧想卷走它，卷你的注意力，让你失去了内在的自我觉察。嗯，就是最初我们出发的动机是什么？我们本来好像从广州去旅游去大理，但我们路上遇到了一个人跟我们吵架，我们完全忘记了去大理。啊，这个就算我今天旅游，我也要跟你吵个明白。其实当吵的那一瞬间，我们从战略上杀死他，原来你想吸引我的注意力去吵架，但我是来旅游找美好的，我直接走了。他的动机是让我们痛苦，故而我们只需要继续待在美好里，不要注意力被他扯到痛苦里。我现在会意识到注意力其实就是一切事物发展的燃料，然后你投向哪，它就会发展壮大。战略上粉碎了敌人，无需在战术层面交锋，因为注意力的争夺技巧不是输赢，而是你只要离开了你的道路，你就已经输掉了。你的注意力本来应该感受美好，为什么对苦难要诞生这么大的兴趣呢？苦难是仿佛有计谋的，它会伪装的重要，而你只需要把注意力调回去，它就会被饿死。哦，回应它，喂养它，它会变得更丰满。嗯，我觉得这个对我很有启发，因为有些时候我是一个比较喜欢相信自己的干预的人，我不能容忍问题在那儿不去作为，但是。
+
+我发现解决问题的过程当中又产生了更多新的问题。我们误以为只要我们投入注意力，它就会变得美好起来。其实它是滋养壮大了。对，就像地上有个垃圾，我捡起来它就是干净的。啊，很有可能这是一个制造垃圾的一个代码，当你去捡的时候，你就被同化成了垃圾，成为一个不好的东西。标志就是我们真的做这件事情的时候，我们变得好了吗？我们跟亲爱的伴侣沟通，不是应该越沟通生命状态越美好吗？沟通的我们都愤怒，失去了冷静，充满了攻击性，它明显在同化你，它是一个让你失控的敌人。摧毁它的方法就是重新回到目标上，这个叫心力，心力是一种强目标管理。我觉得如果有这样的思维方式的话，那我觉得生活还有工作当中的任何一件事都可以当做守护自己的最初目标的一种训练。哎，甚至是一个游戏。这就是王阳明说的要在事儿上练。对我们做每件事情是有一个动机的，对吗？对，跟自己的动机待在一起。我会有一个疑问，就老师刚才你说，哎，有一些事情会干扰我们，然后最好的方式就是不喂它注意力，就是这种放下和我去逃离这两者有啥区别？一个真正的心力的训练者，当问题发生的时候，他要立刻冲到问题里面去，去看到为什么，而非说问题发生了，我心很乱，于是就开始逃避问题。你看我很慌乱，我现在安静了，我们从来不是为了追求安静，嗯，我们是要追求看清楚为什么，心力是来自于清晰的看见为什么之后，依然是这件事情本质是看清真相，所以这不是一种逃离，它是一种坚守。但对于很多人来说的话，他只能看到面对这件事儿，我产生了一堆的念头和动机，他其实无法分辨哪一个其实是最重要的。在中国的古代就有这样一种方法叫做参话头，所谓的参呢。
+
+就是一种类似于寻寻觅觅的状态，琢磨吗？对话呢就是一个疑问。哦，就是我们遇到一件事儿了，头是什么意思呢？就是要在问题的源头解决问题。哦，那这个东西可能对于现代人理解来说有些困难。有一个西方的艺术家叫玛格丽特，他代表这个超现实主义。呃，据他自己的描述，他的艺术风格是来自于童年的一次遭遇，他在河边看到了一个死去的裸体的女人，这个女人的脸上盖了一块布，他对这个事情充满了恐惧和好奇，于是呢他没有揭开那块布去看她是谁。死亡和裸体不落到个体的时候是没有办法下定义的，所以最重要的消息反而被掩盖了。看清楚被遮掩的东西将是一件特别重要的事情，这个就叫做现代艺术的长话头，在问题的源头未发之机上去看事情。为啥要强调是未发之机呢？我们真正关注的焦点往往不在真正的问题上。一次经历是一个抑郁症患者，嗯，我想知道他抑郁症的是什么诱发的，所以我就问他童年记忆中最深刻的事情是什么，嗯，他说我没有记忆，我说那就有没有做过什么很特别的梦，这就是叫做探探寻它的源头，嗯，因为它一定在隐蔽一种痛苦，你可以在现实事件中隐蔽，你不能在你内心隐蔽，你的痛苦一定会有一个出口。他说做过两个，一个是梦到床板下面有东西，他就挖挖挖，在梦里就把床板挖穿了，挖穿一看床板下面有一个人，嗯，躺在床板的背面。第二个梦呢，他说是梦到有一天在房间里，屋子里有一个没有脸的人走来走去，那我听到了这两个梦，我就立刻理解了为什么在。
+
+床板的背面呢，在梦境里他在隐隐藏这件事情。OK，他遭遇过两次性侵和猥亵，一次发生在家里的床上，一次是亲人。所以他要忘记他的脸。对，因为是亲人，你不希望面对这个人的身份，他在潜意识里想模糊这个人的脸孔。抑郁这个诱发的因是什么？就伤口里这个伤口化脓了，于是他的症状表表现的时候我发烧了，但他把它藏起来，找不出这个感染，原来你将一直去治疗发烧是没有用的。我们在小的时候，爸爸妈妈会说为什么不欺负别人就欺负你，于是你就会觉得当你遇到问题的时候，你是有可能有责任的。如果你有责任，你就不敢表达这件事情。这个过程中有些纸张像被粘住了，没有被打开来。嗯，很妙的比喻。对，但是如果你重新回到那个伤害场景中，如果那些人做坏事会被惩罚，嗯，因果链条数据链条是完整的，这个人就会被疗愈。做坏事未被惩罚，这将会导致这些人以后价值观模糊，我们诞生了一个认知叫做有些伤害就是不用负责。那么他的认知系统里有这样的一行代码在工作，嗯，而这这行代码会带来很多的问题，导致他有些内心难以承受，他就抑郁了。大学里面说物有本末，事有终始，知所先后，则近道矣。事物有一个开始，有一个结束，这个结果是到底是怎么来的呢？这就是叫做回到源头。所以就是琢磨这个事情发生的源头。对，然后就会发现你不光是在童年那样，往后很长很长很长一段人生你都是这样。嗯，这是你生命很重要的一个组成部分，你一下懂自己了，在很多事情上开始理解自己，这就是回到源头的力量。其实我觉得就是一种生命被看见的感觉，深度看见的价值是非常高的。嗯，看见的价值有时候大于行动。老师你就是修到这个。
+
+程度的话，我想问你在这个时候还会有什么你解决不了的问题或者困扰吗？就是怕死，就是我是一个焦虑的，带有一些压力特质在身上的，尤其在我做事的时候。我是一个特别喜欢打太极拳的人，我有天带着这个华为的手表，我看我压力三十五，我我想压力打个太极拳低一点啊，那我就去打拳了，哎，怎么变成了四十五？这个让我特别吃惊，怎么上升呢？因为我做事太想做好，所以呢这就是怕死，想做的极致的好，就是不接受不好，不好就是好的一种死亡。比如说一段恋情开始变得不好了，其实我们在经历美好死亡，然后现金流要紧张了，我们在经历经历丰饶死亡，所有人生的苦难和恐惧本质上是在经历死亡的碎片化，所以我有一种强烈的做好，其实就是强烈的求生欲，但其实本质上是我害怕死亡，所以当我发生这件事情的时候，更深度的接受死亡，我忽然发现我放松了。怕死就会紧绷，不怕。对对对对对对对，你疯狂的对抗死亡的时候，你有一种强烈的紧张和恐惧藏在你的生命里。我觉得这很难，因为比如说你已经确定了我的发心就是要守护这种生命的美好，与此同时你又意识到它又会消失，而且你又要练习接受它的消失。所以这里面有一个认知上的问题，嗯，每一个生命有一个最根底上的恐惧叫做死亡，因为我们害怕失去，然而真相是从来没有失去这件事情，比如说我们抽烟，烟确实在死亡，但每一口烟吐出来，抽烟在活着，生死是同在的，所以庄子说方生方死，方死方生，未知死，焉知生呢？没有经历烟的本体的死亡，就没有抽烟这件事的生出来。新的可能性。对。
+
+所以有时候呢，这就是中庸，强烈的追求美好到令到自己已经不美好，这时候要让这个东西经历死亡。当这个东西追求美好的心死亡的时候，你又好了，你轻松了，你将更有能力去实现美好。所谓关注自己的状态是否是美好的，就是我做任何事情的时候，我都问一问我现在感受好吗？然后如果感受不好，我怎么了？然后怎么样会好一点？是是这样吗？对的，呃，身体是一生命的一部分，就我们虽然在聊天，但有时候应该关注，哎，此刻怎么样让自己更舒服一点呢？可能你就会忽然觉得哎，摇一摇，晃一晃，调整一下，这个特别幸福。生命个体追求让自己美好这件事情是无可厚非的，所以当你选择让自己更舒服的时候，你就特别理解我们对面有一个人，哪怕他是我们的学生、员工、合伙人，哪怕在开会，当他把身体变成这样的时候，我们一看他好像更放松、更舒服了，我们特别支持这件事情，因为我们也支持自己做这件事情。这既是一种对美好的支撑，也是对自我生命的一种嘉奖，所以关注自己的生命状态这件事情就会特别有意义。哎呀，真好。李圣远说，注意力就是生命的燃料，痛苦跟烂事儿就像是一只狡猾的猴子，它会伪装的非常重要，非常紧急，在那大喊大叫，目的只有一个，骗取你的注意力。环境是有能量跟意识的，他们总是把你拽进他们的频道里，而我们活着就是要跟世界的各种情绪撞来撞去，路上遇到怒气冲冲的人，领导同事的批评，网络上的糟心事儿。我之前经常陷入一个误区，遇到烂人烂事儿，我总想主动干预，去投身解决，或者说清楚，直到我发现想把你心情搞坏的人根本不会好好沟通，坏事儿也经常是不讲道理的，你越是想控制，反而把自己拖进更深的泥潭，带来更多的新问题。当你反复咀嚼那句伤人的话，当你试图去分析为什么倒霉的总是你时，你其实是在喂养这些负面。
+
+你投入的每一分注意力都让他们变得更强大、更真实。所以有些时候，不回应就是最好的回应。那些消耗你的东西就会因为得不到关注而慢慢枯萎。接着呢，把注意力重新投射到那些美好的事物上。最近我经常会做一些简单的练习，每天结束时我会跟伴侣交换提问，今天有没有发生什么让你觉得很美好的事？其实我同样也很好奇你的。还有当我感觉到不舒服或者脑子很烦乱的时候，我会切换注意力问问自己，我的身体现在需要什么？做什么能让他感觉更舒服？然后就去做，洗个澡，吃一顿好吃的饭，或者好好睡一觉。之后很多看似急迫的烦恼突然变得不再重要。原来很多问题不是被解决的，而是在你的注意力里变得不再重要了。期待你的二零二六也可以少些包袱。
+        </div>
+    </div>
+
+    <!-- Bento Grid Container (Single Screen Focus) -->
+    <main class="grid grid-cols-1 md:grid-cols-12 gap-6 min-h-[70vh]">
+
+        <!-- Card 1: Attention is Fuel (Large Feature Card) -->
+        <div id="card1" class="bento-card col-span-12 md:col-span-8 bg-pale-mint h-full-md relative" style="--card-bg: #E6F4EA;">
+            <div class="highlight-gradient gradient-lavender"></div>
+            <div class="relative z-10">
+                <h2 class="text-6xl md:text-8xl lg:text-[10rem] font-extrabold text-gray-900 leading-none">
+                    注意力<span class="text-4xl block md:inline-block text-gray-600 ml-2">ATTENTION</span>
+                </h2>
+                <p class="text-4xl mt-4 font-light text-gray-700 tracking-wide">
+                    就是生命的燃料<br/>
+                    <span class="text-lg italic block mt-1 text-gray-500">The Fuel of Life</span>
+                </p>
+                <div class="mt-8 flex items-center justify-end">
+                    <i class="fas fa-hand-holding-dollar text-highlight-blue text-opacity-80 text-8xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: The 4th Stall (Self-Worth Test) -->
+        <div id="card2" class="bento-card col-span-12 md:col-span-4 h-full-md relative flex flex-col justify-between" style="--card-bg: #FFEAE8;">
+             <div class="highlight-gradient gradient-peach"></div>
+            <div class="relative z-10">
+                <p class="text-xl font-semibold text-gray-800">回避冲突的代价</p>
+                <p class="text-sm text-gray-500 mb-4 uppercase tracking-wider">Conflict Avoidance Test</p>
+                <div class="text-center">
+                    <span class="text-[8rem] font-black text-soft-peach leading-none block">4</span>
+                    <p class="text-xl font-bold text-gray-800 mt-2">第四号坑位人格</p>
+                    <p class="text-base text-red-500 mt-1">自我价值感低</p>
+                </div>
+            </div>
+            <div class="mt-4 text-xs text-gray-500 relative z-10">
+                <i class="fas fa-arrow-right mr-1"></i> 默认别人的期待 > 你的期待 (Others' expectations > Yours)
+            </div>
+        </div>
+        
+        <!-- Card 3: Body Status (Smaller Card) -->
+        <div id="card3" class="bento-card col-span-12 md:col-span-4 relative" style="--card-bg: white;">
+            <p class="text-4xl font-bold text-gray-900 mb-2">人不如物</p>
+            <p class="text-sm text-gray-500 mb-4 uppercase tracking-wider">Life Status Check</p>
+            <div class="flex items-center space-x-4">
+                <svg class="line-graphic w-16 h-16 text-gray-800" viewBox="0 0 100 100">
+                    <path d="M 10 50 C 30 20, 70 20, 90 50" stroke="#a8c0ff" stroke-width="5"/>
+                    <path d="M 20 50 L 20 70 M 80 50 L 80 70" stroke-linecap="round"/>
+                    <circle cx="50" cy="50" r="10" stroke="#4B5563" stroke-width="2" fill="none"/>
+                </svg>
+                <p class="text-lg text-gray-700">
+                    一部车我们都会想着要保养好它才能开。
+                    <span class="block text-xs italic mt-1">We maintain cars, but neglect ourselves.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Card 4: Stop Feeding Negativity (Actionable Insight) -->
+        <div id="card4" class="bento-card col-span-12 md:col-span-4 relative" style="--card-bg: #F0F9FF;">
+            <div class="highlight-gradient gradient-lavender"></div>
+            <p class="text-4xl font-extrabold text-blue-700 mb-2">不回应</p>
+            <p class="text-2xl font-semibold text-gray-800">就是最好的回应。</p>
+            <p class="text-sm text-gray-500 mt-1 italic">Do not feed the suffering (苦难).</p>
+            <div class="absolute bottom-4 right-4 text-highlight-blue text-opacity-70">
+                <i class="fas fa-volume-xmark text-6xl"></i>
+            </div>
+        </div>
+
+        <!-- Card 5: Core Fear & Acceptance -->
+        <div id="card5" class="bento-card col-span-12 md:col-span-4 relative" style="--card-bg: #EAE8FF;">
+            <p class="text-2xl font-bold text-gray-900 mb-4">追求极致的好</p>
+            <h3 class="text-5xl font-black text-purple-700 leading-tight">
+                就是<span class="block text-2xl font-light">强烈的</span>怕死。
+            </h3>
+            <p class="text-sm text-gray-600 mt-4 italic">Acceptance of Death (死亡) brings relaxation (放松).</p>
+            <div class="mt-4 text-center">
+                <svg class="line-graphic w-full h-10" viewBox="0 0 100 20">
+                    <!-- Tight/Fear -->
+                    <path d="M 5 15 Q 15 5, 25 15 Q 35 5, 45 15" stroke-dasharray="20 5" stroke="#9333ea"/>
+                    <!-- Relaxed/Acceptance -->
+                    <path d="M 55 10 L 95 10" stroke="#10b981" stroke-dasharray="40 0"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Card 6: Find the Source (參話頭) -->
+        <div id="card6" class="bento-card col-span-12 md:col-span-12 relative flex items-center justify-between" style="--card-bg: #FFFFFF;">
+            <div class="highlight-gradient gradient-peach"></div>
+            <div class="md:w-1/2 relative z-10">
+                <p class="text-5xl font-extrabold text-gray-900 leading-snug">
+                    回到源头<br/>
+                    <span class="text-xl font-light text-gray-600 italic">Finding the Source</span>
+                </p>
+                <p class="text-lg mt-4 text-gray-700">
+                    <i class="fas fa-magnifying-glass mr-2 text-blue-500"></i>
+                    参话头：在问题的源头未发之机上去看清真相。
+                </p>
+            </div>
+            <div class="md:w-1/2 flex justify-end">
+                <div class="relative w-48 h-48 md:w-64 md:h-64">
+                    <svg class="line-graphic" viewBox="0 0 100 100" style="stroke-width: 3; color: #a8c0ff;">
+                        <!-- Center Focus Point -->
+                        <circle cx="50" cy="50" r="45" stroke="#E5E7EB"/>
+                        <!-- Origin Question Mark -->
+                        <path d="M 50 15 A 15 15 0 1 1 35 30 H 45 V 55 M 50 65 V 70" stroke="#a8c0ff" stroke-linecap="round" stroke-linejoin="round" style="stroke-width: 6;"/>
+                    </svg>
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl font-bold text-gray-800">WHY?</div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JavaScript for Dynamics and Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleButton = document.getElementById('toggleRaw');
+            const rawTranscript = document.getElementById('rawTranscript');
+
+            // Transcript Toggle
+            toggleButton.addEventListener('click', () => {
+                const isHidden = rawTranscript.style.display === 'none';
+                rawTranscript.style.display = isHidden ? 'block' : 'none';
+                toggleButton.textContent = isHidden ? '收起原文' : '显示原文';
+            });
+
+            // Apple-like sequential fade-in effect
+            const cards = ['card1', 'card2', 'card3', 'card4', 'card5', 'card6'];
+            
+            cards.forEach((id, index) => {
+                const card = document.getElementById(id);
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 + index * 150); // Staggered delay
+            });
+
+        });
+    </script>
+</body>
+</html>

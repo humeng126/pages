@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>向上管理的终极秘密 - 领导的嫡系</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'soft-blue': '#e0f7fa',
+                        'soft-peach': '#fff3e0',
+                        'accent-cyan': '#06b6d4',
+                        'accent-orange': '#f97316',
+                    },
+                    // Custom keyframes and animation for Apple-like slide-up
+                    keyframes: {
+                        slideUpFade: {
+                            '0%': { transform: 'translateY(50px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    },
+                    animation: {
+                        slideUpFade: 'slideUpFade 0.8s ease-out forwards',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            #core-message {
+                grid-column: 1 / span 3;
+            }
+            #cell-contrast-warning-wrapper {
+                grid-column: 1 / span 3;
+            }
+        }
+
+        .bento-item {
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition */
+            transform: translateY(40px);
+            opacity: 0;
+            will-change: transform, opacity;
+            position: relative;
+            overflow: hidden;
+        }
+        .bento-item.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Gradient for Tech Feel (Self-transparent) */
+        .tech-gradient-cyan {
+            background: radial-gradient(circle at 10% 20%, rgba(6, 182, 212, 0.1) 0%, rgba(6, 182, 212, 0) 70%);
+        }
+        .tech-gradient-peach {
+            background: radial-gradient(circle at 90% 80%, rgba(249, 115, 22, 0.08) 0%, rgba(249, 115, 22, 0) 60%);
+        }
+        .rotated-text {
+            transform: rotate(-3deg);
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans text-gray-800">
+    <div class="max-w-6xl mx-auto px-4 py-8">
+
+        <!-- METADATA HEADER -->
+        <header class="mb-8 p-6 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 transition-opacity duration-1000" id="header-metadata">
+            <p class="text-sm font-light text-gray-500 mb-1">视频标题:</p>
+            <h1 class="text-3xl font-extrabold text-gray-800 leading-tight">领导会真正信任和重用怎样的人？</h1>
+            <p class="text-lg text-accent-cyan font-semibold mt-1">#职场 #就业 #找工作</p>
+            
+            <div class="mt-4 flex flex-wrap gap-4 text-sm text-gray-600">
+                <a href="https://v.douyin.com/uA_y1-c9aFw/" target="_blank" class="hover:text-accent-cyan transition duration-300">
+                    <i class="fas fa-link mr-1"></i> 视频链接
+                </a>
+                <span class="ml-4">
+                    <i class="far fa-clock mr-1"></i> 提取时间: 2025-12-28 07:59:16
+                </span>
+            </div>
+
+            <!-- Transcript Toggle -->
+            <div class="mt-6">
+                <button id="toggle-transcript" class="text-sm px-4 py-2 bg-soft-peach text-accent-orange font-medium rounded-full hover:bg-orange-100 transition duration-300 shadow-md">
+                    <i class="fas fa-chevron-down mr-2"></i> 显示原文
+                </button>
+                <div id="full-transcript" class="mt-4 p-4 bg-gray-100 rounded-lg text-gray-700 text-sm leading-relaxed hidden border border-gray-200">
+                    <p>建议你们可能一般人做不到，但如果你只要做到，你跟领导的关系一定不差。你们对向上管理这块有困扰的同学，我给你们提一个非常重要的建议。你们是不是会认为要跟领导拍马屁，你要跟领导买买早餐，要跟领导买咖啡？我告诉你们，如果你们想要跟领导真正程度上的关系好，他真的想用你，甚至他把你当嫡系用，你们觉得最关键的是什么？我告诉大家，你们要打心底里认可和欣赏你的领导。你们做过管理的同学会非常知道我在说什么，呃，如果没有做过管理同学可能你们会觉得好恶心啊，还要认可和欣赏我的领导，我说点好听的话不行，很多东西你们演不出来的，你当领导傻子吗？能做到你们领导那个位置上的人，我告诉你们啊，段位都不比你低，你做什么事情其实从上面看下来门儿清，你真的认可他，你真的欣赏他，和你假的认可，阿谀奉承，我告诉你啊，他上面的人他的感受是完全不一样的。你们不要认为说我那个同事只会舔，什么都不会，我告诉你，像这样真正能够欣赏和认可他领导的人，才是他领导可能在众多能力水平参差没有那么大的情况下，他第一个会去选择的人。因为为什么？因为你真的认可和欣赏一个人的时候，你对他的管理成本其实是最低的。在一个职场里面混得好的人，他不一定是那个人力最强的人，如果他能力强，但是他不认可他的领导，我告诉你这样的人死的最快。</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN BENTO GRID LAYOUT -->
+        <main class="bento-grid mt-10">
+
+            <!-- CORE MESSAGE (Super Large, Spans 3 columns) -->
+            <div id="core-message" class="bento-item bg-soft-blue tech-gradient-cyan text-center border border-accent-cyan/30">
+                
+                <p class="text-xl uppercase text-gray-700 tracking-widest font-semibold mb-6">THE GOLDEN RULE</p>
+                
+                <h2 class="text-7xl sm:text-8xl lg:text-[10rem] font-extrabold text-accent-cyan leading-tight transform hover:scale-[1.01] transition duration-500">
+                    <span class="rotated-text block sm:inline-block">真·</span><span class="text-gray-900">认可</span>
+                </h2>
+                
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mt-4">
+                    打心底里认可和欣赏你的领导
+                </h3>
+                
+                <p class="mt-3 text-lg text-gray-600 italic">
+                    Genuine Acknowledgment & Appreciation
+                </p>
+                
+                <!-- Subtle Outline Graphic Element -->
+                <div class="absolute inset-0 pointer-events-none">
+                    <svg class="w-full h-full opacity-30" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <line x1="10" y1="10" x2="90" y2="90" stroke="#06b6d4" stroke-width="0.5" stroke-dasharray="8, 4" />
+                        <line x1="90" y1="10" x2="10" y2="90" stroke="#06b6d4" stroke-width="0.5" stroke-dasharray="8, 4" />
+                        <rect x="5" y="5" width="90" height="90" fill="none" stroke="#06b6d4" stroke-width="1" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Cell 1: The Misconception (Left Column) -->
+            <div class="bento-item bg-white border border-gray-200">
+                <i class="fas fa-hand-holding-usd text-4xl text-red-400 mb-3"></i>
+                <h4 class="text-2xl font-bold text-gray-800 mb-2">管理陷阱：虚假付出</h4>
+                
+                <p class="text-sm text-gray-600">
+                    拍马屁、买早餐、送咖啡... 领导的段位高，能轻松分辨你的行为是<span class="font-semibold text-accent-orange">阿谀奉承</span>还是真诚相待。
+                </p>
+                <p class="text-xs uppercase font-light text-gray-400 mt-3">Acting vs. Authenticity</p>
+            </div>
+
+            <!-- Cell 2: Management Insight (Middle Column) -->
+            <div class="bento-item bg-soft-peach tech-gradient-peach border border-accent-orange/30">
+                <i class="fas fa-chart-line text-4xl text-accent-orange mb-3"></i>
+                
+                <!-- Ultra-Large Number Element -->
+                <div class="flex items-end mb-2">
+                    <span class="text-6xl font-extrabold text-accent-orange leading-none mr-2">
+                        0%
+                    </span>
+                    <span class="text-xl mb-1 text-gray-600">Cost</span>
+                </div>
+                
+                <h4 class="text-xl font-bold text-gray-800 mb-2">最低管理成本</h4>
+                <p class="text-sm text-gray-600">
+                    真正认可领导，使得管理成本最低。在能力相差不大时，领导会优先选择<span class="font-bold">高认可度</span>的员工作为嫡系。
+                </p>
+            </div>
+
+            <!-- Cell 3: The Manager's Eye (Right Column) -->
+            <div class="bento-item bg-white border border-gray-200">
+                <i class="fas fa-eye text-4xl text-gray-400 mb-3"></i>
+                <p class="text-xs uppercase font-semibold text-gray-500 mb-1">Perception Check</p>
+                <h4 class="text-2xl font-bold text-gray-800 mb-3">领导不是傻子</h4>
+                
+                <p class="text-sm text-gray-600">
+                    能做到那个位置的人，段位（Caliber）远高于你。你所有的行为，从上往下看，都是<span class="font-semibold text-accent-cyan">门儿清</span>。
+                </p>
+            </div>
+            
+            <!-- Cell 4: The Contrast/Warning (Full Width) -->
+            <div id="cell-contrast-warning-wrapper" class="bento-item bg-gray-100 p-4 border border-gray-200">
+                
+                <p class="text-sm uppercase font-semibold text-gray-600 mb-4">Risk & Reward Matrix / 职场生存法则</p>
+                
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <!-- Positive Path -->
+                    <div class="p-4 border-l-4 border-accent-cyan/70 bg-white rounded-xl shadow-sm">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-2xl text-accent-cyan mr-3"></i>
+                            <h5 class="font-extrabold text-lg">高认可度 = 优先选择</h5>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">
+                            能欣赏领导的人，在能力水平参差不大的情况下，是领导第一个会去选择的人选。
+                        </p>
+                    </div>
+                    
+                    <!-- Warning Path -->
+                    <div class="p-4 border-l-4 border-red-500/70 bg-white rounded-xl shadow-sm">
+                        <div class="flex items-center">
+                            <i class="fas fa-exclamation-triangle text-2xl text-red-500 mr-3"></i>
+                            <h5 class="font-extrabold text-lg">高能力 + 低认可 = 快速淘汰</h5>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">
+                            能力再强，但如果不认可领导（不信任其战略），<span class="font-extrabold text-red-600">这样的人死得最快</span>。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+
+    </div>
+
+<script>
+    // 1. Transcript Toggle
+    document.getElementById('toggle-transcript').addEventListener('click', function() {
+        const transcript = document.getElementById('full-transcript');
+        const button = this;
+        
+        if (transcript.classList.contains('hidden')) {
+            transcript.classList.remove('hidden');
+            button.innerHTML = '<i class="fas fa-chevron-up mr-2"></i> 收起原文';
+        } else {
+            transcript.classList.add('hidden');
+            button.innerHTML = '<i class="fas fa-chevron-down mr-2"></i> 显示原文';
+        }
+    });
+
+    // 2. Bento Grid Scroll Animation (Intersection Observer)
+    document.addEventListener("DOMContentLoaded", function() {
+        const header = document.getElementById('header-metadata');
+        header.style.opacity = 1; // Show header instantly
+
+        const items = document.querySelectorAll('.bento-item');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Stop observing once visible to maintain the "one-shot" animation feel
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, {
+            rootMargin: '0px',
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        });
+
+        items.forEach((item, index) => {
+            // Apply sequential delay for Apple-like effect
+            // Delay is relative to the start of observation, not index alone, but index works well for sequence
+            item.style.transitionDelay = `${index * 0.15}s`; 
+            observer.observe(item);
+        });
+    });
+
+</script>
+</body>
+</html>

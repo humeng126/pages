@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Douyin Transcript - Life Philosophy</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Custom Configuration for Soft Theme */
+        :root {
+            --color-soft-bg: #fdfdfe;
+            --color-primary: #1F2937;
+            --color-accent-mint: #D1FAE5;
+            --color-text-mint: #065F46;
+            --color-accent-peach: #FEF3C7;
+            --color-text-peach: #92400E;
+            --color-highlight-start: rgba(224, 231, 255, 0.4); /* Soft Blue/Lavender */
+            --color-highlight-end: rgba(255, 255, 255, 0);
+        }
+
+        body {
+            background-color: var(--color-soft-bg);
+            color: var(--color-primary);
+            font-family: ui-sans-serif, system-ui, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Bento Grid Tile Styling */
+        .bento-tile {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth transition */
+            transform: translateY(20px) scale(0.98);
+            opacity: 0;
+        }
+
+        .bento-tile.in-view {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        /* Apple-like subtle scroll effects (simulated) */
+        .tech-gradient-border {
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .tech-gradient-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            border-radius: inherit;
+            pointer-events: none;
+            background: linear-gradient(135deg, var(--color-highlight-start), var(--color-highlight-end));
+            opacity: 0.8;
+        }
+
+        /* Utility for outline icons/graphics */
+        .outline-icon {
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        #original-text {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out, padding 0.5s ease-in-out;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        #original-text.show {
+            max-height: 800px; /* Sufficiently large height */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- Metadata Header -->
+    <header class="mb-8 border-b pb-4 sticky top-0 bg-white/90 backdrop-blur-sm z-50 rounded-b-xl">
+        <p class="text-xs text-gray-500 mb-2">Metadata / 元信息</p>
+        <p class="text-lg font-bold">视频标题: 假如你有一定经济基础，就不要再过度消耗身体<span class="text-sm font-normal text-gray-600 ml-2">#经济基础 #健康守护计划</span></p>
+        <p class="text-sm text-gray-600">视频链接: <a href="https://v.douyin.com/CcrTcecSLwo/" target="_blank" class="text-indigo-600 hover:underline">https://v.douyin.com/CcrTcecSLwo/</a></p>
+        <p class="text-sm text-gray-600">提取时间: 2025-12-28 08:01:49</p>
+
+        <!-- Toggle Button -->
+        <button id="toggle-button" class="mt-4 px-4 py-2 text-sm font-medium text-white bg-gray-700 rounded-lg hover:bg-gray-800 transition duration-300">
+            显示原文
+        </button>
+    </header>
+
+    <!-- Original Text Container (Hidden by Default) -->
+    <div id="original-text" class="mb-8 p-4 bg-gray-50 rounded-lg text-gray-700 text-sm border border-gray-200">
+        <p class="font-bold mb-2">【完整原文】</p>
+        你有一定经济基础，固定存款一百个以后就不要再过度消耗身体，上班挣一下生活费就好了。一百个在大部分城市作为保险已经足够了。这个时候活着才是最大的课题，长寿才是最牛的英雄。活着才能看到人类社会的文明进步程度，才能享受人类未来科技文明高度发展带来的成果。以生命的长度延迟获得更大的生命宽度，不要过度被工作中各种PUA，传统的各种禁锢等影响心境。这个时候请淡淡享受生命后半场的时光。人类寿命之短暂不应该浪费，生命中的每一天都是无比珍贵的，应该让自己舒适的度过，不要做一辈子的工蚁工蜂。如果你已经三十岁了，你会在你人生未来这十年里快速感觉到什么叫衰老，从而真实意识到你在二十到三十岁时基于对自己身体和精神状态有序的错误默认，而信誓旦旦做出的结论是颇为幼稚的。你们中的绝大多数人，绝对肯定大于百分之九十九会很快发现最典型的人生道路和节奏很可能确实就是最优的人生道路和节奏。你自己是完全没有那个资质和资源去走一条特立独行而拉风的叛逆人生路线的。你也将真实的意识到，人的一生真的漫长而蛋疼，要耗大几十年，且其中的大半光阴皆无可能处于青春的旺盛状态，而是处于稳定的衰老和持续变得更衰老中。显然你也会很快意识到自己当初做出的那些幼稚和想当然的人生决策，其中相当一些已经没有后悔药可吃了。进而也就很快能亲自验证一个略微残酷但普世的道理，每个人都不必然是自己正确决策和行为所带来福祉的唯一受益人，但几乎一定肯定是自己错误决策和行为所引发代价的唯一承担者。
+    </div>
+
+    <!-- Main Content: Bento Grid Layout -->
+    <main class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+
+        <!-- Tile 1: Financial Threshold (Large Number Focus) -->
+        <div class="bento-tile col-span-1 p-6 md:p-8 bg-[var(--color-accent-mint)] tech-gradient-border" data-animation-delay="0">
+            <div class="text-[var(--color-text-mint)]">
+                <i class="fas fa-hand-holding-dollar text-3xl mb-4"></i>
+                <h3 class="text-xl font-semibold uppercase tracking-widest mb-2">Safety Net Goal</h3>
+                <h2 class="text-6xl md:text-8xl font-extrabold mb-4 leading-none">
+                    100
+                </h2>
+                <p class="text-4xl font-black mb-1">
+                    固定存款
+                </p>
+                <p class="text-sm">
+                    In most cities, this serves as sufficient <span class="font-bold">INSURANCE</span>. Stop excessive body consumption.
+                </p>
+            </div>
+        </div>
+
+        <!-- Tile 2: Longevity Focus (The Greatest Subject) -->
+        <div class="bento-tile col-span-2 p-6 md:p-8 tech-gradient-border bg-white" data-animation-delay="100">
+            <div class="flex items-center justify-between mb-4">
+                <span class="text-2xl font-black text-indigo-600">LONGEVITY</span>
+                <i class="fas fa-mountain text-4xl text-gray-300 outline-icon"></i>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4">
+                活 着
+            </h1>
+            <p class="text-lg text-gray-700 mb-6">
+                才是最大的课题，长寿才是最<span class="text-indigo-600 font-bold">牛的英雄</span> (The ultimate hero).
+            </p>
+            <div class="grid grid-cols-2 gap-4 text-sm">
+                <div class="p-3 bg-indigo-50 rounded-lg">
+                    <p class="font-semibold">SEE PROGRESS</p>
+                    <p>Witness human civilization and future tech growth.</p>
+                </div>
+                <div class="p-3 bg-indigo-50 rounded-lg">
+                    <p class="font-semibold">LIFE EXPANSION</p>
+                    <p>Delay length to gain greater width.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tile 3: Aging Reality (30+ Milestone) -->
+        <div class="bento-tile col-span-2 p-6 md:p-8 bg-[var(--color-accent-peach)] tech-gradient-border" data-animation-delay="200">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+                <div class="flex-shrink-0 mb-4 md:mb-0">
+                    <h3 class="text-lg font-semibold uppercase tracking-wider text-[var(--color-text-peach)]">The 30+ Decade</h3>
+                    <h2 class="text-5xl md:text-6xl font-extrabold leading-none text-[var(--color-text-peach)] mt-2">
+                        三十岁
+                    </h2>
+                    <p class="text-sm mt-1 text-gray-800">
+                        You will quickly feel what <span class="font-bold">衰老</span> (Aging) truly means.
+                    </p>
+                </div>
+                
+                <!-- Placeholder Visualization: Simple Decay Line -->
+                <div class="w-full md:w-2/3 h-24 mt-4 md:mt-0 relative">
+                    <svg viewBox="0 0 100 50" class="outline-icon text-[var(--color-text-peach)]" preserveAspectRatio="none">
+                        <!-- X-axis -->
+                        <line x1="10" y1="40" x2="90" y2="40" stroke-dasharray="3 3"/>
+                        <!-- Health/Energy Decay Line -->
+                        <polyline points="10,10 30,15 50,25 70,35 90,45" stroke-width="3" />
+                        <circle cx="10" cy="10" r="3" fill="var(--color-text-peach)" stroke="none"/>
+                        <text x="80" y="20" font-size="8" fill="var(--color-text-peach)">ENERGY DRAIN</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tile 4: Lifestyle Choice (No Worker Ant) -->
+        <div class="bento-tile col-span-1 p-6 md:p-8 tech-gradient-border bg-white" data-animation-delay="300">
+            <div class="text-center">
+                <i class="fas fa-user-tie text-5xl text-gray-400 mb-4 outline-icon"></i>
+                <h3 class="text-3xl font-bold mb-3">
+                    工蚁工蜂
+                </h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    Don't waste life as a worker ant/bee. Enjoy comfort.
+                </p>
+                <div class="p-3 bg-purple-50 rounded-lg">
+                    <span class="font-extrabold text-purple-700 text-5xl">舒 适</span>
+                    <span class="text-xs block mt-1">Comfort is Key</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tile 5: Conformity vs. Rebellion (Small but important point) -->
+        <div class="bento-tile col-span-1 p-6 tech-gradient-border bg-white" data-animation-delay="400">
+            <h3 class="text-2xl font-extrabold mb-2 text-red-500">
+                99%
+            </h3>
+            <p class="text-sm mb-3 text-gray-700">
+                Absolute certainty greater than 99% will find the most typical life path is the <span class="font-bold">OPTIMAL RHYTHM</span>.
+            </p>
+            <p class="text-xs italic text-gray-500">
+                You lack the resources to walk a unique rebellious path.
+            </p>
+        </div>
+
+        <!-- Tile 6: Consequence Acceptance (The Price) -->
+        <div class="bento-tile col-span-2 p-6 md:p-8 tech-gradient-border bg-white" data-animation-delay="500">
+            <div class="flex items-start">
+                <i class="fas fa-balance-scale text-5xl text-teal-500 mr-5 mt-1 outline-icon"></i>
+                <div>
+                    <h3 class="text-4xl font-extrabold mb-2 text-teal-700">
+                        代价承担者
+                    </h3>
+                    <p class="text-sm font-light uppercase tracking-wider mb-3">
+                        THE SOLE BEARER OF CONSEQUENCES
+                    </p>
+                    <p class="text-lg text-gray-700">
+                        你几乎<span class="font-bold">一定肯定</span>是自己错误决策和行为所引发代价的<span class="font-extrabold text-teal-600">唯一承担者</span>。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tile 7: Enjoyment and Mindset (The Conclusion) -->
+        <div class="bento-tile col-span-3 p-8 tech-gradient-border bg-white" data-animation-delay="600">
+            <div class="border-l-4 border-yellow-400 pl-4">
+                <p class="text-sm font-semibold uppercase text-gray-500">Final Wisdom / 最终领悟</p>
+                <h2 class="text-5xl md:text-6xl font-extrabold leading-snug my-3">
+                    淡淡享受生命后半场的时光
+                </h2>
+                <p class="text-lg text-gray-700">
+                    Don't let PUA or traditional constraints affect your mindset (<span class="font-semibold">影响心境</span>). Human life is too brief to be wasted; every day is precious.
+                </p>
+                <p class="text-xs mt-4 italic text-gray-500">
+                    Many juvenile decisions lack regrets anymore.
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.getElementById('toggle-button');
+            const originalTextDiv = document.getElementById('original-text');
+
+            // 1. Toggle Functionality
+            toggleButton.addEventListener('click', function() {
+                const isHidden = originalTextDiv.classList.contains('show');
+                if (isHidden) {
+                    originalTextDiv.classList.remove('show');
+                    toggleButton.textContent = '显示原文';
+                } else {
+                    originalTextDiv.classList.add('show');
+                    toggleButton.textContent = '收起原文';
+                }
+            });
+
+            // 2. Scroll Animation (Intersection Observer)
+            const tiles = document.querySelectorAll('.bento-tile');
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.getAttribute('data-animation-delay') || 0);
+                        setTimeout(() => {
+                            entry.target.classList.add('in-view');
+                            observer.unobserve(entry.target); // Stop observing once animated
+                        }, delay);
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the item is visible
+            });
+
+            tiles.forEach(tile => {
+                observer.observe(tile);
+            });
+        });
+    </script>
+
+</body>
+</html>

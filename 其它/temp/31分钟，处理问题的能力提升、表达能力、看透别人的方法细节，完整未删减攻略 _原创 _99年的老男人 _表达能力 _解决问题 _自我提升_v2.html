@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>口才与问题解决能力提升</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Custom soft palette and gradients */
+        :root {
+            --soft-white: #f7faff;
+            --soft-blue: #e0f2ff;
+            --soft-cyan: #e0ffff;
+            --soft-yellow: #fffbe6;
+            --primary-highlight: #00bcd4; /* Cyan */
+            --secondary-highlight: #ffc107; /* Yellow */
+            --text-color: #333;
+        }
+
+        body {
+            background-color: var(--soft-white);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .bento-card {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Outline/Wireframe Styling */
+        .wireframe {
+            border: 2px solid var(--text-color);
+            border-radius: 8px;
+            padding: 4px 12px;
+            display: inline-block;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            color: var(--text-color);
+        }
+        
+        /* High-tech Gradient Effect */
+        .tech-gradient {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            opacity: 0.3;
+            filter: blur(50px);
+            z-index: 0;
+            transition: transform 0.8s ease-out;
+        }
+
+        .gradient-cyan {
+            background: var(--primary-highlight);
+            top: -50px;
+            left: -50px;
+        }
+
+        .gradient-yellow {
+            background: var(--secondary-highlight);
+            bottom: -50px;
+            right: -50px;
+        }
+
+        /* Apple-like scroll effect simulation (opacity/scale change on scroll) */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .scrolled {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .super-size {
+            font-size: 5rem;
+            line-height: 1;
+            font-weight: 900;
+        }
+        
+        @media (max-width: 768px) {
+            .super-size {
+                font-size: 3rem;
+            }
+        }
+        
+        /* Ensure the layout looks clean on mobile */
+        @media (min-width: 1024px) {
+            .bento-grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .span-col-2 {
+                grid-column: span 2;
+            }
+            .span-row-2 {
+                grid-row: span 2;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+
+    <!-- Metadata Section -->
+    <header class="mb-8 p-6 bg-white border-b border-gray-100 rounded-xl shadow-lg">
+        <h1 class="text-3xl font-bold mb-2 text-gray-800">31分钟，处理问题的能力提升、表达能力、看透别人的方法细节，完整未删减攻略</h1>
+        <div class="text-sm text-gray-500 flex flex-wrap gap-4 mb-4">
+            <span class="font-medium text-gray-700">#原创</span>
+            <span class="font-medium text-gray-700">#99年的老男人</span>
+            <span class="font-medium text-gray-700">#表达能力</span>
+            <span class="font-medium text-gray-700">#解决问题</span>
+            <span class="font-medium text-gray-700">#自我提升</span>
+        </div>
+        <a href="https://v.douyin.com/sCKKTGvjKeQ/" target="_blank" class="text-blue-500 hover:underline text-sm block">视频链接: https://v.douyin.com/sCKKTGvjKeQ/</a>
+        <p class="text-xs text-gray-400">提取时间: 2025-12-28 08:05:29</p>
+
+        <!-- Original Text Toggle Button -->
+        <button id="toggleOriginal" class="mt-4 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition duration-300 text-sm">
+            显示原文
+        </button>
+        <div id="originalTextContent" class="mt-4 p-4 bg-gray-50 border border-gray-200 rounded-lg max-h-96 overflow-y-auto text-xs" style="display: none;">
+            <!-- Full transcript content -->
+            这是最后一期，也是最详细完整的一期，跟大家去科普一个只有我能去教你的啊，口才的表达能力如何快速去进行一些提高和培养，以及看透问题本质的能力怎么去培养，到最后我们如何去快速的去提升我们自己解决问题的一个能力。这条视频可能非常非常长，好吧，你们可以先收藏好，如果想拿到一些思维导图或者说简略版本的一些分析的一些这个概括或者文字版本，你们可以在评论区艾特一个 A I 助手，会方便很多。我其实我常常说一个问题，我们不管在工作上面发言的一个思路啊，解决工作问题的思路啊，或者说跟人家去阐述的思路，还是说跟人去沟通上面来事的能力或者听懂别人这个话外之意以及看透本质这个能力，其实都是一个心法和一个一个思维框架的一个问题。你们很多人不会其实是因为你们没有去仔细去想过这个事儿，我们先一个个去来。首先如果我们从一个宏观的一个框架去讲，如果我们要快速去提高一个人的一个表达能力，其实我们每个人都学过，在哪里学过你们知道吗？就是一个教材，高中语文的作文这个教材这个问题，说白了其实我们要提高自己的一个人的一个表达能力，其实就是什么？如何去做到情景交融，如何去阐述自己的观点，如何清晰的说明一个事理，然后去写一些演讲稿，其实就是这么一简单。我记得我跟你们简单去讲讲几个逻辑你就知道了，我跟你说，如果说很多时候我们在一些表达当中，你会发现自己的一些观点不清，这个条理呢比较混乱，其实存在一些比较大的这个问题。阐述自己的观点首先得把观点先想清楚，你们很多人是讲话讲着讲着忘记观点是什么了，想是写和说的一个前提，也就是说你在说出来之前要先把一些想要去表达的一些观点你必须要去梳理一下，看主要去针对什么，解决哪些问题，观点是否正确，有没有这个说服力，你要先想明白。第二个阐述观点的时候要把自己的意图表达清楚，要让人家明白为什么要提出这个观点，是纠正或者说补充别人的看法。
+
+            还说解决什么问题，阐述观点的时候你要努力去做到一个哪两个点知道吗？一个叫什么？纲举目张，你纲是你的观点，目就是说你去阐述观点的一个若干的一个依据，从而这个观点形成你说的这些话或者一个文章，你是有明确的这个思路的。也就是说常见的来说我们去讲话这个事情去表达，其实你看我的这个视频是不是也有这种形式，对吧？并列式、层进式、对比式或者说总分式本身，无论是什么逻辑，就这么几个问题，提出问题、分析问题、解决问题、得出一个结论，然后答一些论证点去论证它，分论点是什么？事例，典型的事例，引用的道理，突出的对比，比喻的一个形象本身，对吧？审题立意，明确要把我们说的这个东西最后变成一句话。所以说白了什么问题？提高一个人的表达能力就是我们每个人的一个目的，但是不足的原因是什么？这个问题有没有去解决？其实就很简单，其实这就是一个心法，简而概括是什么？如果说你是实在是啊非常非常基础非常薄弱，我哥教你们一个建议，看书这个东西怎么去看，不要去看的非常快，你们不是很多人去看过我那本个人自传九富传嘛，你要这么去读书这个东西啊，要一字一句的读，一个字一个字的看，一个字读懂了再去读下一个字，一个句子的每一个字读懂了再去理解整个句子，下一句接着一个字一个字读，然后把下一句和上一句连接在一起去理解，你接着无限去循环上去，你就听哥这句话，你去试着这样子去看一本书，你的实际的这个思维的表达能力会提高的非常快。这个逻辑是什么教的呢？是我以前初中的政治老师教我的，后来我基本每次的考试简答题，我后来我都是用这个技巧，其实还是挺好用的。那么我们衍生到职业的这个角度里面，职场人我们如何快速的去提高我们自己的这个表达能力？其实如果说你们去上过班啊，就是如果说我不知道我的粉丝有没有上班上过超过十年的，就是你如果待过很多公司，你会发现一个问题，一个人不管来说总经理也好，业务经理或者说项目总监，表达能力非常牛逼的那帮人都有一个共同特点，结构化思考加上。
+
+            构化的一个表达，就像我刚刚说，你们会发现他们的讲话大多数都是有一个固定框架和一个结构的，他们就是往这个固定框架里面去填一个内容。我跟大家介绍两个框架，就是适合你们去用的啊，你们如果想听更多的，你们可以在评论区去找AI。第一种结构叫什么？PREP结构，这些很多时候呢是你日常汇报，平时开一些周会、吃饭团建的时候呢，其实需要去快速反应场合比较最好的一种结构。P是什么？Point，结论，比如讲领导，我认为应该立刻停止某个项目。R是什么？Reason，依据，因为市场环境突变，需要继续去投入的一个RY已经低于一个警戒线。E是什么？Example，事例，比如说这些东西的东西数据表明巴拉巴拉，最后一个P也是Point，重申一下结论，所以说我们什么什么，这是一种比较好的一个思路，PREP结构我推荐你们去用，比较适合入门级的人去培养这个思路。第二种结构我推荐大家什么？SCQA的一个结构，这个其实在很多今天上海的一些四A公司或者广告业本身呢，给很多客户去提供一些这个传播方案经常用的这个套路其实蛮多的。这个结构呢比较适合一些正式的方案汇报和一些书面报告，它比较长一点的表达你们可以用这个思路。首先S是什么？听我这么说，情景的一个导入，比方讲什么叫情景导入啊？比如这么去讲，领导，我们公司上半年主推的某个产品目前市场占有率稳定在百分之几，这叫情景导入。C是什么？制造冲突和引发关注甚至焦虑，那你就可以这么讲，但是呢又另外一个品呢上个月推出了一种颠覆性技术，竞品公司价格还比我们低，我们的这个东西被快速蚕食了怎么办？然后Q就是你在这个情况下快速去抛出一个问题，引出问题，我们现在面临一个生死问题，如何守住市场份额？最后来到A，亮出解决方案，好，所以我建议立刻启动某某某计划，从以下三个方面去反击。基本上我跟大家说，你有了这两个框架基本上就够用了，至少最起码你做到你大概在职场里面年薪五十万肯定够，最起码你思维不会混。
+
+            这样吧，听到目前为止觉得已经有收获的可以帮我点赞收藏，或者说在评论区评论一下。所以我跟大家很多人说，骨架这个东西有了，但是这个呢内容很多人他不会这个填，我就跟大家呢反正就是说完，我给你们几个内容建议，你就记住了两个大原则就可以。第一个大原则，多说人话，少说互联网黑话，少说形容词，多说数字这个问题，听啊，多说人话和数字，尤其是数字这个问题，尽量不要去讲一些什么很黑话这个什么营销闭环啊，什么底层逻辑什么，谈生意这个东西就是大忌，不要这么去讲话。你比你可以就试着去这么去讲，我们帮某个经销商在一个平台上面去卖这个货，钱花在了刀刃上，让品广告既能打响品牌，又能直接去带这个货本身，你千万不要去讲什么一些很那什么的一些话，对吧？你也可以这样去讲，这个活动呢最后覆盖了大概几千个人，点击率超过了多少多少，收到了多少条的一个正面反馈，多用数字，以及如果你想提高表达能力，多用类比的方法，你可以理解成什么呢？就是说去理解成这个降低理解成本。比方讲啊，很多人呢比如说你要去进行这个表达能力，你比方比如说有的粉丝会问过哥呃直播间他问我，他说你怎么去解释这个数据中台这个词，我当时就跟大家讲，我说这就像公司修一个数据水库，原来每个部门的这个数据呢是散落在各家的小小水洼，这个不仅少，而且还互相隔断，现在我们把水引到了水库里面，随时可以去取来用，还能混合产生新的这个价值，对不对？这样子去说这个话，你即便对方是老古董什么，人家也就听得懂，对吧？最高级的表达是你要让对方觉得你这种表达是为人家去量身定制，这个其实是最好的，就像打个比方，你们看我平时在直播间连麦，我是不是一直都是向下去兼容，因为这个就是表达思路，你一定要去量身监制，你对于很多一些同事给别人价值和方便，给领导跟高层，你给他去做选择题，永远准备三套方案，并附上分析和倾向以及理由，大白话是什么？你要争取一些利益，而不是去争取一些理性，懂吗？对于很多一些下层的阶级，给方向给成就感其实就可以了。我跟大家说句实话，表达能力最关键的是脑子。
+
+            不是嘴巴，只有思维跟结构清晰了，你才能说得明白。只有思维有价值，你才能让人津津有味的去进行一个分析，懂吗？所以这是一个最基础的一个能力，你们能不能懂？好，我们聊到后面这个问题，如果说你们如果再遇到一些比较难的这个问题呢，我有一个思路，就是说比如说啊，你们很多人呢，虽然这个东西只是人人日常的一个沟通跟表达，但是面临一些会场，我们怎么去发言？听我这么去讲啊，很多时候呢我们都会面临像一些临场发挥，但是你又需要你有一些发言的这个深度，我跟你们讲，我一般有三种思路，第一种思路是什么？我跟大家这么说，一般来说啊，我就是要么聚集大概一二三四四五个这个核心观点，贵在少而精这一个层面，做几分钟的发言，时间很短没关系，但是内容必须精简，因为你必须要去聊到核心观点，观点没有都是放狗屁，每个观点都要去说清楚，而且能够独立去成立，这是非常重要，人短期内能记住的信息很有限，一般只能同时处理五到九个信息点，一次性讲多记不记不住，所以说你就记住少说废话，准备发言的时候第一讲直接去植入主题，第二个问题，预设逻辑主线，这个事情非常重要，这是我比较常用的一个招数，因为我一般都是围绕着什么东西来去说的，很多时候临场发言的时候人就很容易说想到哪里说到哪里，很多人的通病是什么？思路跑偏。为了避免这个情况，我建议大家可以在发言之前先设定一个清晰的逻辑主线，也就是一个逻辑锚点你是必须要有的，这个锚点它是一个什么逻辑？我跟大家这么去说，经济学当中的边际效用的一个递减呢，就是说是一个什么逻辑？就是说它多增加一个单位投入带来的一个收益会逐渐减少，你懂吗？也就是说什么一个意思？就是说它可以是议题本身的关键矛盾或者说核心问题，有了这个锚点，你在发言的过程中你需要通过它去展开或者临时这个调整，就围绕了一个中心本人去展开，那就不会去它进行一个离题或者跑偏了，它是一种框架上的一些思维，先搭好结构再去填充内容，既能保证你的发言它有一些条理，也能去体现你自己思考的一个深度和专业性。
+
+            本身最后就是从反面或者对立的角度去进行思考，提出别人没有想到的一个问题，不能只重复大家都知道的观点，而是要试着从反面或者不同的角度去思考一个问题。当大家很多人都在讨论说怎么提高效率的时候，你可以问，啊，一昧追求效率会不会忽略了更根本的问题？通过逆向验证反过来去想，不要去轻易去接受人家的表面说法，而是主动去学会去质疑这个问题。这种思路其实就是有点像什么？颜料的三原色组合起来去使用，这就是非常实用的发言方法。精简内容先，再明确主线，最后去深入思考，对吧？核心在于什么？要运用好我说的这三种逻辑，第一个管理信息避免说多，第二个搭立清晰的这个锚点和逻辑的一个结构，防止跑题，第三个就用批判性思维去挖问题深处的这个东西。把内容精简，主线理清，角度深挖，基本上它这个是，我跟你这么讲啊，它不只是说今天去开会发言用得上，它也适用于很多做一些汇报，包括来说你们面试和求职都用得到，因为这些需要快速组织高质量一些内容的场景其实都能去用得到，所以说这期视频实际的这个含金量其实对于很多人来说其实是非常高的。好，我们聊到这个问题啊，如果说我们已经有了这方面这个能力本身，那我们我们逆向思维去想这个问题，那么我们怎么怎么样？就是很多人在职场里面会遇到一个情况，听人家讲话往往说听不明白别人要表达的东西是什么，对吧？很多人就常常会去跟哥讲一句话，他说，我怎么样可以变得会来事一点？我怎么样可以去听懂别人去讲的这个话本身，对不对？是不是有很多人有这么事？我跟大家提供一个非常精华版本的一个方法，我就教大家，你就每天学会去写工作日志，专门记录这种人事方面的事情，比如你的领导给你布置任务是常规的还是额外的，布置给你时候的一些话术，你的同事尤其是比较圆滑的同事在工作当中面对推活啊，矛盾啊，不同事情的反应，正常的事物流程处理突然发生了转折，这种转折是因为什么人说了什么话，最终事情。
+
+            发展的结果是什么样？工作当中最密集的几个同事，他们的情绪高点是什么？情绪低点是什么？怎么样的表达更顺畅的能进行工作衔接？也就是说，为工作对吧？做这个人物画像一开始可能很难，不过你到最后你会发现效果非常明显，这就是一个非常好用的一个方法，我非常推荐给大家。还有个这个问题，还有个问题也可以这么去想，每个人其实说话他都有一些目的，在你的想象当中呢，他本来一颗应该一口答应，但是他却做了不一样的这个反应，这是大多数的情况，那就说明他一定和这个明面上有不同的需求，去结合性格、利益冲突点去分析人家就好了。你就永远记住一个问题，每个人说每句话都有这个目的，你为了什么目的，所以和平时不同做出了什么动作，他对你做出了什么举动，他的动作又和平时有什么不同，他的目的可能是什么？多去想这个问题，你可能你就能慢慢去看透一个人，这就是我平时去训练自己的一个方法本身。好，那么到最后我们去聊到如何去快速的去透过一些事物去看透本质的这个东西，很多网络上面的人呢常常会去说这个问题，他说这个东西天赋，原生家庭比较好，怎么怎么厉害什么，我跟你们这么说，不是因为他后天培养不起来，能培养，是因为很多人成年太了这个东西呢比较说这个人呢比较喜呃就是怎么讲呢，这个人比较定型了，其实我和你们这么说，能看本质的这个能力有一个基本条件之一，也是现在社会上很多人缺的一个点，因为现在人很自私，你要看透本质，首先你得有一个敏感体质，什么叫敏感体质？就是你所有的反馈，心理层面的，感触层面的，正反馈、负反馈你都要比很多人强。说具体一点，你看图片一眼就能去识别出污点，听音乐极少的片段采样，掩盖在大量的环境噪音之中就能去知道他播的是哪首歌或者曲子，你同学、同事、其他人的情绪有一点不对，你就能看到他跟平时不一样，你学知识就应该有一种这种感觉，这种感觉和你本能和长期形成的常识和直觉就是密切绑定的，这种感觉的强弱和你的一些敏锐度是正相关的，当你敏锐度的和。
+
+            或者说感感受力本身都比别人高的时候，你的刺激和一些激励都会比别人高。同样的，你的反馈能力其实也是被放大，就像你AI去学这个语料的一些权重，别人十次出现才能去累积到的权重，你可能两到三次就达到了。如果说啊，你今年自己的这个感受度越精细，分辨率越高，你就越能去区分正负反馈带来的偏差和一些物理正确之间的一个就gap，对吧？这样子导致你的拟合也容易收敛，不会因为一些过于敏感而正在一些正负的两个区间的一个剧烈的一些所谓震荡抖动，别人可能说十轮才能达到的收敛，你两到三轮就能办到，这就会让你更快的去稳定你的心智模型。当你今天自己的负反馈也足够敏感的这个时候，就会驱动你自己去警惕或者观察这个世界，因为负反馈强的人通常会不自觉的去识别和推理那些令他们不是不正常的部分，比如细微的异常。所以说在一些认知环境上，在很多的生物面上面，就是说有相对比别人更强的一些先天的一些驱动，这就是底层逻辑，能懂吗？只是说我刚刚讲的是从处理一些输入数据上的敏锐度和常识形成的一些前置角度而已，这个部分难以去锻炼，因为这更多都是生物面的一个差异。然后就是我跟大家很多人讲，逻辑和常识的后天搭建，其实刚刚我已经教给你们了，这个东西可以去锻炼，而且途径是多维的，能懂吗？就是要经常的去提炼和一些抽象，然后把各种的见识和输入的信息拆解、归纳和匹配，纳入到你自己所能理解的世界模型和一些知识体系当中，再用逻辑层面进行拉通。这个拉通这个事吧，我跟大家详细去聊一聊，你们需要啊，拉通不是简单的拉通，有的时候是需要去进行一些前置数据的清洗和再整理。你首先你要去确认知识或者输入的来源可靠，这是解决信任问题，让你的输入是纯净的，没有一些fake的，但是不代表它是正确的，以及获得同一信息的不同表示和理解。也就是说，针对同一个知识点或者信息，从不同维度、不同角度、不同信息源获取同质但是表征不同的内容。
+
+            这既是一种交叉验证，也是一种获取和培养同一信息在不同视角、不同维度上观影的一种观感。交叉验证就能帮助你们，对吧？来源是可靠的。同一个信息的多维视角能让你们的信息是能去对应多个维度或者说的某一个位面的同影，它是统一的，具有一致性的，让你们的常识在立体层面具备一个这种所谓的健壮性。这些信息在和你已经已有的一些模型和模型的一些因子或者说关键向量你去进行匹配的话，如果说啊关键向量相符，那么说明什么？你的脑子就会去强化这个角度的一个模式，让它具备更大的权重，把它向更基础的方向去移动，它就形成了一个更加牢固的一个地基。我现在听到这个地方，很多粉丝如果是聪明人，其实已经能懂我在说什么了。也就是说如果说不匹配、不相符，存在冲突的话，那说明什么？现有模型或者向量分解有问题，得拆分更细分化的一个模式或者向量，不冲突的部分你去给它去融合在一起，形成新的一个子模式。这就有点像一个什么比喻啊？树木的分支一样的，它长出新分支，就像你写代码的主干遇到了意料之外的一个逻辑，你可能就需要加一个东西，要么就是你的处理过程中有瑕疵，你需要重新去检查嘛，对吧？很多东西吧说起来很简单，但是一旦你的环境没有这种激励或者这种惩罚机制，或者说思维已经因为成年固化了，就很难改善。所以我一直跟很多我的粉丝去讲，留给你们的时间一直就是不多的，懂吗？这就有点像一个成人学外语，或者说一个小孩开始学外语，成人是在翻译，小孩是能直接用外语进行思维，两者的速度和精度就是不一样的。这就是为什么，就像我一直跟你们很多人去讲这个问题，你让他再能去说服什么学习什么，你能去说服你家里面顽固的老前辈和能说服你顽固的爸爸吗？他能去听你的吗？不太现实的。对于那些善于直击本质的人，他们和其他人的区别就是前者他在本能上面早就习惯了直接对输入信息进行分解，他把解剖后的一些骨架直接就添到自己常识体系上去了，你懂吗？对吧？就是这么一回事，问题是。
+
+            它需要透视到什么维度和一个深度，它们就透到什么维度，就要投影到哪个角度，它就投。所以总的来说，这个东西呢，不是说不能去锻炼，只是的确非常麻烦，因为你们很多人的方法论它已经是非常固化的了，你们能不能懂这个问题啊？这个不代表是说不敏感的人就不可能获得正确的一个结果，能力这个东西就是有一种东西叫逻辑思维，你逻辑思维强，能稳健的做一些长链条的推理，那么你不能一眼直接看透事情看到本质，但是你依然可以通过严谨的推理来达到最后的一个结果，只是说相对那种一眼看穿的直觉，这种能力就显得不太显眼，你懂吗？所以说也比较难以去变成你们类似说感官那种触发的这种感觉，能实现这种及时的一个输入，加速一些经验的收敛，我管这种叫什么？这个其实就是一个慢聪明，懂吗？如果说啊，你们听到这个地方非要是说找个方法再去提高一下，我教你们一个干货方法，那就是你今天开始学会什么事都去较真，一直较真到和自己的固有的思维和知识体系自洽为止，没有办法，在这个较真过程当中，你就会去学会对各种问题进行大量的拆解分析和反思，识别出关键因子，最后固化到本能，没有办法。我以前我认识过的很多一些这个土老板或者说已经出差时候见到很多前辈就是这么一回事，学历不高，初中文化，社会地位也不高，但是他就是，对吧？我认为很聪明的那种人，他就是我讲的那种高敏感体质，尤其是情绪上面，动不动就炸，但他又有个特点，就是凡事都喜欢高度怀疑，尤其是对人性或者对某类人的一个信任链这个问题，所以他很喜欢吵架，他但是他几乎又能吵赢所有架，对吧？他又有的时候又很凶，他有的时候也会问一些问题，他就喜欢琢磨，把问题一个个去拆解，他就是这么一个人，他就是这样子的，没有办法，每一个人他就是这样子不一样。所以说你你如果说你这个人如果说在工作角度做到凡事去较真，你见过哪个对于工作本身所有逻辑较真的人工作之后做的很差的吗？没有一个是这么一回事。那么最后就聊到最后一个问题，所以说我们很多时候呢就跟大家很多人讲，解决问题的这个能力其实跟我刚刚讲的这些东西的基础啊，在这些。
+
+            基础上面它就是息息相关。我一直说这些解决问题它就是跟一个人的认知和思维模式就是有关系。认知的本质是什么？其实就是一个人处理信息的一种方式，包括你如何接收这些信息，判断信息的真假和重要性，以及如何去理解和组织这些信息。思维模式其实从一开始就决定了一切，认知它是一种内在的基础，思维方式是外在的表现，两者共同决定一个人处理问题的一个效果这个问题。懂这个话这么一个意思啊，所以也就是说一个什么意思？我们如果说跟大家去这么讲这个问题，如果说你们只是从来去依赖同样的信息来源，或者说只是去熟悉自己某一个专业领域，你就容易去陷入思维定势，看问题的时候就会去漏掉一些重要的因素。这就是为什么你们会发现我自己做项目，我永远做的很杂，因为我必须保持自己永远有一些这个战斗力这个问题没有办法的，对吧？所以我和大家这么去说这个问题啊，你如果说你未来有一天如果想去解决这个问题能力去培养，你就如果碰到一个真的你从来没遇到的过这个问题怎么去解决？我哥就跟你们这么讲，第一个问题拆解问题，找准问题的核心矛盾这个问题，说白了你没有必要先去解决它，你先想想看核心矛盾什么，想明白就跟我刚刚教的方法一样的。第二个问题全面有条理的组织组织它的信息和一个时间，解决问题它不是只靠一个点上的努力它就能去完成，而是系统的去调动各种资源，在信息太多太杂的情况下，要有方法快速找到真正有用的信息，避免被无效信息干扰。所以你会发现我生活当中虽然无趣，但是我生活当中已经排除了一切的这个杂质，这是不是这个事实是这样子，对吧？比方讲某个在别的行业或者学科当中有效的方法，可能也能去用在当前的问题上，跨领域借鉴的能力常常就能够带来新的这个思路，打破固有的思维模式，这就是为什么我总喜欢去做一些横向企业就是这个道理。最后在执行过程当中能去根据实际情况及时去调整，解决问题的方案一旦实施之后呢，还要去建立你有效的脑子里面要去想一个事啊，数据要追踪，观察有。
+
+            效指标的这个变化来判断这个方案好不好，要不要去优化，不是看这个结果对不对，你要去分析为什么会出现偏差，你要弄清楚问题是出在最初的判断上还是执行过程中没有控制好相对的这个因素，这个问题一定要去做，这三件事情它其实是一个相互关联的一个步骤，第一个其实无非就是问清楚这个问题到底要干嘛，第二个合理安排我能用的一切的资源和手段，包括人力、信息、知识、时间，怎么用，该怎么用，用什么东西，而且在过过程中你要不断去检查更好的动作，真正解决问题的能力其实就是体现在这三个步骤上的一个紧密配合，分析问题时候就要去想到需要什么一个资源，当然了，不然的话怎么去弄这个问题呢，对吧？如果说啊你们最后要去提高这个问题啊，我最后跟大家去补充几句，如果你到最后实际要去提高，我就跟大家这么说啊，不能只需用简单的因为所以这种线性的一些思维方式，懂吗？传统问题的方法通常会找一个原因对应一个结果，但是现实当中很多复杂问题并不是这么去发展的，实际情况就是这么一回事，你必须需要具备更全面的思考这个能力，要做到这一点就需要掌握不同领域的知识，而且能把一个领域的概念和方法应用到另一个领域，跨领域的思维方式它就要比单一的因果更有利于解决复杂的一个方案，只能这样子，关键的这个思路跟方法我点你们一句，不在于你掌握多少知识，而在于你能不能觉察和调整自己的一个思考方式，这个非常重要，比方讲你做决定遇到选择困难时可以有意识的换个角度看问题，从只考虑资源够不够转为一些考虑机会成本，或者说从眼前的利益转为长远的一个影响，解决问题的能力实际上是什么？就是快速抓住重点和深入分析设计之间找一种平衡，有的人为什么就能很快的去排除干扰信息找到问题，对吧？为什么有的人能擅长去设计出既稳妥又有新意的解决方案，要达到这种平衡就需要去不断总结出经验，所以也就是说一个人要想去提高你这个能力，需要同时从两个方面去下手，第一个方面是什么？更新自己的认知方式，改。
+
+            的一些思考的一个这个习惯和一些方法，这个是真的啊，保持开放啊，思考问题的时候你要有这个条理，必须去做到这一个点，这是必须的，好吧？第一个问题说白了就是说你要去愿意接收新信息啊，避免自己陷入一些老办法的这个误区，要听人家劝。第二个问题一定要时刻性保持一种思维，就是我一定要有这个条理，你每次去解决问题时，想想看自己为什么去找，到底是老经验还是是真的是有这个逻辑，你要能够去意识到自己是怎么去想这个问题的，有没有盲点或者误差，并且主动去做调整，你要通过不断的反思和实践，逐步去建立起自己一套能灵活应对复杂问题的解决方式，让它随着环境变化而不断去优化。这条视频非常非常长，大概有快个二十五分钟，好吗？听完之后觉得有收获在评论区打个卡。如果大家想拿完整的思维导图的和一些简略的一些文字版本的，直接在评论区艾特AI助手，好吧，大家收藏一下，好吧，之后的一下一些关键视频可能就不会错过，因为有的视频尺度比较大，有可能说看完之后可能就被删掉了。
+        </div>
+    </header>
+
+    <!-- Main Bento Grid Container -->
+    <main class="grid grid-cols-1 lg:grid-cols-3 gap-6 bento-grid-container">
+
+        <!-- Section 1: 表达能力 (Expressive Ability) -->
+        <div class="bento-card p-6 lg:col-span-2 scroll-animate bg-soft-cyan relative">
+             <div class="tech-gradient gradient-cyan transform translate-x-10 translate-y-10"></div>
+             <h2 class="text-xl font-semibold mb-6 relative z-10 text-gray-700">提升表达能力：结构与内容</h2>
+
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <p class="text-sm uppercase text-primary-highlight font-bold mb-2">Frameworks</p>
+                    <div class="mb-4">
+                        <p class="super-size text-gray-900">PREP</p>
+                        <p class="text-xs tracking-widest text-gray-500">Point, Reason, Example, Point</p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="super-size text-gray-900">SCQA</p>
+                        <p class="text-xs tracking-widest text-gray-500">Situation, Conflict, Question, Answer</p>
+                    </div>
+                    <p class="text-sm mt-4 text-gray-600">— 至少达到职场年薪 50 万的思维清晰度</p>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <p class="text-sm uppercase text-primary-highlight font-bold mb-2">Content Principles</p>
+                    <div class="mb-3">
+                        <i class="fas fa-chart-line text-lg text-primary-highlight"></i>
+                        <span class="text-2xl font-bold ml-2">多说数字</span>
+                        <p class="text-xs text-gray-500">Use concrete data, avoid internet jargon and adjectives.</p>
+                    </div>
+                    <div class="mb-3">
+                        <i class="fas fa-comments text-lg text-primary-highlight"></i>
+                        <span class="text-2xl font-bold ml-2">多用类比</span>
+                        <p class="text-xs text-gray-500">Lower the understanding cost (e.g., Data Lake = data reservoir).</p>
+                    </div>
+                    <div class="mb-3">
+                        <i class="fas fa-handshake text-lg text-primary-highlight"></i>
+                        <span class="text-2xl font-bold ml-2">量身定制</span>
+                        <p class="text-xs text-gray-500">Adapt to the audience. Fight for profit, not logic.</p>
+                    </div>
+                    
+                </div>
+             </div>
+
+             <div class="mt-6 bg-soft-blue p-4 rounded-xl relative z-10 border border-gray-200">
+                 <p class="text-sm uppercase font-bold mb-1">思维基础训练</p>
+                 <span class="super-size text-gray-900 leading-tight">一字一句<i class="fa-solid fa-book ml-3 text-3xl"></i></span>
+                 <p class="text-xs text-gray-600">高中作文教材是基础。阅读时，一字一句读懂，连接上下句，提高思维表达能力。</p>
+             </div>
+        </div>
+
+        <!-- Section 2: 临场发言 (Public Speaking) -->
+        <div class="bento-card scroll-animate bg-soft-yellow relative">
+            <div class="tech-gradient gradient-yellow transform -translate-x-10 translate-y-10"></div>
+            <h2 class="text-xl font-semibold mb-6 relative z-10 text-gray-700">临场发言：三大深度思路</h2>
+
+            <div class="relative z-10">
+                <div class="mb-4 p-4 border border-gray-200 rounded-lg">
+                    <p class="super-size text-gray-900">1</p>
+                    <h3 class="font-bold text-lg">精简核心观点</h3>
+                    <p class="text-xs text-gray-600">少而精，聚集 5-9 个信息点，短时间植入主题。 (<span class="wireframe">Less is More</span>)</p>
+                </div>
+                 <div class="mb-4 p-4 border border-gray-200 rounded-lg">
+                    <p class="super-size text-gray-900">2</p>
+                    <h3 class="font-bold text-lg">预设逻辑主线</h3>
+                    <p class="text-xs text-gray-600">设定逻辑锚点（如核心问题或矛盾），防止思路跑偏，保证发言有深度。 (<span class="wireframe">Logic Anchor</span>)</p>
+                </div>
+                 <div class="mb-4 p-4 border border-gray-200 rounded-lg">
+                    <p class="super-size text-gray-900">3</p>
+                    <h3 class="font-bold text-lg">反向角度思考</h3>
+                    <p class="text-xs text-gray-600">用批判性思维，从反面或对立角度提出问题，避免重复常识。 (<span class="wireframe">Critical Thinking</span>)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: 看透人心 (Reading People) -->
+        <div class="bento-card scroll-animate lg:col-span-1 bg-soft-blue relative">
+            <h2 class="text-xl font-semibold mb-6 text-gray-700 relative z-10">看透人心：察言观色的方法论</h2>
+            
+            <i class="fa-solid fa-user-secret super-size block text-center mb-4 text-cyan-600 opacity-20"></i>
+
+            <h3 class="text-lg font-bold mb-2">工作日志画像法</h3>
+            <p class="text-sm text-gray-600 mb-4">每天记录工作日志，专注于人事细节，构建人物画像。</p>
+            <ul class="list-none space-y-2 text-sm pl-0">
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle mt-1 mr-2 text-primary-highlight"></i>
+                    记录领导任务布置和话术
+                </li>
+                 <li class="flex items-start">
+                    <i class="fas fa-check-circle mt-1 mr-2 text-primary-highlight"></i>
+                    记录同事推活、应对矛盾的反应
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle mt-1 mr-2 text-primary-highlight"></i>
+                    追踪事件转折点及关键发言
+                </li>
+            </ul>
+            
+            <div class="mt-6 p-4 border-l-4 border-secondary-highlight bg-yellow-50 rounded-lg">
+                <p class="font-bold text-sm mb-1 text-gray-700">核心思考</p>
+                <p class="text-xs text-gray-600">永远记住：<span class="font-semibold text-red-600">每个人说话都有目的</span>。分析对方行动与平时行为的不同，推断其隐藏需求。</p>
+            </div>
+        </div>
+        
+        <!-- Section 4: 看透本质 (Seeing the Essence) -->
+        <div class="bento-card scroll-animate lg:col-span-2 bg-white relative">
+            <div class="tech-gradient gradient-cyan right-5 top-5 opacity-10"></div>
+            <h2 class="text-xl font-semibold mb-6 text-gray-700 relative z-10">看透本质：思维模型与敏锐度</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                
+                <!-- Pillar 1: Sensitive Constitution -->
+                <div class="p-4 border border-dashed border-gray-300 rounded-xl bg-soft-cyan">
+                    <div class="super-size text-center text-primary-highlight">S1</div>
+                    <h3 class="font-bold text-lg mb-2">敏感体质 (Sensitive Constitution)</h3>
+                    <p class="text-xs text-gray-600">识别细微异常，快速感知正负反馈。相当于AI学习时的<span class="wireframe">高权重输入</span>，能更快稳定心智模型。</p>
+                </div>
+                
+                <!-- Pillar 2: Post-Acquired Logic -->
+                <div class="p-4 border border-dashed border-gray-300 rounded-xl bg-soft-yellow">
+                    <div class="super-size text-center text-secondary-highlight">S2</div>
+                    <h3 class="font-bold text-lg mb-2">逻辑和常识后天搭建</h3>
+                    <p class="text-xs text-gray-600">多维度的<span class="wireframe">提炼与抽象</span>。将输入信息拆解、归纳、匹配到现有知识体系。</p>
+                </div>
+                
+                <!-- Pillar 3: Cross Validation -->
+                 <div class="p-4 border border-dashed border-gray-300 rounded-xl bg-soft-blue">
+                    <div class="super-size text-center text-blue-500">S3</div>
+                    <h3 class="font-bold text-lg mb-2">信息拉通与自洽</h3>
+                    <p class="text-xs text-gray-600">确认来源可靠，<span class="wireframe">交叉验证</span>。不断匹配关键向量，强化或分解模型，最终达到<span class="font-bold">自洽</span>。</p>
+                </div>
+            </div>
+            
+             <div class="mt-6 bg-gray-50 p-4 rounded-xl border border-gray-200 relative z-10">
+                <i class="fa-solid fa-wrench mr-2 text-red-500"></i>
+                <span class="text-sm font-bold text-red-600 uppercase">最强后天方法：</span>
+                <p class="text-xl font-bold mt-1">凡事去较真 (<span class="text-gray-400">Be Stubborn</span>)</p>
+                <p class="text-xs text-gray-600">持续拆解、分析和反思问题，直到与你的固有体系自洽为止，固化关键因子到本能。</p>
+            </div>
+        </div>
+        
+        <!-- Section 5: 解决问题 (Problem Solving) -->
+        <div class="bento-card scroll-animate lg:row-span-2 bg-soft-cyan relative">
+             <div class="tech-gradient gradient-yellow bottom-5 right-5 opacity-20"></div>
+            <h2 class="text-xl font-semibold mb-6 text-gray-700 relative z-10">解决问题的能力：认知与思维的紧密配合</h2>
+            
+            <i class="fa-solid fa-puzzle-piece super-size block text-center mb-4 text-cyan-600 opacity-20"></i>
+
+            <div class="relative z-10 space-y-4">
+                 <div class="p-4 border-l-4 border-primary-highlight bg-gray-50 rounded-md">
+                    <h3 class="font-bold text-lg mb-1">Step 1: 拆解问题，找到核心矛盾</h3>
+                    <p class="text-sm text-gray-600">分析认知和思维模式，从复杂问题中提炼出关键核心问题。</p>
+                </div>
+                 <div class="p-4 border-l-4 border-primary-highlight bg-gray-50 rounded-md">
+                    <h3 class="font-bold text-lg mb-1">Step 2: 系统组织资源与信息</h3>
+                    <p class="text-sm text-gray-600">调动人力、信息、知识，排除无效信息干扰，借鉴跨领域方法。</p>
+                </div>
+                 <div class="p-4 border-l-4 border-primary-highlight bg-gray-50 rounded-md">
+                    <h3 class="font-bold text-lg mb-1">Step 3: 及时调整与数据追踪</h3>
+                    <p class="text-sm text-gray-600">实施方案后，追踪有效指标，分析偏差原因（判断错误或执行控制失误）。</p>
+                </div>
+            </div>
+
+            <div class="mt-6 p-4 bg-white border border-gray-200 rounded-xl relative z-10">
+                <p class="font-bold text-sm text-red-500 uppercase">关键提醒</p>
+                <p class="text-lg font-bold mt-1 text-gray-800">避免线性因果，采用<span class="text-blue-500">跨领域思维</span>。</p>
+                <p class="text-xs text-gray-600">核心在于调整思考方式，从资源转为机会成本，从眼前转为长远影响。</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="mt-10 p-6 text-center text-sm text-gray-500">
+        <p>感谢观看。如果觉得有收获，请在评论区打卡或艾特AI助手获取完整思维导图。</p>
+    </footer>
+
+    <script>
+        // JavaScript for original text toggle
+        document.getElementById('toggleOriginal').addEventListener('click', function() {
+            const content = document.getElementById('originalTextContent');
+            const button = this;
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                button.textContent = '收起原文';
+            } else {
+                content.style.display = 'none';
+                button.textContent = '显示原文';
+            }
+        });
+
+        // JavaScript for Apple-like scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scrolled');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1, // Trigger when 10% visible
+        });
+
+        document.querySelectorAll('.scroll-animate').forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Optional: Simple Parallax/Hover for Gradient elements (Enhance complexity)
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const cyan = card.querySelector('.gradient-cyan');
+                const yellow = card.querySelector('.gradient-yellow');
+                
+                if (cyan) {
+                    const moveX = (x - rect.width / 2) * 0.05;
+                    const moveY = (y - rect.height / 2) * 0.05;
+                    cyan.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                }
+                 if (yellow) {
+                    const moveX = (x - rect.width / 2) * -0.05;
+                    const moveY = (y - rect.height / 2) * -0.05;
+                    yellow.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

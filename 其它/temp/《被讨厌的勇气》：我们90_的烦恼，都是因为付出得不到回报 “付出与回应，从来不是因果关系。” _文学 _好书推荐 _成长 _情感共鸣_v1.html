@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《被讨厌的勇气》：付出与回应，两条平行线</title>
+    <!-- Tailwind CSS 3.0+ CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        /* Custom Tailwind Configuration for soft colors and effects */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'soft-white': '#f8f8f8',
+                        'light-peach': '#fff5f0',
+                        'soft-blue': '#eef2ff',
+                        'accent-glow': 'rgba(255, 165, 0, 0.5)', /* Orange/Amber glow */
+                        'accent-blue-glow': 'rgba(100, 149, 237, 0.5)', /* Cornflower Blue glow */
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 12px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            }
+        }
+
+        /* Bento Grid Item Styling */
+        .bento-item {
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.6s ease, opacity 0.6s ease;
+            opacity: 0; /* Default hidden for scroll animation */
+            transform: translateY(20px);
+        }
+        
+        /* State for visible items */
+        .bento-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom high-light transparent gradient for a tech feel */
+        .tech-gradient-amber {
+            background-image: radial-gradient(circle at top right, rgba(251, 191, 36, 0.3), transparent 70%);
+        }
+        .tech-gradient-indigo {
+            background-image: radial-gradient(circle at bottom left, rgba(129, 140, 248, 0.3), transparent 70%);
+        }
+
+        /* Parallel Line Visualization */
+        .parallel-line {
+            height: 2px;
+            background-color: currentColor;
+            width: 100%;
+            border-radius: 1px;
+            position: relative;
+        }
+        .parallel-line::before, .parallel-line::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: currentColor;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .parallel-line::before { left: -5px; }
+        .parallel-line::after { right: -5px; }
+
+        /* Ensure smooth scrolling experience for animations */
+        html {
+            scroll-behavior: smooth;
+        }
+
+    </style>
+</head>
+<body class="bg-soft-white font-sans text-gray-800 p-4 md:p-8">
+
+    <!-- Metadata Section (Required Header) -->
+    <header class="max-w-4xl mx-auto mb-10 p-6 bg-white border border-gray-100 rounded-xl shadow-soft">
+        <h1 class="text-xl font-extrabold text-indigo-700">《被讨厌的勇气》：我们90%的烦恼，都是因为付出得不到回报</h1>
+        <p class="text-sm italic text-gray-500 mt-1">“付出与回应，从来不是因果关系。”</p>
+        <div class="mt-3 space-y-1 text-sm text-gray-600">
+            <p><strong>标签:</strong> <span class="text-xs px-2 py-0.5 bg-gray-100 rounded-full">#文学</span> <span class="text-xs px-2 py-0.5 bg-gray-100 rounded-full">#好书推荐</span> <span class="text-xs px-2 py-0.5 bg-gray-100 rounded-full">#成长</span> <span class="text-xs px-2 py-0.5 bg-gray-100 rounded-full">#情感共鸣</span></p>
+            <p><strong>链接:</strong> <a href="https://v.douyin.com/gEE2MH4erPc/" target="_blank" class="text-indigo-500 hover:text-indigo-600 truncate">https://v.douyin.com/gEE2MH4erPc/</a></p>
+            <p><strong>提取时间:</strong> 2025-12-28 04:58:52</p>
+        </div>
+
+        <!-- Toggle Button for Original Text -->
+        <button id="toggleOriginal" class="mt-4 px-4 py-2 text-sm font-medium text-white bg-amber-500 rounded-lg hover:bg-amber-600 transition duration-300 shadow-md">
+            显示原文 <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300"></i>
+        </button>
+
+        <!-- Collapsible Original Text Area -->
+        <div id="originalContent" class="mt-4 p-4 border border-dashed border-gray-200 bg-gray-50 rounded-lg hidden">
+            <p class="text-sm leading-relaxed text-gray-700">分之九十的烦恼都是因为付出得不到回报。今天分享《被讨厌的勇气》。你可以选择对别人好，但不能要求别人同样对你好。你如何待人是你的品格，别人如何待你那是他的课题。这从来不是因果关系，而是两条平行线。看不透这一点，只会徒增烦恼。你越把被回应当做付出的奖赏，就越容易在别人的沉默里撕扯自己。真正折磨你的从来不是任何人的绝情，而是你心怀幻想的期待。记住，爱人先爱己。</p>
+        </div>
+    </header>
+
+    <!-- Main Bento Grid Layout -->
+    <main class="max-w-4xl mx-auto grid md:grid-cols-3 gap-6 auto-rows-min pb-20">
+
+        <!-- Grid Item 1: Core Problem (90%) - Massive Font Emphasis -->
+        <div class="bento-item md:col-span-2 bg-light-peach p-8 tech-gradient-amber">
+            <h2 class="text-7xl lg:text-9xl font-black text-amber-500 leading-none tracking-tighter">90<span class="text-5xl">%</span></h2>
+            <h3 class="mt-4 text-3xl font-bold tracking-tight text-amber-700">
+                烦恼的根源：<br>付出得不到回报。
+            </h3>
+            <p class="text-gray-500 mt-2 text-sm uppercase font-mono">
+                Ninety percent of troubles arise from unrewarded efforts.
+            </p>
+            <div class="mt-4 flex items-center text-amber-500">
+                <i class="fas fa-exclamation-triangle text-2xl"></i>
+                <span class="ml-3 text-sm font-semibold">The Pain Point</span>
+            </div>
+        </div>
+
+        <!-- Grid Item 2: The Source Book -->
+        <div class="bento-item md:col-span-1 bg-white p-6 flex flex-col justify-between border border-gray-100">
+            <div>
+                <i class="fas fa-book-open text-3xl text-indigo-400 mb-3"></i>
+                <p class="text-sm font-semibold text-gray-500 uppercase">Featured Insight</p>
+                <h3 class="text-4xl font-extrabold mt-1 leading-snug text-indigo-800">
+                    《被讨厌的勇气》
+                </h3>
+            </div>
+            <p class="text-xs text-gray-400 mt-4">The Courage To Be Disliked.</p>
+        </div>
+
+        <!-- Grid Item 3: The Principle (Parallel Lines) - Medium Size -->
+        <div class="bento-item md:col-span-3 bg-soft-blue p-8 tech-gradient-indigo">
+            <h3 class="text-4xl font-extrabold text-indigo-700 mb-6">
+                这是课题，<span class="font-normal text-indigo-500">而非因果。</span>
+            </h3>
+            
+            <div class="flex items-center justify-between space-x-6 text-indigo-600 mb-4">
+                <div class="w-1/2 p-4 bg-indigo-50 rounded-lg shadow-inner">
+                    <p class="text-2xl font-bold mb-2">你的品格 (Your Character)</p>
+                    <div class="parallel-line text-amber-500"></div>
+                    <p class="text-lg mt-2 text-gray-700">你如何待人：<span class="font-bold">你的选择。</span></p>
+                </div>
+
+                <i class="fas fa-arrows-alt-h text-3xl text-gray-400"></i>
+                
+                <div class="w-1/2 p-4 bg-indigo-50 rounded-lg shadow-inner">
+                    <p class="text-2xl font-bold mb-2">他的课题 (Their Task)</p>
+                    <div class="parallel-line text-indigo-500"></div>
+                    <p class="text-lg mt-2 text-gray-700">别人如何待你：<span class="font-bold">他的自由。</span></p>
+                </div>
+            </div>
+
+            <p class="text-sm text-gray-500 text-center mt-4 uppercase">
+                Two Parallel Lines. Never Crossing.
+            </p>
+        </div>
+
+        <!-- Grid Item 4: The Expectation Trap (Visualizing Internal Struggle) -->
+        <div class="bento-item md:col-span-2 bg-white p-8 border border-gray-100 flex flex-col justify-between">
+            <div>
+                <div class="text-5xl font-black text-red-400 mb-4 tracking-tight">幻想的期待</div>
+                <h3 class="text-2xl font-bold text-gray-700">
+                    你越把<span class="text-red-500">回应</span>当作奖赏，<br>
+                    越容易在别人的沉默里<span class="text-red-500">撕扯自己。</span>
+                </h3>
+            </div>
+
+            <!-- Simple Line Chart/Graph Visualization Metaphor for Inner Conflict -->
+            <div class="mt-6">
+                <p class="text-sm text-gray-500 mb-2">Internal Conflict Index (Expectation vs Reality)</p>
+                <svg width="100%" height="80" viewBox="0 0 400 80" class="text-red-400" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="fade-red" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:rgb(255, 120, 120);stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:rgb(255, 230, 230);stop-opacity:0.2" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Line representing painful fluctuations -->
+                    <polyline fill="none" stroke="url(#fade-red)" stroke-width="4" stroke-linecap="round" points="0,70 50,20 100,60 150,30 200,70 250,10 300,50 350,20 400,60" />
+                    <!-- Decoration Dot -->
+                    <circle cx="250" cy="10" r="5" fill="#ef4444" />
+                </svg>
+            </div>
+            <p class="text-xs mt-3 text-gray-400">The expectation is the true cruelty.</p>
+        </div>
+
+        <!-- Grid Item 5: The Final Mantra (Love Self) -->
+        <div class="bento-item md:col-span-1 bg-amber-500 p-6 flex flex-col justify-center items-center text-white">
+            <i class="fas fa-heart text-5xl mb-4 opacity-90"></i>
+            <h3 class="text-5xl font-extrabold leading-tight tracking-wide">
+                爱己
+            </h3>
+            <p class="text-lg font-medium mt-1">先爱人</p>
+            <p class="text-xs mt-3 uppercase font-mono tracking-wider opacity-80">
+                Love Yourself First.
+            </p>
+        </div>
+
+        <!-- Grid Item 6: Summary Quote -->
+        <div class="bento-item md:col-span-3 bg-white p-6 border border-gray-100 text-center">
+            <h3 class="text-2xl font-light italic text-gray-600">
+                真正折磨你的从来不是任何人的绝情，而是你心怀<span class="font-bold text-red-500">幻想的期待</span>。
+            </h3>
+        </div>
+
+    </main>
+
+    <script>
+        // 1. Original Text Toggle Functionality
+        document.getElementById('toggleOriginal').addEventListener('click', function() {
+            const content = document.getElementById('originalContent');
+            const icon = this.querySelector('i');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+                this.textContent = '收起原文';
+                this.appendChild(icon);
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+                this.textContent = '显示原文';
+                this.appendChild(icon);
+            }
+        });
+
+        // 2. Scroll Reveal Animation (Apple-like subtle reveal)
+        const bentoItems = document.querySelectorAll('.bento-item');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2 // Trigger when 20% of the item is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, observerOptions);
+
+        bentoItems.forEach(item => {
+            observer.observe(item);
+        });
+
+    </script>
+
+</body>
+</html>

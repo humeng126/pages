@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命课题与财富平衡点</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Custom Tailwind Configuration & Styling */
+        :root {
+            --color-primary: 220 120 180; /* Soft Mauve */
+            --color-secondary: 60 180 160; /* Mint Green */
+            --color-bg-light: 250 250 250; 
+        }
+
+        /* Bento Grid Card Styling */
+        .bento-card {
+            background-color: rgb(var(--color-bg-light));
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth transition */
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 24px;
+            overflow: hidden; /* Ensure outlines stay inside */
+        }
+        
+        /* Scroll Reveal base state (mimicking Apple's fade up) */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Highlighting for Tech Sense - using self-gradient transparency */
+        .highlight-text {
+            display: inline-block;
+            background-image: linear-gradient(90deg, rgb(var(--color-primary)) 70%, transparent 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Large Number Styling */
+        .mega-number {
+            font-size: clamp(6rem, 15vw, 18rem);
+            line-height: 0.8;
+            font-weight: 800;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800 font-sans p-4">
+
+    <!-- 1. Metadata and Collapse Function -->
+    <header class="max-w-7xl mx-auto py-8 px-6 mb-8 sticky top-0 z-50 bg-gray-100/95 backdrop-blur-sm">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">生命长度与宽度：自我重塑计划</h1>
+        <div class="text-sm text-gray-500 space-y-1">
+            <p><strong>视频标题:</strong> 假如你有一定经济基础，就不要再过度消耗身体 #经济基础 #健康守护计划</p>
+            <p><strong>视频链接:</strong> <a href="https://v.douyin.com/CcrTcecSLwo/" target="_blank" class="text-blue-500 hover:underline">https://v.douyin.com/CcrTcecSLwo/</a></p>
+            <p><strong>提取时间:</strong> 2025-12-28 08:02:16</p>
+        </div>
+
+        <button id="toggleButton" class="mt-4 px-4 py-2 text-sm font-semibold rounded-full bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 transition">
+            显示原文
+        </button>
+
+        <div id="originalContent" class="hidden mt-4 p-4 text-sm bg-white rounded-lg border border-gray-200 shadow-inner max-h-96 overflow-y-auto transition-all duration-500 ease-in-out">
+            你有一定经济基础，固定存款一百个以后就不要再过度消耗身体，上班挣一下生活费就好了。一百个在大部分城市作为保险已经足够了。这个时候活着才是最大的课题，长寿才是最牛的英雄。活着才能看到人类社会的文明进步程度，才能享受人类未来科技文明高度发展带来的成果。以生命的长度延迟获得更大的生命宽度，不要过度被工作中各种PUA，传统的各种禁锢等影响心境。这个时候请淡淡享受生命后半场的时光。人类寿命之短暂不应该浪费，生命中的每一天都是无比珍贵的，应该让自己舒适的度过，不要做一辈子的工蚁工蜂。如果你已经三十岁了，你会在你人生未来这十年里快速感觉到什么叫衰老，从而真实意识到你在二十到三十岁时基于对自己身体和精神状态有序的错误默认，而信誓旦旦做出的结论是颇为幼稚的。你们中的绝大多数人，绝对肯定大于百分之九十九会很快发现最典型的人生道路和节奏很可能确实就是最优的人生道路和节奏。你自己是完全没有那个资质和资源去走一条特立独行而拉风的叛逆人生路线的。你也将真实的意识到，人的一生真的漫长而蛋疼，要耗大几十年，且其中的大半光阴皆无可能处于青春的旺盛状态，而是处于稳定的衰老和持续变得更衰老中。显然你也会很快意识到自己当初做出的那些幼稚和想当然的人生决策，其中相当一些已经没有后悔药可吃了。进而也就很快能亲自验证一个略微残酷但普世的道理，每个人都不必然是自己正确决策和行为所带来福祉的唯一受益人，但几乎一定肯定是自己错误决策和行为所引发代价的唯一承担者。
+        </div>
+    </header>
+
+    <!-- 2. Bento Grid Main Content -->
+    <main class="max-w-7xl mx-auto grid grid-cols-12 gap-6 p-6 md:p-0">
+        
+        <!-- Tile 1: 100 units / Financial Freedom Trigger (Large Visual Element) -->
+        <div class="bento-card col-span-12 lg:col-span-7 h-96 flex flex-col justify-end relative scroll-reveal">
+            <span class="absolute top-4 left-6 text-sm uppercase tracking-widest text-gray-400">FINANCIAL TRIGGER</span>
+            
+            <p class="mega-number text-center text-opacity-10 absolute inset-0 flex items-center justify-center text-blue-200">
+                100
+            </p>
+
+            <div class="z-10">
+                <p class="text-7xl font-extrabold leading-tight mb-2">
+                    <span class="highlight-text">一百个</span>
+                    存款目标达成
+                </p>
+                <p class="text-xl text-gray-500 mt-4">
+                    停止过度消耗身体，上班挣生活费即可。这笔钱在大多数城市已是足够强大的 <em class="font-bold text-[rgb(var(--color-primary))]">安全保险</em>。
+                </p>
+            </div>
+            
+        </div>
+        
+        <!-- Tile 2: Longevity is the New Heroism (Small) -->
+        <div class="bento-card col-span-12 lg:col-span-5 relative scroll-reveal delay-200">
+            <div class="flex items-center space-x-3 mb-4">
+                <i class="fas fa-medal text-4xl text-yellow-500"></i>
+                <span class="text-sm uppercase tracking-widest font-semibold text-gray-400">HERO'S JOURNEY</span>
+            </div>
+            <h2 class="text-4xl font-black mb-3">
+                活着
+                <span class="block text-[rgb(var(--color-secondary))]">才是最大的课题</span>
+            </h2>
+            <p class="text-gray-600">
+                长寿才是最牛的英雄。延迟生命长度以获得更大的生命宽度，享受人类未来科技带来的成果。
+            </p>
+        </div>
+
+        <!-- Tile 3: Avoid PUA & Enjoy the Second Half (Medium) -->
+        <div class="bento-card col-span-12 md:col-span-6 lg:col-span-4 h-64 relative overflow-hidden scroll-reveal delay-400">
+            <span class="absolute top-4 right-4 text-xs font-mono text-gray-300">SECOND HALF</span>
+            <div class="flex flex-col h-full justify-between">
+                <div>
+                    <i class="fas fa-peace text-5xl text-[rgb(var(--color-primary))]/80 mb-4"></i>
+                    <h3 class="text-3xl font-bold mb-2">淡淡享受时光</h3>
+                    <p class="text-gray-500">
+                        不被工作中的PUA和传统禁锢影响心境。让人类寿命的短暂不再被浪费。
+                    </p>
+                </div>
+                <div class="w-24 h-24 border-4 border-[rgb(var(--color-secondary))] rounded-full border-dashed absolute -bottom-10 -right-10 opacity-30"></div>
+            </div>
+        </div>
+
+        <!-- Tile 4: The 30-Year Realization (Decay Warning) -->
+        <div class="bento-card col-span-12 md:col-span-6 lg:col-span-8 relative scroll-reveal delay-600">
+            <div class="flex items-start mb-4">
+                <i class="fas fa-chart-line text-4xl mr-4 text-red-400"></i>
+                <div>
+                    <span class="text-sm uppercase tracking-widest font-semibold text-gray-400">THE AGE SHIFT</span>
+                    <h2 class="text-5xl font-extrabold leading-tight">30岁：<span class="text-red-500/90">衰老加速</span></h2>
+                </div>
+            </div>
+            
+            <p class="text-xl text-gray-700 mt-4">
+                人生未来十年里，你将快速感知衰老，从而意识到二十多岁时，基于对身体的
+                <em class="font-bold">错误默认</em> 而做出的结论是多么幼稚。
+            </p>
+            
+            <div class="h-2 w-full mt-6 rounded-full bg-gray-200">
+                <div class="h-full bg-red-300 rounded-full w-[45%]" title="45% of life passed without realizing aging"></div>
+            </div>
+        </div>
+
+        <!-- Tile 5: The Majority Path (Acceptance) -->
+        <div class="bento-card col-span-12 lg:col-span-6 relative h-64 scroll-reveal delay-800">
+            <span class="absolute top-4 left-6 text-sm uppercase tracking-widest text-gray-400">99% TRUTH</span>
+            <div class="text-center py-4">
+                <p class="text-8xl font-black highlight-text opacity-70">
+                    99%
+                </p>
+            </div>
+            <h3 class="text-3xl font-bold text-center">最优的人生道路</h3>
+            <p class="text-md text-gray-600 text-center mt-2">
+                绝大多数人会发现，最典型的人生道路和节奏，确实就是最优解。你没有资质和资源去走一条特立独行的叛逆路线。
+            </p>
+        </div>
+
+        <!-- Tile 6: Ant/Bee Analogy (Preciousness) -->
+        <div class="bento-card col-span-12 md:col-span-6 lg:col-span-3 relative scroll-reveal delay-1000">
+             <i class="fas fa-bug text-5xl text-[rgb(var(--color-secondary))] mb-4"></i>
+            <h3 class="text-3xl font-bold mb-2">不当工蚁</h3>
+            <p class="text-gray-600">
+                生命短暂且珍贵，每一天都应舒适度过，不要一辈子做工蚁工蜂。
+            </p>
+        </div>
+
+        <!-- Tile 7: The Harsh Truth about Consequences (Full Width Crucial Summary) -->
+        <div class="bento-card col-span-12 md:col-span-6 lg:col-span-3 relative scroll-reveal delay-1200">
+             <i class="fas fa-hand-holding-usd text-5xl text-blue-400 mb-4"></i>
+            <h3 class="text-3xl font-bold mb-2">代价的承担者</h3>
+            <p class="text-gray-600">
+                你未必是你正确决策福祉的唯一受益人，但几乎
+                <em class="font-bold text-red-500">一定是你错误决策代价的唯一承担者。</em>
+            </p>
+        </div>
+
+        <!-- Tile 8: Decades of Waning Youth (Final realization) -->
+        <div class="bento-card col-span-12 relative my-4 py-8 text-center scroll-reveal delay-1400">
+            <div class="w-10 h-10 border-4 border-gray-300 rounded-full mx-auto mb-4"></div>
+            <p class="text-2xl font-light text-gray-700 italic">
+                “你也将真实的意识到，人的一生真的漫长而蛋疼，要耗大几十年，
+                <span class="font-semibold text-gray-900 highlight-text">且其中的大半光阴皆无可能处于青春的旺盛状态</span>。”
+            </p>
+            <p class="text-xs mt-4 uppercase tracking-widest text-gray-400">Stable Decay is the Default State</p>
+        </div>
+
+    </main>
+    
+    <footer class="max-w-7xl mx-auto text-center text-sm text-gray-400 py-10 mt-8">
+        V2 Design - Emphasizing Longevity & Financial Balance.
+    </footer>
+
+
+    <script>
+        // JS for Metadata Toggle (Collapse/Expand)
+        document.getElementById('toggleButton').addEventListener('click', function() {
+            const content = document.getElementById('originalContent');
+            const button = document.getElementById('toggleButton');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                button.textContent = '收起原文';
+            } else {
+                content.classList.add('hidden');
+                button.textContent = '显示原文';
+            }
+        });
+
+
+        // JS for Apple-style Scroll Reveal Animation
+        document.addEventListener("DOMContentLoaded", function() {
+            const revealElements = document.querySelectorAll('.scroll-reveal');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Handle custom delays set via CSS/data attribute if needed, 
+                        // though simple index-based delay is used in CSS for this example
+                        
+                        // Stop observing once visible
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                rootMargin: '0px 0px -10% 0px', // Trigger slightly before the element hits the bottom of the viewport
+                threshold: 0.1 
+            });
+
+            revealElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+
+</body>
+</html>

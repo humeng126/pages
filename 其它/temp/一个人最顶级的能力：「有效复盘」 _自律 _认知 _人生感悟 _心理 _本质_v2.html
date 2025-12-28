@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有效复盘 - 顶级能力</title>
+    <!-- Tailwind CSS 3.0+ CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Material Icons CDN -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Define custom configuration for Tailwind */
+        :root {
+            --soft-white: #fafaf9; /* Stone-50 */
+            --soft-amber: #fffbeb; /* Amber-50 */
+            --highlight-sky: 203, 213, 225; /* Blue-200 R,G,B */
+        }
+        body {
+            background-color: var(--soft-amber);
+            font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        .bento-card {
+            background-color: var(--soft-white);
+            border-radius: 1.5rem; /* rounded-3xl */
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Gradient for Tech Feel (Highlight color self-transparency) */
+        .tech-gradient-box {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.05)); /* Sky-600 with transparency */
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+
+        /* Apple-like subtle animation helpers (CSS classes for JS use) */
+        .scroll-effect {
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+        }
+        .scroll-effect.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .text-huge {
+            font-size: clamp(3rem, 10vw, 8rem); /* Responsive huge text */
+            line-height: 0.9;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- Header & Metadata -->
+    <header class="mb-6 space-y-2">
+        <div class="text-sm text-gray-500">视频元信息 / Video Metadata</div>
+        <div class="bg-white p-4 rounded-xl shadow-lg border border-gray-100">
+            <p class="font-bold text-xl text-stone-800">视频标题: 一个人最顶级的能力：「有效复盘」</p>
+            <p class="text-sm text-sky-600 mb-2">#自律 #认知 #人生感悟 #心理 #本质</p>
+            <a href="https://v.douyin.com/3_cY2YNb_oE/" target="_blank" class="text-xs text-gray-500 underline hover:text-sky-500 transition">
+                视频链接: https://v.douyin.com/3_cY2YNb_oE/
+            </a>
+            <p class="text-xs text-gray-400">提取时间: 2025-12-28 08:00:48</p>
+        </div>
+        
+        <!-- Source Toggle -->
+        <button id="toggleOriginalBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 py-1 px-4 rounded-full text-sm transition duration-300 flex items-center mt-4">
+            <i class="fas fa-file-alt mr-2"></i>
+            显示原文
+        </button>
+        
+        <!-- Collapsible Source Content -->
+        <div id="originalContent" class="hidden mt-4 p-4 text-sm bg-stone-100 rounded-xl max-h-96 overflow-y-auto border border-gray-200 text-gray-700">
+            <pre class="whitespace-pre-wrap font-sans leading-relaxed">
+                一个人最顶级的能力，有效复盘。你有没有发现，身边总有那么一群人，每天忙得要死，却年年在原地打转。而另一群人看起来没那么拼命，反而越走越顺。差距在哪？就在两个字：复盘。但我要先泼你一盆冷水，百分之九十的人根本不会复盘。他们以为躺在床上想想今天干了啥就叫复盘了，错的离谱。真正的有效复盘是一套完整的思维系统，它包含三个核心动作：还原现场、提取规律、迭代行动。缺一个，你的复盘就是在自我感动。先说还原现场，大部分人复盘的时候喜欢美化过去，脑补细节。比如一个项目失败了，他会说当时我很努力啊，只是运气不好。这不是复盘，这是自我安慰。有效复盘的第一步是像回放录像一样，把事情的每个环节重新过一遍，不带情绪，不带滤镜，只看事实。你当时说了什么话，做了什么决定，对方什么反应，时间节点在哪，结果怎么出现的，一帧一帧的看清楚。我之前做过一个视频，数据很差，点赞才几百。我当时第一反应是可能算法不推我，但我逼自己坐下来把整个制作过程复盘了一遍。我发现开头十五秒我在讲废话，中间有个段落逻辑跳跃，结尾也没有明确的情绪点，这些都是事实，不是借口。看清事实之后才能进入第二步，提取规律。很多人做了一百件事却提取不出一条有用的经验，因为他们只会问为什么失败，不会问失败背后的模式是什么。规律不是结论，规律是可重复使用的方法论。比如我那个视频数据差，我提取出的规律不是这个选题不行，而是我的开头没有在前十秒抓住注意力。这是一个可以应用到所有后续视频的规律。你看那些顶尖的人，他们的成长速度为什么这么快？因为他们做一件事能提取出十条规律，而普通人做十件事还在重复同样的错误。我认识一个做销售的朋友，刚入行的时候业绩垫底，但他有个习惯，每天晚上会把今天见的客户复盘一遍，不是想今天累不累，而是记录每个客户的反应模式。比如什么话题让对方眼神亮了，什么问题让对方皱眉了，成交的那单和没成交的那单差异在哪个环节。三个月后他提炼出了一套自己的话术系统，半年后他做到了部门第一，一年后他自己出来创业了。同期进来的人还在抱怨。
+
+                客户不好找，这就是有效复盘的威力。它能把你的每一次经历都变成可复用的资产。但光提取规律还不够，最关键的是第三步，迭代行动。太多人复盘完就完了，该怎么干还怎么干，这种复盘毫无意义。真正的复盘必须导向下一步具体的改进动作，而且这个改进动作必须是微小的、可执行的、能立刻开始的。不要给自己定什么“以后我要更努力”这种空话，要具体到明天的视频我会在前五秒加一个钩子问句，下次见客户我会在开场先讲一个他关心的行业动态。我现在每做完一个内容，会强制自己写三条迭代建议，不写完不睡觉，有时候写到凌晨两点，但这个习惯让我的内容质量每个月都在以肉眼可见的速度提升。你知道为什么大部分人的复盘没用吗？因为他们把复盘当成了情绪释放。今天不顺心了，躺床上想想，觉得自己挺难的，然后就睡了，第二天继续按老方法做事，继续失败，继续难受，继续自我感动式的复盘，这是一个闭环的陷阱。你以为你在反思，其实你只是在原地转圈。打破这个陷阱的唯一方法就是把复盘变成一套可操作的系统，每次复盘必须产出具体的行动改进，每个行动改进必须在下一次实践中验证，每次验证后再次复盘迭代，这才是真正的成长飞轮。我见过太多人读了很多书，听了很多课，依然一事无成，不是因为他们不努力，是因为他们不会复盘。他们把所有的精力都当成了消耗而不是积累。而那些真正厉害的人，他们做一年的事能顶别人做十年，因为他们的每一步都在往上叠加，他们的每一次失败都在为下次成功铺路。这就是有效复盘的本质，它不是让你沉浸在过去，而是让你从过去中提取价值用于未来。所以从今天开始，别再用那种自我感动式的复盘骗自己了，坐下来拿出纸笔，把今天做的事情认真过一遍，看清事实，提取规律，写下明天要改进的具体动作，一天一小步，一年一大步。当你真正学会有效复盘，你会发现成长从来不是一件困难的事，困难的是你一直在用错误的方式努力。记住，成长的速度不取决于你做了多少事，而取决于你从每件事里提取了多少价值。有效复盘就是这个提取过程。从现在开始。
+
+                每一次经历都算数。
+            </pre>
+        </div>
+    </header>
+
+    <!-- Bento Grid Container -->
+    <main class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6 min-h-[70vh]">
+
+        <!-- Grid Item 1: Title and Core Concept -->
+        <div class="bento-card col-span-full md:col-span-4 bg-sky-50 tech-gradient-box scroll-effect">
+            <h1 class="text-3xl text-sky-700 font-semibold mb-2 uppercase tracking-widest">
+                The Ultimate Skillset
+            </h1>
+            <p class="text-huge font-black text-stone-900 leading-tight">
+                一个人最<span class="text-sky-600">顶级的能力</span>
+            </p>
+            <p class="text-4xl md:text-5xl font-extrabold text-stone-800 mt-4">
+                「有效复盘」
+            </p>
+        </div>
+
+        <!-- Grid Item 2: The Failure Rate (Huge Number Focus) -->
+        <div class="bento-card col-span-full md:col-span-2 flex flex-col justify-between items-center bg-red-50 scroll-effect" data-delay="100">
+            <span class="material-icons text-red-500 text-5xl mb-4">sentiment_dissatisfied</span>
+            <div class="text-huge font-black text-red-600 opacity-90 text-center">
+                90%
+            </div>
+            <p class="text-xl font-bold text-gray-700 text-center mt-3">
+                <span class="text-red-500">不会复盘</span> / Not Effective
+            </p>
+            <p class="text-sm text-gray-500 mt-2 italic">
+                躺在床上想想今天干了啥就叫复盘了, 错的离谱。
+            </p>
+        </div>
+        
+        <!-- Separator Card: System Core -->
+        <div class="bento-card col-span-full bg-stone-100 flex items-center justify-between scroll-effect" data-delay="200">
+            <div class="text-3xl font-extrabold text-stone-800">
+                有效的复盘系统 / The System
+                <span class="block text-base font-normal text-gray-500 mt-1">包含三个核心动作, 缺一个就是自我感动。</span>
+            </div>
+            <div class="text-6xl font-black text-sky-500/50">
+                <span class="text-huge">3</span> STEPS
+            </div>
+        </div>
+
+
+        <!-- Grid Item 3: Step 1: 还原现场 -->
+        <div class="bento-card col-span-full lg:col-span-2 bg-orange-50 scroll-effect" data-delay="300">
+            <div class="flex items-center space-x-3 mb-3">
+                <i class="fas fa-video text-2xl text-orange-600"></i>
+                <h3 class="text-2xl font-black text-orange-600">STEP 1.</h3>
+                <span class="text-6xl font-black text-orange-200/50">1</span>
+            </div>
+            
+            <h2 class="text-3xl font-bold mb-2 text-stone-800">还原现场 / REDUCE BIAS</h2>
+            <p class="text-gray-600 text-sm mb-4 italic">Replay the event. No Emotion, No Filter. Focus on Facts.</p>
+
+            <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                <li>只看事实，像回放录像一样过一遍。</li>
+                <li>排除美化和脑补的细节（不是运气不好）。</li>
+                <li>明确时间节点、说了什么话、做了什么决定。</li>
+            </ul>
+        </div>
+
+        <!-- Grid Item 4: Step 2: 提取规律 -->
+        <div class="bento-card col-span-full lg:col-span-2 bg-green-50 scroll-effect" data-delay="400">
+            <div class="flex items-center space-x-3 mb-3">
+                <i class="fas fa-lightbulb text-2xl text-green-600"></i>
+                <h3 class="text-2xl font-black text-green-600">STEP 2.</h3>
+                <span class="text-6xl font-black text-green-200/50">2</span>
+            </div>
+            <h2 class="text-3xl font-bold mb-2 text-stone-800">提取规律 / EXTRACT PATTERNS</h2>
+            <p class="text-gray-600 text-sm mb-4 italic">Find the method behind the failure, not just the cause.</p>
+            
+            <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                <li>规律是<span class="font-semibold">可重复使用的方法论</span>。</li>
+                <li>问：失败背后的<span class="font-semibold">模式是什么</span>？</li>
+                <li>例：视频差不是选题不行，是开头10秒没有抓住注意力。</li>
+            </ul>
+        </div>
+
+        <!-- Grid Item 5: Step 3: 迭代行动 -->
+        <div class="bento-card col-span-full lg:col-span-2 bg-purple-50 scroll-effect" data-delay="500">
+            <div class="flex items-center space-x-3 mb-3">
+                <i class="fas fa-rocket text-2xl text-purple-600"></i>
+                <h3 class="text-2xl font-black text-purple-600">STEP 3.</h3>
+                <span class="text-6xl font-black text-purple-200/50">3</span>
+            </div>
+            <h2 class="text-3xl font-bold mb-2 text-stone-800">迭代行动 / ITERATE ACTION</h2>
+            <p class="text-gray-600 text-sm mb-4 italic">Must lead to concrete, executable steps immediately.</p>
+            
+            <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                <li>产出<span class="font-semibold">微小的、可执行的</span>改进动作。</li>
+                <li>避免空话（如“我要更努力”）。</li>
+                <li>例：明天视频前5秒加一个钩子问句。</li>
+            </ul>
+        </div>
+        
+        <!-- Grid Item 6: The Flywheel and Conclusion -->
+        <div class="bento-card col-span-full bg-stone-100 p-8 text-center scroll-effect" data-delay="600">
+            <i class="fas fa-sync-alt text-5xl text-sky-400/80 mb-4 animate-spin-slow"></i>
+            <h2 class="text-3xl font-bold text-stone-800">
+                打破原地转圈的陷阱 / The Growth Flywheel
+            </h2>
+            <p class="mt-2 text-lg text-gray-600">
+                每次复盘 <span class="text-sky-600 font-semibold">→</span> 产出行动改进 <span class="text-sky-600 font-semibold">→</span> 下次实践验证 <span class="text-sky-600 font-semibold">→</span> 再次复盘迭代。
+            </p>
+            <hr class="my-5 border-gray-200">
+            <p class="text-xl font-semibold text-stone-700">
+                成长的速度不取决于你做了多少事，而取决于你从每件事里<span class="text-sky-600">提取了多少价值。</span>
+            </p>
+        </div>
+
+    </main>
+    
+    <!-- JS for Collapsible Text and Subtle Scroll Effects -->
+    <script>
+        // 1. Collapsible Text Functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('toggleOriginalBtn');
+            const content = document.getElementById('originalContent');
+            
+            btn.addEventListener('click', () => {
+                const isHidden = content.classList.contains('hidden');
+                if (isHidden) {
+                    content.classList.remove('hidden');
+                    btn.innerHTML = '<i class="fas fa-file-alt mr-2"></i> 隐藏原文';
+                } else {
+                    content.classList.add('hidden');
+                    btn.innerHTML = '<i class="fas fa-file-alt mr-2"></i> 显示原文';
+                }
+            });
+        
+            // 2. Simple Scroll Animation (Apple Style)
+            const cards = document.querySelectorAll('.bento-card');
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = entry.target.dataset.delay ? parseInt(entry.target.dataset.delay) : 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('active');
+                        }, delay);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1, // Trigger when 10% of the element is visible
+                rootMargin: '0px 0px -50px 0px' // Start slightly later
+            });
+
+            cards.forEach(card => {
+                // Initialize the effect class
+                card.classList.add('scroll-effect');
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

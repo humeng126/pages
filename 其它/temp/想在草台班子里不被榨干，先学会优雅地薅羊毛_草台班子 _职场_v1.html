@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活命指南：草台班子里的薅羊毛模式</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Custom soft colors and design consistency */
+        :root {
+            --color-soft-bg: #f9fafb;
+            --color-primary-highlight: #38bdf8; /* Sky Blue */
+            --color-secondary-highlight: #fb923c; /* Orange */
+        }
+        
+        /* Base Card Style and Initial State for Animation */
+        .bento-card {
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            overflow: hidden; /* For containing internal gradient effects */
+            position: relative;
+        }
+        
+        /* Animated State (Apple scroll style) */
+        .bento-card.animated {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        /* Custom transparent gradient for tech feel (Primary - Sky Blue) */
+        .grad-primary:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.2) 0%, rgba(56, 189, 248, 0) 70%);
+            z-index: 0;
+        }
+        
+        /* Custom transparent gradient for tech feel (Secondary - Orange) */
+        .grad-secondary:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(circle at 90% 80%, rgba(251, 146, 60, 0.2) 0%, rgba(251, 146, 60, 0) 70%);
+            z-index: 0;
+        }
+
+        /* Style for simple outline graphics/icons */
+        .stroke-icon {
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .container-tight {
+            max-width: 1100px;
+        }
+
+        .z-content > * {
+            position: relative;
+            z-index: 10; /* Ensure content stays above the gradient layer */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased pt-12 min-h-screen">
+
+<div class="container-tight mx-auto px-4">
+    
+    <!-- Metadata Section -->
+    <header class="mb-8 space-y-3">
+        <div class="p-4 bg-white shadow-md rounded-xl border border-gray-100">
+            <h1 class="text-2xl font-extrabold text-gray-900">活命指南：草台班子里的薅羊毛模式</h1>
+            <p class="text-sm text-gray-500 mt-1">
+                <span class="font-semibold text-gray-700">视频标题:</span> 想在草台班子里不被榨干，先学会优雅地薅羊毛<span class="text-sky-500">#草台班子 #职场</span>
+            </p>
+            <p class="text-xs text-gray-500">
+                <span class="font-semibold">视频链接:</span> <a href="https://v.douyin.com/8IPXscI3Gc0/" target="_blank" class="text-sky-600 hover:underline">https://v.douyin.com/8IPXscI3Gc0/</a>
+            </p>
+            <p class="text-xs text-gray-500">
+                <span class="font-semibold">提取时间:</span> 2025-12-28 05:01:19
+            </p>
+        </div>
+
+        <!-- Collapsible Original Text -->
+        <div class="mt-4">
+            <button id="toggleOriginal" class="px-4 py-2 text-sm font-medium rounded-full bg-orange-500 text-white hover:bg-orange-600 transition duration-150">
+                显示原文 <i class="fas fa-chevron-down ml-1"></i>
+            </button>
+            <div id="originalContent" class="hidden mt-3 p-4 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 whitespace-pre-wrap leading-relaxed shadow-inner">
+                在草台班子里不被榨干，先学会在里面薅羊毛，别急着当救世主，你不是去修补漏洞的。要是连这个都没想明白，接下来等着你的就是自我怀疑、精神内耗，最后被当抹布扔掉。这不是毒鸡汤，这是我在三四个草台班子里摸爬滚打之后悟出来的活命指南。靠的不是忍耐，而是换了一套玩法。我进任何一家新公司，前三天绝不急着刷存在感。我只盯三个点：第一，晋升是靠实力还是靠关系？第二，看资源是给做事的人还是给会演戏的人？第三，看真正干活的有没有基本的尊重和回报。这三条要是全踩雷，我心里就有数，这就是个草台班子，别动真情，别谈梦想，马上开启薅羊毛模式。从那一刻起，我只定一个目标，怎么把经验值和实际好处装进口袋，然后找机会全身而退。这套打法背后，是我在博弈论和稀缺里学到的三个狠招：边界管理、价值提取、风险对冲。很多人不懂，总想在垃圾堆里坚持工匠精神，但你得明白，在低配团队里非要讲道理、讲制度、讲公平，那就是拿鸡蛋碰石头。他们不是不懂专业，他们压根就不按这个规则玩。所以我干脆搭了自己的生存系统，三条铁律：第一，守住自己的饭碗，交出去的活必须过硬，不是为了面子，是为了不被挑刺，这是反脆弱里讲的护城河思维。你不靠嘴活着，你靠作品说话。就像我之前在一家电商公司，老板天天画饼，我就闷头把转化率从百分之二干到百分之八，数据在那摆着，谁也动不了我。第二，把混乱当成试验场，没人管你的时候正好可以试错，这种地方最适合跑精益创业里的MVP模型，今天测内容打法，明天试用户心理，全是免费的成长杠杆。我有个朋友在传统制造业做新媒体，公司根本不懂抖音，他就自己摸索，三个月涨粉二十万，后来跳槽直接翻倍薪资。第三，护住你的能量条，我只做一件事，防止被吸血。不是我的锅，坚决不背。关键对话里的责任边界法我用的滚瓜烂熟，一切留证据，按流程办事，守好自己的一亩三分地。你要是听懂了这些话，就该知道你早该换套活法了。当然你也可以继续当老好人，直到哪天被卸磨杀驴，背锅出局，一脸懵逼的收拾东西走人。清醒吧，对那些装睡的人狠一点。好了，我是钱叔，明天再聊。
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        
+        <!-- Section 1: Core Hook and Diagnosis -->
+        <section id="hook" class="mb-12">
+            <div class="bento-card p-8 rounded-3xl shadow-xl border-sky-100 grad-primary z-content" data-delay="0">
+                <p class="text-lg font-medium text-gray-600 uppercase tracking-widest relative z-10">THE CORE STRATEGY 活命指南</p>
+                <h2 class="mt-4 text-7xl md:text-8xl font-black text-gray-900 leading-tight relative z-10">
+                    <span class="text-sky-600">优雅地</span>薅羊毛
+                </h2>
+                <p class="mt-6 text-2xl font-light text-gray-700 max-w-2xl relative z-10">
+                    你不是去<span class="font-extrabold underline decoration-orange-400 decoration-4">修补漏洞</span>的。别急着当救世主。
+                </p>
+                <div class="absolute right-0 bottom-0 p-8 text-sky-200 opacity-60">
+                    <i class="fa-solid fa-cloud-arrow-down fa-7x stroke-icon"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: 3-Day Inspection (Bento Grid 3 columns) -->
+        <section id="inspection" class="mb-12">
+            <h3 class="text-3xl font-bold mb-6 text-gray-900 flex items-center">
+                <i class="fas fa-search text-xl text-orange-500 mr-2"></i> 前三天：三点雷区探测 <span class="text-lg text-gray-500 font-normal ml-3">Initial Inspection</span>
+            </h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <div class="bento-card p-6 rounded-xl shadow-lg flex flex-col items-start z-content" data-delay="200">
+                    <span class="text-6xl font-extrabold text-orange-500 leading-none">01</span>
+                    <h4 class="text-2xl font-bold mt-2 text-gray-900">晋升是靠？</h4>
+                    <p class="text-base text-gray-600 mt-1">
+                        <span class="font-semibold text-sky-600">实力</span> <span class="text-gray-400">vs</span> 关系
+                    </p>
+                    <i class="fas fa-handshake text-4xl mt-4 text-orange-300 opacity-70 stroke-icon"></i>
+                </div>
+                
+                <div class="bento-card p-6 rounded-xl shadow-lg flex flex-col items-start grad-primary z-content" data-delay="400">
+                    <span class="text-6xl font-extrabold text-sky-500 leading-none">02</span>
+                    <h4 class="text-2xl font-bold mt-2 text-gray-900">资源给谁？</h4>
+                    <p class="text-base text-gray-600 mt-1">
+                        <span class="font-semibold text-orange-600">做事</span> <span class="text-gray-400">vs</span> 演戏
+                    </p>
+                    <i class="fas fa-seedling text-4xl mt-4 text-sky-300 opacity-70 stroke-icon"></i>
+                </div>
+                
+                <div class="bento-card p-6 rounded-xl shadow-lg flex flex-col items-start grad-secondary z-content" data-delay="600">
+                    <span class="text-6xl font-extrabold text-orange-500 leading-none">03</span>
+                    <h4 class="text-2xl font-bold mt-2 text-gray-900">回报与尊重？</h4>
+                    <p class="text-base text-gray-600 mt-1">
+                        真正干活的有没有基本<span class="font-semibold text-sky-600">尊重</span>。
+                    </p>
+                    <i class="fas fa-trophy text-4xl mt-4 text-orange-300 opacity-70 stroke-icon"></i>
+                </div>
+            </div>
+            <p class="text-lg mt-4 text-gray-600 italic font-medium">
+                — <span class="font-semibold text-red-500">警告：</span> 三条全踩雷，立即开启 <span class="underline decoration-wavy">薅羊毛模式</span>。
+            </p>
+        </section>
+
+        <!-- Section 3: The Three Heists (Strategy) -->
+        <section id="strategy" class="mb-12">
+            <h3 class="text-3xl font-bold mb-6 text-gray-900 flex items-center">
+                <i class="fas fa-bolt text-xl text-sky-500 mr-2"></i> 博弈论的三个狠招 <span class="text-lg text-gray-500 font-normal ml-3">The Heist Playbook</span>
+            </h3>
+            <div class="grid md:grid-cols-4 gap-6">
+                
+                <!-- Strategy 1: Boundary Management -->
+                <div class="bento-card md:col-span-2 p-8 rounded-xl shadow-lg z-content" data-delay="800">
+                    <div class="flex items-center space-x-3 text-orange-600 mb-3">
+                        <i class="fas fa-sitemap fa-3x stroke-icon"></i>
+                        <h4 class="text-3xl font-black text-gray-900">边界管理</h4>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-4">Boundary Management</p>
+                    <p class="text-lg text-gray-700">在低配团队，坚持工匠精神、讲公平？<span class="font-extrabold text-red-600">没必要。</span></p>
+                </div>
+                
+                <!-- Strategy 2: Value Extraction -->
+                <div class="bento-card md:col-span-1 p-6 rounded-xl shadow-lg grad-primary z-content" data-delay="1000">
+                    <i class="fas fa-coins text-5xl text-sky-600 mb-3 block"></i>
+                    <h4 class="text-xl font-black text-gray-900">价值提取</h4>
+                    <p class="text-sm text-gray-500">Value Extraction</p>
+                    <p class="text-base font-bold mt-2 text-sky-800">
+                        装进口袋：经验值 + 实际好处
+                    </p>
+                </div>
+                
+                <!-- Strategy 3: Risk Hedging -->
+                <div class="bento-card md:col-span-1 p-6 rounded-xl shadow-lg grad-secondary z-content" data-delay="1200">
+                    <i class="fas fa-chart-area text-5xl text-orange-600 mb-3 block"></i>
+                    <h4 class="text-xl font-black text-gray-900">风险对冲</h4>
+                    <p class="text-sm text-gray-500">Risk Hedging</p>
+                    <p class="text-base font-bold mt-2 text-orange-800">
+                        找机会全身而退
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: The Survival System (Iron Rules) -->
+        <section id="system" class="mb-12">
+            <h3 class="text-3xl font-bold mb-6 text-gray-900 flex items-center">
+                <i class="fas fa-cogs text-xl text-orange-500 mr-2"></i> 生存系统：三条铁律 <span class="text-lg text-gray-500 font-normal ml-3">The Iron Rules</span>
+            </h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <!-- Rule 1: Guard Your Rice Bowl -->
+                <div class="bento-card col-span-3 p-6 rounded-xl shadow-lg md:col-span-1 z-content" data-delay="1400">
+                    <div class="flex items-center text-sky-600 mb-3">
+                        <span class="text-7xl font-black mr-2 leading-none">1.</span>
+                        <h4 class="text-xl font-extrabold text-gray-900">守住你的饭碗</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">反脆弱里的护城河思维。</p>
+                    <p class="text-xl font-bold mt-3 text-gray-700">靠作品说话，不被挑刺。</p>
+
+                    <!-- Visualization -->
+                    <div class="mt-4 p-3 bg-sky-50 rounded-lg">
+                        <p class="text-xs text-gray-500">转化率数据对比</p>
+                        <div class="flex items-end justify-between font-mono">
+                            <span class="text-3xl font-extrabold text-red-500">2%</span>
+                            <i class="fas fa-arrow-right text-2xl text-gray-400"></i>
+                            <span class="text-5xl font-extrabold text-sky-700">8%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rule 2: Experimentation Ground -->
+                <div class="bento-card col-span-3 p-6 rounded-xl shadow-lg md:col-span-2 grad-secondary z-content" data-delay="1600">
+                    <div class="flex items-center text-orange-600 mb-3">
+                        <span class="text-7xl font-black mr-2 leading-none">2.</span>
+                        <h4 class="text-xl font-extrabold text-gray-900">混乱是试验场</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">最适合跑精益创业的 <span class="font-bold text-orange-700">MVP 模型</span>。</p>
+                    
+                    <div class="flex mt-4 items-center justify-between">
+                        <div class="flex flex-col">
+                            <p class="text-xs text-gray-500">免费成长杠杆</p>
+                            <span class="text-6xl font-black text-orange-800 leading-tight">
+                                20万
+                            </span>
+                            <p class="text-lg font-medium text-orange-600">3个月涨粉 | 跳槽薪资翻倍</p>
+                        </div>
+                        <i class="fas fa-rocket fa-4x text-orange-300 opacity-70 stroke-icon"></i>
+                    </div>
+                </div>
+
+                <!-- Rule 3: Energy Protection -->
+                <div class="bento-card col-span-3 p-8 rounded-xl shadow-lg grad-primary z-content" data-delay="1800">
+                    <div class="flex items-center text-sky-600 mb-3">
+                        <span class="text-7xl font-black mr-2 leading-none">3.</span>
+                        <h4 class="text-xl font-extrabold text-gray-900">护住你的能量条</h4>
+                    </div>
+                    <p class="text-base text-gray-700 font-bold mb-4">
+                        只做一件事：<span class="font-extrabold underline decoration-red-500 decoration-4">防止被吸血</span>。
+                    </p>
+                    
+                    <div class="flex space-x-6 text-sm">
+                        <div class="w-1/3 p-3 bg-white rounded-lg border border-sky-200 shadow-sm">
+                            <i class="fas fa-gavel text-sky-500 mr-1"></i> 按流程办事
+                        </div>
+                        <div class="w-1/3 p-3 bg-white rounded-lg border border-sky-200 shadow-sm">
+                            <i class="fas fa-file-invoice text-sky-500 mr-1"></i> 一切留证据
+                        </div>
+                        <div class="w-1/3 p-3 bg-white rounded-lg border border-sky-200 shadow-sm">
+                            <i class="fas fa-minus-circle text-sky-500 mr-1"></i> 非我的锅，不背
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion / CTA -->
+        <section id="conclusion" class="mt-16 mb-20">
+            <div class="bento-card p-10 rounded-3xl shadow-2xl bg-white border-4 border-orange-200 z-content" data-delay="2000">
+                <h3 class="text-5xl font-black text-gray-900">
+                    清醒吧，换套活法。
+                </h3>
+                <p class="text-2xl mt-4 max-w-4xl text-gray-700">
+                    别再当老好人，直到被<span class="font-extrabold text-red-600">卸磨杀驴，背锅出局</span>。对装睡的人狠一点。
+                </p>
+                <p class="text-lg mt-8 text-gray-500 font-medium">—— 钱叔。Keep Waking Up.</p>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script>
+    // 1. Toggle Original Content
+    document.getElementById('toggleOriginal').addEventListener('click', function() {
+        const content = document.getElementById('originalContent');
+        
+        if (content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            this.innerHTML = '收起原文 <i class="fas fa-chevron-up ml-1"></i>';
+        } else {
+            content.classList.add('hidden');
+            this.innerHTML = '显示原文 <i class="fas fa-chevron-down ml-1"></i>';
+        }
+    });
+
+    // 2. Scroll Animation (Intersection Observer)
+    document.addEventListener('DOMContentLoaded', () => {
+        const cards = document.querySelectorAll('.bento-card');
+
+        // Low threshold for early triggering on relatively short page
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delay = parseInt(entry.target.getAttribute('data-delay') || 0);
+                    // Use a timeout to respect the staggered delay defined in HTML
+                    setTimeout(() => {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target); 
+                    }, delay);
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            observer.observe(card);
+        });
+    });
+</script>
+
+</body>
+</html>

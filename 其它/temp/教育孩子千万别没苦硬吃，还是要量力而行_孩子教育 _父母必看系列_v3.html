@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教育支出量力而行原则</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1qI8dsyQhS1A6cc3j6OVSKRNVABc9E0R2tWc/G171QyE/zQpk/aZc6e4GNOiW3g2Pz+y0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Custom light pastel configuration */
+        :root {
+            --color-primary: #3b82f6; /* Soft Blue */
+            --color-accent-1: #10b981; /* Mint Green */
+            --color-accent-2: #f59e0b; /* Light Gold */
+        }
+        .text-huge {
+            font-size: clamp(3rem, 15vw, 10rem);
+            line-height: 1;
+        }
+        .bento-grid-item {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); /* Smoother, Apple-like transition */
+        }
+        .bento-grid-item.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        /* Custom line graphics for aesthetics */
+        .line-art {
+            stroke: var(--color-primary);
+            stroke-width: 2;
+            fill: none;
+            opacity: 0.3;
+        }
+    </style>
+
+    <script>
+        // Tailwind Customization
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'soft-blue': 'var(--color-primary)',
+                        'mint-green': 'var(--color-accent-1)',
+                        'light-gold': 'var(--color-accent-2)',
+                        'light-bg': '#fefefe',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-800">
+
+    <!-- Header Metadata and Source Toggle -->
+    <header class="container mx-auto px-4 py-8 max-w-7xl">
+        <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+            <h1 class="text-2xl font-bold text-soft-blue">教育支出策略分析</h1>
+            <div class="mt-2 text-sm text-gray-500 space-y-1">
+                <p>视频标题: <span class="font-medium">教育孩子千万别没苦硬吃，还是要量力而行<span class="text-gray-400">#孩子教育 #父母必看系列</span></span></p>
+                <p>视频链接: <a href="https://v.douyin.com/PhlBtuVaXKk/" target="_blank" class="text-soft-blue hover:underline">https://v.douyin.com/PhlBtuVaXKk/</a></p>
+                <p>提取时间: 2025-12-28 08:03:39</p>
+            </div>
+            
+            <button id="toggleButton" onclick="toggleSource()" class="mt-4 px-4 py-2 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition duration-300 flex items-center">
+                <i class="fas fa-chevron-down mr-2 text-xs" id="toggleIcon"></i> 显示原文
+            </button>
+
+            <!-- Hidden Source Content -->
+            <div id="source-content" style="display: none;" class="mt-4 p-4 border border-gray-200 rounded-lg bg-gray-50 text-gray-600 italic text-sm transition-all duration-500">
+                主张大家为孩子投入太多，一个家庭的我们讲收入不应该超过百分之三十投到孩子身上。啊，三口之家的话，四口之家我认为不应该超过百分之四十。因为你一旦为孩子的教育投过，投超过三分之一的钱，其实对你来讲是个很重的负担。很重的负担会带来很多动作变形的，包括心态，包括孩子的压力，没有必要，没有必要。而且你投入太多也不能保证收益，我们很多人老讲给孩子投钱是投资，这是胡说八道的。给孩子算投资吗？投资失败你能退钱吗？你能破产清算吗？投资成功你能分红吗？你根本不清楚，考上个九八五学位就一定值钱吗？将来就业就一定好吗？就是今天的孩子的不确定性太多，周期太长，所以没有投资这个概念，没人会投资这种产品。我们给孩子花钱就是量力而行，我愿意让孩子有更好的成长，就OK了。
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Bento Grid Layout -->
+    <main class="container mx-auto px-4 pb-20 max-w-7xl">
+        <div class="grid grid-cols-12 gap-6 auto-rows-min">
+            
+            <!-- 1. 核心观点: 收入限制 (BENTO 1 - Large emphasis) -->
+            <div class="col-span-12 lg:col-span-8 p-8 bg-white rounded-3xl shadow-xl overflow-hidden bento-grid-item" data-delay="0">
+                <div class="relative h-full">
+                    <p class="text-xl font-semibold text-gray-400 mb-4 tracking-wider">
+                        The Financial Limit <span class="text-sm italic ml-2 text-gray-300">| 家庭教育支出建议</span>
+                    </p>
+                    
+                    <div class="flex items-center space-x-8">
+                        <div class="relative">
+                             <!-- Huge Text Element 1 -->
+                            <span class="text-huge font-extrabold text-soft-blue/90 block leading-tight relative z-10">30%</span>
+                            <span class="absolute top-1/2 left-0 right-0 transform -translate-y-1/2 text-9xl font-black text-soft-blue/5 opacity-50 select-none">LIMIT</span>
+                        </div>
+                        
+                        <div class="flex-1 space-y-3">
+                            <h2 class="text-4xl font-black leading-snug tracking-tighter">
+                                家庭收入不应超过 <span class="text-soft-blue">30%</span> 投入孩子教育。
+                            </h2>
+                            <p class="text-lg text-gray-600 mt-2">
+                                For a standard family unit, limit expenditure to prevent excessive burden and resource depletion.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Line art decoration -->
+                    <svg class="absolute top-2 right-4 w-40 h-40 line-art opacity-10" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" />
+                        <line x1="10" y1="50" x2="90" y2="50" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- 2. 四口之家例外 (BENTO 2 - Small focus) -->
+            <div class="col-span-12 lg:col-span-4 p-6 bg-light-gold/10 rounded-3xl shadow-lg border border-light-gold/30 bento-grid-item" data-delay="200">
+                <div class="flex justify-between items-start mb-4">
+                    <i class="fas fa-users text-4xl text-light-gold"></i>
+                    <p class="text-sm font-semibold text-gray-500">Maximum</p>
+                </div>
+                <h3 class="text-xl font-bold mb-1 text-gray-700">四口之家</h3>
+                <p class="text-gray-500 mb-4">Family of four exemption</p>
+                
+                 <!-- Huge Text Element 2 -->
+                <p class="text-7xl font-extrabold text-light-gold/90 leading-none">40%</p>
+            </div>
+            
+            <!-- 3. 重负荷警告 (BENTO 3 - Burden Warning) -->
+            <div class="col-span-12 lg:col-span-6 p-8 bg-white rounded-3xl shadow-xl overflow-hidden border border-red-100 bento-grid-item" data-delay="400">
+                <div class="flex items-start mb-4">
+                    <i class="fas fa-weight-hanging text-5xl text-red-500 mr-4 opacity-75"></i>
+                    <div>
+                        <p class="text-xs uppercase font-semibold text-red-500 tracking-widest">DANGER ZONE</p>
+                        <h3 class="text-3xl font-bold text-gray-800 mt-1">
+                            很重的负担
+                        </h3>
+                    </div>
+                </div>
+
+                <ul class="space-y-3 text-lg mt-4 list-none pl-0">
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-angle-right text-red-400 mr-3"></i> 
+                        <span class="font-semibold text-gray-700">动作变形:</span>
+                        Behavior Distortion
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-angle-right text-red-400 mr-3"></i> 
+                        <span class="font-semibold text-gray-700">心态压力:</span>
+                        Parental Stress
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-angle-right text-red-400 mr-3"></i> 
+                        <span class="font-semibold text-gray-700">孩子压力:</span>
+                        Child Pressure
+                    </li>
+                </ul>
+                <p class="text-sm text-gray-500 mt-4 italic">
+                    Excessive financial pressure leads to counterproductive outcomes.
+                </p>
+            </div>
+
+            <!-- 4. 投入 ≠ 收益保证 (BENTO 4 - Investment Failure) -->
+            <div class="col-span-12 lg:col-span-6 p-8 bg-mint-green/5 rounded-3xl shadow-xl border border-mint-green/30 bento-grid-item" data-delay="600">
+                 <p class="text-xl font-bold text-mint-green">
+                    投入不能保证收益 <i class="fas fa-chart-line ml-2"></i>
+                </p>
+                <h3 class="text-3xl font-black mt-2 leading-tight">
+                    Investment ≠ Guarantee
+                </h3>
+                
+                <!-- Visualization Simulation: Uncertainty -->
+                <div class="mt-6">
+                    <p class="text-xs uppercase text-gray-500 mb-2 font-semibold">Risk Profile / Long Cycle</p>
+                    <div class="relative h-20">
+                        <!-- Simulated Jittery/Long-term uncertain line chart -->
+                        <svg viewBox="0 0 100 80" class="w-full h-full">
+                            <polyline points="0,70 15,50 30,60 45,30 60,40 75,10 90,25 100,5" class="line-art" style="stroke: var(--color-accent-1); stroke-width: 3; opacity: 0.7;"></polyline>
+                            <circle cx="100" cy="5" r="3" fill="var(--color-accent-1)"></circle>
+                            <text x="90" y="70" class="text-sm font-semibold" fill="#9ca3af">Uncertain Future</text>
+                            <text x="5" y="70" class="text-sm font-semibold" fill="#9ca3af">Long Cycle</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. 核心反驳: 教育不是投资 (BENTO 5 - Full Width Critical Section) -->
+             <div class="col-span-12 p-8 bg-white rounded-3xl shadow-2xl border-t-4 border-soft-blue/50 bento-grid-item" data-delay="800">
+                <div class="text-center">
+                    <i class="fas fa-comment-dots text-5xl text-soft-blue/70 mb-4"></i>
+                    <h2 class="text-4xl font-black mb-3">
+                        <span class="text-red-500 mr-2">胡说八道。</span> 投入教育不是投资。
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-4xl mx-auto">
+                        This is nonsense. Investing in children lacks the fundamental features of actual investment.
+                    </p>
+                </div>
+
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="p-4 border-r md:border-soft-blue/20">
+                        <p class="text-2xl font-bold text-gray-700">无法退钱 / 退场</p>
+                        <p class="text-sm text-gray-500 mt-1 italic">
+                            No exit strategy or refund mechanism.
+                        </p>
+                    </div>
+                     <div class="p-4 border-r md:border-soft-blue/20">
+                        <p class="text-2xl font-bold text-gray-700">不能分红 / 收益不确定</p>
+                        <p class="text-sm text-gray-500 mt-1 italic">
+                            No dividends, unpredictable future employment value (985 ≠ success).
+                        </p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-2xl font-bold text-gray-700">不确定性太多</p>
+                        <p class="text-sm text-gray-500 mt-1 italic">
+                            Too many variables, product cycle too long.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. 总结: 量力而行 (BENTO 6 - Conclusion) -->
+            <div class="col-span-12 p-8 text-center rounded-3xl bg-soft-blue/10 shadow-inner bento-grid-item" data-delay="1000">
+                 <h2 class="text-4xl lg:text-5xl font-extrabold text-soft-blue mb-4 tracking-tight">
+                    量力而行。
+                 </h2>
+                 <p class="text-xl text-gray-700">
+                    We spend based on <span class="font-bold underline">our capacity</span>, hoping for better growth, not guaranteed financial return.
+                 </p>
+                 <span class="text-5xl italic font-serif text-gray-300 block mt-4">Act within Means.</span>
+            </div>
+        </div>
+    </main>
+
+
+    <script>
+        function toggleSource() {
+            const content = document.getElementById('source-content');
+            const button = document.getElementById('toggleButton');
+            const icon = document.getElementById('toggleIcon');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                button.innerHTML = '<i class="fas fa-chevron-up mr-2 text-xs" id="toggleIcon"></i> 隐藏原文';
+            } else {
+                content.style.display = 'none';
+                button.innerHTML = '<i class="fas fa-chevron-down mr-2 text-xs" id="toggleIcon"></i> 显示原文';
+            }
+        }
+
+        // Intersection Observer for Apple-like scroll animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.getAttribute('data-delay') || 0);
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }, delay);
+                    }
+                });
+            }, {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of element is visible
+            });
+
+            document.querySelectorAll('.bento-grid-item').forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>

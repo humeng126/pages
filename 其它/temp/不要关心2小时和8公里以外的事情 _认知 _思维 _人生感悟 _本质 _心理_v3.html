@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不要关心2小时和8公里以外的事情</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom Tailwind Configuration (Soft palette) */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'soft-bg': '#f9fafb',
+                        'accent-blue': '#38bdf8', /* sky-500 */
+                        'accent-orange': '#f97316', /* orange-600 */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans SC', 'sans-serif'],
+                    },
+                }
+            }
+        }
+        
+        /* Custom scroll animation styles (minimal Apple-like effect) */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Techy Gradient Highlight - using light, transparent accent colors */
+        .tech-gradient {
+            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1) 0%, rgba(56, 189, 248, 0) 70%);
+        }
+        .tech-gradient-orange {
+             background: radial-gradient(circle at center, rgba(249, 115, 22, 0.1) 0%, rgba(249, 115, 22, 0) 70%);
+        }
+
+        /* Bento Grid Specific Styling */
+        .bento-grid {
+            display: grid;
+            gap: 16px;
+        }
+        @media (min-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .span-2 { grid-column: span 2; }
+            .span-4 { grid-column: span 4; }
+        }
+    </style>
+</head>
+<body class="bg-soft-bg min-h-screen text-gray-800 font-sans p-4 lg:p-12">
+
+    <!-- Header Metadata and Toggle -->
+    <header class="mb-8 border-b pb-4 border-gray-200 lg:max-w-7xl mx-auto">
+        <p class="text-xs text-gray-500">
+            视频标题: <strong class="text-gray-800">不要关心2小时和8公里以外的事情</strong> #认知 #思维 #人生感悟 #本质 #心理<br>
+            视频链接: <a href="https://v.douyin.com/M05KH8q3b14/" target="_blank" class="text-accent-blue hover:underline">https://v.douyin.com/M05KH8q3b14/</a><br>
+            提取时间: 2025-12-28 08:04:39
+        </p>
+        <button id="toggleOriginalText" class="mt-2 text-sm px-3 py-1 bg-gray-200 rounded-full hover:bg-gray-300 transition duration-300">
+            显示原文
+        </button>
+    </header>
+
+    <!-- Collapsible Original Text Area -->
+    <div id="originalTextContent" class="hidden mb-8 p-4 bg-white border border-gray-200 rounded-xl shadow-inner text-sm text-gray-600 leading-relaxed overflow-y-auto max-h-96 lg:max-w-7xl mx-auto">
+        <p class="mb-2"><strong>不要关心两小时和八公里以外的事情。</strong></p>
+        <p class="mb-2">去年我有个朋友，每天早上刷手机能刷到中午，国际局势、科技前沿、明星八卦什么都看，什么都关心。他跟我说这叫拓宽视野，保持敏锐。结果呢，他的副业项目拖了半年没动，身材走样，存款还是那个数。我问他一个问题，这些你关心的事，哪件跟你今天的生活有半毛钱关系？他愣住了。这就是现代人最大的陷阱，我们把大量精力投入到那些根本影响不了我们生活的事情上，却对眼前真正能改变命运的机会视而不见。</p>
+        <p class="mb-2">什么叫两小时和八公里？这是我这两年总结出来的一个生存法则。<strong>两小时是你现在开始行动，两小时内能看到结果的事。八公里是你物理距离上能直接触达、直接影响的范围，超出这个圈层的事跟你没关系，也不该占用你的注意力。</strong>为什么这么说？因为人的精力是有限的，你的大脑容量就那么大，你的时间就二十四小时。当你把注意力分散到全世界各个角落时，你在自己真正该突破的地方就没有力气了。</p>
+        <p class="mb-2">我见过太多人，张嘴就是宏观经济、行业趋势、政策走向，听起来格局很大，实际上他们自己的账户余额都不敢看。这不是眼界开阔，这是逃避现实。因为关心那些遥远的事很轻松，你不需要付出任何行动成本，只需要发表观点、表达情绪就行了。但真正改变你生活的事，学一门技能，跑五公里，存下一千块，做好一个项目，这些才是硬仗。</p>
+        <p class="mb-2">我自己就经历过这个转变。三年前我也是信息成瘾者，各种资讯APP、知识付费课程买了一堆，每天感觉自己在进步，实际上什么都没改变。后来我狠下心做了个实验，一个月内只关注两小时和八公里以内的事。<strong>两小时内的事是什么？</strong>写完这篇稿子，跑完这五公里，学会这个软件功能，联系这个合作伙伴。<strong>八公里内的事是什么？</strong>楼下健身房、附近的咖啡馆、本地的线下活动、能见面聊的朋友。一个月后，我的产出量是之前的三倍，因为我不再被各种信息牵着鼻子走，我的每一份注意力都投入到了能立刻产生价值的地方。</p>
+        <p class="mb-2">有人会说，那不就是变得狭隘了吗？不关心大事。局不就小了吗？我告诉你，<strong>真正的格局不是你知道多少信息，而是你能调动多少资源，创造多少价值。</strong>一个每天看国际新闻但连自己体重都控制不了的人，他的格局在哪里？一个谈论行业趋势但自己技能三年没进步的人，他的眼界又在哪里？格局是用结果证明的，不是用谈资证明的。</p>
+        <p class="mb-2">我有个做设计的朋友，去年定了个目标，只接八公里以内的客户，只做两小时内能沟通清楚的项目。很多人笑他傻，说这样限制自己怎么做大。结果一年下来，他的客单价翻了一倍，因为他把所有精力都用在服务质量和口碑传播上。现在本地客户排着队找他，他根本不愁业务，这就是聚焦的力量。当你的能量不再分散，当你的注意力全部集中在可控范围内，你的突破速度会快到你自己都不敢相信。</p>
+        <p class="mb-2">现在回过头来看，那些每天刷国际新闻，关心股市涨跌，讨论科技趋势的人，三年后还在原地。不是因为他们不努力，而是因为他们的努力方向错了。他们把百分之八十的精力放在了那些跟自己毫无关系的事情上，只用百分之二十的精力应付真正能改变命运的机会。你想想，你上次因为关心某个国际大事而改变了什么？你上次因为了解某个行业趋势而赚到钱了吗？大概率没有。但你如果把这些时间用来学一门技能，搞定一个客户，优化一个产品，结果会完全不同。这个世界的真相就是，绝大多数人高估了远方的影响，低估了眼前的威力。</p>
+        <p class="mb-2">从今天开始，给自己定个规矩，每天早上睁眼只问自己三个问题：<strong>我今天两小时内能完成什么？我八公里内能触达谁？我手头的资源能创造什么价值？</strong>把你的注意力、精力、时间全部投入到这个范围内。国际局势跟你无关，行业变革跟你无关，明星八卦更跟你无关。你只需要关心今天能不能多赚五百块，这周能不能搞定一个项目，这个月能不能让自己的能力上一个台阶。一年后你再回头看，那些还在关心全世界的人，还在原地评论指点，而你已经在自己的八公里范围内建立起了别人无法撼动的优势。收起你的视野，聚焦你的火力，不要关心两小时和八公里以外的事情，你的人生突破就藏在你触手及的地方。</p>
+    </div>
+
+    <main class="lg:max-w-7xl mx-auto">
+        
+        <!-- 核心标题 (Hero Section) -->
+        <section class="mb-12 text-center reveal-on-scroll">
+            <h1 class="text-6xl lg:text-8xl font-extrabold tracking-tight mb-4 text-gray-900">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-accent-blue to-sky-400">聚焦你的火力</span>
+            </h1>
+            <p class="text-xl lg:text-3xl text-gray-500 max-w-3xl mx-auto">
+                DON'T CONCERN YOURSELF WITH THE <strong class="text-accent-orange">2H</strong> AND <strong class="text-accent-blue">8KM</strong> BEYOND.
+            </p>
+            <p class="mt-4 text-lg text-gray-600">
+                这是现代人最大的陷阱：把精力投入到无法改变的事情上，对眼前机会视而不见。
+            </p>
+        </section>
+
+        <!-- Bento Grid Layout -->
+        <div class="bento-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 reveal-on-scroll">
+            
+            <!-- Grid 1: 2H Focus (Large, Tall) -->
+            <div class="lg:span-2 p-8 bg-white rounded-3xl shadow-xl overflow-hidden relative border border-sky-100 h-[400px]">
+                <div class="tech-gradient absolute inset-0 pointer-events-none"></div>
+                <div class="relative z-10">
+                    <p class="text-sm font-semibold text-accent-blue uppercase mb-3 tracking-widest">Focus Scope: Time</p>
+                    <h2 class="text-6xl lg:text-9xl font-black mb-4 leading-none">
+                        <span class="inline-block relative">
+                            2H
+                            <span class="absolute bottom-[-15px] right-[-10px] text-gray-300 text-3xl font-light opacity-50">Hours</span>
+                        </span>
+                    </h2>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">
+                        两小时内能看到结果的事。
+                    </h3>
+                    <p class="text-gray-500 mb-6">
+                        Write this draft. Finish this 5km run. Learn this software function. Contact this partner. 
+                        即刻行动，即刻价值。
+                    </p>
+                    
+                    <i class="fas fa-bolt text-5xl text-accent-blue opacity-30 absolute bottom-6 right-6"></i>
+                </div>
+            </div>
+            
+            <!-- Grid 2: 8KM Focus (Medium, Horizontal) -->
+            <div class="lg:span-2 p-8 bg-white rounded-3xl shadow-xl overflow-hidden relative border border-orange-100 h-[400px]">
+                <div class="tech-gradient-orange absolute inset-0 pointer-events-none"></div>
+                <div class="relative z-10">
+                    <p class="text-sm font-semibold text-accent-orange uppercase mb-3 tracking-widest">Focus Scope: Proximity</p>
+                    <h2 class="text-6xl lg:text-9xl font-black mb-4 leading-none">
+                        <span class="inline-block relative">
+                            8KM
+                            <span class="absolute bottom-[-15px] right-[-10px] text-gray-300 text-3xl font-light opacity-50">Kilometers</span>
+                        </span>
+                    </h2>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">
+                        物理距离能直接触达的范围。
+                    </h3>
+                    <p class="text-gray-500 mb-6">
+                        Local gym, nearby coffee shop, local events, friends you can meet face-to-face. 
+                        可控范围，高强度影响。
+                    </p>
+                    <i class="fas fa-map-marked-alt text-5xl text-accent-orange opacity-30 absolute bottom-6 right-6"></i>
+                </div>
+            </div>
+
+            <!-- New Row Start -->
+
+            <!-- Grid 3: The Pitfall (Small Card) -->
+            <div class="p-6 bg-white rounded-3xl shadow-lg border border-gray-100 flex flex-col justify-between reveal-on-scroll">
+                <div>
+                    <i class="fas fa-headset text-2xl text-red-500 mb-3"></i>
+                    <h4 class="text-lg font-bold mb-2">信息成瘾陷阱</h4>
+                    <p class="text-xs text-gray-500">
+                        They put 80% effort into things that are completely unrelated to them.
+                    </p>
+                </div>
+                <div class="mt-4">
+                    <span class="text-5xl font-extrabold text-red-500">80%</span>
+                    <p class="text-sm text-gray-400">精力被分散</p>
+                </div>
+            </div>
+
+            <!-- Grid 4: Real Value Definition (Central Message) -->
+            <div class="p-8 lg:span-2 bg-sky-50 rounded-3xl shadow-xl border border-accent-blue/20 flex flex-col justify-center reveal-on-scroll">
+                <p class="text-xl font-medium text-accent-blue uppercase mb-3">Defining True VISION & VALUE</p>
+                <h3 class="text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
+                    <span class="text-accent-orange">真正的格局，</span>是用<span class="underline decoration-wavy decoration-orange-300">结果</span>证明的。
+                </h3>
+                <p class="mt-3 text-lg text-gray-600">
+                    It is about the resources you can mobilize and the value you can create. (不是用谈资证明的)
+                </p>
+            </div>
+
+            <!-- Grid 5: Focus Result Visualization (Placeholder Chart) -->
+            <div class="p-6 bg-white rounded-3xl shadow-lg border border-gray-100 relative flex flex-col justify-between reveal-on-scroll">
+                <div>
+                    <i class="fas fa-hand-holding-dollar text-3xl text-green-500 mb-3"></i>
+                    <h4 class="text-lg font-bold mb-2">设计师案例</h4>
+                    <p class="text-xs text-gray-500 mb-4">
+                        限制客户范围 (8KM/2H) 带来的聚焦红利。
+                    </p>
+                </div>
+                
+                <div class="mt-4">
+                    <span class="text-5xl font-extrabold text-green-600">100% ↑</span>
+                    <p class="text-sm text-gray-400">客单价增长</p>
+                </div>
+            </div>
+            
+            <!-- Grid 6: Actionable Questions (Long Card, summarizing the three steps) -->
+            <div class="lg:span-4 p-8 bg-orange-50 rounded-3xl shadow-xl border border-accent-orange/20 reveal-on-scroll">
+                <p class="text-xl font-bold text-accent-orange mb-4 flex items-center">
+                    <i class="fas fa-crosshairs mr-3"></i> 聚焦法则：每天问自己三个问题
+                </p>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="flex items-start bg-orange-100/50 p-4 rounded-xl">
+                        <span class="text-4xl font-extrabold mr-4 text-accent-blue">1.</span>
+                        <div>
+                            <p class="font-bold text-xl">两小时内能完成什么？</p>
+                            <p class="text-gray-600 text-sm">Action within 120 minutes.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-orange-100/50 p-4 rounded-xl">
+                        <span class="text-4xl font-extrabold mr-4 text-accent-blue">2.</span>
+                        <div>
+                            <p class="font-bold text-xl">八公里内能触达谁？</p>
+                            <p class="text-gray-600 text-sm">Influence within 8 kilometers.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-orange-100/50 p-4 rounded-xl">
+                        <span class="text-4xl font-extrabold mr-4 text-accent-blue">3.</span>
+                        <div>
+                            <p class="font-bold text-xl">资源能创造什么价值？</p>
+                            <p class="text-gray-600 text-sm">Leverage existing capacity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid 7: The Conclusion/Warning -->
+            <div class="lg:span-4 p-8 bg-white rounded-3xl shadow-xl border border-gray-200 text-center reveal-on-scroll">
+                <p class="text-xl lg:text-2xl font-semibold text-gray-700">
+                    绝大多数人高估了远方的影响，低估了眼前的威力。
+                </p>
+                <h3 class="text-4xl lg:text-6xl font-black mt-3 text-gray-900 leading-tight">
+                    你的突破速度，<span class="text-accent-orange">将快到你不敢相信。</span>
+                </h3>
+            </div>
+            
+        </div>
+    </main>
+    
+    <!-- Footer Space -->
+    <div class="h-20"></div>
+
+    <!-- JavaScript for Toggle and Scroll Animation -->
+    <script>
+        // 1. Original Text Toggle
+        document.getElementById('toggleOriginalText').addEventListener('click', function() {
+            const content = document.getElementById('originalTextContent');
+            const button = this;
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                button.textContent = '收起原文';
+            } else {
+                content.classList.add('hidden');
+                button.textContent = '显示原文';
+            }
+        });
+
+        // 2. Scroll Reveal Animation (Apple-like subtle reveal)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(element => {
+            // Delay for stagger effect (optional but nice touch)
+            const delay = element.offsetTop / 1500; 
+            element.style.transitionDelay = `${delay}s`;
+            
+            observer.observe(element);
+        });
+
+    </script>
+</body>
+</html>

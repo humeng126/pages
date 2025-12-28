@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>向上管理：领导真正信任的人</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* Define the soft pastel theme and subtle technology gradient */
+        :root {
+            --soft-teal: #2dd4bf; /* Tailwind teal-500 */
+            --soft-indigo: #6366f1; /* Tailwind indigo-500 */
+            --bg-light: #f9fafb; /* gray-50 */
+        }
+
+        body {
+            background-color: var(--bg-light);
+            font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .bento-grid-item {
+            border-radius: 1.5rem; /* rounded-3xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease-out;
+            border: 1px solid rgba(229, 231, 235, 0.7); /* subtle ring effect */
+        }
+
+        /* Sci-fi Gradient Overlay */
+        .tech-gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* Specific gradient for the main focus panel */
+        .core-focus::before {
+            background: radial-gradient(circle at 50% 50%, var(--soft-indigo) 0%, transparent 70%);
+        }
+
+        .low-cost::before {
+            background: radial-gradient(circle at 50% 50%, var(--soft-teal) 0%, transparent 70%);
+        }
+
+
+        /* Custom classes for Apple-like fade-up animation (simulated initial load or scroll trigger) */
+        .animate-fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .animate-delay-1 { transition-delay: 0.1s; }
+        .animate-delay-2 { transition-delay: 0.2s; }
+        .animate-delay-3 { transition-delay: 0.3s; }
+        .animate-delay-4 { transition-delay: 0.4s; }
+
+        .visible-loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Typography sizing for large element contrast */
+        .mega-text {
+            font-size: 8rem; /* Extremely large */
+            line-height: 0.9;
+            font-weight: 900; /* Extra bold */
+            background: linear-gradient(135deg, var(--soft-indigo), var(--soft-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="max-w-7xl mx-auto p-4 md:p-8">
+
+    <!-- METADATA HEADER -->
+    <header class="mb-8 border-b border-gray-200 pb-4">
+        <p class="text-sm text-gray-500 font-semibold mb-1">视频元信息 / Video Metadata</p>
+        <p class="text-2xl font-bold text-gray-800 mb-2">领导会真正信任和重用怎样的人？</p>
+        <div class="flex flex-wrap items-center text-sm text-gray-500 space-x-4">
+            <span><i class="fas fa-hashtag text-teal-500 mr-1"></i> #职场 #就业 #找工作</span>
+            <span><i class="fas fa-link text-teal-500 mr-1"></i> <a href="https://v.douyin.com/uA_y1-c9aFw/" target="_blank" class="hover:text-teal-600 transition">视频链接</a></span>
+            <span><i class="far fa-clock text-teal-500 mr-1"></i> 提取时间: 2025-12-28 07:59:57</span>
+        </div>
+        
+        <!-- ORIGINAL TRANSCRIPT TOGGLE -->
+        <button id="toggle-raw-text" class="mt-4 px-4 py-2 text-sm font-medium text-white bg-indigo-500 rounded-full hover:bg-indigo-600 transition">
+            <i class="fas fa-file-alt mr-2"></i>显示原文
+        </button>
+
+        <div id="raw-text-content" class="mt-4 p-4 bg-white border border-gray-100 rounded-xl shadow-inner hidden">
+            <p class="text-xs text-gray-700 leading-relaxed whitespace-pre-wrap">
+建议你们可能一般人做不到，但如果你只要做到，你跟领导的关系一定不差。你们对向上管理这块有困扰的同学，我给你们提一个非常重要的建议。你们是不是会认为要跟领导拍马屁，你要跟领导买买早餐，要跟领导买咖啡？我告诉你们，如果你们想要跟领导真正程度上的关系好，他真的想用你，甚至他把你当嫡系用，你们觉得最关键的是什么？我告诉大家，你们要打心底里认可和欣赏你的领导。你们做过管理的同学会非常知道我在说什么，呃，如果没有做过管理同学可能你们会觉得好恶心啊，还要认可和欣赏我的领导，我说点好听的话不行，很多东西你们演不出来的，你当领导傻子吗？能做到你们领导那个位置上的人，我告诉你们啊，段位都不比你低，你做什么事情其实从上面看下来门儿清，你真的认可他，你真的欣赏他，和你假的认可，阿谀奉承，我告诉你啊，他上面的人他的感受是完全不一样的。你们不要认为说我那个同事只会舔，什么都不会，我告诉你，像这样真正能够欣赏和认可他领导的人，才是他领导可能在众多能力水平参差没有那么大的情况下，他第一个会去选择的人。因为为什么？因为你真的认可和欣赏一个人的时候，你对他的管理成本其实是最低的。在一个职场里面混得好的人，他不一定是那个人力最强的人，如果他能力强，但是他不认可他的领导，我告诉你这样的人死的最快。
+            </p>
+        </div>
+    </header>
+
+    <!-- BENTO GRID LAYOUT -->
+    <main class="grid grid-cols-1 md:grid-cols-6 gap-6">
+
+        <!-- 1. INTRO & FALSE SOLUTIONS -->
+        <div class="bento-grid-item bg-white md:col-span-2 animate-fade-in-up animate-delay-1 flex flex-col justify-between">
+            <div>
+                <span class="text-4xl font-bold text-gray-800 block mb-2">向上管理</span>
+                <span class="text-xl text-indigo-500 font-light italic">Upward Management Focus</span>
+            </div>
+            
+            <div class="mt-8">
+                <p class="text-gray-700 text-lg mb-3">
+                    建议你们可能一般人做不到，但如果你只要做到，你跟领导的关系一定不差。
+                </p>
+                <div class="mt-4 p-3 border-l-4 border-teal-300 bg-teal-50 rounded-md">
+                    <p class="text-sm font-semibold text-gray-600 flex items-center">
+                        <i class="fas fa-times-circle text-red-500 mr-2"></i> 错误观念 (Falsehoods)
+                    </p>
+                    <ul class="list-none space-y-1 mt-2 text-sm text-gray-700 ml-1">
+                        <li><i class="fas fa-caret-right text-teal-500 mr-1"></i> 拍马屁 Flattery</li>
+                        <li><i class="fas fa-caret-right text-teal-500 mr-1"></i> 买早餐 / 咖啡</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. THE CORE SECRET (Mega Text) -->
+        <div class="bento-grid-item bg-white md:col-span-4 tech-gradient-bg core-focus flex flex-col justify-center items-center animate-fade-in-up animate-delay-2">
+            <h1 class="mega-text tracking-tight relative z-10">认可</h1>
+            <h2 class="text-5xl font-bold text-gray-800 mt-[-20px] mb-4 relative z-10">和欣赏</h2>
+            <p class="text-lg text-gray-600 font-semibold relative z-10">
+                You must <span class="text-indigo-600">打心底里</span> recognize and appreciate your leader.
+            </p>
+        </div>
+
+        <!-- 3. GENUINE vs FAKE -->
+        <div class="bento-grid-item bg-white md:col-span-3 animate-fade-in-up animate-delay-3">
+            <div class="flex justify-between items-start mb-4">
+                <span class="text-3xl font-extrabold text-gray-800">真诚与虚假</span>
+                <i class="fas fa-eye text-teal-500 text-4xl"></i>
+            </div>
+            
+            <p class="text-gray-700 mb-4">
+                能做到你们领导那个位置上的人，<span class="font-bold text-indigo-600">段位都不比你低</span>。你做什么事情其实从上面看下来<span class="font-bold">门儿清 (Transparent)</span>。
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 mt-6">
+                <div class="p-4 bg-teal-50 rounded-xl">
+                    <p class="text-lg font-bold text-teal-700 flex items-center"><i class="fas fa-check-circle mr-2"></i> 真的认可</p>
+                    <p class="text-xs text-gray-600 mt-1">Genuine recognition leads to real trust.</p>
+                </div>
+                <div class="p-4 bg-red-50 rounded-xl">
+                    <p class="text-lg font-bold text-red-700 flex items-center"><i class="fas fa-times-circle mr-2"></i> 假的阿谀</p>
+                    <p class="text-xs text-gray-600 mt-1">False flattery: easily spotted by higher management.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. LOWEST MANAGEMENT COST -->
+        <div class="bento-grid-item bg-white md:col-span-3 tech-gradient-bg low-cost flex flex-col justify-between animate-fade-in-up animate-delay-4">
+            <div class="relative z-10">
+                <span class="text-6xl font-black text-teal-500 block">Lowest CPL.</span>
+                <p class="text-xl font-bold text-gray-800 mt-2 mb-4">管理成本最低</p>
+                <hr class="w-1/3 border-teal-300 mb-4">
+                <p class="text-gray-700 text-md italic">
+                    "When you genuinely recognize and appreciate someone, your management cost for that individual is the lowest."
+                </p>
+            </div>
+            
+            <!-- Visualization Placeholder (Simple Outline Graphic) -->
+            <div class="mt-4 relative z-10 flex justify-end">
+                <div class="w-24 h-24 border-4 border-dashed border-teal-400 rounded-full flex items-center justify-center">
+                    <i class="fas fa-chart-line text-4xl text-teal-500"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. WARNING: THE CAPABLE BUT DISLOYAL -->
+        <div class="bento-grid-item bg-white md:col-span-6 p-6 border-l-8 border-red-500 animate-fade-in-up animate-delay-5">
+            <div class="flex items-center mb-3">
+                <i class="fas fa-skull-crossbones text-red-500 text-3xl mr-3"></i>
+                <h3 class="text-2xl font-extrabold text-red-700 tracking-wide">职场铁律 (Iron Rule)</h3>
+            </div>
+            
+            <p class="text-xl text-gray-800 leading-relaxed">
+                混得好的人，不一定是那个人力最强的人。
+            </p>
+            <p class="text-2xl font-black mt-2 text-red-500 bg-red-50 inline-block px-3 py-1 rounded-md">
+                如果他能力强，但是他不认可他的领导，我告诉你这样的人<span class="underline decoration-wavy decoration-red-600">死的最快</span>。
+            </p>
+        </div>
+
+    </main>
+</div>
+
+<!-- JavaScript for Toggle Functionality and initial load animation -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleButton = document.getElementById('toggle-raw-text');
+        const rawTextContent = document.getElementById('raw-text-content');
+        
+        // 1. Toggle Original Text
+        toggleButton.addEventListener('click', function() {
+            const isHidden = rawTextContent.classList.contains('hidden');
+            if (isHidden) {
+                rawTextContent.classList.remove('hidden');
+                toggleButton.innerHTML = '<i class="fas fa-file-alt mr-2"></i>收起原文';
+            } else {
+                rawTextContent.classList.add('hidden');
+                toggleButton.innerHTML = '<i class="fas fa-file-alt mr-2"></i>显示原文';
+            }
+        });
+
+        // 2. Initial Fade-up Animation (Mimicking Apple motion on load)
+        const animatedElements = document.querySelectorAll('.animate-fade-in-up');
+        animatedElements.forEach(el => {
+            // Use setTimeout to ensure the CSS transition starts after the initial DOM rendering is complete
+            setTimeout(() => {
+                el.classList.add('visible-loaded');
+            }, 50); // Small delay
+        });
+    });
+</script>
+
+</body>
+</html>

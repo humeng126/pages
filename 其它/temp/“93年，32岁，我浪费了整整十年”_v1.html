@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>“93年，32岁，我浪费了整整十年” - 觉醒时刻</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        /* Custom Configuration for Soft Theme */
+        :root {
+            /* Soft, light palette */
+            --color-soft-blue: #D0E4FF;
+            --color-soft-green: #D4F3C8;
+            --color-highlight: #4F88FF; /* Primary accent color */
+            --color-accent-text: #1F2937; /* Dark text for contrast on light background */
+        }
+
+        /* Bento Card Styling */
+        .bento-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth interaction */
+        }
+        
+        /* Highlighting Gradient Overlay (Requirement 5) */
+        .highlight-gradient-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1; 
+            pointer-events: none;
+        }
+        
+        /* Specific Gradient Styles (Self-contained, non-blending highlighters) */
+        .gradient-blue { background: radial-gradient(circle at top right, var(--color-soft-blue), transparent 60%); }
+        .gradient-green { background: radial-gradient(circle at bottom left, var(--color-soft-green), transparent 60%); }
+        .gradient-coral { background: radial-gradient(circle at center, #FFDACF, transparent 70%); }
+
+        /* Apple Scroll Effect Preparation (Requirement 6) */
+        .scroll-animated {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: opacity 1.2s cubic-bezier(0.165, 0.84, 0.44, 1), transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .scroll-animated.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'soft-blue': 'var(--color-soft-blue)',
+                        'soft-green': 'var(--color-soft-green)',
+                        'accent-primary': 'var(--color-highlight)',
+                        'accent-text': 'var(--color-accent-text)',
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-accent-text min-h-screen pt-24 pb-12 font-sans overflow-x-hidden">
+
+    <!-- 1. Metadata Header (Sticky Header) -->
+    <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <div>
+                <p class="text-xs text-gray-500">视频标题: <span class="font-semibold text-accent-text">“93年，32岁，我浪费了整整十年”</span></p>
+                <p class="text-xs text-gray-500">视频链接: <a href="https://v.douyin.com/J0Cy-YmKxWY/" target="_blank" class="text-accent-primary hover:underline">https://v.douyin.com/J0Cy-YmKxWY/</a></p>
+                <p class="text-xs text-gray-500">提取时间: 2025-12-28 05:00:11</p>
+            </div>
+            
+            <!-- 2. Toggle Button for Original Transcript -->
+            <button id="toggleOriginal" class="px-4 py-2 bg-accent-primary text-white text-sm font-medium rounded-full hover:bg-blue-600 transition duration-300 shadow-lg">
+                显示原文 <i class="fas fa-chevron-down ml-1 text-xs transition duration-300" id="toggleIcon"></i>
+            </button>
+        </div>
+
+        <!-- Hidden Transcript Area (Default hidden via JS/CSS) -->
+        <div id="originalContent" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 text-gray-600 text-sm border-t border-gray-200 mt-2">
+            <p class="whitespace-pre-wrap leading-relaxed pt-2">
+九三年，三十二岁，我浪费了整整十年。这是我今天刷到的一条非常有感触的帖子啊。有感触的并不是帖子本身，而是底下的一条评论。帖主说自己呢，二十二到三十二岁，十年无房、无车、无存款，在婚恋市场上也不吃香。这种没有达到传统成功指标的焦虑感真的太熟悉了。然而呢，有这样一条破万的评论真的让人为之一振，读完有一种今年觉醒时刻的感觉。来给大家读一下。中国人有个根深蒂固的毛病，就是认为幸福是基于有，其实不是这样，活得快乐也是一种成功。你没存下来的钱，让你补偿了自己童年的缺失，你实实在在的让钱体现了它对于你而言最好的价值，这没有任何问题。还没有读完啊，我先暂停一下。其实我自己前几天呢也在统计自己今年的存款，今年比去年存下的少了一大半。其实我自己的心里面也觉得很失落，但是我现在想一想，今年我有五个月的时间是在东京旅居，吃到了那么多的美食，看到了那么多的美景，连日语也从无法交流到和朋友们谈笑风生。然后小时候几乎没有上过兴趣班的我，还在长大之后会给自己去报兴趣班。冷冰冰的数字变成闭上眼睛就能回忆起来的一个个美好的画面，这个是存款无法衡量的幸福。而像这样子很简单但是容易被忘记到的感悟，是我在看完这条评论之后想起来的。我现在继续读啊。无房无形中让你规避了高价购入到如今暴跌的损失，这个我相信大家最近也刷到不少博主说自己买房一年，然后房子缩水几十万上百万的帖子了。所以人生真的是反复无常，我们费尽心思去拥有的东西，可能会在一夕之间变成负担。我最喜欢的是这句话。无车，老天爷，我们全单位环保出了一份小小的礼。而最重要的是，你还活着，你才三十二岁，你还活着，就这句话真的太有力量了。只要活着，就能享受阳光照在身上的温暖，就可以去看更大的世界，人生仍然有无限的可能性。所以到底什么是浪费？我想呢，所谓浪费是。
+
+时间交给别人写的标准答案。评论的最后写道：当你看到夏花绚烂时，不要焦虑于自己仍然是颗笨拙的种子。假以时日，也许你会傲然于枝头，成为无惧风雪的寒樱。
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Hero Section: The Post Context (scroll animated) -->
+        <section class="text-center py-12 mb-8 scroll-animated">
+            <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight text-accent-text relative">
+                <span class="relative z-10">十年，觉醒时刻</span>
+                <span class="absolute -top-4 -right-2 text-2xl font-light text-gray-300 italic transform rotate-2 hidden md:block">The Awakening</span>
+            </h1>
+            <p class="mt-4 text-xl text-gray-500 font-light max-w-3xl mx-auto">
+                从传统的焦虑指标中抽离，找到活着的全新价值。
+            </p>
+        </section>
+
+        <!-- Bento Grid Layout (3 Columns) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- Card 1: Happiness Redefined (Large Focal Text) -->
+            <div class="bento-card relative md:col-span-2 h-96 overflow-hidden scroll-animated" style="transition-delay: 0.1s;">
+                <div class="highlight-gradient-bg gradient-blue"></div>
+                
+                <p class="text-sm font-medium uppercase text-accent-primary">The New Metric of Success</p>
+                <h2 class="mt-2 text-3xl font-bold">活得快乐 也是一种成功</h2>
+                
+                <div class="absolute bottom-6 left-6 right-6">
+                    <!-- Ultra Large Text Element (Requirement 2) -->
+                    <span class="text-[10rem] md:text-[12rem] font-black leading-none opacity-5 text-accent-primary block text-right">JOY</span>
+
+                    <blockquote class="border-l-4 border-accent-primary pl-4 pt-4 text-xl italic text-gray-700 relative -mt-16 md:-mt-20">
+                        <p>中国人认为幸福是基于有，其实不是这样。</p>
+                        <cite class="block mt-2 text-sm font-medium text-gray-500">— 评论精选</cite>
+                    </blockquote>
+                </div>
+                
+                <i class="fas fa-hand-sparkles text-4xl absolute top-8 right-8 text-soft-blue"></i>
+            </div>
+
+            <!-- Card 2: The Traditional Metrics (Lack) -->
+            <div class="bento-card relative h-96 flex flex-col justify-start scroll-animated" style="transition-delay: 0.2s;">
+                 <div class="highlight-gradient-bg gradient-green"></div>
+                <p class="text-sm font-medium uppercase text-gray-500 mb-4">Post Context (22 to 32)</p>
+                <h3 class="text-5xl font-extrabold mb-6 text-red-500">十年三无</h3>
+                
+                <ul class="space-y-4 flex-grow">
+                    <li class="flex items-center text-xl font-semibold text-accent-text">
+                        <i class="fas fa-house-chimney-crack w-8 mr-3 text-red-400"></i> 无房 
+                    </li>
+                     <li class="flex items-center text-xl font-semibold text-accent-text">
+                        <i class="fas fa-car w-8 mr-3 text-red-400"></i> 无车
+                    </li>
+                     <li class="flex items-center text-xl font-semibold text-accent-text">
+                        <i class="fas fa-wallet w-8 mr-3 text-red-400"></i> 无存款
+                    </li>
+                </ul>
+                <p class="text-sm text-gray-500">The metrics of traditional success.</p>
+            </div>
+            
+            <!-- Card 3: Personal Sacrifice/Value (Compensating Childhood) -->
+            <div class="bento-card relative h-72 flex flex-col justify-between scroll-animated" style="transition-delay: 0.3s;">
+                <div>
+                    <i class="fas fa-child text-3xl text-soft-blue mb-2"></i>
+                    <p class="text-sm uppercase text-gray-500">Money Re-evaluated</p>
+                </div>
+                
+                <div class="text-center">
+                    <h3 class="text-4xl font-extrabold text-accent-primary leading-tight">补偿<br>童年</h3>
+                    <p class="mt-3 text-base font-light text-gray-600">让钱体现了它对于你而言最好的价值。</p>
+                </div>
+            </div>
+
+            <!-- Card 4: Tokyo Travel Experience (Focus on memories) -->
+            <div class="bento-card relative md:col-span-2 h-72 overflow-hidden flex items-center justify-between scroll-animated" style="transition-delay: 0.4s;">
+                <div class="highlight-gradient-bg gradient-coral"></div>
+                
+                <div class="relative z-10 p-2">
+                    <p class="text-sm font-medium uppercase text-gray-700">Unmeasurable Happiness</p>
+                    <h3 class="text-2xl font-bold mb-4 text-accent-text">五个月旅居的画面</h3>
+                    <ul class="text-lg space-y-1 mt-4 list-none">
+                        <li class="flex items-center"><i class="fas fa-utensils w-5 mr-2 text-accent-primary"></i> 美食美景</li>
+                        <li class="flex items-center"><i class="fas fa-language w-5 mr-2 text-accent-primary"></i> 日语交流自如</li>
+                        <li class="flex items-center"><i class="fas fa-palette w-5 mr-2 text-accent-primary"></i> 兴趣班圆梦</li>
+                    </ul>
+                </div>
+                
+                <!-- Ultra Large Number (Requirement 2) -->
+                <div class="relative flex items-end h-full pt-10">
+                    <span class="text-[12rem] font-black leading-none text-accent-primary opacity-30 italic">
+                        5
+                    </span>
+                    <span class="text-4xl font-extrabold text-gray-700 relative -ml-8 -mb-4">
+                        <span class="block">MONTHS</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Card 5: The Benefit of No House (Avoiding Loss) -->
+            <div class="bento-card relative h-80 flex flex-col justify-start scroll-animated" style="transition-delay: 0.5s;">
+                 <div class="highlight-gradient-bg gradient-blue"></div>
+                
+                <i class="fas fa-shield-halved text-4xl text-soft-blue mb-4"></i>
+                <h3 class="text-4xl font-bold mb-2 leading-snug">规避暴跌风险</h3>
+                <p class="text-sm uppercase text-gray-500 mb-4">No House, No Loss</p>
+                
+                <p class="text-lg text-gray-700">规避了高价购入到如今暴跌的损失。人生反复无常，拥有可能变成负担。</p>
+                
+                <!-- Simple outline graphic of a falling value -->
+                <div class="mt-4 border-l border-b border-gray-300 h-16 w-full relative p-2">
+                    <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="w-full h-full stroke-red-500" fill="none">
+                        <!-- Line representing price crash -->
+                        <polyline points="0,90 25,20 50,50 75,10 100,70" class="stroke-red-500 stroke-[3] transition duration-1000" stroke-dasharray="200" stroke-dashoffset="0"/>
+                        <circle cx="75" cy="10" r="5" fill="#f87171"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Card 6: The Ultimate Message: Still Alive (Spanning focus) -->
+            <div class="bento-card relative md:col-span-3 h-[400px] flex items-center justify-center overflow-hidden scroll-animated" style="transition-delay: 0.6s;">
+                <div class="highlight-gradient-bg" style="opacity: 0.15; background: radial-gradient(circle at center, var(--color-highlight), transparent 60%);"></div>
+                
+                <!-- Massive Text (Requirement 2 & 5: Tech Gradient) -->
+                <div class="relative z-10 text-center">
+                    <p class="text-4xl font-light text-gray-500 tracking-wider mb-4">“你才三十二岁”</p>
+                    
+                    <h2 class="text-[14rem] md:text-[20rem] font-extrabold leading-none text-transparent bg-clip-text" style="background-image: linear-gradient(120deg, var(--color-highlight) 30%, #a8c0ff 70%);">
+                        活著
+                    </h2>
+                    
+                    <p class="text-xl md:text-3xl font-bold mt-4 text-accent-text relative -top-10">
+                        <span class="text-gray-500 italic">You Are Still Alive.</span> 力量无穷。
+                    </p>
+                    <p class="text-lg text-gray-600">
+                        享受阳光，看更大的世界，人生仍然有无限的可能性。
+                    </p>
+                </div>
+                
+                <i class="fas fa-sun text-[15rem] absolute opacity-5 text-accent-primary top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></i>
+            </div>
+            
+             <!-- Card 7: Environmental Benefit (Small) -->
+            <div class="bento-card relative h-60 flex flex-col justify-center scroll-animated" style="transition-delay: 0.7s;">
+                <i class="fas fa-route text-3xl text-soft-green mb-3"></i>
+                <p class="text-sm uppercase text-gray-500 mb-2">Benefit 2</p>
+                <h3 class="text-4xl font-bold mb-4 leading-snug">环保贡献</h3>
+                
+                <p class="text-base text-gray-700">
+                    无车，我们全单位环保出了一份小小的礼。
+                </p>
+            </div>
+
+            <!-- Card 8: The Definition of Waste (Quote Punchline) -->
+            <div class="bento-card relative h-60 flex flex-col justify-center scroll-animated" style="transition-delay: 0.8s;">
+                <p class="text-sm font-medium uppercase text-gray-500 mb-2">What is Waste?</p>
+                <h3 class="text-xl font-bold mb-4">所谓浪费是：</h3>
+                
+                <p class="text-4xl font-extrabold text-accent-text">
+                    <span class="text-accent-primary">时间</span>交给<br>别人写的标准答案。
+                </p>
+            </div>
+
+            <!-- Card 9: The Conclusion/Metaphor (Seed & Sakura) -->
+            <div class="bento-card relative h-60 flex flex-col justify-center scroll-animated" style="transition-delay: 0.9s;">
+                <p class="text-sm font-medium uppercase text-gray-500 mb-2">Final Metaphor</p>
+                <h3 class="text-4xl font-bold mb-4">笨拙的种子</h3>
+                
+                <p class="text-base italic text-gray-700">
+                    当你看到夏花绚烂时，不要焦虑于自己仍然是颗笨拙的种子。<br>
+                    <span class="font-semibold">假以时日，成为无惧风雪的寒樱。</span>
+                </p>
+                <i class="fas fa-mountain-sun text-6xl absolute -bottom-4 -right-4 text-gray-200 opacity-60 transform rotate-12"></i>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- JavaScript for Toggle Functionality and Scroll Animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.getElementById('toggleOriginal');
+            const originalContent = document.getElementById('originalContent');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            // 1. Toggle Functionality
+            toggleButton.addEventListener('click', function() {
+                const isHidden = originalContent.classList.contains('hidden');
+                
+                if (isHidden) {
+                    originalContent.classList.remove('hidden');
+                    toggleIcon.classList.remove('fa-chevron-down');
+                    toggleIcon.classList.add('fa-chevron-up');
+                    toggleButton.firstChild.textContent = '隐藏原文 ';
+                } else {
+                    originalContent.classList.add('hidden');
+                    toggleIcon.classList.remove('fa-chevron-up');
+                    toggleIcon.classList.add('fa-chevron-down');
+                    toggleButton.firstChild.textContent = '显示原文 ';
+                }
+            });
+
+            // 2. Apple-like Scroll Animations (Intersection Observer)
+            const animatedElements = document.querySelectorAll('.scroll-animated');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    } 
+                    // To keep the effect cleaner for a single-screen layout intention, we only reveal elements. 
+                });
+            }, observerOptions);
+
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Initial check for elements already in viewport on load
+            document.querySelectorAll('.scroll-animated').forEach(el => {
+                if (el.getBoundingClientRect().top < (window.innerHeight - 50)) {
+                     el.classList.add('is-visible');
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>

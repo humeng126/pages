@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《被讨厌的勇气》：付出与回应</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Tailwind Configuration for Soft Aesthetics -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'soft-bg': '#FDFCFB', // Very light off-white
+                        'pastel-lavender': '#E5E0F9',
+                        'accent-purple': '#9370DB', // Medium light purple
+                        'accent-teal': '#67D9C4',   // Soft aqua/mint
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px) scale(0.98)' },
+                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+                        },
+                        pulseGlow: {
+                             '0%, 100%': { 'box-shadow': '0 0 10px rgba(147, 112, 219, 0.4), 0 0 20px rgba(103, 217, 196, 0.1)' },
+                             '50%': { 'box-shadow': '0 0 15px rgba(147, 112, 219, 0.6), 0 0 30px rgba(103, 217, 196, 0.2)' },
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'pulse-glow': 'pulseGlow 3s infinite ease-in-out',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Scroll Animation CSS -->
+    <style>
+        .bento-item {
+            /* Common styles for the soft bento cell */
+            background-color: white;
+            border: 1px solid #f0f0f0;
+            border-radius: 20px;
+            padding: 30px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            opacity: 0; /* Default hidden for JS animation */
+            will-change: transform, opacity;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Specific style for glowing effect using pseudo-elements */
+        .glowing-text {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Gradient overlay that simulates tech glow, transparent to pastel */
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        /* Hide content that is out of view for initial setup */
+        .hidden-until-scroll {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+        }
+    </style>
+
+</head>
+<body class="bg-soft-bg min-h-screen text-gray-800 antialiased font-sans">
+
+    <!-- Metadata Section -->
+    <header class="max-w-7xl mx-auto p-6 md:p-8 pt-10">
+        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm mb-6">
+            <h1 class="text-xl md:text-2xl font-bold text-accent-purple mb-1 leading-snug">
+                视频标题: 《被讨厌的勇气》：我们90%的烦恼，都是因为付出得不到回报
+            </h1>
+            <p class="text-lg italic text-gray-600 mb-2">
+                “付出与回应，从来不是因果关系。”
+            </p>
+            <div class="flex flex-wrap text-sm text-gray-500 space-x-2">
+                <span class="font-medium">#文学</span>
+                <span class="font-medium">#好书推荐</span>
+                <span class="font-medium">#成长</span>
+                <span class="font-medium">#情感共鸣</span>
+            </div>
+            <div class="text-xs text-gray-400 mt-2">
+                <p>视频链接: <a href="https://v.douyin.com/gEE2MH4erPc/" target="_blank" class="hover:underline text-accent-purple/80">https://v.douyin.com/gEE2MH4erPc/</a></p>
+                <p>提取时间: 2025-12-28 04:59:44</p>
+            </div>
+        </div>
+
+        <!-- Toggle Button for Source Text -->
+        <button id="toggle-source-btn" class="text-sm font-medium py-2 px-4 rounded-full border border-accent-purple text-accent-purple hover:bg-pastel-lavender/50 transition duration-300">
+            <i class="fas fa-file-alt mr-2"></i>
+            显示原文
+        </button>
+
+        <!-- Source Text Area (Default Hidden) -->
+        <div id="source-content" class="mt-4 p-4 bg-pastel-lavender/40 border border-pastel-lavender rounded-xl text-gray-700 hidden">
+            <h4 class="font-bold mb-2">抖音视频原文：</h4>
+            <p class="text-sm leading-relaxed whitespace-pre-line">
+                分之九十的烦恼都是因为付出得不到回报。今天分享《被讨厌的勇气》。你可以选择对别人好，但不能要求别人同样对你好。你如何待人是你的品格，别人如何待你那是他的课题。这从来不是因果关系，而是两条平行线。看不透这一点，只会徒增烦恼。你越把被回应当做付出的奖赏，就越容易在别人的沉默里撕扯自己。真正折磨你的从来不是任何人的绝情，而是你心怀幻想的期待。记住，爱人先爱己。
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Bento Grid Layout -->
+    <main class="max-w-7xl mx-auto p-6 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
+            
+            <!-- 1. The 90% Pain Point -->
+            <div id="item-1" class="bento-item md:col-span-2 relative glowing-bento bg-pastel-lavender/30">
+                 <!-- Gradient Glow Effect -->
+                <div class="gradient-overlay opacity-50" style="background: radial-gradient(circle at top right, rgba(147, 112, 219, 0.2), transparent 70%);"></div>
+
+                <div class="flex flex-col h-full justify-between">
+                    <p class="text-3xl font-light text-gray-600 mb-4 tracking-wider">
+                        The majority of frustration stems from unreciprocated effort.
+                    </p>
+                    <div class="glowing-text">
+                         <span class="text-[12rem] md:text-[18rem] lg:text-[20rem] font-extrabold leading-none text-accent-purple opacity-90 transition duration-500 hover:opacity-100">
+                            90
+                        </span>
+                        <span class="text-6xl font-bold text-gray-800 ml-4 align-top">%</span>
+                        <div class="text-4xl md:text-5xl font-black text-gray-900 mt-[-50px] leading-tight ml-4 absolute bottom-0 right-8">
+                             <i class="fas fa-hand-holding-usd text-accent-teal mr-3"></i> 烦恼源
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. The Key Concept / Book Title -->
+            <div id="item-2" class="bento-item flex flex-col justify-center items-center bg-white">
+                 <i class="fas fa-book-open text-accent-teal text-6xl mb-4 animate-pulse-glow"></i>
+                <h2 class="text-5xl font-black text-gray-800 mb-2 leading-snug text-center">
+                    被讨厌的勇气
+                </h2>
+                <p class="text-sm text-gray-500 italic mt-2">The Courage to Be Disliked</p>
+            </div>
+
+            <!-- 3. Parallel Lines - Task Separation (2x Row Height visual) -->
+            <div id="item-3" class="bento-item md:row-span-2 flex flex-col justify-between items-start bg-pastel-lavender/40 relative">
+                <div class="gradient-overlay opacity-30" style="background: linear-gradient(135deg, rgba(103, 217, 196, 0.2), transparent 50%);"></div>
+                
+                <div class="glowing-text relative z-20">
+                    <p class="text-xs uppercase tracking-widest text-gray-600 mb-3">Adlerian Psychology</p>
+                    <h3 class="text-4xl font-extrabold text-gray-900 leading-tight mb-6">
+                        品格 vs 课题
+                    </h3>
+                    <p class="text-lg md:text-xl font-medium text-gray-700">
+                        你如何待人，是<span class="text-accent-purple font-bold">你的品格</span>。<br>
+                        别人如何待你，是<span class="text-accent-teal font-bold">他的课题</span>。
+                    </p>
+                </div>
+
+                <!-- Abstract Visual: Parallel Lines SVG-like drawing -->
+                <svg viewBox="0 0 300 150" class="w-full mt-8 opacity-70">
+                    <path d="M 10 30 L 290 30" stroke="#9370DB" stroke-width="4" fill="none" stroke-dasharray="8, 4"/>
+                    <path d="M 10 120 L 290 120" stroke="#67D9C4" stroke-width="4" fill="none" stroke-dasharray="8, 4"/>
+                    <text x="30" y="45" font-size="14" fill="#9370DB" font-weight="bold">YOUR TASK (Ethics)</text>
+                    <text x="170" y="110" font-size="14" fill="#67D9C4" font-weight="bold" text-anchor="end">HIS TASK (Response)</text>
+                    <text x="150" y="78" font-size="20" fill="#4B5563" font-weight="bold" text-anchor="middle">≠ 因果关系 (Causality)</text>
+                </svg>
+            </div>
+
+            <!-- 4. The Expectation Trap (Horizontal Bar) -->
+            <div id="item-4" class="bento-item md:col-span-2 bg-white flex items-center p-8 relative">
+                 <div class="absolute inset-0 bg-accent-purple/5 opacity-50 z-0"></div>
+
+                 <i class="fas fa-star-half-alt text-7xl text-accent-purple/70 mr-8 z-10"></i>
+                
+                 <div class="z-10">
+                    <h3 class="text-5xl font-black text-gray-900 mb-2 leading-tight">
+                        心怀幻想的期待
+                    </h3>
+                    <p class="text-lg font-light text-gray-700">
+                        真正折磨你的从来不是任何人的绝情，而是你<span class="font-semibold text-accent-purple">心怀幻想的期待</span>。
+                    </p>
+                </div>
+            </div>
+
+             <!-- 5. Visualization: Pay/Receive Gap -->
+            <div id="item-5" class="bento-item md:col-span-1 bg-white relative">
+                <div class="gradient-overlay opacity-30" style="background: radial-gradient(circle at center, rgba(147, 112, 219, 0.1), transparent 80%);"></div>
+
+                <p class="text-base font-semibold text-gray-500 mb-4 uppercase">
+                    Unbalanced Reciprocity Gap
+                </p>
+
+                <!-- Conceptual Bar Chart -->
+                <div class="flex items-end h-32 space-x-4">
+                    <!-- Pay/Effort Bar -->
+                    <div class="w-1/3 h-full bg-accent-teal/60 rounded-lg shadow-md flex flex-col justify-end overflow-hidden">
+                        <div class="text-xs font-bold text-white p-1 text-center bg-accent-teal">付出 (Giving)</div>
+                        <div class="flex-grow"></div>
+                        <div class="text-3xl font-black text-white p-1 text-center">100%</div>
+                    </div>
+
+                    <!-- Receive/Return Bar -->
+                    <div class="w-1/3 h-1/2 bg-accent-purple/60 rounded-lg shadow-md flex flex-col justify-end overflow-hidden">
+                        <div class="text-xs font-bold text-white p-1 text-center bg-accent-purple">回报 (Receiving)</div>
+                        <div class="flex-grow"></div>
+                         <div class="text-3xl font-black text-white p-1 text-center">40%</div>
+                    </div>
+                </div>
+
+                <p class="text-sm italic text-red-400 mt-4 flex items-center">
+                    <i class="fas fa-exclamation-triangle mr-2"></i> 回报的空缺，造成情绪的撕扯。
+                </p>
+            </div>
+
+            <!-- 6. Conclusion: Love Self First -->
+            <div id="item-6" class="bento-item md:col-span-2 flex flex-col justify-center items-center text-center bg-pastel-lavender/60 border-2 border-accent-purple/30 animation-pulse-glow relative">
+                <div class="absolute inset-0 bg-white/20 backdrop-blur-sm z-0"></div>
+                <div class="relative z-10">
+                    <i class="fas fa-heart text-7xl text-accent-purple mb-4"></i>
+                    <h2 class="text-7xl font-extrabold text-gray-900 mb-4 leading-none">
+                        爱人先爱己
+                    </h2>
+                    <p class="text-xl font-medium text-gray-700 uppercase tracking-widest">
+                        Love others, but start with yourself.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    
+    <!-- Footer/Space -->
+    <div class="h-16"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('toggle-source-btn');
+            const sourceContent = document.getElementById('source-content');
+            
+            // Toggle Source Content Visibility
+            toggleBtn.addEventListener('click', () => {
+                const isHidden = sourceContent.classList.contains('hidden');
+                if (isHidden) {
+                    sourceContent.classList.remove('hidden');
+                    toggleBtn.innerHTML = '<i class="fas fa-file-alt mr-2"></i> 隐藏原文';
+                } else {
+                    sourceContent.classList.add('hidden');
+                    toggleBtn.innerHTML = '<i class="fas fa-file-alt mr-2"></i> 显示原文';
+                }
+            });
+
+            // Intersection Observer for Scroll Animations (Apple Effect)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Apply animation classes
+                        entry.target.style.animation = 'fade-in-up 0.8s ease-out forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Select all bento items
+            const bentoItems = document.querySelectorAll('.bento-item');
+            bentoItems.forEach(item => {
+                observer.observe(item);
+            });
+            
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>治愈的活法：宏大与微小</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* Custom Tailwind Configuration (Soft Colors, Shadows) */
+        :root {
+            --color-soft-bg: #f9fafb; /* Light Gray/Off-White */
+            --color-primary-text: #374151; /* Dark Gray */
+            --color-highlight-macro: #a5b4fc; /* Soft Blue */
+            --color-highlight-micro: #fbcfe8; /* Soft Pink */
+            --color-border: #e5e7eb;
+        }
+
+        body {
+            background-color: var(--color-soft-bg);
+            color: var(--color-primary-text);
+            font-family: 'Helvetica Neue', 'Arial', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .bento-card {
+            border: 1px solid var(--color-border);
+            border-radius: 1.5rem; /* 24px */
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease-in-out;
+            background: rgba(255, 255, 255, 0.7);
+            overflow: hidden;
+        }
+
+        /* Apple Style Scroll Animation - Initial State */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+        }
+
+        /* Apple Style Scroll Animation - Active State */
+        .animated {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Gradient Overlay for Tech Feel (Using ::before for clean implementation) */
+        .gradient-effect-macro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: radial-gradient(circle at 10% 90%, rgba(165, 180, 252, 0.3) 0%, transparent 40%); /* Soft Blue Gradient */
+            pointer-events: none;
+            z-index: 0;
+        }
+        .gradient-effect-micro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: radial-gradient(circle at 90% 10%, rgba(251, 207, 232, 0.3) 0%, transparent 40%); /* Soft Pink Gradient */
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .huge-number {
+            font-size: 10rem; /* Adjusted for single screen visibility */
+            line-height: 0.8;
+            font-weight: 900;
+            opacity: 0.15;
+            color: var(--color-primary-text);
+            position: absolute;
+            bottom: -0.5rem;
+            right: 0.5rem;
+            z-index: 1;
+        }
+        
+        /* Line Art Styling */
+        .line-art-icon {
+            color: transparent;
+            border: 4px solid var(--color-primary-text);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            position: relative;
+        }
+        .line-art-icon i {
+            color: var(--color-primary-text);
+            font-size: 2rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'soft-blue': '#a5b4fc',
+                        'soft-pink': '#fbcfe8',
+                        'soft-gray': '#f3f4f6',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="p-8 md:p-12 min-h-screen flex flex-col">
+
+    <!-- Metadata Header -->
+    <header class="mb-8 border-b pb-4">
+        <h1 class="text-3xl font-bold mb-2 text-gray-800">允许自己做天地间的一粒尘埃，也允许自己为一碗热汤面热泪盈眶。</h1>
+        <p class="text-xl font-medium mb-3 text-gray-600">把世界当成游乐场，大处看风景，小处过生活。</p>
+        <div class="text-sm text-gray-500 flex flex-wrap gap-4">
+            <span><i class="fas fa-tag mr-1"></i> #个人成长 #成长型思维 #记录我的生活 #治愈</span>
+            <span><i class="fas fa-link mr-1"></i> <a href="https://v.douyin.com/izN_-TPz1Hg/" target="_blank" class="hover:text-soft-blue transition">视频链接</a></span>
+            <span><i class="fas fa-clock mr-1"></i> 提取时间: 2025-12-28 07:56:24</span>
+        </div>
+
+        <!-- Collapsible Text Button -->
+        <button id="toggle-original" class="mt-4 text-soft-blue hover:text-indigo-600 text-sm font-semibold transition duration-300">
+            <i class="fas fa-chevron-down mr-1"></i> 显示原文
+        </button>
+        <div id="original-content" class="mt-4 p-4 bg-white/50 border border-gray-200 rounded-lg text-sm text-gray-700 leading-relaxed" style="display: none;">
+            <!-- Full Original Text Content -->
+            用宏大的世界稀释痛苦，用微小的事情感知幸福。不知道大家最近有没有刷到这句话？我这次出来旅行，我感觉自己像被这种感觉洗了一遍。我就发现人真的很奇怪啊，就是只要一离开熟悉的环境，然后那些把你困在原地的，让你夜里睡不着的焦虑，好像突然就被抛到脑后去了。我以前也不懂啊，就是为什么有那么多的人到了周末就像疯了一样的要去爬山、去看海、去徒步。为什么当我们站在那些巨大的雪山、无边的旷野面前，就会忍不住想哭？现在我懂了，就是一种被物理的宏大降维的治愈的感觉。当我们把自己扔进那个宏大的世界里，当你的视线被拉的无限的长、无限的远的时候，你就会突然发现，这个巨大的坐标系里，我此时此刻的这一点痛苦，真的连一粒灰尘都算不上。这个宏大它有可能不光是风景，它更是一种抽象的时间和空间感。仔细想想啊，山川湖海存在了有上亿年，他们见过无数人的悲欢离合，他们不在乎你的K P I，不在乎你失恋了没有，他们就在那里沉默又包容。当你把生命拉长到几十年的跨度，或者横向去看这个地球上几十亿人的生活，你就会发现有人正在经历比你严峻的更多的寒冬，但是他们依旧在生火取暖。这种比较不是在比惨，就是让你觉得很宽慰，原来我也只是这个天地间的一个过客，天地都包容了我，我为什么不能放过我自己呢？也就是在这样的瞬间，压抑了很久的情绪就像找到了出口一样，我们终于可以毫无顾忌的去释放了。这就是为什么很多人说我们需要去见天地，因为见天地最终是为了见自己，然后接纳自己。但是假如我们一直在盯着宏大的东西看，人有时候就会觉得很空虚，觉得自己实在是太渺小了，好像做什么都没有意义。这时候就非常的需要后半段，就是用微小的事情感知幸福。宏大是用来帮我们忘掉痛苦的，而微小是帮我们抓住当下的。就当你觉得内心空落落的时候，可以试着去做一件极度具体的小事情，就不需要有多难，可能就是今天出门刚好在路边遇到了一只冲你摇尾巴的小狗，或者是早上醒来看到阳光正好打在那碗热腾腾的面条上，那种升起来的白雾，那种实实在在的烟火气。
+
+            你就会突然觉得，哇，原来生活还是热乎的，原来我还是被这个世界爱着的。然后就让我想起来詹青云之前有说过，就是有一次当他拎着一个沉重的袋子走在那个路上的时候，然后他当时就哭了，他就在想，到底有什么值得的事情，到底有什么要紧的事情值得我去错过三餐和四季。就是那种你的感官全部都打开了，你聚焦在此刻的那种幸福感。那在宏大的空间里呢，我们其实很容易飘，但是在微小的事物里，我们能找到锚点，稳稳的扎根进去。所以啊，幸福其实它不需要很高的门槛，如果你现在正陷在痛苦里出不来，觉得生活实在是太拥挤了，试着去把视角拉远，去旅行，去读书，去和不同的人聊一聊，去看看那个更辽阔更丰富的世界，拓宽你认知的边界，你就会发现烦恼真的变小了。把世界当成游乐场，大处看风景，小处过生活，这就是我最近悟到的最治愈的活法。
+        </div>
+    </header>
+
+    <!-- Bento Grid Container -->
+    <main class="grid md:grid-cols-4 grid-rows-2 gap-6 flex-grow">
+
+        <!-- Cell 1: 宏大：物理降维的治愈 (Macro Healing) -->
+        <div class="bento-card relative md:col-span-2 row-span-1 p-8 flex flex-col justify-between animate-on-scroll" data-delay="100">
+            <div class="gradient-effect-macro absolute inset-0 z-0"></div>
+            <p class="text-sm font-light text-gray-500 z-10">THE MACRO HEALING EFFECT</p>
+            <h2 class="text-6xl md:text-8xl lg:text-[10rem] font-extrabold leading-none text-soft-blue opacity-80 mt-4 z-10">宏大</h2>
+            <div class="relative mt-auto z-10">
+                <p class="text-xl md:text-2xl font-bold mb-2">宏大世界稀释痛苦</p>
+                <p class="text-sm text-gray-600">物理宏大降维的治愈：当你把自己扔进那个巨大的坐标系里，痛苦连一粒灰尘都算不上。</p>
+            </div>
+            <div class="huge-number text-soft-blue opacity-20">∞</div>
+        </div>
+
+        <!-- Cell 2: 微小：抓住当下 (Micro Anchor) -->
+        <div class="bento-card relative md:col-span-1 row-span-1 p-8 flex flex-col justify-start animate-on-scroll" data-delay="300">
+            <div class="gradient-effect-micro absolute inset-0 z-0"></div>
+             <p class="text-sm font-light text-gray-500 z-10">THE MICRO ANCHOR</p>
+            <div class="relative mt-8 z-10">
+                <div class="line-art-icon mb-4 transform scale-150">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h2 class="text-4xl font-extrabold mt-4 leading-tight text-gray-800">烟火气</h2>
+                <p class="text-xs text-soft-pink tracking-widest uppercase mt-1">SMELL THE PRESENT</p>
+            </div>
+            <p class="text-sm text-gray-600 mt-4 z-10">热腾腾的面条，冲你摇尾巴的小狗。微小是用来抓住当下的。</p>
+        </div>
+
+        <!-- Cell 3: 抽象的时间与空间感 (Abstract Perspective) -->
+        <div class="bento-card relative md:col-span-1 row-span-1 p-8 flex flex-col justify-center text-center animate-on-scroll" data-delay="500">
+             <p class="text-sm font-light text-gray-500 mb-4 z-10">TEMPORAL PERSPECTIVE</p>
+            <h3 class="text-xl md:text-2xl font-bold mb-4 z-10">山川湖海，沉默又包容</h3>
+            <div class="relative z-10">
+                <!-- Large contrasted element: Millions of years -->
+                <p class="text-[4rem] md:text-[5rem] font-black leading-none text-gray-800 opacity-20">亿年</p>
+            </div>
+            <p class="text-sm text-gray-600 mt-4 z-10">他们见过无数人的悲欢离合，不在乎你的KPI，只会包容你。</p>
+            <p class="text-xs tracking-wider mt-2 text-soft-blue uppercase">AGELESS COMFORT</p>
+        </div>
+
+        <!-- Cell 4: 见天地，见自己 (Finding Self) -->
+        <div class="bento-card relative md:col-span-2 row-span-1 p-8 flex flex-col justify-center animate-on-scroll" data-delay="700">
+            <p class="text-sm font-light text-gray-500 z-10">MEETING THE SELF</p>
+            <h3 class="text-3xl font-bold mb-4 z-10">见天地最终是为了<span class="text-soft-blue">见自己</span></h3>
+            <div class="flex items-end mt-4">
+                <span class="text-8xl font-black text-gray-800 opacity-10 leading-tight">SELF</span>
+                <p class="ml-4 text-xl font-medium z-10">天地都包容了我，我为什么不能放过我自己呢？</p>
+            </div>
+            <p class="text-sm text-gray-600 mt-4 z-10">在宏大中释放压抑的情绪，然后接纳自己。</p>
+            <div class="absolute bottom-4 right-4 text-gray-300 transform scale-150 z-0">
+                 <i class="fas fa-globe"></i>
+            </div>
+        </div>
+
+        <!-- Cell 5: The Ultimate Takeaway (Lived Philosophy) -->
+        <div class="bento-card relative md:col-span-2 row-span-1 p-8 flex flex-col justify-center bg-white shadow-xl animate-on-scroll" data-delay="900">
+            <div class="absolute inset-0 z-0" style="background: linear-gradient(135deg, rgba(251, 207, 232, 0.2) 0%, rgba(165, 180, 252, 0.2) 100%);"></div>
+            <p class="text-sm font-light text-gray-500 z-10 mb-4">THE CURED LIFE PHILOSOPHY</p>
+            <h2 class="text-5xl md:text-7xl font-extrabold leading-tight text-gray-800 z-10">
+                <span class="text-soft-blue">大处</span>看风景
+            </h2>
+            <h2 class="text-3xl md:text-5xl font-bold leading-tight text-gray-700 mt-2 z-10">
+                <span class="text-soft-pink">小处</span>过生活
+            </h2>
+            <p class="text-lg mt-6 font-medium text-gray-600 z-10">把世界当成游乐场，拓宽你认知的边界，烦恼真的变小了。</p>
+        </div>
+
+    </main>
+
+    <script>
+        // JavaScript for Collapsible Text
+        document.getElementById('toggle-original').addEventListener('click', function() {
+            const content = document.getElementById('original-content');
+            const button = this;
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+                button.innerHTML = '<i class="fas fa-chevron-up mr-1"></i> 隐藏原文';
+            } else {
+                content.style.display = 'none';
+                button.innerHTML = '<i class="fas fa-chevron-down mr-1"></i> 显示原文';
+            }
+        });
+
+        // JavaScript for Intersection Observer (Apple-style scroll animations)
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = entry.target.getAttribute('data-delay') || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('animated');
+                        }, parseInt(delay));
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1, // Trigger when 10% of the item is visible
+                rootMargin: "0px 0px -10% 0px" // Start a bit sooner than the viewport bottom
+            });
+
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
+
+</body>
+</html>
