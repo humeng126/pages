@@ -234,8 +234,10 @@
 
         /* 优化后的卡片样式 - 条件性应用backdrop-filter */
         .file-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.12);
             border-radius: var(--border-radius);
             padding: 24px;
             transition: all var(--transition-normal) cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -244,22 +246,27 @@
             cursor: pointer;
         }
 
-        /* 仅在支持的设备上启用backdrop-filter */
-        @supports (backdrop-filter: blur(10px)) {
-            .file-item {
-                background: rgba(255,255,255,0.06);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-            }
+        /* 渐变边框效果 */
+        .file-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 1px;
+            background: linear-gradient(135deg,
+                rgba(102,126,234,0.5),
+                rgba(240,147,251,0.2),
+                rgba(120,219,226,0.3));
+            border-radius: var(--border-radius);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+            pointer-events: none;
         }
 
-        /* 移动设备禁用backdrop-filter */
-        @media (max-width: 768px) {
-            .file-item {
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-                background: var(--bg-card);
-            }
+        .file-item:hover::before {
+            opacity: 1;
         }
 
         /* 优化后的伪元素 - 仅保留一个用于光线效果 */
@@ -283,12 +290,11 @@
         /* 合并伪元素效果到hover状态 */
         .file-item:hover {
             transform: translateY(-8px) scale(1.02);
-            background: var(--bg-card-hover);
-            border-color: var(--border-color-hover);
+            background: rgba(255,255,255,0.10);
+            border-color: rgba(102,126,234,0.3);
             box-shadow:
-                var(--shadow-md),
-                var(--shadow-glow),
-                var(--shadow-glow-hover);
+                0 20px 40px rgba(0,0,0,0.3),
+                0 0 40px rgba(102,126,234,0.15);
         }
 
         .file-item a {
@@ -379,6 +385,123 @@
             }
         }
 
+        /* 阶梯式进入动画 */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .file-item {
+            animation: slideInUp 0.5s ease-out backwards;
+        }
+
+        /* 为不同卡片添加延迟，创造阶梯效果 */
+        .file-item:nth-child(1) { animation-delay: 0ms; }
+        .file-item:nth-child(2) { animation-delay: 50ms; }
+        .file-item:nth-child(3) { animation-delay: 100ms; }
+        .file-item:nth-child(4) { animation-delay: 150ms; }
+        .file-item:nth-child(5) { animation-delay: 200ms; }
+        .file-item:nth-child(6) { animation-delay: 250ms; }
+        .file-item:nth-child(7) { animation-delay: 300ms; }
+        .file-item:nth-child(8) { animation-delay: 350ms; }
+
+        /* ==================== 搜索容器样式 ==================== */
+        .search-container {
+            background: rgba(15, 12, 41, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: var(--spacing-md) 0;
+            margin: calc(var(--spacing-xl) * -1) calc(var(--spacing-md) * -1) var(--spacing-md) calc(var(--spacing-md) * -1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 50px 16px 20px;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: all var(--transition-normal);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: rgba(255,255,255,0.12);
+            box-shadow: 0 0 0 4px rgba(102,126,234,0.1);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .search-results-count {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: var(--spacing-sm);
+            font-size: 14px;
+            min-height: 20px;
+        }
+
+        .search-results-count em {
+            color: var(--accent-color);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .search-results-count strong {
+            color: var(--highlight-color);
+        }
+
+        /* 搜索高亮样式 */
+        .search-highlight {
+            background: linear-gradient(120deg,
+                rgba(102,126,234,0.4) 0%,
+                rgba(240,147,251,0.4) 100%);
+            color: #fff;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        /* 移动端搜索优化 */
+        @media (max-width: 768px) {
+            .search-container {
+                padding: var(--spacing-sm) 0;
+            }
+
+            .search-input {
+                padding: 14px 45px 14px 16px;
+                font-size: 15px;
+            }
+        }
+
         /* ==================== 移动端触摸优化 ==================== */
         .touch-device .file-item:hover {
             transform: none !important;
@@ -386,10 +509,156 @@
         .touch-device .file-item:active {
             transform: scale(0.98) !important;
         }
+
+        /* ==================== 移动端菜单按钮 ==================== */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            z-index: 1001;
+            flex-direction: column;
+            gap: 6px;
+            padding: 14px 12px;
+            transition: all var(--transition-fast);
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .hamburger-line {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: all var(--transition-normal);
+            transform-origin: center;
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* 侧边栏遮罩 */
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-normal);
+            z-index: 999;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 移动端显示菜单按钮 */
+        @media (max-width: 1200px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+        }
+
+        /* ==================== 返回顶部按钮 ==================== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all var(--transition-normal);
+            box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(102,126,234,0.6);
+        }
+
+        .back-to-top:active {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+                font-size: 20px;
+            }
+        }
     </style>
 </head>
 <body>
+<!-- 移动端菜单按钮 -->
+<button class="mobile-menu-btn" aria-label="打开菜单" aria-expanded="false">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+</button>
+
+<!-- 侧边栏遮罩 -->
+<div class="sidebar-overlay"></div>
+
 <div class="container" role="main">
+    <!-- 搜索容器 -->
+    <div class="search-container">
+        <div class="search-box">
+            <input
+                type="text"
+                id="searchInput"
+                class="search-input"
+                placeholder="搜索文章标题、分类关键词..."
+                aria-label="搜索文章"
+                autocomplete="off"
+            >
+            <span class="search-icon">🔍</span>
+        </div>
+        <div class="search-results-count" id="searchResultsCount"></div>
+    </div>
+
     <!-- 文件统计区域 -->
     <div class="stats" role="region" aria-label="文件统计">
         <div class="left">
@@ -613,8 +882,164 @@
     </main>
 </div>
 
+<!-- 返回顶部按钮 -->
+<button class="back-to-top" id="backToTop" aria-label="返回顶部">↑</button>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // ==================== 搜索功能 ====================
+        class ArticleSearch {
+            constructor() {
+                this.articles = this.extractArticles();
+                this.searchInput = document.getElementById('searchInput');
+                this.resultsCount = document.getElementById('searchResultsCount');
+                this.debounceTimer = null;
+                this.init();
+            }
+
+            extractArticles() {
+                const articles = [];
+                const sections = document.querySelectorAll('.section');
+
+                sections.forEach(section => {
+                    const sectionTitle = section.querySelector('.section-title')?.textContent.trim();
+                    if (!sectionTitle) return;
+
+                    const subsections = section.querySelectorAll('.subsection');
+
+                    if (subsections.length > 0) {
+                        // 有子分类的情况
+                        subsections.forEach(sub => {
+                            const subSectionTitle = sub.querySelector('.subsection-title')?.textContent.trim();
+                            sub.querySelectorAll('.file-item').forEach(item => {
+                                const link = item.querySelector('a');
+                                if (link) {
+                                    articles.push({
+                                        title: link.textContent.trim(),
+                                        url: link.getAttribute('href'),
+                                        category: sectionTitle,
+                                        subcategory: subSectionTitle,
+                                        element: item,
+                                        originalHTML: link.innerHTML
+                                    });
+                                }
+                            });
+                        });
+                    } else {
+                        // 直接子文章
+                        section.querySelectorAll('.file-item').forEach(item => {
+                            const link = item.querySelector('a');
+                            if (link) {
+                                articles.push({
+                                    title: link.textContent.trim(),
+                                    url: link.getAttribute('href'),
+                                    category: sectionTitle,
+                                    subcategory: null,
+                                    element: item,
+                                    originalHTML: link.innerHTML
+                                });
+                            }
+                        });
+                    }
+                });
+
+                return articles;
+            }
+
+            init() {
+                if (!this.searchInput) return;
+
+                this.searchInput.addEventListener('input', (e) => {
+                    const query = e.target.value;
+                    clearTimeout(this.debounceTimer);
+                    this.debounceTimer = setTimeout(() => {
+                        this.search(query);
+                    }, 300);
+                });
+            }
+
+            search(query) {
+                if (!query || query.trim().length === 0) {
+                    return this.resetDisplay();
+                }
+
+                const searchTerms = query.toLowerCase().split(/\s+/).filter(term => term.length > 0);
+                let matchCount = 0;
+
+                this.articles.forEach(article => {
+                    const titleLower = article.title.toLowerCase();
+                    const categoryLower = article.category.toLowerCase();
+                    const subcategoryLower = article.subcategory ? article.subcategory.toLowerCase() : '';
+
+                    const match = searchTerms.some(term =>
+                        titleLower.includes(term) ||
+                        categoryLower.includes(term) ||
+                        subcategoryLower.includes(term)
+                    );
+
+                    if (match) {
+                        article.element.style.display = '';
+                        this.highlightArticle(article, searchTerms);
+                        matchCount++;
+                    } else {
+                        article.element.style.display = 'none';
+                    }
+                });
+
+                this.hideEmptySections();
+                this.updateResultsCount(matchCount, query);
+            }
+
+            highlightArticle(article, searchTerms) {
+                const link = article.element.querySelector('a');
+                let html = article.title;
+
+                searchTerms.forEach(term => {
+                    const regex = new RegExp(`(${this.escapeRegExp(term)})`, 'gi');
+                    html = html.replace(regex, '<mark class="search-highlight">$1</mark>');
+                });
+
+                link.innerHTML = html;
+            }
+
+            hideEmptySections() {
+                // 隐藏没有匹配文章的section
+                document.querySelectorAll('.section, .subsection').forEach(container => {
+                    const visibleItems = container.querySelectorAll('.file-item:not([style*="display: none"])');
+                    container.style.display = visibleItems.length > 0 ? '' : 'none';
+                });
+            }
+
+            updateResultsCount(count, query) {
+                if (count > 0) {
+                    this.resultsCount.innerHTML = `找到 <strong>${count}</strong> 篇与 "<em>${query}</em>" 相关的文章`;
+                } else {
+                    this.resultsCount.innerHTML = `没有找到与 "<em>${query}</em>" 相关的文章`;
+                }
+            }
+
+            resetDisplay() {
+                this.articles.forEach(article => {
+                    article.element.style.display = '';
+                    const link = article.element.querySelector('a');
+                    link.innerHTML = article.originalHTML;
+                });
+
+                document.querySelectorAll('.section, .subsection').forEach(container => {
+                    container.style.display = '';
+                });
+
+                this.resultsCount.textContent = '';
+            }
+
+            escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            }
+        }
+
+        // 初始化搜索功能
+        new ArticleSearch();
+
         // ==================== 所有链接在新标签打开 ====================
         const links = document.getElementsByTagName('a');
         for (let link of links) {
@@ -685,6 +1110,25 @@
         if ('ontouchstart' in window) {
             document.body.classList.add('touch-device');
             console.log('检测到触摸设备，已启用触摸优化模式');
+        }
+
+        // ==================== 返回顶部按钮 ====================
+        const backToTopBtn = document.getElementById('backToTop');
+        if (backToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
         }
 
         // ==================== 性能监控（开发模式） ====================
