@@ -3,95 +3,416 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>成长文件索引</title>
+    <meta name="description" content="个人成长和哲学文章索引，包含110+篇深度文章，涵盖牧言、了凡四训、心经、道德经、庄子、阳明心学、心理健康等主题">
+    <meta name="theme-color" content="#667eea">
+    <title>成长文件索引 - 探索智慧 · 成就未来</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ==================== CSS变量系统 ==================== */
+        :root {
+            /* 色彩系统 */
+            --primary-color: #667eea;
+            --primary-light: #764ba2;
+            --accent-color: #f093fb;
+            --highlight-color: #78d9c2;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.7);
+            --text-muted: rgba(255,255,255,0.5);
+
+            /* 背景系统 */
+            --bg-primary: linear-gradient(135deg, #0f0c29 0%, #24243e 50%, #302b63 100%);
+            --bg-card: rgba(255,255,255,0.08);
+            --bg-card-hover: rgba(255,255,255,0.15);
+
+            /* 间距系统 */
+            --spacing-xs: 8px;
+            --spacing-sm: 12px;
+            --spacing-md: 20px;
+            --spacing-lg: 30px;
+            --spacing-xl: 50px;
+
+            /* 边框系统 */
+            --border-color: rgba(255,255,255,0.1);
+            --border-color-hover: rgba(102,126,234,0.3);
+            --border-radius: 16px;
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+
+            /* 阴影系统 */
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-md: 0 20px 40px rgba(0,0,0,0.3);
+            --shadow-glow: 0 0 20px rgba(102,126,234,0.2);
+            --shadow-glow-hover: 0 0 30px rgba(102,126,234,0.05);
+
+            /* 动画时长 */
+            --transition-fast: 0.3s;
+            --transition-normal: 0.4s;
+            --transition-slow: 0.6s;
+        }
+
+        /* ==================== 现代化CSS重置 ==================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        html, body, div, span, h1, h2, h3, h4, h5, h6, p, ul, ol, li, a {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ==================== 基础样式 ==================== */
         body {
             font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #0f0c29 0%, #24243e 50%, #302b63 100%);
-            min-height: 100vh; position: relative; overflow-x: hidden;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
+
         body::before {
             content: '';
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background:
                 radial-gradient(circle at 20% 80%, rgba(120,119,198,0.3) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3) 0%, transparent 50%),
                 radial-gradient(circle at 40% 40%, rgba(120,219,226,0.2) 0%, transparent 50%);
-            animation: backgroundMove 20s ease-in-out infinite; z-index: -1;
+            animation: backgroundMove 20s ease-in-out infinite;
+            z-index: -1;
+            will-change: transform;
         }
-        @keyframes backgroundMove { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
-        .container { max-width:1600px; margin:0 auto; padding:40px 20px; position:relative; z-index:1; }
+
+        @keyframes backgroundMove {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: var(--spacing-xl) var(--spacing-md);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==================== 统计栏样式 ==================== */
         .stats {
             background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.06);
-            padding: 14px 18px; border-radius:12px; color: rgba(255,255,255,0.9);
-            margin-bottom:20px; display:flex; gap:20px; align-items:center; justify-content:space-between;
-            flex-wrap:wrap; font-size:14px; backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            padding: 14px 18px;
+            border-radius: var(--border-radius-md);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 14px;
+            backdrop-filter: blur(8px);
         }
-        .stats .left { display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+
+        .stats .left {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
         .stats .badge {
-            background: linear-gradient(90deg,#667eea,#764ba2); color:white; padding:6px 10px; border-radius:8px;
-            font-weight:700; font-size:13px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+            color: white;
+            padding: 6px 10px;
+            border-radius: var(--border-radius-sm);
+            font-weight: 700;
+            font-size: 13px;
         }
-        .header { text-align:center; margin-bottom:30px; position:relative; }
+
+        /* ==================== 头部样式 ==================== */
+        .header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+        }
+
         .main-title {
-            font-size: clamp(2.5rem,5vw,4rem); font-weight:800;
-            background: linear-gradient(135deg,#667eea 0%,#764ba2 50%,#f093fb 100%);
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-            margin-bottom:12px; position:relative; animation: titleGlow 3s ease-in-out infinite alternate;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 50%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            position: relative;
+            animation: titleGlowOptimized 3s ease-in-out infinite alternate;
+            will-change: text-shadow;
         }
-        @keyframes titleGlow { 0%{filter:drop-shadow(0 0 20px rgba(102,126,234,0.4))} 100%{filter:drop-shadow(0 0 30px rgba(240,147,251,0.6))} }
-        .subtitle { font-size:1.0rem; color:rgba(255,255,255,0.7); font-weight:300; letter-spacing:1px; }
-        .section { margin-bottom:50px; position:relative; animation: fadeInUp 0.6s ease-out; }
-        .section-title { font-size:clamp(1.6rem,4vw,2.0rem); color:#fff; margin-bottom:18px; font-weight:700; padding-left:20px; position:relative; }
-        .section-title::before { content:''; position:absolute; left:0; top:50%; transform:translateY(-50%); width:4px; height:100%; background:linear-gradient(45deg,#667eea,#764ba2); border-radius:2px; }
-        .subsection { margin-bottom:30px; }
-        .subsection-title { font-size:clamp(1.2rem,3vw,1.4rem); color:#78d9c2; margin-bottom:12px; font-weight:600; padding-left:20px; position:relative; }
-        .subsection-title::before { content:''; position:absolute; left:0; top:50%; transform:translateY(-50%); width:3px; height:70%; background:linear-gradient(45deg,#78d9c2,#4ecdc4); border-radius:2px; }
-        .file-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; padding:0; list-style:none; }
+
+        /* 优化后的标题发光动画 - 使用text-shadow替代filter（GPU加速） */
+        @keyframes titleGlowOptimized {
+            0% {
+                text-shadow:
+                    0 0 20px rgba(102,126,234,0.4),
+                    0 0 40px rgba(102,126,234,0.2);
+            }
+            100% {
+                text-shadow:
+                    0 0 30px rgba(240,147,251,0.6),
+                    0 0 60px rgba(240,147,251,0.3);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.0rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* ==================== 分节样式 ==================== */
+        .section {
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .section-title {
+            font-size: clamp(1.6rem, 4vw, 2.0rem);
+            color: var(--text-primary);
+            margin-bottom: 18px;
+            font-weight: 700;
+            padding-left: var(--spacing-md);
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
+            border-radius: 2px;
+        }
+
+        .subsection {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .subsection-title {
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            color: var(--highlight-color);
+            margin-bottom: 12px;
+            font-weight: 600;
+            padding-left: var(--spacing-md);
+            position: relative;
+        }
+
+        .subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 70%;
+            background: linear-gradient(45deg, var(--highlight-color), #4ecdc4);
+            border-radius: 2px;
+        }
+
+        /* ==================== 文件网格样式 ==================== */
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+            padding: 0;
+            list-style: none;
+        }
+
+        /* 优化后的卡片样式 - 条件性应用backdrop-filter */
         .file-item {
-            background: rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:24px;
-            transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275); backdrop-filter: blur(20px); position:relative; overflow:hidden; cursor:pointer;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            transition: all var(--transition-normal) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
         }
-        .file-item::before {
-            content:''; position:absolute; top:0; left:0; right:0; height:2px;
-            background: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent);
-            transform: translateX(-100%); transition: transform 0.6s ease;
+
+        /* 仅在支持的设备上启用backdrop-filter */
+        @supports (backdrop-filter: blur(10px)) {
+            .file-item {
+                background: rgba(255,255,255,0.06);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
         }
-        .file-item:hover::before { transform: translateX(100%); }
-        .file-item:hover { transform: translateY(-8px) scale(1.02); background: rgba(255,255,255,0.15); border-color: rgba(102,126,234,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(102,126,234,0.2); }
-        .file-item a { text-decoration:none; color:#ffffff; font-weight:500; display:block; font-size:15px; line-height:1.5; transition:all 0.3s ease; position:relative; z-index:1; }
-        .file-item:hover a { color:#f093fb; text-shadow:0 0 10px rgba(240,147,251,0.5); }
-        @media (max-width:1200px) { .file-grid { grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px; } }
-        @media (max-width:768px) { .container { padding:20px 15px; } .file-grid { grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; } .file-item { padding:20px; } .file-item a { font-size:14px; } .section { margin-bottom:40px; } }
-        @media (max-width:480px) { .file-grid { grid-template-columns:1fr; gap:12px; } .file-item { padding:18px; } .section-title { padding-left:15px; } .subsection-title { padding-left:15px; } }
-        ::-webkit-scrollbar { width:8px; } ::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius:4px; } ::-webkit-scrollbar-thumb { background: linear-gradient(45deg,#667eea,#764ba2); border-radius:4px; } ::-webkit-scrollbar-thumb:hover { background: linear-gradient(45deg,#764ba2,#f093fb); }
-        @keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
-        .file-item::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(240,147,251,0.1) 100%); opacity:0; transition:opacity 0.3s ease; border-radius:16px; }
-        .file-item:hover::after { opacity:1; }
+
+        /* 移动设备禁用backdrop-filter */
+        @media (max-width: 768px) {
+            .file-item {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-card);
+            }
+        }
+
+        /* 优化后的伪元素 - 仅保留一个用于光线效果 */
+        .file-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), var(--primary-light), transparent);
+            transition: left var(--transition-slow) ease;
+            opacity: 0;
+        }
+
+        .file-item:hover::after {
+            left: 100%;
+            opacity: 1;
+        }
+
+        /* 合并伪元素效果到hover状态 */
+        .file-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: var(--bg-card-hover);
+            border-color: var(--border-color-hover);
+            box-shadow:
+                var(--shadow-md),
+                var(--shadow-glow),
+                var(--shadow-glow-hover);
+        }
+
+        .file-item a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            display: block;
+            font-size: 15px;
+            line-height: 1.5;
+            transition: all var(--transition-fast) ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .file-item:hover a {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(240,147,251,0.5);
+        }
+
+        /* ==================== 响应式设计 ==================== */
+        @media (max-width: 1200px) {
+            .file-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-md) 15px;
+            }
+            .file-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }
+            .file-item {
+                padding: var(--spacing-md);
+            }
+            .file-item a {
+                font-size: 14px;
+            }
+            .section {
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .file-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-sm);
+            }
+            .file-item {
+                padding: 18px;
+            }
+            .section-title {
+                padding-left: 15px;
+            }
+            .subsection-title {
+                padding-left: 15px;
+            }
+        }
+
+        /* ==================== 滚动条样式 ==================== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, var(--primary-light), var(--accent-color));
+        }
+
+        /* ==================== 动画定义 ==================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==================== 移动端触摸优化 ==================== */
+        .touch-device .file-item:hover {
+            transform: none !important;
+        }
+        .touch-device .file-item:active {
+            transform: scale(0.98) !important;
+        }
     </style>
 </head>
 <body>
-<div class="container">
+<div class="container" role="main">
+    <!-- 文件统计区域 -->
     <div class="stats" role="region" aria-label="文件统计">
         <div class="left">
-            <div class="badge">文件总数: 110</div>
+            <div class="badge">文件总数: 计算中...</div>
             <div>数字开头文件夹: 7（共 36 个文件）</div>
             <div>其他开头文件夹: 9（共 62 个文件）</div>
         </div>
         <div class="right" style="color:rgba(255,255,255,0.8);font-size:13px;">
-            <div>生成时间: 2025-11-01 22:42:00</div>
-            <div>文件夹: <span style="opacity:0.9;">D:\project\y_project\pages</span></div>
+            <div>更新时间: 计算中...</div>
+            <div>文件夹: <span style="opacity:0.9;">pages</span></div>
         </div>
     </div>
 
-    <div class="header">
+    <!-- 页面头部 -->
+    <header class="header">
         <h1 class="main-title">成长文件索引</h1>
         <p class="subtitle">探索智慧 · 成就未来</p>
-    </div>
+    </header>
 
-    <div class="section">
+    <!-- 主内容区域 -->
+    <main>
+        <!-- 牧言分类 -->
+        <section class="section" aria-labelledby="section-牧言-title">
         <h2 class="section-title">牧言 （7）</h2>
         <ul class="file-grid">
             <li class="file-item"><a href="1.牧言/1.解锁频率的奥秘.html">1. 解锁频率的奥秘</a></li>
@@ -102,10 +423,11 @@
             <li class="file-item"><a href="1.牧言/5.预言的真相.html">5. 预言的真相</a></li>
             <li class="file-item"><a href="1.牧言/6.情绪.html">6. 情绪</a></li>
         </ul>
-    </div>
+    </section>
 
-    <div class="section">
-        <h2 class="section-title">了凡四训 （9）</h2>
+    <!-- 了凡四训分类 -->
+    <section class="section" aria-labelledby="section-了凡四训-title">
+        <h2 id="section-了凡四训-title" class="section-title">了凡四训 （9）</h2>
         <ul class="file-grid">
             <li class="file-item"><a href="2.了凡四训/1.反因循.html">反因循</a></li>
             <li class="file-item"><a href="2.了凡四训/2.信因果.html">信因果</a></li>
@@ -117,26 +439,29 @@
             <li class="file-item"><a href="2.了凡四训/8.掌握低调的内核，摆脱底层的门槛.html">掌握低调的内核，摆脱底层的门槛</a></li>
             <li class="file-item"><a href="2.了凡四训/9.如何提升气场让自己占据主动.html">如何提升气场让自己占据主动</a></li>
         </ul>
-    </div>
+    </section>
 
-    <div class="section">
-        <h2 class="section-title">心经 （3）</h2>
+    <!-- 心经分类 -->
+    <section class="section" aria-labelledby="section-心经-title">
+        <h2 id="section-心经-title" class="section-title">心经 （3）</h2>
         <ul class="file-grid">
             <li class="file-item"><a href="3.心经/1.如何实现自我突破，达到内心圆满？且看《心经》系列：佛非神.html">如何实现自我突破，达到内心圆满？且看《心经》系列：佛非神</a></li>
             <li class="file-item"><a href="3.心经/2.如何正确理解缘起性空，走出内心困境？且看《心经》：色即是空.html">如何正确理解缘起性空，走出内心困境？且看《心经》：色即是空</a></li>
             <li class="file-item"><a href="3.心经/3.如何摒除肉眼，内观到宇宙真相？且看《心经》系列：佛的角度.html">如何摒除肉眼，内观到宇宙真相？且看《心经》系列：佛的角度</a></li>
         </ul>
-    </div>
+    </section>
 
-    <div class="section">
-        <h2 class="section-title">道德经 （1）</h2>
+    <!-- 道德经分类 -->
+    <section class="section" aria-labelledby="section-道德经-title">
+        <h2 id="section-道德经-title" class="section-title">道德经 （1）</h2>
         <ul class="file-grid">
             <li class="file-item"><a href="4.道德经/1.道德经.html">道德经</a></li>
         </ul>
-    </div>
+    </section>
 
-    <div class="section">
-        <h2 class="section-title">庄子 （6）</h2>
+    <!-- 庄子分类 -->
+    <section class="section" aria-labelledby="section-庄子-title">
+        <h2 id="section-庄子-title" class="section-title">庄子 （6）</h2>
         <ul class="file-grid">
             <li class="file-item"><a href="5.庄子/1.看完庄子《逍遥游》，看我们如何穷游人生.html">看完庄子《逍遥游》，看我们如何穷游人生</a></li>
             <li class="file-item"><a href="5.庄子/2.看完庄子《庄子-齐物论》，刨析12种认知缺陷，瞬间看透本质.html">看完庄子《庄子-齐物论》，刨析12种认知缺陷，瞬间看透本质</a></li>
@@ -145,18 +470,20 @@
             <li class="file-item"><a href="5.庄子/5.如何让残缺的人生逐步精彩起来？且看《庄子-德充符》篇.html">如何让残缺的人生逐步精彩起来？且看《庄子-德充符》篇</a></li>
             <li class="file-item"><a href="5.庄子/6.到底什么是规矩？如何破除规矩真正活着？且看庄子相濡以沫的真意.html">到底什么是规矩？如何破除规矩真正活着？且看庄子相濡以沫的真意</a></li>
         </ul>
-    </div>
+    </section>
 
-    <div class="section">
-        <h2 class="section-title">阳明心学 （2）</h2>
+    <!-- 阳明心学分类 -->
+    <section class="section" aria-labelledby="section-阳明心学-title">
+        <h2 id="section-阳明心学-title" class="section-title">阳明心学 （2）</h2>
         <ul class="file-grid">
             <li class="file-item"><a href="6.阳明心学/1.一口气%201小时看完王阳明的一生，照亮大明王朝天空的流星.html">一口气1小时看完王阳明的一生，照亮大明王朝天空的流星</a></li>
             <li class="file-item"><a href="6.阳明心学/2.一口气%202小时看完《阳明心学》8大核心，指导人生开挂.html">一口气2小时看完《阳明心学》8大核心，指导人生开挂</a></li>
         </ul>
-    </div>
+    </section>
 
-    <div class="section">
-        <h2 class="section-title">李二八 （8）</h2>
+    <!-- 李二八分类 -->
+    <section class="section" aria-labelledby="section-李二八-title">
+        <h2 id="section-李二八-title" class="section-title">李二八 （8）</h2>
         <ul class="file-grid">
             <li class="file-item"><a href="7.李二八/二八严选，10个人生作弊小技巧.html">二八严选，10个人生作弊小技巧</a></li>
             <li class="file-item"><a href="7.李二八/二十分钟认清执行力.html">二十分钟认清执行力</a></li>
@@ -167,10 +494,11 @@
             <li class="file-item"><a href="7.李二八/持续博弈-必均值回归.html">持续博弈-必均值回归</a></li>
             <li class="file-item"><a href="7.李二八/无间地狱发现必打破.html">无间地狱发现必打破</a></li>
         </ul>
-    </div>
+    </section>
 
-    <div class="section">
-        <h2 class="section-title">其它 （共 62）</h2>
+    <!-- 其它分类 -->
+    <section class="section" aria-labelledby="section-其它-title">
+        <h2 id="section-其它-title" class="section-title">其它 （共 62）</h2>
 
         <div class="subsection">
             <h3 class="subsection-title">学习方法 （8）</h3>
@@ -281,23 +609,59 @@
                 <li class="file-item"><a href="其它/8.两性与情感/男性提升自己最快的方式，给大脑去性化.html">男性提升自己最快的方式，给大脑去性化</a></li>
             </ul>
         </div>
-    </div>
+    </section>
+    </main>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // 所有链接在新标签打开
+        // ==================== 所有链接在新标签打开 ====================
         const links = document.getElementsByTagName('a');
-        for (let link of links) { link.target = '_blank'; }
+        for (let link of links) {
+            link.target = '_blank';
+        }
 
-        // 悬停交互
-        const fileItems = document.querySelectorAll('.file-item');
-        fileItems.forEach(item => {
-            item.addEventListener('mouseenter', function() { this.style.transform = 'translateY(-8px) scale(1.02)'; });
-            item.addEventListener('mouseleave', function() { this.style.transform = 'translateY(0) scale(1)'; });
-        });
+        // ==================== 自动统计文件数量 ====================
+        const updateStats = () => {
+            const fileItems = document.querySelectorAll('.file-item');
+            const totalCount = fileItems.length;
 
-        // 简单的滚动渐入观察
+            // 统计数字开头的文件夹
+            const numberedFolders = ['1.牧言', '2.了凡四训', '3.心经', '4.道德经', '5.庄子', '6.阳明心学', '7.李二八'];
+            let numberedCount = 0;
+            let otherCount = 0;
+
+            fileItems.forEach(item => {
+                const href = item.querySelector('a').getAttribute('href');
+                if (numberedFolders.some(folder => href.startsWith(folder))) {
+                    numberedCount++;
+                } else {
+                    otherCount++;
+                }
+            });
+
+            // 更新DOM
+            document.querySelector('.stats .badge').textContent = `文件总数: ${totalCount}`;
+
+            const leftDiv = document.querySelector('.stats .left');
+            // 保留徽章，更新其他统计信息
+            const statDivs = leftDiv.querySelectorAll('div');
+            if (statDivs.length >= 3) {
+                statDivs[1].textContent = `数字开头文件夹: ${numberedFolders.length}（共 ${numberedCount} 个文件）`;
+                statDivs[2].textContent = `其他开头文件夹: 9（共 ${otherCount} 个文件）`;
+            }
+
+            const rightSection = document.querySelector('.stats .right');
+            rightSection.innerHTML = `
+                <div style="color:rgba(255,255,255,0.8);font-size:13px;">更新时间: ${new Date().toLocaleString('zh-CN')}</div>
+                <div style="color:rgba(255,255,255,0.8);font-size:13px;">文件夹: <span style="opacity:0.9;">pages</span></div>
+            `;
+        };
+
+        // 调用统计函数
+        updateStats();
+
+        // ==================== 优化后的滚动渐入观察 ====================
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -306,13 +670,34 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.15 });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'  // 提前触发动画
+        });
 
         document.querySelectorAll('.section').forEach(section => {
             section.style.opacity = 0;
             section.style.transform = 'translateY(20px)';
             observer.observe(section);
         });
+
+        // ==================== 移动端触摸优化 ====================
+        if ('ontouchstart' in window) {
+            document.body.classList.add('touch-device');
+            console.log('检测到触摸设备，已启用触摸优化模式');
+        }
+
+        // ==================== 性能监控（开发模式） ====================
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            window.addEventListener('load', () => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                console.group('📊 页面性能指标');
+                console.log('DOM加载时间:', (perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart).toFixed(2), 'ms');
+                console.log('页面完全加载:', (perfData.loadEventEnd - perfData.loadEventStart).toFixed(2), 'ms');
+                console.log('首次绘制:', (perfData.responseStart - perfData.requestStart).toFixed(2), 'ms');
+                console.groupEnd();
+            });
+        }
     });
 </script>
 </body>
