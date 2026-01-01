@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱自己的3个层次：一场修行</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom soft palette and typography settings for V3 */
+        :root {
+            --soft-white: #fefefe;
+            --light-pink: #fde8e9; /* Soft coral accent */
+            --light-mint: #e8f9f6; /* Soft green/mint accent */
+            --light-gold: #fdf6e8; /* Soft yellow/gold accent */
+            --primary-text: #2c3e50;
+        }
+
+        body {
+            background-color: var(--soft-white);
+            color: var(--primary-text);
+            line-height: 1.6;
+        }
+
+        .bento-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(12, 1fr);
+            padding: 2rem;
+        }
+        
+        .bento-item {
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            transition: all 0.5s ease-out;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+            overflow: hidden; 
+            position: relative;
+        }
+
+        /* V3 Focus: Scroll-based animation */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) ; /* Smoother easing */
+        }
+
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .outline-graphic {
+            position: absolute;
+            opacity: 0.1;
+            stroke-width: 1.5;
+            color: currentColor;
+            z-index: 0;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* Soft gradient application for V3 techno-soft feel */
+        .gradient-bg-1 { background: radial-gradient(circle at top right, rgba(253, 232, 233, 0.6), rgba(254, 254, 254, 1) 70%); } /* Pink */
+        .gradient-bg-2 { background: radial-gradient(circle at bottom left, rgba(232, 249, 246, 0.6), rgba(254, 254, 254, 1) 70%); } /* Mint */
+        .gradient-bg-3 { background: radial-gradient(circle at center, rgba(253, 246, 232, 0.6), rgba(254, 254, 254, 1) 70%); } /* Gold */
+
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+    <div class="max-w-7xl mx-auto p-4 md:p-8">
+
+        <!-- METADATA & HEADER -->
+        <header class="mb-10 text-center space-y-2 py-4 border-b border-gray-200">
+            <!-- Required Metadata -->
+            <h1 class="text-3xl md:text-5xl font-extrabold text-purple-700">
+                爱自己的3个层次
+            </h1>
+            <h2 class="text-lg md:text-xl font-semibold max-w-4xl mx-auto text-gray-700">
+                你以为的 “爱自己”：是想吃就吃、想买就买吗？
+            </h2>
+            <p class="text-base text-gray-600 italic">
+                直到听完杨天真和金惟纯老师的对谈才懂：爱自己从来不是放纵，而是一场修行。
+            </p>
+            <p class="text-sm font-medium text-purple-500">
+                #爱自己 #个人成长 #修行 #生活感悟 #心态
+            </p>
+            <p class="text-xs text-gray-500 font-mono">
+                视频链接: <a href="https://v.douyin.com/KXMdCyoitis/" target="_blank" class="hover:underline text-blue-500">v.douyin.com/KXMdCyoitis/</a> | 提取时间: 2025-12-28 08:59:08
+            </p>
+
+            <button id="toggleOriginal" class="mt-4 px-4 py-2 text-sm font-medium rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-300">
+                <i class="fas fa-chevron-down mr-1"></i> 显示原文
+            </button>
+            
+            <!-- Hidden Original Content -->
+            <div id="originalContent" class="hidden text-left p-4 mt-4 bg-gray-50 border border-gray-200 rounded-lg max-h-96 overflow-y-auto text-sm text-gray-600">
+                <p>杨先生在播客里面有一个特别高频的词啊，叫爱自己，但很多人都会误会，会觉得说爱自己就是满足欲望，想吃就吃，想睡就睡，想买就买，但那不是爱自己，而是对自己的纵容。那前段时间我听了他跟金惟纯老师的那期对谈，我越发理解，爱自己不是满足欲望，而是滋养自己。那金老师他提出一个特别简单的判断标准，就是你做完一件事儿，你会更喜欢自己还是更讨厌自己。这句话太对了，所以我也尝试把爱自己分成了三个层次，做热爱的事儿，做无用的事儿，做难而正确的事儿。首先第一，做热爱的事儿，很多人会问我说你当初为什么要呃辞去央企体制内的铁饭碗，你为什么要好好的博士你不读，你不认真去做研究，你跑出来去创业什么做公众号做网红，你多low啊。首先我坚定的认为学历、职业、身份、体制内外没有任何高低贵贱之分，我不觉得博士就高人一等，也不觉得开个小卖部我就低人一头，这个世界最愚蠢的游戏就是地位、财富、名誉的横向对比，我每天都在努力修行去挣脱这个游戏，当然特别难，但是难也要做呀。好，那第二，就我二零一零年是去一个国家级贫困县支教过一年，那个时候我心里就已经有一颗种子了，叫教育，就我也第一次发现就是原来我教会一个孩子相信自己能够改变命运，可以走出大山，是这个世界上最美好的事情。而我创业的使命也非常清晰，就是以生命影响生命，以行动启迪行动，让更多的人拥有改变自己的力量。就是因为我在做内容，无论是写文章、短视频、录课，还有社群训练营，在这个过程当中，我们的学员真的是会行动起来的，真的是可以改变自己命运的，这对我来说巨大的正向反馈，还有这么大福报的事儿吗？哪怕这条路不稳定，哪怕创业我们遇到各种低谷，我从来没有一丝一刻说后悔离开体制内的，呃说创业这后悔从来没有，因为这件事每天都让我很开心、很兴奋、很有力量，就是当别人可能还在纠结，哎呀我到底要不要去加班，哎呀我到底能。</p>
+                <p>升职加薪了，我要不要熬夜应酬？我每天都在跳着踢踏舞在干我自己开心的事情，我每天做我现在喜欢的这个事儿，我我太幸福了，我真的非常感谢老天，我觉得这才是真正的爱自己。但是有太多的伙伴们可能每天都是喜欢的事情一直不做，不喜欢的事情一直在做，最后发现其实你是被自己困住的。这也是为啥我们很多训练营的学员他会立刻选择辞职，就是因为当他们找到自己热爱的事情的时候就会足够勇敢。这一辈子这么短，我们连自己去做自己喜欢的事情都不行吗？这一辈子哗就过去了。好，第二件事儿，叫做无用的事儿。那去年我们全家去西班牙旅行，巴塞罗那呃的一个中餐馆遇到一个潮汕的老板，那个大叔呢他就说他在西班牙已经开了几十年的这个餐馆了，跟我讲了一句我印象特别深的话，他就说我在这儿学到的这个最重要的一件事情就是要休息，就是要学会去做无用的事儿。就他说中国人真的太能吃苦了，太卷了，就是总觉得要不停的干干干，就没日没夜的，但是人一旦没有空闲就失去灵魂了。然后就像西班牙他们经常中午，然后中午就就关门了，你想吃个中午饭根本找不着，我那次去我说他们是啥时候开门啊，晚上八点才开呢，就真的是各种假期空闲，人家要休息。所以那一刻其实我特别有共鸣，就是我们可能太习惯于效率至上了，但是真正能够滋养我们心灵的其实往往都是那些看似没有用的事情，比如说我现在就特别喜享受做饭，享受养花，我在厨房里面切菜煮面，我在阳台看那些花开，看叶子舒展，包括这两天我那幸福树已经枯萎了，我正在难过为什么没得把它养好，你看这些无用的小事儿都会让我重新体会到生活的温度。有用会让你赚钱，但是无用让你活着，让你幸福。一个人如果只剩下说所谓有用，那就会变慢慢变成一个机器，那有什么意思呢？好，第三，做男儿正确的事，所谓男儿正确就是要学会和自己的欲望相处。</p>
+                <p>喝酒会让你的痛风加重，但还是忍不住说我就喝这一次。你知道痛暴饮暴食会伤胃，会加重你的体重，但是你就是控制不住说我最后来一口。你知道熬夜会透支你的身体，但还是抱着手机说我我到两点就睡觉，三点四点五点天亮了。你看这些事的共同点呢都是很爽，但是呢它都是一种慢性的自我消耗。那对我来说，我经历的男儿正确的事儿是什么呢？就是戒烟。因为我以前因为写稿要一根接一根的，呃后来我抽电子烟基本都不停，手都不能离开这个烟，好像不抽烟我就没办法专注于写东西了。但是当我后来眼睛生病了，我开始思考说我是否配得上身体健康，我觉得不配，最不配的就是因为我抽烟。那我需要第一调整的生活习惯就是戒烟，那这是我必须要做的事情了。而且抽烟我发现它对我最大的困扰可能还不是身体上的伤害，而是它对我平静状态的扰乱。就抽烟的朋友一定懂得的，说你去公众场合的时候，你永远都得找机会我得出去抽一根。遇到压力比较大的这个场合，你总是告诉自己说哎我抽一根就能缓解我的压力了。就我们好像永远都被那个香烟绑架了，你失去了精神的自由，那个是非常痛苦的。但是当我熬过那个戒断期，我终于可以完整的干净的去呼吸，去跑步，去早起，能睡一个好觉，早上起来以后不会有那个烟的那个那个难受的那个劲儿，这叫真正的爱自己。它不是纵容欲望，而是战胜欲望。就那种轻盈，那种平静，是任何短暂的快感都比不了的。纵容是短暂的快乐，而克制是长久的自由。所以真正的爱自己真的是一场修行，做热爱的事儿让灵魂有光，做无用的事儿让生活有温度，做男儿正确的事儿让命运有方向。</p>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT - BENTO GRID LAYOUT -->
+        <main class="bento-grid">
+            
+            <!-- 1. CORE CONCEPT & JUDGEMENT -->
+            <div class="bento-item col-span-12 md:col-span-6 h-80 bg-white shadow-xl gradient-bg-1 scroll-animate" data-delay="0">
+                <div class="z-10 relative">
+                    <p class="text-lg font-semibold text-pink-600 mb-2 uppercase tracking-wider">The definition</p>
+                    <h3 class="text-4xl font-black mb-4 leading-tight">
+                        爱自己：<span class="text-5xl text-red-600">滋养自己</span>
+                    </h3>
+                    
+                    <!-- Visualization Placeholder: Indulgence vs Nourishment -->
+                    <div class="h-24 w-full mb-4 flex items-center justify-around space-x-4">
+                         <div class="flex flex-col items-center">
+                            <i class="fas fa-hotdog text-pink-400 text-3xl mb-2"></i>
+                            <p class="text-xs font-bold text-gray-500">纵容 (Indulgence)</p>
+                            <p class="text-sm font-mono text-red-500">短暂的快乐</p>
+                        </div>
+                        <i class="fas fa-arrows-alt-h text-gray-300 text-2xl"></i>
+                        <div class="flex flex-col items-center">
+                            <i class="fas fa-dumbbell text-teal-600 text-3xl mb-2"></i>
+                            <p class="text-xs font-bold text-gray-500">滋养 (Nourishment)</p>
+                            <p class="text-sm font-mono text-teal-600">长久的自由</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 italic mt-6 p-3 border-l-4 border-pink-400 bg-pink-50 rounded-r-lg">
+                        <span class="text-xl font-extrabold text-pink-700">判断标准：</span><br/>
+                        做完一件事儿，你会更喜欢自己还是更讨厌自己？
+                    </p>
+                </div>
+                 <i class="fas fa-star outline-graphic text-pink-400 text-[100px] top-4 right-4 rotate-12"></i>
+            </div>
+            
+            <!-- 1B. INTRO: Three Levels -->
+            <div class="bento-item col-span-12 md:col-span-6 h-80 bg-white gradient-bg-2 scroll-animate" data-delay="100">
+                <div class="z-10 relative">
+                    <p class="text-[10rem] font-black leading-none text-teal-500 opacity-80">3</p>
+                    <h3 class="text-3xl font-bold text-gray-800 -mt-8 mb-4">
+                         <span class="text-teal-600">爱自己的层次</span> | LEVELS
+                    </h3>
+                    
+                    <ul class="space-y-2 text-gray-700 mt-4">
+                        <li class="flex items-center text-lg"><i class="fas fa-lightbulb text-teal-500 mr-3"></i> 1. <span class="font-bold">热爱</span>的事儿</li>
+                        <li class="flex items-center text-lg"><i class="fas fa-clock text-teal-500 mr-3"></i> 2. <span class="font-bold">无用</span>的事儿</li>
+                        <li class="flex items-center text-lg"><i class="fas fa-hand-fist text-teal-500 mr-3"></i> 3. <span class="font-bold">难而正确</span>的事儿</li>
+                    </ul>
+                </div>
+                <i class="fas fa-ruler outline-graphic text-teal-400 text-[120px] bottom-[-20px] right-[-20px]"></i>
+            </div>
+
+            <!-- 2. 第一层：做热爱的事儿 -->
+            <div class="bento-item col-span-12 h-auto p-6 bg-white shadow-lg gradient-bg-3 scroll-animate mt-6" data-delay="200">
+                <h4 class="text-sm uppercase font-extrabold text-yellow-700 tracking-widest mb-4 flex items-center">
+                    <i class="fas fa-star-of-life mr-2 text-yellow-500"></i> LEVEL 1: 让灵魂有光 | SOUL'S LIGHT
+                </h4>
+                <div class="flex flex-col lg:flex-row">
+                    <div class="lg:w-1/4 flex flex-col justify-center items-center lg:items-start lg:border-r border-gray-200 lg:pr-6 mb-4 lg:mb-0">
+                        <p class="text-[5rem] font-black leading-none text-gray-800 opacity-90">I.</p>
+                        <h3 class="text-3xl font-extrabold text-yellow-700 leading-tight">做热爱的事儿</h3>
+                    </div>
+                    <div class="lg:w-3/4 lg:pl-6 space-y-4">
+                        <div class="bg-yellow-50 p-3 rounded-lg">
+                            <p class="text-base text-gray-700">
+                                <strong>挣脱对比：</strong> 辞去体制内铁饭碗，创业做内容。坚信学历、职业、身份<span class="font-bold text-yellow-800">无高低贵贱之分</span>。世界最愚蠢游戏是横向对比。
+                            </p>
+                        </div>
+                        <p class="text-base text-gray-700 border-l-4 border-yellow-500 pl-3">
+                            <strong>巨大福报：</strong> 使命是<span class="font-bold">以生命影响生命</span>。当学员行动起来，改变命运，这是巨大的正向反馈。
+                        </p>
+                        <div class="flex items-center justify-between text-sm text-gray-600">
+                            <span class="font-medium text-purple-600"><i class="fas fa-headphones-alt mr-1"></i> “我每天都在跳着踢踏舞干开心的事情。”</span>
+                        </div>
+                    </div>
+                </div>
+                 <i class="fas fa-rocket outline-graphic text-yellow-400 text-[180px] bottom-[-40px] right-0 transform -rotate-6"></i>
+            </div>
+
+            <!-- 3. 第二层：做无用的事儿 -->
+            <div class="bento-item col-span-12 md:col-span-7 h-auto p-6 bg-white shadow-lg gradient-bg-2 scroll-animate mt-6" data-delay="300">
+                <h4 class="text-sm uppercase font-extrabold text-teal-700 tracking-widest mb-4 flex items-center">
+                    <i class="fas fa-cloud mr-2 text-teal-500"></i> LEVEL 2: 让生活有温度 | LIFE'S WARMTH
+                </h4>
+                <div class="flex flex-col lg:flex-row">
+                    <div class="lg:w-1/3 flex flex-col justify-center items-center lg:items-start lg:border-r border-gray-200 lg:pr-6 mb-4 lg:mb-0">
+                        <p class="text-[5rem] font-black leading-none text-gray-800 opacity-90">II.</p>
+                        <h3 class="text-3xl font-extrabold text-teal-700 leading-tight">做无用的事儿</h3>
+                    </div>
+                    <div class="lg:w-2/3 lg:pl-6 space-y-3">
+                        <p class="text-base text-gray-700">
+                            <strong>西班牙启示：</strong> 休息很重要。中国人太卷，不停地干。但人一旦<span class="font-bold text-red-500">没有空闲就失去灵魂</span>。
+                        </p>
+                        <ul class="list-disc list-inside ml-4 text-sm space-y-1">
+                            <li>享受做饭，切菜煮面</li>
+                            <li>享受养花，看叶子舒展</li>
+                            <li>体会生活的温度</li>
+                        </ul>
+                        <blockquote class="text-base font-bold italic text-teal-600 mt-4">
+                             “有用会让你赚钱，但是无用让你活着，让你幸福。”
+                        </blockquote>
+                    </div>
+                </div>
+                <i class="fas fa-utensils outline-graphic text-teal-400 text-[150px] top-[-30px] right-0 transform rotate-[-10deg]"></i>
+            </div>
+
+            <!-- 3B. CONTRAST SUMMARY -->
+            <div class="bento-item col-span-12 md:col-span-5 h-auto p-6 bg-white shadow-lg gradient-bg-1 scroll-animate mt-6" data-delay="400">
+                 <h4 class="text-sm uppercase font-extrabold text-pink-600 tracking-widest mb-4">机器 vs 幸福</h4>
+                 <div class="space-y-4">
+                    <div class="p-3 border-b-2 border-pink-200">
+                        <p class="font-bold text-pink-700 flex items-center"><i class="fas fa-robot text-xl mr-2"></i> 只有‘有用’</p>
+                        <p class="text-sm text-gray-600">人会慢慢变成<span class="font-bold">一个机器</span>，失去意义。</p>
+                    </div>
+                    <div class="p-3 border-b-2 border-teal-200">
+                        <p class="font-bold text-teal-700 flex items-center"><i class="fas fa-heart-pulse text-xl mr-2"></i> ‘无用’的价值</p>
+                        <p class="text-sm text-gray-600">带来生活的温度，保持<span class="font-bold">人性的完整</span>。</p>
+                    </div>
+                 </div>
+            </div>
+            
+            <!-- 4. 第三层：做难而正确的事儿 -->
+             <div class="bento-item col-span-12 h-auto p-6 bg-white shadow-xl gradient-bg-3 scroll-animate mt-6 mb-12" data-delay="500">
+                <h4 class="text-sm uppercase font-extrabold text-red-600 tracking-widest mb-4 flex items-center">
+                    <i class="fas fa-mountain mr-2 text-red-500"></i> LEVEL 3: 让命运有方向 | DESTINY'S DIRECTION
+                </h4>
+                 <div class="flex flex-col lg:flex-row">
+                    <div class="lg:w-1/4 flex flex-col justify-center items-center lg:items-start lg:border-r border-gray-200 lg:pr-6 mb-4 lg:mb-0">
+                        <p class="text-[5rem] font-black leading-none text-gray-800 opacity-90">III.</p>
+                        <h3 class="text-3xl font-extrabold text-red-700 leading-tight">做难而正确的事</h3>
+                    </div>
+                    <div class="lg:w-3/4 lg:pl-6 space-y-4">
+                        <p class="text-base text-gray-700">
+                            <strong>与欲望相处：</strong> 纵容欲望（酗酒、暴食、熬夜）都是很爽的，但都是<span class="font-bold text-red-500">慢性的自我消耗</span>。
+                        </p>
+                        <div class="bg-red-50 p-4 rounded-xl space-y-2 border border-red-200">
+                            <h5 class="text-lg font-bold text-red-700 mb-1 flex items-center"><i class="fas fa-skull-crossbones mr-2"></i> 实践案例：戒烟</h5>
+                            <p class="text-sm text-gray-700">戒烟是调整生活习惯，找回平静状态，挣脱对香烟的依赖，重获<span class="font-bold">精神自由</span>。</p>
+                        </div>
+                        <div class="text-xl font-black text-red-800 text-right">
+                             战胜欲望 → 轻盈、平静、自由。
+                        </div>
+                    </div>
+                </div>
+                 <i class="fas fa-lock-open outline-graphic text-red-400 text-[180px] bottom-[-20px] right-0 transform -rotate-12"></i>
+            </div>
+            
+            <!-- FINAL SUMMARY TILE (Quote and Conclusion) -->
+             <div class="bento-item col-span-12 bg-white text-center py-8 mb-6 shadow-xl scroll-animate" data-delay="600" style="background-color: var(--light-pink);">
+                <h3 class="text-2xl md:text-4xl font-extrabold text-gray-800 mb-6">
+                    克制是<span class="text-5xl text-purple-700">长久的自由</span> | LASTING FREEDOM
+                </h3>
+                <div class="flex flex-wrap justify-center space-x-6 text-center text-lg">
+                    <div class="p-3">做热爱的事儿：让<span class="font-bold text-yellow-600">灵魂有光</span></div>
+                    <div class="p-3">做无用的事儿：让<span class="font-bold text-teal-600">生活有温度</span></div>
+                    <div class="p-3">做难而正确的事儿：让<span class="font-bold text-red-600">命运有方向</span></div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // 1. Original Content Toggle Functionality
+        document.getElementById('toggleOriginal').addEventListener('click', function() {
+            const content = document.getElementById('originalContent');
+            const button = this;
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                button.innerHTML = '<i class="fas fa-chevron-up mr-1"></i> 隐藏原文';
+            } else {
+                content.classList.add('hidden');
+                button.innerHTML = '<i class="fas fa-chevron-down mr-1"></i> 显示原文';
+            }
+        });
+
+        // 2. Scroll Animation (Intersection Observer implementation)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delay = parseInt(entry.target.getAttribute('data-delay') || 0);
+                    setTimeout(() => {
+                        entry.target.classList.add('is-visible');
+                    }, delay);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }); // Trigger when 10% is visible, pulled slightly sooner
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+    </script>
+</body>
+</html>
