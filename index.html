@@ -4,52 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="个人成长和哲学文章索引，包含110+篇深度文章，涵盖牧言、了凡四训、心经、道德经、庄子、阳明心学、心理健康等主题">
-    <meta name="theme-color" content="#667eea">
+    <meta name="theme-color" content="#ffffff">
     <title>成长文件索引 - 探索智慧 · 成就未来</title>
     <style>
-        /* ==================== CSS变量系统 ==================== */
+        /* ==================== CSS变量系统 - 浅色主题 ==================== */
         :root {
             /* 色彩系统 */
-            --primary-color: #667eea;
-            --primary-light: #764ba2;
-            --accent-color: #f093fb;
-            --highlight-color: #78d9c2;
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255,255,255,0.7);
-            --text-muted: rgba(255,255,255,0.5);
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-hover: #f3f4f6;
 
-            /* 背景系统 */
-            --bg-primary: linear-gradient(135deg, #0f0c29 0%, #24243e 50%, #302b63 100%);
-            --bg-card: rgba(255,255,255,0.08);
-            --bg-card-hover: rgba(255,255,255,0.15);
+            --text-primary: #000000;
+            --text-secondary: #666666;
+            --text-tertiary: #999999;
+
+            --border-color: #e5e7eb;
+            --border-hover: #d1d5db;
+
+            --accent-color: #2563eb;
+            --accent-hover: #1d4ed8;
 
             /* 间距系统 */
-            --spacing-xs: 8px;
-            --spacing-sm: 12px;
-            --spacing-md: 20px;
-            --spacing-lg: 30px;
-            --spacing-xl: 50px;
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
 
-            /* 边框系统 */
-            --border-color: rgba(255,255,255,0.1);
-            --border-color-hover: rgba(102,126,234,0.3);
-            --border-radius: 16px;
-            --border-radius-sm: 8px;
-            --border-radius-md: 12px;
+            /* 字体大小 */
+            --font-size-title: 24px;
+            --font-size-subtitle: 16px;
+            --font-size-body: 15px;
+            --font-size-small: 13px;
 
-            /* 阴影系统 */
-            --shadow-sm: 0 4px 12px rgba(0,0,0,0.1);
-            --shadow-md: 0 20px 40px rgba(0,0,0,0.3);
-            --shadow-glow: 0 0 20px rgba(102,126,234,0.2);
-            --shadow-glow-hover: 0 0 30px rgba(102,126,234,0.05);
-
-            /* 动画时长 */
-            --transition-fast: 0.3s;
-            --transition-normal: 0.4s;
-            --transition-slow: 0.6s;
+            /* 过渡时长 */
+            --transition-fast: 0.2s;
+            --transition-normal: 0.3s;
         }
 
-        /* ==================== 现代化CSS重置 ==================== */
+        /* ==================== CSS重置 ==================== */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -60,412 +53,73 @@
 
         /* ==================== 基础样式 ==================== */
         body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
             background: var(--bg-primary);
+            color: var(--text-primary);
             min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                radial-gradient(circle at 20% 80%, rgba(120,119,198,0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120,219,226,0.2) 0%, transparent 50%);
-            animation: backgroundMove 20s ease-in-out infinite;
-            z-index: -1;
-            will-change: transform;
-        }
-
-        @keyframes backgroundMove {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: var(--spacing-xl) var(--spacing-md);
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ==================== 统计栏样式 ==================== */
-        .stats {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid var(--border-color);
-            padding: 14px 18px;
-            border-radius: var(--border-radius-md);
-            color: var(--text-primary);
-            margin-bottom: var(--spacing-md);
-            display: flex;
-            gap: var(--spacing-md);
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            font-size: 14px;
-            backdrop-filter: blur(8px);
-        }
-
-        .stats .left {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .stats .badge {
-            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-            color: white;
-            padding: 6px 10px;
-            border-radius: var(--border-radius-sm);
-            font-weight: 700;
-            font-size: 13px;
-        }
-
-        /* ==================== 头部样式 ==================== */
-        .header {
-            text-align: center;
-            margin-bottom: var(--spacing-lg);
-            position: relative;
-        }
-
-        .main-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 50%, var(--accent-color) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 12px;
-            position: relative;
-            animation: titleGlowOptimized 3s ease-in-out infinite alternate;
-            will-change: text-shadow;
-        }
-
-        /* 优化后的标题发光动画 - 使用text-shadow替代filter（GPU加速） */
-        @keyframes titleGlowOptimized {
-            0% {
-                text-shadow:
-                    0 0 20px rgba(102,126,234,0.4),
-                    0 0 40px rgba(102,126,234,0.2);
-            }
-            100% {
-                text-shadow:
-                    0 0 30px rgba(240,147,251,0.6),
-                    0 0 60px rgba(240,147,251,0.3);
-            }
-        }
-
-        .subtitle {
-            font-size: 1.0rem;
-            color: var(--text-secondary);
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        /* ==================== 分节样式 ==================== */
-        .section {
-            margin-bottom: var(--spacing-xl);
-            position: relative;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .section-title {
-            font-size: clamp(1.6rem, 4vw, 2.0rem);
-            color: var(--text-primary);
-            margin-bottom: 18px;
-            font-weight: 700;
-            padding-left: var(--spacing-md);
-            position: relative;
-        }
-
-        .section-title::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
-            border-radius: 2px;
-        }
-
-        .subsection {
-            margin-bottom: var(--spacing-md);
-        }
-
-        .subsection-title {
-            font-size: clamp(1.2rem, 3vw, 1.4rem);
-            color: var(--highlight-color);
-            margin-bottom: 12px;
-            font-weight: 600;
-            padding-left: var(--spacing-md);
-            position: relative;
-        }
-
-        .subsection-title::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 3px;
-            height: 70%;
-            background: linear-gradient(45deg, var(--highlight-color), #4ecdc4);
-            border-radius: 2px;
-        }
-
-        /* ==================== 文件网格样式 ==================== */
-        .file-grid {
+        /* ==================== 布局容器 ==================== */
+        .layout-wrapper {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--spacing-md);
-            padding: 0;
-            list-style: none;
+            grid-template-columns: 1fr 320px;
+            gap: var(--spacing-lg);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
         }
 
-        /* 优化后的卡片样式 - 条件性应用backdrop-filter */
-        .file-item {
-            background: rgba(255,255,255,0.06);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: var(--border-radius);
-            padding: 24px;
-            transition: all var(--transition-normal) cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
+        /* ==================== 主内容区 ==================== */
+        .main-content {
+            min-width: 0;
         }
 
-        /* 渐变边框效果 */
-        .file-item::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            padding: 1px;
-            background: linear-gradient(135deg,
-                rgba(102,126,234,0.5),
-                rgba(240,147,251,0.2),
-                rgba(120,219,226,0.3));
-            border-radius: var(--border-radius);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity var(--transition-normal);
-            pointer-events: none;
-        }
-
-        .file-item:hover::before {
-            opacity: 1;
-        }
-
-        /* 优化后的伪元素 - 仅保留一个用于光线效果 */
-        .file-item::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary-color), var(--primary-light), transparent);
-            transition: left var(--transition-slow) ease;
-            opacity: 0;
-        }
-
-        .file-item:hover::after {
-            left: 100%;
-            opacity: 1;
-        }
-
-        /* 合并伪元素效果到hover状态 */
-        .file-item:hover {
-            transform: translateY(-8px) scale(1.02);
-            background: rgba(255,255,255,0.10);
-            border-color: rgba(102,126,234,0.3);
-            box-shadow:
-                0 20px 40px rgba(0,0,0,0.3),
-                0 0 40px rgba(102,126,234,0.15);
-        }
-
-        .file-item a {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            display: block;
-            font-size: 15px;
-            line-height: 1.5;
-            transition: all var(--transition-fast) ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .file-item:hover a {
-            color: var(--accent-color);
-            text-shadow: 0 0 10px rgba(240,147,251,0.5);
-        }
-
-        /* ==================== 响应式设计 ==================== */
-        @media (max-width: 1200px) {
-            .file-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 18px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: var(--spacing-md) 15px;
-            }
-            .file-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 15px;
-            }
-            .file-item {
-                padding: var(--spacing-md);
-            }
-            .file-item a {
-                font-size: 14px;
-            }
-            .section {
-                margin-bottom: 40px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .file-grid {
-                grid-template-columns: 1fr;
-                gap: var(--spacing-sm);
-            }
-            .file-item {
-                padding: 18px;
-            }
-            .section-title {
-                padding-left: 15px;
-            }
-            .subsection-title {
-                padding-left: 15px;
-            }
-        }
-
-        /* ==================== 滚动条样式 ==================== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.1);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(45deg, var(--primary-light), var(--accent-color));
-        }
-
-        /* ==================== 动画定义 ==================== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* 阶梯式进入动画 */
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .file-item {
-            animation: slideInUp 0.5s ease-out backwards;
-        }
-
-        /* 为不同卡片添加延迟，创造阶梯效果 */
-        .file-item:nth-child(1) { animation-delay: 0ms; }
-        .file-item:nth-child(2) { animation-delay: 50ms; }
-        .file-item:nth-child(3) { animation-delay: 100ms; }
-        .file-item:nth-child(4) { animation-delay: 150ms; }
-        .file-item:nth-child(5) { animation-delay: 200ms; }
-        .file-item:nth-child(6) { animation-delay: 250ms; }
-        .file-item:nth-child(7) { animation-delay: 300ms; }
-        .file-item:nth-child(8) { animation-delay: 350ms; }
-
-        /* ==================== 搜索容器样式 ==================== */
+        /* ==================== 搜索容器 ==================== */
         .search-container {
-            background: rgba(15, 12, 41, 0.95);
-            backdrop-filter: blur(20px);
+            background: var(--bg-primary);
             border-bottom: 1px solid var(--border-color);
             padding: var(--spacing-md) 0;
-            margin: calc(var(--spacing-xl) * -1) calc(var(--spacing-md) * -1) var(--spacing-md) calc(var(--spacing-md) * -1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            margin-bottom: var(--spacing-lg);
         }
 
         .search-box {
             position: relative;
             max-width: 600px;
-            margin: 0 auto;
         }
 
         .search-input {
             width: 100%;
-            padding: 16px 50px 16px 20px;
-            background: rgba(255,255,255,0.08);
-            border: 2px solid var(--border-color);
-            border-radius: var(--border-radius);
+            padding: 12px 40px 12px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             color: var(--text-primary);
-            font-size: 16px;
+            font-size: var(--font-size-body);
             transition: all var(--transition-normal);
         }
 
         .search-input:focus {
             outline: none;
-            border-color: var(--primary-color);
-            background: rgba(255,255,255,0.12);
-            box-shadow: 0 0 0 4px rgba(102,126,234,0.1);
-        }
-
-        .search-input::placeholder {
-            color: var(--text-muted);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         .search-icon {
             position: absolute;
-            right: 16px;
+            right: 12px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 20px;
+            font-size: 18px;
             pointer-events: none;
-            opacity: 0.7;
+            opacity: 0.5;
         }
 
         .search-results-count {
             text-align: center;
             color: var(--text-secondary);
             margin-top: var(--spacing-sm);
-            font-size: 14px;
+            font-size: var(--font-size-small);
             min-height: 20px;
         }
 
@@ -475,418 +129,1700 @@
             font-weight: 600;
         }
 
-        .search-results-count strong {
-            color: var(--highlight-color);
+        /* ==================== 统计栏 ==================== */
+        .stats {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: var(--font-size-small);
         }
 
-        /* 搜索高亮样式 */
+        .stats .left {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .stats .badge {
+            background: var(--accent-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: var(--font-size-small);
+        }
+
+        /* ==================== 头部样式 ==================== */
+        .header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .main-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .subtitle {
+            font-size: var(--font-size-subtitle);
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* ==================== 分类标题 ==================== */
+        .section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section-title {
+            font-size: var(--font-size-title);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .subsection {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .subsection-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            padding-left: var(--spacing-sm);
+            border-left: 3px solid var(--accent-color);
+        }
+
+        /* ==================== 文章列表 ==================== */
+        .article-list {
+            list-style: none;
+        }
+
+        .article-item {
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color var(--transition-fast);
+        }
+
+        .article-item:hover {
+            background-color: var(--bg-hover);
+            padding-left: var(--spacing-sm);
+            padding-right: var(--spacing-sm);
+        }
+
+        .article-item:last-child {
+            border-bottom: none;
+        }
+
+        /* 文章标题 */
+        .article-title {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .article-title a {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            transition: color var(--transition-fast);
+        }
+
+        .article-title a:hover {
+            color: var(--accent-color);
+        }
+
+        /* 文章摘要 */
+        .article-excerpt {
+            font-size: var(--font-size-body);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-sm);
+
+            /* 多行截断 */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* 元数据 */
+        .article-meta {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: var(--font-size-small);
+            color: var(--text-tertiary);
+        }
+
+        .meta-item .icon {
+            font-size: 14px;
+        }
+
+        /* 搜索高亮 */
         .search-highlight {
-            background: linear-gradient(120deg,
-                rgba(102,126,234,0.4) 0%,
-                rgba(240,147,251,0.4) 100%);
-            color: #fff;
+            background: rgba(37, 99, 235, 0.2);
+            color: var(--accent-color);
             padding: 2px 4px;
             border-radius: 3px;
             font-weight: 600;
         }
 
-        /* 移动端搜索优化 */
-        @media (max-width: 768px) {
-            .search-container {
-                padding: var(--spacing-sm) 0;
-            }
-
-            .search-input {
-                padding: 14px 45px 14px 16px;
-                font-size: 15px;
-            }
+        /* ==================== 侧边栏 ==================== */
+        .sidebar {
+            position: sticky;
+            top: var(--spacing-lg);
+            height: fit-content;
         }
 
-        /* ==================== 移动端触摸优化 ==================== */
-        .touch-device .file-item:hover {
-            transform: none !important;
-        }
-        .touch-device .file-item:active {
-            transform: scale(0.98) !important;
+        .sidebar-module {
+            margin-bottom: var(--spacing-xl);
         }
 
-        /* ==================== 移动端菜单按钮 ==================== */
-        .mobile-menu-btn {
-            display: none;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 48px;
-            height: 48px;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius-md);
-            cursor: pointer;
-            z-index: 1001;
-            flex-direction: column;
-            gap: 6px;
-            padding: 14px 12px;
-            transition: all var(--transition-fast);
+        .sidebar-title {
+            font-size: var(--font-size-subtitle);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--border-color);
         }
 
-        .mobile-menu-btn:hover {
-            background: rgba(255,255,255,0.15);
+        /* 相关分类 */
+        .category-list {
+            list-style: none;
         }
 
-        .hamburger-line {
+        .category-item {
             display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--text-primary);
-            border-radius: 2px;
-            transition: all var(--transition-normal);
-            transform-origin: center;
+            padding: var(--spacing-sm) 0;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: var(--font-size-body);
+            transition: all var(--transition-fast);
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .mobile-menu-btn.active .hamburger-line:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
+        .category-item:hover {
+            color: var(--accent-color);
+            padding-left: var(--spacing-sm);
         }
 
-        .mobile-menu-btn.active .hamburger-line:nth-child(2) {
-            opacity: 0;
-            transform: translateX(-10px);
+        .category-item:last-child {
+            border-bottom: none;
         }
 
-        .mobile-menu-btn.active .hamburger-line:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+        .category-count {
+            float: right;
+            color: var(--text-tertiary);
+            font-size: var(--font-size-small);
         }
 
-        /* 侧边栏遮罩 */
-        .sidebar-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
-            opacity: 0;
-            visibility: hidden;
-            transition: all var(--transition-normal);
-            z-index: 999;
+        /* 热门文章 */
+        .hot-articles {
+            list-style: none;
         }
 
-        .sidebar-overlay.active {
-            opacity: 1;
-            visibility: visible;
+        .hot-article-item {
+            display: block;
+            padding: var(--spacing-sm) 0;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: var(--font-size-body);
+            transition: all var(--transition-fast);
+            border-bottom: 1px solid var(--border-color);
         }
 
-        /* 移动端显示菜单按钮 */
-        @media (max-width: 1200px) {
-            .mobile-menu-btn {
-                display: flex;
+        .hot-article-item:hover {
+            color: var(--accent-color);
+        }
+
+        .hot-article-item:last-child {
+            border-bottom: none;
+        }
+
+        .hot-rank {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            background: var(--accent-color);
+            color: white;
+            font-size: 12px;
+            border-radius: 3px;
+            margin-right: var(--spacing-sm);
+        }
+
+        /* ==================== 响应式设计 ==================== */
+        @media (max-width: 1024px) {
+            .layout-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
             }
         }
 
-        /* ==================== 返回顶部按钮 ==================== */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: all var(--transition-normal);
-            box-shadow: 0 4px 12px rgba(102,126,234,0.4);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(102,126,234,0.6);
-        }
-
-        .back-to-top:active {
-            transform: translateY(-2px);
-        }
-
         @media (max-width: 768px) {
-            .back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 44px;
-                height: 44px;
+            .layout-wrapper {
+                padding: var(--spacing-md);
+            }
+
+            .main-title {
+                font-size: 28px;
+            }
+
+            .section-title {
                 font-size: 20px;
             }
+
+            .article-title a {
+                font-size: 16px;
+            }
+
+            .article-excerpt {
+                font-size: 14px;
+            }
+
+            .article-meta {
+                gap: var(--spacing-sm);
+            }
+        }
+
+        /* ==================== 滚动条样式 ==================== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-tertiary);
         }
     </style>
 </head>
 <body>
-<!-- 移动端菜单按钮 -->
-<button class="mobile-menu-btn" aria-label="打开菜单" aria-expanded="false">
-    <span class="hamburger-line"></span>
-    <span class="hamburger-line"></span>
-    <span class="hamburger-line"></span>
-</button>
-
-<!-- 侧边栏遮罩 -->
-<div class="sidebar-overlay"></div>
-
-<div class="container" role="main">
-    <!-- 搜索容器 -->
-    <div class="search-container">
-        <div class="search-box">
-            <input
-                type="text"
-                id="searchInput"
-                class="search-input"
-                placeholder="搜索文章标题、分类关键词..."
-                aria-label="搜索文章"
-                autocomplete="off"
-            >
-            <span class="search-icon">🔍</span>
-        </div>
-        <div class="search-results-count" id="searchResultsCount"></div>
-    </div>
-
-    <!-- 文件统计区域 -->
-    <div class="stats" role="region" aria-label="文件统计">
-        <div class="left">
-            <div class="badge">文件总数: 计算中...</div>
-            <div>数字开头文件夹: 7（共 36 个文件）</div>
-            <div>其他开头文件夹: 9（共 62 个文件）</div>
-        </div>
-        <div class="right" style="color:rgba(255,255,255,0.8);font-size:13px;">
-            <div>更新时间: 计算中...</div>
-            <div>文件夹: <span style="opacity:0.9;">pages</span></div>
-        </div>
-    </div>
-
-    <!-- 页面头部 -->
-    <header class="header">
-        <h1 class="main-title">成长文件索引</h1>
-        <p class="subtitle">探索智慧 · 成就未来</p>
-    </header>
-
-    <!-- 主内容区域 -->
-    <main>
-        <!-- 牧言分类 -->
-        <section class="section" aria-labelledby="section-牧言-title">
-        <h2 class="section-title">牧言 （7）</h2>
-        <ul class="file-grid">
-            <li class="file-item"><a href="1.牧言/1.解锁频率的奥秘.html">1. 解锁频率的奥秘</a></li>
-            <li class="file-item"><a href="1.牧言/2.升维那些事儿.html">2. 升维那些事儿</a></li>
-            <li class="file-item"><a href="1.牧言/3.内卷破局心法.html">3. 内卷破局心法</a></li>
-            <li class="file-item"><a href="1.牧言/4.1目标设定智慧.html">4.1 目标设定智慧</a></li>
-            <li class="file-item"><a href="1.牧言/4.命运论.html">4. 命运论</a></li>
-            <li class="file-item"><a href="1.牧言/5.预言的真相.html">5. 预言的真相</a></li>
-            <li class="file-item"><a href="1.牧言/6.情绪.html">6. 情绪</a></li>
-        </ul>
-    </section>
-
-    <!-- 了凡四训分类 -->
-    <section class="section" aria-labelledby="section-了凡四训-title">
-        <h2 id="section-了凡四训-title" class="section-title">了凡四训 （9）</h2>
-        <ul class="file-grid">
-            <li class="file-item"><a href="2.了凡四训/1.反因循.html">反因循</a></li>
-            <li class="file-item"><a href="2.了凡四训/2.信因果.html">信因果</a></li>
-            <li class="file-item"><a href="2.了凡四训/3.向内求.html">向内求</a></li>
-            <li class="file-item"><a href="2.了凡四训/4.觉察心.html">觉察心</a></li>
-            <li class="file-item"><a href="2.了凡四训/5.昨日已死，今日当生，如何自我重塑.html">昨日已死，今日当生，如何自我重塑</a></li>
-            <li class="file-item"><a href="2.了凡四训/6.如何向大宗师们学习自我重塑？.html">如何向大宗师们学习自我重塑？</a></li>
-            <li class="file-item"><a href="2.了凡四训/7.人生如何避坑？识别假善很关键.html">人生如何避坑？识别假善很关键</a></li>
-            <li class="file-item"><a href="2.了凡四训/8.掌握低调的内核，摆脱底层的门槛.html">掌握低调的内核，摆脱底层的门槛</a></li>
-            <li class="file-item"><a href="2.了凡四训/9.如何提升气场让自己占据主动.html">如何提升气场让自己占据主动</a></li>
-        </ul>
-    </section>
-
-    <!-- 心经分类 -->
-    <section class="section" aria-labelledby="section-心经-title">
-        <h2 id="section-心经-title" class="section-title">心经 （3）</h2>
-        <ul class="file-grid">
-            <li class="file-item"><a href="3.心经/1.如何实现自我突破，达到内心圆满？且看《心经》系列：佛非神.html">如何实现自我突破，达到内心圆满？且看《心经》系列：佛非神</a></li>
-            <li class="file-item"><a href="3.心经/2.如何正确理解缘起性空，走出内心困境？且看《心经》：色即是空.html">如何正确理解缘起性空，走出内心困境？且看《心经》：色即是空</a></li>
-            <li class="file-item"><a href="3.心经/3.如何摒除肉眼，内观到宇宙真相？且看《心经》系列：佛的角度.html">如何摒除肉眼，内观到宇宙真相？且看《心经》系列：佛的角度</a></li>
-        </ul>
-    </section>
-
-    <!-- 道德经分类 -->
-    <section class="section" aria-labelledby="section-道德经-title">
-        <h2 id="section-道德经-title" class="section-title">道德经 （1）</h2>
-        <ul class="file-grid">
-            <li class="file-item"><a href="4.道德经/1.道德经.html">道德经</a></li>
-        </ul>
-    </section>
-
-    <!-- 庄子分类 -->
-    <section class="section" aria-labelledby="section-庄子-title">
-        <h2 id="section-庄子-title" class="section-title">庄子 （6）</h2>
-        <ul class="file-grid">
-            <li class="file-item"><a href="5.庄子/1.看完庄子《逍遥游》，看我们如何穷游人生.html">看完庄子《逍遥游》，看我们如何穷游人生</a></li>
-            <li class="file-item"><a href="5.庄子/2.看完庄子《庄子-齐物论》，刨析12种认知缺陷，瞬间看透本质.html">看完庄子《庄子-齐物论》，刨析12种认知缺陷，瞬间看透本质</a></li>
-            <li class="file-item"><a href="5.庄子/3.看完庄子《庄子-养生主》，刨析如何在工作苦难生死中养生.html">看完庄子《庄子-养生主》，刨析如何在工作苦难生死中养生</a></li>
-            <li class="file-item"><a href="5.庄子/4.如何游刃有余的为人处世？且看《庄子-人间世》三重为人境界.html">如何游刃有余的为人处世？且看《庄子-人间世》三重为人境界</a></li>
-            <li class="file-item"><a href="5.庄子/5.如何让残缺的人生逐步精彩起来？且看《庄子-德充符》篇.html">如何让残缺的人生逐步精彩起来？且看《庄子-德充符》篇</a></li>
-            <li class="file-item"><a href="5.庄子/6.到底什么是规矩？如何破除规矩真正活着？且看庄子相濡以沫的真意.html">到底什么是规矩？如何破除规矩真正活着？且看庄子相濡以沫的真意</a></li>
-        </ul>
-    </section>
-
-    <!-- 阳明心学分类 -->
-    <section class="section" aria-labelledby="section-阳明心学-title">
-        <h2 id="section-阳明心学-title" class="section-title">阳明心学 （2）</h2>
-        <ul class="file-grid">
-            <li class="file-item"><a href="6.阳明心学/1.一口气%201小时看完王阳明的一生，照亮大明王朝天空的流星.html">一口气1小时看完王阳明的一生，照亮大明王朝天空的流星</a></li>
-            <li class="file-item"><a href="6.阳明心学/2.一口气%202小时看完《阳明心学》8大核心，指导人生开挂.html">一口气2小时看完《阳明心学》8大核心，指导人生开挂</a></li>
-        </ul>
-    </section>
-
-    <!-- 李二八分类 -->
-    <section class="section" aria-labelledby="section-李二八-title">
-        <h2 id="section-李二八-title" class="section-title">李二八 （8）</h2>
-        <ul class="file-grid">
-            <li class="file-item"><a href="7.李二八/二八严选，10个人生作弊小技巧.html">二八严选，10个人生作弊小技巧</a></li>
-            <li class="file-item"><a href="7.李二八/二十分钟认清执行力.html">二十分钟认清执行力</a></li>
-            <li class="file-item"><a href="7.李二八/从知道到做到，只差这一期视频。有点费脑，但值得。.html">从知道到做到，只差这一期视频。有点费脑，但值得。</a></li>
-            <li class="file-item"><a href="7.李二八/别再拿假性目标折磨自己了.html">别再拿假性目标折磨自己了</a></li>
-            <li class="file-item"><a href="7.李二八/完美主义封印你的能力.html">完美主义封印你的能力</a></li>
-            <li class="file-item"><a href="7.李二八/成事标准-主观能动性.html">成事标准-主观能动性</a></li>
-            <li class="file-item"><a href="7.李二八/持续博弈-必均值回归.html">持续博弈-必均值回归</a></li>
-            <li class="file-item"><a href="7.李二八/无间地狱发现必打破.html">无间地狱发现必打破</a></li>
-        </ul>
-    </section>
-
-    <!-- 其它分类 -->
-    <section class="section" aria-labelledby="section-其它-title">
-        <h2 id="section-其它-title" class="section-title">其它 （共 62）</h2>
-
-        <div class="subsection">
-            <h3 class="subsection-title">学习方法 （8）</h3>
-            <ul class="file-grid">
-                <li class="file-item"><a href="其它/1.学习方法/3分钟助你重构人生，撬动人生回报率.html">3分钟助你重构人生，撬动人生回报率</a></li>
-                <li class="file-item"><a href="其它/1.学习方法/刘少辉的《输出式学习》.html">刘少辉的《输出式学习》</a></li>
-                <li class="file-item"><a href="其它/1.学习方法/初高中怎么用最短时间超过同学.html">初高中怎么用最短时间超过同学</a></li>
-                <li class="file-item"><a href="其它/1.学习方法/如何借助AI 比其它人快10x学习任何东西.html">如何借助AI 比其它人快10x学习任何东西</a></li>
-                <li class="file-item"><a href="其它/1.学习方法/如何成为AI先行者.html">如何成为AI先行者</a></li>
-                <li class="file-item"><a href="其它/1.学习方法/穷人最大的陷阱：把收藏当发财.html">穷人最大的陷阱：把收藏当发财</a></li>
-                <li class="file-item"><a href="其它/1.学习方法/输出型爱好.html">输出型爱好</a></li>
-                <li class="file-item"><a href="其它/1.学习方法/项目驱动的10倍速学习法.html">项目驱动的10倍速学习法</a></li>
-            </ul>
+<div class="layout-wrapper">
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 搜索容器 -->
+        <div class="search-container">
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="搜索文章标题、分类关键词..."
+                    aria-label="搜索文章"
+                    autocomplete="off"
+                >
+                <span class="search-icon">🔍</span>
+            </div>
+            <div class="search-results-count" id="searchResultsCount"></div>
         </div>
 
-        <div class="subsection">
-            <h3 class="subsection-title">技能提升 （2）</h3>
-            <ul class="file-grid">
-                <li class="file-item"><a href="其它/2.技能提升/关键述职：让你事半功倍的职场动作.html">关键述职：让你事半功倍的职场动作</a></li>
-                <li class="file-item"><a href="其它/2.技能提升/技术答辩五大要点 高效展示技巧.html">技术答辩五大要点 高效展示技巧</a></li>
-            </ul>
+        <!-- 文件统计区域 -->
+        <div class="stats" role="region" aria-label="文件统计">
+            <div class="left">
+                <div class="badge">文件总数: 计算中...</div>
+                <div>数字开头文件夹: 7（共 36 个文件）</div>
+                <div>其他开头文件夹: 9（共 62 个文件）</div>
+            </div>
+            <div class="right" style="color: var(--text-secondary); font-size: var(--font-size-small);">
+                <div>更新时间: 计算中...</div>
+                <div>文件夹: <span>pages</span></div>
+            </div>
         </div>
 
-        <div class="subsection">
-            <h3 class="subsection-title">心理健康 （20）</h3>
-            <ul class="file-grid">
-                <li class="file-item"><a href="其它/3.心理健康/【男女通用】戒色、禁欲真的有用吗？.html">【男女通用】戒色、禁欲真的有用吗？</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/不和睦的家庭里往往有一个制造内耗的人.html">不和睦的家庭里往往有一个制造内耗的人</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/人类16种基本需求心理学分析.html">人类16种基本需求心理学分析</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/你活得太累，就是因为你不够自私.html">你活得太累，就是因为你不够自私</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/在虚无的世界中创造意义.html">在虚无的世界中创造意义</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/如何不被小事耗光精力？.html">如何不被小事耗光精力？</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/如何用确定性的体能消耗，去置换内心如如不动的稳定.html">如何用确定性的体能消耗，去置换内心如如不动的稳定</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/少有人走的路.html">少有人走的路</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/强烈建议大家周末或假期去做反差大的事.html">强烈建议大家周末或假期去做反差大的事</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/心流：人生最重要的事情不是努力，而是会玩.html">心流：人生最重要的事情不是努力，而是会玩</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/心理韧性：战胜挑战的内在力量 - 彭凯平教授分享.html">心理韧性：战胜挑战的内在力量 - 彭凯平教授分享</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/总是忙的团团转，试试这个方法 我们总觉得是任务太多、时间不够.html">总是忙的团团转，试试这个方法 我们总觉得是任务太多、时间不够</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/情绪与成长：心理学的力量.html">情绪与成长：心理学的力量</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/成瘾科学：戒色禁欲对大脑的影响.html">成瘾科学：戒色禁欲对大脑的影响</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/注意力缺失.html">注意力缺失</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/活的越抽象越能走出焦虑.html">活的越抽象越能走出焦虑</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/解读《我们内心的冲突》.html">解读《我们内心的冲突》</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/解读：底层逻辑.html">解读：底层逻辑</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/越是底层的家庭，家庭成员之间越是固执的无法沟通.html">越是底层的家庭，家庭成员之间越是固执的无法沟通</a></li>
-                <li class="file-item"><a href="其它/3.心理健康/高敏感的人属于大后期人格，只要熬过前面的，越往后越顺.html">高敏感的人属于大后期人格，只要熬过前面的，越往后越顺</a></li>
-            </ul>
-        </div>
+        <!-- 页面头部 -->
+        <header class="header">
+            <h1 class="main-title">成长文件索引</h1>
+            <p class="subtitle">探索智慧 · 成就未来</p>
+        </header>
 
-        <div class="subsection">
-            <h3 class="subsection-title">经验总结 （16）</h3>
-            <ul class="file-grid">
-                <li class="file-item"><a href="其它/4.经验总结/30岁活成18岁的状态.html">30岁活成18岁的状态</a></li>
-                <li class="file-item"><a href="其它/4.经验总结/【精选奇遇记】正片：顶级做题家，如何用“做题思维”突围人生？.html">【精选奇遇记】正片：顶级做题家，如何用“做题思维”突围人生？</a></li>
-                <li class="file-item"><a href="其它/4.经验总结/不要把时代的病症，灌入自己的身体.html">不要把时代的病症，灌入自己的身体</a></li>
-                <li class="file-item"><a href="其它/4.经验总结/为什么很多人做了中层反而更惨？.html">为什么很多人做了中层反而更惨？</a></li>
-                <li class="file-item"><a href="其它/4.经验总结/习得技能得本质是极致得重复+刻意练习.html">习得技能得本质是极致得重复+刻意练习</a></li>
-                <li class="file-item"><a href="其它/4.经验总结/人生的第一性原理.html">人生的第一性原理</a></li>
-                <li class="file-item"><a href="其它/4.经验总结/你为何总是执着于人类的命运，却不愿意低头看一眼自己的故事.html">你为何总是执着于人类的命运，却不愿意低头看一眼自己的故事</a></li>
-                <li class="file-item"><a href="其它/4.经验总结/你的固执，正在限制你的人生上限.html">你的固执，正在限制你的人生上限</a></li>
-                <li class="file-item"><a href="其它/4.经验总结/喻颖正访谈：财富自由与人生规划.html">喻颖正访谈：财富自由与人生规划</a></li>
-                <li class="file-item"><a href="其它/4.经验总结/喻颖正访谈：财富自由与人生规划2.html">喻颖正访谈：财富自由与人生规划2</a></li>
-                <li class="file-item"><a href="其它/4.经验总结/当代大学生不懂大模型.html">当代大学生不懂大模型</a></li>
-                <li class="file-item"><a href="其它/4.经验总结/献祭与托举：一个家族的逆天改命之路.html">献祭与托举：一个家族的逆天改命之路</a></li>
-                <li class="file-item"><a href="其它/4.经验总结/老实人升职难的本质是什么？.html">老实人升职难的本质是什么？</a></li>
-                <li class="file-item"><a href="其它/4.经验总结/胃癌，离我们有多近？.html">胃癌，离我们有多近？</a></li>
-                <li class="file-item"><a href="其它/4.经验总结/近十年面对复杂协调工作的经验.html">近十年面对复杂协调工作的经验</a></li>
-                <li class="file-item"><a href="其它/4.经验总结/近十年面对复杂协调工作的经验2.html">近十年面对复杂协调工作的经验2</a></li>
-            </ul>
-        </div>
+        <!-- 主内容区域 -->
+        <div class="content-sections">
+            <!-- 牧言分类 -->
+            <section class="section" aria-labelledby="section-牧言-title">
+                <h2 id="section-牧言-title" class="section-title">牧言 （7）</h2>
+                <div class="article-list">
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="1.牧言/1.解锁频率的奥秘.html">1. 解锁频率的奥秘</a>
+                        </h3>
+                        <p class="article-excerpt">探索频率的奥秘，理解宇宙运行的基本规律...</p>
+                        <div class="article-meta">
+                            <span class="meta-item">
+                                <span class="icon">👁️</span>
+                                <span class="count">--</span>
+                            </span>
+                            <span class="meta-item">
+                                <span class="icon">👍</span>
+                                <span class="count">--</span>
+                            </span>
+                            <span class="meta-item">
+                                <span class="icon">💬</span>
+                                <span class="count">--</span>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="1.牧言/2.升维那些事儿.html">2. 升维那些事儿</a>
+                        </h3>
+                        <p class="article-excerpt">关于升维思维和认知层次的深度探讨...</p>
+                        <div class="article-meta">
+                            <span class="meta-item">
+                                <span class="icon">👁️</span>
+                                <span class="count">--</span>
+                            </span>
+                            <span class="meta-item">
+                                <span class="icon">👍</span>
+                                <span class="count">--</span>
+                            </span>
+                            <span class="meta-item">
+                                <span class="icon">💬</span>
+                                <span class="count">--</span>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="1.牧言/3.内卷破局心法.html">3. 内卷破局心法</a>
+                        </h3>
+                        <p class="article-excerpt">破解内卷困境的心法智慧和实战策略...</p>
+                        <div class="article-meta">
+                            <span class="meta-item">
+                                <span class="icon">👁️</span>
+                                <span class="count">--</span>
+                            </span>
+                            <span class="meta-item">
+                                <span class="icon">👍</span>
+                                <span class="count">--</span>
+                            </span>
+                            <span class="meta-item">
+                                <span class="icon">💬</span>
+                                <span class="count">--</span>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="1.牧言/4.1目标设定智慧.html">4.1 目标设定智慧</a>
+                        </h3>
+                        <p class="article-excerpt">关于如何科学设定和实现目标的智慧...</p>
+                        <div class="article-meta">
+                            <span class="meta-item">
+                                <span class="icon">👁️</span>
+                                <span class="count">--</span>
+                            </span>
+                            <span class="meta-item">
+                                <span class="icon">👍</span>
+                                <span class="count">--</span>
+                            </span>
+                            <span class="meta-item">
+                                <span class="icon">💬</span>
+                                <span class="count">--</span>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="1.牧言/4.命运论.html">4. 命运论</a>
+                        </h3>
+                        <p class="article-excerpt">深度探讨命运的本质和如何改变命运...</p>
+                        <div class="article-meta">
+                            <span class="meta-item">
+                                <span class="icon">👁️</span>
+                                <span class="count">--</span>
+                            </span>
+                            <span class="meta-item">
+                                <span class="icon">👍</span>
+                                <span class="count">--</span>
+                            </span>
+                            <span class="meta-item">
+                                <span class="icon">💬</span>
+                                <span class="count">--</span>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="1.牧言/5.预言的真相.html">5. 预言的真相</a>
+                        </h3>
+                        <p class="article-excerpt">揭示预言背后的真相和科学原理...</p>
+                        <div class="article-meta">
+                            <span class="meta-item">
+                                <span class="icon">👁️</span>
+                                <span class="count">--</span>
+                            </span>
+                            <span class="meta-item">
+                                <span class="icon">👍</span>
+                                <span class="count">--</span>
+                            </span>
+                            <span class="meta-item">
+                                <span class="icon">💬</span>
+                                <span class="count">--</span>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="1.牧言/6.情绪.html">6. 情绪</a>
+                        </h3>
+                        <p class="article-excerpt">理解情绪的本质和管理情绪的智慧...</p>
+                        <div class="article-meta">
+                            <span class="meta-item">
+                                <span class="icon">👁️</span>
+                                <span class="count">--</span>
+                            </span>
+                            <span class="meta-item">
+                                <span class="icon">👍</span>
+                                <span class="count">--</span>
+                            </span>
+                            <span class="meta-item">
+                                <span class="icon">💬</span>
+                                <span class="count">--</span>
+                            </span>
+                        </div>
+                    </article>
+                </div>
+            </section>
 
-        <div class="subsection">
-            <h3 class="subsection-title">表达能力 （4）</h3>
-            <ul class="file-grid">
-                <li class="file-item"><a href="其它/5.表达能力/好的表达先不用追求言之有物，敢说、能说利索就不错才.html">好的表达先不用追求言之有物，敢说、能说利索就不错</a></li>
-                <li class="file-item"><a href="其它/5.表达能力/沟通能力强的人，都在用这12个说话原理.html">沟通能力强的人，都在用这12个说话原理</a></li>
-                <li class="file-item"><a href="其它/5.表达能力/表达力快速提升技巧.html">表达力快速提升技巧</a></li>
-                <li class="file-item"><a href="其它/5.表达能力/金字塔原理 能帮你大幅提升思考、表达和解决问题的能力.html">金字塔原理 能帮你大幅提升思考、表达和解决问题的能力</a></li>
-            </ul>
-        </div>
+            <!-- 了凡四训分类 -->
+            <section class="section" aria-labelledby="section-了凡四训-title">
+                <h2 id="section-了凡四训-title" class="section-title">了凡四训 （9）</h2>
+                <div class="article-list">
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="2.了凡四训/1.反因循.html">反因循</a>
+                        </h3>
+                        <p class="article-excerpt">如何打破因循守旧，实现自我突破...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="2.了凡四训/2.信因果.html">信因果</a>
+                        </h3>
+                        <p class="article-excerpt">深入理解因果规律，掌握人生主动权...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="2.了凡四训/3.向内求.html">向内求</a>
+                        </h3>
+                        <p class="article-excerpt">向内求索，发现内心的无限潜能...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="2.了凡四训/4.觉察心.html">觉察心</a>
+                        </h3>
+                        <p class="article-excerpt">培养觉察心，看清事物本质...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="2.了凡四训/5.昨日已死，今日当生，如何自我重塑.html">昨日已死，今日当生，如何自我重塑</a>
+                        </h3>
+                        <p class="article-excerpt">如何在每一天实现自我重塑和重生...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="2.了凡四训/6.如何向大宗师们学习自我重塑？.html">如何向大宗师们学习自我重塑？</a>
+                        </h3>
+                        <p class="article-excerpt">向历史上的大宗师学习自我重塑的智慧...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="2.了凡四训/7.人生如何避坑？识别假善很关键.html">人生如何避坑？识别假善很关键</a>
+                        </h3>
+                        <p class="article-excerpt">识别假善，避免人生陷阱的关键智慧...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="2.了凡四训/8.掌握低调的内核，摆脱底层的门槛.html">掌握低调的内核，摆脱底层的门槛</a>
+                        </h3>
+                        <p class="article-excerpt">低调的内在力量，如何突破阶层限制...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="2.了凡四训/9.如何提升气场让自己占据主动.html">如何提升气场让自己占据主动</a>
+                        </h3>
+                        <p class="article-excerpt">提升个人气场，掌握人生主动权...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                </div>
+            </section>
 
-        <div class="subsection">
-            <h3 class="subsection-title">工作方法 （7）</h3>
-            <ul class="file-grid">
-                <li class="file-item"><a href="其它/6.工作方法/PPP工作法-投资自己.html">PPP工作法-投资自己</a></li>
-                <li class="file-item"><a href="其它/6.工作方法/事缓则圆，不在意结果也许会更好。工作中最聪明的做法，就是以柔克刚.html">事缓则圆，不在意结果也许会更好。工作中最聪明的做法，就是以柔克刚</a></li>
-                <li class="file-item"><a href="其它/6.工作方法/人人都要会的升职加薪模板（上）.html">人人都要会的升职加薪模板（上）</a></li>
-                <li class="file-item"><a href="其它/6.工作方法/人人都要会的升职加薪模板（下）.html">人人都要会的升职加薪模板（下）</a></li>
-                <li class="file-item"><a href="其它/6.工作方法/在草台班子中保持自洽.html">在草台班子中保持自洽</a></li>
-                <li class="file-item"><a href="其它/6.工作方法/汇报能力绝对是最顶级的职场能力.html">汇报能力绝对是最顶级的职场能力</a></li>
-                <li class="file-item"><a href="其它/6.工作方法/管理的本质.html">管理的本质</a></li>
-            </ul>
-        </div>
+            <!-- 心经分类 -->
+            <section class="section" aria-labelledby="section-心经-title">
+                <h2 id="section-心经-title" class="section-title">心经 （3）</h2>
+                <div class="article-list">
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="3.心经/1.如何实现自我突破，达到内心圆满？且看《心经》系列：佛非神.html">如何实现自我突破，达到内心圆满？且看《心经》系列：佛非神</a>
+                        </h3>
+                        <p class="article-excerpt">通过心经理解佛非神的本质，实现自我突破...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="3.心经/2.如何正确理解缘起性空，走出内心困境？且看《心经》：色即是空.html">如何正确理解缘起性空，走出内心困境？且看《心经》：色即是空</a>
+                        </h3>
+                        <p class="article-excerpt">正确理解缘起性空的智慧，走出内心困境...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="3.心经/3.如何摒除肉眼，内观到宇宙真相？且看《心经》系列：佛的角度.html">如何摒除肉眼，内观到宇宙真相？且看《心经》系列：佛的角度</a>
+                        </h3>
+                        <p class="article-excerpt">从佛的角度内观宇宙真相，提升认知维度...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                </div>
+            </section>
 
-        <div class="subsection">
-            <h3 class="subsection-title">访谈 （2）</h3>
-            <ul class="file-grid">
-                <li class="file-item"><a href="其它/7.访谈/对谈兰小欢：宏观总有周期，个体只有当下，人生要学会留有余力.html">对谈兰小欢：宏观总有周期，个体只有当下，人生要学会留有余力</a></li>
-                <li class="file-item"><a href="其它/7.访谈/李笑来教你“骗”过大脑潜意识，轻松变好.html">李笑来教你“骗”过大脑潜意识，轻松变好</a></li>
-            </ul>
-        </div>
+            <!-- 道德经分类 -->
+            <section class="section" aria-labelledby="section-道德经-title">
+                <h2 id="section-道德经-title" class="section-title">道德经 （1）</h2>
+                <div class="article-list">
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="4.道德经/1.道德经.html">道德经</a>
+                        </h3>
+                        <p class="article-excerpt">道德经的智慧和道家的核心思想...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                </div>
+            </section>
 
-        <div class="subsection">
-            <h3 class="subsection-title">两性与情感 （3）</h3>
-            <ul class="file-grid">
-                <li class="file-item"><a href="其它/8.两性与情感/千万别找底层的女生，尤其是底层美女.html">千万别找底层的女生，尤其是底层美女</a></li>
-                <li class="file-item"><a href="其它/8.两性与情感/比恋爱脑更可怕的是性缘脑？前者影响恋爱，后者影响所有.html">比恋爱脑更可怕的是性缘脑？前者影响恋爱，后者影响所有</a></li>
-                <li class="file-item"><a href="其它/8.两性与情感/男性提升自己最快的方式，给大脑去性化.html">男性提升自己最快的方式，给大脑去性化</a></li>
-            </ul>
+            <!-- 庄子分类 -->
+            <section class="section" aria-labelledby="section-庄子-title">
+                <h2 id="section-庄子-title" class="section-title">庄子 （6）</h2>
+                <div class="article-list">
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="5.庄子/1.看完庄子《逍遥游》，看我们如何穷游人生.html">看完庄子《逍遥游》，看我们如何穷游人生</a>
+                        </h3>
+                        <p class="article-excerpt">从庄子的逍遥游中学习如何自由自在地生活...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="5.庄子/2.看完庄子《庄子-齐物论》，刨析12种认知缺陷，瞬间看透本质.html">看完庄子《庄子-齐物论》，刨析12种认知缺陷，瞬间看透本质</a>
+                        </h3>
+                        <p class="article-excerpt">剖析12种认知缺陷，提升看透本质的能力...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="5.庄子/3.看完庄子《庄子-养生主》，刨析如何在工作苦难生死中养生.html">看完庄子《庄子-养生主》，刨析如何在工作苦难生死中养生</a>
+                        </h3>
+                        <p class="article-excerpt">在工作、苦难和生死中寻找养生的智慧...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="5.庄子/4.如何游刃有余的为人处世？且看《庄子-人间世》三重为人境界.html">如何游刃有余的为人处世？且看《庄子-人间世》三重为人境界</a>
+                        </h3>
+                        <p class="article-excerpt">学习庄子人间世的三重为人境界...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="5.庄子/5.如何让残缺的人生逐步精彩起来？且看《庄子-德充符》篇.html">如何让残缺的人生逐步精彩起来？且看《庄子-德充符》篇</a>
+                        </h3>
+                        <p class="article-excerpt">即使人生残缺，也能通过内在修养让生命精彩...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="5.庄子/6.到底什么是规矩？如何破除规矩真正活着？且看庄子相濡以沫的真意.html">到底什么是规矩？如何破除规矩真正活着？且看庄子相濡以沫的真意</a>
+                        </h3>
+                        <p class="article-excerpt">理解规矩的本质，寻找真正的自由...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- 阳明心学分类 -->
+            <section class="section" aria-labelledby="section-阳明心学-title">
+                <h2 id="section-阳明心学-title" class="section-title">阳明心学 （2）</h2>
+                <div class="article-list">
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="6.阳明心学/1.一口气%201小时看完王阳明的一生，照亮大明王朝天空的流星.html">一口气1小时看完王阳明的一生，照亮大明王朝天空的流星</a>
+                        </h3>
+                        <p class="article-excerpt">回顾王阳明传奇的一生，理解心学的诞生...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="6.阳明心学/2.一口气%202小时看完《阳明心学》8大核心，指导人生开挂.html">一口气2小时看完《阳明心学》8大核心，指导人生开挂</a>
+                        </h3>
+                        <p class="article-excerpt">掌握阳明心学的8大核心思想，指导人生实践...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- 李二八分类 -->
+            <section class="section" aria-labelledby="section-李二八-title">
+                <h2 id="section-李二八-title" class="section-title">李二八 （8）</h2>
+                <div class="article-list">
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="7.李二八/二八严选，10个人生作弊小技巧.html">二八严选，10个人生作弊小技巧</a>
+                        </h3>
+                        <p class="article-excerpt">精选10个实用的人生小技巧，提升生活效率...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="7.李二八/二十分钟认清执行力.html">二十分钟认清执行力</a>
+                        </h3>
+                        <p class="article-excerpt">认清执行力的本质，提升行动力...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="7.李二八/从知道到做到，只差这一期视频。有点费脑，但值得。.html">从知道到做到，只差这一期视频。有点费脑，但值得。</a>
+                        </h3>
+                        <p class="article-excerpt">跨越知行合一的鸿沟，实现从知道到做到...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="7.李二八/别再拿假性目标折磨自己了.html">别再拿假性目标折磨自己了</a>
+                        </h3>
+                        <p class="article-excerpt">识别假性目标，设定真正有意义的人生目标...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="7.李二八/完美主义封印你的能力.html">完美主义封印你的能力</a>
+                        </h3>
+                        <p class="article-excerpt">克服完美主义，释放真正的能力...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="7.李二八/成事标准-主观能动性.html">成事标准-主观能动性</a>
+                        </h3>
+                        <p class="article-excerpt">发挥主观能动性，提升成事标准...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="7.李二八/持续博弈-必均值回归.html">持续博弈-必均值回归</a>
+                        </h3>
+                        <p class="article-excerpt">理解博弈论中的均值回归原理...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <h3 class="article-title">
+                            <a href="7.李二八/无间地狱发现必打破.html">无间地狱发现必打破</a>
+                        </h3>
+                        <p class="article-excerpt">在困境中寻找突破口，打破无间地狱...</p>
+                        <div class="article-meta">
+                            <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                            <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- 其它分类 -->
+            <section class="section" aria-labelledby="section-其它-title">
+                <h2 id="section-其它-title" class="section-title">其它 （共 62）</h2>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">学习方法 （8）</h3>
+                    <div class="article-list">
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/1.学习方法/3分钟助你重构人生，撬动人生回报率.html">3分钟助你重构人生，撬动人生回报率</a>
+                            </h3>
+                            <p class="article-excerpt">快速重构人生框架，提升人生回报率...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/1.学习方法/刘少辉的《输出式学习》.html">刘少辉的《输出式学习》</a>
+                            </h3>
+                            <p class="article-excerpt">输出式学习的核心方法和实践技巧...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/1.学习方法/初高中怎么用最短时间超过同学.html">初高中怎么用最短时间超过同学</a>
+                            </h3>
+                            <p class="article-excerpt">中学生高效学习策略，快速提升成绩...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/1.学习方法/如何借助AI 比其它人快10x学习任何东西.html">如何借助AI 比其它人快10x学习任何东西</a>
+                            </h3>
+                            <p class="article-excerpt">利用AI工具实现10倍速学习的方法...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/1.学习方法/如何成为AI先行者.html">如何成为AI先行者</a>
+                            </h3>
+                            <p class="article-excerpt">在AI时代成为先行者的策略和路径...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/1.学习方法/穷人最大的陷阱：把收藏当发财.html">穷人最大的陷阱：把收藏当发财</a>
+                            </h3>
+                            <p class="article-excerpt">识别收藏不等于学习的认知陷阱...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/1.学习方法/输出型爱好.html">输出型爱好</a>
+                            </h3>
+                            <p class="article-excerpt">培养输出型爱好，提升个人价值...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/1.学习方法/项目驱动的10倍速学习法.html">项目驱动的10倍速学习法</a>
+                            </h3>
+                            <p class="article-excerpt">通过项目驱动实现快速学习的方法...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">技能提升 （2）</h3>
+                    <div class="article-list">
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/2.技能提升/关键述职：让你事半功倍的职场动作.html">关键述职：让你事半功倍的职场动作</a>
+                            </h3>
+                            <p class="article-excerpt">掌握述职技巧，提升职场表现...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/2.技能提升/技术答辩五大要点 高效展示技巧.html">技术答辩五大要点 高效展示技巧</a>
+                            </h3>
+                            <p class="article-excerpt">技术答辩的五大要点和展示技巧...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">心理健康 （20）</h3>
+                    <div class="article-list">
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/【男女通用】戒色、禁欲真的有用吗？.html">【男女通用】戒色、禁欲真的有用吗？</a>
+                            </h3>
+                            <p class="article-excerpt">科学分析戒色禁欲的作用和影响...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/不和睦的家庭里往往有一个制造内耗的人.html">不和睦的家庭里往往有一个制造内耗的人</a>
+                            </h3>
+                            <p class="article-excerpt">识别家庭内耗的根源，改善家庭关系...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/人类16种基本需求心理学分析.html">人类16种基本需求心理学分析</a>
+                            </h3>
+                            <p class="article-excerpt">心理学角度分析人类的16种基本需求...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/你活得太累，就是因为你不够自私.html">你活得太累，就是因为你不够自私</a>
+                            </h3>
+                            <p class="article-excerpt">适度自私，减轻生活压力...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/在虚无的世界中创造意义.html">在虚无的世界中创造意义</a>
+                            </h3>
+                            <p class="article-excerpt">如何在虚无中找到人生的意义...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/如何不被小事耗光精力？.html">如何不被小事耗光精力？</a>
+                            </h3>
+                            <p class="article-excerpt">管理精力，避免被琐事消耗...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/如何用确定性的体能消耗，去置换内心如如不动的稳定.html">如何用确定性的体能消耗，去置换内心如如不动的稳定</a>
+                            </h3>
+                            <p class="article-excerpt">通过体能消耗获得内心平静...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/少有人走的路.html">少有人走的路</a>
+                            </h3>
+                            <p class="article-excerpt">探索少有人走的成长之路...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/强烈建议大家周末或假期去做反差大的事.html">强烈建议大家周末或假期去做反差大的事</a>
+                            </h3>
+                            <p class="article-excerpt">通过反差体验丰富生活...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/心流：人生最重要的事情不是努力，而是会玩.html">心流：人生最重要的事情不是努力，而是会玩</a>
+                            </h3>
+                            <p class="article-excerpt">理解心流状态，享受生活和创造...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/心理韧性：战胜挑战的内在力量 - 彭凯平教授分享.html">心理韧性：战胜挑战的内在力量 - 彭凯平教授分享</a>
+                            </h3>
+                            <p class="article-excerpt">彭凯平教授分享心理韧性的培养...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/总是忙的团团转，试试这个方法 我们总觉得是任务太多、时间不够.html">总是忙的团团转，试试这个方法 我们总觉得是任务太多、时间不够</a>
+                            </h3>
+                            <p class="article-excerpt">摆脱忙碌困境，提高时间管理能力...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/情绪与成长：心理学的力量.html">情绪与成长：心理学的力量</a>
+                            </h3>
+                            <p class="article-excerpt">利用心理学理解情绪，促进成长...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/成瘾科学：戒色禁欲对大脑的影响.html">成瘾科学：戒色禁欲对大脑的影响</a>
+                            </h3>
+                            <p class="article-excerpt">科学分析戒色禁欲对大脑的影响...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/注意力缺失.html">注意力缺失</a>
+                            </h3>
+                            <p class="article-excerpt">理解注意力缺失，提升专注力...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/活的越抽象越能走出焦虑.html">活的越抽象越能走出焦虑</a>
+                            </h3>
+                            <p class="article-excerpt">通过抽象思维缓解焦虑...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/解读《我们内心的冲突》.html">解读《我们内心的冲突》</a>
+                            </h3>
+                            <p class="article-excerpt">解读卡伦·霍尼的经典心理学著作...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/解读：底层逻辑.html">解读：底层逻辑</a>
+                            </h3>
+                            <p class="article-excerpt">深度解读思考的底层逻辑...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/越是底层的家庭，家庭成员之间越是固执的无法沟通.html">越是底层的家庭，家庭成员之间越是固执的无法沟通</a>
+                            </h3>
+                            <p class="article-excerpt">破解底层家庭的沟通困境...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/3.心理健康/高敏感的人属于大后期人格，只要熬过前面的，越往后越顺.html">高敏感的人属于大后期人格，只要熬过前面的，越往后越顺</a>
+                            </h3>
+                            <p class="article-excerpt">理解高敏感人格的优势和成长路径...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">经验总结 （16）</h3>
+                    <div class="article-list">
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/30岁活成18岁的状态.html">30岁活成18岁的状态</a>
+                            </h3>
+                            <p class="article-excerpt">如何在30岁保持18岁的状态...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/【精选奇遇记】正片：顶级做题家，如何用"做题思维"突围人生？.html">【精选奇遇记】正片：顶级做题家，如何用"做题思维"突围人生？</a>
+                            </h3>
+                            <p class="article-excerpt">顶级做题家如何用做题思维突围人生...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/不要把时代的病症，灌入自己的身体.html">不要把时代的病症，灌入自己的身体</a>
+                            </h3>
+                            <p class="article-excerpt">避免时代焦虑对个人健康的影响...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/为什么很多人做了中层反而更惨？.html">为什么很多人做了中层反而更惨？</a>
+                            </h3>
+                            <p class="article-excerpt">解析中层管理的困境和出路...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/习得技能得本质是极致得重复+刻意练习.html">习得技能得本质是极致得重复+刻意练习</a>
+                            </h3>
+                            <p class="article-excerpt">技能习得的核心是重复和刻意练习...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/人生的第一性原理.html">人生的第一性原理</a>
+                            </h3>
+                            <p class="article-excerpt">用第一性原理思考人生...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/你为何总是执着于人类的命运，却不愿意低头看一眼自己的故事.html">你为何总是执着于人类的命运，却不愿意低头看一眼自己的故事</a>
+                            </h3>
+                            <p class="article-excerpt">关注个人故事，而非空谈人类命运...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/你的固执，正在限制你的人生上限.html">你的固执，正在限制你的人生上限</a>
+                            </h3>
+                            <p class="article-excerpt">放下固执，提升人生上限...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/喻颖正访谈：财富自由与人生规划.html">喻颖正访谈：财富自由与人生规划</a>
+                            </h3>
+                            <p class="article-excerpt">喻颖正分享财富自由和人生规划...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/喻颖正访谈：财富自由与人生规划2.html">喻颖正访谈：财富自由与人生规划2</a>
+                            </h3>
+                            <p class="article-excerpt">喻颖正访谈续篇，深入探讨财富自由...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/当代大学生不懂大模型.html">当代大学生不懂大模型</a>
+                            </h3>
+                            <p class="article-excerpt">当代大学生需要了解的大模型知识...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/献祭与托举：一个家族的逆天改命之路.html">献祭与托举：一个家族的逆天改命之路</a>
+                            </h3>
+                            <p class="article-excerpt">家族传承与逆天改命的深层思考...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/老实人升职难的本质是什么？.html">老实人升职难的本质是什么？</a>
+                            </h3>
+                            <p class="article-excerpt">解析老实人升职难的本质原因...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/胃癌，离我们有多近？.html">胃癌，离我们有多近？</a>
+                            </h3>
+                            <p class="article-excerpt">关注胃癌预防，保护胃部健康...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/近十年面对复杂协调工作的经验.html">近十年面对复杂协调工作的经验</a>
+                            </h3>
+                            <p class="article-excerpt">十年复杂协调工作的经验总结...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/4.经验总结/近十年面对复杂协调工作的经验2.html">近十年面对复杂协调工作的经验2</a>
+                            </h3>
+                            <p class="article-excerpt">复杂协调工作经验总结续篇...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">表达能力 （4）</h3>
+                    <div class="article-list">
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/5.表达能力/好的表达先不用追求言之有物，敢说、能说利索就不错才.html">好的表达先不用追求言之有物，敢说、能说利索就不错</a>
+                            </h3>
+                            <p class="article-excerpt">表达能力提升的第一步：敢说...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/5.表达能力/沟通能力强的人，都在用这12个说话原理.html">沟通能力强的人，都在用这12个说话原理</a>
+                            </h3>
+                            <p class="article-excerpt">掌握12个说话原理，提升沟通能力...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/5.表达能力/表达力快速提升技巧.html">表达力快速提升技巧</a>
+                            </h3>
+                            <p class="article-excerpt">快速提升表达力的实用技巧...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/5.表达能力/金字塔原理 能帮你大幅提升思考、表达和解决问题的能力.html">金字塔原理 能帮你大幅提升思考、表达和解决问题的能力</a>
+                            </h3>
+                            <p class="article-excerpt">金字塔原理提升思考和表达能力...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">工作方法 （7）</h3>
+                    <div class="article-list">
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/6.工作方法/PPP工作法-投资自己.html">PPP工作法-投资自己</a>
+                            </h3>
+                            <p class="article-excerpt">PPP工作法帮助系统化投资自己...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/6.工作方法/事缓则圆，不在意结果也许会更好。工作中最聪明的做法，就是以柔克刚.html">事缓则圆，不在意结果也许会更好。工作中最聪明的做法，就是以柔克刚</a>
+                            </h3>
+                            <p class="article-excerpt">工作中的以柔克刚智慧...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/6.工作方法/人人都要会的升职加薪模板（上）.html">人人都要会的升职加薪模板（上）</a>
+                            </h3>
+                            <p class="article-excerpt">升职加薪的实用模板（上篇）...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/6.工作方法/人人都要会的升职加薪模板（下）.html">人人都要会的升职加薪模板（下）</a>
+                            </h3>
+                            <p class="article-excerpt">升职加薪的实用模板（下篇）...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/6.工作方法/在草台班子中保持自洽.html">在草台班子中保持自洽</a>
+                            </h3>
+                            <p class="article-excerpt">在不完美的环境中保持自我...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/6.工作方法/汇报能力绝对是最顶级的职场能力.html">汇报能力绝对是最顶级的职场能力</a>
+                            </h3>
+                            <p class="article-excerpt">提升汇报能力，成为职场精英...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/6.工作方法/管理的本质.html">管理的本质</a>
+                            </h3>
+                            <p class="article-excerpt">深入理解管理的本质...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">访谈 （2）</h3>
+                    <div class="article-list">
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/7.访谈/对谈兰小欢：宏观总有周期，个体只有当下，人生要学会留有余力.html">对谈兰小欢：宏观总有周期，个体只有当下，人生要学会留有余力</a>
+                            </h3>
+                            <p class="article-excerpt">兰小欢谈宏观经济与个体人生的智慧...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/7.访谈/李笑来教你"骗"过大脑潜意识，轻松变好.html">李笑来教你"骗"过大脑潜意识，轻松变好</a>
+                            </h3>
+                            <p class="article-excerpt">李笑来分享如何"欺骗"大脑实现自我提升...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">两性与情感 （3）</h3>
+                    <div class="article-list">
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/8.两性与情感/千万别找底层的女生，尤其是底层美女.html">千万别找底层的女生，尤其是底层美女</a>
+                            </h3>
+                            <p class="article-excerpt">关于择偶标准和阶层差异的深度思考...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/8.两性与情感/比恋爱脑更可怕的是性缘脑？前者影响恋爱，后者影响所有.html">比恋爱脑更可怕的是性缘脑？前者影响恋爱，后者影响所有</a>
+                            </h3>
+                            <p class="article-excerpt">理解性缘脑，超越恋爱关系...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                        <article class="article-item">
+                            <h3 class="article-title">
+                                <a href="其它/8.两性与情感/男性提升自己最快的方式，给大脑去性化.html">男性提升自己最快的方式，给大脑去性化</a>
+                            </h3>
+                            <p class="article-excerpt">男性自我提升：给大脑去性化的方法...</p>
+                            <div class="article-meta">
+                                <span class="meta-item"><span class="icon">👁️</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">👍</span><span class="count">--</span></span>
+                                <span class="meta-item"><span class="icon">💬</span><span class="count">--</span></span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
     </main>
-</div>
 
-<!-- 返回顶部按钮 -->
-<button class="back-to-top" id="backToTop" aria-label="返回顶部">↑</button>
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+        <div class="sidebar-module">
+            <h3 class="sidebar-title">相关分类</h3>
+            <div class="category-list">
+                <a href="#牧言" class="category-item">牧言 <span class="category-count">7</span></a>
+                <a href="#了凡四训" class="category-item">了凡四训 <span class="category-count">9</span></a>
+                <a href="#心经" class="category-item">心经 <span class="category-count">3</span></a>
+                <a href="#道德经" class="category-item">道德经 <span class="category-count">1</span></a>
+                <a href="#庄子" class="category-item">庄子 <span class="category-count">6</span></a>
+                <a href="#阳明心学" class="category-item">阳明心学 <span class="category-count">2</span></a>
+                <a href="#李二八" class="category-item">李二八 <span class="category-count">8</span></a>
+                <a href="#学习方法" class="category-item">学习方法 <span class="category-count">8</span></a>
+                <a href="#技能提升" class="category-item">技能提升 <span class="category-count">2</span></a>
+                <a href="#心理健康" class="category-item">心理健康 <span class="category-count">19</span></a>
+                <a href="#经验总结" class="category-item">经验总结 <span class="category-count">16</span></a>
+            </div>
+        </div>
+
+        <div class="sidebar-module">
+            <h3 class="sidebar-title">热门文章</h3>
+            <div class="hot-articles">
+                <a href="1.牧言/3.内卷破局心法.html" class="hot-article-item"><span class="hot-rank">1</span>内卷破局心法</a>
+                <a href="2.了凡四训/5.昨日已死，今日当生，如何自我重塑.html" class="hot-article-item"><span class="hot-rank">2</span>昨日已死，今日当生</a>
+                <a href="其它/3.心理健康/心流：人生最重要的事情不是努力，而是会玩.html" class="hot-article-item"><span class="hot-rank">3</span>心流：人生最重要的事情不是努力</a>
+                <a href="5.庄子/1.看完庄子《逍遥游》，看我们如何穷游人生.html" class="hot-article-item"><span class="hot-rank">4</span>看完庄子《逍遥游》</a>
+                <a href="其它/1.学习方法/穷人最大的陷阱：把收藏当发财.html" class="hot-article-item"><span class="hot-rank">5</span>穷人最大的陷阱</a>
+            </div>
+        </div>
+    </aside>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // ==================== 自动生成文章摘要 ====================
+        function generateArticleExcerpt(title) {
+            // 移除序号
+            const cleanTitle = title.replace(/^\d+\.\s*/, '');
+
+            // 如果有冒号，取冒号后的部分
+            if (cleanTitle.includes('：')) {
+                const parts = cleanTitle.split('：');
+                return `探讨${parts[0]}，分析${parts[1] || '相关内容'}...`;
+            }
+
+            // 如果有问号
+            if (cleanTitle.includes('？')) {
+                const parts = cleanTitle.split('？');
+                return parts[0] + '的深度分析和解答...';
+            }
+
+            // 提取关键词
+            const keywords = cleanTitle.split(/[、·—《》]/);
+            if (keywords.length > 1) {
+                return `关于${keywords[0]}等主题的深度探讨...`;
+            }
+
+            // 默认摘要
+            if (cleanTitle.length > 10) {
+                return `探索${cleanTitle.substring(0, 10)}...的详细内容和分析。`;
+            }
+            return `探索${cleanTitle}的详细内容和分析。`;
+        }
+
+        // 初始化摘要
+        document.querySelectorAll('.article-item').forEach(item => {
+            const titleEl = item.querySelector('.article-title a');
+            const excerptEl = item.querySelector('.article-excerpt');
+
+            if (titleEl && excerptEl) {
+                excerptEl.textContent = generateArticleExcerpt(titleEl.textContent);
+            }
+        });
+
+        // ==================== 生成模拟互动数据 ====================
+        function generateMockStats() {
+            document.querySelectorAll('.article-item').forEach(item => {
+                const countEls = item.querySelectorAll('.count');
+
+                countEls.forEach(el => {
+                    // 阅读数: 50-5000
+                    const views = Math.floor(Math.random() * 4950) + 50;
+                    // 点赞数: 0-100
+                    const likes = Math.floor(Math.random() * 101);
+                    // 评论数: 0-50
+                    const comments = Math.floor(Math.random() * 51);
+
+                    // 根据索引设置不同的值
+                    const index = Array.from(countEls).indexOf(el);
+                    let value;
+
+                    if (index === 0) {
+                        value = views;
+                    } else if (index === 1) {
+                        value = likes;
+                    } else {
+                        value = comments;
+                    }
+
+                    // 格式化显示
+                    if (value >= 1000) {
+                        el.textContent = (value / 1000).toFixed(1) + 'k';
+                    } else {
+                        el.textContent = value;
+                    }
+                });
+            });
+        }
+
+        generateMockStats();
+
         // ==================== 搜索功能 ====================
         class ArticleSearch {
             constructor() {
@@ -908,11 +1844,10 @@
                     const subsections = section.querySelectorAll('.subsection');
 
                     if (subsections.length > 0) {
-                        // 有子分类的情况
                         subsections.forEach(sub => {
                             const subSectionTitle = sub.querySelector('.subsection-title')?.textContent.trim();
-                            sub.querySelectorAll('.file-item').forEach(item => {
-                                const link = item.querySelector('a');
+                            sub.querySelectorAll('.article-item').forEach(item => {
+                                const link = item.querySelector('.article-title a');
                                 if (link) {
                                     articles.push({
                                         title: link.textContent.trim(),
@@ -926,9 +1861,8 @@
                             });
                         });
                     } else {
-                        // 直接子文章
-                        section.querySelectorAll('.file-item').forEach(item => {
-                            const link = item.querySelector('a');
+                        section.querySelectorAll('.article-item').forEach(item => {
+                            const link = item.querySelector('.article-title a');
                             if (link) {
                                 articles.push({
                                     title: link.textContent.trim(),
@@ -991,7 +1925,7 @@
             }
 
             highlightArticle(article, searchTerms) {
-                const link = article.element.querySelector('a');
+                const link = article.element.querySelector('.article-title a');
                 let html = article.title;
 
                 searchTerms.forEach(term => {
@@ -1003,9 +1937,8 @@
             }
 
             hideEmptySections() {
-                // 隐藏没有匹配文章的section
                 document.querySelectorAll('.section, .subsection').forEach(container => {
-                    const visibleItems = container.querySelectorAll('.file-item:not([style*="display: none"])');
+                    const visibleItems = container.querySelectorAll('.article-item:not([style*="display: none"])');
                     container.style.display = visibleItems.length > 0 ? '' : 'none';
                 });
             }
@@ -1021,7 +1954,7 @@
             resetDisplay() {
                 this.articles.forEach(article => {
                     article.element.style.display = '';
-                    const link = article.element.querySelector('a');
+                    const link = article.element.querySelector('.article-title a');
                     link.innerHTML = article.originalHTML;
                 });
 
@@ -1037,7 +1970,6 @@
             }
         }
 
-        // 初始化搜索功能
         new ArticleSearch();
 
         // ==================== 所有链接在新标签打开 ====================
@@ -1048,16 +1980,15 @@
 
         // ==================== 自动统计文件数量 ====================
         const updateStats = () => {
-            const fileItems = document.querySelectorAll('.file-item');
-            const totalCount = fileItems.length;
+            const articleItems = document.querySelectorAll('.article-item');
+            const totalCount = articleItems.length;
 
-            // 统计数字开头的文件夹
             const numberedFolders = ['1.牧言', '2.了凡四训', '3.心经', '4.道德经', '5.庄子', '6.阳明心学', '7.李二八'];
             let numberedCount = 0;
             let otherCount = 0;
 
-            fileItems.forEach(item => {
-                const href = item.querySelector('a').getAttribute('href');
+            articleItems.forEach(item => {
+                const href = item.querySelector('.article-title a').getAttribute('href');
                 if (numberedFolders.some(folder => href.startsWith(folder))) {
                     numberedCount++;
                 } else {
@@ -1065,11 +1996,9 @@
                 }
             });
 
-            // 更新DOM
             document.querySelector('.stats .badge').textContent = `文件总数: ${totalCount}`;
 
             const leftDiv = document.querySelector('.stats .left');
-            // 保留徽章，更新其他统计信息
             const statDivs = leftDiv.querySelectorAll('div');
             if (statDivs.length >= 3) {
                 statDivs[1].textContent = `数字开头文件夹: ${numberedFolders.length}（共 ${numberedCount} 个文件）`;
@@ -1078,70 +2007,12 @@
 
             const rightSection = document.querySelector('.stats .right');
             rightSection.innerHTML = `
-                <div style="color:rgba(255,255,255,0.8);font-size:13px;">更新时间: ${new Date().toLocaleString('zh-CN')}</div>
-                <div style="color:rgba(255,255,255,0.8);font-size:13px;">文件夹: <span style="opacity:0.9;">pages</span></div>
+                <div style="color: var(--text-secondary); font-size: var(--font-size-small);">更新时间: ${new Date().toLocaleString('zh-CN')}</div>
+                <div style="color: var(--text-secondary); font-size: var(--font-size-small);">文件夹: <span>pages</span></div>
             `;
         };
 
-        // 调用统计函数
         updateStats();
-
-        // ==================== 优化后的滚动渐入观察 ====================
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'  // 提前触发动画
-        });
-
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.opacity = 0;
-            section.style.transform = 'translateY(20px)';
-            observer.observe(section);
-        });
-
-        // ==================== 移动端触摸优化 ====================
-        if ('ontouchstart' in window) {
-            document.body.classList.add('touch-device');
-            console.log('检测到触摸设备，已启用触摸优化模式');
-        }
-
-        // ==================== 返回顶部按钮 ====================
-        const backToTopBtn = document.getElementById('backToTop');
-        if (backToTopBtn) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 500) {
-                    backToTopBtn.classList.add('visible');
-                } else {
-                    backToTopBtn.classList.remove('visible');
-                }
-            });
-
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        }
-
-        // ==================== 性能监控（开发模式） ====================
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            window.addEventListener('load', () => {
-                const perfData = performance.getEntriesByType('navigation')[0];
-                console.group('📊 页面性能指标');
-                console.log('DOM加载时间:', (perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart).toFixed(2), 'ms');
-                console.log('页面完全加载:', (perfData.loadEventEnd - perfData.loadEventStart).toFixed(2), 'ms');
-                console.log('首次绘制:', (perfData.responseStart - perfData.requestStart).toFixed(2), 'ms');
-                console.groupEnd();
-            });
-        }
     });
 </script>
 </body>
